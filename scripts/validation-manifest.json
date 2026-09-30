@@ -1,55 +1,193 @@
 {
+  "book_title": "在AI时代写给每一位的生信入门书",
   "chapters": [
     {
-      "file": "manuscript/01-learning-and-study-design.md",
-      "planned_sections": 5
+      "file": "manuscript/01-ai-era-introduction.md",
+      "title": "AI时代，如何开始学习生物信息学",
+      "planned_sections": 0,
+      "section_titles": [],
+      "summary": false
     },
     {
-      "file": "manuscript/02-computing-and-programming.md",
-      "planned_sections": 6
+      "file": "manuscript/02-environment-and-programming.md",
+      "title": "分析环境的搭建与必要的编程技术",
+      "planned_sections": 6,
+      "section_titles": [
+        "电脑、服务器与软件环境",
+        "命令行与文本文件操作",
+        "Shell 脚本与批量处理",
+        "R 数据处理与绘图基础",
+        "Python 与结构化配置的最低必要知识",
+        "项目目录、版本管理与排错"
+      ],
+      "summary": true
     },
     {
-      "file": "manuscript/03-sequencing-and-data-formats.md",
-      "planned_sections": 7
+      "file": "manuscript/03-sequencing-technologies.md",
+      "title": "测序技术",
+      "planned_sections": 9,
+      "section_titles": [
+        "不同测序实验究竟测到了什么",
+        "以Illumina为代表的第二代测序技术",
+        "MGI测序技术",
+        "PacBio与Nanopore",
+        "高通量文库构建",
+        "测序数据的储存",
+        "读懂测序质量报告 FastQC",
+        "去除测序接头",
+        "其它常见的测序数据clean操作"
+      ],
+      "summary": true
     },
     {
-      "file": "manuscript/04-quality-control-and-alignment.md",
-      "planned_sections": 8
+      "file": "manuscript/04-sequence-alignment.md",
+      "title": "测序结果的比对",
+      "planned_sections": 9,
+      "section_titles": [
+        "概览",
+        "参考基因组",
+        "参考转录本与基因注释",
+        "序列比对算法",
+        "根据数据选择比对策略",
+        "SAM/BAM 操作与过滤",
+        "测序深度与复杂度",
+        "IGV",
+        "下载公共数据进行分析"
+      ],
+      "summary": true
     },
     {
-      "file": "manuscript/05-statistics-and-exploration.md",
-      "planned_sections": 7
+      "file": "manuscript/05-rna-seq.md",
+      "title": "RNA-seq：从表达定量到差异表达",
+      "planned_sections": 8,
+      "section_titles": [
+        "研究问题、建库策略与分析对象",
+        "建立贯穿全章的示例项目",
+        "RNA-seq质控与剪接感知比对",
+        "从reads到基因和转录本定量",
+        "counts、TPM与样本探索",
+        "差异表达模型与结果解释",
+        "功能富集与结果展示",
+        "完整交付、错误案例与拓展入口"
+      ],
+      "summary": true
     },
     {
-      "file": "manuscript/06-rna-seq.md",
-      "planned_sections": 8
+      "file": "manuscript/06-chip-seq-and-atac-seq.md",
+      "title": "ChIP-seq与ATAC-seq：从富集信号到差异分析",
+      "planned_sections": 8,
+      "section_titles": [
+        "蛋白结合、组蛋白修饰与染色质可及性",
+        "实验对照、重复与主案例设计",
+        "ChIP-seq预处理与质量评估",
+        "Peak calling原理与参数",
+        "ATAC-seq专属处理与质控",
+        "重复一致性与统一peak集合",
+        "差异结合与差异可及性分析",
+        "注释、motif、可视化与解释边界"
+      ],
+      "summary": true
     },
     {
-      "file": "manuscript/07-chip-seq-and-atac-seq.md",
-      "planned_sections": 8
+      "file": "manuscript/07-wgs-and-wes.md",
+      "title": "WGS与WES：从测序数据到可信的小变异",
+      "planned_sections": 8,
+      "section_titles": [
+        "分析任务、变异类型与应用边界",
+        "示例数据、参考资源与覆盖设计",
+        "DNA比对与变异检测前处理",
+        "基因型似然与局部单倍型重组装",
+        "单样本调用、gVCF与联合分型",
+        "VCF解读、过滤与质量评估",
+        "变异注释与证据分层",
+        "IGV复核、基准评价与完整交付"
+      ],
+      "summary": true
     },
     {
-      "file": "manuscript/08-wgs-and-wes.md",
-      "planned_sections": 8
+      "file": "manuscript/08-base-imbalanced-sequencing.md",
+      "title": "碱基不平衡测序数据的分析",
+      "planned_sections": 2,
+      "section_titles": [
+        "BS-seq 甲基化测序",
+        "GLORI m6A测序"
+      ],
+      "summary": true
     },
     {
-      "file": "manuscript/09-snakemake-and-reproducibility.md",
-      "planned_sections": 7
+      "file": "manuscript/09-single-cell-and-spatial-omics.md",
+      "title": "单细胞与空间组学",
+      "planned_sections": 8,
+      "section_titles": [
+        "从组织平均到细胞差异与空间位置：研究问题与数据结构",
+        "单细胞数据的质控：细胞、基因、双细胞与背景信号",
+        "归一化、特征选择、降维与聚类",
+        "细胞类型注释与证据核查",
+        "多样本比较：批次、重复与差异分析",
+        "空间转录组的技术、数据结构与质量控制",
+        "空间表达可视化、组织区域与结果解释",
+        "单细胞与空间信息的结合、完整案例与常见误区"
+      ],
+      "summary": true
     },
     {
-      "file": "manuscript/10-ai-and-independent-analysis.md",
-      "planned_sections": 7
+      "file": "manuscript/10-snakemake-and-reproducibility.md",
+      "title": "Snakemake与可复现分析工作流",
+      "planned_sections": 7,
+      "section_titles": [
+        "从命令脚本到依赖图",
+        "第一个可运行的Snakefile",
+        "样本表、配置与多样本扩展",
+        "环境与参考资源的版本管理",
+        "资源、日志、失败恢复与增量运行",
+        "流程验证与自动报告",
+        "完整项目与跨任务迁移"
+      ],
+      "summary": true
+    },
+    {
+      "file": "manuscript/11-statistics-and-learning.md",
+      "title": "统计学基础与学习建议",
+      "planned_sections": 7,
+      "section_titles": [
+        "描述数据与量化不确定性",
+        "概率分布与计数数据",
+        "效应量、假设检验与多重比较",
+        "归一化及其隐含假设",
+        "回归、设计公式与比较方向",
+        "相关性、聚类与PCA",
+        "稳健解释、可视化与常见统计误区"
+      ],
+      "summary": true
+    },
+    {
+      "file": "manuscript/12-ai-learning-and-practice.md",
+      "title": "AI技术学习路线与综合实践",
+      "planned_sections": 7,
+      "section_titles": [
+        "AI改变了哪些工作，仍需掌握什么",
+        "向AI描述任务并核查信息",
+        "AI辅助写代码、排错和改造流程",
+        "识别能运行但结论错误的分析",
+        "AI使用中的数据、版本与责任记录",
+        "当AI本身成为分析方法",
+        "独立项目、能力自检与进阶路线"
+      ],
+      "summary": true
     }
+  ],
+  "appendices": [
+    "appendices/a-references-and-materials.md"
   ],
   "known_missing_images": [
     "https://images-cdn.shimo.im/ZZob1QhLKmoyhnlk/Snipaste_2018_09_09_21_16_25.png!original",
     "https://images-cdn.shimo.im/2PrwPwoL75oUjCsd/Snipaste_2018_09_09_21_20_52.png!original"
   ],
   "required_anchors": {
-    "manuscript/01-learning-and-study-design.md": [
+    "manuscript/01-ai-era-introduction.md": [
       "src-0010-introduction-8"
     ],
-    "manuscript/03-sequencing-and-data-formats.md": [
+    "manuscript/03-sequencing-technologies.md": [
       "src-0020-introduction-of-NGS-1",
       "src-0020-introduction-of-NGS-3",
       "src-0020-introduction-of-NGS-8",
@@ -61,11 +199,70 @@
       "src-0020-introduction-of-NGS-84",
       "src-0050-RNA-seq-85",
       "src-0050-RNA-seq-132",
+      "src-0050-RNA-seq-128",
+      "src-0050-RNA-seq-154",
+      "src-0050-RNA-seq-204",
+      "src-0030-QC-of-FASTQ-7",
+      "src-0030-QC-of-FASTQ-9",
+      "src-0030-QC-of-FASTQ-11",
+      "src-0030-QC-of-FASTQ-13",
+      "src-0030-QC-of-FASTQ-15",
+      "src-0030-QC-of-FASTQ-17",
+      "src-0030-QC-of-FASTQ-19",
+      "src-0030-QC-of-FASTQ-23",
+      "src-0030-QC-of-FASTQ-25",
+      "src-0030-QC-of-FASTQ-27",
+      "src-0030-QC-of-FASTQ-29",
+      "question-01-1",
+      "question-01-3",
+      "question-01-5",
+      "question-01-22",
+      "question-01-35",
+      "question-01-40",
+      "question-01-66",
+      "question-01-77",
+      "question-01-80",
+      "question-01-83",
+      "question-01-86",
+      "question-01-89",
+      "question-01-94",
+      "question-01-97",
+      "question-01-99",
+      "question-01-101",
+      "question-01-115",
+      "question-01-118",
+      "question-01-128",
+      "question-01-132",
+      "question-01-133",
+      "question-01-135",
+      "question-01-144",
+      "question-01-148",
+      "question-01-156",
+      "question-01-160",
+      "question-06-3",
+      "question-06-7",
+      "question-06-8",
+      "question-06-35",
+      "question-06-79",
+      "question-06-80",
+      "question-06-109",
+      "question-06-136",
+      "question-06-137",
+      "question-06-178",
+      "question-06-211",
+      "question-06-289",
+      "question-06-290",
+      "question-06-340",
+      "question-06-375",
+      "question-11-3",
+      "question-11-4",
+      "question-11-86",
+      "question-11-88"
+    ],
+    "manuscript/04-sequence-alignment.md": [
       "src-0050-RNA-seq-210",
       "src-0050-RNA-seq-218",
-      "src-0050-RNA-seq-241"
-    ],
-    "manuscript/04-quality-control-and-alignment.md": [
+      "src-0050-RNA-seq-241",
       "src-0040-mapping-and-BAM-operation-8",
       "src-0040-mapping-and-BAM-operation-10",
       "src-0040-mapping-and-BAM-operation-12",
@@ -90,9 +287,6 @@
       "src-0040-mapping-and-BAM-operation-421",
       "src-0040-mapping-and-BAM-operation-433",
       "src-0040-mapping-and-BAM-operation-467",
-      "src-0050-RNA-seq-128",
-      "src-0050-RNA-seq-154",
-      "src-0050-RNA-seq-204",
       "src-0070-WGS-9",
       "src-0070-WGS-46",
       "src-0070-WGS-48",
@@ -100,29 +294,60 @@
       "src-0070-WGS-70",
       "src-0070-WGS-208",
       "src-0070-WGS-218",
-      "src-0030-QC-of-FASTQ-7",
-      "src-0030-QC-of-FASTQ-9",
-      "src-0030-QC-of-FASTQ-11",
-      "src-0030-QC-of-FASTQ-13",
-      "src-0030-QC-of-FASTQ-15",
-      "src-0030-QC-of-FASTQ-17",
-      "src-0030-QC-of-FASTQ-19",
-      "src-0030-QC-of-FASTQ-23",
-      "src-0030-QC-of-FASTQ-25",
-      "src-0030-QC-of-FASTQ-27",
-      "src-0030-QC-of-FASTQ-29"
+      "question-06-227",
+      "question-06-228",
+      "question-06-240",
+      "question-06-280",
+      "question-11-158",
+      "question-11-160",
+      "question-11-253",
+      "question-11-255",
+      "question-11-341",
+      "question-11-343",
+      "question-16-2",
+      "question-16-3",
+      "question-16-66",
+      "question-16-111",
+      "question-16-112",
+      "question-16-188",
+      "question-16-244",
+      "question-16-245",
+      "question-16-291",
+      "question-16-329",
+      "question-16-330",
+      "question-16-381",
+      "question-16-426",
+      "question-16-427",
+      "question-16-465",
+      "question-21-3",
+      "question-21-5",
+      "question-21-72",
+      "question-21-145",
+      "question-21-146",
+      "question-21-152",
+      "question-21-161",
+      "question-21-165",
+      "question-21-173",
+      "question-21-265",
+      "question-21-279",
+      "question-21-351",
+      "question-21-353",
+      "question-21-359",
+      "question-21-372",
+      "question-21-421",
+      "question-21-506",
+      "question-21-508",
+      "question-21-530",
+      "question-21-540",
+      "question-21-655"
     ],
-    "manuscript/06-rna-seq.md": [
+    "manuscript/05-rna-seq.md": [
       "src-0050-RNA-seq-1",
       "src-0050-RNA-seq-5",
       "src-0050-RNA-seq-15",
       "src-0050-RNA-seq-26",
       "src-0050-RNA-seq-39",
       "src-0050-RNA-seq-49",
-      "src-0050-RNA-seq-56",
-      "src-0050-RNA-seq-81",
-      "src-0050-RNA-seq-91",
-      "src-0050-RNA-seq-95",
       "src-0050-RNA-seq-101",
       "src-0050-RNA-seq-247",
       "src-0050-RNA-seq-253",
@@ -165,9 +390,20 @@
       "src-0050-RNA-seq-1148",
       "src-0050-RNA-seq-1163",
       "src-0050-RNA-seq-1171",
+      "question-21-285",
+      "question-21-286",
+      "question-21-292",
+      "question-21-307",
+      "question-21-314"
+    ],
+    "manuscript/09-single-cell-and-spatial-omics.md": [
+      "src-0050-RNA-seq-56",
+      "src-0050-RNA-seq-81",
+      "src-0050-RNA-seq-91",
+      "src-0050-RNA-seq-95",
       "src-0050-RNA-seq-1182"
     ],
-    "manuscript/07-chip-seq-and-atac-seq.md": [
+    "manuscript/06-chip-seq-and-atac-seq.md": [
       "src-0060-ChIP-seq-20",
       "src-0060-ChIP-seq-22",
       "src-0060-ChIP-seq-26",
@@ -234,7 +470,7 @@
       "src-0060-ChIP-seq-901",
       "src-0060-ChIP-seq-906"
     ],
-    "manuscript/08-wgs-and-wes.md": [
+    "manuscript/07-wgs-and-wes.md": [
       "src-0070-WGS-1",
       "src-0070-WGS-3",
       "src-0070-WGS-5",
@@ -256,7 +492,7 @@
       "src-0070-WGS-840",
       "src-0070-WGS-850"
     ],
-    "manuscript/05-statistics-and-exploration.md": [
+    "manuscript/11-statistics-and-learning.md": [
       "src-0080-statistics-1",
       "src-0080-statistics-3",
       "src-0080-statistics-5",
@@ -274,7 +510,7 @@
       "src-0080-statistics-210",
       "src-0080-statistics-225"
     ],
-    "manuscript/02-computing-and-programming.md": [
+    "manuscript/02-environment-and-programming.md": [
       "src-0090-build-up-bioinfo-platform-1",
       "src-0090-build-up-bioinfo-platform-3",
       "src-0090-build-up-bioinfo-platform-13",
@@ -317,112 +553,158 @@
       "src-0090-build-up-bioinfo-platform-391",
       "src-0090-build-up-bioinfo-platform-418",
       "src-0090-build-up-bioinfo-platform-431"
-    ],
-    "appendices/a-questions-01-05.md": [
-      "question-01-1",
-      "question-01-3",
-      "question-01-5",
-      "question-01-22",
-      "question-01-35",
-      "question-01-40",
-      "question-01-66",
-      "question-01-77",
-      "question-01-80",
-      "question-01-83",
-      "question-01-86",
-      "question-01-89",
-      "question-01-94",
-      "question-01-97",
-      "question-01-99",
-      "question-01-101",
-      "question-01-115",
-      "question-01-118",
-      "question-01-128",
-      "question-01-132",
-      "question-01-133",
-      "question-01-135",
-      "question-01-144",
-      "question-01-148",
-      "question-01-156",
-      "question-01-160"
-    ],
-    "appendices/a-questions-06-10.md": [
-      "question-06-3",
-      "question-06-7",
-      "question-06-8",
-      "question-06-35",
-      "question-06-79",
-      "question-06-80",
-      "question-06-109",
-      "question-06-136",
-      "question-06-137",
-      "question-06-178",
-      "question-06-211",
-      "question-06-227",
-      "question-06-228",
-      "question-06-240",
-      "question-06-280",
-      "question-06-289",
-      "question-06-290",
-      "question-06-340",
-      "question-06-375"
-    ],
-    "appendices/a-questions-11-15.md": [
-      "question-11-3",
-      "question-11-4",
-      "question-11-86",
-      "question-11-88",
-      "question-11-158",
-      "question-11-160",
-      "question-11-253",
-      "question-11-255",
-      "question-11-341",
-      "question-11-343"
-    ],
-    "appendices/a-questions-16-20.md": [
-      "question-16-2",
-      "question-16-3",
-      "question-16-66",
-      "question-16-111",
-      "question-16-112",
-      "question-16-188",
-      "question-16-244",
-      "question-16-245",
-      "question-16-291",
-      "question-16-329",
-      "question-16-330",
-      "question-16-381",
-      "question-16-426",
-      "question-16-427",
-      "question-16-465"
-    ],
-    "appendices/a-questions-21-25.md": [
-      "question-21-3",
-      "question-21-5",
-      "question-21-72",
-      "question-21-145",
-      "question-21-146",
-      "question-21-152",
-      "question-21-161",
-      "question-21-165",
-      "question-21-173",
-      "question-21-265",
-      "question-21-279",
-      "question-21-285",
-      "question-21-286",
-      "question-21-292",
-      "question-21-307",
-      "question-21-314",
-      "question-21-351",
-      "question-21-353",
-      "question-21-359",
-      "question-21-372",
-      "question-21-421",
-      "question-21-506",
-      "question-21-508",
-      "question-21-530",
-      "question-21-540",
-      "question-21-655"
     ]
-  }
+  },
+  "integrated_questions": [
+    {
+      "question": 1,
+      "source": "appendices/a-questions-01-05.md#question-01-1",
+      "target": "manuscript/03-sequencing-technologies.md#sec-03-06",
+      "anchor": "question-01-1"
+    },
+    {
+      "question": 2,
+      "source": "appendices/a-questions-01-05.md#question-01-77",
+      "target": "manuscript/03-sequencing-technologies.md#sec-03-02",
+      "anchor": "question-01-77"
+    },
+    {
+      "question": 3,
+      "source": "appendices/a-questions-01-05.md#question-01-94",
+      "target": "manuscript/03-sequencing-technologies.md#sec-03-05",
+      "anchor": "question-01-94"
+    },
+    {
+      "question": 4,
+      "source": "appendices/a-questions-01-05.md#question-01-132",
+      "target": "manuscript/03-sequencing-technologies.md#sec-03-02",
+      "anchor": "question-01-132"
+    },
+    {
+      "question": 5,
+      "source": "appendices/a-questions-01-05.md#question-01-148",
+      "target": "manuscript/03-sequencing-technologies.md#sec-03-05",
+      "anchor": "question-01-148"
+    },
+    {
+      "question": 6,
+      "source": "appendices/a-questions-06-10.md#question-06-7",
+      "target": "manuscript/03-sequencing-technologies.md#sec-03-07",
+      "anchor": "question-06-7"
+    },
+    {
+      "question": 7,
+      "source": "appendices/a-questions-06-10.md#question-06-79",
+      "target": "manuscript/03-sequencing-technologies.md#sec-03-07",
+      "anchor": "question-06-79"
+    },
+    {
+      "question": 8,
+      "source": "appendices/a-questions-06-10.md#question-06-136",
+      "target": "manuscript/03-sequencing-technologies.md#sec-03-07",
+      "anchor": "question-06-136"
+    },
+    {
+      "question": 9,
+      "source": "appendices/a-questions-06-10.md#question-06-227",
+      "target": "manuscript/04-sequence-alignment.md#sec-04-07",
+      "anchor": "question-06-227"
+    },
+    {
+      "question": 10,
+      "source": "appendices/a-questions-06-10.md#question-06-289",
+      "target": "manuscript/03-sequencing-technologies.md#sec-03-07",
+      "anchor": "question-06-289"
+    },
+    {
+      "question": 11,
+      "source": "appendices/a-questions-11-15.md#question-11-3",
+      "target": "manuscript/03-sequencing-technologies.md#sec-03-08",
+      "anchor": "question-11-3"
+    },
+    {
+      "question": 12,
+      "source": "appendices/a-questions-11-15.md#question-11-86",
+      "target": "manuscript/03-sequencing-technologies.md#sec-03-09",
+      "anchor": "question-11-86"
+    },
+    {
+      "question": 13,
+      "source": "appendices/a-questions-11-15.md#question-11-158",
+      "target": "manuscript/04-sequence-alignment.md#sec-04-04",
+      "anchor": "question-11-158"
+    },
+    {
+      "question": 14,
+      "source": "appendices/a-questions-11-15.md#question-11-253",
+      "target": "manuscript/04-sequence-alignment.md#sec-04-04",
+      "anchor": "question-11-253"
+    },
+    {
+      "question": 15,
+      "source": "appendices/a-questions-11-15.md#question-11-341",
+      "target": "manuscript/04-sequence-alignment.md#sec-04-04",
+      "anchor": "question-11-341"
+    },
+    {
+      "question": 16,
+      "source": "appendices/a-questions-16-20.md#question-16-2",
+      "target": "manuscript/04-sequence-alignment.md#sec-04-05",
+      "anchor": "question-16-2"
+    },
+    {
+      "question": 17,
+      "source": "appendices/a-questions-16-20.md#question-16-111",
+      "target": "manuscript/04-sequence-alignment.md#sec-04-06",
+      "anchor": "question-16-111"
+    },
+    {
+      "question": 18,
+      "source": "appendices/a-questions-16-20.md#question-16-244",
+      "target": "manuscript/04-sequence-alignment.md#sec-04-05",
+      "anchor": "question-16-244"
+    },
+    {
+      "question": 19,
+      "source": "appendices/a-questions-16-20.md#question-16-329",
+      "target": "manuscript/04-sequence-alignment.md#sec-04-06",
+      "anchor": "question-16-329"
+    },
+    {
+      "question": 20,
+      "source": "appendices/a-questions-16-20.md#question-16-426",
+      "target": "manuscript/04-sequence-alignment.md#sec-04-06",
+      "anchor": "question-16-426"
+    },
+    {
+      "question": 21,
+      "source": "appendices/a-questions-21-25.md#question-21-3",
+      "target": "manuscript/04-sequence-alignment.md#sec-04-06",
+      "anchor": "question-21-3"
+    },
+    {
+      "question": 22,
+      "source": "appendices/a-questions-21-25.md#question-21-145",
+      "target": "manuscript/04-sequence-alignment.md#sec-04-06",
+      "anchor": "question-21-145"
+    },
+    {
+      "question": 23,
+      "source": "appendices/a-questions-21-25.md#question-21-285",
+      "target": "manuscript/05-rna-seq.md#sec-05-03",
+      "anchor": "question-21-285"
+    },
+    {
+      "question": 24,
+      "source": "appendices/a-questions-21-25.md#question-21-351",
+      "target": "manuscript/04-sequence-alignment.md#sec-04-03",
+      "anchor": "question-21-351"
+    },
+    {
+      "question": 25,
+      "source": "appendices/a-questions-21-25.md#question-21-506",
+      "target": "manuscript/04-sequence-alignment.md#sec-04-03",
+      "anchor": "question-21-506"
+    }
+  ]
 }

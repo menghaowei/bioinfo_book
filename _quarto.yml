@@ -8,7 +8,7 @@ project:
     - python3 scripts/post_render.py
 
 book:
-  title: "以高通量数据分析为基础的生物信息学入门"
+  title: "在AI时代写给每一位的生信入门书"
   subtitle: "从理解数据，到独立分析"
   author: "生物信息学实战手册编写团队"
   language: zh-CN
@@ -16,7 +16,7 @@ book:
   search: true
   page-navigation: true
   sidebar:
-    title: "生物信息学入门"
+    title: "AI时代生信入门"
     style: docked
     collapse-level: 2
   page-footer:
@@ -24,32 +24,26 @@ book:
     right: "[版权与使用条款](https://book.bioinfo.info/license.html)"
   chapters:
     - index.qmd
-    - part: "第一篇 · 共同基础"
+    - part: "第一篇 · 理解问题，建立基础"
       chapters:
-        - manuscript/01-learning-and-study-design.md
-        - manuscript/02-computing-and-programming.md
-        - manuscript/03-sequencing-and-data-formats.md
-        - manuscript/04-quality-control-and-alignment.md
-        - manuscript/05-statistics-and-exploration.md
-    - part: "第二篇 · 三类核心实战"
+        - manuscript/01-ai-era-introduction.md
+        - manuscript/02-environment-and-programming.md
+        - manuscript/03-sequencing-technologies.md
+        - manuscript/04-sequence-alignment.md
+    - part: "第二篇 · 从数据到生物学发现"
       chapters:
-        - manuscript/06-rna-seq.md
-        - manuscript/07-chip-seq-and-atac-seq.md
-        - manuscript/08-wgs-and-wes.md
-    - part: "第三篇 · 可复现工作流与独立分析"
+        - manuscript/05-rna-seq.md
+        - manuscript/06-chip-seq-and-atac-seq.md
+        - manuscript/07-wgs-and-wes.md
+        - manuscript/08-base-imbalanced-sequencing.md
+        - manuscript/09-single-cell-and-spatial-omics.md
+    - part: "第三篇 · 走向独立分析"
       chapters:
-        - manuscript/09-snakemake-and-reproducibility.md
-        - manuscript/10-ai-and-independent-analysis.md
+        - manuscript/10-snakemake-and-reproducibility.md
+        - manuscript/11-statistics-and-learning.md
+        - manuscript/12-ai-learning-and-practice.md
   appendices:
-    - appendices/a-questions-01-05.md
-    - appendices/a-questions-06-10.md
-    - appendices/a-questions-11-15.md
-    - appendices/a-questions-16-20.md
-    - appendices/a-questions-21-25.md
-    - appendices/b-formats-and-glossary.md
-    - appendices/c-mathematical-reading.md
-    - appendices/d-reproduction.md
-    - appendices/e-references-and-maintenance.md
+    - appendices/a-references-and-materials.md
 
 lang: zh-CN
 pandoc-args:

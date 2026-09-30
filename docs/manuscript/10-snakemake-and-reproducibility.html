@@ -6,9 +6,8 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
-<meta name="author" content="生物信息学实战手册编写团队">
 
-<title>在AI时代写给每一位的生信入门书</title>
+<title>10&nbsp; Snakemake与可复现分析工作流 – 在AI时代写给每一位的生信入门书</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -24,25 +23,26 @@ ul.task-list li input[type="checkbox"] {
 </style>
 
 
-<script src="site_libs/quarto-nav/quarto-nav.js"></script>
-<script src="site_libs/quarto-nav/headroom.min.js"></script>
-<script src="site_libs/clipboard/clipboard.min.js"></script>
-<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
-<script src="site_libs/quarto-search/fuse.min.js"></script>
-<script src="site_libs/quarto-search/quarto-search.js"></script>
-<meta name="quarto:offset" content="./">
-<link href="./manuscript/01-ai-era-introduction.html" rel="next">
-<script src="site_libs/quarto-html/quarto.js" type="module"></script>
-<script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
-<script src="site_libs/quarto-html/axe/axe-check.js" type="module"></script>
-<script src="site_libs/quarto-html/popper.min.js"></script>
-<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
-<script src="site_libs/quarto-html/anchor.min.js"></script>
-<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-ed96de9b727972fe78a7b5d16c58bf87.css" rel="stylesheet" id="quarto-text-highlighting-styles">
-<script src="site_libs/bootstrap/bootstrap.min.js"></script>
-<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap-fee7858ca6db8ec7d6fd63bab88709cf.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<link href="../manuscript/11-statistics-and-learning.html" rel="next">
+<link href="../manuscript/09-single-cell-and-spatial-omics.html" rel="prev">
+<script src="../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../site_libs/quarto-html/axe/axe-check.js" type="module"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-ed96de9b727972fe78a7b5d16c58bf87.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap-fee7858ca6db8ec7d6fd63bab88709cf.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -73,7 +73,7 @@ ul.task-list li input[type="checkbox"] {
 <style>html{ scroll-behavior: smooth; }</style>
 
 
-<link rel="stylesheet" href="styles/book.css">
+<link rel="stylesheet" href="../styles/book.css">
 </head>
 
 <body class="nav-sidebar docked quarto-light">
@@ -85,7 +85,7 @@ ul.task-list li input[type="checkbox"] {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="展开或折叠侧边栏导航" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./index.html">阅读指南</a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../manuscript/10-snakemake-and-reproducibility.html">第三篇 · 走向独立分析</a></li><li class="breadcrumb-item"><a href="../manuscript/10-snakemake-and-reproducibility.html"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Snakemake与可复现分析工作流</span></a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="展开或折叠侧边栏导航" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="搜索" onclick="window.quartoOpenSearch();">
@@ -100,7 +100,7 @@ ul.task-list li input[type="checkbox"] {
   <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation docked overflow-auto">
     <div class="pt-lg-2 mt-2 text-left sidebar-header">
     <div class="sidebar-title mb-0 py-0">
-      <a href="./">AI时代生信入门</a> 
+      <a href="../">AI时代生信入门</a> 
     </div>
       </div>
         <div class="mt-2 flex-shrink-0 align-items-center">
@@ -112,7 +112,7 @@ ul.task-list li input[type="checkbox"] {
     <ul class="list-unstyled mt-1">
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./index.html" class="sidebar-item-text sidebar-link active">
+  <a href="../index.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">阅读指南</span></a>
   </div>
 </li>
@@ -127,25 +127,25 @@ ul.task-list li input[type="checkbox"] {
       <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./manuscript/01-ai-era-introduction.html" class="sidebar-item-text sidebar-link">
+  <a href="../manuscript/01-ai-era-introduction.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">AI时代，如何开始学习生物信息学</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./manuscript/02-environment-and-programming.html" class="sidebar-item-text sidebar-link">
+  <a href="../manuscript/02-environment-and-programming.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">分析环境的搭建与必要的编程技术</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./manuscript/03-sequencing-technologies.html" class="sidebar-item-text sidebar-link">
+  <a href="../manuscript/03-sequencing-technologies.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">测序技术</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./manuscript/04-sequence-alignment.html" class="sidebar-item-text sidebar-link">
+  <a href="../manuscript/04-sequence-alignment.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">测序结果的比对</span></span></a>
   </div>
 </li>
@@ -162,31 +162,31 @@ ul.task-list li input[type="checkbox"] {
       <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./manuscript/05-rna-seq.html" class="sidebar-item-text sidebar-link">
+  <a href="../manuscript/05-rna-seq.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">RNA-seq：从表达定量到差异表达</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./manuscript/06-chip-seq-and-atac-seq.html" class="sidebar-item-text sidebar-link">
+  <a href="../manuscript/06-chip-seq-and-atac-seq.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">ChIP-seq与ATAC-seq：从富集信号到差异分析</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./manuscript/07-wgs-and-wes.html" class="sidebar-item-text sidebar-link">
+  <a href="../manuscript/07-wgs-and-wes.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">WGS与WES：从测序数据到可信的小变异</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./manuscript/08-base-imbalanced-sequencing.html" class="sidebar-item-text sidebar-link">
+  <a href="../manuscript/08-base-imbalanced-sequencing.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">碱基不平衡测序数据的分析</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./manuscript/09-single-cell-and-spatial-omics.html" class="sidebar-item-text sidebar-link">
+  <a href="../manuscript/09-single-cell-and-spatial-omics.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">单细胞与空间组学</span></span></a>
   </div>
 </li>
@@ -203,19 +203,19 @@ ul.task-list li input[type="checkbox"] {
       <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./manuscript/10-snakemake-and-reproducibility.html" class="sidebar-item-text sidebar-link">
+  <a href="../manuscript/10-snakemake-and-reproducibility.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Snakemake与可复现分析工作流</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./manuscript/11-statistics-and-learning.html" class="sidebar-item-text sidebar-link">
+  <a href="../manuscript/11-statistics-and-learning.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">统计学基础与学习建议</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./manuscript/12-ai-learning-and-practice.html" class="sidebar-item-text sidebar-link">
+  <a href="../manuscript/12-ai-learning-and-practice.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">AI技术学习路线与综合实践</span></span></a>
   </div>
 </li>
@@ -232,7 +232,7 @@ ul.task-list li input[type="checkbox"] {
       <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./appendices/a-references-and-materials.html" class="sidebar-item-text sidebar-link">
+  <a href="../appendices/a-references-and-materials.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">A</span>&nbsp; <span class="chapter-title">参考资料与素材说明</span></span></a>
   </div>
 </li>
@@ -248,33 +248,29 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">本章目录</h2>
    
   <ul>
-  <li><a href="#阅读指南" id="toc-阅读指南" class="nav-link active" data-scroll-target="#阅读指南">阅读指南</a>
-  <ul class="collapse">
-  <li><a href="#怎样使用这本书" id="toc-怎样使用这本书" class="nav-link" data-scroll-target="#怎样使用这本书">怎样使用这本书</a></li>
-  <li><a href="#编写团队与致谢" id="toc-编写团队与致谢" class="nav-link" data-scroll-target="#编写团队与致谢">编写团队与致谢</a></li>
-  </ul></li>
+  <li><a href="#chapter-summary-10" id="toc-chapter-summary-10" class="nav-link active" data-scroll-target="#chapter-summary-10">本章提要</a></li>
+  <li><a href="#sec-10-01" id="toc-sec-10-01" class="nav-link" data-scroll-target="#sec-10-01"><span class="header-section-number">10.1</span> 从命令脚本到依赖图</a></li>
+  <li><a href="#sec-10-02" id="toc-sec-10-02" class="nav-link" data-scroll-target="#sec-10-02"><span class="header-section-number">10.2</span> 第一个可运行的Snakefile</a></li>
+  <li><a href="#sec-10-03" id="toc-sec-10-03" class="nav-link" data-scroll-target="#sec-10-03"><span class="header-section-number">10.3</span> 样本表、配置与多样本扩展</a></li>
+  <li><a href="#sec-10-04" id="toc-sec-10-04" class="nav-link" data-scroll-target="#sec-10-04"><span class="header-section-number">10.4</span> 环境与参考资源的版本管理</a></li>
+  <li><a href="#sec-10-05" id="toc-sec-10-05" class="nav-link" data-scroll-target="#sec-10-05"><span class="header-section-number">10.5</span> 资源、日志、失败恢复与增量运行</a></li>
+  <li><a href="#sec-10-06" id="toc-sec-10-06" class="nav-link" data-scroll-target="#sec-10-06"><span class="header-section-number">10.6</span> 流程验证与自动报告</a></li>
+  <li><a href="#sec-10-07" id="toc-sec-10-07" class="nav-link" data-scroll-target="#sec-10-07"><span class="header-section-number">10.7</span> 完整项目与跨任务迁移</a></li>
   </ul>
 </nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default">
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../manuscript/10-snakemake-and-reproducibility.html">第三篇 · 走向独立分析</a></li><li class="breadcrumb-item"><a href="../manuscript/10-snakemake-and-reproducibility.html"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Snakemake与可复现分析工作流</span></a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title">在AI时代写给每一位的生信入门书</h1>
-<p class="subtitle lead">从理解数据，到独立分析</p>
+<h1 class="title"><span id="sec-ch10" class="quarto-section-identifier"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Snakemake与可复现分析工作流</span></span></h1>
 </div>
 
 
 
 <div class="quarto-title-meta">
 
-    <div>
-    <div class="quarto-title-meta-heading">作者</div>
-    <div class="quarto-title-meta-contents">
-             <p>生物信息学实战手册编写团队 </p>
-          </div>
-  </div>
     
   
     
@@ -285,62 +281,46 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<section id="阅读指南" class="level1 unnumbered">
-<h1 class="unnumbered">阅读指南</h1>
-<div class="hero-book">
-<div class="eyebrow">
-<p>BIOINFOBOOK / 从入门到独立分析</p>
-</div>
-<section id="先理解问题再理解数据" class="level2 unnumbered unlisted">
-<h2 class="unnumbered unlisted anchored" data-anchor-id="先理解问题再理解数据">先理解问题，再理解数据</h2>
-<p>生物信息学的本质，是使用信息学的手段解决生物学问题。会敲几行命令只是起点；知道数据从哪里来、每一步为什么这样处理，以及结果究竟能支持什么结论，才是我们希望一起建立的能力。</p>
-<p><a href="./manuscript/01-ai-era-introduction.html">从第 1 章开始阅读</a> →</p>
+<section id="chapter-summary-10" class="level2 unnumbered">
+<h2 class="unnumbered anchored" data-anchor-id="chapter-summary-10">本章提要</h2>
+<p>本章把已经理解的分析步骤组织为 Snakemake 工作流。先从输入输出的依赖关系出发，编写第一个 Snakefile，再用样本表与配置扩展到多样本，记录软件环境和参考资源，学习资源分配、日志、失败恢复与增量运行。最后通过流程验证和自动报告形成完整项目，并练习向其他任务迁移。主案例与第 5 章 RNA-seq 衔接，让你在熟悉的分析问题上学习工作流组织方式。</p>
 </section>
-</div>
-<p>《在AI时代写给每一位的生信入门书》面向希望开始学习生物信息分析的读者。从环境搭建、必要编程和测序技术出发，逐步进入 RNA-seq、ChIP-seq/ATAC-seq、WGS/WES、碱基不平衡测序，以及单细胞与空间组学。通过工作流、统计学和 AI 综合实践，把数据处理与结果判断联系起来。</p>
-<div class="reading-path">
-<div class="reading-card">
-<p><strong>第一篇 · 理解问题，建立基础</strong></p>
-<p>第 1—4 章：学习前言、环境与编程、测序技术、测序结果的比对。认识数据来源，建立能够开始分析的基础。</p>
-</div>
-<div class="reading-card">
-<p><strong>第二篇 · 从数据到生物学发现</strong></p>
-<p>第 5—9 章：RNA-seq、ChIP-seq/ATAC-seq、WGS/WES、BS-seq 与 GLORI，以及单细胞与空间组学。围绕不同实验的问题和数据组织分析。</p>
-</div>
-<div class="reading-card">
-<p><strong>第三篇 · 走向独立分析</strong></p>
-<p>第 10—12 章：Snakemake 工作流、统计学基础与学习建议、AI 技术学习路线与综合实践。形成可复现的工作习惯，理解分析依据并完成独立项目。</p>
-</div>
-</div>
-<section id="怎样使用这本书" class="level2 unnumbered">
-<h2 class="unnumbered anchored" data-anchor-id="怎样使用这本书">怎样使用这本书</h2>
-<p>第一次接触生物信息学时，可以按章节顺序阅读。已有命令行和编程基础的读者，可以从第 3—4 章核对概念，再进入自己关心的实战。第 1 章作为全书前言；从第 2 章起，各章先用“本章提要”介绍目标和内容。</p>
-<p>实战中遇到统计概念时，可以回看<a href="./manuscript/11-statistics-and-learning.html">第 11 章</a>。原有 25 道基础问题及讲解已按主题并入正文，作为相关小节的知识问答；参考资料与素材说明集中放在附录。</p>
-<p>左侧目录用于切换章节，右侧目录用于定位当前章节，搜索框可以检索全书正文。公式、图片和代码均放在对应的讲解位置；较长命令可以横向滚动，并通过右上角按钮复制。</p>
-<div class="callout callout-style-default callout-note callout-titled" title="当前版本">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-<span class="screen-reader-only">注记</span>当前版本
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p>这是按“三篇、十二章、79 个编号小节”整理的持续修订版，另有 11 段不编号的本章提要。已有原稿的详细讲解尽量保留，尚缺的正文、练习和来源均标为“待完善”。碱基不平衡测序、单细胞与空间组学、工作流、AI 及部分统计教学仍需补写。</p>
-<p>网页构建已经与分析代码执行分离。页面中的历史实战命令保留教学上下文，但尚未逐条在统一数据和环境中运行验收。</p>
-</div>
-</div>
+<section id="sec-10-01" class="level2" data-number="10.1">
+<h2 data-number="10.1" class="anchored" data-anchor-id="sec-10-01"><span class="header-section-number">10.1</span> 从命令脚本到依赖图</h2>
+<p>理解工作流为什么以文件依赖组织计算。</p>
+<p>待完善</p>
 </section>
-<section id="编写团队与致谢" class="level2 unnumbered">
-<h2 class="unnumbered anchored" data-anchor-id="编写团队与致谢">编写团队与致谢</h2>
-<p>孟浩巍、大壮、魏官云、刘博、连明、徐煜、契卡。</p>
-<p>感谢原编写团队、生物信息学交流群中的朋友，以及每一位关心和支持本书的读者。</p>
-<p>尽信书不如无书。领会数据处理的方法，远比记住几个软件名称更有帮助。希望在前进的路上，我们能够共勉。</p>
-<p>本书允许个人非商业性在线浏览和分享原站链接；下载、再分发、修改、二次创作及商业使用须事先取得书面许可。详见<a href="https://book.bioinfo.info/license.html">版权与使用条款</a>，其中列明第三方内容、既有授权和法定使用的适用范围。</p>
+<section id="sec-10-02" class="level2" data-number="10.2">
+<h2 data-number="10.2" class="anchored" data-anchor-id="sec-10-02"><span class="header-section-number">10.2</span> 第一个可运行的Snakefile</h2>
+<p>掌握构成最小流程的核心语法。</p>
+<p>待完善</p>
+</section>
+<section id="sec-10-03" class="level2" data-number="10.3">
+<h2 data-number="10.3" class="anchored" data-anchor-id="sec-10-03"><span class="header-section-number">10.3</span> 样本表、配置与多样本扩展</h2>
+<p>让流程通过配置适配数据，而非复制粘贴命令。</p>
+<p>待完善</p>
+</section>
+<section id="sec-10-04" class="level2" data-number="10.4">
+<h2 data-number="10.4" class="anchored" data-anchor-id="sec-10-04"><span class="header-section-number">10.4</span> 环境与参考资源的版本管理</h2>
+<p>使他人能在可追溯的条件下重跑分析。</p>
+<p>待完善</p>
+</section>
+<section id="sec-10-05" class="level2" data-number="10.5">
+<h2 data-number="10.5" class="anchored" data-anchor-id="sec-10-05"><span class="header-section-number">10.5</span> 资源、日志、失败恢复与增量运行</h2>
+<p>能诊断失败并有效管理计算资源。</p>
+<p>待完善</p>
+</section>
+<section id="sec-10-06" class="level2" data-number="10.6">
+<h2 data-number="10.6" class="anchored" data-anchor-id="sec-10-06"><span class="header-section-number">10.6</span> 流程验证与自动报告</h2>
+<p>验证流程不仅能执行，而且输出符合分析要求。</p>
+<p>待完善</p>
+</section>
+<section id="sec-10-07" class="level2" data-number="10.7">
+<h2 data-number="10.7" class="anchored" data-anchor-id="sec-10-07"><span class="header-section-number">10.7</span> 完整项目与跨任务迁移</h2>
+<p>形成编写和改造流程的能力。</p>
+<p>待完善</p>
 
 
-</section>
 </section>
 
 </main> <!-- /main -->
@@ -753,10 +733,13 @@ ul.task-list li input[type="checkbox"] {
   </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
+      <a href="../manuscript/09-single-cell-and-spatial-omics.html" class="pagination-link" aria-label="单细胞与空间组学">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">单细胞与空间组学</span></span>
+      </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./manuscript/01-ai-era-introduction.html" class="pagination-link" aria-label="AI时代，如何开始学习生物信息学">
-        <span class="nav-page-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">AI时代，如何开始学习生物信息学</span></span> <i class="bi bi-arrow-right-short"></i>
+      <a href="../manuscript/11-statistics-and-learning.html" class="pagination-link" aria-label="统计学基础与学习建议">
+        <span class="nav-page-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">统计学基础与学习建议</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>
@@ -778,5 +761,5 @@ ul.task-list li input[type="checkbox"] {
 
 
 
-<script src="site_libs/quarto-html/zenscroll-min.js"></script>
+<script src="../site_libs/quarto-html/zenscroll-min.js"></script>
 </body></html>

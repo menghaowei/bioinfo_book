@@ -6,9 +6,8 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
-<meta name="author" content="生物信息学实战手册编写团队">
 
-<title>在AI时代写给每一位的生信入门书</title>
+<title>9&nbsp; 单细胞与空间组学 – 在AI时代写给每一位的生信入门书</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -24,25 +23,26 @@ ul.task-list li input[type="checkbox"] {
 </style>
 
 
-<script src="site_libs/quarto-nav/quarto-nav.js"></script>
-<script src="site_libs/quarto-nav/headroom.min.js"></script>
-<script src="site_libs/clipboard/clipboard.min.js"></script>
-<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
-<script src="site_libs/quarto-search/fuse.min.js"></script>
-<script src="site_libs/quarto-search/quarto-search.js"></script>
-<meta name="quarto:offset" content="./">
-<link href="./manuscript/01-ai-era-introduction.html" rel="next">
-<script src="site_libs/quarto-html/quarto.js" type="module"></script>
-<script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
-<script src="site_libs/quarto-html/axe/axe-check.js" type="module"></script>
-<script src="site_libs/quarto-html/popper.min.js"></script>
-<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
-<script src="site_libs/quarto-html/anchor.min.js"></script>
-<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-ed96de9b727972fe78a7b5d16c58bf87.css" rel="stylesheet" id="quarto-text-highlighting-styles">
-<script src="site_libs/bootstrap/bootstrap.min.js"></script>
-<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap-fee7858ca6db8ec7d6fd63bab88709cf.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<link href="../manuscript/10-snakemake-and-reproducibility.html" rel="next">
+<link href="../manuscript/08-base-imbalanced-sequencing.html" rel="prev">
+<script src="../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../site_libs/quarto-html/axe/axe-check.js" type="module"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-ed96de9b727972fe78a7b5d16c58bf87.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap-fee7858ca6db8ec7d6fd63bab88709cf.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -73,7 +73,7 @@ ul.task-list li input[type="checkbox"] {
 <style>html{ scroll-behavior: smooth; }</style>
 
 
-<link rel="stylesheet" href="styles/book.css">
+<link rel="stylesheet" href="../styles/book.css">
 </head>
 
 <body class="nav-sidebar docked quarto-light">
@@ -85,7 +85,7 @@ ul.task-list li input[type="checkbox"] {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="展开或折叠侧边栏导航" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./index.html">阅读指南</a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../manuscript/05-rna-seq.html">第二篇 · 从数据到生物学发现</a></li><li class="breadcrumb-item"><a href="../manuscript/09-single-cell-and-spatial-omics.html"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">单细胞与空间组学</span></a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="展开或折叠侧边栏导航" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="搜索" onclick="window.quartoOpenSearch();">
@@ -100,7 +100,7 @@ ul.task-list li input[type="checkbox"] {
   <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation docked overflow-auto">
     <div class="pt-lg-2 mt-2 text-left sidebar-header">
     <div class="sidebar-title mb-0 py-0">
-      <a href="./">AI时代生信入门</a> 
+      <a href="../">AI时代生信入门</a> 
     </div>
       </div>
         <div class="mt-2 flex-shrink-0 align-items-center">
@@ -112,7 +112,7 @@ ul.task-list li input[type="checkbox"] {
     <ul class="list-unstyled mt-1">
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./index.html" class="sidebar-item-text sidebar-link active">
+  <a href="../index.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">阅读指南</span></a>
   </div>
 </li>
@@ -127,25 +127,25 @@ ul.task-list li input[type="checkbox"] {
       <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./manuscript/01-ai-era-introduction.html" class="sidebar-item-text sidebar-link">
+  <a href="../manuscript/01-ai-era-introduction.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">AI时代，如何开始学习生物信息学</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./manuscript/02-environment-and-programming.html" class="sidebar-item-text sidebar-link">
+  <a href="../manuscript/02-environment-and-programming.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">分析环境的搭建与必要的编程技术</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./manuscript/03-sequencing-technologies.html" class="sidebar-item-text sidebar-link">
+  <a href="../manuscript/03-sequencing-technologies.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">测序技术</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./manuscript/04-sequence-alignment.html" class="sidebar-item-text sidebar-link">
+  <a href="../manuscript/04-sequence-alignment.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">测序结果的比对</span></span></a>
   </div>
 </li>
@@ -162,31 +162,31 @@ ul.task-list li input[type="checkbox"] {
       <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./manuscript/05-rna-seq.html" class="sidebar-item-text sidebar-link">
+  <a href="../manuscript/05-rna-seq.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">RNA-seq：从表达定量到差异表达</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./manuscript/06-chip-seq-and-atac-seq.html" class="sidebar-item-text sidebar-link">
+  <a href="../manuscript/06-chip-seq-and-atac-seq.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">ChIP-seq与ATAC-seq：从富集信号到差异分析</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./manuscript/07-wgs-and-wes.html" class="sidebar-item-text sidebar-link">
+  <a href="../manuscript/07-wgs-and-wes.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">WGS与WES：从测序数据到可信的小变异</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./manuscript/08-base-imbalanced-sequencing.html" class="sidebar-item-text sidebar-link">
+  <a href="../manuscript/08-base-imbalanced-sequencing.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">碱基不平衡测序数据的分析</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./manuscript/09-single-cell-and-spatial-omics.html" class="sidebar-item-text sidebar-link">
+  <a href="../manuscript/09-single-cell-and-spatial-omics.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">单细胞与空间组学</span></span></a>
   </div>
 </li>
@@ -203,19 +203,19 @@ ul.task-list li input[type="checkbox"] {
       <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./manuscript/10-snakemake-and-reproducibility.html" class="sidebar-item-text sidebar-link">
+  <a href="../manuscript/10-snakemake-and-reproducibility.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Snakemake与可复现分析工作流</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./manuscript/11-statistics-and-learning.html" class="sidebar-item-text sidebar-link">
+  <a href="../manuscript/11-statistics-and-learning.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">统计学基础与学习建议</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./manuscript/12-ai-learning-and-practice.html" class="sidebar-item-text sidebar-link">
+  <a href="../manuscript/12-ai-learning-and-practice.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">AI技术学习路线与综合实践</span></span></a>
   </div>
 </li>
@@ -232,7 +232,7 @@ ul.task-list li input[type="checkbox"] {
       <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./appendices/a-references-and-materials.html" class="sidebar-item-text sidebar-link">
+  <a href="../appendices/a-references-and-materials.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">A</span>&nbsp; <span class="chapter-title">参考资料与素材说明</span></span></a>
   </div>
 </li>
@@ -248,33 +248,30 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">本章目录</h2>
    
   <ul>
-  <li><a href="#阅读指南" id="toc-阅读指南" class="nav-link active" data-scroll-target="#阅读指南">阅读指南</a>
-  <ul class="collapse">
-  <li><a href="#怎样使用这本书" id="toc-怎样使用这本书" class="nav-link" data-scroll-target="#怎样使用这本书">怎样使用这本书</a></li>
-  <li><a href="#编写团队与致谢" id="toc-编写团队与致谢" class="nav-link" data-scroll-target="#编写团队与致谢">编写团队与致谢</a></li>
-  </ul></li>
+  <li><a href="#chapter-summary-09" id="toc-chapter-summary-09" class="nav-link active" data-scroll-target="#chapter-summary-09">本章提要</a></li>
+  <li><a href="#sec-09-01" id="toc-sec-09-01" class="nav-link" data-scroll-target="#sec-09-01"><span class="header-section-number">9.1</span> 从组织平均到细胞差异与空间位置：研究问题与数据结构</a></li>
+  <li><a href="#sec-09-02" id="toc-sec-09-02" class="nav-link" data-scroll-target="#sec-09-02"><span class="header-section-number">9.2</span> 单细胞数据的质控：细胞、基因、双细胞与背景信号</a></li>
+  <li><a href="#sec-09-03" id="toc-sec-09-03" class="nav-link" data-scroll-target="#sec-09-03"><span class="header-section-number">9.3</span> 归一化、特征选择、降维与聚类</a></li>
+  <li><a href="#sec-09-04" id="toc-sec-09-04" class="nav-link" data-scroll-target="#sec-09-04"><span class="header-section-number">9.4</span> 细胞类型注释与证据核查</a></li>
+  <li><a href="#sec-09-05" id="toc-sec-09-05" class="nav-link" data-scroll-target="#sec-09-05"><span class="header-section-number">9.5</span> 多样本比较：批次、重复与差异分析</a></li>
+  <li><a href="#sec-09-06" id="toc-sec-09-06" class="nav-link" data-scroll-target="#sec-09-06"><span class="header-section-number">9.6</span> 空间转录组的技术、数据结构与质量控制</a></li>
+  <li><a href="#sec-09-07" id="toc-sec-09-07" class="nav-link" data-scroll-target="#sec-09-07"><span class="header-section-number">9.7</span> 空间表达可视化、组织区域与结果解释</a></li>
+  <li><a href="#sec-09-08" id="toc-sec-09-08" class="nav-link" data-scroll-target="#sec-09-08"><span class="header-section-number">9.8</span> 单细胞与空间信息的结合、完整案例与常见误区</a></li>
   </ul>
 </nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default">
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../manuscript/05-rna-seq.html">第二篇 · 从数据到生物学发现</a></li><li class="breadcrumb-item"><a href="../manuscript/09-single-cell-and-spatial-omics.html"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">单细胞与空间组学</span></a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title">在AI时代写给每一位的生信入门书</h1>
-<p class="subtitle lead">从理解数据，到独立分析</p>
+<h1 class="title"><span id="sec-ch09" class="quarto-section-identifier"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">单细胞与空间组学</span></span></h1>
 </div>
 
 
 
 <div class="quarto-title-meta">
 
-    <div>
-    <div class="quarto-title-meta-heading">作者</div>
-    <div class="quarto-title-meta-contents">
-             <p>生物信息学实战手册编写团队 </p>
-          </div>
-  </div>
     
   
     
@@ -285,62 +282,132 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<section id="阅读指南" class="level1 unnumbered">
-<h1 class="unnumbered">阅读指南</h1>
-<div class="hero-book">
-<div class="eyebrow">
-<p>BIOINFOBOOK / 从入门到独立分析</p>
-</div>
-<section id="先理解问题再理解数据" class="level2 unnumbered unlisted">
-<h2 class="unnumbered unlisted anchored" data-anchor-id="先理解问题再理解数据">先理解问题，再理解数据</h2>
-<p>生物信息学的本质，是使用信息学的手段解决生物学问题。会敲几行命令只是起点；知道数据从哪里来、每一步为什么这样处理，以及结果究竟能支持什么结论，才是我们希望一起建立的能力。</p>
-<p><a href="./manuscript/01-ai-era-introduction.html">从第 1 章开始阅读</a> →</p>
+<section id="chapter-summary-09" class="level2 unnumbered">
+<h2 class="unnumbered anchored" data-anchor-id="chapter-summary-09">本章提要</h2>
+<p>本章从组织平均信号走向细胞差异与空间位置。单细胞部分依次学习数据结构与质控、归一化和特征选择、降维聚类、细胞类型注释，以及多样本比较；空间部分介绍技术、数据结构与质量控制，随后学习空间表达展示和组织区域的解释。最后讨论单细胞与空间信息如何结合，并整理完整案例和常见误区。第 5 章的表达分析和第 11 章的统计知识可作为参考，分析中应持续核对样本、细胞和空间位置的对应关系。</p>
 </section>
+<section id="sec-09-01" class="level2" data-number="9.1">
+<h2 data-number="9.1" class="anchored" data-anchor-id="sec-09-01"><span class="header-section-number">9.1</span> 从组织平均到细胞差异与空间位置：研究问题与数据结构</h2>
+<section id="src-0050-RNA-seq-56" class="level4">
+<h4 class="anchored" data-anchor-id="src-0050-RNA-seq-56">单细胞RNA-seq</h4>
+<p>前面转录组测序，研究对象都是对多个细胞混合的RNA进行测序，针对的是某一个组织、器官、甚至生物体（例如小型昆虫等），检测到的基因表达情况是所有细胞表达均值。而单细胞测序可以对每一个细胞单独测序，这对发育、肿瘤异质性、微小组织等研究十分重要，单细胞测序已成为目前热门的生命科学技术之一。</p>
+<p>单细胞测序是目前的热门技术之一，单细胞测序不仅可以对样本中每个细胞进行转录组测序，还可以进行基因组测序、DNA甲基化测序和ATAC-seq测序。目前得到最广泛应用的单细胞测序平台是10X genomics单细胞平台和BD Rhapsody平台，分别基于DROP-seq技术<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a>和Cyto-seq技术<a href="#fn2" class="footnote-ref" id="fnref2" role="doc-noteref"><sup>2</sup></a><a href="#fn3" class="footnote-ref" id="fnref3" role="doc-noteref"><sup>3</sup></a>（<a href="#fig-06-rna-seq-002" class="quarto-xref">图&nbsp;<span>9.1</span></a>）。</p>
+<div id="fig-06-rna-seq-002" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-06-rna-seq-002-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="../assets/06-rna-seq/002-sc-rna-seq-lib.jpg" class="img-fluid figure-img">
 </div>
-<p>《在AI时代写给每一位的生信入门书》面向希望开始学习生物信息分析的读者。从环境搭建、必要编程和测序技术出发，逐步进入 RNA-seq、ChIP-seq/ATAC-seq、WGS/WES、碱基不平衡测序，以及单细胞与空间组学。通过工作流、统计学和 AI 综合实践，把数据处理与结果判断联系起来。</p>
-<div class="reading-path">
-<div class="reading-card">
-<p><strong>第一篇 · 理解问题，建立基础</strong></p>
-<p>第 1—4 章：学习前言、环境与编程、测序技术、测序结果的比对。认识数据来源，建立能够开始分析的基础。</p>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-06-rna-seq-002-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+图&nbsp;9.1: 单细胞 RNA 测序建库示意
+</figcaption>
+</figure>
 </div>
-<div class="reading-card">
-<p><strong>第二篇 · 从数据到生物学发现</strong></p>
-<p>第 5—9 章：RNA-seq、ChIP-seq/ATAC-seq、WGS/WES、BS-seq 与 GLORI，以及单细胞与空间组学。围绕不同实验的问题和数据组织分析。</p>
-</div>
-<div class="reading-card">
-<p><strong>第三篇 · 走向独立分析</strong></p>
-<p>第 10—12 章：Snakemake 工作流、统计学基础与学习建议、AI 技术学习路线与综合实践。形成可复现的工作习惯，理解分析依据并完成独立项目。</p>
-</div>
-</div>
-<section id="怎样使用这本书" class="level2 unnumbered">
-<h2 class="unnumbered anchored" data-anchor-id="怎样使用这本书">怎样使用这本书</h2>
-<p>第一次接触生物信息学时，可以按章节顺序阅读。已有命令行和编程基础的读者，可以从第 3—4 章核对概念，再进入自己关心的实战。第 1 章作为全书前言；从第 2 章起，各章先用“本章提要”介绍目标和内容。</p>
-<p>实战中遇到统计概念时，可以回看<a href="./manuscript/11-statistics-and-learning.html">第 11 章</a>。原有 25 道基础问题及讲解已按主题并入正文，作为相关小节的知识问答；参考资料与素材说明集中放在附录。</p>
-<p>左侧目录用于切换章节，右侧目录用于定位当前章节，搜索框可以检索全书正文。公式、图片和代码均放在对应的讲解位置；较长命令可以横向滚动，并通过右上角按钮复制。</p>
-<div class="callout callout-style-default callout-note callout-titled" title="当前版本">
+<p>10X genomics平台与BD Rhapsody平台在单细胞RNA-seq测序中最大的不同在于微反应载体的不同。10X genomics芯片检测的细胞在液相中实现流动分选：</p>
+<ol type="1">
+<li>大量连接着后续反应所需接头、barcode、UMI等序列的微磁珠在芯片管道中流动；</li>
+<li>流动的细胞与微磁珠相遇后被吸附上去；</li>
+<li>吸附着细胞的微磁珠与流动的油相遇形成油包水滴的乳浊液，亲水的微磁珠和吸附的细胞包裹在油包水的微液滴里，称为GEM（Gel bead in emulsion）;</li>
+<li>在GEM里完成细胞裂解、反转录、扩增等；</li>
+<li>每个细胞里扩增后的cDNA都带着特异的接头序列，随后进行测序。</li>
+</ol>
+<p>BD Rhapsody平台采用蜂窝板技术进行单细胞分离和捕获：</p>
+<ol type="1">
+<li>单细胞悬液流过含有大量微孔的蜂窝板使细胞落入微孔中；</li>
+<li>将微磁珠铺到蜂窝板上，使微孔中形成微磁珠与细胞的反应体系；</li>
+<li>在微磁珠里完成细胞裂解、反转录、扩增等。</li>
+</ol>
+<p>两者后续的建库、测序是几乎一样的流程，单次捕获的细胞数量都可以达到很好的通量，在3,000至10,000之间，差距不大。</p>
+<div class="callout callout-style-default callout-note callout-titled" title="待完善">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-<span class="screen-reader-only">注记</span>当前版本
+<span class="screen-reader-only">注记</span>待完善
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>这是按“三篇、十二章、79 个编号小节”整理的持续修订版，另有 11 段不编号的本章提要。已有原稿的详细讲解尽量保留，尚缺的正文、练习和来源均标为“待完善”。碱基不平衡测序、单细胞与空间组学、工作流、AI 及部分统计教学仍需补写。</p>
-<p>网页构建已经与分析代码执行分离。页面中的历史实战命令保留教学上下文，但尚未逐条在统一数据和环境中运行验收。</p>
+<p>本节的系统讲解、示例数据、分析代码和结果核验待补充。</p>
 </div>
 </div>
 </section>
-<section id="编写团队与致谢" class="level2 unnumbered">
-<h2 class="unnumbered anchored" data-anchor-id="编写团队与致谢">编写团队与致谢</h2>
-<p>孟浩巍、大壮、魏官云、刘博、连明、徐煜、契卡。</p>
-<p>感谢原编写团队、生物信息学交流群中的朋友，以及每一位关心和支持本书的读者。</p>
-<p>尽信书不如无书。领会数据处理的方法，远比记住几个软件名称更有帮助。希望在前进的路上，我们能够共勉。</p>
-<p>本书允许个人非商业性在线浏览和分享原站链接；下载、再分发、修改、二次创作及商业使用须事先取得书面许可。详见<a href="https://book.bioinfo.info/license.html">版权与使用条款</a>，其中列明第三方内容、既有授权和法定使用的适用范围。</p>
+</section>
+<section id="sec-09-02" class="level2" data-number="9.2">
+<h2 data-number="9.2" class="anchored" data-anchor-id="sec-09-02"><span class="header-section-number">9.2</span> 单细胞数据的质控：细胞、基因、双细胞与背景信号</h2>
+<p>待完善</p>
+</section>
+<section id="sec-09-03" class="level2" data-number="9.3">
+<h2 data-number="9.3" class="anchored" data-anchor-id="sec-09-03"><span class="header-section-number">9.3</span> 归一化、特征选择、降维与聚类</h2>
+<p>待完善</p>
+</section>
+<section id="sec-09-04" class="level2" data-number="9.4">
+<h2 data-number="9.4" class="anchored" data-anchor-id="sec-09-04"><span class="header-section-number">9.4</span> 细胞类型注释与证据核查</h2>
+<p>待完善</p>
+</section>
+<section id="sec-09-05" class="level2" data-number="9.5">
+<h2 data-number="9.5" class="anchored" data-anchor-id="sec-09-05"><span class="header-section-number">9.5</span> 多样本比较：批次、重复与差异分析</h2>
+<p>待完善</p>
+</section>
+<section id="sec-09-06" class="level2" data-number="9.6">
+<h2 data-number="9.6" class="anchored" data-anchor-id="sec-09-06"><span class="header-section-number">9.6</span> 空间转录组的技术、数据结构与质量控制</h2>
+<section id="src-0050-RNA-seq-81" class="level4">
+<h4 class="anchored" data-anchor-id="src-0050-RNA-seq-81">其他转录组测序</h4>
+<p>随着技术的发展，转录组测序也发展出了更多的测序技术。</p>
+<section id="src-0050-RNA-seq-91" class="level5">
+<h5 class="anchored" data-anchor-id="src-0050-RNA-seq-91">空间转录组测序（Spatial Transcritome sequencing）<a href="#fn4" class="footnote-ref" id="fnref4" role="doc-noteref"><sup>4</sup></a></h5>
+<p>普通的RNA测序，包括单细胞RNA测序都无法提供组织内部空间不同位置的转录组信息，空间转录组测序在获取转录组信息的同时还加入了空间位置信息。将待研究的组织制作为冰冻切片，转移到组织透化芯片上，不同组织区域的RNA信息释放到芯片上的小孔中，对这些RNA进行测序即可获得各个空间位置的转录组信息。空间转录组并不是单细胞转录组测序的升级，因为芯片上的小孔捕获的通常是多个细胞，二者能够形成较好的互补，可能会成为未来的热门技术。</p>
+</section>
+<section id="src-0050-RNA-seq-95" class="level5">
+<h5 class="anchored" data-anchor-id="src-0050-RNA-seq-95">链特异RNA-Seq</h5>
+<p>在RNA测序的建库过程中，会丢失RNA链信息，即RNA是来自基因组上哪一条DNA链。然而在基因组中，有许多基因是重叠出现在同一个区域的正负链位置的。要想解决这一问题，就需要获得链特异的RNA-Seq数据，可以采取lillumina RNA ligation method、dUTP method、RT method。</p>
+<p>此外，通过对RNA技术的改进可以进行转录起始位点的鉴定：GRO-Seq、NET-Seq和SLAM-Seq；翻译效率的测定：Ribosome footprint；RNA二级结构的测定：PARS、SHAPE-Seq和SHAPE-Map；以及RNA 结合蛋白位点的测定CLIP-seq 。</p>
+<div class="callout callout-style-default callout-note callout-titled" title="待完善">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">注记</span>待完善
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>本节的系统讲解、示例数据、分析代码和结果核验待补充。</p>
+</div>
+</div>
+</section>
+</section>
+</section>
+<section id="sec-09-07" class="level2" data-number="9.7">
+<h2 data-number="9.7" class="anchored" data-anchor-id="sec-09-07"><span class="header-section-number">9.7</span> 空间表达可视化、组织区域与结果解释</h2>
+<p>待完善</p>
+</section>
+<section id="sec-09-08" class="level2" data-number="9.8">
+<h2 data-number="9.8" class="anchored" data-anchor-id="sec-09-08"><span class="header-section-number">9.8</span> 单细胞与空间信息的结合、完整案例与常见误区</h2>
+<section id="src-0050-RNA-seq-1182" class="level4">
+<h4 class="anchored" data-anchor-id="src-0050-RNA-seq-1182">单细胞RNA-seq</h4>
+<div id="fig-06-rna-seq-009" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-06-rna-seq-009-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="../assets/06-rna-seq/009-sc-rna-seq-analysis.jpg" class="img-fluid figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-06-rna-seq-009-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+图&nbsp;9.2: SC-RNA-seq-analysis
+</figcaption>
+</figure>
+</div>
+<p>待完善</p>
 
 
 </section>
+</section>
+<section id="footnotes" class="footnotes footnotes-end-of-document" role="doc-endnotes">
+<hr>
+<ol>
+<li id="fn1"><p>原稿文献编号 10；完整书目信息待完善。<a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn2"><p>原稿文献编号 11；完整书目信息待完善。<a href="#fnref2" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn3"><p>原稿文献编号 12；完整书目信息待完善。<a href="#fnref3" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn4"><p>原稿文献编号 13；完整书目信息待完善。<a href="#fnref4" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+</ol>
 </section>
 
 </main> <!-- /main -->
@@ -753,10 +820,13 @@ ul.task-list li input[type="checkbox"] {
   </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
+      <a href="../manuscript/08-base-imbalanced-sequencing.html" class="pagination-link" aria-label="碱基不平衡测序数据的分析">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">碱基不平衡测序数据的分析</span></span>
+      </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./manuscript/01-ai-era-introduction.html" class="pagination-link" aria-label="AI时代，如何开始学习生物信息学">
-        <span class="nav-page-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">AI时代，如何开始学习生物信息学</span></span> <i class="bi bi-arrow-right-short"></i>
+      <a href="../manuscript/10-snakemake-and-reproducibility.html" class="pagination-link" aria-label="Snakemake与可复现分析工作流">
+        <span class="nav-page-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Snakemake与可复现分析工作流</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>
@@ -778,5 +848,5 @@ ul.task-list li input[type="checkbox"] {
 
 
 
-<script src="site_libs/quarto-html/zenscroll-min.js"></script>
+<script src="../site_libs/quarto-html/zenscroll-min.js"></script>
 </body></html>

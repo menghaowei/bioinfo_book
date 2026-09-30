@@ -43,13 +43,37 @@ for p,parser in pages.items():
 
 planned=0
 chapters=sorted((ROOT/'manuscript').glob('*.md'))
-if len(chapters)!=10:errors.append(f'Expected 10 chapters, got {len(chapters)}')
+expected_files={c['file'] for c in manifest['chapters']}
+actual_files={p.relative_to(ROOT).as_posix() for p in chapters}
+if actual_files!=expected_files:errors.append(f'Chapter sources differ from manifest: missing={sorted(expected_files-actual_files)}, unexpected={sorted(actual_files-expected_files)}')
+appendices={p.relative_to(ROOT).as_posix() for p in (ROOT/'appendices').glob('*.md')}
+if appendices!=set(manifest['appendices']):errors.append(f'Appendix sources differ from manifest: {sorted(appendices)}')
+config=(ROOT/'_quarto.yml').read_text()
+configured=re.findall(r'^\s+- ((?:manuscript|appendices)/[^\s]+\.md)\s*$',config,re.M)
+if configured!=[c['file'] for c in manifest['chapters']]+manifest['appendices']:
+ errors.append('Book navigation order differs from manifest')
+if manifest['book_title'] not in config:errors.append('Book title differs from manifest')
+summaries=0
 for chapter in manifest['chapters']:
  p=ROOT/chapter['file'];n=chapter['planned_sections']
  if not p.is_file():
   errors.append(f'Missing chapter source: {chapter["file"]}');continue
- count=len(re.findall(r'^## .+\{#sec-\d+-\d+\}',p.read_text(),re.M));planned+=count
+ source=p.read_text()
+ matches=re.findall(r'^## (.+) \{#sec-(\d+)-(\d+)\}\s*$',source,re.M)
+ count=len(matches);planned+=count
  if count!=n:errors.append(f'{p.name}: expected {n} planned sections, got {count}')
+ if [m[0] for m in matches]!=chapter['section_titles']:errors.append(f'{p.name}: section titles differ from author outline')
+ chapter_number=int(p.name[:2])
+ if [(int(m[1]),int(m[2])) for m in matches]!=[(chapter_number,i) for i in range(1,n+1)]:
+  errors.append(f'{p.name}: section numbering is not sequential')
+ if not source.startswith('# '+chapter['title']+' {'):errors.append(f'{p.name}: chapter title differs from author outline')
+ summary_blocks=re.findall(r'^## 本章提要 \{#chapter-summary-\d+ \.unnumbered\}\n\n(.*?)(?=\n## |\Z)',source,re.M|re.S)
+ if chapter.get('summary'):
+  summaries+=len(summary_blocks)
+  if len(summary_blocks)!=1:errors.append(f'{p.name}: expected one chapter summary')
+  elif len(summary_blocks[0].strip())>1000 or '\n\n' in summary_blocks[0].strip():errors.append(f'{p.name}: chapter summary must be one paragraph of at most 1000 characters')
+  if not re.match(r'^# [^\n]+\n\n## 本章提要 ',source):errors.append(f'{p.name}: summary must precede numbered sections')
+ elif re.search(r'^## ',source,re.M):errors.append(f'{p.name}: foreword must not have second-level sections')
  if not (OUT/'manuscript'/p.with_suffix('.html').name).exists():errors.append(f'Missing chapter HTML: {p.stem}')
 
 for target,anchors in manifest['required_anchors'].items():
@@ -57,6 +81,18 @@ for target,anchors in manifest['required_anchors'].items():
  for anchor in anchors:
   if p not in pages or anchor not in pages[p].ids:
    errors.append(f'Required anchor missing from HTML: {target}#{anchor}')
+for question in manifest.get('integrated_questions',[]):
+ target=question['target'].split('#',1)[0]
+ p=(OUT/Path(target).with_suffix('.html')).resolve()
+ if p not in pages or question['anchor'] not in pages[p].ids:
+  errors.append(f'Integrated question missing: {question["question"]}')
+redirects=json.loads((ROOT/'scripts/legacy-redirects.json').read_text())
+for alias,route in redirects.items():
+ if not (OUT/alias).is_file():errors.append(f'Missing legacy redirect: {alias}')
+ for dest in [route['target'],*route['anchors'].values()]:
+  target,sep,anchor=dest.partition('#');p=(OUT/target).resolve()
+  if p not in pages:errors.append(f'Missing redirect destination: {alias} → {dest}')
+  elif sep and anchor not in pages[p].ids:errors.append(f'Missing redirect fragment: {alias} → {dest}')
 for url in manifest['known_missing_images']:
  warnings.append('Original external image unavailable, explicit placeholder retained: '+url)
 for name in ['README.md','HANDOFF.md','build.json','archive','editorial','handoff-evidence']:
@@ -64,7 +100,7 @@ for name in ['README.md','HANDOFF.md','build.json','archive','editorial','handof
 license_page=OUT/'license.html'
 if not license_page.is_file() or 'MENG Haowei' not in license_page.read_text():
  errors.append('Missing copyright page for MENG Haowei')
-report={'chapters':len(chapters),'planned_sections':planned,'rendered_html_pages':len(pages),'required_anchors':sum(map(len,manifest['required_anchors'].values())),'rendered_images':sum(x.imgs for x in pages.values()),'errors':sorted(set(errors)),'warnings':warnings,'scope':'Structure, assets and internal links; scientific examples not executed.'}
+report={'chapters':len(chapters),'planned_sections':planned,'chapter_summaries':summaries,'appendices':len(appendices),'integrated_questions':len(manifest.get('integrated_questions',[])),'legacy_redirects':len(redirects),'rendered_html_pages':len(pages),'required_anchors':sum(map(len,manifest['required_anchors'].values())),'rendered_images':sum(x.imgs for x in pages.values()),'errors':sorted(set(errors)),'warnings':warnings,'scope':'Structure, assets and internal links; scientific examples not executed.'}
 logs=ROOT/'build-logs';logs.mkdir(exist_ok=True)
 (logs/'validation.json').write_text(json.dumps(report,ensure_ascii=False,indent=2)+'\n')
 print(json.dumps(report,ensure_ascii=False,indent=2))
