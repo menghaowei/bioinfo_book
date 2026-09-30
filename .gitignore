@@ -12,3 +12,21 @@ node_modules/
 
 manuscript/*.html
 appendices/*.html
+
+# Project notes and historical sources belong in ../BioinfoBook_local_records/.
+/README.md
+/HANDOFF.md
+/archive/
+/editorial/
+/handoff-evidence/
+/scripts/migrate_sources.py
+/scripts/apply_editorial_corrections.py
+assets/**/README.txt
+docs/assets/**/README.txt
+/docs/build.json
+
+# Retired bookdown output; GitHub Pages serves docs/ through Actions.
+/*.html
+/css/
+/libs/
+/search_index.json

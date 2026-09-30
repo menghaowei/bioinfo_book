@@ -12,10 +12,7 @@ book:
   subtitle: "从理解数据，到独立分析"
   author: "生物信息学实战手册编写团队"
   language: zh-CN
-  site-url: https://menghaowei.github.io/bioinfo_book/
-  repo-url: https://github.com/menghaowei/bioinfo_book
-  repo-branch: master
-  repo-actions: [edit, source]
+  site-url: https://book.bioinfo.info/
   search: true
   page-navigation: true
   sidebar:
@@ -23,8 +20,8 @@ book:
     style: docked
     collapse-level: 2
   page-footer:
-    left: "BioinfoBook · 开放写作版"
-    right: "理解原理 · 读懂数据 · 复现分析"
+    left: "© 2026 MENG Haowei 版权所有"
+    right: "[版权与使用条款](https://book.bioinfo.info/license.html)"
   chapters:
     - index.qmd
     - part: "第一篇 · 共同基础"

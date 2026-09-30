@@ -9,6 +9,7 @@ from html.parser import HTMLParser
 from urllib.parse import urlsplit,unquote
 import json,re,sys
 ROOT=Path(__file__).resolve().parents[1];OUT=ROOT/'docs'
+manifest=json.loads((ROOT/'scripts/validation-manifest.json').read_text())
 errors=[];warnings=[]
 class Page(HTMLParser):
  def __init__(self):super().__init__();self.ids=set();self.links=[];self.duplicates=[];self.h2=0;self.imgs=0
@@ -32,7 +33,7 @@ for p,parser in pages.items():
   if u.scheme or u.netloc or link.startswith(('data:','javascript:')):continue
   if not u.path:target=p
   elif u.path.startswith('/bioinfo_book/'):target=(OUT/u.path.removeprefix('/bioinfo_book/')).resolve()
-  elif u.path.startswith('/'):continue
+  elif u.path.startswith('/'):target=(OUT/u.path.lstrip('/')).resolve()
   else:target=(p.parent/unquote(u.path)).resolve()
   if target.is_dir():target=target/'index.html'
   if not target.exists():errors.append(f'Missing local file: {p.relative_to(OUT)} → {link}')
@@ -43,20 +44,28 @@ for p,parser in pages.items():
 planned=0
 chapters=sorted((ROOT/'manuscript').glob('*.md'))
 if len(chapters)!=10:errors.append(f'Expected 10 chapters, got {len(chapters)}')
-expected=[5,6,7,8,7,8,8,8,7,7]
-for p,n in zip(chapters,expected):
+for chapter in manifest['chapters']:
+ p=ROOT/chapter['file'];n=chapter['planned_sections']
+ if not p.is_file():
+  errors.append(f'Missing chapter source: {chapter["file"]}');continue
  count=len(re.findall(r'^## .+\{#sec-\d+-\d+\}',p.read_text(),re.M));planned+=count
  if count!=n:errors.append(f'{p.name}: expected {n} planned sections, got {count}')
  if not (OUT/'manuscript'/p.with_suffix('.html').name).exists():errors.append(f'Missing chapter HTML: {p.stem}')
 
-mapping=json.loads((ROOT/'editorial/section-mapping.json').read_text())
-for row in mapping:
- p=(OUT/Path(row['target_file']).with_suffix('.html')).resolve()
- if p not in pages or row['target_anchor'] not in pages[p].ids:
-  errors.append(f'Migrated heading missing from HTML: {row["source_file"]}:{row["source_start_line"]}')
-missing=json.loads((ROOT/'editorial/missing-assets.json').read_text())
-for x in missing:warnings.append('Original external image unavailable, explicit placeholder retained: '+x['image'])
-report={'chapters':len(chapters),'planned_sections':planned,'rendered_html_pages':len(pages),'migrated_heading_anchors':len(mapping),'rendered_images':sum(x.imgs for x in pages.values()),'errors':sorted(set(errors)),'warnings':warnings,'scope':'Structure, assets and internal links; scientific examples not executed.'}
-(ROOT/'editorial/validation.json').write_text(json.dumps(report,ensure_ascii=False,indent=2)+'\n')
+for target,anchors in manifest['required_anchors'].items():
+ p=(OUT/Path(target).with_suffix('.html')).resolve()
+ for anchor in anchors:
+  if p not in pages or anchor not in pages[p].ids:
+   errors.append(f'Required anchor missing from HTML: {target}#{anchor}')
+for url in manifest['known_missing_images']:
+ warnings.append('Original external image unavailable, explicit placeholder retained: '+url)
+for name in ['README.md','HANDOFF.md','build.json','archive','editorial','handoff-evidence']:
+ if (OUT/name).exists():errors.append(f'Local project record must not be published: {name}')
+license_page=OUT/'license.html'
+if not license_page.is_file() or 'MENG Haowei' not in license_page.read_text():
+ errors.append('Missing copyright page for MENG Haowei')
+report={'chapters':len(chapters),'planned_sections':planned,'rendered_html_pages':len(pages),'required_anchors':sum(map(len,manifest['required_anchors'].values())),'rendered_images':sum(x.imgs for x in pages.values()),'errors':sorted(set(errors)),'warnings':warnings,'scope':'Structure, assets and internal links; scientific examples not executed.'}
+logs=ROOT/'build-logs';logs.mkdir(exist_ok=True)
+(logs/'validation.json').write_text(json.dumps(report,ensure_ascii=False,indent=2)+'\n')
 print(json.dumps(report,ensure_ascii=False,indent=2))
 raise SystemExit(bool(errors))

@@ -24,7 +24,7 @@
     "href": "index.html#怎样使用这本书",
     "title": "以高通量数据分析为基础的生物信息学入门",
     "section": "怎样使用这本书",
-    "text": "怎样使用这本书\n第一次接触生物信息学时，可以按章节顺序阅读。已有命令行和编程基础的读者，可以从第 3—5 章核对基础概念，再进入自己关心的实战。附录收录现有的 1—25 道基础问题，适合配合文件格式、质控和比对章节练习。\n左侧目录用于切换章节，右侧目录用于定位当前章节，搜索框可以检索全书正文。公式、图片和代码均放在对应的讲解位置；较长命令可以横向滚动，并通过右上角按钮复制。\n\n\n\n\n\n\n注记当前版本\n\n\n\n这是按“三篇、十章、71 个小节”整理的开放写作版。已有原稿的详细讲解尽量保留，尚缺的正文、练习和来源均标为“待完善”。第 9、10 章及 ATAC-seq 等新增教学单元目前以目录和待完善标记为主。\n网页构建已经与分析代码执行分离。页面中的历史实战命令保留教学上下文，但尚未逐条在统一数据和环境中运行验收。",
+    "text": "怎样使用这本书\n第一次接触生物信息学时，可以按章节顺序阅读。已有命令行和编程基础的读者，可以从第 3—5 章核对基础概念，再进入自己关心的实战。附录收录现有的 1—25 道基础问题，适合配合文件格式、质控和比对章节练习。\n左侧目录用于切换章节，右侧目录用于定位当前章节，搜索框可以检索全书正文。公式、图片和代码均放在对应的讲解位置；较长命令可以横向滚动，并通过右上角按钮复制。\n\n\n\n\n\n\n注记当前版本\n\n\n\n这是按“三篇、十章、71 个小节”整理的持续修订版。已有原稿的详细讲解尽量保留，尚缺的正文、练习和来源均标为“待完善”。第 9、10 章及 ATAC-seq 等新增教学单元目前以目录和待完善标记为主。\n网页构建已经与分析代码执行分离。页面中的历史实战命令保留教学上下文，但尚未逐条在统一数据和环境中运行验收。",
     "crumbs": [
       "阅读指南"
     ]
@@ -34,7 +34,7 @@
     "href": "index.html#编写团队与致谢",
     "title": "以高通量数据分析为基础的生物信息学入门",
     "section": "编写团队与致谢",
-    "text": "编写团队与致谢\n孟浩巍、大壮、魏官云、刘博、连明、徐煜、契卡。\n感谢原编写团队、生物信息学交流群中的朋友，以及每一位关心和支持本书的读者。原稿中的作者介绍与历史分工已保留在工程归档中；新目录的章节分工待完善。\n尽信书不如无书。领会数据处理的方法，远比记住几个软件名称更有帮助。希望在前进的路上，我们能够共勉。",
+    "text": "编写团队与致谢\n孟浩巍、大壮、魏官云、刘博、连明、徐煜、契卡。\n感谢原编写团队、生物信息学交流群中的朋友，以及每一位关心和支持本书的读者。\n尽信书不如无书。领会数据处理的方法，远比记住几个软件名称更有帮助。希望在前进的路上，我们能够共勉。\n本书允许个人非商业性在线浏览和分享原站链接；下载、再分发、修改、二次创作及商业使用须事先取得书面许可。详见版权与使用条款，其中列明第三方内容、既有授权和法定使用的适用范围。",
     "crumbs": [
       "阅读指南"
     ]
@@ -1307,45 +1307,45 @@
   {
     "objectID": "appendices/e-references-and-maintenance.html",
     "href": "appendices/e-references-and-maintenance.html",
-    "title": "附录 I — 参考文献与维护记录",
+    "title": "附录 I — 参考资料与素材说明",
     "section": "",
-    "text": "I.1 本次整理\n2026-09-30：按已确认的大纲建立三篇、十章、71 个小节，迁移原稿正文与现有 1—25 题，统一章节文件和素材目录，并建立 Quarto HTML 工程。\n原稿正文、题库的其他版本和旧汇总稿保留在工程的 archive/ 中。逐小节映射见 editorial/section-mapping.tsv，素材映射见 editorial/asset-mapping.tsv，精确的更正前后文本见 editorial/corrections.json。归档用于核对历史内容，后续写作应修改 manuscript/ 和 appendices/。\n本次修正了读长与平台的过时绝对表述、SBS 化学的部分错误说明、FPKM/RPKM 单位、SAM FLAG/MAPQ/CIGAR、杂合子似然、后验概率比例关系，以及 HaplotypeCaller 与联合分型的混淆。其余历史命令、图中说明、算法数值例题和文献来源仍需继续校订，不将本轮整理视作全书科学内容已全部验收。",
+    "text": "I.1 阅读说明\n本书涉及测序原理、数据格式、统计推断和分析工具。阅读时应结合对应工具的官方说明，核对适用版本、输入要求和分析假设。\n历史命令、图中说明、算法数值例题和文献来源仍需继续校订，书中的分析流程尚未逐项在统一环境和数据上实际运行验证。网页可正常阅读不代表科学内容已全部验收。",
     "crumbs": [
       "附录",
-      "<span class='chapter-number'>I</span>  <span class='chapter-title'>参考文献与维护记录</span>"
+      "<span class='chapter-number'>I</span>  <span class='chapter-title'>参考资料与素材说明</span>"
     ]
   },
   {
     "objectID": "appendices/e-references-and-maintenance.html#本轮校订与工程依据",
     "href": "appendices/e-references-and-maintenance.html#本轮校订与工程依据",
-    "title": "附录 I — 参考文献与维护记录",
-    "section": "I.2 本轮校订与工程依据",
-    "text": "I.2 本轮校订与工程依据\n以下为本轮读取的官方说明，核对日期为 2026-09-30。历史原稿中的其他链接与署名随正文保留。\n\n\n\n资料\n用途\n\n\n\n\nIllumina SBS\n边合成边测序与可逆终止\n\n\nIllumina patterned flow cell\n区分平台结构\n\n\nSAM/BAM 规范\n字段、标志和坐标\n\n\nDESeq2 官方教程\ncounts 与归一化输入\n\n\nGATK HaplotypeCaller\n局部组装、似然与 gVCF 工作流\n\n\nOxford Nanopore 技术说明\n纳米孔电流信号\n\n\nPacBio RNA 测序\n全长 cDNA 与 Iso-Seq\n\n\nQuarto book structure\n章节、分篇和附录\n\n\nQuarto GitHub Pages\nHTML 构建与发布",
+    "title": "附录 I — 参考资料与素材说明",
+    "section": "I.2 参考资料",
+    "text": "I.2 参考资料\n以下官方资料可用于进一步阅读与核对。正文中的其他参考链接与署名随对应内容保留。\n\n\n\n资料\n用途\n\n\n\n\nIllumina SBS\n边合成边测序与可逆终止\n\n\nIllumina patterned flow cell\n区分平台结构\n\n\nSAM/BAM 规范\n字段、标志和坐标\n\n\nDESeq2 官方教程\ncounts 与归一化输入\n\n\nGATK HaplotypeCaller\n局部组装、似然与 gVCF 工作流\n\n\nOxford Nanopore 技术说明\n纳米孔电流信号\n\n\nPacBio RNA 测序\n全长 cDNA 与 Iso-Seq",
     "crumbs": [
       "附录",
-      "<span class='chapter-number'>I</span>  <span class='chapter-title'>参考文献与维护记录</span>"
+      "<span class='chapter-number'>I</span>  <span class='chapter-title'>参考资料与素材说明</span>"
     ]
   },
   {
     "objectID": "appendices/e-references-and-maintenance.html#待完善的引用与素材",
     "href": "appendices/e-references-and-maintenance.html#待完善的引用与素材",
-    "title": "附录 I — 参考文献与维护记录",
+    "title": "附录 I — 参考资料与素材说明",
     "section": "I.3 待完善的引用与素材",
     "text": "I.3 待完善的引用与素材\n原稿 RNA-seq 部分有文献上标 1—13，但未提供完整的逐条参考文献表。本版保留编号并转换为可点击脚注，脚注明确标为“完整书目信息待完善”，不推测文献出处。\nWindows/OpenSSH 部分两张石墨外链截图当前无法下载，保留图位并标为“原图待完善”。其他已引用图片均已整理到本地素材目录。",
     "crumbs": [
       "附录",
-      "<span class='chapter-number'>I</span>  <span class='chapter-title'>参考文献与维护记录</span>"
+      "<span class='chapter-number'>I</span>  <span class='chapter-title'>参考资料与素材说明</span>"
     ]
   },
   {
     "objectID": "appendices/e-references-and-maintenance.html#后续-pdf",
     "href": "appendices/e-references-and-maintenance.html#后续-pdf",
-    "title": "附录 I — 参考文献与维护记录",
-    "section": "I.4 后续 PDF",
-    "text": "I.4 后续 PDF\nPDF 排版另行实施，基础采用已确认的 ElegantBook 中文教材风格。本轮只配置 HTML 输出。",
+    "title": "附录 I — 参考资料与素材说明",
+    "section": "I.4 阅读形式",
+    "text": "I.4 阅读形式\n本书当前提供在线 HTML 阅读。使用范围见版权与使用条款。",
     "crumbs": [
       "附录",
-      "<span class='chapter-number'>I</span>  <span class='chapter-title'>参考文献与维护记录</span>"
+      "<span class='chapter-number'>I</span>  <span class='chapter-title'>参考资料与素材说明</span>"
     ]
   }
 ]

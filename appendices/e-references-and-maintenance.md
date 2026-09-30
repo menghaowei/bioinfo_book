@@ -1,16 +1,14 @@
-# 参考文献与维护记录 {#sec-maintenance}
+# 参考资料与素材说明 {#sec-maintenance}
 
-## 本次整理
+## 阅读说明 {#本次整理}
 
-2026-09-30：按已确认的大纲建立三篇、十章、71 个小节，迁移原稿正文与现有 1—25 题，统一章节文件和素材目录，并建立 Quarto HTML 工程。
+本书涉及测序原理、数据格式、统计推断和分析工具。阅读时应结合对应工具的官方说明，核对适用版本、输入要求和分析假设。
 
-原稿正文、题库的其他版本和旧汇总稿保留在工程的 `archive/` 中。逐小节映射见 `editorial/section-mapping.tsv`，素材映射见 `editorial/asset-mapping.tsv`，精确的更正前后文本见 `editorial/corrections.json`。归档用于核对历史内容，后续写作应修改 `manuscript/` 和 `appendices/`。
+历史命令、图中说明、算法数值例题和文献来源仍需继续校订，书中的分析流程尚未逐项在统一环境和数据上实际运行验证。网页可正常阅读不代表科学内容已全部验收。
 
-本次修正了读长与平台的过时绝对表述、SBS 化学的部分错误说明、FPKM/RPKM 单位、SAM FLAG/MAPQ/CIGAR、杂合子似然、后验概率比例关系，以及 HaplotypeCaller 与联合分型的混淆。其余历史命令、图中说明、算法数值例题和文献来源仍需继续校订，不将本轮整理视作全书科学内容已全部验收。
+## 参考资料 {#本轮校订与工程依据}
 
-## 本轮校订与工程依据
-
-以下为本轮读取的官方说明，核对日期为 2026-09-30。历史原稿中的其他链接与署名随正文保留。
+以下官方资料可用于进一步阅读与核对。正文中的其他参考链接与署名随对应内容保留。
 
 | 资料 | 用途 |
 |---|---|
@@ -21,8 +19,6 @@
 | [GATK HaplotypeCaller](https://gatk.broadinstitute.org/hc/en-us/articles/21905025322523-HaplotypeCaller) | 局部组装、似然与 gVCF 工作流 |
 | [Oxford Nanopore 技术说明](https://nanoporetech.com/platform/technology) | 纳米孔电流信号 |
 | [PacBio RNA 测序](https://www.pacb.com/products-and-services/applications/rna-sequencing/) | 全长 cDNA 与 Iso-Seq |
-| [Quarto book structure](https://quarto.org/docs/books/book-structure.html) | 章节、分篇和附录 |
-| [Quarto GitHub Pages](https://quarto.org/docs/publishing/github-pages.html) | HTML 构建与发布 |
 
 ## 待完善的引用与素材
 
@@ -30,6 +26,6 @@
 
 Windows/OpenSSH 部分两张石墨外链截图当前无法下载，保留图位并标为“原图待完善”。其他已引用图片均已整理到本地素材目录。
 
-## 后续 PDF
+## 阅读形式 {#后续-pdf}
 
-PDF 排版另行实施，基础采用已确认的 ElegantBook 中文教材风格。本轮只配置 HTML 输出。
+本书当前提供在线 HTML 阅读。使用范围见[版权与使用条款](https://book.bioinfo.info/license.html)。

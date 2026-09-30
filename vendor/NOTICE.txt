@@ -1,0 +1,13 @@
+Third-party notices
+
+The BioinfoBook LICENSE applies only within its stated ownership and licensing scope.
+Third-party software, fonts, illustrations and attributed contributions retain their
+own copyright holders, notices and licenses.
+
+MathJax: see mathjax/LICENSE (Apache License 2.0) and notices in its distribution.
+Quarto-generated JavaScript, CSS and fonts: retain the notices embedded in the
+generated site_libs files and any licenses supplied with those components.
+
+licenses/bookdown-template-MIT.txt preserves the original copyright notice for
+the historical bookdown template (Copyright (c) 2016 Yihui Xie). It is not a new
+MIT license grant for the textbook content. Previously valid grants are not revoked.

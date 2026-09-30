@@ -42,3 +42,9 @@ mjx-container[display="true"] { display:block !important; width:100%; max-width:
 main.content .math.display { display:block; max-width:100%; overflow-x:auto; }
 mjx-container[display="true"] { min-width:0 !important; width:100% !important; max-width:100% !important; overflow-x:auto !important; }
 body { overflow-x:clip; }
+
+/* Standalone copyright page generated from the repository LICENSE. */
+body.license-page { margin:0; background:#fcfcf9; color:#263b3d; font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Microsoft YaHei",sans-serif; line-height:1.9; }
+.license-page main { max-width:850px; margin:2rem auto; padding:0 1.5rem 3rem; }
+.license-page a { color:#176859; }
+.license-page .license-text { white-space:pre-wrap; overflow-wrap:anywhere; }
