@@ -1,0 +1,15 @@
+{
+  "checked_date": "2026-09-30",
+  "user_timezone": "Asia/Shanghai",
+  "repository": "menghaowei/bioinfo_book",
+  "default_branch": "master",
+  "head_sha": "e0dec31fcdb4b8d13b6eec29fe7d7797a0326f2f",
+  "head_title": "make sure authers",
+  "actions_total_count": 0,
+  "new_version_committed": false,
+  "branch_ref_updated": false,
+  "new_version_deployed": false,
+  "pages_source_verified": false,
+  "stopped_reason": "User moved continuation to local Codex",
+  "note": "Unattached upload blobs are not a commit or deployment. Browser-check script is a snapshot of the original execution environment; regular build uses scripts/build.py."
+}

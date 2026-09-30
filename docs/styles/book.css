@@ -1,0 +1,44 @@
+:root { --book-green:#186254; --book-line:#d9e3db; }
+main.content { padding-bottom:3rem; }
+.quarto-title-block .title { font-size:clamp(1.7rem,3.4vw,2.5rem); }
+.sidebar nav[role=doc-toc] ul { font-size:.85rem; }
+.hero-book { background:#163f38; color:#fff; padding:2.3rem 2.5rem; border-radius:12px; margin:1.5rem 0 2.2rem; }
+.hero-book .eyebrow { color:#a7caba; letter-spacing:.15em; font-size:.72rem; font-weight:700; }
+.hero-book h2 { color:#fff; border:0; padding:0; margin:.8rem 0; font-size:1.65rem; }
+.hero-book p { color:#dbe9e1; margin:.7rem 0; }
+.hero-book a { color:#fff; }
+.reading-path { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:1rem; margin:2rem 0; }
+.reading-card { border-top:3px solid #2c6c57; background:#f0f4ed; padding:1.25rem; border-radius:0 0 8px 8px; }
+.reading-card strong { display:block; margin-bottom:.5rem; }
+.reading-card p { font-size:.9rem; line-height:1.65; margin-bottom:0; }
+figure { margin:1.8rem auto; }
+figure img { max-width:100%; height:auto; border-radius:4px; }
+figcaption { color:#64746b; line-height:1.6; font-size:.85rem; }
+pre.sourceCode, div.sourceCode { border-radius:6px; }
+pre { max-height:none; }
+.callout { margin:1.8rem 0; }
+.callout.callout-style-default { border-radius:6px; }
+.table { font-size:.94rem; }
+.table-responsive, .cell-output-display { overflow-x:auto; }
+mjx-container[display="true"], .math.display { overflow-x:auto; overflow-y:hidden; padding:.6rem 0; }
+blockquote { border-left:3px solid #90b29c; color:#4a5e53; }
+.chapter-number { color:#658475; }
+.nav-footer { font-size:.8rem; }
+.back-top { position:fixed; right:1.1rem; bottom:1.2rem; border:1px solid #b9cabe; border-radius:50%; width:2.5rem; height:2.5rem; background:#fff; color:#186254; z-index:1000; cursor:pointer; }
+@media(max-width:800px) { .reading-path {grid-template-columns:1fr;} .hero-book {padding:1.4rem;} h2 {margin-top:2.5rem;} }
+@media print { .back-top {display:none;} .hero-book {background:none;color:inherit;border:1px solid #aaa;} .hero-book h2,.hero-book p {color:inherit;} }
+
+
+/* Long commands, tables and formulas scroll inside the reading column. */
+main.content, main.content section { min-width:0; max-width:100%; }
+div.sourceCode { max-width:100%; overflow-x:auto !important; }
+pre.sourceCode { overflow-x:auto !important; max-width:100%; }
+main.content table { display:block; max-width:100%; overflow-x:auto; }
+main.content p, main.content li { overflow-wrap:anywhere; }
+/* Inline URLs may wrap; command blocks keep their original line structure. */
+main.content :not(pre) > code:not(.sourceCode) { white-space:normal; overflow-wrap:anywhere; }
+mjx-container[display="true"] { display:block !important; width:100%; max-width:100%; overflow-x:auto; }
+
+main.content .math.display { display:block; max-width:100%; overflow-x:auto; }
+mjx-container[display="true"] { min-width:0 !important; width:100% !important; max-width:100% !important; overflow-x:auto !important; }
+body { overflow-x:clip; }

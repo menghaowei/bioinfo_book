@@ -1,0 +1,91 @@
+project:
+  type: book
+  output-dir: docs
+  resources:
+    - assets/**
+    - styles/book.css
+  post-render:
+    - python3 scripts/post_render.py
+
+book:
+  title: "以高通量数据分析为基础的生物信息学入门"
+  subtitle: "从理解数据，到独立分析"
+  author: "生物信息学实战手册编写团队"
+  language: zh-CN
+  site-url: https://menghaowei.github.io/bioinfo_book/
+  repo-url: https://github.com/menghaowei/bioinfo_book
+  repo-branch: master
+  repo-actions: [edit, source]
+  search: true
+  page-navigation: true
+  sidebar:
+    title: "生物信息学入门"
+    style: docked
+    collapse-level: 2
+  page-footer:
+    left: "BioinfoBook · 开放写作版"
+    right: "理解原理 · 读懂数据 · 复现分析"
+  chapters:
+    - index.qmd
+    - part: "第一篇 · 共同基础"
+      chapters:
+        - manuscript/01-learning-and-study-design.md
+        - manuscript/02-computing-and-programming.md
+        - manuscript/03-sequencing-and-data-formats.md
+        - manuscript/04-quality-control-and-alignment.md
+        - manuscript/05-statistics-and-exploration.md
+    - part: "第二篇 · 三类核心实战"
+      chapters:
+        - manuscript/06-rna-seq.md
+        - manuscript/07-chip-seq-and-atac-seq.md
+        - manuscript/08-wgs-and-wes.md
+    - part: "第三篇 · 可复现工作流与独立分析"
+      chapters:
+        - manuscript/09-snakemake-and-reproducibility.md
+        - manuscript/10-ai-and-independent-analysis.md
+  appendices:
+    - appendices/a-questions-01-05.md
+    - appendices/a-questions-06-10.md
+    - appendices/a-questions-11-15.md
+    - appendices/a-questions-16-20.md
+    - appendices/a-questions-21-25.md
+    - appendices/b-formats-and-glossary.md
+    - appendices/c-mathematical-reading.md
+    - appendices/d-reproduction.md
+    - appendices/e-references-and-maintenance.md
+
+lang: zh-CN
+pandoc-args:
+  - --data-dir=pandoc-data
+format:
+  html:
+    theme: [cosmo, styles/book.scss]
+    css: styles/book.css
+    toc: true
+    toc-title: 本章目录
+    toc-depth: 3
+    number-sections: true
+    number-depth: 2
+    code-copy: true
+    code-overflow: scroll
+    code-fold: false
+    smooth-scroll: true
+    link-external-newwindow: true
+    html-math-method:
+      method: mathjax
+      url: ../vendor/mathjax/tex-chtml.js
+    include-after-body: includes/reading.html
+    grid:
+      body-width: 830px
+      sidebar-width: 285px
+      margin-width: 250px
+
+execute:
+  enabled: false
+  eval: false
+
+crossref:
+  fig-title: 图
+  tbl-title: 表
+  eq-prefix: 公式
+  sec-prefix: 节

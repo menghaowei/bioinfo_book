@@ -1,0 +1,13 @@
+{
+  "chapters": 10,
+  "planned_sections": 71,
+  "rendered_html_pages": 32,
+  "migrated_heading_anchors": 352,
+  "rendered_images": 190,
+  "errors": [],
+  "warnings": [
+    "Original external image unavailable, explicit placeholder retained: https://images-cdn.shimo.im/ZZob1QhLKmoyhnlk/Snipaste_2018_09_09_21_16_25.png!original",
+    "Original external image unavailable, explicit placeholder retained: https://images-cdn.shimo.im/2PrwPwoL75oUjCsd/Snipaste_2018_09_09_21_20_52.png!original"
+  ],
+  "scope": "Structure, assets and internal links; scientific examples not executed."
+}

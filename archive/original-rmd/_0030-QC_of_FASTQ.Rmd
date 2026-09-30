@@ -1,0 +1,31 @@
+---
+output:
+  word_document: default
+  pdf_document: default
+  html_document: default
+---
+# 测序数据的质控与前处理 {#ngs_qc}
+
+## 数据质控的目的
+
+## 生成FastQ测序数据报告
+
+### FastQC
+
+### MultiQC
+	
+## 常用的数据前处理办法及思路
+
+### 去除测序接头
+- cutadapt
+- trim galore
+
+## 针对FASTQ文件的其他操作 （seqkit）
+
+### trim到相同长度
+
+### 随机筛选
+
+### 等等
+  
+

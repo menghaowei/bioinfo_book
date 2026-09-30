@@ -1,0 +1,123 @@
+home 以高通量数据分析为基础的生物信息学入门
+04-quality-control-and-alignment {"mathErrors":[],"mathCount":70,"overflow":false,"brokenImages":[]}
+05-statistics-and-exploration {"mathErrors":[],"mathCount":94,"overflow":false,"brokenImages":[]}
+06-rna-seq {"mathErrors":[],"mathCount":6,"overflow":false,"brokenImages":[]}
+08-wgs-and-wes {"mathErrors":[],"mathCount":110,"overflow":false,"brokenImages":[]}
+mobile overflow false
+overflow elements [
+  {
+    tag: 'SPAN',
+    cl: '',
+    width: 1434.53125,
+    right: 1472.484375,
+    text: '$hisat2 -x genome -u 1000000 -p 24 -I 0 -X 500 --f'
+  },
+  {
+    tag: 'SPAN',
+    cl: 'at',
+    width: 18.640625,
+    right: 429.25,
+    text: '-X'
+  },
+  {
+    tag: 'SPAN',
+    cl: 'at',
+    width: 37.265625,
+    right: 513.09375,
+    text: '--fr'
+  },
+  {
+    tag: 'SPAN',
+    cl: 'at',
+    width: 139.703125,
+    right: 662.125,
+    text: '--min-intronlen'
+  },
+  {
+    tag: 'SPAN',
+    cl: 'at',
+    width: 139.703125,
+    right: 839.09375,
+    text: '--max-intronlen'
+  },
+  {
+    tag: 'SPAN',
+    cl: 'at',
+    width: 18.640625,
+    right: 913.625,
+    text: '-1'
+  },
+  {
+    tag: 'SPAN',
+    cl: 'at',
+    width: 18.640625,
+    right: 1071.96875,
+    text: '-2'
+  },
+  { tag: 'SPAN', cl: 'at', width: 18.640625, right: 1221, text: '-U' },
+  {
+    tag: 'SPAN',
+    cl: 'at',
+    width: 18.640625,
+    right: 1370.03125,
+    text: '-S'
+  },
+  {
+    tag: 'SPAN',
+    cl: '',
+    width: 549.78125,
+    right: 587.734375,
+    text: 'samtools view [options] <in.bam> | <in.sam> [regio'
+  },
+  { tag: 'SPAN', cl: 'op', width: 9.328125, right: 438.625, text: '>' },
+  {
+    tag: 'SPAN',
+    cl: 'ex',
+    width: 74.515625,
+    right: 522.46875,
+    text: '[region1'
+  },
+  { tag: 'SPAN', cl: 'pp', width: 9.328125, right: 541.125, text: '[' },
+  {
+    tag: 'SPAN',
+    cl: 'ss',
+    width: 27.953125,
+    right: 569.078125,
+    text: '...'
+  },
+  {
+    tag: 'SPAN',
+    cl: 'pp',
+    width: 9.328125,
+    right: 578.40625,
+    text: ']'
+  },
+  {
+    tag: 'SPAN',
+    cl: '',
+    width: 363.3125,
+    right: 401.265625,
+    text: '$samtools view -b -S abc.sam -o abc.bam'
+  }
+]
+browser errors []
+search inputs [ { id: 'autocomplete-0-input', placeholder: '', type: 'search' } ]
+search matches 2 匹配的文档
+
+附录 I — 参考文献与维护记录
+
+HaplotypeCaller 与联合分型的混淆。其余历史命令、图中说明、算法数值例题和文献来源仍需继续校订，不将本轮整理视作全书科学内容已全部验收。
+
+I.2 本轮校订与工程依据
+
+HaplotypeCaller 局部组装、似然与 gVCF 工作流 Oxford Nanopore 技术说明 纳米孔电流信号 PacBio RNA 测序 全长 cDNA 与 Iso-Seq Quarto book structure 章节、分篇和附录 Quarto GitHub Pages HTML 构建与发布
+
+8  WGS与WES：从比对结果到可信的小变异
+
+8.5 单样本调用、gVCF与联合分型
+
+haplotypecaller ########################## mkdir -p VCF/ gatk HaplotypeCaller -R ${ref} -I BAM/${sample}.sorted.markdup.BQSR.bam -O VCF/${sample}.vcf && echo "variant calling done $(date "+%Y-%m-%d %H…
+
+8.4 基因型似然与局部单倍型重组装
+
+calling的核心算法为HaplotypeCaller，这个也是GATK中最核心的算法，理解了这个算法基本上就明白了GATK变异检测的原理 HaplotypeCaller它本质上是对贝叶斯原理的应用，只是相于同类算法它有点不同之处 算法思想概述： HaplotypeCaller 在候选变异区域进行局部重组装，生成候选单倍型，并评估 reads 对这些单倍型的支持。这里的单倍型是一个区域内的序列组合，并不等于“单倍体个体”。在常用的…

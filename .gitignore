@@ -1,0 +1,14 @@
+.quarto/
+.DS_Store
+__pycache__/
+*.pyc
+editorial/external-cache/
+build-logs/
+node_modules/
+
+
+/.quarto/
+**/*.quarto_ipynb
+
+manuscript/*.html
+appendices/*.html

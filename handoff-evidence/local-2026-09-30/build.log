@@ -1,0 +1,99 @@
+[ 1/20] index.qmd
+[WARNING] Could not load translations for zh-CN
+  data file translations/zh.yaml not found
+[WARNING] The term Abstract has no translation defined.
+[ 2/20] manuscript/01-learning-and-study-design.md
+[WARNING] Could not load translations for zh-CN
+  data file translations/zh.yaml not found
+[WARNING] The term Abstract has no translation defined.
+[ 3/20] manuscript/02-computing-and-programming.md
+[WARNING] Could not load translations for zh-CN
+  data file translations/zh.yaml not found
+[WARNING] The term Abstract has no translation defined.
+[ 4/20] manuscript/03-sequencing-and-data-formats.md
+[WARNING] Could not load translations for zh-CN
+  data file translations/zh.yaml not found
+[WARNING] The term Abstract has no translation defined.
+[ 5/20] manuscript/04-quality-control-and-alignment.md
+[WARNING] Could not load translations for zh-CN
+  data file translations/zh.yaml not found
+[WARNING] The term Abstract has no translation defined.
+[ 6/20] manuscript/05-statistics-and-exploration.md
+[WARNING] Could not load translations for zh-CN
+  data file translations/zh.yaml not found
+[WARNING] The term Abstract has no translation defined.
+[ 7/20] manuscript/06-rna-seq.md
+[WARNING] Could not load translations for zh-CN
+  data file translations/zh.yaml not found
+[WARNING] The term Abstract has no translation defined.
+[ 8/20] manuscript/07-chip-seq-and-atac-seq.md
+[WARNING] Could not load translations for zh-CN
+  data file translations/zh.yaml not found
+[WARNING] The term Abstract has no translation defined.
+[ 9/20] manuscript/08-wgs-and-wes.md
+[WARNING] Could not load translations for zh-CN
+  data file translations/zh.yaml not found
+[WARNING] The term Abstract has no translation defined.
+[10/20] manuscript/09-snakemake-and-reproducibility.md
+[WARNING] Could not load translations for zh-CN
+  data file translations/zh.yaml not found
+[WARNING] The term Abstract has no translation defined.
+[11/20] manuscript/10-ai-and-independent-analysis.md
+[WARNING] Could not load translations for zh-CN
+  data file translations/zh.yaml not found
+[WARNING] The term Abstract has no translation defined.
+[12/20] appendices/a-questions-01-05.md
+[WARNING] Could not load translations for zh-CN
+  data file translations/zh.yaml not found
+[WARNING] The term Abstract has no translation defined.
+[13/20] appendices/a-questions-06-10.md
+[WARNING] Could not load translations for zh-CN
+  data file translations/zh.yaml not found
+[WARNING] The term Abstract has no translation defined.
+[14/20] appendices/a-questions-11-15.md
+[WARNING] Could not load translations for zh-CN
+  data file translations/zh.yaml not found
+[WARNING] The term Abstract has no translation defined.
+[15/20] appendices/a-questions-16-20.md
+[WARNING] Could not load translations for zh-CN
+  data file translations/zh.yaml not found
+[WARNING] The term Abstract has no translation defined.
+[16/20] appendices/a-questions-21-25.md
+[WARNING] Could not load translations for zh-CN
+  data file translations/zh.yaml not found
+[WARNING] The term Abstract has no translation defined.
+[17/20] appendices/b-formats-and-glossary.md
+[WARNING] Could not load translations for zh-CN
+  data file translations/zh.yaml not found
+[WARNING] The term Abstract has no translation defined.
+[18/20] appendices/c-mathematical-reading.md
+[WARNING] Could not load translations for zh-CN
+  data file translations/zh.yaml not found
+[WARNING] The term Abstract has no translation defined.
+[19/20] appendices/d-reproduction.md
+[WARNING] Could not load translations for zh-CN
+  data file translations/zh.yaml not found
+[WARNING] The term Abstract has no translation defined.
+[20/20] appendices/e-references-and-maintenance.md
+[WARNING] Could not load translations for zh-CN
+  data file translations/zh.yaml not found
+[WARNING] The term Abstract has no translation defined.
+
+python3
+
+Output created: docs/index.html
+
+{
+  "chapters": 10,
+  "planned_sections": 71,
+  "rendered_html_pages": 32,
+  "migrated_heading_anchors": 352,
+  "rendered_images": 190,
+  "errors": [],
+  "warnings": [
+    "Original external image unavailable, explicit placeholder retained: https://images-cdn.shimo.im/ZZob1QhLKmoyhnlk/Snipaste_2018_09_09_21_16_25.png!original",
+    "Original external image unavailable, explicit placeholder retained: https://images-cdn.shimo.im/2PrwPwoL75oUjCsd/Snipaste_2018_09_09_21_20_52.png!original"
+  ],
+  "scope": "Structure, assets and internal links; scientific examples not executed."
+}
+构建完成：docs/index.html。预览：python3 -m http.server 8000 --directory docs

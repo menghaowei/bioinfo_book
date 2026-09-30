@@ -1,0 +1,1269 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="zh-CN" xml:lang="zh-CN"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.8.27">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>5&nbsp; 统计推断与数据探索的必要基础 – 以高通量数据分析为基础的生物信息学入门</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<link href="../manuscript/06-rna-seq.html" rel="next">
+<link href="../manuscript/04-quality-control-and-alignment.html" rel="prev">
+<script src="../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../site_libs/quarto-html/axe/axe-check.js" type="module"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-ed96de9b727972fe78a7b5d16c58bf87.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap-fee7858ca6db8ec7d6fd63bab88709cf.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "sidebar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "start",
+  "type": "textbox",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "没有结果",
+    "search-matching-documents-text": "匹配的文档",
+    "search-copy-link-title": "复制搜索链接",
+    "search-hide-matches-text": "隐藏其它匹配结果",
+    "search-more-match-text": "更多匹配结果",
+    "search-more-matches-text": "更多匹配结果",
+    "search-clear-button-title": "清除",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "取消",
+    "search-submit-button-title": "提交",
+    "search-label": "搜索"
+  }
+}</script>
+<style>html{ scroll-behavior: smooth; }</style>
+
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script src="../vendor/mathjax/tex-chtml.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+<link rel="stylesheet" href="../styles/book.css">
+</head>
+
+<body class="nav-sidebar docked quarto-light">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="展开或折叠侧边栏导航" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../manuscript/01-learning-and-study-design.html">第一篇 · 共同基础</a></li><li class="breadcrumb-item"><a href="../manuscript/05-statistics-and-exploration.html"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">统计推断与数据探索的必要基础</span></a></li></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="展开或折叠侧边栏导航" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+      <button type="button" class="btn quarto-search-button" aria-label="搜索" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation docked overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header">
+    <div class="sidebar-title mb-0 py-0">
+      <a href="../">生物信息学入门</a> 
+        <div class="sidebar-tools-main">
+    <a href="https://github.com/menghaowei/bioinfo_book" title="源代码" class="quarto-navigation-tool px-1" aria-label="源代码"><i class="bi bi-github"></i></a>
+</div>
+    </div>
+      </div>
+        <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="搜索"></div>
+        </div>
+        </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">阅读指南</span></a>
+  </div>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true">
+ <span class="menu-text">第一篇 · 共同基础</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true" aria-label="展开或折叠此栏">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../manuscript/01-learning-and-study-design.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">学习地图与研究设计</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../manuscript/02-computing-and-programming.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">计算环境、命令行与必要编程</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../manuscript/03-sequencing-and-data-formats.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">高通量测序原理与生物数据表示</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../manuscript/04-quality-control-and-alignment.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">从原始 reads 到可信的比对结果</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../manuscript/05-statistics-and-exploration.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">统计推断与数据探索的必要基础</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true">
+ <span class="menu-text">第二篇 · 三类核心实战</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true" aria-label="展开或折叠此栏">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../manuscript/06-rna-seq.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">RNA-seq：从表达定量到差异表达</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../manuscript/07-chip-seq-and-atac-seq.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">ChIP-seq与ATAC-seq：从富集信号到差异peak</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../manuscript/08-wgs-and-wes.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">WGS与WES：从比对结果到可信的小变异</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true">
+ <span class="menu-text">第三篇 · 可复现工作流与独立分析</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true" aria-label="展开或折叠此栏">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../manuscript/09-snakemake-and-reproducibility.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Snakemake与可复现分析工作流</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../manuscript/10-ai-and-independent-analysis.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">AI时代的生物信息分析与后续学习</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true">
+ <span class="menu-text">附录</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true" aria-label="展开或折叠此栏">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../appendices/a-questions-01-05.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">A</span>&nbsp; <span class="chapter-title">基础问题 1—5</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../appendices/a-questions-06-10.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">B</span>&nbsp; <span class="chapter-title">基础问题 6—10</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../appendices/a-questions-11-15.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">C</span>&nbsp; <span class="chapter-title">基础问题 11—15</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../appendices/a-questions-16-20.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">D</span>&nbsp; <span class="chapter-title">基础问题 16—20</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../appendices/a-questions-21-25.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">E</span>&nbsp; <span class="chapter-title">基础问题 21—25</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../appendices/b-formats-and-glossary.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">F</span>&nbsp; <span class="chapter-title">文件格式、坐标与术语速查</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../appendices/c-mathematical-reading.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">G</span>&nbsp; <span class="chapter-title">数学与算法扩展阅读</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../appendices/d-reproduction.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">H</span>&nbsp; <span class="chapter-title">环境、数据与复现实验说明</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../appendices/e-references-and-maintenance.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">I</span>&nbsp; <span class="chapter-title">参考文献与维护记录</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">本章目录</h2>
+   
+  <ul>
+  <li><a href="#sec-05-01" id="toc-sec-05-01" class="nav-link active" data-scroll-target="#sec-05-01"><span class="header-section-number">5.1</span> 描述数据与量化不确定性</a>
+  <ul class="collapse">
+  <li><a href="#src-0080-statistics-1" id="toc-src-0080-statistics-1" class="nav-link" data-scroll-target="#src-0080-statistics-1">常用数据分析的数学原理</a></li>
+  </ul></li>
+  <li><a href="#sec-05-02" id="toc-sec-05-02" class="nav-link" data-scroll-target="#sec-05-02"><span class="header-section-number">5.2</span> 概率分布与计数数据</a></li>
+  <li><a href="#sec-05-03" id="toc-sec-05-03" class="nav-link" data-scroll-target="#sec-05-03"><span class="header-section-number">5.3</span> 效应量、假设检验与多重比较</a>
+  <ul class="collapse">
+  <li><a href="#src-0080-statistics-3" id="toc-src-0080-statistics-3" class="nav-link" data-scroll-target="#src-0080-statistics-3">假设检验</a></li>
+  </ul></li>
+  <li><a href="#sec-05-04" id="toc-sec-05-04" class="nav-link" data-scroll-target="#sec-05-04"><span class="header-section-number">5.4</span> 归一化及其隐含假设</a></li>
+  <li><a href="#sec-05-05" id="toc-sec-05-05" class="nav-link" data-scroll-target="#sec-05-05"><span class="header-section-number">5.5</span> 回归、设计公式与比较方向</a>
+  <ul class="collapse">
+  <li><a href="#src-0080-statistics-5" id="toc-src-0080-statistics-5" class="nav-link" data-scroll-target="#src-0080-statistics-5">线性回归</a></li>
+  </ul></li>
+  <li><a href="#sec-05-06" id="toc-sec-05-06" class="nav-link" data-scroll-target="#sec-05-06"><span class="header-section-number">5.6</span> 相关性、聚类与PCA</a>
+  <ul class="collapse">
+  <li><a href="#src-0080-statistics-7" id="toc-src-0080-statistics-7" class="nav-link" data-scroll-target="#src-0080-statistics-7">主成分分析</a></li>
+  <li><a href="#src-0080-statistics-9" id="toc-src-0080-statistics-9" class="nav-link" data-scroll-target="#src-0080-statistics-9">主坐标分析</a></li>
+  <li><a href="#src-0080-statistics-11" id="toc-src-0080-statistics-11" class="nav-link" data-scroll-target="#src-0080-statistics-11">聚类</a></li>
+  </ul></li>
+  <li><a href="#sec-05-07" id="toc-sec-05-07" class="nav-link" data-scroll-target="#sec-05-07"><span class="header-section-number">5.7</span> 稳健解释、可视化与常见统计误区</a>
+  <ul class="collapse">
+  <li><a href="#src-0080-statistics-13" id="toc-src-0080-statistics-13" class="nav-link" data-scroll-target="#src-0080-statistics-13">tSNE</a></li>
+  </ul></li>
+  </ul>
+<div class="toc-actions"><ul><li><a href="https://github.com/menghaowei/bioinfo_book/edit/master/manuscript/05-statistics-and-exploration.md" class="toc-action"><i class="bi bi-github"></i>编辑该页面</a></li><li><a href="https://github.com/menghaowei/bioinfo_book/blob/master/manuscript/05-statistics-and-exploration.md" class="toc-action"><i class="bi empty"></i>查看代码</a></li></ul></div></nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../manuscript/01-learning-and-study-design.html">第一篇 · 共同基础</a></li><li class="breadcrumb-item"><a href="../manuscript/05-statistics-and-exploration.html"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">统计推断与数据探索的必要基础</span></a></li></ol></nav>
+<div class="quarto-title">
+<h1 class="title"><span id="sec-ch05" class="quarto-section-identifier"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">统计推断与数据探索的必要基础</span></span></h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<p>让读者理解模型、比较和不确定性，为差异分析提供共同语言。</p>
+<section id="sec-05-01" class="level2" data-number="5.1">
+<h2 data-number="5.1" class="anchored" data-anchor-id="sec-05-01"><span class="header-section-number">5.1</span> 描述数据与量化不确定性</h2>
+<p>区分数据本身的变异与估计结果的不确定性。</p>
+<section id="src-0080-statistics-1" class="level3">
+<h3 class="anchored" data-anchor-id="src-0080-statistics-1">常用数据分析的数学原理</h3>
+<p><span id="statistics"></span></p>
+<div class="callout callout-style-default callout-note callout-titled" title="待完善">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-1-contents" aria-controls="callout-1" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">注记</span>待完善
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-1" class="callout-1-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>用深度、计数和重复测量的小表格补写。</p>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="sec-05-02" class="level2" data-number="5.2">
+<h2 data-number="5.2" class="anchored" data-anchor-id="sec-05-02"><span class="header-section-number">5.2</span> 概率分布与计数数据</h2>
+<p>理解为什么不同数据需要不同统计模型。</p>
+<p>待完善</p>
+</section>
+<section id="sec-05-03" class="level2" data-number="5.3">
+<h2 data-number="5.3" class="anchored" data-anchor-id="sec-05-03"><span class="header-section-number">5.3</span> 效应量、假设检验与多重比较</h2>
+<p>正确解释差异分析的结果列与筛选标准。</p>
+<section id="src-0080-statistics-3" class="level3">
+<h3 class="anchored" data-anchor-id="src-0080-statistics-3">假设检验</h3>
+<p>待完善</p>
+<div class="callout callout-style-default callout-note callout-titled" title="待完善">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-2-contents" aria-controls="callout-2" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">注记</span>待完善
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-2" class="callout-2-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>系统补写，修订多重检验表述与火山图代码。</p>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="sec-05-04" class="level2" data-number="5.4">
+<h2 data-number="5.4" class="anchored" data-anchor-id="sec-05-04"><span class="header-section-number">5.4</span> 归一化及其隐含假设</h2>
+<p>理解何时样本之间可以比较，以及比较的尺度是什么。</p>
+<p>待完善</p>
+</section>
+<section id="sec-05-05" class="level2" data-number="5.5">
+<h2 data-number="5.5" class="anchored" data-anchor-id="sec-05-05"><span class="header-section-number">5.5</span> 回归、设计公式与比较方向</h2>
+<p>能把实验设计写成模型，并解释模型估计的量。</p>
+<section id="src-0080-statistics-5" class="level3">
+<h3 class="anchored" data-anchor-id="src-0080-statistics-5">线性回归</h3>
+<p>待完善</p>
+<div class="callout callout-style-default callout-note callout-titled" title="待完善">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-3-contents" aria-controls="callout-3" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">注记</span>待完善
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-3" class="callout-3-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>新增循序解释与小样本示例，避免只教函数调用。</p>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="sec-05-06" class="level2" data-number="5.6">
+<h2 data-number="5.6" class="anchored" data-anchor-id="sec-05-06"><span class="header-section-number">5.6</span> 相关性、聚类与PCA</h2>
+<p>能用探索性分析检查样本关系，避免把图形当作检验结论。</p>
+<section id="src-0080-statistics-7" class="level3">
+<h3 class="anchored" data-anchor-id="src-0080-statistics-7">主成分分析</h3>
+<p>待完善</p>
+</section>
+<section id="src-0080-statistics-9" class="level3">
+<h3 class="anchored" data-anchor-id="src-0080-statistics-9">主坐标分析</h3>
+<p>待完善</p>
+</section>
+<section id="src-0080-statistics-11" class="level3">
+<h3 class="anchored" data-anchor-id="src-0080-statistics-11">聚类</h3>
+<p>待完善</p>
+<div class="callout callout-style-default callout-note callout-titled" title="待完善">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-4-contents" aria-controls="callout-4" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">注记</span>待完善
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-4" class="callout-4-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>补原理和统一示例，将样本QC与差异分析衔接起来。</p>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="sec-05-07" class="level2" data-number="5.7">
+<h2 data-number="5.7" class="anchored" data-anchor-id="sec-05-07"><span class="header-section-number">5.7</span> 稳健解释、可视化与常见统计误区</h2>
+<p>对结果保持可验证的判断，知道结论的边界。</p>
+<section id="src-0080-statistics-13" class="level3">
+<h3 class="anchored" data-anchor-id="src-0080-statistics-13">tSNE</h3>
+<p>在这一章节中，我们将会对t-SNE的算法做一个比较详尽的介绍。同时，也会在理论讲述的最后，给大家带来实战代码的讲解。</p>
+<p>在具体讲解t-SNE之前，我们首先要了解两个信息论中的概念：信息熵和相对熵（K-L散度）。</p>
+<section id="src-0080-statistics-19" class="level4">
+<h4 class="anchored" data-anchor-id="src-0080-statistics-19">信息熵与相对熵</h4>
+<section id="src-0080-statistics-21" class="level5">
+<h5 class="anchored" data-anchor-id="src-0080-statistics-21">信息熵</h5>
+<p>1948年，美国科学家香农发表的论文《通信的数学理论》，奠定了信息论的理论基础。其定义的信息熵这一概念，实现了对“不确定性”的数学化度量。从定义上来看：信息熵是从总体上、从平均意义上表示信源<span class="math inline">\(X\)</span>每一个符号（不论哪一个符号）所含有的平均信息量（或信源发送信息前，每一个符号的平均不确定性），见 <a href="#eq-05-statistics-and-exploration-001" class="quarto-xref">公式&nbsp;<span>5.1</span></a>。</p>
+<p><span id="eq-05-statistics-and-exploration-001"><span class="math display">\[
+H(X)=-\sum_{i=1}^rp(a_i)logp(a_i)
+\tag{5.1}\]</span></span></p>
+<!-- Original equation tag: 1 -->
+<p>其中，<span class="math inline">\(p(a_i)\)</span>代表随机事件<span class="math inline">\(X\)</span>为<span class="math inline">\(a_i\)</span>时的概率。是不是感觉很抽象？没关系，接下来我们将举一个生活中十分常见的例子来帮助大家理解这个公式。</p>
+<p>平时早晨出门前我们会习惯性的查看当天的天气预报，如果天气预报说“今天白天下雨的概率是百分之九十，晴天的概率是百分之十”，我们一般就会选择带伞出门，因为我们认为下雨的可能性非常大；如果天气预报说“今天白天下雨的概率是百分之五十，晴天的概率是百分之五十”，我们就会犹豫是否带伞，因为，今天有可能下雨，也有可能不下雨，并且无法判断到第大概率会出现哪一种情况；如果天气预报说“今天白天下雨的概率是百分之十，晴天的概率是百分之九十”，我们一般就会不带伞出门，因为我们认为下雨的可能性比较小，晴天的可能性非常大。显然，在第一条和第三条天气预报中，下雨这件事的不确定性程度较小，要么是大概率下雨，要么是大概率晴天，都有助于我们决策是否带伞。而第二条天气预报关于下雨的不确定性程度就大多了。而这种信源的平均不确定性就可以用信息熵来描述，假设三条新闻分别为<span class="math inline">\(X_1,X_2,X_3\)</span>，他们所具有的的平均不确定性分别是：</p>
+<p><span id="eq-05-statistics-and-exploration-002"><span class="math display">\[
+\begin{aligned}
+H(X_1)&amp;=-\sum_{i=1}^rp(a_i)\log_2 p(a_i)=-(0.9\times \log_2 0.9+0.1\times \log_2 0.1)=0.4689956\\
+H(X_2)&amp;=-\sum_{i=1}^rp(a_i)\log_2 p(a_i)=-(0.5\times \log_2 0.5+0.5\times \log_2 0.5)=1\\
+H(X_3)&amp;=-\sum_{i=1}^rp(a_i)\log_2 p(a_i)=-(0.1\times \log_2 0.1+0.9\times \log_2 0.9)=0.4689956
+\end{aligned}
+\tag{5.2}\]</span></span></p>
+<p>由计算结果，我们可以直观看出<span class="math inline">\(H(X_1)=H(X_3)&lt;H(X_2)\)</span>。这也与我们平日里的经验认知相符，在平日里做决策时，往往是“几个事件旗鼓相当”情况下最难做出决定。因此，通过这个例子，大家是不是对信息熵这个概念有了比较直观的认识了？接下来我们将了解相对熵这个概念。</p>
+</section>
+<section id="src-0080-statistics-40" class="level5">
+<h5 class="anchored" data-anchor-id="src-0080-statistics-40">相对熵</h5>
+<p>相对熵，又称K-L散度( Kullback–Leibler divergence)，是描述两个概率分布<span class="math inline">\(P\)</span>和<span class="math inline">\(Q\)</span>差异的一种方法。在信息论中，<span class="math inline">\(D(P||Q)\)</span>表示当用概率分布<span class="math inline">\(Q\)</span>来拟合真实分布<span class="math inline">\(P\)</span>时，产生的信息损耗，其中<span class="math inline">\(P\)</span>表示真实分布，<span class="math inline">\(Q\)</span>表示<span class="math inline">\(P\)</span>的拟合分布。有人将K-L散度称为K-L距离，认为K-L散度描述了不同分布之间的距离。但事实上，K-L散度并不满足距离的概念，因为度量距离应该满足对称性，而显然K-L散度并不对称，公式见2。</p>
+<p><span id="eq-05-statistics-and-exploration-003"><span class="math display">\[
+D_{KL}(p||q)=\sum_{i=1}^np(x_i)(logp(xi)-logq(x_i))=\sum_{i=1}^np(x_i)log\frac {p(x_i)}{q(x_i)}
+\tag{5.3}\]</span></span></p>
+<!-- Original equation tag: 2 -->
+<p>上面我们讲了好长一段的理论，大家可能感觉还是不是很直观，下面我举一个简单的例子带着大家直观的感受一下相对熵到第是怎样一回事。</p>
+<p>假设，我们在火星上开展玉米种植试验，一个生长周期结束了，我们得到了玉米产量的数据，见图1。现在，我们需要把火星上的数据传送回地球，最好的结果就是按照数据原始的样貌进行传送。但是，假设现在数据传送的成本代价昂贵。虽然直接传送数据样貌最为准确，但是由于成本过于昂贵，我们难以承受这个代价。因此，我们就想，能不能使用一个模型来描述这些数据，这样只需传递模型和几个模型参数，我们就能得到玉米产量的大概分布，同时传送的成本也得以控制。</p>
+<div id="fig-05-statistics-and-exploration-001" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-05-statistics-and-exploration-001-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="../assets/05-statistics-and-exploration/001-illustration.png" class="img-fluid figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-05-statistics-and-exploration-001-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+图&nbsp;5.1: 假设数据的原始分布
+</figcaption>
+</figure>
+</div>
+<p>假设，我们现在想用泊松分布和二项分布去近似原始数据，得到的结果见图2。</p>
+<div id="fig-05-statistics-and-exploration-002" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-05-statistics-and-exploration-002-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="../assets/05-statistics-and-exploration/002-illustration.png" class="img-fluid figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-05-statistics-and-exploration-002-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+图&nbsp;5.2: 模拟分布
+</figcaption>
+</figure>
+</div>
+<p>图2：原始分布，二项分布近似原始分布，泊松分布近似原始分布结果。</p>
+<p>接着，我们利用相对熵（K-L散度）计算两种模型的信息损失量：</p>
+<p><span id="eq-05-statistics-and-exploration-004"><span class="math display">\[
+D_{KL}(origin||binom)=\sum_{i=1}^np(x_i)log\frac {p(x_i)}{q(x_i)}=0.1597662
+\tag{5.4}\]</span></span></p>
+<p><span id="eq-05-statistics-and-exploration-005"><span class="math display">\[
+D_{KL}(origin||pois)=\sum_{i=1}^np(x_i)log\frac {p(x_i)}{q(x_i)}=0.201369
+\tag{5.5}\]</span></span></p>
+<p>所以，我们发现用二项分布近似原始分布的信息损失量比用泊松分布近似原始分布的信息损失量小，因此，当我们在考虑二项分布和泊松分布时，较优的一个选择是二项分布。</p>
+<p>到这里，我们对信息熵和相对熵（K-L散度）这两个概念已经有了直观的认识，接下来，就进入本章的重点部分：t-SNE算法详解。</p>
+</section>
+</section>
+<section id="src-0080-statistics-71" class="level4">
+<h4 class="anchored" data-anchor-id="src-0080-statistics-71">t-SNE算法详解</h4>
+<section id="src-0080-statistics-73" class="level5">
+<h5 class="anchored" data-anchor-id="src-0080-statistics-73">t-SNE概述</h5>
+<p>t-SNE(t-distributed stochastic neighbor embedding，t分布-随机近邻嵌入)是一种非线性降维的算法，属于流形学习的范畴，可以把数据集中数据之间的高维欧式距离转变成条件概率来表示数据之间的相似度。</p>
+<p>流形是局部具有欧几里得空间性质的空间。举个例子理解一下，例如比较经典的“瑞士卷”（见 <a href="#fig-05-statistics-and-exploration-003" class="quarto-xref">图&nbsp;<span>5.3</span></a>），数据是三维的，但其本质是一个二维流形。图中两个黑点之间的距离显然不能用欧式距离来衡量，如果用三维空间的欧氏距离来计算则它们的距离要比实际距离近得多，它们之间的实际距离应该是红色的这一条弧线。我们再举一个例子，如果你要测量北京到西安的距离，你可以拿一个缩小一定比例的地球仪，用卷尺经过地球仪表面上的这两点来测量它们之间的距离，然后再乘以相应的倍数，即可得到北京到西安的距离。同样的，你还可以把三维的地球仪展开成二维的地球，然后拿直尺直接测量北京到西安的距离。而这个三维地球仪到二维地图的展开，就属于流形学习，流形学习可以使欧式距离重新生效。</p>
+<div id="fig-05-statistics-and-exploration-003" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-05-statistics-and-exploration-003-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="../assets/05-statistics-and-exploration/003-illustration.png" class="img-fluid figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-05-statistics-and-exploration-003-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+图&nbsp;5.3: 瑞士卷
+</figcaption>
+</figure>
+</div>
+<p>t-SNE算法的降维过程可以分为下面几个步骤：</p>
+<ol type="1">
+<li><p>计算高维空间数据点的概率分布F1（欧式距离转换成高斯分布）；</p></li>
+<li><p>计算低维空间数据点的概率分布F2（用t分布随机初式化二维的点）；</p></li>
+<li><p>利用相对熵（K-L散度）衡量两种分布的差异，进行迭代，若F1与F2概率分布尽可能的接近则降维成功。</p></li>
+</ol>
+</section>
+<section id="src-0080-statistics-90" class="level5">
+<h5 class="anchored" data-anchor-id="src-0080-statistics-90">SNE算法原理</h5>
+<p>我们首先了解一下t-SNE的前身SNE的算法原理，因为这样我们会更加理解t-SNE相对于SNE带来的提升。我们以4个细胞，每个细胞有4个基因，构成一个<span class="math inline">\(4\times 4\)</span>的矩阵为例（见表1），详细讲解一下SNE的每一步算法过程。</p>
+<p>表1：<span class="math inline">\(4\times 4\)</span>的矩阵，每一列代表一个基因，每一行代表一个细胞<span class="math inline">\(FPKM_{i,j}\)</span>代表第i个细胞，第j个基因的表达值</p>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th></th>
+<th><span class="math inline">\(gene_1\)</span></th>
+<th><span class="math inline">\(gene_2\)</span></th>
+<th><span class="math inline">\(gene_3\)</span></th>
+<th><span class="math inline">\(gene_4\)</span></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><span class="math inline">\(cell_1\)</span></td>
+<td><span class="math inline">\(FPKM_{1,1}\)</span></td>
+<td><span class="math inline">\(FPKM_{1,2}\)</span></td>
+<td><span class="math inline">\(FPKM_{1,3}\)</span></td>
+<td><span class="math inline">\(FPKM_{1,4}\)</span></td>
+</tr>
+<tr class="even">
+<td><span class="math inline">\(cell_2\)</span></td>
+<td><span class="math inline">\(FPKM_{2,1}\)</span></td>
+<td><span class="math inline">\(FPKM_{2,2}\)</span></td>
+<td><span class="math inline">\(FPKM_{2,3}\)</span></td>
+<td><span class="math inline">\(FPKM_{2,4}\)</span></td>
+</tr>
+<tr class="odd">
+<td><span class="math inline">\(cell_3\)</span></td>
+<td><span class="math inline">\(FPKM_{3,1}\)</span></td>
+<td><span class="math inline">\(FPKM_{3,2}\)</span></td>
+<td><span class="math inline">\(FPKM_{3,3}\)</span></td>
+<td><span class="math inline">\(FPKM_{3,4}\)</span></td>
+</tr>
+<tr class="even">
+<td><span class="math inline">\(cell_4\)</span></td>
+<td><span class="math inline">\(FPKM_{4,1}\)</span></td>
+<td><span class="math inline">\(FPKM_{4,2}\)</span></td>
+<td><span class="math inline">\(FPKM_{4,3}\)</span></td>
+<td><span class="math inline">\(FPKM_{4,4}\)</span></td>
+</tr>
+</tbody>
+</table>
+<p><strong>将欧式距离转化成概率分布</strong></p>
+<p>根据我们假定的数据，每一个细胞都有四个基因表达值特征，我们可以根据此计算两两细胞之间的欧式距离。以<span class="math inline">\(cell_1\)</span>为例，<span class="math inline">\(cell_1\)</span>与<span class="math inline">\(cell_2、cell_3、cell_4\)</span>之间的欧式距离计算见下：</p>
+<p><span id="eq-05-statistics-and-exploration-006"><span class="math display">\[
+dis(cell_1,cell_2)=\sqrt{\sum_{x=1}^4(FPKM_{1,i}-FPKM_{2,i})^2}\\
+\tag{5.6}\]</span></span></p>
+<p><span id="eq-05-statistics-and-exploration-007"><span class="math display">\[
+dis(cell_1,cell_3)=\sqrt{\sum_{x=1}^4(FPKM_{1,i}-FPKM_{3,i})^2}
+\tag{5.7}\]</span></span></p>
+<p><span id="eq-05-statistics-and-exploration-008"><span class="math display">\[
+dis(cell_1,cell_4)=\sqrt{\sum_{x=1}^4(FPKM_{1,i}-FPKM_{4,i})^2}
+\tag{5.8}\]</span></span></p>
+<p>接着，我们用正态分布的公式转化<span class="math inline">\(cell_1\)</span> 与<span class="math inline">\(cell_2、cell_3、cell_4\)</span>的距离：</p>
+<p><span id="eq-05-statistics-and-exploration-009"><span class="math display">\[
+f(dis(cell_1,cell_2)) = \frac{1}{\sqrt{2\pi}\sigma}e^{-\frac{dis(cell_1,cell_2)^2}{2\sigma^2}}\\
+f(dis(cell_1,cell_3)) = \frac{1}{\sqrt{2\pi}\sigma}e^{-\frac{dis(cell_1,cell_3)^2}{2\sigma^2}}\\
+f(dis(cell_1,cell_4)) = \frac{1}{\sqrt{2\pi}\sigma}e^{-\frac{dis(cell_1,cell_4)^2}{2\sigma^2}}
+\tag{5.9}\]</span></span></p>
+<p>然后归一化，把距离变成概率:</p>
+<p><span id="eq-05-statistics-and-exploration-010"><span class="math display">\[
+p_{cell_2|cell_1} = \frac {e^{-\frac{dis(cell_1,cell_2)^2}{2\sigma^2}}} {e^{-\frac{dis(cell_1,cell_2)^2}{2\sigma^2}}+e^{-\frac{dis(cell_1,cell_3)^2}{2\sigma^2}}+e^{-\frac{dis(cell_1,cell_4)^2}{2\sigma^2}}}\\
+p_{cell_3|cell_1} = \frac {e^{-\frac{dis(cell_1,cell_3)^2}{2\sigma^2}}} {e^{-\frac{dis(cell_1,cell_2)^2}{2\sigma^2}}+e^{-\frac{dis(cell_1,cell_3)^2}{2\sigma^2}}+e^{-\frac{dis(cell_1,cell_4)^2}{2\sigma^2}}}\\
+p_{cell_4|cell_1} = \frac {e^{-\frac{dis(cell_1,cell_4)^2}{2\sigma^2}}} {e^{-\frac{dis(cell_1,cell_2)^2}{2\sigma^2}}+e^{-\frac{dis(cell_1,cell_3)^2}{2\sigma^2}}+e^{-\frac{dis(cell_1,cell_4)^2}{2\sigma^2}}}\\
+\tag{5.10}\]</span></span></p>
+<p>同理，我们可以对每一个<span class="math inline">\(cell_i\)</span>都算出以其为中心，其余<span class="math inline">\(cell_j\)</span>与其距离的概率分布<span class="math inline">\(p_{cell_j|cell_i},j\ne i\)</span> 。例如，我们现在举的这个例子中，我们可以同样的算出：</p>
+<p><span id="eq-05-statistics-and-exploration-011"><span class="math display">\[
+p_{cell_1|cell_2},p_{cell_3|cell_2},p_{cell_3|cell_2}\Rightarrow \sigma_{cell_2}\\
+p_{cell_1|cell_3},p_{cell_2|cell_3},p_{cell_4|cell_3}\Rightarrow \sigma_{cell_3}\\
+p_{cell_1|cell_4},p_{cell_2|cell_4},p_{cell_3|cell_4}\Rightarrow \sigma_{cell_4}
+\tag{5.11}\]</span></span></p>
+<p>对于这四个细胞，唯一的未知量就是<span class="math inline">\(\sigma\)</span>，如果对于每一个细胞，我们都知道它的标准差，那么我们就能描述出高维空间上该细胞与其周围细胞的分布情况，如何估算每个细胞的<span class="math inline">\(\sigma_{cell_i}\)</span>呢？这里我们就引入一个新的概念——困惑度（perplexity），这是一个基于信息熵计算出来的值。</p>
+<p><strong>根据困惑度估计<span class="math inline">\(\sigma\)</span></strong></p>
+<p>困惑度（perplexity）可以表示细胞的邻近个数，在t-SNE图上的直观反映是细胞点的分布是否紧凑，公式见3。perplexity设置越大，细胞分布越紧凑，一般情况下困惑度选择5-50。</p>
+<p><span id="eq-05-statistics-and-exploration-012"><span class="math display">\[
+Prep(P_{cell_i})=2^{H(P_{cell_i})}\\
+H(P_{cell_i})=-\sum_{j\ne i}p_{cell_j|cell_i}log(p_{cell_j|cell_i})
+\tag{5.12}\]</span></span></p>
+<p>于是，对于我们的示例来说，一旦我们定义了一个困惑度，也就是等式左边已经确定，那么唯一的未知量就是等式右边的<span class="math inline">\(\sigma\)</span>，这样等式就变成了一个可解方程，我们就能计算得出每一个细胞特定的<span class="math inline">\(\sigma\)</span>。这里，为了直观观察这一步骤的过程，我们还是以<span class="math inline">\(cell_1\)</span>为例来看一遍如何计算<span class="math inline">\(\sigma\)</span>：</p>
+<p><span id="eq-05-statistics-and-exploration-013"><span class="math display">\[
+H(P_{cell_1})=-(p_{cell_2|cell_1}log(p_{cell_2|cell_1})+p_{cell_3|cell_1}log(p_{cell_3|cell_1})+p_{cell_4|cell_1}log(p_{cell_4|cell_1}))\\
+Prep(P_{cell_1})=2^{H(P_{cell_1})}\Rightarrow 预设值：困惑度（perplexity）
+\tag{5.13}\]</span></span></p>
+<p>这样两个方程联立，我们就能解出<span class="math inline">\(cell_1\)</span>的<span class="math inline">\(\sigma_{cell_1}\)</span>，同理我们就能解出<span class="math inline">\(\sigma_{cell_2}、\sigma_{cell_3}、\sigma_{cell_4}\)</span> 。这样我们就完成了高维空间数据点概率分布的估计。</p>
+<p>这里，根据我们之前介绍的信息熵，大家可以思考一下，在估计<span class="math inline">\(\sigma\)</span>时，信息熵值的大小与<span class="math inline">\(\sigma\)</span>具有怎样的关系？反应怎样的生物学意义？</p>
+<p>提示：</p>
+<p>1.信息熵越大，<span class="math inline">\(\sigma\)</span>越小；</p>
+<p>2.信息熵越大，代表<span class="math inline">\(cell_i\)</span>临近的细胞个数越多。</p>
+<p><strong>低维空间的正态分布近似</strong></p>
+<p>当我们确定了高维数据的概率分布之后，利用正态分布初始化SNE的二维点，例如初始化低维数据点<span class="math inline">\(x_1,x_2,x_3,x_4\)</span>分别对应高维空间上的<span class="math inline">\(cell_1,cell_2,cell_3,cell_4\)</span> 。我们同样可以计算类似的条件概率，以<span class="math inline">\(x_1\)</span>为例：</p>
+<p><span id="eq-05-statistics-and-exploration-014"><span class="math display">\[
+q_{x_2|x_1} = \frac {e^{-{dis(x_1,x_2)^2}}} {e^{-{dis(x_1,x_2)^2}}+e^{-{dis(x_1,x_3)^2}}+e^{-{dis(x_1,x_4)^2}}}\\
+q_{x_3|x_1} = \frac {e^{-{dis(x_1,x_3)^2}}} {e^{-{dis(x_1,x_2)^2}}+e^{-{dis(x_1,x_3)^2}}+e^{-{dis(x_1,x_4)^2}}}\\
+q_{x_4|x_1} = \frac {e^{-{dis(x_1,x_4)^2}}} {e^{-{dis(x_1,x_2)^2}}+e^{-{dis(x_1,x_3)^2}}+e^{-{dis(x_1,x_4)^2}}}\\
+\tag{5.14}\]</span></span></p>
+<p>同理，我们可以对每一个<span class="math inline">\(x_i\)</span>都算出以其为中心，其余<span class="math inline">\(x_j\)</span>与其距离的概率分布<span class="math inline">\(Q_{x_j|x_i},j\ne i\)</span> 。这样我们就在低维空间得到了我们样本点的概率分布，接下来，我们的目标就是希望高维空间和低维空间之间的分布尽可能的相同，这里我们就用到了之前讲解的相对熵（K-L散度）这一概念，计算过程见下（<span class="math inline">\(i\)</span>最大值是4，只是因为我们举的例子只有4个细胞，实际情况<span class="math inline">\(i\)</span>最大值等于细胞数目）：</p>
+<p><span id="eq-05-statistics-and-exploration-015"><span class="math display">\[
+C=\sum_{i=1}^4D_{KL}(P_i||Q_i)=\sum_{i=1}^4 \sum_{j=1}^3 p_{j|i}log\frac {p_{j|i}}{q_{j|i}}
+\tag{5.15}\]</span></span></p>
+<p>这样我们的目标就是获得最小的<span class="math inline">\(C\)</span>值，也就是获得最小的K-L散度，后面就是进行进行梯度优化，通过迭代，使低维空间的分布逼近高维空间的分布，最终确定SNE的二维点。一般默认梯度优化的迭代次数是1000。以上就是SNE的算法原理。</p>
+</section>
+<section id="src-0080-statistics-177" class="level5">
+<h5 class="anchored" data-anchor-id="src-0080-statistics-177">t-SNE相对于SNE的提升</h5>
+<p>上面的内容我们了解了SNE的算法原理，那么相对于SNE，t-SNE又做了哪些重要的优化呢？</p>
+<p><strong>1. t-SNE解决了概率不对称问题</strong> SNE高维情况：</p>
+<p><span id="eq-05-statistics-and-exploration-016"><span class="math display">\[
+p_{j|i} = \frac {e^{-\frac{dis(i,j)^2}{2\sigma^2}}} {\sum_{k\ne i}e^{-\frac{dis(i,k)^2}{2\sigma^2}}}
+\tag{5.16}\]</span></span></p>
+<p>t-SNE高维情况：</p>
+<p><span id="eq-05-statistics-and-exploration-017"><span class="math display">\[
+p_{ij}=\frac {p_{j|i}+p_{i|j}}{2n}
+\tag{5.17}\]</span></span></p>
+<p><strong>2. t-SNE使用t分布作为降维后的概率分布</strong> SNE低维情况：</p>
+<p><span id="eq-05-statistics-and-exploration-018"><span class="math display">\[
+q_{j|i} = \frac {e^{-{dis(i,j)^2}}} {\sum_{k\ne i}e^{-{dis(i,k)^2}}}
+\tag{5.18}\]</span></span></p>
+<p>t-SNE低维情况：</p>
+<p><span id="eq-05-statistics-and-exploration-019"><span class="math display">\[
+q_{ij} = \frac {(1+{dis(i,j)^2})^{-1}} {\sum_{k\ne i}(1+{dis(i,k)^2})^{-1}}
+\tag{5.19}\]</span></span></p>
+<p>对于第一个优化我们直观上很好理解，因为，我们认为空间上两个点<span class="math inline">\((a,b)\)</span>的距离不论是<span class="math inline">\(a\Rightarrow b\)</span>还是<span class="math inline">\(b\Rightarrow a\)</span>都应该相等。那么我们为什么要用t分布来作为降维后的概率分布呢？它与正态分布有什么不同吗？</p>
+<p>观察图4，在正态分布与t分布相交前，对于同一个概率值（y轴坐标），我们发现t分布的距离总是小于正态分布的距离（dis_1 &lt; dis_2)；在正态分布与t分布相交后，对于同一个概率值（y轴坐标），我们发现t分布的距离总是大于正态分布的距离（dis_3 &gt; dis_4)。所以由此我们可以了解到 t分布使得相近的细胞更加紧凑，较远的细胞更加疏远。换句话说，t-SNE倾向于保留数据中的局部结构。距离较远的两个细胞在t-SNE图上的表示可能失真。</p>
+<div id="fig-05-statistics-and-exploration-004" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-05-statistics-and-exploration-004-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="../assets/05-statistics-and-exploration/004-distribution.png" class="img-fluid figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-05-statistics-and-exploration-004-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+图&nbsp;5.4: distribution
+</figcaption>
+</figure>
+</div>
+<p>图4：正态分布与t分布。</p>
+</section>
+<section id="src-0080-statistics-210" class="level5">
+<h5 class="anchored" data-anchor-id="src-0080-statistics-210">t-SNE的优缺点</h5>
+<p><strong>优点</strong></p>
+<ul>
+<li>非常优秀的降维可视化方法</li>
+</ul>
+<p><strong>缺点</strong> - 基本只用于可视化 - t-SNE倾向保留局部结构，有时候会“只见数木不见森林” - t-SNE结果中距离没有太大意义，因为都是计算的概率 - t-SNE训练速度比较慢</p>
+<p><strong>特点</strong> - 受初值影响</p>
+</section>
+</section>
+<section id="src-0080-statistics-225" class="level4">
+<h4 class="anchored" data-anchor-id="src-0080-statistics-225">R语言实战</h4>
+<p>这一部分我们就进入t-SNE实战环节，代码如下:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># t-SNE需要使用Rtsne这一个包</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(Rtsne)</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="do">##加载t-SNE需要的数据</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="fu">load</span>(<span class="st">"C:/Users/Jay/Desktop/t-SNE/data/GTEx.RData"</span>)</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>accession.df <span class="ot">=</span> <span class="fu">read.csv</span>(<span class="at">file=</span><span class="st">"C:/Users/Jay/Desktop/t-SNE/data/GTEx_accession_table.csv"</span>)</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>accession.df</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>annotation.df <span class="ot">=</span> <span class="fu">read.csv</span>(<span class="at">file=</span><span class="st">"C:/Users/Jay/Desktop/t-SNE/data/GTEx_v7_Annotations_SampleAttributesDS.txt"</span>,<span class="at">header =</span> T,<span class="at">sep =</span> <span class="st">"</span><span class="sc">\t</span><span class="st">"</span>)</span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>annotation.df</span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>tissue_info <span class="ot">=</span> <span class="fu">as.character</span>(annotation.df<span class="sc">$</span>SMTS[<span class="fu">match</span>(accession_id_vec,annotation.df<span class="sc">$</span>SAMPID)])</span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a><span class="do">##删除第一列基因名字，第二列描述信息</span></span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>GTEx.TPM.gene.mat <span class="ot">=</span> GTEx.TPM.gene.mat[,<span class="fu">c</span>(<span class="sc">-</span><span class="dv">1</span>,<span class="sc">-</span><span class="dv">2</span>)]</span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a><span class="do">##对每一行基因计算方差，筛选高变异的基因进行t-SNE运算，减少运算负担</span></span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a>SD.vector <span class="ot">=</span> <span class="fu">apply</span>(GTEx.TPM.gene.mat,<span class="dv">1</span>,<span class="at">FUN=</span><span class="cf">function</span>(x){<span class="fu">sd</span>(x)})</span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a><span class="do">##依靠方差结果对GTEx.TPM.gene.mat数据进行排序</span></span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a>GTEx.TPM.gene.mat.sort <span class="ot">=</span> GTEx.TPM.gene.mat[<span class="fu">order</span>(SD.vector,<span class="at">decreasing =</span> T),]</span>
+<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a><span class="do">##查看尾部数据是否是变异较小的</span></span>
+<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a><span class="fu">tail</span>(GTEx.TPM.gene.mat.sort)</span>
+<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a><span class="do">##筛选前3000高变异基因</span></span>
+<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a>GTEx.TPM.gene.mat.log2.top3000 <span class="ot">=</span> GTEx.TPM.gene.mat.sort[<span class="dv">1</span><span class="sc">:</span><span class="dv">3000</span>,]</span>
+<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">20200503</span>)</span>
+<span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a><span class="do">##行是观测，列是变量。如果把基因当做变量，那么每一列就是一个基因，每一行就是样本</span></span>
+<span id="cb1-24"><a href="#cb1-24" aria-hidden="true" tabindex="-1"></a><span class="do">##dims 输出的维度</span></span>
+<span id="cb1-25"><a href="#cb1-25" aria-hidden="true" tabindex="-1"></a><span class="do">##perplexity设置5-50</span></span>
+<span id="cb1-26"><a href="#cb1-26" aria-hidden="true" tabindex="-1"></a>tSNE_res <span class="ot">=</span> <span class="fu">Rtsne</span>(<span class="fu">t</span>(GTEx.TPM.gene.mat.log2.top3000),<span class="at">dims =</span> <span class="dv">3</span>,<span class="at">perplexity =</span> <span class="dv">10</span>,<span class="at">pca =</span> T)</span>
+<span id="cb1-27"><a href="#cb1-27" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-28"><a href="#cb1-28" aria-hidden="true" tabindex="-1"></a><span class="do">##分别用生成t-SNE的三个维度进行可视化</span></span>
+<span id="cb1-29"><a href="#cb1-29" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb1-30"><a href="#cb1-30" aria-hidden="true" tabindex="-1"></a><span class="do">##首先把信息都综合到一个data.frame中</span></span>
+<span id="cb1-31"><a href="#cb1-31" aria-hidden="true" tabindex="-1"></a>tSNE_res.df <span class="ot">=</span> <span class="fu">as.data.frame</span>(tSNE_res<span class="sc">$</span>Y)</span>
+<span id="cb1-32"><a href="#cb1-32" aria-hidden="true" tabindex="-1"></a><span class="fu">colnames</span>(tSNE_res.df) <span class="ot">=</span> <span class="fu">c</span>(<span class="st">"tSNE1"</span>,<span class="st">"tSNE2"</span>,<span class="st">"tSNE3"</span>)</span>
+<span id="cb1-33"><a href="#cb1-33" aria-hidden="true" tabindex="-1"></a>tSNE_res.df<span class="sc">$</span>tissue <span class="ot">=</span> tissue_info</span>
+<span id="cb1-34"><a href="#cb1-34" aria-hidden="true" tabindex="-1"></a><span class="do">##可视化tSNE1与tSNE2</span></span>
+<span id="cb1-35"><a href="#cb1-35" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> tSNE_res.df, <span class="fu">aes</span>(tSNE1,tSNE2,<span class="at">color=</span>tissue)) <span class="sc">+</span> </span>
+<span id="cb1-36"><a href="#cb1-36" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>()  <span class="sc">+</span> </span>
+<span id="cb1-37"><a href="#cb1-37" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_text</span>(<span class="fu">aes</span>(<span class="at">label=</span>tissue)) <span class="sc">+</span> </span>
+<span id="cb1-38"><a href="#cb1-38" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>()</span>
+<span id="cb1-39"><a href="#cb1-39" aria-hidden="true" tabindex="-1"></a><span class="do">##可视化tSNE1与tSNE3</span></span>
+<span id="cb1-40"><a href="#cb1-40" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> tSNE_res.df, <span class="fu">aes</span>(tSNE1,tSNE3,<span class="at">color=</span>tissue)) <span class="sc">+</span> </span>
+<span id="cb1-41"><a href="#cb1-41" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>()  <span class="sc">+</span> </span>
+<span id="cb1-42"><a href="#cb1-42" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_text</span>(<span class="fu">aes</span>(<span class="at">label=</span>tissue)) <span class="sc">+</span> </span>
+<span id="cb1-43"><a href="#cb1-43" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>()</span>
+<span id="cb1-44"><a href="#cb1-44" aria-hidden="true" tabindex="-1"></a><span class="do">##可视化tSNE2与tSNE3</span></span>
+<span id="cb1-45"><a href="#cb1-45" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> tSNE_res.df, <span class="fu">aes</span>(tSNE2,tSNE3,<span class="at">color=</span>tissue)) <span class="sc">+</span> </span>
+<span id="cb1-46"><a href="#cb1-46" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>()  <span class="sc">+</span> </span>
+<span id="cb1-47"><a href="#cb1-47" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_text</span>(<span class="fu">aes</span>(<span class="at">label=</span>tissue)) <span class="sc">+</span> </span>
+<span id="cb1-48"><a href="#cb1-48" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>()</span></code></pre></div><button title="复制到剪贴板" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="callout callout-style-default callout-note callout-titled" title="待完善">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-5-contents" aria-controls="callout-5" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">注记</span>待完善
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-5" class="callout-5-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>修订t-SNE推导，将完整算法推导移入扩展阅读；新增误区练习。</p>
+</div>
+</div>
+</div>
+
+
+</section>
+</section>
+</section>
+
+</main> <!-- /main -->
+<button class="back-top" aria-label="回到顶部" title="回到顶部" onclick="window.scrollTo({top:0,behavior:'smooth'})">↑</button>
+
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "已复制");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "已复制");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp("https:\/\/menghaowei\.github\.io\/bioinfo_book\/");
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+            // target, if specified
+            link.setAttribute("target", "_blank");
+            if (link.getAttribute("rel") === null) {
+              link.setAttribute("rel", "noopener");
+            }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="../manuscript/04-quality-control-and-alignment.html" class="pagination-link" aria-label="从原始 reads 到可信的比对结果">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">从原始 reads 到可信的比对结果</span></span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="../manuscript/06-rna-seq.html" class="pagination-link" aria-label="RNA-seq：从表达定量到差异表达">
+        <span class="nav-page-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">RNA-seq：从表达定量到差异表达</span></span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav>
+</div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+    <div class="nav-footer-left">
+<p>BioinfoBook · 开放写作版</p>
+</div>   
+    <div class="nav-footer-center">
+      &nbsp;
+    <div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/menghaowei/bioinfo_book/edit/master/manuscript/05-statistics-and-exploration.md" class="toc-action"><i class="bi bi-github"></i>编辑该页面</a></li><li><a href="https://github.com/menghaowei/bioinfo_book/blob/master/manuscript/05-statistics-and-exploration.md" class="toc-action"><i class="bi empty"></i>查看代码</a></li></ul></div></div>
+    <div class="nav-footer-right">
+<p>理解原理 · 读懂数据 · 复现分析</p>
+</div>
+  </div>
+</footer>
+
+
+
+
+<script src="../site_libs/quarto-html/zenscroll-min.js"></script>
+</body></html>
