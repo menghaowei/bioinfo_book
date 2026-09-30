@@ -1,3 +1,80 @@
+# BioinfoBook v1 HTML 发布交接（2026-09-30 更新）
+
+**第一版 HTML 已发布，并完成线上电脑端验收。** 本节是当前状态；后面的原交接文档保留为发布前历史快照。
+
+## 发布结果与版本追溯
+
+- 在线阅读：https://menghaowei.github.io/bioinfo_book/
+- 仓库：https://github.com/menghaowei/bioinfo_book ，默认分支 `master`。
+- 发布源码提交：`ad10c680d0f1cb46bdb4c2b65323bbf06ebc0414`（Publish BioinfoBook v1 Quarto HTML）。
+- Actions 自动保存的完整 HTML 提交：`850eab2caeb99083f6de6cb71d1dfb52bb2fbc8d`。
+- 成功运行：https://github.com/menghaowei/bioinfo_book/actions/runs/36689316643 。触发事件为真实的 `push`，build 与 deploy 均为 success，首次运行即成功。
+- 部署完成：2026-09-30 16:23:39（Asia/Shanghai；08:23:39 UTC）。
+- Pages 的 `build_type` 已从 `legacy` 切换为 `workflow`（GitHub Actions），原网址保持不变。
+- 线上 `build.json` 已核对：源码 SHA 与上述发布源码提交一致，包含成功的工作流运行链接。源码提交与自动生成 HTML 提交各自有独立 SHA，这是工作流的预期行为。
+- 本节、README 和验收证据随后以仅记录发布结果的 `[skip ci]` 提交归档；该提交不改变已部署的 `docs/`。最终仓库 tip 可由 `git rev-parse HEAD` 查询，工作区顶层 `BioinfoBook_HANDOFF_2026-09-30.md` 另记该 SHA。
+
+## 实际使用的本地工程
+
+`/Users/meng/14.LLM_project/02.mhw_bioinfo_books/01.bioinfo_book_codex/bioinfo_book_publish/`
+
+原同级 `bioinfo_book/` 指向 `menghaowei/bioinfo`，且包含大量未提交修改和一个本地提交，因此没有对它进行合并、清理、提交或修改远端。新版目录从目标仓库正常克隆，保留两条既有历史，再合并交接工程；远端接续起点仍为 `e0dec31fcdb4b8d13b6eec29fe7d7797a0326f2f`。没有 force push，也没有删除旧仓库文件。
+
+`BioinfoBook_v1_handoff/`、原题库及交接 ZIP 保留。交接包的 850 个 SHA256 全部核对通过。正文、附录、素材及原稿归档与交接包逐文件比对一致，未重新运行一次性迁移或校订脚本。
+
+## 本轮修复与发布机制
+
+- 保留三篇、十章、71 小节、25 道基础题、稳定锚点及“待完善”内容。
+- 修复行内长网址在窄屏上不换行的问题；命令代码块仍按原行结构横向滚动。用户随后明确以后以电脑端阅读为主，线上验收未继续扩展手机覆盖。
+- 工作流仅在非 PR 且分支为 `master` 时回写 HTML 和部署；自动回写范围限定为 `docs/`、`editorial/validation.json`、根目录兼容入口 `index.html`。
+- `docs/build.json` 新增对应的 Actions 运行链接，可将线上页面与构建源码直接对应。
+- 实际本地构建使用 Quarto 1.8.27 / Python 3.13.0；CI 使用 Quarto 1.8.27 / Python 3.12。
+
+## 验证结果与边界
+
+1. **网页构建验证**：`python3 scripts/build.py` 成功；CI 重新构建成功。校验报告为 10 章、71 小节、32 个 HTML、352 个迁移锚点、190 处图片引用，0 个错误。
+2. **线上发布验证**：1440 × 1080 Chromium 检查全部 20 个阅读页面；章节导航、深层页面与稳定锚点、图片、公式、全文搜索正常；`HaplotypeCaller` 搜索返回 2 个相关文档，点击可进入 WGS 页面；12 个旧章节 URL 均跳转到新版目标。无页面错误、站内 HTTP 资源错误、破损图片、公式错误或页面级横向溢出。第 4、5、6、8 章分别渲染 70、94、6、110 个数学节点。
+3. **科学内容审校**：本轮没有执行书中的生物信息分析命令，也没有完成全书科学审校。HTML 构建和线上功能成功不等于分析流程已经全部验证。
+
+证据：`handoff-evidence/online-2026-09-30/browser-report.json`、`actions-run.json`、`home.png`、`math.png`。本地构建与早先手机抽查在 `handoff-evidence/local-2026-09-30/`；`mobile-overflow-before-fix.png` 是修复前诊断图，不代表最终页面状态。可复用的浏览器验收脚本为 `handoff-evidence/verify-published-site.cjs`；它需要额外的 Playwright，仅用于验收，不是日常构建依赖。传入 `--desktop-only` 可只验收电脑端。
+
+## 本机日常写作与发布
+
+本机默认 PATH 曾优先选择 Python 3.8，因此使用工作区中的独立工具环境。工具与登录配置位于工作区 `.bioinfobook-tools/`，不属于发布仓库。Git 登录已验证为 `menghaowei`，当前仓库通过本地 credential helper 使用该登录；配置目录权限为 700，凭据文件为 600。
+
+```bash
+cd /Users/meng/14.LLM_project/02.mhw_bioinfo_books/01.bioinfo_book_codex/bioinfo_book_publish
+source ../.bioinfobook-tools/activate.sh
+git pull --ff-only
+python3 scripts/preview.py
+```
+
+预览地址：<http://localhost:4200>，Ctrl+C 停止。`activate.sh` 设置 Quarto/Python 路径及本次指定的代理；如以后停用代理，应相应调整该本机环境文件。其他电脑按 README 安装 Quarto 1.8.27 与 Python 3.10+ 即可。
+
+继续编辑 `manuscript/*.md`、`appendices/*.md`，新增图片放入对应 `assets/` 子目录；首页编辑 `index.qmd`。保留稳定锚点，不手改 `docs/`，不运行一次性迁移/校订脚本。
+
+```bash
+python3 scripts/build.py
+git add manuscript appendices assets index.qmd
+git add docs editorial/validation.json index.html
+git commit -m "完善教材内容"
+git push origin master
+```
+
+普通内容提交不要使用 `[skip ci]`。推送后 Actions 会重新构建、验证、提交生成 HTML 并部署；下次写作前 `git pull --ff-only`。如构建期间远端被其他人更新，自动推送仍会安全失败，应同步远端后重新运行，不使用 force push。
+
+## 剩余事项
+
+- 第 9、10 章、ATAC-seq 等“待完善”正文、练习和教学单元继续补写。
+- 两张失效外链图片仍为明确占位；13 个 RNA-seq 原文文献编号的完整书目信息待补。
+- 历史安装命令、图中文字、算法例题、示例数据、分析环境及实战预期输出尚未全面实跑和审校。
+- Quarto 1.8.27 构建保留已知非致命警告：Pandoc 未加载 `zh-CN` 翻译数据（正文、导航及数学显示已实测）；Actions 提示旧 action 的 Node 20 运行时已由平台改为 Node 24，以及未来 ubuntu-latest 镜像迁移。此次构建和部署均成功，后续可单独维护工具链。
+- PDF 本轮未生成；后续仍按 ElegantBook 中文教材风格实施。
+
+---
+
+# 发布前历史交接原文（下文“尚未发布”等状态已由上文更新）
+
 # BioinfoBook：本地 Codex 项目交接
 
 交接日期：2026-09-30（Asia/Shanghai）。本文件对应 `BioinfoBook_v1_handoff_2026-09-30.zip`。

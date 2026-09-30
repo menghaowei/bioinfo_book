@@ -1,5 +1,7 @@
 # BioinfoBook
 
+第一版 HTML 已于 2026-09-30 发布，并完成线上电脑端验收。[成功的 Actions 运行](https://github.com/menghaowei/bioinfo_book/actions/runs/36689316643)；完整发布记录与本机写作环境见 [HANDOFF.md](HANDOFF.md)。
+
 **以高通量数据分析为基础的生物信息学入门**。三篇、十章、71 个小节；保留原稿讲解与现有 1—25 道基础题。
 
 - 在线阅读：<https://menghaowei.github.io/bioinfo_book/>
@@ -84,7 +86,7 @@ python3 -m http.server 8000 --directory docs
 3. 将生成的 `docs/` 和校验报告提交回仓库；
 4. 上传完整网页并部署到 GitHub Pages。
 
-网页地址保持为 <https://menghaowei.github.io/bioinfo_book/>。Actions 页的 **Build and publish BioinfoBook** 显示最新构建状态，也支持手动运行。PR 仅构建和检查，不发布。自动生成的提交带 `[skip ci]`，不触发重复构建。
+网页地址保持为 <https://menghaowei.github.io/bioinfo_book/>。站点的 [`build.json`](https://menghaowei.github.io/bioinfo_book/build.json) 记录当前部署的源码提交和工作流运行链接。Actions 页的 **Build and publish BioinfoBook** 显示最新构建状态，也支持手动运行。PR 仅构建和检查，不发布。手动运行也仅在 `master` 上部署。自动生成的提交带 `[skip ci]`，不触发重复构建。
 
 更新示例：
 

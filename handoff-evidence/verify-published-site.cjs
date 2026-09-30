@@ -63,7 +63,7 @@ const report = { base: base.href, checked_at_utc: new Date().toISOString(), page
     await visit(new URL('manuscript/08-wgs-and-wes.html#sec-08-04', base).href);
     await page.locator('#sec-08-04').scrollIntoViewIfNeeded();
     assert.ok(await page.locator('#sec-08-04 mjx-container').count());
-    await page.locator('#sec-08-04 mjx-container[display="true"]').first().evaluate(x => x.scrollIntoView({ block: 'center' }));
+    await page.locator('#sec-08-04 mjx-container[display="true"]').first().evaluate(x => x.scrollIntoView({ block: 'center', behavior: 'instant' }));
     await page.screenshot({ path: path.join(output, 'math.png') });
     report.deep_anchor = page.url();
     await visit(base.href);
@@ -86,7 +86,8 @@ const report = { base: base.href, checked_at_utc: new Date().toISOString(), page
       await page.waitForURL(expected);
       report.redirects.push({ from: name, to: page.url() });
     }
-    for (const width of [390, 360]) {
+    report.mobile_scope = process.argv.includes('--desktop-only') ? 'Skipped: user requested desktop-focused acceptance.' : 'Representative chapters at two viewport widths.';
+    for (const width of (process.argv.includes('--desktop-only') ? [] : [390, 360])) {
       await page.setViewportSize({ width, height: 844 });
       for (const chapter of ['04-quality-control-and-alignment', '05-statistics-and-exploration', '06-rna-seq', '08-wgs-and-wes']) {
         await visit(new URL(`manuscript/${chapter}.html`, base).href);
