@@ -7,10 +7,6 @@ main.content { padding-bottom:3rem; }
 .hero-book h2 { color:#fff; border:0; padding:0; margin:.8rem 0; font-size:1.65rem; }
 .hero-book p { color:#dbe9e1; margin:.7rem 0; }
 .hero-book a { color:#fff; }
-.reading-path { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:1rem; margin:2rem 0; }
-.reading-card { border-top:3px solid #2c6c57; background:#f0f4ed; padding:1.25rem; border-radius:0 0 8px 8px; }
-.reading-card strong { display:block; margin-bottom:.5rem; }
-.reading-card p { font-size:.9rem; line-height:1.65; margin-bottom:0; }
 figure { margin:1.8rem auto; }
 figure img { max-width:100%; height:auto; border-radius:4px; }
 figcaption { color:#64746b; line-height:1.6; font-size:.85rem; }
@@ -25,7 +21,7 @@ blockquote { border-left:3px solid #90b29c; color:#4a5e53; }
 .chapter-number { color:#658475; }
 .nav-footer { font-size:.8rem; }
 .back-top { position:fixed; right:1.1rem; bottom:1.2rem; border:1px solid #b9cabe; border-radius:50%; width:2.5rem; height:2.5rem; background:#fff; color:#186254; z-index:1000; cursor:pointer; }
-@media(max-width:800px) { .reading-path {grid-template-columns:1fr;} .hero-book {padding:1.4rem;} h2 {margin-top:2.5rem;} }
+@media(max-width:800px) { .hero-book {padding:1.4rem;} h2 {margin-top:2.5rem;} }
 @media print { .back-top {display:none;} .hero-book {background:none;color:inherit;border:1px solid #aaa;} .hero-book h2,.hero-book p {color:inherit;} }
 
 
@@ -42,6 +38,32 @@ mjx-container[display="true"] { display:block !important; width:100%; max-width:
 main.content .math.display { display:block; max-width:100%; overflow-x:auto; }
 mjx-container[display="true"] { min-width:0 !important; width:100% !important; max-width:100% !important; overflow-x:auto !important; }
 body { overflow-x:clip; }
+
+/* Keep navigation titles on one line; long entries scroll inside their own panel. */
+#quarto-sidebar .sidebar-menu-container,
+#quarto-margin-sidebar nav[role="doc-toc"] {
+  min-width:0;
+  max-width:100%;
+  overflow-x:auto;
+  scrollbar-width:thin;
+}
+#quarto-sidebar .sidebar-menu-container > ul,
+#quarto-margin-sidebar nav[role="doc-toc"] > ul {
+  width:max-content;
+  min-width:100%;
+}
+#quarto-sidebar .sidebar-item-text,
+#quarto-sidebar .menu-text,
+#quarto-margin-sidebar nav[role="doc-toc"] a {
+  white-space:nowrap;
+  overflow-wrap:normal;
+  word-break:normal;
+}
+#quarto-margin-sidebar nav[role="doc-toc"] a {
+  overflow:visible;
+  text-overflow:clip;
+}
+#quarto-sidebar .sidebar-item-container { padding-block:.22rem; }
 
 /* Standalone copyright page generated from the repository LICENSE. */
 body.license-page { margin:0; background:#fcfcf9; color:#263b3d; font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Microsoft YaHei",sans-serif; line-height:1.9; }

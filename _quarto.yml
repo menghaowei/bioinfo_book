@@ -24,24 +24,18 @@ book:
     right: "[版权与使用条款](https://book.bioinfo.info/license.html)"
   chapters:
     - index.qmd
-    - part: "第一篇 · 理解问题，建立基础"
-      chapters:
-        - manuscript/01-ai-era-introduction.md
-        - manuscript/02-environment-and-programming.md
-        - manuscript/03-sequencing-technologies.md
-        - manuscript/04-sequence-alignment.md
-    - part: "第二篇 · 从数据到生物学发现"
-      chapters:
-        - manuscript/05-rna-seq.md
-        - manuscript/06-chip-seq-and-atac-seq.md
-        - manuscript/07-wgs-and-wes.md
-        - manuscript/08-base-imbalanced-sequencing.md
-        - manuscript/09-single-cell-and-spatial-omics.md
-    - part: "第三篇 · 走向独立分析"
-      chapters:
-        - manuscript/10-snakemake-and-reproducibility.md
-        - manuscript/11-statistics-and-learning.md
-        - manuscript/12-ai-learning-and-practice.md
+    - manuscript/01-ai-era-introduction.md
+    - manuscript/02-environment-and-programming.md
+    - manuscript/03-sequencing-technologies.md
+    - manuscript/04-sequence-alignment.md
+    - manuscript/05-rna-seq.md
+    - manuscript/06-chip-seq-and-atac-seq.md
+    - manuscript/07-wgs-and-wes.md
+    - manuscript/08-base-imbalanced-sequencing.md
+    - manuscript/09-single-cell-and-spatial-omics.md
+    - manuscript/10-snakemake-and-reproducibility.md
+    - manuscript/11-statistics-and-learning.md
+    - manuscript/12-ai-learning-and-practice.md
   appendices:
     - appendices/a-references-and-materials.md
 
@@ -68,8 +62,8 @@ format:
     include-after-body: includes/reading.html
     grid:
       body-width: 830px
-      sidebar-width: 285px
-      margin-width: 250px
+      sidebar-width: 480px
+      margin-width: 530px
 
 execute:
   enabled: false

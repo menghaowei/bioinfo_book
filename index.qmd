@@ -14,23 +14,22 @@ BIOINFOBOOK / 从入门到独立分析
 
 《在AI时代写给每一位的生信入门书》面向希望开始学习生物信息分析的读者。从环境搭建、必要编程和测序技术出发，逐步进入 RNA-seq、ChIP-seq/ATAC-seq、WGS/WES、碱基不平衡测序，以及单细胞与空间组学。通过工作流、统计学和 AI 综合实践，把数据处理与结果判断联系起来。
 
-::: {.reading-path}
-::: {.reading-card}
-**第一篇 · 理解问题，建立基础**
+## 全书章节 {.unnumbered}
 
-第 1—4 章：学习前言、环境与编程、测序技术、测序结果的比对。认识数据来源，建立能够开始分析的基础。
-:::
-::: {.reading-card}
-**第二篇 · 从数据到生物学发现**
+1. [AI时代，如何开始学习生物信息学](manuscript/01-ai-era-introduction.md)
+2. [分析环境的搭建与必要的编程技术](manuscript/02-environment-and-programming.md)
+3. [测序技术](manuscript/03-sequencing-technologies.md)
+4. [测序结果的比对](manuscript/04-sequence-alignment.md)
+5. [RNA-seq：从表达定量到差异表达](manuscript/05-rna-seq.md)
+6. [ChIP-seq与ATAC-seq：从富集信号到差异分析](manuscript/06-chip-seq-and-atac-seq.md)
+7. [WGS与WES：从测序数据到可信的小变异](manuscript/07-wgs-and-wes.md)
+8. [碱基不平衡测序数据的分析](manuscript/08-base-imbalanced-sequencing.md)
+9. [单细胞与空间组学](manuscript/09-single-cell-and-spatial-omics.md)
+10. [Snakemake与可复现分析工作流](manuscript/10-snakemake-and-reproducibility.md)
+11. [统计学基础与学习建议](manuscript/11-statistics-and-learning.md)
+12. [AI技术学习路线与综合实践](manuscript/12-ai-learning-and-practice.md)
 
-第 5—9 章：RNA-seq、ChIP-seq/ATAC-seq、WGS/WES、BS-seq 与 GLORI，以及单细胞与空间组学。围绕不同实验的问题和数据组织分析。
-:::
-::: {.reading-card}
-**第三篇 · 走向独立分析**
-
-第 10—12 章：Snakemake 工作流、统计学基础与学习建议、AI 技术学习路线与综合实践。形成可复现的工作习惯，理解分析依据并完成独立项目。
-:::
-:::
+[附录：参考资料与素材说明](appendices/a-references-and-materials.md)
 
 ## 怎样使用这本书 {.unnumbered}
 
@@ -38,10 +37,10 @@ BIOINFOBOOK / 从入门到独立分析
 
 实战中遇到统计概念时，可以回看[第 11 章](manuscript/11-statistics-and-learning.md)。原有 25 道基础问题及讲解已按主题并入正文，作为相关小节的知识问答；参考资料与素材说明集中放在附录。
 
-左侧目录用于切换章节，右侧目录用于定位当前章节，搜索框可以检索全书正文。公式、图片和代码均放在对应的讲解位置；较长命令可以横向滚动，并通过右上角按钮复制。
+左侧目录按顺序列出各章，右侧“本章目录”用于定位当前小节。两侧标题均为单行显示，较长标题可以在目录内横向滚动查看；搜索框可以检索全书正文。公式、图片和代码均放在对应的讲解位置；较长命令可以横向滚动，并通过右上角按钮复制。
 
 ::: {.callout-note title="当前版本"}
-这是按“三篇、十二章、79 个编号小节”整理的持续修订版，另有 11 段不编号的本章提要。已有原稿的详细讲解尽量保留，尚缺的正文、练习和来源均标为“待完善”。碱基不平衡测序、单细胞与空间组学、工作流、AI 及部分统计教学仍需补写。
+本书共有十二章、79 个编号小节，另有 11 段不编号的本章提要和一个参考资料附录，目前仍在持续修订。已有原稿的详细讲解尽量保留，尚缺的正文、练习和来源均标为“待完善”。碱基不平衡测序、单细胞与空间组学、工作流、AI 及部分统计教学仍需补写。
 
 网页构建已经与分析代码执行分离。页面中的历史实战命令保留教学上下文，但尚未逐条在统一数据和环境中运行验收。
 :::
