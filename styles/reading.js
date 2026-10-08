@@ -70,20 +70,33 @@ document.addEventListener('DOMContentLoaded', () => {
   }
   let pendingScroll = false;
   let followingLink = false;
+  let requestedLocation = null;
   let scrollEndTimer;
   function finishLinkScroll() {
     followingLink = false;
+    const requested = requestedLocation;
+    requestedLocation = null;
+    const target = requested && document.getElementById(requested.dataset.bookTarget);
+    const atBottom = window.scrollY + window.innerHeight >= document.documentElement.scrollHeight - 2;
+    // Near the page end, a selected heading cannot always reach the top.
+    // Keep the explicit selection when that heading is already in view.
+    if (target && atBottom && target.getBoundingClientRect().top >= 0 && target.getBoundingClientRect().top < window.innerHeight) {
+      markLocation(requested, true);
+      return;
+    }
     updateLocation();
   }
   function followLocation(link) {
-    if (!link) { updateLocation(); return; }
+    clearTimeout(scrollEndTimer);
+    requestedLocation = link;
+    if (!link) { followingLink = false; updateLocation(); return; }
     followingLink = true;
     markLocation(link, true);
-    clearTimeout(scrollEndTimer);
     scrollEndTimer = setTimeout(finishLinkScroll, 1200);
   }
   function updateLocation() {
     pendingScroll = false;
+    if (followingLink) return;
     let active = null;
     for (const item of locations) {
       if (item.target.getBoundingClientRect().top <= 130) active = item.link;
