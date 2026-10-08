@@ -3,6 +3,7 @@
 from pathlib import Path
 from html import escape
 from table_layout import wrap_tables
+from navigation import build_navigation
 import json,os,shutil,subprocess,datetime,re
 ROOT=Path(__file__).resolve().parents[1];OUT=ROOT/'docs'
 manifest=json.loads((ROOT/'scripts/validation-manifest.json').read_text())
@@ -47,6 +48,7 @@ for p in OUT.rglob('*.html'):
   reading=os.path.relpath(OUT/'styles/reading.js',p.parent).replace(os.sep,'/')
   s=s.replace('</body>',f'<script src="{reading}"></script>\n</body>')
  p.write_text(s)
+build_navigation(OUT, manifest)
 (OUT/'.nojekyll').touch()
 # Operational metadata stays out of the public website and Git history.
 logs=ROOT/'build-logs';logs.mkdir(exist_ok=True)

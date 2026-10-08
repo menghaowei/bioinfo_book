@@ -7,14 +7,19 @@ not crawled. Checks rendered content and assets, not analysis-code correctness.
 from pathlib import Path
 from html.parser import HTMLParser
 from urllib.parse import urlsplit,unquote
+from navigation import BookPage, book_files
 import json,re,sys
 ROOT=Path(__file__).resolve().parents[1];OUT=ROOT/'docs'
 manifest=json.loads((ROOT/'scripts/validation-manifest.json').read_text())
 errors=[];warnings=[]
 class Page(HTMLParser):
- def __init__(self):super().__init__();self.ids=set();self.links=[];self.duplicates=[];self.h2=0;self.imgs=0;self.parents=[];self.tables=0;self.table_errors=[]
+ def __init__(self):super().__init__();self.ids=set();self.links=[];self.duplicates=[];self.h2=0;self.imgs=0;self.parents=[];self.tables=0;self.table_errors=[];self.navigation=[];self.open_chapters=[];self.menu_buttons=0
  def handle_starttag(self,tag,attrs):
   a=dict(attrs)
+  classes=a.get('class','').split()
+  if tag=='a' and 'book-nav-link' in classes:self.navigation.append(a)
+  if tag=='details' and 'book-chapter' in classes and 'open' in a:self.open_chapters.append(a)
+  if tag=='button' and 'book-menu-button' in classes:self.menu_buttons+=1
   if a.get('id'):
    if a['id'] in self.ids:self.duplicates.append(a['id'])
    self.ids.add(a['id'])
@@ -58,6 +63,27 @@ for p,parser in pages.items():
   elif u.fragment and target in pages and unquote(u.fragment) not in pages[target].ids:
    # Bootstrap's # target is empty and does not reach this branch.
    errors.append(f'Missing anchor: {p.relative_to(OUT)} → {link}')
+
+navigation_pages=book_files(manifest)
+for file in navigation_pages:
+ p=(OUT/file).resolve();parser=pages.get(p)
+ if parser is None:continue
+ if 'quarto-margin-sidebar' in parser.ids or 'TOC' in parser.ids:
+  errors.append(f'{file}: obsolete right-hand directory remains')
+ if parser.menu_buttons!=1:errors.append(f'{file}: expected one unified menu button')
+ chapter_links=[a for a in parser.navigation if 'book-chapter-link' in a.get('class','').split()]
+ destinations=[(p.parent/unquote(urlsplit(a['href']).path)).resolve() for a in chapter_links]
+ if destinations!=[(OUT/f).resolve() for f in navigation_pages]:errors.append(f'{file}: unified chapter order differs from manifest')
+ current=[a for a in chapter_links if a.get('aria-current')=='page']
+ if len(current)!=1 or (p.parent/current[0]['href']).resolve()!=p:
+  errors.append(f'{file}: current chapter marker is incorrect')
+ headings=BookPage(p.read_text()).headings
+ expected_open=[str(file)] if headings else []
+ if [a.get('data-book-page') for a in parser.open_chapters]!=expected_open:
+  errors.append(f'{file}: only the current chapter should start expanded')
+ actual=[(a['data-book-target'],int(a.get('data-book-level','0'))) for a in parser.navigation if 'data-book-target' in a]
+ if actual!=[(h['id'],h['level']) for h in headings]:
+  errors.append(f'{file}: current directory differs from second/third-level headings')
 
 planned=0
 chapters=sorted((ROOT/'manuscript').glob('*.md'))

@@ -11,8 +11,104 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   });
   const shade = document.querySelector('.book-shade');
-  const toc = document.querySelector('#quarto-margin-sidebar');
-  if (!toc?.querySelector('#TOC')) body.classList.add('book-no-toc');
+  const sidebar = document.querySelector('#quarto-sidebar');
+  const menu = sidebar?.querySelector('.sidebar-menu-container');
+  const chapter = sidebar?.querySelector('[data-current-chapter]');
+  const sectionLinks = [...(chapter?.querySelectorAll('[data-book-target]') || [])];
+  const locations = sectionLinks.map(link => ({link, target:document.getElementById(link.dataset.bookTarget)})).filter(item => item.target);
+  const manuallyClosed = new Set();
+  let currentLink = null;
+  // Native details also work without JavaScript. Keep links and disclosure
+  // clicks separate, and do not undo a reader's explicit collapse on scroll.
+  sidebar?.querySelectorAll('summary').forEach(summary => {
+    summary.addEventListener('click', event => {
+      if (event.target.closest('a')) return;
+      const details = summary.parentElement;
+      if (details.open) manuallyClosed.add(details); else manuallyClosed.delete(details);
+    });
+  });
+  function expandLocation(link, force = false) {
+    for (let parent = link?.parentElement; parent && parent !== sidebar; parent = parent.parentElement) {
+      if (parent.tagName === 'DETAILS' && (force || !manuallyClosed.has(parent))) {
+        parent.open = true;
+        if (force) manuallyClosed.delete(parent);
+      }
+    }
+  }
+  function keepLocationVisible(link) {
+    if (!menu || !link?.getClientRects().length || !menu.getClientRects().length) return;
+    const item = link.getBoundingClientRect(), box = menu.getBoundingClientRect();
+    if (item.top < box.top + 12) menu.scrollTop += item.top - box.top - 12;
+    else if (item.bottom > box.bottom - 12) menu.scrollTop += item.bottom - box.bottom + 12;
+  }
+  function markLocation(link, force = false) {
+    if (link !== currentLink) {
+      sectionLinks.forEach(item => { item.classList.remove('is-active', 'is-active-parent'); item.removeAttribute('aria-current'); });
+      currentLink = link;
+      if (link) {
+        link.classList.add('is-active'); link.setAttribute('aria-current', 'location');
+        const group = link.closest('.book-section');
+        const parentLink = group?.querySelector(':scope > summary > a');
+        if (parentLink && parentLink !== link) parentLink.classList.add('is-active-parent');
+        expandLocation(link);
+        // Update the marker while readers browse the menu without moving it.
+        if (!sidebar.matches(':hover') && !sidebar.contains(document.activeElement)) keepLocationVisible(link);
+      }
+    }
+    if (force) { expandLocation(link, true); keepLocationVisible(link); }
+  }
+  function locateHash() {
+    let id;
+    try { id = decodeURIComponent(location.hash.slice(1)); } catch { return null; }
+    let target = document.getElementById(id);
+    while (target && target !== document.body) {
+      const match = locations.find(item => item.target === target);
+      if (match) return match.link;
+      target = target.parentElement;
+    }
+    return null;
+  }
+  let pendingScroll = false;
+  let followingLink = false;
+  let scrollEndTimer;
+  function finishLinkScroll() {
+    followingLink = false;
+    updateLocation();
+  }
+  function followLocation(link) {
+    if (!link) { updateLocation(); return; }
+    followingLink = true;
+    markLocation(link, true);
+    clearTimeout(scrollEndTimer);
+    scrollEndTimer = setTimeout(finishLinkScroll, 1200);
+  }
+  function updateLocation() {
+    pendingScroll = false;
+    let active = null;
+    for (const item of locations) {
+      if (item.target.getBoundingClientRect().top <= 130) active = item.link;
+      else break;
+    }
+    markLocation(active);
+  }
+  function scheduleLocation() {
+    // A long smooth jump should not expand every section passed on the way.
+    if (followingLink) {
+      clearTimeout(scrollEndTimer);
+      scrollEndTimer = setTimeout(finishLinkScroll, 150);
+      return;
+    }
+    if (!pendingScroll) { pendingScroll = true; requestAnimationFrame(updateLocation); }
+  }
+  window.addEventListener('scroll', scheduleLocation, {passive:true});
+  window.addEventListener('hashchange', () => followLocation(locateHash()));
+  window.addEventListener('pageshow', () => { updateLocation(); if (location.hash) followLocation(locateHash()); });
+  window.addEventListener('load', () => { updateLocation(); if (location.hash) followLocation(locateHash()); });
+  document.fonts?.ready.then(scheduleLocation);
+  updateLocation();
+  if (location.hash) followLocation(locateHash());
+  else keepLocationVisible(sidebar?.querySelector('[aria-current="page"]'));
+  sectionLinks.forEach(link => link.addEventListener('click', () => followLocation(link)));
   let activeDrawer = null;
   let drawerTrigger = null;
   function closeDrawer() {
@@ -26,7 +122,7 @@ document.addEventListener('DOMContentLoaded', () => {
     activeDrawer = null;
     drawerTrigger?.focus();
   }
-  document.querySelectorAll('.book-chapters-button, .book-toc-button').forEach(trigger => {
+  document.querySelectorAll('.book-menu-button').forEach(trigger => {
     const panel = document.getElementById(trigger.getAttribute('aria-controls'));
     if (!panel) return;
     const close = document.createElement('button');
@@ -39,6 +135,11 @@ document.addEventListener('DOMContentLoaded', () => {
       panel.setAttribute('aria-modal', 'true'); panel.setAttribute('aria-label', trigger.textContent);
       trigger.setAttribute('aria-expanded', 'true'); body.classList.add('book-drawer-open');
       shade.hidden = false; close.focus();
+      if (currentLink) markLocation(currentLink, true);
+      else {
+        const currentChapter = sidebar.querySelector('[aria-current="page"]');
+        expandLocation(currentChapter, true); keepLocationVisible(currentChapter);
+      }
     });
     panel.addEventListener('click', event => { if (event.target.closest('a[href]')) closeDrawer(); });
   });
@@ -48,7 +149,13 @@ document.addEventListener('DOMContentLoaded', () => {
     if (!activeDrawer) return;
     if (event.key === 'Escape') { event.preventDefault(); closeDrawer(); }
     if (event.key === 'Tab') {
-      const items = [...activeDrawer.querySelectorAll('a[href],button,input,[tabindex="0"]')].filter(el => el.getClientRects().length);
+      const items = [...activeDrawer.querySelectorAll('a[href],button,input,summary,[tabindex="0"]')].filter(el => {
+        if (!el.getClientRects().length || getComputedStyle(el).visibility === 'hidden') return false;
+        for (let parent = el.parentElement; parent && parent !== activeDrawer; parent = parent.parentElement) {
+          if (parent.tagName === 'DETAILS' && !parent.open && !parent.querySelector(':scope > summary')?.contains(el)) return false;
+        }
+        return true;
+      });
       const first = items[0], last = items.at(-1);
       if (event.shiftKey && document.activeElement === first) { event.preventDefault(); last.focus(); }
       else if (!event.shiftKey && document.activeElement === last) { event.preventDefault(); first.focus(); }

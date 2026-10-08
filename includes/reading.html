@@ -1,8 +1,14 @@
 <div class="book-toolbar" role="navigation" aria-label="阅读工具">
   <span class="book-brand">AI时代生信入门</span>
-  <button class="book-chapters-button" type="button" aria-controls="quarto-sidebar" aria-expanded="false">全书目录</button>
-  <button class="book-toc-button" type="button" aria-controls="quarto-margin-sidebar" aria-expanded="false">本章目录</button>
+  <button class="book-menu-button" type="button" aria-controls="quarto-sidebar" aria-expanded="false">目录</button>
   <button class="book-search-button" type="button">搜索</button>
 </div>
 <button class="book-shade" type="button" aria-label="关闭目录" hidden></button>
 <button class="back-top" aria-label="回到顶部" title="回到顶部" onclick="window.scrollTo({top:0,behavior:'smooth'})">↑</button>
+<noscript><style>
+@media (max-width:1099px) {
+  #quarto-content { display:block !important; }
+  #quarto-sidebar { display:flex !important; position:static !important; width:100% !important; max-height:50vh !important; margin-bottom:2rem; }
+  .book-menu-button { display:none !important; }
+}
+</style></noscript>
