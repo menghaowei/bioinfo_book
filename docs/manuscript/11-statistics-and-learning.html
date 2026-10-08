@@ -77,7 +77,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <link href="../site_libs/quarto-html/quarto-syntax-highlighting-795e9e8eca1e12b12abcb09a27409631.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../site_libs/bootstrap/bootstrap-0e2b1bd57b654b662b916e654d4fdb64.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-2785e736d6bb3298ac36e4268fcf040f.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -415,7 +415,8 @@ window.Quarto = {
 <p>在具体讲解t-SNE之前，我们首先要了解两个信息论中的概念：信息熵和相对熵（K-L散度）。</p>
 <section id="src-0080-statistics-19" class="level4">
 <h4 class="anchored" data-anchor-id="src-0080-statistics-19">信息熵与相对熵</h4>
-<p><strong>信息熵</strong> <span id="src-0080-statistics-21"></span></p>
+<section id="src-0080-statistics-21" class="level5">
+<h5 class="anchored" data-anchor-id="src-0080-statistics-21">信息熵</h5>
 <div class="book-core callout callout-style-default callout-note callout-titled" title="核心知识｜信息熵">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -443,7 +444,9 @@ H(X_3)&amp;=-\sum_{i=1}^rp(a_i)\log_2 p(a_i)=-(0.1\times \log_2 0.1+0.9\times \l
 \end{aligned}
 \]</span></span><a class="equation-label" href="#eq-05-statistics-and-exploration-002" aria-label="公式（11.2）">(11.2)</a></span></p>
 <p>由计算结果，我们可以直观看出<span class="math inline">\(H(X_1)=H(X_3)&lt;H(X_2)\)</span>。这也与我们平日里的经验认知相符，在平日里做决策时，往往是“几个事件旗鼓相当”情况下最难做出决定。因此，通过这个例子，大家是不是对信息熵这个概念有了比较直观的认识了？接下来我们将了解相对熵这个概念。</p>
-<p><strong>相对熵</strong> <span id="src-0080-statistics-40"></span></p>
+</section>
+<section id="src-0080-statistics-40" class="level5">
+<h5 class="anchored" data-anchor-id="src-0080-statistics-40">相对熵</h5>
 <div class="book-warning callout callout-style-default callout-warning callout-titled" title="注意｜KL 散度不满足对称性">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -494,9 +497,11 @@ D_{KL}(origin||pois)=\sum_{i=1}^np(x_i)log\frac {p(x_i)}{q(x_i)}=0.201369
 <p>所以，我们发现用二项分布近似原始分布的信息损失量比用泊松分布近似原始分布的信息损失量小，因此，当我们在考虑二项分布和泊松分布时，较优的一个选择是二项分布。</p>
 <p>到这里，我们对信息熵和相对熵（K-L散度）这两个概念已经有了直观的认识，接下来，就进入本章的重点部分：t-SNE算法详解。</p>
 </section>
+</section>
 <section id="src-0080-statistics-71" class="level4">
 <h4 class="anchored" data-anchor-id="src-0080-statistics-71">t-SNE算法详解</h4>
-<p><strong>t-SNE概述</strong> <span id="src-0080-statistics-73"></span></p>
+<section id="src-0080-statistics-73" class="level5">
+<h5 class="anchored" data-anchor-id="src-0080-statistics-73">t-SNE概述</h5>
 <p>t-SNE(t-distributed stochastic neighbor embedding，t分布-随机近邻嵌入)是一种非线性降维的算法，属于流形学习的范畴，可以把数据集中数据之间的高维欧式距离转变成条件概率来表示数据之间的相似度。</p>
 <p>流形是局部具有欧几里得空间性质的空间。举个例子理解一下，例如比较经典的“瑞士卷”（见 <a href="#fig-05-statistics-and-exploration-003" class="quarto-xref">图&nbsp;<span>11.3</span></a> ），数据是三维的，但其本质是一个二维流形。图中两个黑点之间的距离显然不能用欧式距离来衡量，如果用三维空间的欧氏距离来计算则它们的距离要比实际距离近得多，它们之间的实际距离应该是红色的这一条弧线。我们再举一个例子，如果你要测量北京到西安的距离，你可以拿一个缩小一定比例的地球仪，用卷尺经过地球仪表面上的这两点来测量它们之间的距离，然后再乘以相应的倍数，即可得到北京到西安的距离。同样的，你还可以把三维的地球仪展开成二维的地球，然后拿直尺直接测量北京到西安的距离。而这个三维地球仪到二维地图的展开，就属于流形学习，流形学习可以使欧式距离重新生效。</p>
 <div id="fig-05-statistics-and-exploration-003" class="quarto-float quarto-figure quarto-figure-center anchored">
@@ -515,7 +520,9 @@ D_{KL}(origin||pois)=\sum_{i=1}^np(x_i)log\frac {p(x_i)}{q(x_i)}=0.201369
 <li><p>计算低维空间数据点的概率分布F2（用t分布随机初式化二维的点）；</p></li>
 <li><p>利用相对熵（K-L散度）衡量两种分布的差异，进行迭代，若F1与F2概率分布尽可能的接近则降维成功。</p></li>
 </ol>
-<p><strong>SNE算法原理</strong> <span id="src-0080-statistics-90"></span></p>
+</section>
+<section id="src-0080-statistics-90" class="level5">
+<h5 class="anchored" data-anchor-id="src-0080-statistics-90">SNE算法原理</h5>
 <p>我们首先了解一下t-SNE的前身SNE的算法原理，因为这样我们会更加理解t-SNE相对于SNE带来的提升。我们以4个细胞，每个细胞有4个基因，构成一个<span class="math inline">\(4\times 4\)</span>的矩阵为例（见 <a href="#tbl-11-statistics-and-learning-01" class="quarto-xref">表&nbsp;<span>11.1</span></a> ），详细讲解一下SNE的每一步算法过程。</p>
 <p>每一列代表一个基因，每一行代表一个细胞；<span class="math inline">\(FPKM_{i,j}\)</span> 代表第 i 个细胞、第 j 个基因的表达值。</p>
 <div id="tbl-11-statistics-and-learning-01" class="quarto-float quarto-figure quarto-figure-center anchored">
@@ -626,7 +633,9 @@ q_{x_4|x_1} = \frac {e^{-{dis(x_1,x_4)^2}}} {e^{-{dis(x_1,x_2)^2}}+e^{-{dis(x_1,
 C=\sum_{i=1}^4D_{KL}(P_i||Q_i)=\sum_{i=1}^4 \sum_{j=1}^3 p_{j|i}log\frac {p_{j|i}}{q_{j|i}}
 \]</span></span><a class="equation-label" href="#eq-05-statistics-and-exploration-015" aria-label="公式（11.15）">(11.15)</a></span></p>
 <p>这样我们的目标就是获得最小的<span class="math inline">\(C\)</span>值，也就是获得最小的K-L散度，后面就是进行进行梯度优化，通过迭代，使低维空间的分布逼近高维空间的分布，最终确定SNE的二维点。一般默认梯度优化的迭代次数是1000。以上就是SNE的算法原理。</p>
-<p><strong>t-SNE相对于SNE的提升</strong> <span id="src-0080-statistics-177"></span></p>
+</section>
+<section id="src-0080-statistics-177" class="level5">
+<h5 class="anchored" data-anchor-id="src-0080-statistics-177">t-SNE相对于SNE的提升</h5>
 <p>上面的内容我们了解了SNE的算法原理，那么相对于SNE，t-SNE又做了哪些重要的优化呢？</p>
 <p><strong>1. t-SNE解决了概率不对称问题</strong> SNE高维情况：</p>
 <p><span id="eq-05-statistics-and-exploration-016" class="book-equation"><span class="equation-scroll" tabindex="0" role="region" aria-label="公式 11.16"><span class="math display">\[
@@ -656,7 +665,9 @@ q_{ij} = \frac {(1+{dis(i,j)^2})^{-1}} {\sum_{k\ne i}(1+{dis(i,k)^2})^{-1}}
 </figcaption>
 </figure>
 </div>
-<p><strong>t-SNE的优缺点</strong> <span id="src-0080-statistics-210"></span></p>
+</section>
+<section id="src-0080-statistics-210" class="level5">
+<h5 class="anchored" data-anchor-id="src-0080-statistics-210">t-SNE的优缺点</h5>
 <p><strong>优点</strong></p>
 <ul>
 <li>非常优秀的降维可视化方法</li>
@@ -664,10 +675,11 @@ q_{ij} = \frac {(1+{dis(i,j)^2})^{-1}} {\sum_{k\ne i}(1+{dis(i,k)^2})^{-1}}
 <p><strong>缺点</strong> - 基本只用于可视化 - t-SNE倾向保留局部结构，有时候会“只见数木不见森林” - t-SNE结果中距离没有太大意义，因为都是计算的概率 - t-SNE训练速度比较慢</p>
 <p><strong>特点</strong> - 受初值影响</p>
 </section>
+</section>
 <section id="src-0080-statistics-225" class="level4">
 <h4 class="anchored" data-anchor-id="src-0080-statistics-225">R语言实战</h4>
 <p>这一部分我们就进入t-SNE实战环节，代码如下:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1" data-book-role="code" data-focus-lines="20,26,35"><pre data-code-text="&quot;# t-SNE需要使用Rtsne这一个包\nlibrary(Rtsne)\n##加载t-SNE需要的数据\nload(\&quot;C:/Users/Jay/Desktop/t-SNE/data/GTEx.RData\&quot;)\naccession.df = read.csv(file=\&quot;C:/Users/Jay/Desktop/t-SNE/data/GTEx_accession_table.csv\&quot;)\naccession.df\nannotation.df = read.csv(file=\&quot;C:/Users/Jay/Desktop/t-SNE/data/GTEx_v7_Annotations_SampleAttributesDS.txt\&quot;,header = T,sep = \&quot;\\t\&quot;)\nannotation.df\ntissue_info = as.character(annotation.df$SMTS[match(accession_id_vec,annotation.df$SAMPID)])\n\n##删除第一列基因名字，第二列描述信息\nGTEx.TPM.gene.mat = GTEx.TPM.gene.mat[,c(-1,-2)]\n##对每一行基因计算方差，筛选高变异的基因进行t-SNE运算，减少运算负担\nSD.vector = apply(GTEx.TPM.gene.mat,1,FUN=function(x){sd(x)})\n##依靠方差结果对GTEx.TPM.gene.mat数据进行排序\nGTEx.TPM.gene.mat.sort = GTEx.TPM.gene.mat[order(SD.vector,decreasing = T),]\n##查看尾部数据是否是变异较小的\ntail(GTEx.TPM.gene.mat.sort)\n##筛选前3000高变异基因\nGTEx.TPM.gene.mat.log2.top3000 = GTEx.TPM.gene.mat.sort[1:3000,]\n\nset.seed(20200503)\n##行是观测，列是变量。如果把基因当做变量，那么每一列就是一个基因，每一行就是样本\n##dims 输出的维度\n##perplexity设置5-50\ntSNE_res = Rtsne(t(GTEx.TPM.gene.mat.log2.top3000),dims = 3,perplexity = 10,pca = T)\n\n##分别用生成t-SNE的三个维度进行可视化\nlibrary(ggplot2)\n##首先把信息都综合到一个data.frame中\ntSNE_res.df = as.data.frame(tSNE_res$Y)\ncolnames(tSNE_res.df) = c(\&quot;tSNE1\&quot;,\&quot;tSNE2\&quot;,\&quot;tSNE3\&quot;)\ntSNE_res.df$tissue = tissue_info\n##可视化tSNE1与tSNE2\nggplot(data = tSNE_res.df, aes(tSNE1,tSNE2,color=tissue)) + \n  geom_point()  + \n  geom_text(aes(label=tissue)) + \n  theme_bw()\n##可视化tSNE1与tSNE3\nggplot(data = tSNE_res.df, aes(tSNE1,tSNE3,color=tissue)) + \n  geom_point()  + \n  geom_text(aes(label=tissue)) + \n  theme_bw()\n##可视化tSNE2与tSNE3\nggplot(data = tSNE_res.df, aes(tSNE2,tSNE3,color=tissue)) + \n  geom_point()  + \n  geom_text(aes(label=tissue)) + \n  theme_bw()&quot;" class="sourceCode numberSource r numberLines code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1"></a><span class="co"># t-SNE需要使用Rtsne这一个包</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1" data-book-role="code"><pre data-code-text="&quot;# t-SNE需要使用Rtsne这一个包\nlibrary(Rtsne)\n##加载t-SNE需要的数据\nload(\&quot;C:/Users/Jay/Desktop/t-SNE/data/GTEx.RData\&quot;)\naccession.df = read.csv(file=\&quot;C:/Users/Jay/Desktop/t-SNE/data/GTEx_accession_table.csv\&quot;)\naccession.df\nannotation.df = read.csv(file=\&quot;C:/Users/Jay/Desktop/t-SNE/data/GTEx_v7_Annotations_SampleAttributesDS.txt\&quot;,header = T,sep = \&quot;\\t\&quot;)\nannotation.df\ntissue_info = as.character(annotation.df$SMTS[match(accession_id_vec,annotation.df$SAMPID)])\n\n##删除第一列基因名字，第二列描述信息\nGTEx.TPM.gene.mat = GTEx.TPM.gene.mat[,c(-1,-2)]\n##对每一行基因计算方差，筛选高变异的基因进行t-SNE运算，减少运算负担\nSD.vector = apply(GTEx.TPM.gene.mat,1,FUN=function(x){sd(x)})\n##依靠方差结果对GTEx.TPM.gene.mat数据进行排序\nGTEx.TPM.gene.mat.sort = GTEx.TPM.gene.mat[order(SD.vector,decreasing = T),]\n##查看尾部数据是否是变异较小的\ntail(GTEx.TPM.gene.mat.sort)\n##筛选前3000高变异基因\nGTEx.TPM.gene.mat.log2.top3000 = GTEx.TPM.gene.mat.sort[1:3000,]\n\nset.seed(20200503)\n##行是观测，列是变量。如果把基因当做变量，那么每一列就是一个基因，每一行就是样本\n##dims 输出的维度\n##perplexity设置5-50\ntSNE_res = Rtsne(t(GTEx.TPM.gene.mat.log2.top3000),dims = 3,perplexity = 10,pca = T)\n\n##分别用生成t-SNE的三个维度进行可视化\nlibrary(ggplot2)\n##首先把信息都综合到一个data.frame中\ntSNE_res.df = as.data.frame(tSNE_res$Y)\ncolnames(tSNE_res.df) = c(\&quot;tSNE1\&quot;,\&quot;tSNE2\&quot;,\&quot;tSNE3\&quot;)\ntSNE_res.df$tissue = tissue_info\n##可视化tSNE1与tSNE2\nggplot(data = tSNE_res.df, aes(tSNE1,tSNE2,color=tissue)) + \n  geom_point()  + \n  geom_text(aes(label=tissue)) + \n  theme_bw()\n##可视化tSNE1与tSNE3\nggplot(data = tSNE_res.df, aes(tSNE1,tSNE3,color=tissue)) + \n  geom_point()  + \n  geom_text(aes(label=tissue)) + \n  theme_bw()\n##可视化tSNE2与tSNE3\nggplot(data = tSNE_res.df, aes(tSNE2,tSNE3,color=tissue)) + \n  geom_point()  + \n  geom_text(aes(label=tissue)) + \n  theme_bw()&quot;" class="sourceCode numberSource r numberLines code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1"></a><span class="co"># t-SNE需要使用Rtsne这一个包</span></span>
 <span id="cb1-2"><a href="#cb1-2"></a><span class="fu">library</span>(Rtsne)</span>
 <span id="cb1-3"><a href="#cb1-3"></a><span class="do">##加载t-SNE需要的数据</span></span>
 <span id="cb1-4"><a href="#cb1-4"></a><span class="fu">load</span>(<span class="st">"C:/Users/Jay/Desktop/t-SNE/data/GTEx.RData"</span>)</span>

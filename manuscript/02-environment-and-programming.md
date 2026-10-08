@@ -28,7 +28,7 @@ WSL第一代使用了二进制翻译Linux API的方式建立了兼容层，兼�
 
 apt（Advance Packaging Tool）是Debian系Linux发行版的默认包管理工具，于对包括系统本身在内的升级安装等管理操作。
 
-**apt和apt-get命令**
+##### apt和apt-get命令 {#topic-02-31}
 
 `apt`是2014年正式发布的心得apt包管理工具的命令，相较于`apt-get`系列命令它更为简洁易用。
 
@@ -53,7 +53,7 @@ apt（Advance Packaging Tool）是Debian系Linux发行版的默认包管理工�
 
 : 新的 apt 命令 {#tbl-02-environment-and-programming-02}
 
-**apt镜像设置**
+##### apt镜像设置 {#topic-02-56}
 
 apt默认的镜像在国内的访问速度是较慢的，所以设置一个国内的镜像是必要的。这里推荐北京外国语大学的开源软件站。其帮助信息完善，Ubuntu的镜像设置帮助文档地址为(https://mirrors.bfsu.edu.cn/help/ubuntu/)。
 
@@ -83,7 +83,7 @@ yum（Yellow dog Updater, Modified）使用RedHat系（Red Hat、Cent OS、Fedor
 
 : 常用 yum 命令 {#tbl-02-environment-and-programming-03}
 
-**yum镜像**
+##### yum镜像 {#topic-02-86}
 
 我们依然十分推荐北外的相关镜像，访问（https://mirrors.bfsu.edu.cn/help/centos/ ）就可以进入CentOS镜像的帮助页面，选择你的系统版本即可获得详细的镜像配置文件内容和详细的指引。
 
@@ -125,7 +125,7 @@ Windows的环境变量主要分为：系统、用户、进程（只在当前进�
 
 
 
-**编辑环境变量** []{#src-0090-build-up-bioinfo-platform-108}
+##### 编辑环境变量 {#src-0090-build-up-bioinfo-platform-108}
 
 比如这里选择用户变量的Path然后选择“编辑”，就会弹出对应的编辑窗口。“新建”就是添加一个新的路径到Path环境变量中；“编辑”为修改当前Path环境变量下的某个路径；“浏览”则可以通过“浏览文件夹”窗口选择路径；“删除”则可以删除已有的；“上移”和“下移”调整具体路径的优先度，下方的优先度更高；“编辑文本”则是在一个输入框编辑，各个路径之间以英文分号分隔，一般情况并不适用主要用在完全复制一个用户的单个环境变量的多个值时。
 
@@ -136,7 +136,7 @@ Windows的环境变量主要分为：系统、用户、进程（只在当前进�
 
 
 
-**新建环境变量** []{#src-0090-build-up-bioinfo-platform-114}
+##### 新建环境变量 {#src-0090-build-up-bioinfo-platform-114}
 
 在环境变量设置窗口对应区域点击“新建”按钮即可新建用户或系统环境变量。变量值可以有多个，每个变量值之间用英文分号分隔。两个“浏览”按钮分布使用浏览窗口选择目录或文件。
 
@@ -176,7 +176,7 @@ Windows中的PowerShell包括系统内置的Windows PowerShell和可自行安装
 查找到配置文件路径后就可以就通过编辑配置文件添加或修改环境变量。
 
 
-```{.powershell data-book-role="code" data-focus-lines="3"}
+```{.powershell data-book-role="code"}
 $env:TEST="D:\\"
 $env:TEST=$env:TEST+";E:\\"
 $env:Path=$env:Path+";F:\\"
@@ -194,21 +194,21 @@ $env:Path=$env:Path+";F:\\"
 
 安装WSL前请先将Windows10更新到最新版。然后以管理员权限启动PowerShell，依序执行以下两个命令后重新启动计算机。
 
-**启用“适用于 Linux 的 Windows 子系统”可选功能** []{#src-0090-build-up-bioinfo-platform-157}
+##### 启用“适用于 Linux 的 Windows 子系统”可选功能 {#src-0090-build-up-bioinfo-platform-157}
 
 
 ```{.powershell data-book-role="code"}
 dism.exe /online /enable-feature /featurename:Microsoft-Windows-Subsystem-Linux /all /norestart
 ```
 
-**启用“虚拟机平台”可选功能** []{#src-0090-build-up-bioinfo-platform-163}
+##### 启用“虚拟机平台”可选功能 {#src-0090-build-up-bioinfo-platform-163}
 
 
 ```{.powershell data-book-role="code"}
 dism.exe /online /enable-feature /featurename:VirtualMachinePlatform /all /norestart
 ```
 
-**设置WSL2为默认版本** []{#src-0090-build-up-bioinfo-platform-169}
+##### 设置WSL2为默认版本 {#src-0090-build-up-bioinfo-platform-169}
 
 以管理员权限启动PowerShell，执行以下命令。
 
@@ -217,7 +217,7 @@ dism.exe /online /enable-feature /featurename:VirtualMachinePlatform /all /nores
 wsl --set-default-version 2
 ```
 
-**安装发行版** []{#src-0090-build-up-bioinfo-platform-177}
+##### 安装发行版 {#src-0090-build-up-bioinfo-platform-177}
 
 访问(https://aka.ms/wslstore)，启动应用商店对应页面选择一个你中意的发行版即可，或者直接在应用商店搜索`Linux`，可以找到更多发行版。
 
@@ -228,7 +228,7 @@ wsl --set-default-version 2
 
 
 
-**创建账户和密码** []{#src-0090-build-up-bioinfo-platform-183}
+##### 创建账户和密码 {#src-0090-build-up-bioinfo-platform-183}
 
 安装完成发行版后首次启动时会要求你创建用户名和密码。
 
@@ -326,7 +326,7 @@ Anaconda给Mac提供的是pkg和sh安装包，给Windows提供的是exe安装包
 :::::
 
 
-**创建环境**
+##### 创建环境 {#topic-02-329}
 
 你可以指定环境的名称，后面再赶上环境中一个或几个包的版本，也可以只有名称没有其他参数。这时新建的环境里就不会预装任何包
 
@@ -342,7 +342,7 @@ conda create -n py2 python=2
 conda -p /home/test_conda python=3.4
 ```
 
-**删除环境**
+##### 删除环境 {#topic-02-345}
 
 我们同样可以通过参数来指定特定名称或路径的环境。
 
@@ -374,7 +374,7 @@ conda remove -p /home/test_conda --all
 Linux下的可以通过修改`~/.bashrc`来设置用户环境变量，修改`/etc/.bashrc`来设置系统环境变量。绝大多数情况下修改系统环境变量即可。具体添加到`.bashrc`的内容可以参考下方的代码。第一行是在一个已有的环境变量中添加值（Linux中一个环境变量下的多个值以冒号分隔），第二行则是创建一个并赋值一个新的环境变量或是修改一个已有环境变量的值。
 
 
-```{.bash data-book-role="code" data-focus-lines="1,2"}
+```{.bash data-book-role="code"}
 export PATH="/export/apps/JAVA/jdk1.8.0_111/bin:$PATH"
 export JULIA_PKG_SERVER="https://mirrors.bfsu.edu.cn/julia/static"
 ```
@@ -516,7 +516,7 @@ Julia是一门很新的语言，2018年8月8日才正式发布1.0版。算是迈
 Julia对并行和分布式也支持良好，比如一个多线程的for循环只要像下面一样在原有的for循环代码上简单地加上`@threads`宏。
 
 
-```{.julia data-book-role="code" data-focus-lines="1"}
+```{.julia data-book-role="code"}
 Threads.@threads for i = 1:1000
     ago_sdf = cm_df[i,:]
 end
@@ -531,13 +531,13 @@ end
 
 
 
-**Julia的安装** []{#src-0090-build-up-bioinfo-platform-365}
+##### Julia的安装 {#src-0090-build-up-bioinfo-platform-365}
 
 Julia语言的安装相对来说是很友好的：Mac下提供了二进制安装包，Linux下提供了解压后即可用的压缩包，Windows下则同时提供了两类安装包。下载的地址，国外的用户建议直接上官网（https://julialang.org/downloads/），而国内用户我们依然建议使用已经推荐了很多次的北外镜像（https://mirrors.bfsu.edu.cn/julia-releases/bin/）。
 
 使用二进制安装包或解压可用的安装包安装后，要记住把Julia可执行程序的所在目录添加到环境变量PATH中。比如现在我的Julia安装在`D:\Program Files\Julia-1.5.2`中，需要添加到环境变量PATH中的就是`D:\Program Files\Julia-1.5.2\bin`。具体的添加方法请查看本章前面的部分。
 
-**Julia的REPL** []{#src-0090-build-up-bioinfo-platform-371}
+##### Julia的REPL {#src-0090-build-up-bioinfo-platform-371}
 
 Julia带有一个交互式命令行环境REPL（read-eval-print loop），它内置于`julia`可执行文件中。其允许简单快捷地执行Julia语句，同时具有可搜索的历史记录、tab补全功能、help和shell模式以及一些实用的快捷键。只要不带参数地执行`julia`可执行文件（Julia可执行程序的所在目录添加到环境变量PATH中后，在终端中执行`julia`命令即可）或着双击执行`julia`可执行文件就可以启动REPL。
 
@@ -549,15 +549,15 @@ shell模式：命令模式，在该模式下可使用系统命令。
 
 help模式：帮助模式，可以在该模式下查看各种帮助信息。例如可以在help模式下使用`if`命令查看if语句的帮助信息，使用`@time`查看`@time`宏的帮助信息。
 
-**Julia的设置** []{#src-0090-build-up-bioinfo-platform-383}
+##### Julia的设置 {#src-0090-build-up-bioinfo-platform-383}
 
 Julia的各种自定义设置都是通过环境变量进行的。其有两类方式进行修改。一是通过更改系统或当前用户的环境变量进行，Julia的线程数环境变量`JULIA_NUM_THREADS`和Julia仓库路径环境变量`JULIA_DEPOT_PATH`等少数环境变量只能通过此种方式进行修改。二是通过修改Julia参考路径下的`config`目录下的`startup.jl`文件内容设置其他大部分Julia设置环境变量。例如Julia包服务器地址环境变量`JULIA_PKG_SERVER`就可以通过在添加语句进行设置。例如可以在该文件中添加一行`ENV["JULIA_PKG_SERVER"] = "https://mirrors.bfsu.edu.cn/julia/static"`将包服务器设置为北外开源镜像站的地址。特别提醒，仓库路径也是存放二进制依赖、包原始文件、包预编译文件等属于当前用户的Julia环境数据。所以如果你想自定存放这些文件的地方就只能通过系统环境变量或者当前用户环境变量设置环境变量`JULIA_DEPOT_PATH`的值。如果不进行自定义设置，则仓库路径为当前用户的用户目录下的`.julia`目录。
 
-**Julia包的管理** []{#src-0090-build-up-bioinfo-platform-387}
+##### Julia包的管理 {#src-0090-build-up-bioinfo-platform-387}
 
 Julia的使用REPL的pkg模式进行包管理。在pkg模式下，`add`命令按照包，`up`命令升级包，`rm`命令卸载包，`status`查看已安装包的状态。例如可以在pkg模式下用`add IJulia`命令安装IJulia包。
 
-**开发环境配置** []{#src-0090-build-up-bioinfo-platform-391}
+##### 开发环境配置 {#src-0090-build-up-bioinfo-platform-391}
 
 Julia的开发环境主要有三种，JupyterLab、Visual Studio Code和基于Julia的Pluto。
 
@@ -591,7 +591,7 @@ Visual Studio Code可以通过安装Julia扩展快捷地获得对Julia的支持�
 Pluto是一个基于Julia的轻量、易用且具有反应式特性（当改变一个函数或变量时，Pluto会自动更新所有受影响的Cell。）的交互式notebook。安装Pluto只要通过pkg模式安装`Pluto`包即可。启动则在REPL默认模式下使用以下命令即可。
 
 
-```{.julia data-book-role="code" data-focus-lines="2"}
+```{.julia data-book-role="code"}
 import Pluto
 Pluto.run()
 ```

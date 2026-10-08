@@ -174,28 +174,31 @@ wget
 
 #### 序列比对软件 {#src-0050-RNA-seq-259}
 
-- Bowtie和Bowtie2
+##### Bowtie和Bowtie2 {#rnaseq-aligners-bowtie}
 
-Bowtie（Ultrafast and memory-efficient alignment of short DNA sequences to the human genome）和Bowtie2都是常用的短序列比对软件，生成SAM格式的序列比对文件。Bowtie在小于50bp的reads比对中更精确更快，最长支持1000bp；而Bowtie2在大于50bp的reads比对中更精确更快，reads长度没有上限，支持空位比对、局部比对。
+**Bowtie**[^rnaseq-bowtie] 和 **Bowtie2**都是常用的短序列比对软件，生成SAM格式的序列比对文件。Bowtie在小于50bp的reads比对中更精确更快，最长支持1000bp；而Bowtie2在大于50bp的reads比对中更精确更快，reads长度没有上限，支持空位比对、局部比对。
 
-- BWA
-BWA全称（Alignment with Burrows-Wheeler transform. Heng Li and Richard Burbin）。BWA有多个子命令，可以实现不同算法的比对。
+##### BWA {#rnaseq-aligners-bwa}
+
+**BWA**[^rnaseq-bwa] 有多个子命令，可以实现不同算法的比对。
 
 上述3款软件都是针对DNA序列比对进行设计的，并不能直接应用于RNA-Seq的比对。一个最主要的原因就是因为真核生物的基因是间隔的，每两个外显子中间就会有一个内含子。最终成熟的mRNA是不包含内含子序列的，因此针对真核生物的RNA-Seq数据的比对，需要在上述3款软件的基础上加上一些限制条件与修正。最常用的有下面3款Tophat/Tophat2，HISAT/HISAT2, STAR。
 
-- Tophat/Tophat2
+##### Tophat/Tophat2 {#rnaseq-aligners-tophat}
 
-Tophat的最新版Tophat2是基于Bowtie2的比对工具，与下游Cufflinks分析软件组合使用，优点是生成的文件内容丰富，不仅仅生成了比对结果，还对剪切位点等信息进行了输出。比对过程调用了Bowtie/Bowtie2, 大题策略是 先比对能比对上的reads，比对不上的reads根据可变剪切的方式拆开再比。该软件最大的缺点是处理不好假基因问题。(参考文献 TopHat: discovering splice junctions with RNA-Seq, TopHat2: accurate alignment of transcriptomes in the presence of insertions, deletions and gene fusions)。使用Tophat时，Bowtie或者Bowtie2，bowtie2-align, bowtie2-inspect, bowtie2-build和samtools，这些命令必须要在系统环境变量PATH中。Tophat能比对的最大reads长度时1024 bp，单端不能与双端混合，不同插入片段长度的双端不能混合。
+Tophat的最新版Tophat2是基于Bowtie2的比对工具，与下游Cufflinks分析软件组合使用，优点是生成的文件内容丰富，不仅仅生成了比对结果，还对剪切位点等信息进行了输出。比对过程调用了Bowtie/Bowtie2, 大题策略是 先比对能比对上的reads，比对不上的reads根据可变剪切的方式拆开再比。该软件最大的缺点是处理不好假基因问题。[^rnaseq-tophat][^rnaseq-tophat2]
 
-- HISAT/HISAT2
+使用Tophat时，Bowtie或者Bowtie2，bowtie2-align, bowtie2-inspect, bowtie2-build和samtools，这些命令必须要在系统环境变量PATH中。Tophat能比对的最大reads长度时1024 bp，单端不能与双端混合，不同插入片段长度的双端不能混合。
 
-HISAT（Hical Indexing for Spliced Alignment of Transcripts）和HISAT2(Graph-based genome alignment and genotyping with HISAT2 and HISAT-genotype, Daehwan Kim)是Tophat2的升级版本。利用数量众多的索引，覆盖整个基因组，使用小索引结合几种比对策略，以人类基因组为例，需要48,000个索引，每个索引代表～64，000 bp的基因组区域，从而实现高效比对，尤其是跨越多个外显子的比对，大大提升速度与index的构建方式。其下游分析软件为StringTie和Ballgown。HISAT2相比HISAT，考虑了SNP信息。
+##### HISAT/HISAT2 {#rnaseq-aligners-hisat}
+
+HISAT（Hical Indexing for Spliced Alignment of Transcripts）和**HISAT2**[^rnaseq-hisat2]是Tophat2的升级版本。利用数量众多的索引，覆盖整个基因组，使用小索引结合几种比对策略，以人类基因组为例，需要48,000个索引，每个索引代表～64，000 bp的基因组区域，从而实现高效比对，尤其是跨越多个外显子的比对，大大提升速度与index的构建方式。其下游分析软件为StringTie和Ballgown。HISAT2相比HISAT，考虑了SNP信息。
 
 HISAT/HISAT2与Tophat/Tophat2出自同一个课题组，目前作者提倡使用HISAT2来替代之前的Tophat2流程。
 
-- STAR
+##### STAR {#rnaseq-aligners-star}
 
-STAR(STAR: ultrafast universal RNA-Seq aligner，Alexander Dobin)的优势在于快，能够快速mapping，是ENCODE计划使用的比对软件。缺点在于占用内存比较大，以人类的参考基因组为例，比对时的运行内存需要28G~32G左右。STAR使用了Suffix Tree 的index：先把read切成若干小的seed，找到全基因组符合seed的位置；再通过打分算法，把邻近的全基因组符合的seed拼在一起，形成mapping结果。
+**STAR**[^rnaseq-star]的优势在于快，能够快速mapping，是ENCODE计划使用的比对软件。缺点在于占用内存比较大，以人类的参考基因组为例，比对时的运行内存需要28G~32G左右。STAR使用了Suffix Tree 的index：先把read切成若干小的seed，找到全基因组符合seed的位置；再通过打分算法，把邻近的全基因组符合的seed拼在一起，形成mapping结果。
 
 如果比对任务非常多，数据量很大，我们推荐使用STAR这个比对软件得到最终的比对结果。
 
@@ -244,7 +247,7 @@ fastq_quality_filter -v -q 20 -p 80 -Q 33 -i SRR1573494.fastq -o SRR1573494_q20_
 使用`hisat2`构建基因组索引：
 
 
-```{.bash data-book-role="code" data-focus-lines="3"}
+```{.bash data-book-role="code"}
 hisat2_extract_splice_sites.py Homo_sapiens.GRCh38.101.gtf >genome.ss
 hisat2_extract_exons.py Homo_sapiens.GRCh38.101.gtf >genome.exon
 hisat2-build -p 20 Homo_sapiens.GRCh38.dna.toplevel.fa genome
@@ -263,7 +266,7 @@ http://hgdownload.cse.ucsc.edu/goldenPath/hg38/database/
 
 :::
 
-```{.bash .numberLines data-book-role="code" data-focus-lines="11"}
+```{.bash .numberLines data-book-role="code"}
 #make exon 
 hisat2_extract_exons.py hg38_refseq.gtf > hg38_refseq.exon &
 
@@ -591,7 +594,7 @@ cufflinks -o ERR188044/cufflink ERR188044/accepted_hits_sorted.bam -p 50 -g chrX
 使用Cuffmerge合并新的转录本:
 
 
-```{.bash data-book-role="code" data-focus-lines="2,5"}
+```{.bash data-book-role="code"}
 #使用cuffmerge:
 cuffmerge -g Homo_sapiens.GRCh37.85.gtf -s hisat/human_genome.fa -p 40 -o merged.gtf assemblies.txt
 
@@ -646,7 +649,7 @@ cuffmerge -o ./merged_asm -p 4 -s genome.fasta assembly_GTF_list.txt
 
 :::
 
-```{.bash data-book-role="code" data-focus-lines="1"}
+```{.bash data-book-role="code"}
 stringtie sample.bam --rf -l sample1 -o sample1.gtf -p 4
 ```
 
@@ -656,7 +659,7 @@ stringtie sample.bam --rf -l sample1 -o sample1.gtf -p 4
 
 :::
 
-```{.bash data-book-role="code" data-focus-lines="1"}
+```{.bash data-book-role="code"}
 stringtie --merge -o merge.gtf sample1.gtf sample2.gtf 
 ```
 
@@ -666,7 +669,7 @@ stringtie --merge -o merge.gtf sample1.gtf sample2.gtf
 
 :::
 
-```{.bash data-book-role="code" data-focus-lines="1"}
+```{.bash data-book-role="code"}
 stringtie sample1.demulpos.bam --rf -o sample1.gtf -p 8 -e -G genome.gtf
 ```
 
@@ -710,7 +713,7 @@ featureCounts -t exon -g gene_id \
 ambigous表示read比对到多个基因上，no_feature表示read没有比对到基因组上。
 
 
-```{.bash .numberLines data-book-role="code" data-focus-lines="2,5"}
+```{.bash .numberLines data-book-role="code"}
 # 非链特异性真核转录组测序数据
 htseq-count -f sam -r name -s no -a 10 -t exon -i gene_id -m union hisat2.sam genome.gtf >counts_out.txt
 
@@ -767,7 +770,7 @@ cuffquant -o sample1 -p 4 -b genome.fasta -u genome.gtf sample1.sam
 
 ### 表达定量 {#src-0050-RNA-seq-300}
 
-通过前面的序列比对分析，获得了能够map到各个基因的reads数，也就是原始的count数。但原始的count数并不能完全表征基因的表达情况，因为不同基因的长度不同，不同批次数据的测序量也不同，所以需要通过计算矫正测序深度和基因长度带来的影响，即对基因的表达进行标准化定量（*Manuel Garber et.al., Nat Methods, 2011）。
+通过前面的序列比对分析，获得了能够map到各个基因的reads数，也就是原始的count数。但原始的count数并不能完全表征基因的表达情况，因为不同基因的长度不同，不同批次数据的测序量也不同，所以需要通过计算矫正测序深度和基因长度带来的影响，即对基因的表达进行标准化定量[^rnaseq-quantification]。
 
 #### 基因表达定量方式RPKM、FPKM、TPM {#src-0050-RNA-seq-304}
 
@@ -775,7 +778,7 @@ cuffquant -o sample1 -p 4 -b genome.fasta -u genome.gtf sample1.sam
 
 基因的表达进行标准化定量包括多种方式，包括：
 
-1. RPKM（Reads Per Kilobase per Million mapped reads）（Measurement of mRNA abundance using RNA-Seq data: RPKM measure is inconsistent among samples）、FPKM（Fragments Per Kilobase per Million mapped reads）；
+1. **RPKM**（Reads Per Kilobase per Million mapped reads）[^rnaseq-rpkm]、**FPKM**（Fragments Per Kilobase per Million mapped reads）；
 2. TPM（Transcripts Per Million）
 3. RPM(Reads per million mapped reads)
 4. CPM（counts per million mapped reads）等。
@@ -855,7 +858,7 @@ $$ {#eq-06-rna-seq-002}
 
 寻找差异表达的基本假设是样本中的大部分基因表达不变。基于这个假设，对样本中的基因表达做定量计算，寻找不同样本之间发生差异性表达的基因。而RNA-Seq定量的本质是相对定量，即测定指标的相对比例，如浓度、Fold change；这区别于绝对定量测定的是客观的数值等 ，例如温度、高度、长度等。
 
-cuffdiff、cuffdiff2、DESeq、DESeq2 （Moderated estimation of fold change and dispersion for RNA-Seq data with DESeq2）、edgeR （Small-sample estimation of negative binomial dispersion, with applications to SAGE data）(edgeR: a Bioconductor package for differentical expression analysis of digital gene expression data) 都是常用的表达差异分析软件，此外imma::voom (voom: precision weights unlock linear model analysis tools for RNA-Seq read counts)也可用于差分析。
+**cuffdiff**、**cuffdiff2**、**DESeq**、**DESeq2**[^rnaseq-deseq2]、**edgeR**[^rnaseq-edger-dispersion][^rnaseq-edger] 都是常用的表达差异分析软件。此外，`limma::voom`[^rnaseq-voom] 也可用于差异分析。
 
 在差异表达分析过程中，常常会根据基因的差异表达情况绘制火山图：
 
@@ -904,7 +907,7 @@ cuffdiff -o cuffdiff -p 50 -L male,female -u chrX.gtf ERR188044/accepted_hits_so
 使用R语言DEseq包进行差异分析：
 
 
-```{.r .numberLines data-book-role="code" data-focus-lines="21,23,34"}
+```{.r .numberLines data-book-role="code"}
 library(DESeq2)
 # count table 
 count_df <- read.table(file = "./03.code_and_data/out_table/293T-RNASeq-Ctrl_vs_KD.STAR.hg38.featureCounts.FixColName.tsv",header = T,sep = "\t")
@@ -952,7 +955,7 @@ deseq2.obj.res <- results(deseq2.obj)
 使用R语言edgeR包进行差异分析：
 
 
-```{.r .numberLines data-book-role="code" data-focus-lines="23,44,49"}
+```{.r .numberLines data-book-role="code"}
 library(edgeR)
 
 # -------------------------------------------------------->>>>>>>>>>
@@ -1075,7 +1078,7 @@ R语言clusterProfiler包和在线软件DAVID注释网站都是常用的基因�
 使用R语言ggplot2包绘制火山图
 
 
-```{.r .numberLines data-book-role="code" data-focus-lines="11,15"}
+```{.r .numberLines data-book-role="code"}
 require(ggplot2)
 
 bmp(filename="M3 volcan plot.bmp",width = 400,height = 300)
@@ -1124,7 +1127,7 @@ log2	pvalue
 使用R语言gplots包绘制火山图
 
 
-```{.r .numberLines data-book-role="code" data-focus-lines="5"}
+```{.r .numberLines data-book-role="code"}
 library("gplots")
 
 est <- read.table(file = "DEgene.txt", header = T, row.names=1)
@@ -1163,7 +1166,7 @@ hsa-miR-6090	5.80658	4.459086667
 使用R语言clusterProfiler包进行GO注释:
 
 
-```{.r .numberLines data-book-role="code" data-focus-lines="36,45,72"}
+```{.r .numberLines data-book-role="code"}
 # ---------------------------------------------------------------------->>>>>>>
 # GO analysis
 # ---------------------------------------------------------------------->>>>>>>
@@ -1245,7 +1248,7 @@ dev.off()
 使用R语言clusterProfiler包进行KEGG注释:
 
 
-```{.r .numberLines data-book-role="code" data-focus-lines="6,11"}
+```{.r .numberLines data-book-role="code"}
 # ---------------------------------------------------------------------->>>>>>>
 # KEGG analysis
 # ---------------------------------------------------------------------->>>>>>>
@@ -1365,3 +1368,27 @@ ceRNA并不是一种新发现的RNA，而是由于体内多种RNA之间的相互
 [^rna-ref-8]: 原稿文献编号 8；完整书目信息待完善。
 
 [^rna-ref-9]: 原稿文献编号 9；完整书目信息待完善。
+
+[^rnaseq-bowtie]: [Ultrafast and memory-efficient alignment of short DNA sequences to the human genome](https://pubmed.ncbi.nlm.nih.gov/19261174/). 2009.
+
+[^rnaseq-bwa]: Heng Li、Richard Durbin. [Fast and accurate short read alignment with Burrows-Wheeler transform](https://pubmed.ncbi.nlm.nih.gov/19451168/). 2009.
+
+[^rnaseq-tophat]: [TopHat: discovering splice junctions with RNA-Seq](https://pubmed.ncbi.nlm.nih.gov/19289445/). 2009.
+
+[^rnaseq-tophat2]: [TopHat2: accurate alignment of transcriptomes in the presence of insertions, deletions and gene fusions](https://pubmed.ncbi.nlm.nih.gov/23618408/). 2013.
+
+[^rnaseq-hisat2]: Daehwan Kim 等. [Graph-based genome alignment and genotyping with HISAT2 and HISAT-genotype](https://pubmed.ncbi.nlm.nih.gov/31375807/). 2019.
+
+[^rnaseq-star]: Alexander Dobin 等. [STAR: ultrafast universal RNA-seq aligner](https://pubmed.ncbi.nlm.nih.gov/23104886/). 2013.
+
+[^rnaseq-quantification]: Manuel Garber 等. [Computational methods for transcriptome annotation and quantification using RNA-seq](https://pubmed.ncbi.nlm.nih.gov/21623353/). Nature Methods, 2011.
+
+[^rnaseq-rpkm]: [Measurement of mRNA abundance using RNA-seq data: RPKM measure is inconsistent among samples](https://pubmed.ncbi.nlm.nih.gov/22872506/). 2012.
+
+[^rnaseq-deseq2]: [Moderated estimation of fold change and dispersion for RNA-seq data with DESeq2](https://pubmed.ncbi.nlm.nih.gov/25516281/). 2014.
+
+[^rnaseq-edger-dispersion]: [Small-sample estimation of negative binomial dispersion, with applications to SAGE data](https://pubmed.ncbi.nlm.nih.gov/17728317/). 2008.
+
+[^rnaseq-edger]: [edgeR: a Bioconductor package for differential expression analysis of digital gene expression data](https://pubmed.ncbi.nlm.nih.gov/19910308/). 2010.
+
+[^rnaseq-voom]: [voom: Precision weights unlock linear model analysis tools for RNA-seq read counts](https://pubmed.ncbi.nlm.nih.gov/24485249/). 2014.

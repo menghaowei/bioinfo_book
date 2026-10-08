@@ -50,7 +50,7 @@
 
 
 
-**CUT&RUN** []{#src-0060-ChIP-seq-46}
+##### CUT&RUN {#src-0060-ChIP-seq-46}
 
 **CUT&RUN** （**Cleavage Under Targets and Release Using Nuclease**）是研究 DNA-蛋白质互作的一项革命性技术，无需用甲醛进行交联和免疫共沉淀。在这种方法中，初代使用**与 Protein A 结合的微球菌核酸酶**与所选择的抗体结合，并立即切割相邻的 DNA，然后释放与抗体靶向结合的 DNA，回收的 DNA 片段可直接进行 ChIP-qPCR 或者二代测序。该过程在原位进行，避免交联和增溶问题，减少了背景噪音，从而使得使用少量细胞在保证测序质量的前提下测序深度为平常 ChIP-seq 所需测序深度的十分之一。由于微球菌核酸酶激活时细胞核是完整的，CUT&RUN 可以检测目标位点周围的局部环境，使得 CUT&RUN 还能检测到转录因子的长距离 3D 互作位点。
 
@@ -383,7 +383,7 @@ conda install
 
 一些软件为高通量测序数据提供了易于操作的质量控制。`FastQC` 是最常用的工具之一，它可以在 `FASTQ` 和其他来自多个测序平台的文件格式上运行。其他工具为数据处理提供了额外的功能，比如：`NGS QC Toolkit`（ 见 ref3 ）和 `fastx-toolkit` （[hannonlab.cshl.edu/fastx_toolkit/](http://hannonlab.cshl.edu/fastx_toolkit/)） 。
 
-**使用FastQC对测序进行评估** []{#src-0060-ChIP-seq-317}
+##### 使用FastQC对测序进行评估 {#src-0060-ChIP-seq-317}
 
 与之前章节内容类似，我们这次再次强调FastQC是为了突出一些和ChIP-Seq数据分析有关的质量报告内容，读者灵活掌握即可。
 
@@ -407,7 +407,7 @@ conda install
 - 此外，如果 DNA 片段短于 reads 长度，则用于测序的接头将出现在 reads 上。由于 DNA 片段的平均长度为 200 bp，在短 reads 中接头应基本不存在，但在较长 reads 时，接头应开始出现在位置 70-100 bp 附近。在早期的测序周期中接头的高含量表明了文库的过度碎片化。默认情况下，FastQC 将搜索几个常用的 `Illumina` 接头。用户也可以提供自定义接头序列。
 
 
-```{.bash .numberLines data-book-role="code" data-focus-lines="5,8"}
+```{.bash .numberLines data-book-role="code"}
 #!/usr/bin/env bash
 
 # cd data
@@ -418,7 +418,7 @@ cd QC
 multiqc .
 ```
 
-**根据报告对数据进行修剪和过滤** []{#src-0060-ChIP-seq-345}
+##### 根据报告对数据进行修剪和过滤 {#src-0060-ChIP-seq-345}
 
 接下来，含有过度的接头序列和低质量的碱基将被过滤掉。这可以通过完全删除相应的 reads 来实现，从而在整个数据集中保持相等的读取长度，或者通过修剪它们来实现。
 
@@ -444,7 +444,7 @@ multiqc .
 这里我们将用 fastp 来进行数据过滤。fastp 是基于 C++ 开发的，使用高效算法，且支持多线程，具有丰富的功能的软件。根据 reads 质量、长度过滤，自动查找并裁剪接头序列、对 reads 进行滑动质量裁剪、对双端数据进行碱基校正、分子标签 UMI 处理等。
 
 
-```{.bash .numberLines data-book-role="code" data-focus-lines="9"}
+```{.bash .numberLines data-book-role="code"}
 #!/usr/bin/env bash
 
 # mkdir clean_data
@@ -470,7 +470,7 @@ done
 fastp 也可以自动生成全自动的人性化报告，但是为了前后更好的对比，这里仍然使用 FASTQC 进行再一次质检。
 
 
-```{.bash .numberLines data-book-role="code" data-focus-lines="5"}
+```{.bash .numberLines data-book-role="code"}
 #!/usr/bin/env bash
 
 # cd clean_data
@@ -493,7 +493,7 @@ FASTQC 质检结果。（A）测序 reads 每个位点的碱基质量值 Q 的�
 
 基因组回比的目标是找到参考基因组中高通量测序 reads 的最可能的来源。除了大的基因组和大量的 reads，还因为 reads 和参考序列之间可能存在的不匹配而变得更加复杂。这些序列偏差可能是由于产生高通量测序 reads 过程中的扩增或测序错误引起的，也可能是由于参考基因组水平上的基因组变异或错误造成的。
 
-**比对概念** []{#src-0060-ChIP-seq-409}
+##### 比对概念 {#src-0060-ChIP-seq-409}
 
 由于 ChIP-seq reads 是直接从 DNA 片段衍生的，所以数据通常用连续短 read 比对软件比对。这些比对算法中的许多都采用了 “种子扩展 **seed-and-extend**” 的方法。在第一步中，该算法识别 **k-mer** 种子，即指定长度的 reads 片段，这些片段精确地映射到基因组中的给定位置（ `ref1` ）。依赖于算法，种子匹配必须是精确的，或者可以容忍一定数量的错配。在第二步中，使用动态规划在两个方向上扩展种子，以达到无间隙的最大可映射长度，并最终生成完全比对。
 
@@ -501,13 +501,13 @@ FASTQC 质检结果。（A）测序 reads 每个位点的碱基质量值 Q 的�
 
 大多数算法分配一个质量分数来估计获得的比对的准确性（见第 4.2.4 节）。在某些情况下，此分数考虑到 reads 的碱基识别准确性（ 即 FASTQ 文件中的 Q 值）中来衡量错配。
 
-**常用工具** []{#src-0060-ChIP-seq-417}
+##### 常用工具 {#src-0060-ChIP-seq-417}
 
 目前常见的 ChIP-seq 比对工具主要为：Bowtie、Bowtie2、BWA。Bowtie2 和 BWA 能够通过跨区域（gapped alignment）考虑 indel（插入和缺失）比对，常用于长的 reads 和双端 reads 的比对。Bowtie 常用于短 reads 的比对。 
 
 有各种各样的对齐工具，它们在概念、建立索引方法、计算性能和映射精度方面都有所不同（详细信息见 `ref1` ）。一个非常流行的用于 ChIP-seq 数据的工具是基于 “ 种子和扩展  **seed-and-extend** ” 的算法 Bowtie2，它提供了高精度和高速度（ `ref2` ）。由于其高效的索引编码，**Bowtie2** 的内存需求相对较小，支持其在普通笔记本电脑或台式计算机上的应用。此外，许多专门的应用程序都是为特定的用例而设计的。例如，**Bowtie2** 明确支持来自新兴的第三代测序方法的 reads 比对。另外，`ENCODE` 计划依赖于 **BWA** 算法，以高效和可重复的方式比对数百个 ChIP-seq 数据集（ `ref3` ）。
 
-**参数和注意事项** []{#src-0060-ChIP-seq-423}
+##### 参数和注意事项 {#src-0060-ChIP-seq-423}
 
 - 错配
 由于测序错误和单核苷酸变异，一些 reads 将不会完全匹配参考基因组。为了避免丢失这些 reads ，在比对过程中应该允许一定数量的错配。最佳阈值取决于样品的类型和实验类型。大多数比对算法允许指定每条 reads 比对的绝对错配数，或者指定相对于 reads 长度的不匹配频率（对于 **Bowtie2** 的参数设置 **4.3** 节）。
@@ -546,7 +546,7 @@ FASTQC 质检结果。（A）测序 reads 每个位点的碱基质量值 Q 的�
 reads 比对信息通常存储在在 `BGZF` 压缩的 `BAM` 文件或相应的可读 `SAM` 对应文件中报告（ `ref7` ）。`header` 部分提供了有关原始 `fastq` 文件、比对软件的应用（包括参数的选择）和使用的参考基因组的详细信息。在比对部分中，每个比对由 reads的名称、序列和质量信息以及关于参考基因组中的比对坐标的信息来描述。扩展的 `CIGAR` 字符串描述比对上的 reads 比例、插入、缺失等信息。可选字段允许添加额外的标记，例如，报告基因组中某一给定 reads 的比对数量（多重比对）或 重复。
 - `SAMtools` 是一个软件包，它提供了各种要处理 `SAM/BAM` 的实用程序（ `ref7` ）。特别地，排序和索引允许快速检索与特定基因组区域重叠的比对，而无需将所有比对信息加载到内存中。同样，[**Picard**](https://broadinstitute.github.io/picard/) 提供了一组命令行工具，包括一些用于预先过滤的选项。
 
-**使用 Bowtie2 进行基因组比对** []{#src-0060-ChIP-seq-456}
+##### 使用 Bowtie2 进行基因组比对 {#src-0060-ChIP-seq-456}
 
 本节演示如何使用 `Bowtie2` 对 ChIP-seq 数据进行比对，然后是几个后续处理步骤。首先，从 **UCSC** 下载参考基因组（ 老鼠基因组 `mm10` ），然后使用 `Bowtie2` 建立索引。然后在示例 `FASTQ` 文件上运行 `Bowtie2` ，并对生成的 `BAM` 文件进行过滤、排序和索引。
 
@@ -577,7 +577,7 @@ BAM 文件中唯一比对 reads 起始位置的分比例可作为文库复杂性
 然后我们进入到 UCSC 对应的小鼠 mm10 相关数据下载链接 [ftp://hgdownload.soe.ucsc.edu/goldenPath/mm10/bigZips/](ftp://hgdownload.soe.ucsc.edu/goldenPath/mm10/bigZips/) 中，下载 .fa 基因组序列文件。
 
 
-```{.bash data-book-role="code" data-focus-lines="2,5"}
+```{.bash data-book-role="code"}
 # wget 下载
 wget ftp://hgdownload.soe.ucsc.edu/goldenPath/mm10/bigZips/mm10.fa.gz
 
@@ -662,7 +662,7 @@ grep '>' mm10.fa
 ```
 
 
-```{.bash .numberLines data-book-role="code" data-focus-lines="15"}
+```{.bash .numberLines data-book-role="code"}
 # 分别下载各个染色体序列，然后选取合并
 rsync -avzP rsync://hgdownload.cse.ucsc.edu/goldenPath/mm10/bigZips/chromFa.tar.gz .
 gzip -d chromFa.tar.gz
@@ -698,7 +698,7 @@ mm10.1.bt2  mm10.2.bt2  mm10.3.bt2  mm10.4.bt2  mm10.rev.1.bt2  mm10.rev.2.bt2
 - 回比 `04_align.sh` 
 
 
-```{.bash .numberLines data-book-role="code" data-focus-lines="6,7"}
+```{.bash .numberLines data-book-role="code"}
 cd ~/qliu/ChIP-seq
 
 for i in `ls clean_data/*gz`
@@ -726,7 +726,7 @@ nohup bash 04_align.sh &
 
 :::
 
-**end-to-end 与 --local 的区别** []{#src-0060-ChIP-seq-622}
+##### end-to-end 与 --local 的区别 {#src-0060-ChIP-seq-622}
 
 
 
@@ -811,19 +811,19 @@ ChIP-seq 实验的目的是为了鉴定全基因组研究人员感兴趣的 `TF`
 >
 > [Transcription Factor ChIP-seq Data Standards and Processing Pipeline](https://www.encodeproject.org/chip-seq/transcription_factor/)
 
-**reads 的富集** []{#src-0060-ChIP-seq-683}
+##### reads 的富集 {#src-0060-ChIP-seq-683}
 
 使用通常对应于估计片段大小的 `两倍` 的滑动窗口扫描基因组。对于每个窗口，对于 ChIP 和 Input 样本的 reads 都通过文库中的比对上的 reads 总数来进行均一化。然后使用这些数目来计算富集倍数。
 
-**显著性** []{#src-0060-ChIP-seq-687}
+##### 显著性 {#src-0060-ChIP-seq-687}
 
 然后，可以使用泊松或负二项分布将均一化的 reads 数与来自零假设的背景模型进行比较，以计算显著性或 `P` 值。许多不同的模型已经被应用于 ChIP-seq 数据，以及完全不同的方法，例如机器学习，但是简单的模型已经被证明具有同样好的性能（ ref1 ）。
 
-**多重检验校正** []{#src-0060-ChIP-seq-690}
+##### 多重检验校正 {#src-0060-ChIP-seq-690}
 
 当多次应用统计检验时，即对于被检验的数千个基因组窗口，一些 `P` 值将只是偶然地通过阈值。因此，重要的是根据检验运行的次数来校正它们，即多重检验是正确的（ ref1 ）。这可以通过 `FDR（ false discovery rate ）` 来实现。如果提供了 `Input` 样本，则可以通过交换 ChIP 和 Input 样本以 `call` Input 中的 `Peak` 来计算经验 `FDR` 值。然后，通过 `Input` 样本中高于该分数的峰值总数除以 ChIP 样本中的数目，为 ChIP 样本中的每个峰值分数计算 FDR。`FDR` 或 `q-value` 也可以通过置换或随机抽样（ 例如使用 `Benjamini-Hochberg` ）从模型中估计出来（ ref2 ）。
 
-**阈值的选择** []{#src-0060-ChIP-seq-693}
+##### 阈值的选择 {#src-0060-ChIP-seq-693}
 
 通过不同 `Peak caller` 方法找到的 `Peak` 数量高度依赖于所使用的阈值和参数，因此应谨慎考虑。最重要的是将分析集中在一个等级的列表上。`Peak` 应根据评分或适合于评估 reads 富集程度的 `q-value` 等指标进行排序。普遍接受的 `p/q值` 阈值 `0.05` 不能很好地适用于对其进行检验的数千个区域的基因组数据，并且最小阈值 `10^-5` 至 `10^-30` 更适合 `ChIP-seq peaks`。富集倍数相对于 `Input` 样本中的信号不是对 `Peak` 进行排序的好方法（ (例如，相同的 2 倍富集可以来自 `2/1` 或 `10/5`，其中 ChIP 样品中的绝对计数，因此在第二部分中峰高是 5 倍 ）。然而，它可以用于设置最小阈值，2 倍被普遍接受，但是 5 倍更适合 `ChIP-seq Peak`（ `ref2` ）。同样，它仍然可以用于设置最小阈值，`5%` 是普遍接受的阈值，但 `1%` 更适合 `ChIP-seq Peaks`。更重要的是，选择阈值的困难可以通过在重复样本内或跨不同条件彼此比较 ChIP-seq 样本来克服，这将在第 8 章中讨论。
 
@@ -831,11 +831,11 @@ ChIP-seq 实验的目的是为了鉴定全基因组研究人员感兴趣的 `TF`
 
 ChIP-seq 于2007年推出，随后几年开发了许多 `Peak caller` 工具（ `ref3` ）。包括迄今为止最流行的 `MACS` （ `ref4` ）以及在 **ENCODE** 流程（ `ref1` ）中的 `SPP` （ `ref5` ）。然而，那些 `Peak caller` 是在第一个 ChIP-seq 数据集上开发的，并且并不总是很好地适应当前的 ChIP-seq 数据集，这些数据集利用了最近的方法学改进，例如双末端测序，高测序深度，最重要的是，增加了实验分辨率。
 
-**单末端与双末端文库** []{#src-0060-ChIP-seq-701}
+##### 单末端与双末端文库 {#src-0060-ChIP-seq-701}
 
 在 ChIP-seq 实验中，由于片段大小可以从单端数据中估计出来，因此使用双端比单端数据仅略微提高了寻找 `Peaks` 的性能（ `ref6` ）。大多数 ChIP-seq 数据集都是使用单端文库生成的，并且一些 `Peak caller` 不适用于双端数据。在比较双末端与单末端数据集时，双末端也可以被视为单末端输入（仅使用两个集合中的一个）。
 
-**测序深度和文库复杂度** []{#src-0060-ChIP-seq-705}
+##### 测序深度和文库复杂度 {#src-0060-ChIP-seq-705}
 
 生成的第一个 ChIP-seq 数据集具有大约 2 - 5M （ M = Million = 1e6 ）条测序 reads （ `ref7` ），而最近的有大约 20 到 50M 的 reads，这导致十年来测序深度增加了10倍。良好的测序深度对于能够识别样品中所有真正的结合位点是至关重要的，并且可以通过执行饱和度分析来评估（ 见 `章节 6.6` ）。然而，由于到相同位置的 reads 比对也可以由 PCR 扩增人工产物产生，所以比对的 reads 总数不一定反映文库的复杂性（ 见 `章节 4` ）。因此，一些 `Peak caller` 在计算 reads 富集之前有去除重复的步骤。虽然这一策略对于其中重复主要是 PCR 人工产物的具有几百万条 reads 的数据集是有效的，但如今，高测序深度意味着比对到相同位置的更多 reads 实际上可能来自真正不同的DNA片段（ `ref6` ）（ **这里再一次表明作者觉得 ChIP-seq 分析不应该去重复** ）。因此，如果 ChIP-seq 文库具有良好的质量并且显示出高复杂性，我们不建议删除重复的 reads 再进行 `Peak calling` 。一些 `Peak caller` （ 例如：MACS2 ）现在可以基于使用测序深度和比对的基因组大小对真实重复项的估计来删除一小部分重复 reads 。
 
@@ -1015,11 +1015,11 @@ TF 结合位点可以发生在启动子区域内（ TSS 的近端 ）或基因�
 
 一种流行的下游分析是探索靶基因的功能。
 
-**注释到靶基因** []{#src-0060-ChIP-seq-848}
+##### 注释到靶基因 {#src-0060-ChIP-seq-848}
 
 Peak 到基因的分配仍然是一项不平凡的任务，因为 TF 和增强子可以从非常长的差异激活它们的目标基因，小鼠中的基因被位于 1Mb 之外的增强子调控（`ref4`）。即使已经探索了几个概念来分配目标基因，最简单和最有效的方法是使用最近的 TSS（ `ref5` ）。理想情况下，重新开发的技术，如 **Capture Hi-C**（ `Chi-C` ) ( `ref6` )，可以用来推断可靠的关联，但数据的可用性和处理仍然是有限的。
 
-**基因富集分析** []{#src-0060-ChIP-seq-851}
+##### 基因富集分析 {#src-0060-ChIP-seq-851}
 
 以基因本体论（ **GO** ）的形式在许多物种上都可以获得对基因功能的全面描述（ `ref7` ）。GO被组织成三个不重叠的本体，它们描述蛋白质的生理作用（ 生物学过程：Biological Process ），分子活性（ 分子功能：Molecular Function ）或在细胞内的位置（ 细胞成分：Cellular Component）。此外，分配给蛋白质的每个 GO 术语都与一个 GO 号相关联，指定所分配的功能是例如通过实验验证的，还是仅仅从正交学中推断出来的。
 
@@ -1027,7 +1027,7 @@ Peak 到基因的分配仍然是一项不平凡的任务，因为 TF 和增强�
 
 > 注意：与用于 `Peak calling` 的阈值选择类似（ 参见 第6.2.5章 ），应始终根据 p 值而不是变化倍数对富集的类别进行排序和选择。在报告或可视化围棋分析结果时，应避免任意选择GO terms。应提供完整的富集注释信息表作为补充信息。
 
-**其它类型的基因富集分析** []{#src-0060-ChIP-seq-858}
+##### 其它类型的基因富集分析 {#src-0060-ChIP-seq-858}
 
 富集的概念可以扩展到在研究上下文中感兴趣的任何预定义的基因列表。例如，可以对目标基因进行检验以富集发育调节基因或某一蛋白质的相互作用伙伴。可以从已发表或数据库中检索参考文献列表，也可以手动编辑参考文献列表。
 
@@ -1037,7 +1037,7 @@ Peak 到基因的分配仍然是一项不平凡的任务，因为 TF 和增强�
 
 分析 `Peak` 区域下的 DNA 序列提供了对所研究蛋白质的 DNA 结合偏好或在相邻位置重复结合的潜在协同因子的洞察。
 
-**Motif 分析** []{#src-0060-ChIP-seq-867}
+##### Motif 分析 {#src-0060-ChIP-seq-867}
 
 **De novo motif discovery** motif 分析中的第一个策略是在没有先验假设的情况下搜索富含 Peak 区域的序列，也称为从头 motif 发现。搜索通常在围绕 `TF Peak summits` 或组蛋白修饰的整个区域的 `50-200bp` 的窗口中执行。大多数 Motif 发现工具都遵循基于 `word-based` 或基于 `profile-based` 的方法（ `ref9` ）。在例如在 `DREME`（ `ref10` ）中实现的基于 `word-based` 的方法中，所有可能的 `k-mer`（ 即长度为 k 的序列 ）都被穷举以生成在输入序列中以增加的频率出现的共识基序。相反，基于 `Profile-based` 的方法，如 `MEME`（ `ref10` ），迭代地优化序列比对以获得最佳评分 `motif`。最近，应用**深度学习**方法来发现 ChIP-seq 数据中的结合 `motif`（ `ref11` ）。
 
@@ -1053,7 +1053,7 @@ Peak 到基因的分配仍然是一项不平凡的任务，因为 TF 和增强�
 
 使用已知的 NRF1 motif 在特定阈值下，我们发现 73% 的 `Peak` 区域含有一个 `motif`。在 TF 的 ChIP-seq 数据中，带有 Motif 的  `Peak` 的比例通常在 `60-80%` 左右。一些非特异性峰可能是由实验偏差引起的，如 `crosslinking artefacts` 。可以将相同的代码调整为在 `Control` 区域上运行（ 使用命令 `shuffledBed` 生成 ）。可替换地，可以使用 `Peak` 的子选择，例如 TKO 特定的 `Peak` 与共享的 `Peak`。最后，可以使用**超几何检验**来统计评估 **targets 区**和 **control 区**的富集程度的比较（例如：使用 R 中的函数 `phyper` ）。同样的分析可以运行更多的 `motif`，甚至所有可能的 `k-mers`。与从头开始的 motif 发现方法相比，使用已知 motif 扫描 `Peak` 区域的优点是，该信息可以用于进一步的分析，例如探索不同 `Motif` 在特定区域中的组织和共生（ 例如，彼此之间的距离或方向 ）。此外，计算 `metaplot` 中的位置富集使我们能够可视化是否以及在何处在 `Peak` 周围富集了 `motif`。
 
-**序列保守性** []{#src-0060-ChIP-seq-882}
+##### 序列保守性 {#src-0060-ChIP-seq-882}
 
 当具有额外物种的多个比对可用时，可以探索 Peak 或 motif 的保守性水平。为此，可以从 UCSC 基因组浏览器以 bigwig 格式下载 **PhastCons** 或 **PhyloP** 等保守性分数，并且可以使用 **bwtool** 或 **bedtools** 进行处理（ 见 `章节 9.4.1`）。
 
@@ -1061,7 +1061,7 @@ Peak 到基因的分配仍然是一项不平凡的任务，因为 TF 和增强�
 
 基因组研究通常需要几种类型的实验来解决特定的生物学问题。此外，可以公开获得大量相关的基因组数据集。因此，ChIP-seq 数据与其他数据类型的结合分析是一种常见的分析。这种数据集成的一个示例可以在 NRF1 数据集的原始发布中找到。
 
-**额外的 ChIP-seq 数据集** []{#src-0060-ChIP-seq-890}
+##### 额外的 ChIP-seq 数据集 {#src-0060-ChIP-seq-890}
 
 第一步通常是与其他 ChIP-seq 数据集集成，这可能包括 TF 和组蛋白修饰的数据组合。
 
@@ -1079,13 +1079,13 @@ Peak 到基因的分配仍然是一项不平凡的任务，因为 TF 和增强�
 
 > 注意：重要的是要记住，尽管热图是很好的可视化工具，但它们不是表示数据的具体方式，因为颜色比例的细微变化可能会对人眼产生误导。在这里生成的密度热图的示例中，由于以相对较小的数字显示数千个区域，如果行不会按降序 RPKM 值排序，则具有低  reads 密度的一些区域在具有高 reads 密度的区域之间将不可见。此外，用户很容易以非线性步骤排列颜色标度以突出特定的特征，例如在我们的情况下，我们使用从白色到黑色的线性标度从 0 到10，并注释所有大于10 直到 100到黑色的附加值，因为密度值遵循下降的指数曲线。
 
-**表达数据** []{#src-0060-ChIP-seq-901}
+##### 表达数据 {#src-0060-ChIP-seq-901}
 
 将 ChIP-seq 与RNA-seq 或芯片数据的基因表达信息结合，允许我们研究 TF 的结合或组蛋白修饰的存在是否与其目标基因的表达相关。为此，可以将 Peak 区域的信号与假定的目标基因的表达水平进行比较。如果有几个条件可用，在所谓的 `delta-delta` 散点图中比较结合和基因表达的变化可能更具信息性（ 见 `章节 8.3.4` ）。请注意，由于可以将几个 Peak 分配给同一基因，因此某些基因表达值可能会多次出现。这可以通过取给定目标基因的所有相关 Peak 的最小、最大或平均信号来解决。
 
 > 注意：这种分析对假阳性目标基因引入的噪音很敏感，当被分配到最接近的 TSS 的基因时。由于远端 Peak 可能比近端 Peak 更经常被错误分配，因此分别对近端和远端 Peak 进行下游分析是有用的（ 例如，≤ 2kb vs > 2kb ）。
 
-**其他类型数据** []{#src-0060-ChIP-seq-906}
+##### 其他类型数据 {#src-0060-ChIP-seq-906}
 
 最后，其他类型的基因组数据也可以整合到分析中，例如染色质可及性（ 例如 `DNase-seq` 或 `ATAC-seq` ）或 DNA 甲基化（ 例如 `WGBS-seq` 或 `RRBS-seq`)。这可以通过使用 `bwtool` 或 `bedtools` 在 Peak 区域上汇总信息来执行（ 见 `章节 9.4.1` ）。例如，可以在 Peak 区域上计算信号平均值或在峰值区域的相关子集中进行比较。与基因表达的比较类似，`delta-delta` 散点图可用于将结合的变化与染色质可及性或 DNA 甲基化的变化进行比较。
 

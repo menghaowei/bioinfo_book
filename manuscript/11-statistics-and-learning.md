@@ -91,7 +91,7 @@
 
 
 
-**信息熵** []{#src-0080-statistics-21}
+##### 信息熵 {#src-0080-statistics-21}
 
 
 ::::: {.callout-note .book-core title="核心知识｜信息熵"}
@@ -127,7 +127,7 @@ $$ {#eq-05-statistics-and-exploration-002}
 
 由计算结果，我们可以直观看出$H(X_1)=H(X_3)<H(X_2)$。这也与我们平日里的经验认知相符，在平日里做决策时，往往是“几个事件旗鼓相当”情况下最难做出决定。因此，通过这个例子，大家是不是对信息熵这个概念有了比较直观的认识了？接下来我们将了解相对熵这个概念。
 
-**相对熵** []{#src-0080-statistics-40}
+##### 相对熵 {#src-0080-statistics-40}
 
 
 ::::: {.callout-warning .book-warning title="注意｜KL 散度不满足对称性"}
@@ -188,7 +188,7 @@ $$ {#eq-05-statistics-and-exploration-005}
 
 
 
-**t-SNE概述** []{#src-0080-statistics-73}
+##### t-SNE概述 {#src-0080-statistics-73}
 
 t-SNE(t-distributed stochastic neighbor embedding，t分布-随机近邻嵌入)是一种非线性降维的算法，属于流形学习的范畴，可以把数据集中数据之间的高维欧式距离转变成条件概率来表示数据之间的相似度。
 
@@ -210,7 +210,7 @@ t-SNE算法的降维过程可以分为下面几个步骤：
 
 3. 利用相对熵（K-L散度）衡量两种分布的差异，进行迭代，若F1与F2概率分布尽可能的接近则降维成功。
 
-**SNE算法原理** []{#src-0080-statistics-90}
+##### SNE算法原理 {#src-0080-statistics-90}
 
 我们首先了解一下t-SNE的前身SNE的算法原理，因为这样我们会更加理解t-SNE相对于SNE带来的提升。我们以4个细胞，每个细胞有4个基因，构成一个$4\times 4$的矩阵为例（见 @tbl-11-statistics-and-learning-01 ），详细讲解一下SNE的每一步算法过程。
 
@@ -338,7 +338,7 @@ $$ {#eq-05-statistics-and-exploration-015}
 
 这样我们的目标就是获得最小的$C$值，也就是获得最小的K-L散度，后面就是进行进行梯度优化，通过迭代，使低维空间的分布逼近高维空间的分布，最终确定SNE的二维点。一般默认梯度优化的迭代次数是1000。以上就是SNE的算法原理。
 
-**t-SNE相对于SNE的提升** []{#src-0080-statistics-177}
+##### t-SNE相对于SNE的提升 {#src-0080-statistics-177}
 
 上面的内容我们了解了SNE的算法原理，那么相对于SNE，t-SNE又做了哪些重要的优化呢？
 
@@ -390,7 +390,7 @@ $$ {#eq-05-statistics-and-exploration-019}
 
 
 
-**t-SNE的优缺点** []{#src-0080-statistics-210}
+##### t-SNE的优缺点 {#src-0080-statistics-210}
 
 **优点**
 
@@ -410,7 +410,7 @@ $$ {#eq-05-statistics-and-exploration-019}
 这一部分我们就进入t-SNE实战环节，代码如下:
 
 
-```{.r .numberLines data-book-role="code" data-focus-lines="20,26,35"}
+```{.r .numberLines data-book-role="code"}
 # t-SNE需要使用Rtsne这一个包
 library(Rtsne)
 ##加载t-SNE需要的数据

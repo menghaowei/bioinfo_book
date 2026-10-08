@@ -77,7 +77,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <link href="../site_libs/quarto-html/quarto-syntax-highlighting-795e9e8eca1e12b12abcb09a27409631.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../site_libs/bootstrap/bootstrap-0e2b1bd57b654b662b916e654d4fdb64.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-2785e736d6bb3298ac36e4268fcf040f.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -321,7 +321,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="src-0090-build-up-bioinfo-platform-25" class="level4">
 <h4 class="anchored" data-anchor-id="src-0090-build-up-bioinfo-platform-25">APT</h4>
 <p>apt（Advance Packaging Tool）是Debian系Linux发行版的默认包管理工具，于对包括系统本身在内的升级安装等管理操作。</p>
-<p><strong>apt和apt-get命令</strong></p>
+<section id="topic-02-31" class="level5">
+<h5 class="anchored" data-anchor-id="topic-02-31">apt和apt-get命令</h5>
 <p><code>apt</code>是2014年正式发布的心得apt包管理工具的命令，相较于<code>apt-get</code>系列命令它更为简洁易用。</p>
 <div id="tbl-02-environment-and-programming-01" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-tbl figure">
@@ -420,7 +421,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </figure>
 </div>
-<p><strong>apt镜像设置</strong></p>
+</section>
+<section id="topic-02-56" class="level5">
+<h5 class="anchored" data-anchor-id="topic-02-56">apt镜像设置</h5>
 <p>apt默认的镜像在国内的访问速度是较慢的，所以设置一个国内的镜像是必要的。这里推荐北京外国语大学的开源软件站。其帮助信息完善，Ubuntu的镜像设置帮助文档地址为(https://mirrors.bfsu.edu.cn/help/ubuntu/)。</p>
 <p>可以在文档中选择你具体使用的Ubuntu版本以获取对应的软件源地址。备份原先的软件源配置文件后即可更改配置文件。修改完成后执行<code>sudo apt update</code>命令刷新索引既可生效。</p>
 <div id="fig-02-computing-and-programming-001" class="quarto-float quarto-figure quarto-figure-center anchored">
@@ -433,6 +436,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </figcaption>
 </figure>
 </div>
+</section>
 </section>
 <section id="src-0090-build-up-bioinfo-platform-62" class="level4">
 <h4 class="anchored" data-anchor-id="src-0090-build-up-bioinfo-platform-62">yum</h4>
@@ -488,7 +492,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </figure>
 </div>
-<p><strong>yum镜像</strong></p>
+<section id="topic-02-86" class="level5">
+<h5 class="anchored" data-anchor-id="topic-02-86">yum镜像</h5>
 <p>我们依然十分推荐北外的相关镜像，访问（https://mirrors.bfsu.edu.cn/help/centos/ ）就可以进入CentOS镜像的帮助页面，选择你的系统版本即可获得详细的镜像配置文件内容和详细的指引。</p>
 <div id="fig-02-computing-and-programming-002" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
@@ -500,6 +505,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </figcaption>
 </figure>
 </div>
+</section>
 </section>
 </section>
 <section id="src-0090-build-up-bioinfo-platform-86" class="level3">
@@ -535,7 +541,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </figcaption>
 </figure>
 </div>
-<p><strong>编辑环境变量</strong> <span id="src-0090-build-up-bioinfo-platform-108"></span></p>
+<section id="src-0090-build-up-bioinfo-platform-108" class="level5">
+<h5 class="anchored" data-anchor-id="src-0090-build-up-bioinfo-platform-108">编辑环境变量</h5>
 <p>比如这里选择用户变量的Path然后选择“编辑”，就会弹出对应的编辑窗口。“新建”就是添加一个新的路径到Path环境变量中；“编辑”为修改当前Path环境变量下的某个路径；“浏览”则可以通过“浏览文件夹”窗口选择路径；“删除”则可以删除已有的；“上移”和“下移”调整具体路径的优先度，下方的优先度更高；“编辑文本”则是在一个输入框编辑，各个路径之间以英文分号分隔，一般情况并不适用主要用在完全复制一个用户的单个环境变量的多个值时。</p>
 <div id="fig-02-computing-and-programming-005" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
@@ -547,7 +554,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </figcaption>
 </figure>
 </div>
-<p><strong>新建环境变量</strong> <span id="src-0090-build-up-bioinfo-platform-114"></span></p>
+</section>
+<section id="src-0090-build-up-bioinfo-platform-114" class="level5">
+<h5 class="anchored" data-anchor-id="src-0090-build-up-bioinfo-platform-114">新建环境变量</h5>
 <p>在环境变量设置窗口对应区域点击“新建”按钮即可新建用户或系统环境变量。变量值可以有多个，每个变量值之间用英文分号分隔。两个“浏览”按钮分布使用浏览窗口选择目录或文件。</p>
 <div id="fig-02-computing-and-programming-006" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
@@ -560,6 +569,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </figure>
 </div>
 <p>新建或编辑完环境变量并确认后，回到”环境变量“确认后就修改完成。初期相关读取环境变量的程序即可生效。如果仍未生效，则注销用户后重新登陆即可。</p>
+</section>
 </section>
 <section id="src-0090-build-up-bioinfo-platform-122" class="level4">
 <h4 class="anchored" data-anchor-id="src-0090-build-up-bioinfo-platform-122">PowerShell配置文件设置环境变量</h4>
@@ -597,7 +607,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 <p>当然在修改配置文件之前需要对PowerShell的执行策略进行更改，否则配置文件是无法被载入的。右击开始按钮在菜单中选择“Windows PowerShell (管理员)”，弹出窗口中执行<code>Set-ExecutionPolicy RemoteSigned</code>命令。</p>
 <p>查找到配置文件路径后就可以就通过编辑配置文件添加或修改环境变量。</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1" data-book-role="code" data-focus-lines="3"><pre data-code-text="&quot;$env:TEST=\&quot;D:\\\\\&quot;\n$env:TEST=$env:TEST+\&quot;;E:\\\\\&quot;\n$env:Path=$env:Path+\&quot;;F:\\\\\&quot;&quot;" class="sourceCode powershell code-with-copy"><code class="sourceCode powershell"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="va">$env</span><span class="op">:</span><span class="va">TEST</span><span class="op">=</span><span class="st">"D:\\"</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1" data-book-role="code"><pre data-code-text="&quot;$env:TEST=\&quot;D:\\\\\&quot;\n$env:TEST=$env:TEST+\&quot;;E:\\\\\&quot;\n$env:Path=$env:Path+\&quot;;F:\\\\\&quot;&quot;" class="sourceCode powershell code-with-copy"><code class="sourceCode powershell"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="va">$env</span><span class="op">:</span><span class="va">TEST</span><span class="op">=</span><span class="st">"D:\\"</span></span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="va">$env</span><span class="op">:</span><span class="va">TEST</span><span class="op">=</span><span class="va">$env</span><span class="op">:</span><span class="va">TEST</span><span class="op">+</span><span class="st">";E:\\"</span></span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="va">$env</span><span class="op">:</span><span class="va">Path</span><span class="op">=</span><span class="va">$env</span><span class="op">:</span><span class="va">Path</span><span class="op">+</span><span class="st">";F:\\"</span></span></code></pre></div><button title="复制到剪贴板" class="code-copy-button"><i class="bi"></i></button></div>
 <p>上面是一个例子，第一行新建了一个名为TEST的环境变量，并设置其值为”D:\“，如果TEST环境变量已存在，则会覆盖原值。第二行在原值基础上添加一个值”E:\“。所以第三行我们也以类似的方法在现有的Path环境变量下添加一个值，以防覆盖原有的值。修改完配置文件后只要重启PowerShell即可生效。</p>
@@ -612,14 +622,21 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="src-0090-build-up-bioinfo-platform-153" class="level4">
 <h4 class="anchored" data-anchor-id="src-0090-build-up-bioinfo-platform-153">安装WSL</h4>
 <p>安装WSL前请先将Windows10更新到最新版。然后以管理员权限启动PowerShell，依序执行以下两个命令后重新启动计算机。</p>
-<p><strong>启用“适用于 Linux 的 Windows 子系统”可选功能</strong> <span id="src-0090-build-up-bioinfo-platform-157"></span></p>
+<section id="src-0090-build-up-bioinfo-platform-157" class="level5">
+<h5 class="anchored" data-anchor-id="src-0090-build-up-bioinfo-platform-157">启用“适用于 Linux 的 Windows 子系统”可选功能</h5>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2" data-book-role="code"><pre data-code-text="&quot;dism.exe /online /enable-feature /featurename:Microsoft-Windows-Subsystem-Linux /all /norestart&quot;" class="sourceCode powershell code-with-copy"><code class="sourceCode powershell"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>dism<span class="op">.</span><span class="fu">exe</span> <span class="op">/</span>online <span class="op">/</span>enable-feature <span class="op">/</span>featurename<span class="op">:</span>Microsoft-Windows-Subsystem-Linux <span class="op">/</span>all <span class="op">/</span>norestart</span></code></pre></div><button title="复制到剪贴板" class="code-copy-button"><i class="bi"></i></button></div>
-<p><strong>启用“虚拟机平台”可选功能</strong> <span id="src-0090-build-up-bioinfo-platform-163"></span></p>
+</section>
+<section id="src-0090-build-up-bioinfo-platform-163" class="level5">
+<h5 class="anchored" data-anchor-id="src-0090-build-up-bioinfo-platform-163">启用“虚拟机平台”可选功能</h5>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3" data-book-role="code"><pre data-code-text="&quot;dism.exe /online /enable-feature /featurename:VirtualMachinePlatform /all /norestart&quot;" class="sourceCode powershell code-with-copy"><code class="sourceCode powershell"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>dism<span class="op">.</span><span class="fu">exe</span> <span class="op">/</span>online <span class="op">/</span>enable-feature <span class="op">/</span>featurename<span class="op">:</span>VirtualMachinePlatform <span class="op">/</span>all <span class="op">/</span>norestart</span></code></pre></div><button title="复制到剪贴板" class="code-copy-button"><i class="bi"></i></button></div>
-<p><strong>设置WSL2为默认版本</strong> <span id="src-0090-build-up-bioinfo-platform-169"></span></p>
+</section>
+<section id="src-0090-build-up-bioinfo-platform-169" class="level5">
+<h5 class="anchored" data-anchor-id="src-0090-build-up-bioinfo-platform-169">设置WSL2为默认版本</h5>
 <p>以管理员权限启动PowerShell，执行以下命令。</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4" data-book-role="code"><pre data-code-text="&quot;wsl --set-default-version 2&quot;" class="sourceCode powershell code-with-copy"><code class="sourceCode powershell"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>wsl <span class="op">--</span>set-default-version <span class="dv">2</span></span></code></pre></div><button title="复制到剪贴板" class="code-copy-button"><i class="bi"></i></button></div>
-<p><strong>安装发行版</strong> <span id="src-0090-build-up-bioinfo-platform-177"></span></p>
+</section>
+<section id="src-0090-build-up-bioinfo-platform-177" class="level5">
+<h5 class="anchored" data-anchor-id="src-0090-build-up-bioinfo-platform-177">安装发行版</h5>
 <p>访问(https://aka.ms/wslstore)，启动应用商店对应页面选择一个你中意的发行版即可，或者直接在应用商店搜索<code>Linux</code>，可以找到更多发行版。</p>
 <div id="fig-02-computing-and-programming-010" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
@@ -631,7 +648,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </figcaption>
 </figure>
 </div>
-<p><strong>创建账户和密码</strong> <span id="src-0090-build-up-bioinfo-platform-183"></span></p>
+</section>
+<section id="src-0090-build-up-bioinfo-platform-183" class="level5">
+<h5 class="anchored" data-anchor-id="src-0090-build-up-bioinfo-platform-183">创建账户和密码</h5>
 <p>安装完成发行版后首次启动时会要求你创建用户名和密码。</p>
 <div id="fig-02-computing-and-programming-011" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
@@ -643,6 +662,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </figcaption>
 </figure>
 </div>
+</section>
 </section>
 <section id="src-0090-build-up-bioinfo-platform-189" class="level4">
 <h4 class="anchored" data-anchor-id="src-0090-build-up-bioinfo-platform-189">Windows Terminal</h4>
@@ -737,15 +757,19 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>为了防止不同的依赖之间相互冲突造成bug，除了最核心的常用组件，通常会为了每一类项目单独建立一个独立的环境。使得不同项目之间的模块可以版本不同。比如优势需要不同版本的Python或者R。</p>
 </div>
 </div>
-<p><strong>创建环境</strong></p>
+<section id="topic-02-329" class="level5">
+<h5 class="anchored" data-anchor-id="topic-02-329">创建环境</h5>
 <p>你可以指定环境的名称，后面再赶上环境中一个或几个包的版本，也可以只有名称没有其他参数。这时新建的环境里就不会预装任何包</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb6" data-book-role="code"><pre data-code-text="&quot;conda create -n py2 python=2&quot;" class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="ex">conda</span> create <span class="at">-n</span> py2 python=2</span></code></pre></div><button title="复制到剪贴板" class="code-copy-button"><i class="bi"></i></button></div>
 <p>指定环境名称的创建方式会把环境相关文件放在Anaconda的安装目录下，但是有时候你需要将环境相关文件放在制动的路径。这个时候你就可以通过<code>p</code>参数来指定conda环境的路径。比如下面就是一个指定环境目录为<code>/home/test_conda</code>并指定环境中的Python版本号为3.4。</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb7" data-book-role="code"><pre data-code-text="&quot;conda -p /home/test_conda python=3.4&quot;" class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="ex">conda</span> <span class="at">-p</span> /home/test_conda python=3.4</span></code></pre></div><button title="复制到剪贴板" class="code-copy-button"><i class="bi"></i></button></div>
-<p><strong>删除环境</strong></p>
+</section>
+<section id="topic-02-345" class="level5">
+<h5 class="anchored" data-anchor-id="topic-02-345">删除环境</h5>
 <p>我们同样可以通过参数来指定特定名称或路径的环境。</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb8" data-book-role="code"><pre data-code-text="&quot;conda remove -n py2 --all\nconda remove -p /home/test_conda --all&quot;" class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="ex">conda</span> remove <span class="at">-n</span> py2 <span class="at">--all</span></span>
 <span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="ex">conda</span> remove <span class="at">-p</span> /home/test_conda <span class="at">--all</span></span></code></pre></div><button title="复制到剪贴板" class="code-copy-button"><i class="bi"></i></button></div>
+</section>
 </section>
 <section id="src-0090-build-up-bioinfo-platform-264" class="level4">
 <h4 class="anchored" data-anchor-id="src-0090-build-up-bioinfo-platform-264">mamba</h4>
@@ -765,7 +789,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="src-0090-build-up-bioinfo-platform-15" class="level4">
 <h4 class="anchored" data-anchor-id="src-0090-build-up-bioinfo-platform-15">Linux的环境变量</h4>
 <p>Linux下的可以通过修改<code>~/.bashrc</code>来设置用户环境变量，修改<code>/etc/.bashrc</code>来设置系统环境变量。绝大多数情况下修改系统环境变量即可。具体添加到<code>.bashrc</code>的内容可以参考下方的代码。第一行是在一个已有的环境变量中添加值（Linux中一个环境变量下的多个值以冒号分隔），第二行则是创建一个并赋值一个新的环境变量或是修改一个已有环境变量的值。</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb9" data-book-role="code" data-focus-lines="1,2"><pre data-code-text="&quot;export PATH=\&quot;/export/apps/JAVA/jdk1.8.0_111/bin:$PATH\&quot;\nexport JULIA_PKG_SERVER=\&quot;https://mirrors.bfsu.edu.cn/julia/static\&quot;&quot;" class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="bu">export</span> <span class="va">PATH</span><span class="op">=</span><span class="st">"/export/apps/JAVA/jdk1.8.0_111/bin:</span><span class="va">$PATH</span><span class="st">"</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb9" data-book-role="code"><pre data-code-text="&quot;export PATH=\&quot;/export/apps/JAVA/jdk1.8.0_111/bin:$PATH\&quot;\nexport JULIA_PKG_SERVER=\&quot;https://mirrors.bfsu.edu.cn/julia/static\&quot;&quot;" class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="bu">export</span> <span class="va">PATH</span><span class="op">=</span><span class="st">"/export/apps/JAVA/jdk1.8.0_111/bin:</span><span class="va">$PATH</span><span class="st">"</span></span>
 <span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="bu">export</span> <span class="va">JULIA_PKG_SERVER</span><span class="op">=</span><span class="st">"https://mirrors.bfsu.edu.cn/julia/static"</span></span></code></pre></div><button title="复制到剪贴板" class="code-copy-button"><i class="bi"></i></button></div>
 <p>修改完<code>.bashrc</code>文件后如果想到马上生效而不是重新启动命令行，可以使用<code>source</code>执行对应文件。比如设置用户环境变量时使用<code>source ~/.bashrc</code>即可。</p>
 <div class="book-placeholder">
@@ -913,7 +937,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <h3 class="anchored" data-anchor-id="src-0090-build-up-bioinfo-platform-346">Julia</h3>
 <p>Julia是一门很新的语言，2018年8月8日才正式发布1.0版。算是迈入了相对成熟的阶段。它是一门动态类型语言，语法规则简单，类似Python；它编译运行，运行效率很高，类似C++/C；对正则支持良好，类似Perl……</p>
 <p>Julia对并行和分布式也支持良好，比如一个多线程的for循环只要像下面一样在原有的for循环代码上简单地加上<code>@threads</code>宏。</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb13" data-book-role="code" data-focus-lines="1"><pre data-code-text="&quot;Threads.@threads for i = 1:1000\n    ago_sdf = cm_df[i,:]\nend&quot;" class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="bu">Threads</span>.<span class="pp">@threads</span> <span class="cf">for</span> i <span class="op">=</span> <span class="fl">1</span><span class="op">:</span><span class="fl">1000</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb13" data-book-role="code"><pre data-code-text="&quot;Threads.@threads for i = 1:1000\n    ago_sdf = cm_df[i,:]\nend&quot;" class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="bu">Threads</span>.<span class="pp">@threads</span> <span class="cf">for</span> i <span class="op">=</span> <span class="fl">1</span><span class="op">:</span><span class="fl">1000</span></span>
 <span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>    ago_sdf <span class="op">=</span> cm_df[i,<span class="op">:</span>]</span>
 <span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a><span class="cf">end</span></span></code></pre></div><button title="复制到剪贴板" class="code-copy-button"><i class="bi"></i></button></div>
 <p>当然，它也非尽善尽美，仍然存在不足：</p>
@@ -923,20 +947,29 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </ol>
 <section id="src-0090-build-up-bioinfo-platform-363" class="level4">
 <h4 class="anchored" data-anchor-id="src-0090-build-up-bioinfo-platform-363">Julia基础环境搭建</h4>
-<p><strong>Julia的安装</strong> <span id="src-0090-build-up-bioinfo-platform-365"></span></p>
+<section id="src-0090-build-up-bioinfo-platform-365" class="level5">
+<h5 class="anchored" data-anchor-id="src-0090-build-up-bioinfo-platform-365">Julia的安装</h5>
 <p>Julia语言的安装相对来说是很友好的：Mac下提供了二进制安装包，Linux下提供了解压后即可用的压缩包，Windows下则同时提供了两类安装包。下载的地址，国外的用户建议直接上官网（https://julialang.org/downloads/），而国内用户我们依然建议使用已经推荐了很多次的北外镜像（https://mirrors.bfsu.edu.cn/julia-releases/bin/）。</p>
 <p>使用二进制安装包或解压可用的安装包安装后，要记住把Julia可执行程序的所在目录添加到环境变量PATH中。比如现在我的Julia安装在<code>D:\Program Files\Julia-1.5.2</code>中，需要添加到环境变量PATH中的就是<code>D:\Program Files\Julia-1.5.2\bin</code>。具体的添加方法请查看本章前面的部分。</p>
-<p><strong>Julia的REPL</strong> <span id="src-0090-build-up-bioinfo-platform-371"></span></p>
+</section>
+<section id="src-0090-build-up-bioinfo-platform-371" class="level5">
+<h5 class="anchored" data-anchor-id="src-0090-build-up-bioinfo-platform-371">Julia的REPL</h5>
 <p>Julia带有一个交互式命令行环境REPL（read-eval-print loop），它内置于<code>julia</code>可执行文件中。其允许简单快捷地执行Julia语句，同时具有可搜索的历史记录、tab补全功能、help和shell模式以及一些实用的快捷键。只要不带参数地执行<code>julia</code>可执行文件（Julia可执行程序的所在目录添加到环境变量PATH中后，在终端中执行<code>julia</code>命令即可）或着双击执行<code>julia</code>可执行文件就可以启动REPL。</p>
 <p>Julian模式：REPL的默认操作模式，可以快捷执行Julia语句。</p>
 <p>pkg模式：包管理模式，在默认模式下光标位于行开头时输入]（英文右侧方括号）进入。</p>
 <p>shell模式：命令模式，在该模式下可使用系统命令。</p>
 <p>help模式：帮助模式，可以在该模式下查看各种帮助信息。例如可以在help模式下使用<code>if</code>命令查看if语句的帮助信息，使用<code>@time</code>查看<code>@time</code>宏的帮助信息。</p>
-<p><strong>Julia的设置</strong> <span id="src-0090-build-up-bioinfo-platform-383"></span></p>
+</section>
+<section id="src-0090-build-up-bioinfo-platform-383" class="level5">
+<h5 class="anchored" data-anchor-id="src-0090-build-up-bioinfo-platform-383">Julia的设置</h5>
 <p>Julia的各种自定义设置都是通过环境变量进行的。其有两类方式进行修改。一是通过更改系统或当前用户的环境变量进行，Julia的线程数环境变量<code>JULIA_NUM_THREADS</code>和Julia仓库路径环境变量<code>JULIA_DEPOT_PATH</code>等少数环境变量只能通过此种方式进行修改。二是通过修改Julia参考路径下的<code>config</code>目录下的<code>startup.jl</code>文件内容设置其他大部分Julia设置环境变量。例如Julia包服务器地址环境变量<code>JULIA_PKG_SERVER</code>就可以通过在添加语句进行设置。例如可以在该文件中添加一行<code>ENV["JULIA_PKG_SERVER"] =&nbsp;"https://mirrors.bfsu.edu.cn/julia/static"</code>将包服务器设置为北外开源镜像站的地址。特别提醒，仓库路径也是存放二进制依赖、包原始文件、包预编译文件等属于当前用户的Julia环境数据。所以如果你想自定存放这些文件的地方就只能通过系统环境变量或者当前用户环境变量设置环境变量<code>JULIA_DEPOT_PATH</code>的值。如果不进行自定义设置，则仓库路径为当前用户的用户目录下的<code>.julia</code>目录。</p>
-<p><strong>Julia包的管理</strong> <span id="src-0090-build-up-bioinfo-platform-387"></span></p>
+</section>
+<section id="src-0090-build-up-bioinfo-platform-387" class="level5">
+<h5 class="anchored" data-anchor-id="src-0090-build-up-bioinfo-platform-387">Julia包的管理</h5>
 <p>Julia的使用REPL的pkg模式进行包管理。在pkg模式下，<code>add</code>命令按照包，<code>up</code>命令升级包，<code>rm</code>命令卸载包，<code>status</code>查看已安装包的状态。例如可以在pkg模式下用<code>add IJulia</code>命令安装IJulia包。</p>
-<p><strong>开发环境配置</strong> <span id="src-0090-build-up-bioinfo-platform-391"></span></p>
+</section>
+<section id="src-0090-build-up-bioinfo-platform-391" class="level5">
+<h5 class="anchored" data-anchor-id="src-0090-build-up-bioinfo-platform-391">开发环境配置</h5>
 <p>Julia的开发环境主要有三种，JupyterLab、Visual Studio Code和基于Julia的Pluto。</p>
 <p><strong>JupyterLab的Julia环境配置</strong></p>
 <p>Julia本体安装完成后，再安装IJulia包，IJulia包安装好后，执行<code>build IJulia</code>目录进行初始化即可将Julia内核添加至JupyterLab。</p>
@@ -974,8 +1007,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 <p><strong>Pluto环境设置</strong></p>
 <p>Pluto是一个基于Julia的轻量、易用且具有反应式特性（当改变一个函数或变量时，Pluto会自动更新所有受影响的Cell。）的交互式notebook。安装Pluto只要通过pkg模式安装<code>Pluto</code>包即可。启动则在REPL默认模式下使用以下命令即可。</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb14" data-book-role="code" data-focus-lines="2"><pre data-code-text="&quot;import Pluto\nPluto.run()&quot;" class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> <span class="bu">Pluto</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb14" data-book-role="code"><pre data-code-text="&quot;import Pluto\nPluto.run()&quot;" class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> <span class="bu">Pluto</span></span>
 <span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>Pluto.<span class="fu">run</span>()</span></code></pre></div><button title="复制到剪贴板" class="code-copy-button"><i class="bi"></i></button></div>
+</section>
 </section>
 </section>
 <section id="src-0090-build-up-bioinfo-platform-418" class="level3">

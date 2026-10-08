@@ -22,7 +22,7 @@ RNA-Seq分析中参考基因组包括基因组DNA序列和基因组注释文件�
 
 #### 构建参考基因组索引的软件 {#src-0050-RNA-seq-241}
 
-构建参考基因组索引的软件有：BWA（Fast and accurate short read alignment with Burrows-Wheeler transform. Heng Li and Richard Burbin），Bowtie（Ultrafast and memory-efficient alignment of short DNA sequences to the human genome），Bowtie2，HISAT，HISAT2。
+构建参考基因组索引的软件包括 **BWA**[^alignment-bwa]、**Bowtie**[^alignment-bowtie]、**Bowtie2**、**HISAT** 和 **HISAT2**。
 
 此外，BLASR（Basic Local Alignment with Successive Refinement）主要用于将PacBio测序的reads和参考序列进行匹配，这是一个处理三代测序的软件。用sawriter命令建库、blasr进行序列比对。
 
@@ -488,7 +488,7 @@ BLAST的基本原理就是先对数据库所有序列建立index，在输入序�
 而根据哈希表所采用的比对策略不同，又可以分为连续种子序列（contiguous seed）策略与间隔种子（spaced seed）策略。
 在了解这两种不同的比对策略之前，让我们先来实际看看哈希表是大概怎么构建的。
 
-**哈希表的构建** []{#src-0040-mapping-and-BAM-operation-46}
+##### 哈希表的构建 {#src-0040-mapping-and-BAM-operation-46}
 
 了解哈希表之前，我们需要补充一个概念k-mer：所谓k-mer，就是将一段序列拆分成包含k个碱基的迭代子序列，即从一条母序列中迭代的选取长度为K个碱基的序列，若母序列的长度为L，k-mer长度为K，那么就可以得到$L-K+1$个k-mer。
 
@@ -511,7 +511,7 @@ DNA序列是由A,T,C,G四种碱基排序而成，我们可以按四进制给序�
 
 
 
-**连续种子序列策略** []{#src-0040-mapping-and-BAM-operation-59}
+##### 连续种子序列策略 {#src-0040-mapping-and-BAM-operation-59}
 
 连续种子序列策略是将短序列拆分成k-mer长的子序列，而后查看由基因组k-mer的子序列所构建的哈希表数据结构进行匹配，从而完成整个回溯过程。
   
@@ -525,7 +525,7 @@ DNA序列是由A,T,C,G四种碱基排序而成，我们可以按四进制给序�
 
 
 
-**间隔种子序列策略** []{#src-0040-mapping-and-BAM-operation-66}
+##### 间隔种子序列策略 {#src-0040-mapping-and-BAM-operation-66}
 
 所谓的间隔种子序列策略，就是种子序列中间允许存在若干个不确定的碱基，即在比对过程种允许mismatch的存在。举个例子，间隔种子序列AGxCGTAA，既可以跟AGGCGTAA匹配，也可以跟AGCCGTAA匹配。这样做的优势就是明显增加了比对算法的灵敏度，但反过来，比对所消耗的时间复杂度明显增加。
 
@@ -925,7 +925,7 @@ bowtie与bowtie2，其实bowtie2更像是对bowtie的一个补充。比起bowtie
 
 下面本书就以bowtie2的安装与使用为例，讲解在使用过程中应该注意的事项。
 
-**bowtie2的安装** []{#src-0040-mapping-and-BAM-operation-111}
+##### bowtie2的安装 {#src-0040-mapping-and-BAM-operation-111}
 
 由于bowtie2有将安装包放进conda的channel--bioconda里面，故而最为方便的安装方式是直接使用conda进行安装
 
@@ -1019,7 +1019,7 @@ git clone https://github.com/BenLangmead/bowtie2.git
 
 
 
-```{.bash .numberLines data-book-role="code" data-focus-lines="19,22"}
+```{.bash .numberLines data-book-role="code"}
 #由于bowtie2是无需编译的，下载完成后，即可立即使用
 
 #进入下载后的文件夹，不知道文件夹全名是什么可以ls一下，即可看到当前目录的所有文件跟文件夹，选择进入
@@ -1046,7 +1046,7 @@ source ~/.bashrc #更新当前环境
 
 由于购买此书基本为新手，故而不推荐大家一开始就进行自行下载，更新环境，能用conda解决就用conda解决，等熟悉了Linux的操作逻辑再自行翻阅尝试即可。
 
-**bowtie2的使用** []{#src-0040-mapping-and-BAM-operation-188}
+##### bowtie2的使用 {#src-0040-mapping-and-BAM-operation-188}
 
 作为一名生信从业的科研人员，我们面对不熟悉的软件，第一件事并不是火急火燎的去乱问别人，而是应该秉承着先检索前人使用经验与阅读说明书的原则去熟悉一个新软件，在GitHub的下载页面下面即有bowtie2的使用简要说明
 
@@ -1069,7 +1069,7 @@ source ~/.bashrc #更新当前环境
 我们使用bowtie2做的第一件事就是对这个参考基因组构建一个索引，这一步的目的就是上文提到构建索引表，供后续比对检索回帖
 
 
-```{.bash data-book-role="code" data-focus-lines="1"}
+```{.bash data-book-role="code"}
 bowtie2-build chrX.fa chrX.fa
 # bowtie2-build命令为构建索引的命令
 # 第一个chrX.fa代表输入的参考序列
@@ -1128,11 +1128,11 @@ bowtie2-build chrX.fa chrX.fa
 看到这么多参数可能会觉得头晕目眩，其实在我们正常使用中，仅仅是选择必须参数与多线程即可，在比对完成后查看结果再进行调整。
 
 
-```{.bash data-book-role="code" data-focus-lines="1"}
+```{.bash data-book-role="code"}
 bowtie2 -p 10 -x chrX.fa -1 ERR188245_chrX_1.fastq.gz -2 ERR188245_chrX_2.fastq.gz -S ERR188245.sam &
 ```
 
-**对比结果检查** []{#src-0040-mapping-and-BAM-operation-256}
+##### 对比结果检查 {#src-0040-mapping-and-BAM-operation-256}
 
 在比对完成之后，bowtie2会输出一段log文件，记录着比对情况，但那只是初略的比对情况，简单的检查可以用，但如果是涉及每个染色体的比对情况，则推荐用qualimap2进行检查。该软件的安装，使用conda即可
 
@@ -1359,7 +1359,7 @@ MAPQ虽然代表的均是mapping的质量值，但是不同算法软件间的MAP
 **3. 请写出samtools view 命令获得MAPQ大于等于20的sam文件，假设原始的sam文件名为raw.sam，过滤后的sam文件名为filter_MAPQ20.sam**
 
 
-```{.bash data-book-role="code" data-focus-lines="1"}
+```{.bash data-book-role="code"}
 samtools view -S -q 20 ./raw.sam > ./filter_MAPQ20.sam  
 # -S input is sam file;
 # -q INT minimum mapping quality ;
@@ -1469,7 +1469,7 @@ conda install -c bioconda samtools
 安装完毕之后就可以在命令行上使用了，首先是将sam文件转换为bam文件：
 
 
-```{.bash data-book-role="code" data-focus-lines="2,5"}
+```{.bash data-book-role="code"}
 # 将sam文件转换为bam文件
 samtools view -b -S ERR188245.sam > ERR188245.bam
 
@@ -1480,7 +1480,7 @@ samtools view -h ERR188245.bam > ERR188245.sam
 那么问题来了，转为bam文件之后，怎么用samtools查看？我们可以将bam转为sam，然后再利用管道符用less查看：
 
 
-```{.bash .numberLines data-book-role="code" data-focus-lines="2,5,8"}
+```{.bash .numberLines data-book-role="code"}
 # 查看完整的bam文件
 samtools view -h ERR188245_chrX.bam | less -S
 
@@ -1498,7 +1498,7 @@ samtools view ERR188245_chrX.bam  | less -S
 使用samtools对bam文件进行排序：
 
 
-```{.bash .numberLines data-book-role="code" data-focus-lines="1"}
+```{.bash .numberLines data-book-role="code"}
 samtools sort -@ 20 -m 8G -O bam -o ERR188245_chrX.sorted.bam ERR188245_chrX.bam
 # @：指定线程数
 # m：每个线程分配的最大内存
@@ -1516,7 +1516,7 @@ java -jar picard.jar SortSam I=ERR188245_chrX.bam  O=ERR188245_chrX.sorted.bam  
 如果使用GATK工具，对bam文件进行排序，可以参考：
 
 
-```{.bash .numberLines data-book-role="code" data-focus-lines="3,6"}
+```{.bash .numberLines data-book-role="code"}
 #如果是gatk的话, 先建立index与dict
 samtools faidx chrX.fa
 gatk CreateSequenceDictionary -R chrX.fa -O chrX.dict
@@ -1541,7 +1541,7 @@ samtools index ERR188245_chrX.sorted.bam
 果然想通过mapping质量或者比对情况进行过滤，那samtools一定是处理代码最为简洁的。
 
 
-```{.bash .numberLines data-book-role="code" data-focus-lines="1"}
+```{.bash .numberLines data-book-role="code"}
 samtools view -h -b -q 20 -F 4 -F 256 ERR188245_chrX.sorted.bam > ERR188245_chrX.q1F4F256.sorted.bam
 
 #-f 提取提取出没有mapping上的reads
@@ -1615,7 +1615,7 @@ SAM文件的全称是：Sequence Alignment Map，它设计之初就是为了存�
  在Linux中，访问sam文件最好用的工具是samtools，常用的操作如下：
  
 
-```{.bash .numberLines data-book-role="code" data-focus-lines="4,7,10"}
+```{.bash .numberLines data-book-role="code"}
 # 假设SAM文件的文件名是 test.sam
 
 # 1.只查看头部
@@ -2374,7 +2374,7 @@ java -jar picard.jar MarkDuplicates I=ERR188245_chrX.sorted.bam O=ERR188245_chrX
 
 
 
-**去除PCR重复** []{#src-0070-WGS-48}
+##### 去除PCR重复 {#src-0070-WGS-48}
 
 
 
@@ -2667,7 +2667,7 @@ $$ {#eq-04-quality-control-and-alignment-019}
 - `https://software.broadinstitute.org/gatk/documentation/tooldocs/current/picard_sam_SortSam.php`
 
 
-```{.bash .numberLines data-book-role="code" data-focus-lines="2,4"}
+```{.bash .numberLines data-book-role="code"}
 # 使用GATK命令
 gatk SortSam -I mapping/T.chr17.sam -O preprocess/T.chr17.sort.bam -R database/chr17.fa -SO coordinate --CREATE_INDEX
 # 使用picard命令
@@ -2854,7 +2854,7 @@ RNA-Seq一般不考虑remove duplication（有paper专门讨论过这个问题�
 而后按照指示安装完成之后，我们来处理一下我们的bam文件，为导入到IGV里做准备
 
 
-```{.bash data-book-role="code" data-focus-lines="2,5"}
+```{.bash data-book-role="code"}
 #如果还没对序列排序，记得先排序
 samtools sort -@ 2 -o ERR188044_chrX.sorted.bam ERR188044_chrX.bam
 
@@ -2910,3 +2910,7 @@ IGV工具是可视化bam文件的一个非常好的方法，好好利用可以�
 ::: {.book-placeholder}
 本节内容待补充。
 :::
+
+[^alignment-bwa]: Heng Li、Richard Durbin. [Fast and accurate short read alignment with Burrows-Wheeler transform](https://pubmed.ncbi.nlm.nih.gov/19451168/). 2009.
+
+[^alignment-bowtie]: [Ultrafast and memory-efficient alignment of short DNA sequences to the human genome](https://pubmed.ncbi.nlm.nih.gov/19261174/). 2009.

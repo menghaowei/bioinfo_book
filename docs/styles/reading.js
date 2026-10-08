@@ -1,6 +1,15 @@
 /* Reading controls only: examples are never executed. */
 document.addEventListener('DOMContentLoaded', () => {
   const body = document.body;
+  // Footnotes stay in the current document, including local previews whose
+  // origin differs from the configured public site URL.
+  document.querySelectorAll('main a.footnote-ref, main a.footnote-back').forEach(link => {
+    const target = new URL(link.href, location.href);
+    if (target.origin === location.origin && target.pathname === location.pathname && target.search === location.search && target.hash) {
+      link.setAttribute('href', target.hash);
+      link.removeAttribute('target');
+    }
+  });
   const shade = document.querySelector('.book-shade');
   const toc = document.querySelector('#quarto-margin-sidebar');
   if (!toc?.querySelector('#TOC')) body.classList.add('book-no-toc');

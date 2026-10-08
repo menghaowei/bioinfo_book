@@ -77,7 +77,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <link href="../site_libs/quarto-html/quarto-syntax-highlighting-795e9e8eca1e12b12abcb09a27409631.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../site_libs/bootstrap/bootstrap-0e2b1bd57b654b662b916e654d4fdb64.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-2785e736d6bb3298ac36e4268fcf040f.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -363,7 +363,8 @@ window.Quarto = {
 <p>在这一章节中，我们将会对全外显子组（Whole Exome Sequencing， WES）进行介绍，包括其与全基因组测序的异同、技术特点及下游分析方向等，同时也包括实战代码的讲解。</p>
 <section id="src-0070-WGS-643" class="level4">
 <h4 class="anchored" data-anchor-id="src-0070-WGS-643">简介</h4>
-<p><strong>外显子</strong></p>
+<section id="topic-07-37" class="level5">
+<h5 class="anchored" data-anchor-id="topic-07-37">外显子</h5>
 <p>真核生物中编码蛋白质的基因由外显子（exon）和内含子（intron，非编码区域）组成，外显子又分为编码区域和UTR区域。转录过程中或转录后的RNA经过修饰剪切（splicing）作用，移除内含子、合并外显子，最终形成蛋白质。人类基因组中约1.1%为外显子，所有的外显子区域集合称为外显子组（exome）。80%的外显子序列长度少于200bp（Sakharkar，2004年）。研究发现，在外显子组中约85%的突变与疾病相关[1]。</p>
 <div id="fig-08-wgs-and-wes-003" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
@@ -417,6 +418,7 @@ window.Quarto = {
 <div class="book-placeholder">
 <p>本节内容待补充。</p>
 </div>
+</section>
 </section>
 </section>
 </section>
@@ -509,7 +511,7 @@ EQ=-10\log \frac{\#mismatch + 1}{\#bases + 2}
 <h4 class="anchored" data-anchor-id="src-0070-WGS-337">操作</h4>
 <p><strong>1. 建立较正模型</strong></p>
 <p>质量值校正，这一步需要用到variants的known-sites，所以需要先准备好已知的snp，indel的VCF文件：</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1" data-book-role="code" data-focus-lines="5,8"><pre data-code-text="&quot;# 下载known-site的VCF文件，到Ensembl上下载\nwget -c -P Ref/mouse/mm10/vcf ftp://ftp.ensembl.org/pub/release-93/variation/vcf/mus_musculus/mus_musculus.vcf.gz &gt;download.log &amp;\ncd Ref/mouse/mm10/vcf &amp;&amp; gunzip mus_musculus.vcf.gz &amp;&amp; mv mus_musculus.vcf dbsnp_150.mm10.vcf\n# 建好vcf文件的索引，需要用到GATK工具集中的IndexFeatureFile，该命令会在指定的vcf文件的相同路径下生成一个以\&quot;.idx\&quot;为后缀的文件\ngatk IndexFeatureFile -F dbsnp_150.mm10.vcf\n\n# 建立较正模型\ngatk BaseRecalibrator -R Ref/mouse/mm10/bwa/mm10.fa -I PharmacogenomicsDB/mouse/SAM/ERR118300.enriched.markdup.bam -O \\\nPharmacogenomicsDB/mouse/SAM/ERR118300.recal.table --known-sites Ref/mouse/mm10/vcf/dbsnp_150.mm10.vcf&quot;" class="sourceCode numberSource bash numberLines code-with-copy"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1"></a><span class="co"># 下载known-site的VCF文件，到Ensembl上下载</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1" data-book-role="code"><pre data-code-text="&quot;# 下载known-site的VCF文件，到Ensembl上下载\nwget -c -P Ref/mouse/mm10/vcf ftp://ftp.ensembl.org/pub/release-93/variation/vcf/mus_musculus/mus_musculus.vcf.gz &gt;download.log &amp;\ncd Ref/mouse/mm10/vcf &amp;&amp; gunzip mus_musculus.vcf.gz &amp;&amp; mv mus_musculus.vcf dbsnp_150.mm10.vcf\n# 建好vcf文件的索引，需要用到GATK工具集中的IndexFeatureFile，该命令会在指定的vcf文件的相同路径下生成一个以\&quot;.idx\&quot;为后缀的文件\ngatk IndexFeatureFile -F dbsnp_150.mm10.vcf\n\n# 建立较正模型\ngatk BaseRecalibrator -R Ref/mouse/mm10/bwa/mm10.fa -I PharmacogenomicsDB/mouse/SAM/ERR118300.enriched.markdup.bam -O \\\nPharmacogenomicsDB/mouse/SAM/ERR118300.recal.table --known-sites Ref/mouse/mm10/vcf/dbsnp_150.mm10.vcf&quot;" class="sourceCode numberSource bash numberLines code-with-copy"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1"></a><span class="co"># 下载known-site的VCF文件，到Ensembl上下载</span></span>
 <span id="cb1-2"><a href="#cb1-2"></a><span class="fu">wget</span> <span class="at">-c</span> <span class="at">-P</span> Ref/mouse/mm10/vcf ftp://ftp.ensembl.org/pub/release-93/variation/vcf/mus_musculus/mus_musculus.vcf.gz <span class="op">&gt;</span>download.log <span class="kw">&amp;</span></span>
 <span id="cb1-3"><a href="#cb1-3"></a><span class="bu">cd</span> Ref/mouse/mm10/vcf <span class="kw">&amp;&amp;</span> <span class="fu">gunzip</span> mus_musculus.vcf.gz <span class="kw">&amp;&amp;</span> <span class="fu">mv</span> mus_musculus.vcf dbsnp_150.mm10.vcf</span>
 <span id="cb1-4"><a href="#cb1-4"></a><span class="co"># 建好vcf文件的索引，需要用到GATK工具集中的IndexFeatureFile，该命令会在指定的vcf文件的相同路径下生成一个以".idx"为后缀的文件</span></span>
@@ -519,7 +521,7 @@ EQ=-10\log \frac{\#mismatch + 1}{\#bases + 2}
 <span id="cb1-8"><a href="#cb1-8"></a><span class="ex">gatk</span> BaseRecalibrator <span class="at">-R</span> Ref/mouse/mm10/bwa/mm10.fa <span class="at">-I</span> PharmacogenomicsDB/mouse/SAM/ERR118300.enriched.markdup.bam <span class="at">-O</span> <span class="dt">\</span></span>
 <span id="cb1-9"><a href="#cb1-9"></a>PharmacogenomicsDB/mouse/SAM/ERR118300.recal.table <span class="at">--known-sites</span> Ref/mouse/mm10/vcf/dbsnp_150.mm10.vcf</span></code></pre></div><button title="复制到剪贴板" class="code-copy-button"><i class="bi"></i></button></div>
 <p><strong>2. 质量值校准</strong></p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2" data-book-role="code" data-focus-lines="2"><pre data-code-text="&quot;# 质量校正\ngatk ApplyBQSR -R Ref/mouse/mm10/bwa/mm10.fa -I PharmacogenomicsDB/mouse/SAM/ERR118300.enriched.markdup.bam -bqsr \\\nPharmacogenomicsDB/mouse/SAM/ERR118300.recal.table -O PharmacogenomicsDB/mouse/SAM/ERR118300.recal.bam&quot;" class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 质量校正</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2" data-book-role="code"><pre data-code-text="&quot;# 质量校正\ngatk ApplyBQSR -R Ref/mouse/mm10/bwa/mm10.fa -I PharmacogenomicsDB/mouse/SAM/ERR118300.enriched.markdup.bam -bqsr \\\nPharmacogenomicsDB/mouse/SAM/ERR118300.recal.table -O PharmacogenomicsDB/mouse/SAM/ERR118300.recal.bam&quot;" class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 质量校正</span></span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="ex">gatk</span> ApplyBQSR <span class="at">-R</span> Ref/mouse/mm10/bwa/mm10.fa <span class="at">-I</span> PharmacogenomicsDB/mouse/SAM/ERR118300.enriched.markdup.bam <span class="at">-bqsr</span> <span class="dt">\</span></span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>PharmacogenomicsDB/mouse/SAM/ERR118300.recal.table <span class="at">-O</span> PharmacogenomicsDB/mouse/SAM/ERR118300.recal.bam</span></code></pre></div><button title="复制到剪贴板" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="book-placeholder">
@@ -535,7 +537,8 @@ EQ=-10\log \frac{\#mismatch + 1}{\#bases + 2}
 <h3 class="anchored" data-anchor-id="src-0070-WGS-363">使用GATK鉴定SNV/SNP位点</h3>
 <section id="src-0070-WGS-365" class="level4">
 <h4 class="anchored" data-anchor-id="src-0070-WGS-365">变异位点基因型推断的数学原理</h4>
-<p><strong>单点基因型推断</strong> <span id="src-0070-WGS-367"></span></p>
+<section id="src-0070-WGS-367" class="level5">
+<h5 class="anchored" data-anchor-id="src-0070-WGS-367">单点基因型推断</h5>
 <p>问题描述</p>
 <blockquote class="blockquote">
 <p>某一区域的比对结果如下：</p>
@@ -737,7 +740,9 @@ P(S_i | G_i)=P(I_i=1)^{I_i}\cdot P(I_i=0)^{1-I_i}
 <p>由于上面的前提假设中就已经提到，只考虑双等位情况，ref allele即是双等位中的一种，则对于一个m倍体的个体，它该等位基因座上有m个等位基因，其中与ref allele一致的有g个，则剩下m-g个基因座上的allele与ref allele不一致</p>
 <p>则，随机从这m个基因座中抽一个，其基因型与ref一致的概率为<span class="math inline">\(Pr(C)=g/m\)</span>，与ref不一致的概率为<span class="math inline">\(Pr(\overline C)=1-g/m=(m-g)/m\)</span></p>
 </blockquote>
-<p><strong>单体型推断</strong> <span id="src-0070-WGS-537"></span></p>
+</section>
+<section id="src-0070-WGS-537" class="level5">
+<h5 class="anchored" data-anchor-id="src-0070-WGS-537">单体型推断</h5>
 <p>GATK进行SNP calling的核心算法为HaplotypeCaller，这个也是GATK中最核心的算法，理解了这个算法基本上就明白了GATK变异检测的原理</p>
 <p>HaplotypeCaller它本质上是对贝叶斯原理的应用，只是相于同类算法它有点不同之处</p>
 <p>算法思想概述：</p>
@@ -860,6 +865,7 @@ P(D \mid G)=\prod_j \left( \frac{P(D_j \mid H_1)}{2} + \frac{P(D_j \mid H_2)}{2}
 </section>
 </section>
 </section>
+</section>
 <section id="sec-07-05" class="level2" data-number="7.5">
 <h2 data-number="7.5" class="anchored" data-anchor-id="sec-07-05"><span class="header-section-number">7.5</span> 单样本调用、gVCF与联合分型</h2>
 <p>理解单样本检测和多样本分型之间的关系。</p>
@@ -880,7 +886,7 @@ P(D \mid G)=\prod_j \left( \frac{P(D_j \mid H_1)}{2} + \frac{P(D_j \mid H_2)}{2}
 <p>所需软件： - fastqc - multiqc - bwa - samtools - gatk （此处用gatk 4.1版本） - Annovar</p>
 <p>运行代码如下：</p>
 <p>基本的处理思路是，下机序列经过数据质控后，比对到参考序列上找到最有可能的原位置，结合现有的常见突变位点信息进行筛选，过滤得到样本个体的突变位点信息，并存储在VCF（Variant Call Format）文件中。 利用ANNOVAR软件，同样地结合前人总结的突变信息（humandb/目录下）来注释和解析检测到的个体突变位点，并探索突变与个人生理状态和疾病发展的可能联系。</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4" data-book-role="code" data-focus-lines="46,58,64"><pre data-code-text="&quot;thread=1\nref=ref/references_hg38_v0_GRCh38.primary_assembly.genome.fa\ndata=data/\nsample=WXS_example\ngatk_db=ref/gatk/\nannovar=/home/huaping/software/annovar/annovar/\n###############\n# fastq QC\n################\n\n#fastq-dump SRR8381428 --split-3\n#fastqc -o fastqc/ ${data}/${sample}*.fq.gz\n#bash check_phred.sh ${data}/${sample}_1.fq.gz\n\n##Running Trimmomatic\n##Paired End Mode:\n##trimmomatic PE [-threads &lt;threads] [-phred33 | -phred64] [-trimlog &lt;logFile&gt;] &lt;input 1&gt; &lt;input 2&gt; &lt;paired output 1&gt; &lt;unpaired output 1&gt; &lt;paired output 2&gt; &lt;unpaired output 2&gt; &lt;option 1&gt;...\ntime trimmomatic PE -phred33 ${data}/${sample}_1.fq.gz ${data}/${sample}_2.fq.gz ${data}/${sample}_1.clean.fq.gz ${data}/${sample}_1.clean.unpaired.fq.gz ${data}/${sample}_2.clean.fq.gz ${data}/${sample}_2.clean.unpaired.fq.gz MINLEN:20 LEADING:20 TRAILING:20 &amp;&amp; echo \&quot;trim done\t$(date \&quot;+%Y-%m-%d %H:%M:%S\&quot;)\&quot;\n\nmkdir -p fastqc/\nfastqc -o fastqc/ ${data}/${sample}*clean.fq.gz &amp;&amp;\nmultiqc fastqc/${sample}*.zip -o fastqc &amp;&amp;  echo \&quot;QC done\t$(date \&quot;+%Y-%m-%d %H:%M:%S\&quot;)\&quot;\n\n##gatk annotation files download\n\n##################\n##alignment\n##################\nmkdir -p BAM/\n#bwa index -a bwtsw ${ref} &amp;&amp;\nbwa mem -M -Y -R &#x27;@RG\\tID:sample_1\\tSM:sample\\tLB:WES\\tPL:Illumina&#x27; ${ref} ${data}/${sample}_1.clean.fq.gz ${data}/${sample}_2.clean.fq.gz | samtools view -Sb - &gt; BAM/${sample}.bam &amp;&amp; echo \&quot;alignment done\t$(date \&quot;+%Y-%m-%d %H:%M:%S\&quot;)\&quot;\n\n#################\n#sam file preprocessing - sort and markduplicate\n#################\nsamtools sort -o BAM/${sample}.sorted.bam BAM/${sample}.bam &amp;&amp;\npicard MarkDuplicates -Xmx64g I=BAM/${sample}.sorted.bam O=BAM/${sample}.sorted.markdup.bam M=BAM/${sample}.sorted.markdup.txt &amp;&amp;\npicard BuildBamIndex -Xmx64g I=BAM/${sample}.sorted.markdup.bam &amp;&amp; echo \&quot;markduplicate done\t$(date \&quot;+%Y-%m-%d %H:%M:%S\&quot;)\&quot;\n\n#samtools faidx ${ref} &amp;&amp;\n#picard CreateSequenceDictionary R=${ref} O=${ref/\\.fa/}.dict &amp;&amp;\n\n##########################\n#BQSR\n##########################\ngatk BaseRecalibrator -R ${ref} -I BAM/${sample}.sorted.markdup.bam \\\n\t--known-sites ${gatk_db}resources_broad_hg38_v0_Mills_and_1000G_gold_standard.indels.hg38.vcf.gz \\\n\t--known-sites ${gatk_db}resources_broad_hg38_v0_Homo_sapiens_assembly38.known_indels.vcf.gz \\\n\t--known-sites ${gatk_db}resources_broad_hg38_v0_hapmap_3.3.hg38.vcf.gz \\\n\t--known-sites ${gatk_db}resources_broad_hg38_v0_Homo_sapiens_assembly38.dbsnp138.vcf \\\n\t-O BAM/${sample}.BQSR.table\ngatk ApplyBQSR -R ${ref} -I BAM/${sample}.sorted.markdup.bam -bqsr BAM/${sample}.BQSR.table -O BAM/${sample}.sorted.markdup.BQSR.bam &amp;&amp; echo \&quot;BQSR done     $(date \&quot;+%Y-%m-%d %H:%M:%S\&quot;)\&quot;\n\n###########################\n##Variant calling - haplotypecaller\n##########################\nmkdir -p VCF/\ngatk HaplotypeCaller -R ${ref} -I BAM/${sample}.sorted.markdup.BQSR.bam -O VCF/${sample}.vcf &amp;&amp; echo \&quot;variant calling done\t$(date \&quot;+%Y-%m-%d %H:%M:%S\&quot;)\&quot;\n\n\n###########################\n#Annotation -ANNOVAR\n###########################\n${annovar}table_annovar.pl VCF/${sample}.vcf ${annovar}humandb/ -buildver hg38 -out VCF/${sample} -remove -protocol refGene,cytoBand,exac03,avsnp147,dbnsfp30a -operation gx,r,f,f,f -nastring . -vcfinput -polish &amp;&amp; echo \&quot;annotation done \t$(date \&quot;+%Y-%m-%d %H:%M:%S\&quot;)\&quot;&quot;" class="sourceCode numberSource bash numberLines code-with-copy"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1"></a><span class="va">thread</span><span class="op">=</span>1</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4" data-book-role="code"><pre data-code-text="&quot;thread=1\nref=ref/references_hg38_v0_GRCh38.primary_assembly.genome.fa\ndata=data/\nsample=WXS_example\ngatk_db=ref/gatk/\nannovar=/home/huaping/software/annovar/annovar/\n###############\n# fastq QC\n################\n\n#fastq-dump SRR8381428 --split-3\n#fastqc -o fastqc/ ${data}/${sample}*.fq.gz\n#bash check_phred.sh ${data}/${sample}_1.fq.gz\n\n##Running Trimmomatic\n##Paired End Mode:\n##trimmomatic PE [-threads &lt;threads] [-phred33 | -phred64] [-trimlog &lt;logFile&gt;] &lt;input 1&gt; &lt;input 2&gt; &lt;paired output 1&gt; &lt;unpaired output 1&gt; &lt;paired output 2&gt; &lt;unpaired output 2&gt; &lt;option 1&gt;...\ntime trimmomatic PE -phred33 ${data}/${sample}_1.fq.gz ${data}/${sample}_2.fq.gz ${data}/${sample}_1.clean.fq.gz ${data}/${sample}_1.clean.unpaired.fq.gz ${data}/${sample}_2.clean.fq.gz ${data}/${sample}_2.clean.unpaired.fq.gz MINLEN:20 LEADING:20 TRAILING:20 &amp;&amp; echo \&quot;trim done\t$(date \&quot;+%Y-%m-%d %H:%M:%S\&quot;)\&quot;\n\nmkdir -p fastqc/\nfastqc -o fastqc/ ${data}/${sample}*clean.fq.gz &amp;&amp;\nmultiqc fastqc/${sample}*.zip -o fastqc &amp;&amp;  echo \&quot;QC done\t$(date \&quot;+%Y-%m-%d %H:%M:%S\&quot;)\&quot;\n\n##gatk annotation files download\n\n##################\n##alignment\n##################\nmkdir -p BAM/\n#bwa index -a bwtsw ${ref} &amp;&amp;\nbwa mem -M -Y -R &#x27;@RG\\tID:sample_1\\tSM:sample\\tLB:WES\\tPL:Illumina&#x27; ${ref} ${data}/${sample}_1.clean.fq.gz ${data}/${sample}_2.clean.fq.gz | samtools view -Sb - &gt; BAM/${sample}.bam &amp;&amp; echo \&quot;alignment done\t$(date \&quot;+%Y-%m-%d %H:%M:%S\&quot;)\&quot;\n\n#################\n#sam file preprocessing - sort and markduplicate\n#################\nsamtools sort -o BAM/${sample}.sorted.bam BAM/${sample}.bam &amp;&amp;\npicard MarkDuplicates -Xmx64g I=BAM/${sample}.sorted.bam O=BAM/${sample}.sorted.markdup.bam M=BAM/${sample}.sorted.markdup.txt &amp;&amp;\npicard BuildBamIndex -Xmx64g I=BAM/${sample}.sorted.markdup.bam &amp;&amp; echo \&quot;markduplicate done\t$(date \&quot;+%Y-%m-%d %H:%M:%S\&quot;)\&quot;\n\n#samtools faidx ${ref} &amp;&amp;\n#picard CreateSequenceDictionary R=${ref} O=${ref/\\.fa/}.dict &amp;&amp;\n\n##########################\n#BQSR\n##########################\ngatk BaseRecalibrator -R ${ref} -I BAM/${sample}.sorted.markdup.bam \\\n\t--known-sites ${gatk_db}resources_broad_hg38_v0_Mills_and_1000G_gold_standard.indels.hg38.vcf.gz \\\n\t--known-sites ${gatk_db}resources_broad_hg38_v0_Homo_sapiens_assembly38.known_indels.vcf.gz \\\n\t--known-sites ${gatk_db}resources_broad_hg38_v0_hapmap_3.3.hg38.vcf.gz \\\n\t--known-sites ${gatk_db}resources_broad_hg38_v0_Homo_sapiens_assembly38.dbsnp138.vcf \\\n\t-O BAM/${sample}.BQSR.table\ngatk ApplyBQSR -R ${ref} -I BAM/${sample}.sorted.markdup.bam -bqsr BAM/${sample}.BQSR.table -O BAM/${sample}.sorted.markdup.BQSR.bam &amp;&amp; echo \&quot;BQSR done     $(date \&quot;+%Y-%m-%d %H:%M:%S\&quot;)\&quot;\n\n###########################\n##Variant calling - haplotypecaller\n##########################\nmkdir -p VCF/\ngatk HaplotypeCaller -R ${ref} -I BAM/${sample}.sorted.markdup.BQSR.bam -O VCF/${sample}.vcf &amp;&amp; echo \&quot;variant calling done\t$(date \&quot;+%Y-%m-%d %H:%M:%S\&quot;)\&quot;\n\n\n###########################\n#Annotation -ANNOVAR\n###########################\n${annovar}table_annovar.pl VCF/${sample}.vcf ${annovar}humandb/ -buildver hg38 -out VCF/${sample} -remove -protocol refGene,cytoBand,exac03,avsnp147,dbnsfp30a -operation gx,r,f,f,f -nastring . -vcfinput -polish &amp;&amp; echo \&quot;annotation done \t$(date \&quot;+%Y-%m-%d %H:%M:%S\&quot;)\&quot;&quot;" class="sourceCode numberSource bash numberLines code-with-copy"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1"></a><span class="va">thread</span><span class="op">=</span>1</span>
 <span id="cb4-2"><a href="#cb4-2"></a><span class="va">ref</span><span class="op">=</span>ref/references_hg38_v0_GRCh38.primary_assembly.genome.fa</span>
 <span id="cb4-3"><a href="#cb4-3"></a><span class="va">data</span><span class="op">=</span>data/</span>
 <span id="cb4-4"><a href="#cb4-4"></a><span class="va">sample</span><span class="op">=</span>WXS_example</span>
@@ -987,7 +993,9 @@ P(D \mid G)=\prod_j \left( \frac{P(D_j \mid H_1)}{2} + \frac{P(D_j \mid H_2)}{2}
 <section id="src-0070-WGS-816" class="level4">
 <h4 class="anchored" data-anchor-id="src-0070-WGS-816">数据库使用案例</h4>
 <p>以实战代码中找到的一个突变为例，利用OMIM 和 COMICS数据库进行进一步查找。</p>
-<p><strong>根据结果VCF注释查找感兴趣的突变位点</strong> VCF文件中会突变所在位置（Func.refGene）、涉及的突变基因（Gene.refGene）以及功能变化（ExonicFunc.refGene），假如说从风险度比较高的突变开始查起，4号染色体的第81046034碱基从C变成了T，基因型GT=1/1，且被标注了“Func.refGene=exonic; Gene.refGene=BMP3; ExonicFunc.refGene=nonsynonymous_SNV“，即认为在BMP3基因的编码区上有非同义突变，由此可以去数据库中搜索基因BMP3的信息，查看突变是否与样本表征有相关关系。OMIM数据库中记录了基因功能、生化特征、基因关系图、相关文献等信息。右侧菜菜单栏还可以点击进入外部数据库，查看该基因的DNA 、蛋白质、临床资源、动物模型、细胞通路等信息。</p>
+<section id="topic-07-774" class="level5">
+<h5 class="anchored" data-anchor-id="topic-07-774">根据结果VCF注释查找感兴趣的突变位点</h5>
+<p>VCF文件中会突变所在位置（Func.refGene）、涉及的突变基因（Gene.refGene）以及功能变化（ExonicFunc.refGene），假如说从风险度比较高的突变开始查起，4号染色体的第81046034碱基从C变成了T，基因型GT=1/1，且被标注了“Func.refGene=exonic; Gene.refGene=BMP3; ExonicFunc.refGene=nonsynonymous_SNV“，即认为在BMP3基因的编码区上有非同义突变，由此可以去数据库中搜索基因BMP3的信息，查看突变是否与样本表征有相关关系。OMIM数据库中记录了基因功能、生化特征、基因关系图、相关文献等信息。右侧菜菜单栏还可以点击进入外部数据库，查看该基因的DNA 、蛋白质、临床资源、动物模型、细胞通路等信息。</p>
 <div id="fig-08-wgs-and-wes-006-repeat-2" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-08-wgs-and-wes-006-repeat-2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
@@ -998,7 +1006,10 @@ P(D \mid G)=\prod_j \left( \frac{P(D_j \mid H_1)}{2} + \frac{P(D_j \mid H_2)}{2}
 </figcaption>
 </figure>
 </div>
-<p><strong>根据感兴趣的基因查找相应突变位点</strong> 以癌症研究为例，关键任务是找到疾病相关的突变基因。前期大量的科研人员已经发现和总结了一些与癌症相关的基因。 COSMIC数据库中的CGC（Cancer Gene Census，https://cancer.sanger.ac.uk/census )是整理好的癌症相关基因目录，可供查询和下载。在数据库中查找目标疾病的相关基因目录，并在结果VCF文件中看是否有相关基因突变位点。</p>
+</section>
+<section id="topic-07-783" class="level5">
+<h5 class="anchored" data-anchor-id="topic-07-783">根据感兴趣的基因查找相应突变位点</h5>
+<p>以癌症研究为例，关键任务是找到疾病相关的突变基因。前期大量的科研人员已经发现和总结了一些与癌症相关的基因。 COSMIC数据库中的CGC（Cancer Gene Census，https://cancer.sanger.ac.uk/census )是整理好的癌症相关基因目录，可供查询和下载。在数据库中查找目标疾病的相关基因目录，并在结果VCF文件中看是否有相关基因突变位点。</p>
 <div id="fig-08-wgs-and-wes-008" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-08-wgs-and-wes-008-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
@@ -1041,6 +1052,7 @@ P(D \mid G)=\prod_j \left( \frac{P(D_j \mid H_1)}{2} + \frac{P(D_j \mid H_2)}{2}
 </figcaption>
 </figure>
 </div>
+</section>
 </section>
 </section>
 <section id="src-0070-WGS-840" class="level3">

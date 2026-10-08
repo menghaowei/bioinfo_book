@@ -77,7 +77,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <link href="../site_libs/quarto-html/quarto-syntax-highlighting-795e9e8eca1e12b12abcb09a27409631.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../site_libs/bootstrap/bootstrap-0e2b1bd57b654b662b916e654d4fdb64.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-2785e736d6bb3298ac36e4268fcf040f.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -1431,7 +1431,7 @@ cutadapt 去除3’端低质量序列的核心算法<br>
 保证最后得到的序列长度完全一致。</p>
 <p>参考代码及参数如下：</p>
 </div>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb8" data-book-role="code" data-focus-lines="2,5,10"><pre data-code-text="&quot;# step 1, FastQC\nfastqc -q -t 3 -o ./FastQC_result ./input.fastq\n\n# step 2, cut adapter\ncutadapt -25 -m 125 \\\n-a AGATCGGAAGAGCGTCGTGTAGGGAAAGAGTGTAGATCTCGGTGGTCGCCGTATCATT \\\n-o input_cutadapt.fq.gz input.fastq &amp;\n\n# step 3, trim\nzcat input_cutadapt.fq.gz | fastx_trimmer \\\n-f 11 -l 125 -z -o ./input_cutadapt_trim11_125.fq.gz\n\n# 经过上述3个步骤，可以获得长度统一为115bp的序列！&quot;" class="sourceCode numberSource bash numberLines code-with-copy"><code class="sourceCode bash"><span id="cb8-1"><a href="#cb8-1"></a><span class="co"># step 1, FastQC</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb8" data-book-role="code"><pre data-code-text="&quot;# step 1, FastQC\nfastqc -q -t 3 -o ./FastQC_result ./input.fastq\n\n# step 2, cut adapter\ncutadapt -25 -m 125 \\\n-a AGATCGGAAGAGCGTCGTGTAGGGAAAGAGTGTAGATCTCGGTGGTCGCCGTATCATT \\\n-o input_cutadapt.fq.gz input.fastq &amp;\n\n# step 3, trim\nzcat input_cutadapt.fq.gz | fastx_trimmer \\\n-f 11 -l 125 -z -o ./input_cutadapt_trim11_125.fq.gz\n\n# 经过上述3个步骤，可以获得长度统一为115bp的序列！&quot;" class="sourceCode numberSource bash numberLines code-with-copy"><code class="sourceCode bash"><span id="cb8-1"><a href="#cb8-1"></a><span class="co"># step 1, FastQC</span></span>
 <span id="cb8-2"><a href="#cb8-2"></a><span class="ex">fastqc</span> <span class="at">-q</span> <span class="at">-t</span> 3 <span class="at">-o</span> ./FastQC_result ./input.fastq</span>
 <span id="cb8-3"><a href="#cb8-3"></a></span>
 <span id="cb8-4"><a href="#cb8-4"></a><span class="co"># step 2, cut adapter</span></span>

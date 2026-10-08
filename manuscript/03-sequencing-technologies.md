@@ -1149,7 +1149,7 @@ fastx_trimmer主要是切掉一些fastq中你不想要的序列，比如有些�
 
 :::
 
-```{.bash .numberLines data-book-role="code" data-focus-lines="2,5,10"}
+```{.bash .numberLines data-book-role="code"}
 # step 1, FastQC
 fastqc -q -t 3 -o ./FastQC_result ./input.fastq
 

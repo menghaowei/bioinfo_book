@@ -34,7 +34,7 @@
 
 #### 简介 {#src-0070-WGS-643}
 
-**外显子**
+##### 外显子 {#topic-07-37}
 
 真核生物中编码蛋白质的基因由外显子（exon）和内含子（intron，非编码区域）组成，外显子又分为编码区域和UTR区域。转录过程中或转录后的RNA经过修饰剪切（splicing）作用，移除内含子、合并外显子，最终形成蛋白质。人类基因组中约1.1%为外显子，所有的外显子区域集合称为外显子组（exome）。80%的外显子序列长度少于200bp（Sakharkar，2004年）。研究发现，在外显子组中约85%的突变与疾病相关[1]。
 
@@ -196,7 +196,7 @@ $$ {#eq-08-wgs-and-wes-002}
 质量值校正，这一步需要用到variants的known-sites，所以需要先准备好已知的snp，indel的VCF文件：
 
 
-```{.bash .numberLines data-book-role="code" data-focus-lines="5,8"}
+```{.bash .numberLines data-book-role="code"}
 # 下载known-site的VCF文件，到Ensembl上下载
 wget -c -P Ref/mouse/mm10/vcf ftp://ftp.ensembl.org/pub/release-93/variation/vcf/mus_musculus/mus_musculus.vcf.gz >download.log &
 cd Ref/mouse/mm10/vcf && gunzip mus_musculus.vcf.gz && mv mus_musculus.vcf dbsnp_150.mm10.vcf
@@ -211,7 +211,7 @@ PharmacogenomicsDB/mouse/SAM/ERR118300.recal.table --known-sites Ref/mouse/mm10/
 **2. 质量值校准**
 
 
-```{.bash data-book-role="code" data-focus-lines="2"}
+```{.bash data-book-role="code"}
 # 质量校正
 gatk ApplyBQSR -R Ref/mouse/mm10/bwa/mm10.fa -I PharmacogenomicsDB/mouse/SAM/ERR118300.enriched.markdup.bam -bqsr \
 PharmacogenomicsDB/mouse/SAM/ERR118300.recal.table -O PharmacogenomicsDB/mouse/SAM/ERR118300.recal.bam
@@ -232,7 +232,7 @@ PharmacogenomicsDB/mouse/SAM/ERR118300.recal.table -O PharmacogenomicsDB/mouse/S
 
 
 
-**单点基因型推断** []{#src-0070-WGS-367}
+##### 单点基因型推断 {#src-0070-WGS-367}
 
 问题描述
 
@@ -459,7 +459,7 @@ $$ {#eq-08-wgs-and-wes-011}
 >
 > 则，随机从这m个基因座中抽一个，其基因型与ref一致的概率为$Pr(C)=g/m$，与ref不一致的概率为$Pr(\overline C)=1-g/m=(m-g)/m$
 
-**单体型推断** []{#src-0070-WGS-537}
+##### 单体型推断 {#src-0070-WGS-537}
 
 GATK进行SNP calling的核心算法为HaplotypeCaller，这个也是GATK中最核心的算法，理解了这个算法基本上就明白了GATK变异检测的原理
 
@@ -661,7 +661,7 @@ $$ {#eq-08-wgs-and-wes-018}
 基本的处理思路是，下机序列经过数据质控后，比对到参考序列上找到最有可能的原位置，结合现有的常见突变位点信息进行筛选，过滤得到样本个体的突变位点信息，并存储在VCF（Variant Call Format）文件中。 利用ANNOVAR软件，同样地结合前人总结的突变信息（humandb/目录下）来注释和解析检测到的个体突变位点，并探索突变与个人生理状态和疾病发展的可能联系。
 
 
-```{.bash .numberLines data-book-role="code" data-focus-lines="46,58,64"}
+```{.bash .numberLines data-book-role="code"}
 thread=1
 ref=ref/references_hg38_v0_GRCh38.primary_assembly.genome.fa
 data=data/
@@ -771,7 +771,7 @@ ${annovar}table_annovar.pl VCF/${sample}.vcf ${annovar}humandb/ -buildver hg38 -
 
 以实战代码中找到的一个突变为例，利用OMIM 和 COMICS数据库进行进一步查找。
 
-**根据结果VCF注释查找感兴趣的突变位点**
+##### 根据结果VCF注释查找感兴趣的突变位点 {#topic-07-774}
 VCF文件中会突变所在位置（Func.refGene）、涉及的突变基因（Gene.refGene）以及功能变化（ExonicFunc.refGene），假如说从风险度比较高的突变开始查起，4号染色体的第81046034碱基从C变成了T，基因型GT=1/1，且被标注了“Func.refGene=exonic; Gene.refGene=BMP3; ExonicFunc.refGene=nonsynonymous_SNV“，即认为在BMP3基因的编码区上有非同义突变，由此可以去数据库中搜索基因BMP3的信息，查看突变是否与样本表征有相关关系。OMIM数据库中记录了基因功能、生化特征、基因关系图、相关文献等信息。右侧菜菜单栏还可以点击进入外部数据库，查看该基因的DNA 、蛋白质、临床资源、动物模型、细胞通路等信息。
 
 
@@ -780,7 +780,7 @@ VCF文件中会突变所在位置（Func.refGene）、涉及的突变基因（Ge
 
 
 
-**根据感兴趣的基因查找相应突变位点**
+##### 根据感兴趣的基因查找相应突变位点 {#topic-07-783}
 以癌症研究为例，关键任务是找到疾病相关的突变基因。前期大量的科研人员已经发现和总结了一些与癌症相关的基因。 COSMIC数据库中的CGC（Cancer Gene Census，https://cancer.sanger.ac.uk/census )是整理好的癌症相关基因目录，可供查询和下载。在数据库中查找目标疾病的相关基因目录，并在结果VCF文件中看是否有相关基因突变位点。
 
 

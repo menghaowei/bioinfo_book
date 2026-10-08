@@ -77,7 +77,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <link href="site_libs/quarto-html/quarto-syntax-highlighting-795e9e8eca1e12b12abcb09a27409631.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap-0e2b1bd57b654b662b916e654d4fdb64.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-2785e736d6bb3298ac36e4268fcf040f.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -514,6 +514,7 @@ window.Quarto = {
 <section id="guide-code" class="level3 unnumbered">
 <h3 class="unnumbered anchored" data-anchor-id="guide-code">代码高亮与重点行：跟着解释读代码</h3>
 <p>代码框顶部标明语言或用途。框内不同颜色帮助辨认关键字、字符串、数字和注释；浅绿色整行背景和左侧标记指出当前需要特别关注的代码。</p>
+<p>整行底色只在有对应讲解时出现。没有整行底色的代码同样保留语法着色，可结合前后说明阅读。</p>
 <p>下面是一段 Python 示例。即使暂时不会编程，也可以先观察：以 <code>#</code> 开头的文字是注释，<code>if</code> 是关键字，引号中的文字是字符串。左侧行号用于定位；第 3 行计算总和，第 6 行计算并显示第一项所占的比例，这两行被突出显示。</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1" data-book-role="code" data-code-title="Python｜计数与比例示例" data-focus-lines="3,6"><pre data-code-text="&quot;# 三项示例计数\ncounts = [12, 18, 30]\ntotal = sum(counts)\nif total &gt; 0:\n    print(\&quot;计数总和：\&quot;, total)\n    print(\&quot;第一项所占比例：\&quot;, counts[0] / total)&quot;" class="sourceCode numberSource python numberLines code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1"></a><span class="co"># 三项示例计数</span></span>
 <span id="cb1-2"><a href="#cb1-2"></a>counts <span class="op">=</span> [<span class="dv">12</span>, <span class="dv">18</span>, <span class="dv">30</span>]</span>
@@ -545,6 +546,7 @@ ACGTACGT</code></pre>
 <li>表格：细胞与基因组成的示例矩阵，见 <a href="manuscript/11-statistics-and-learning.html#tbl-11-statistics-and-learning-01" class="quarto-xref">表&nbsp;<span>11.1</span></a> 。</li>
 </ul>
 <p>阅读较宽公式时，可以横向滚动表达式，右侧编号保持可见。较宽的表格可以在表格区域内横向滚动，表题保留在上方。阅读图表时，应同时查看图题、表题和附近的解释。</p>
+<p>小节标题下方的横线、下一级标题左侧的竖线，以及更细一级标题前的小方块，帮助辨认内容层级。图片下方居中的文字是图号和图题。正文中的上标脚注编号可点击查看章末参考信息，再点击返回箭头回到原文。</p>
 </section>
 <section id="guide-placeholders" class="level3 unnumbered">
 <h3 class="unnumbered anchored" data-anchor-id="guide-placeholders">待补提示：了解当前内容进度</h3>
