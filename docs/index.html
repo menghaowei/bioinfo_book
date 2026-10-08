@@ -21,6 +21,41 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
 </style>
 
 
@@ -42,7 +77,7 @@ ul.task-list li input[type="checkbox"] {
 <link href="site_libs/quarto-html/quarto-syntax-highlighting-795e9e8eca1e12b12abcb09a27409631.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap-0e2b1bd57b654b662b916e654d4fdb64.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-2785e736d6bb3298ac36e4268fcf040f.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -71,6 +106,35 @@ ul.task-list li input[type="checkbox"] {
 }</script>
 <style>html{ scroll-behavior: smooth; }</style>
 
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script src="vendor/mathjax/tex-chtml.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
 
 <link rel="stylesheet" href="styles/book.css">
 </head>
@@ -216,6 +280,18 @@ ul.task-list li input[type="checkbox"] {
   <ul class="collapse">
   <li><a href="#全书章节" id="toc-全书章节" class="nav-link" data-scroll-target="#全书章节">全书章节</a></li>
   <li><a href="#怎样使用这本书" id="toc-怎样使用这本书" class="nav-link" data-scroll-target="#怎样使用这本书">怎样使用这本书</a></li>
+  <li><a href="#guide-highlights" id="toc-guide-highlights" class="nav-link" data-scroll-target="#guide-highlights">认识本书的高亮与阅读标记</a>
+  <ul class="collapse">
+  <li><a href="#guide-core" id="toc-guide-core" class="nav-link" data-scroll-target="#guide-core">核心知识：先理解这个概念</a></li>
+  <li><a href="#guide-warning" id="toc-guide-warning" class="nav-link" data-scroll-target="#guide-warning">注意事项：核对条件与常见错误</a></li>
+  <li><a href="#guide-example" id="toc-guide-example" class="nav-link" data-scroll-target="#guide-example">示例与练习：把概念用起来</a></li>
+  <li><a href="#guide-extension" id="toc-guide-extension" class="nav-link" data-scroll-target="#guide-extension">拓展阅读：按需深入了解</a></li>
+  <li><a href="#guide-inline" id="toc-guide-inline" class="nav-link" data-scroll-target="#guide-inline">正文强调与引用：辨认文字的用途</a></li>
+  <li><a href="#guide-code" id="toc-guide-code" class="nav-link" data-scroll-target="#guide-code">代码高亮与重点行：跟着解释读代码</a></li>
+  <li><a href="#guide-code-roles" id="toc-guide-code-roles" class="nav-link" data-scroll-target="#guide-code-roles">输出、数据与伪代码：先看标签，再读内容</a></li>
+  <li><a href="#guide-references" id="toc-guide-references" class="nav-link" data-scroll-target="#guide-references">公式与图表：通过编号定位</a></li>
+  <li><a href="#guide-placeholders" id="toc-guide-placeholders" class="nav-link" data-scroll-target="#guide-placeholders">待补提示：了解当前内容进度</a></li>
+  </ul></li>
   <li><a href="#编写团队与致谢" id="toc-编写团队与致谢" class="nav-link" data-scroll-target="#编写团队与致谢">编写团队与致谢</a></li>
   </ul></li>
   </ul>
@@ -286,12 +362,198 @@ ul.task-list li input[type="checkbox"] {
 <p>第一次接触生物信息学时，可以按章节顺序阅读。已有命令行和编程基础的读者，可以从第 3—4 章核对概念，再进入自己关心的实战。第 1 章作为全书前言；从第 2 章起，各章先用“本章提要”介绍目标和内容。</p>
 <p>实战中遇到统计概念时，可以回看<a href="./manuscript/11-statistics-and-learning.html">第 11 章</a>。原有 25 道基础问题及讲解已按主题并入正文，作为相关小节的知识问答；参考资料与素材说明集中放在附录。</p>
 <p>宽屏同时显示全书目录、正文和本章目录。普通桌面保留右侧“本章目录”，点击顶部“全书目录”可打开章节列表；窄屏通过顶部按钮分别打开两种目录。目录标题均为单行显示，较长标题可以在目录内横向滚动查看。点击“搜索”可以检索全书正文。</p>
-<p>正文中的浅绿色框标出核心知识，浅黄色框提醒常见问题，浅蓝色框呈现示例与练习；灰色拓展阅读默认收起，可按需展开。公式、图和表按章编号，正文中的编号链接可跳转到对应位置。较宽公式可横向滚动，右侧编号保持可见。</p>
-<p>代码框标注语言，并提供“复制”和“展开代码”按钮；长代码带有行号，部分关键行使用浅绿色背景。复制内容不含界面行号。输出、数据和伪代码另有标签，阅读时请结合上下文区分。命令保留原有换行，较长的行可在框内横向滚动。</p>
+</section>
+<section id="guide-highlights" class="level2 unnumbered">
+<h2 class="unnumbered anchored" data-anchor-id="guide-highlights">认识本书的高亮与阅读标记</h2>
+<p>本书用不同的框和文字样式提示内容的用途。下面用一组简单的例子展示它们的实际效果；遇到相同标记时，可以按这里的提示阅读。</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>阅读标记</th>
+<th>表示什么</th>
+<th>阅读建议</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>浅绿色核心知识框</td>
+<td>重要定义、原理或结论</td>
+<td>理解后再继续阅读</td>
+</tr>
+<tr class="even">
+<td>浅黄色注意框</td>
+<td>常见错误、限制条件或易混概念</td>
+<td>留意条件，结合自己的问题核对</td>
+</tr>
+<tr class="odd">
+<td>浅蓝色示例与练习框</td>
+<td>算例、操作步骤或练习</td>
+<td>先尝试，再对照解释</td>
+</tr>
+<tr class="even">
+<td>灰色拓展阅读框</td>
+<td>补充背景和进阶解释</td>
+<td>按需点击展开</td>
+</tr>
+<tr class="odd">
+<td>加粗、斜体与行内代码</td>
+<td>重点词、轻量强调及代码相关名称</td>
+<td>结合上下文辨认用途</td>
+</tr>
+<tr class="even">
+<td>引用块</td>
+<td>引用的文字</td>
+<td>结合来源理解原意</td>
+</tr>
+<tr class="odd">
+<td>代码框中的颜色与重点行</td>
+<td>代码结构和本段讲解的重点</td>
+<td>先看语言标签，再读解释</td>
+</tr>
+<tr class="even">
+<td>输出、数据与伪代码框</td>
+<td>运行结果、数据内容或分析思路</td>
+<td>根据标签区分用途</td>
+</tr>
+<tr class="odd">
+<td>灰色待补提示</td>
+<td>尚未完成的内容</td>
+<td>了解当前缺口，继续阅读已有部分</td>
+</tr>
+</tbody>
+</table>
+<section id="guide-core" class="level3 unnumbered">
+<h3 class="unnumbered anchored" data-anchor-id="guide-core">核心知识：先理解这个概念</h3>
+<p>浅绿色框用于突出重要定义、原理和结论。读到这里时，可以停下来，用自己的话复述其中的意思。</p>
+<div class="book-core callout callout-style-default callout-note callout-titled" title="核心知识｜比例的含义">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">注记</span>核心知识｜比例的含义
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p><strong>比例</strong>表示某一部分在整体中所占的份额。例如，三项计数分别为 12、18、30，总和为 60；第一项所占的比例是 <span class="math inline">\(12 / 60 = 0.2\)</span>，也就是 20%。</p>
+</div>
+</div>
+</section>
+<section id="guide-warning" class="level3 unnumbered">
+<h3 class="unnumbered anchored" data-anchor-id="guide-warning">注意事项：核对条件与常见错误</h3>
+<p>浅黄色框提醒容易忽略的条件、常见错误或容易混淆的概念。使用相应方法前，先确认提醒是否适用于自己的情况。</p>
+<div class="book-warning callout callout-style-default callout-warning callout-titled" title="注意｜比较比例前先看分母">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">警告</span>注意｜比较比例前先看分母
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>看到“20%”时，要确认它表示哪一部分占哪个整体。比较两个比例之前，应先核对两者的统计范围。</p>
+</div>
+</div>
+</section>
+<section id="guide-example" class="level3 unnumbered">
+<h3 class="unnumbered anchored" data-anchor-id="guide-example">示例与练习：把概念用起来</h3>
+<p>浅蓝色框提供算例、操作示例或练习。可以先独立思考，再对照其中的步骤和参考解答。</p>
+<div class="book-example callout callout-style-default callout-tip callout-titled" title="示例与练习｜计算第二项的比例">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">提示</span>示例与练习｜计算第二项的比例
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>三项计数分别为 12、18、30。第二项占总和的多少？</p>
+<p><strong>参考解答：</strong> 总和为 60，第二项所占比例为 <span class="math inline">\(18 / 60 = 0.3\)</span>，即 30%。</p>
+</div>
+</div>
+</section>
+<section id="guide-extension" class="level3 unnumbered">
+<h3 class="unnumbered anchored" data-anchor-id="guide-extension">拓展阅读：按需深入了解</h3>
+<p>灰色拓展框提供补充背景或进阶解释，默认收起。点击下面的标题可以展开阅读，再次点击可以收起。</p>
+<div class="book-extension callout callout-style-default callout-note callout-titled" title="拓展阅读｜相同的比例可以对应不同的数量">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-4-contents" aria-controls="callout-4" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">注记</span>拓展阅读｜相同的比例可以对应不同的数量
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-4" class="callout-4-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p><span class="math inline">\(12 / 60\)</span> 和 <span class="math inline">\(120 / 600\)</span> 都等于 20%。因此，解释一个比例时，同时了解对应的实际数量，有助于看清数据的背景。</p>
+</div>
+</div>
+</div>
+</section>
+<section id="guide-inline" class="level3 unnumbered">
+<h3 class="unnumbered anchored" data-anchor-id="guide-inline">正文强调与引用：辨认文字的用途</h3>
+<ul>
+<li><strong>加粗</strong>标出需要留意的词语或结论，例如：比较数据之前，先确认<strong>比较对象和统计范围</strong>。</li>
+<li><em>斜体</em>用于轻量强调，例如：<em>先写下自己的判断，再阅读解答。</em></li>
+<li><code>行内代码</code>用于软件名、命令、参数、变量和文件名，例如 <code>Python</code>、<code>counts</code> 和 <code>sample.fastq.gz</code>，方便与普通叙述区分。</li>
+</ul>
+<p>左侧带竖线的引用块用于呈现引用文字，阅读时应结合来源理解。以下引用本页开头的阅读主张：</p>
+<blockquote class="blockquote">
+<p>先理解问题，再理解数据。</p>
+</blockquote>
+</section>
+<section id="guide-code" class="level3 unnumbered">
+<h3 class="unnumbered anchored" data-anchor-id="guide-code">代码高亮与重点行：跟着解释读代码</h3>
+<p>代码框顶部标明语言或用途。框内不同颜色帮助辨认关键字、字符串、数字和注释；浅绿色整行背景和左侧标记指出当前需要特别关注的代码。</p>
+<p>下面是一段 Python 示例。即使暂时不会编程，也可以先观察：以 <code>#</code> 开头的文字是注释，<code>if</code> 是关键字，引号中的文字是字符串。左侧行号用于定位；第 3 行计算总和，第 6 行计算并显示第一项所占的比例，这两行被突出显示。</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1" data-book-role="code" data-code-title="Python｜计数与比例示例" data-focus-lines="3,6"><pre data-code-text="&quot;# 三项示例计数\ncounts = [12, 18, 30]\ntotal = sum(counts)\nif total &gt; 0:\n    print(\&quot;计数总和：\&quot;, total)\n    print(\&quot;第一项所占比例：\&quot;, counts[0] / total)&quot;" class="sourceCode numberSource python numberLines code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1"></a><span class="co"># 三项示例计数</span></span>
+<span id="cb1-2"><a href="#cb1-2"></a>counts <span class="op">=</span> [<span class="dv">12</span>, <span class="dv">18</span>, <span class="dv">30</span>]</span>
+<span id="cb1-3"><a href="#cb1-3"></a>total <span class="op">=</span> <span class="bu">sum</span>(counts)</span>
+<span id="cb1-4"><a href="#cb1-4"></a><span class="cf">if</span> total <span class="op">&gt;</span> <span class="dv">0</span>:</span>
+<span id="cb1-5"><a href="#cb1-5"></a>    <span class="bu">print</span>(<span class="st">"计数总和："</span>, total)</span>
+<span id="cb1-6"><a href="#cb1-6"></a>    <span class="bu">print</span>(<span class="st">"第一项所占比例："</span>, counts[<span class="dv">0</span>] <span class="op">/</span> total)</span></code></pre></div><button title="复制到剪贴板" class="code-copy-button"><i class="bi"></i></button></div>
+<p>可以点击“复制”取得代码，复制结果保留代码本身的缩进和换行，不含界面行号；点击“展开代码”可放大阅读，点击“关闭”或按 Escape 返回。较长的行可在代码框内横向滚动。行号和重点行按讲解需要设置，并非每段代码都有。</p>
+</section>
+<section id="guide-code-roles" class="level3 unnumbered">
+<h3 class="unnumbered anchored" data-anchor-id="guide-code-roles">输出、数据与伪代码：先看标签，再读内容</h3>
+<p><strong>输出</strong>表示程序运行后显示的结果。上面的 Python 示例会输出：</p>
+<pre data-code-text="&quot;计数总和： 60\n第一项所占比例： 0.2&quot;" class="text" data-book-role="output"><code>计数总和： 60
+第一项所占比例： 0.2</code></pre>
+<p><strong>数据 / 文本</strong>表示输入文件或数据片段。例如，下面是一个简短的 FASTA 格式示例：第一行以 <code>&gt;</code> 开头，给出序列名称，下一行是序列内容。</p>
+<pre data-code-text="&quot;&gt;example_sequence\nACGTACGT&quot;" class="text" data-book-role="data"><code>&gt;example_sequence
+ACGTACGT</code></pre>
+<p><strong>伪代码</strong>用接近自然语言的方式描述步骤，帮助理解分析思路；实际执行时需要转换为相应的程序或命令。</p>
+<pre data-code-text="&quot;读取三项计数\n计算计数总和\n如果总和大于零，计算各项所占比例&quot;" class="text" data-book-role="pseudocode"><code>读取三项计数
+计算计数总和
+如果总和大于零，计算各项所占比例</code></pre>
+</section>
+<section id="guide-references" class="level3 unnumbered">
+<h3 class="unnumbered anchored" data-anchor-id="guide-references">公式与图表：通过编号定位</h3>
+<p>正文中的公式、图和表按章编号，编号链接可以跳转到对应位置。可以试着点击以下实例，读完后返回或切回本页继续阅读：</p>
+<ul>
+<li>公式：比对质量的计算方式，见 <a href="manuscript/04-sequence-alignment.html#eq-mapq-definition" class="quarto-xref">公式&nbsp;<span>4.1</span></a> 。</li>
+<li>图片：示例数据的原始分布，见 <a href="manuscript/11-statistics-and-learning.html#fig-05-statistics-and-exploration-001" class="quarto-xref">图&nbsp;<span>11.1</span></a> 。</li>
+<li>表格：细胞与基因组成的示例矩阵，见 <a href="manuscript/11-statistics-and-learning.html#tbl-11-statistics-and-learning-01" class="quarto-xref">表&nbsp;<span>11.1</span></a> 。</li>
+</ul>
+<p>阅读较宽公式时，可以横向滚动表达式，右侧编号保持可见。阅读图表时，应同时查看图题、表题和附近的解释。</p>
+</section>
+<section id="guide-placeholders" class="level3 unnumbered">
+<h3 class="unnumbered anchored" data-anchor-id="guide-placeholders">待补提示：了解当前内容进度</h3>
+<p>左侧带细线的灰色提示表示内容尚待补充。看到这类提示时，可以先阅读已有部分；下面这条说明本书当前的修订进度。</p>
 <div class="book-placeholder">
 <p>本书共有十二章、79 个编号小节，另有 11 段不编号的本章提要和一个参考资料附录，目前仍在持续修订。已有原稿的详细讲解尽量保留，尚缺的内容以简短占位提示标出。碱基不平衡测序、单细胞与空间组学、工作流、AI 及部分统计教学仍需补写。</p>
-<p>网页构建已经与分析代码执行分离。页面中的历史实战命令保留教学上下文，但尚未逐条在统一数据和环境中运行验收。</p>
+<p>正文中的历史实战命令保留教学上下文，但尚未逐条在统一数据和环境中运行验收。实际操作时，请结合所在章节说明的数据、软件环境和参数使用。</p>
 </div>
+</section>
 </section>
 <section id="编写团队与致谢" class="level2 unnumbered">
 <h2 class="unnumbered anchored" data-anchor-id="编写团队与致谢">编写团队与致谢</h2>
