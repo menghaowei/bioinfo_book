@@ -39,23 +39,22 @@ ul.task-list li input[type="checkbox"] {
 <script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="../site_libs/quarto-html/anchor.min.js"></script>
 <link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting-ed96de9b727972fe78a7b5d16c58bf87.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-795e9e8eca1e12b12abcb09a27409631.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../site_libs/bootstrap/bootstrap-a8449e8f115e2c9741b1edc410d84446.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-2785e736d6bb3298ac36e4268fcf040f.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
   "collapse-after": 3,
   "panel-placement": "start",
-  "type": "textbox",
+  "type": "overlay",
   "limit": 50,
   "keyboard-shortcut": [
     "f",
     "/",
     "s"
   ],
-  "show-item-context": false,
   "language": {
     "search-no-results-text": "没有结果",
     "search-matching-documents-text": "匹配的文档",
@@ -101,13 +100,11 @@ ul.task-list li input[type="checkbox"] {
     <div class="pt-lg-2 mt-2 text-left sidebar-header">
     <div class="sidebar-title mb-0 py-0">
       <a href="../">AI时代生信入门</a> 
+        <div class="sidebar-tools-main">
+    <div id="quarto-search" class="quarto-navigation-tool px-1" title="搜索"></div>
+</div>
     </div>
       </div>
-        <div class="mt-2 flex-shrink-0 align-items-center">
-        <div class="sidebar-search">
-        <div id="quarto-search" class="" title="搜索"></div>
-        </div>
-        </div>
     <div class="sidebar-menu-container"> 
     <ul class="list-unstyled mt-1">
         <li class="sidebar-item">
@@ -216,14 +213,23 @@ ul.task-list li input[type="checkbox"] {
    
   <ul>
   <li><a href="#chapter-summary-09" id="toc-chapter-summary-09" class="nav-link active" data-scroll-target="#chapter-summary-09">本章提要</a></li>
-  <li><a href="#sec-09-01" id="toc-sec-09-01" class="nav-link" data-scroll-target="#sec-09-01"><span class="header-section-number">9.1</span> 从组织平均到细胞差异与空间位置：研究问题与数据结构</a></li>
+  <li><a href="#sec-09-01" id="toc-sec-09-01" class="nav-link" data-scroll-target="#sec-09-01"><span class="header-section-number">9.1</span> 从组织平均到细胞差异与空间位置：研究问题与数据结构</a>
+  <ul class="collapse">
+  <li><a href="#src-0050-RNA-seq-56" id="toc-src-0050-RNA-seq-56" class="nav-link" data-scroll-target="#src-0050-RNA-seq-56">单细胞RNA-seq</a></li>
+  </ul></li>
   <li><a href="#sec-09-02" id="toc-sec-09-02" class="nav-link" data-scroll-target="#sec-09-02"><span class="header-section-number">9.2</span> 单细胞数据的质控：细胞、基因、双细胞与背景信号</a></li>
   <li><a href="#sec-09-03" id="toc-sec-09-03" class="nav-link" data-scroll-target="#sec-09-03"><span class="header-section-number">9.3</span> 归一化、特征选择、降维与聚类</a></li>
   <li><a href="#sec-09-04" id="toc-sec-09-04" class="nav-link" data-scroll-target="#sec-09-04"><span class="header-section-number">9.4</span> 细胞类型注释与证据核查</a></li>
   <li><a href="#sec-09-05" id="toc-sec-09-05" class="nav-link" data-scroll-target="#sec-09-05"><span class="header-section-number">9.5</span> 多样本比较：批次、重复与差异分析</a></li>
-  <li><a href="#sec-09-06" id="toc-sec-09-06" class="nav-link" data-scroll-target="#sec-09-06"><span class="header-section-number">9.6</span> 空间转录组的技术、数据结构与质量控制</a></li>
+  <li><a href="#sec-09-06" id="toc-sec-09-06" class="nav-link" data-scroll-target="#sec-09-06"><span class="header-section-number">9.6</span> 空间转录组的技术、数据结构与质量控制</a>
+  <ul class="collapse">
+  <li><a href="#src-0050-RNA-seq-81" id="toc-src-0050-RNA-seq-81" class="nav-link" data-scroll-target="#src-0050-RNA-seq-81">其他转录组测序</a></li>
+  </ul></li>
   <li><a href="#sec-09-07" id="toc-sec-09-07" class="nav-link" data-scroll-target="#sec-09-07"><span class="header-section-number">9.7</span> 空间表达可视化、组织区域与结果解释</a></li>
-  <li><a href="#sec-09-08" id="toc-sec-09-08" class="nav-link" data-scroll-target="#sec-09-08"><span class="header-section-number">9.8</span> 单细胞与空间信息的结合、完整案例与常见误区</a></li>
+  <li><a href="#sec-09-08" id="toc-sec-09-08" class="nav-link" data-scroll-target="#sec-09-08"><span class="header-section-number">9.8</span> 单细胞与空间信息的结合、完整案例与常见误区</a>
+  <ul class="collapse">
+  <li><a href="#src-0050-RNA-seq-1182" id="toc-src-0050-RNA-seq-1182" class="nav-link" data-scroll-target="#src-0050-RNA-seq-1182">单细胞RNA-seq</a></li>
+  </ul></li>
   </ul>
 </nav>
     </div>
@@ -255,10 +261,10 @@ ul.task-list li input[type="checkbox"] {
 </section>
 <section id="sec-09-01" class="level2" data-number="9.1">
 <h2 data-number="9.1" class="anchored" data-anchor-id="sec-09-01"><span class="header-section-number">9.1</span> 从组织平均到细胞差异与空间位置：研究问题与数据结构</h2>
-<section id="src-0050-RNA-seq-56" class="level4">
-<h4 class="anchored" data-anchor-id="src-0050-RNA-seq-56">单细胞RNA-seq</h4>
+<section id="src-0050-RNA-seq-56" class="level3">
+<h3 class="anchored" data-anchor-id="src-0050-RNA-seq-56">单细胞RNA-seq</h3>
 <p>前面转录组测序，研究对象都是对多个细胞混合的RNA进行测序，针对的是某一个组织、器官、甚至生物体（例如小型昆虫等），检测到的基因表达情况是所有细胞表达均值。而单细胞测序可以对每一个细胞单独测序，这对发育、肿瘤异质性、微小组织等研究十分重要，单细胞测序已成为目前热门的生命科学技术之一。</p>
-<p>单细胞测序是目前的热门技术之一，单细胞测序不仅可以对样本中每个细胞进行转录组测序，还可以进行基因组测序、DNA甲基化测序和ATAC-seq测序。目前得到最广泛应用的单细胞测序平台是10X genomics单细胞平台和BD Rhapsody平台，分别基于DROP-seq技术<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a>和Cyto-seq技术<a href="#fn2" class="footnote-ref" id="fnref2" role="doc-noteref"><sup>2</sup></a><a href="#fn3" class="footnote-ref" id="fnref3" role="doc-noteref"><sup>3</sup></a>（<a href="#fig-06-rna-seq-002" class="quarto-xref">图&nbsp;<span>9.1</span></a>）。</p>
+<p>单细胞测序是目前的热门技术之一，单细胞测序不仅可以对样本中每个细胞进行转录组测序，还可以进行基因组测序、DNA甲基化测序和ATAC-seq测序。目前得到最广泛应用的单细胞测序平台是10X genomics单细胞平台和BD Rhapsody平台，分别基于DROP-seq技术<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a>和Cyto-seq技术<a href="#fn2" class="footnote-ref" id="fnref2" role="doc-noteref"><sup>2</sup></a><a href="#fn3" class="footnote-ref" id="fnref3" role="doc-noteref"><sup>3</sup></a>（<a href="#fig-06-rna-seq-002" class="quarto-xref">图&nbsp;<span>9.1</span></a> ）。</p>
 <div id="fig-06-rna-seq-002" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-06-rna-seq-002-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
@@ -284,74 +290,64 @@ ul.task-list li input[type="checkbox"] {
 <li>在微磁珠里完成细胞裂解、反转录、扩增等。</li>
 </ol>
 <p>两者后续的建库、测序是几乎一样的流程，单次捕获的细胞数量都可以达到很好的通量，在3,000至10,000之间，差距不大。</p>
-<div class="callout callout-style-default callout-note callout-titled" title="待完善">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-<span class="screen-reader-only">注记</span>待完善
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p>本节的系统讲解、示例数据、分析代码和结果核验待补充。</p>
-</div>
+<div class="book-placeholder">
+<p>本节内容待补充。</p>
 </div>
 </section>
 </section>
 <section id="sec-09-02" class="level2" data-number="9.2">
 <h2 data-number="9.2" class="anchored" data-anchor-id="sec-09-02"><span class="header-section-number">9.2</span> 单细胞数据的质控：细胞、基因、双细胞与背景信号</h2>
-<p>待完善</p>
+<div class="book-placeholder">
+<p>本节内容待补充。</p>
+</div>
 </section>
 <section id="sec-09-03" class="level2" data-number="9.3">
 <h2 data-number="9.3" class="anchored" data-anchor-id="sec-09-03"><span class="header-section-number">9.3</span> 归一化、特征选择、降维与聚类</h2>
-<p>待完善</p>
+<div class="book-placeholder">
+<p>本节内容待补充。</p>
+</div>
 </section>
 <section id="sec-09-04" class="level2" data-number="9.4">
 <h2 data-number="9.4" class="anchored" data-anchor-id="sec-09-04"><span class="header-section-number">9.4</span> 细胞类型注释与证据核查</h2>
-<p>待完善</p>
+<div class="book-placeholder">
+<p>本节内容待补充。</p>
+</div>
 </section>
 <section id="sec-09-05" class="level2" data-number="9.5">
 <h2 data-number="9.5" class="anchored" data-anchor-id="sec-09-05"><span class="header-section-number">9.5</span> 多样本比较：批次、重复与差异分析</h2>
-<p>待完善</p>
+<div class="book-placeholder">
+<p>本节内容待补充。</p>
+</div>
 </section>
 <section id="sec-09-06" class="level2" data-number="9.6">
 <h2 data-number="9.6" class="anchored" data-anchor-id="sec-09-06"><span class="header-section-number">9.6</span> 空间转录组的技术、数据结构与质量控制</h2>
-<section id="src-0050-RNA-seq-81" class="level4">
-<h4 class="anchored" data-anchor-id="src-0050-RNA-seq-81">其他转录组测序</h4>
+<section id="src-0050-RNA-seq-81" class="level3">
+<h3 class="anchored" data-anchor-id="src-0050-RNA-seq-81">其他转录组测序</h3>
 <p>随着技术的发展，转录组测序也发展出了更多的测序技术。</p>
-<section id="src-0050-RNA-seq-91" class="level5">
-<h5 class="anchored" data-anchor-id="src-0050-RNA-seq-91">空间转录组测序（Spatial Transcritome sequencing）<a href="#fn4" class="footnote-ref" id="fnref4" role="doc-noteref"><sup>4</sup></a></h5>
+<section id="src-0050-RNA-seq-91" class="level4">
+<h4 class="anchored" data-anchor-id="src-0050-RNA-seq-91">空间转录组测序（Spatial Transcritome sequencing）<a href="#fn4" class="footnote-ref" id="fnref4" role="doc-noteref"><sup>4</sup></a></h4>
 <p>普通的RNA测序，包括单细胞RNA测序都无法提供组织内部空间不同位置的转录组信息，空间转录组测序在获取转录组信息的同时还加入了空间位置信息。将待研究的组织制作为冰冻切片，转移到组织透化芯片上，不同组织区域的RNA信息释放到芯片上的小孔中，对这些RNA进行测序即可获得各个空间位置的转录组信息。空间转录组并不是单细胞转录组测序的升级，因为芯片上的小孔捕获的通常是多个细胞，二者能够形成较好的互补，可能会成为未来的热门技术。</p>
 </section>
-<section id="src-0050-RNA-seq-95" class="level5">
-<h5 class="anchored" data-anchor-id="src-0050-RNA-seq-95">链特异RNA-Seq</h5>
+<section id="src-0050-RNA-seq-95" class="level4">
+<h4 class="anchored" data-anchor-id="src-0050-RNA-seq-95">链特异RNA-Seq</h4>
 <p>在RNA测序的建库过程中，会丢失RNA链信息，即RNA是来自基因组上哪一条DNA链。然而在基因组中，有许多基因是重叠出现在同一个区域的正负链位置的。要想解决这一问题，就需要获得链特异的RNA-Seq数据，可以采取lillumina RNA ligation method、dUTP method、RT method。</p>
 <p>此外，通过对RNA技术的改进可以进行转录起始位点的鉴定：GRO-Seq、NET-Seq和SLAM-Seq；翻译效率的测定：Ribosome footprint；RNA二级结构的测定：PARS、SHAPE-Seq和SHAPE-Map；以及RNA 结合蛋白位点的测定CLIP-seq 。</p>
-<div class="callout callout-style-default callout-note callout-titled" title="待完善">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-<span class="screen-reader-only">注记</span>待完善
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p>本节的系统讲解、示例数据、分析代码和结果核验待补充。</p>
-</div>
+<div class="book-placeholder">
+<p>本节内容待补充。</p>
 </div>
 </section>
 </section>
 </section>
 <section id="sec-09-07" class="level2" data-number="9.7">
 <h2 data-number="9.7" class="anchored" data-anchor-id="sec-09-07"><span class="header-section-number">9.7</span> 空间表达可视化、组织区域与结果解释</h2>
-<p>待完善</p>
+<div class="book-placeholder">
+<p>本节内容待补充。</p>
+</div>
 </section>
 <section id="sec-09-08" class="level2" data-number="9.8">
 <h2 data-number="9.8" class="anchored" data-anchor-id="sec-09-08"><span class="header-section-number">9.8</span> 单细胞与空间信息的结合、完整案例与常见误区</h2>
-<section id="src-0050-RNA-seq-1182" class="level4">
-<h4 class="anchored" data-anchor-id="src-0050-RNA-seq-1182">单细胞RNA-seq</h4>
+<section id="src-0050-RNA-seq-1182" class="level3">
+<h3 class="anchored" data-anchor-id="src-0050-RNA-seq-1182">单细胞RNA-seq</h3>
 <div id="fig-06-rna-seq-009" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-06-rna-seq-009-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
@@ -362,7 +358,9 @@ ul.task-list li input[type="checkbox"] {
 </figcaption>
 </figure>
 </div>
-<p>待完善</p>
+<div class="book-placeholder">
+<p>本节内容待补充。</p>
+</div>
 
 
 </section>
@@ -378,8 +376,14 @@ ul.task-list li input[type="checkbox"] {
 </section>
 
 </main> <!-- /main -->
+<div class="book-toolbar" role="navigation" aria-label="阅读工具">
+  <span class="book-brand">AI时代生信入门</span>
+  <button class="book-chapters-button" type="button" aria-controls="quarto-sidebar" aria-expanded="false">全书目录</button>
+  <button class="book-toc-button" type="button" aria-controls="quarto-margin-sidebar" aria-expanded="false">本章目录</button>
+  <button class="book-search-button" type="button">搜索</button>
+</div>
+<button class="book-shade" type="button" aria-label="关闭目录" hidden=""></button>
 <button class="back-top" aria-label="回到顶部" title="回到顶部" onclick="window.scrollTo({top:0,behavior:'smooth'})">↑</button>
-
 <script id="quarto-html-after-body" type="application/javascript">
   window.document.addEventListener("DOMContentLoaded", function (event) {
     const icon = "";
@@ -816,4 +820,5 @@ ul.task-list li input[type="checkbox"] {
 
 
 <script src="../site_libs/quarto-html/zenscroll-min.js"></script>
+<script src="../styles/reading.js"></script>
 </body></html>

@@ -74,23 +74,22 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="../site_libs/quarto-html/anchor.min.js"></script>
 <link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting-ed96de9b727972fe78a7b5d16c58bf87.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-795e9e8eca1e12b12abcb09a27409631.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../site_libs/bootstrap/bootstrap-a8449e8f115e2c9741b1edc410d84446.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-2785e736d6bb3298ac36e4268fcf040f.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
   "collapse-after": 3,
   "panel-placement": "start",
-  "type": "textbox",
+  "type": "overlay",
   "limit": 50,
   "keyboard-shortcut": [
     "f",
     "/",
     "s"
   ],
-  "show-item-context": false,
   "language": {
     "search-no-results-text": "没有结果",
     "search-matching-documents-text": "匹配的文档",
@@ -165,13 +164,11 @@ window.Quarto = {
     <div class="pt-lg-2 mt-2 text-left sidebar-header">
     <div class="sidebar-title mb-0 py-0">
       <a href="../">AI时代生信入门</a> 
+        <div class="sidebar-tools-main">
+    <div id="quarto-search" class="quarto-navigation-tool px-1" title="搜索"></div>
+</div>
     </div>
       </div>
-        <div class="mt-2 flex-shrink-0 align-items-center">
-        <div class="sidebar-search">
-        <div id="quarto-search" class="" title="搜索"></div>
-        </div>
-        </div>
     <div class="sidebar-menu-container"> 
     <ul class="list-unstyled mt-1">
         <li class="sidebar-item">
@@ -286,12 +283,29 @@ window.Quarto = {
   <li><a href="#src-0070-WGS-3" id="toc-src-0070-WGS-3" class="nav-link" data-scroll-target="#src-0070-WGS-3">全基因组测序(WGS)</a></li>
   <li><a href="#src-0070-WGS-639" id="toc-src-0070-WGS-639" class="nav-link" data-scroll-target="#src-0070-WGS-639">全外显子组测序（WES）</a></li>
   </ul></li>
-  <li><a href="#sec-07-02" id="toc-sec-07-02" class="nav-link" data-scroll-target="#sec-07-02"><span class="header-section-number">7.2</span> 示例数据、参考资源与覆盖设计</a></li>
-  <li><a href="#sec-07-03" id="toc-sec-07-03" class="nav-link" data-scroll-target="#sec-07-03"><span class="header-section-number">7.3</span> DNA比对与变异检测前处理</a></li>
-  <li><a href="#sec-07-04" id="toc-sec-07-04" class="nav-link" data-scroll-target="#sec-07-04"><span class="header-section-number">7.4</span> 基因型似然与局部单倍型重组装</a></li>
-  <li><a href="#sec-07-05" id="toc-sec-07-05" class="nav-link" data-scroll-target="#sec-07-05"><span class="header-section-number">7.5</span> 单样本调用、gVCF与联合分型</a></li>
+  <li><a href="#sec-07-02" id="toc-sec-07-02" class="nav-link" data-scroll-target="#sec-07-02"><span class="header-section-number">7.2</span> 示例数据、参考资源与覆盖设计</a>
+  <ul class="collapse">
+  <li><a href="#src-0070-WGS-679" id="toc-src-0070-WGS-679" class="nav-link" data-scroll-target="#src-0070-WGS-679">全外显子组测序的覆盖度与测序深度</a></li>
+  </ul></li>
+  <li><a href="#sec-07-03" id="toc-sec-07-03" class="nav-link" data-scroll-target="#sec-07-03"><span class="header-section-number">7.3</span> DNA比对与变异检测前处理</a>
+  <ul class="collapse">
+  <li><a href="#src-0070-WGS-287" id="toc-src-0070-WGS-287" class="nav-link" data-scroll-target="#src-0070-WGS-287">碱基质量校正</a></li>
+  </ul></li>
+  <li><a href="#sec-07-04" id="toc-sec-07-04" class="nav-link" data-scroll-target="#sec-07-04"><span class="header-section-number">7.4</span> 基因型似然与局部单倍型重组装</a>
+  <ul class="collapse">
+  <li><a href="#src-0070-WGS-363" id="toc-src-0070-WGS-363" class="nav-link" data-scroll-target="#src-0070-WGS-363">使用GATK鉴定SNV/SNP位点</a></li>
+  </ul></li>
+  <li><a href="#sec-07-05" id="toc-sec-07-05" class="nav-link" data-scroll-target="#sec-07-05"><span class="header-section-number">7.5</span> 单样本调用、gVCF与联合分型</a>
+  <ul class="collapse">
+  <li><a href="#src-0070-WGS-701" id="toc-src-0070-WGS-701" class="nav-link" data-scroll-target="#src-0070-WGS-701">全外显子组数据分析实战</a></li>
+  </ul></li>
   <li><a href="#sec-07-06" id="toc-sec-07-06" class="nav-link" data-scroll-target="#sec-07-06"><span class="header-section-number">7.6</span> VCF解读、过滤与质量评估</a></li>
-  <li><a href="#sec-07-07" id="toc-sec-07-07" class="nav-link" data-scroll-target="#sec-07-07"><span class="header-section-number">7.7</span> 变异注释与证据分层</a></li>
+  <li><a href="#sec-07-07" id="toc-sec-07-07" class="nav-link" data-scroll-target="#sec-07-07"><span class="header-section-number">7.7</span> 变异注释与证据分层</a>
+  <ul class="collapse">
+  <li><a href="#src-0070-WGS-796" id="toc-src-0070-WGS-796" class="nav-link" data-scroll-target="#src-0070-WGS-796">测序数据的下游分析方向</a></li>
+  <li><a href="#src-0070-WGS-840" id="toc-src-0070-WGS-840" class="nav-link" data-scroll-target="#src-0070-WGS-840">通路分析</a></li>
+  <li><a href="#src-0070-WGS-850" id="toc-src-0070-WGS-850" class="nav-link" data-scroll-target="#src-0070-WGS-850">样本数据库寻找数据集进行验证或辅助分析</a></li>
+  </ul></li>
   <li><a href="#sec-07-08" id="toc-sec-07-08" class="nav-link" data-scroll-target="#sec-07-08"><span class="header-section-number">7.8</span> IGV复核、基准评价与完整交付</a></li>
   </ul>
 </nav>
@@ -333,11 +347,15 @@ window.Quarto = {
 <h3 class="anchored" data-anchor-id="src-0070-WGS-3">全基因组测序(WGS)</h3>
 <section id="src-0070-WGS-5" class="level4">
 <h4 class="anchored" data-anchor-id="src-0070-WGS-5">实验设计</h4>
-<p>待完善</p>
+<div class="book-placeholder">
+<p>本节内容待补充。</p>
+</div>
 </section>
 <section id="src-0070-WGS-7" class="level4">
 <h4 class="anchored" data-anchor-id="src-0070-WGS-7">样本量</h4>
-<p>待完善</p>
+<div class="book-placeholder">
+<p>本节内容待补充。</p>
+</div>
 </section>
 </section>
 <section id="src-0070-WGS-639" class="level3">
@@ -353,7 +371,7 @@ window.Quarto = {
 <img src="../assets/08-wgs-and-wes/003-pic1.png" class="img-fluid figure-img">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-08-wgs-and-wes-003-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-图&nbsp;7.1: pic1
+图&nbsp;7.1: 图题待补
 </figcaption>
 </figure>
 </div>
@@ -396,21 +414,8 @@ window.Quarto = {
 <li>全外显组测序的实际产出的序列只有65%-75%是处于外显子组区域，但可以通过整体提高测序深度的方法来减弱“部分区域测序深度偏低“和“有效序列占比不高“等问题带来的偏差。</li>
 </ul>
 <p>通过分析全外显子组测序结果可以得到突变位点信息，其中可能发现一些重要的致病突变，但也有相当多的一部分是未知意义的突变位点，其临床应用意义仍未探明。同时，虽然全外显子测序设计上涵盖近2万个基因（可以理解为外显子序列或转录本），但实际检测的结果全面与否，很大程度取决于前期样本提取实验中是否能尽可能地覆盖和捕获全部外显子组序列，因此对于全外显子的阴性检测结果，还需要进一步考虑是该基因无突变还是该基因未被检测。当然，突变位点注释和样本质量造成的局限性在全基因组测序中也无法避免，相信随着测序技术的不断优化迭代，越来越多数据库的更新迭代，这些问题会逐步得到解决。 在临床应用上，如果只需定向检测已知的致病位点，另一项更有针对性的靶向基因测序（targeted panel sequencing）方案或许是更好的选择。但全外显子组测序又有着更广泛的覆盖范围，能发现更多新的变异情况，因此，测序方案的选择需要根据患者实际需求而选择。</p>
-<div class="callout callout-style-default callout-note callout-titled" title="待完善">
-<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-1-contents" aria-controls="callout-1" aria-expanded="false" aria-label="Toggle callout">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-<span class="screen-reader-only">注记</span>待完善
-</div>
-<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
-</div>
-<div id="callout-1" class="callout-1-contents callout-collapse collapse">
-<div class="callout-body-container callout-body">
-<p>补术语和任务边界，不混用胚系、肿瘤与临床解释。</p>
-</div>
-</div>
+<div class="book-placeholder">
+<p>本节内容待补充。</p>
 </div>
 </section>
 </section>
@@ -418,18 +423,17 @@ window.Quarto = {
 <section id="sec-07-02" class="level2" data-number="7.2">
 <h2 data-number="7.2" class="anchored" data-anchor-id="sec-07-02"><span class="header-section-number">7.2</span> 示例数据、参考资源与覆盖设计</h2>
 <p>准备一套能支撑目标检测的匹配输入。</p>
-<section id="src-0070-WGS-679" class="level4">
-<h4 class="anchored" data-anchor-id="src-0070-WGS-679">全外显子组测序的覆盖度与测序深度</h4>
+<section id="src-0070-WGS-679" class="level3">
+<h3 class="anchored" data-anchor-id="src-0070-WGS-679">全外显子组测序的覆盖度与测序深度</h3>
 <p>测序深度代表了参考基因组每个区域被短序列覆盖的次数，测序深度越高，测序结果的识别就越准确，后续的统计分析也越可靠。由于全外显子组样本在上机测序前必须经过捕获（capture）和扩增（PCR amplification）两个步骤，这两个步骤在不同的区域有效率差别，有些外显子区域捕获效率高，有些区域捕获效率低，因此会造成全外显组测序结果测序深度不一致的问题。影响测序深度的因素包括：</p>
 <ul>
-<li>GC含量高的区域（如启动子或UTR）在捕获和扩增时会受到影响^；</li>
+<li>GC含量高的区域（如启动子或UTR）在捕获和扩增时会受到影响<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a>；</li>
 <li>低复杂度片段（如重复区域）和含有模糊碱基的区域捕获效率偏低；</li>
 <li>进行PCR扩增的合适为70bp-200bp，零碎或过长的序列片段会受到影响。；</li>
 <li>假基因的存在影响真实测序深度的计算；</li>
 <li>DNA的数量，如果DNA数量偏低，只能通多高次数PCR循环来达到后续测序所需的样本量，但这会导致大量PCR重复，影响后续数据分析的可信度；</li>
 <li>DNA的质量，如从石蜡包埋样本（FFPE）提取的DNA通常质量较差，某些区域的序列更易破碎，引入偏差；</li>
 </ul>
-<p>^G、C碱基之间由3个氢键连接，稳定性较强，不易被打断，所以使得GC含量高的区域通常片段偏大。同时PCR时不易解旋，就算分开后，单股的GC含量高的序列也容易自身粘合形成二级结构。同时，PCR聚合酶可能对GC含量高的片段有偏好性[6]，影响PCR的效果。（这段备注放在与上一段同一页的页脚备注就好）</p>
 <p>全外显组测序的探针也略有不同，除了常见的的全外显组探针产品，也可自行设计和定制。研究人员结合现有的参考序列数据和突变信息，可以设计和增加感兴趣区域的探针，也可在特定区域增加探针密度来提高捕获效率。但探针的设计需要综合考虑中靶率（On-target rate）、覆盖度（coverage）、均一性（uniformity）和重复率（Dup rate）等指标。</p>
 <p>在不考虑测序成本的前提下，全基因组测序不需要经过捕获步骤，甚至可以不经过PCR扩增直接进行测序，其测序深度能更加稳定，序列分布更均匀，甚至能发现未曾被探针捕获的区域，覆盖的基因组区域更全【7】。</p>
 <div id="fig-08-wgs-and-wes-006" class="quarto-float quarto-figure quarto-figure-center anchored">
@@ -445,31 +449,18 @@ window.Quarto = {
 <blockquote class="blockquote">
 <p>a)WES，WGS_wPCR（经过PCR）和WGS（未经PCR）的WGS所显示的每个GC%的参考基因组的编码外显子区域的平均读取深度，每个数值为五个样品的深度均值。 b)WES和WGS（未经PCR）在不同参考序列中的覆盖率 【6】</p>
 </blockquote>
-<div class="callout callout-style-default callout-note callout-titled" title="待完善">
-<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-2-contents" aria-controls="callout-2" aria-expanded="false" aria-label="Toggle callout">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-<span class="screen-reader-only">注记</span>待完善
-</div>
-<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
-</div>
-<div id="callout-2" class="callout-2-contents callout-collapse collapse">
-<div class="callout-body-container callout-body">
-<p>补资源下载清单、版本和参考一致性检查。</p>
-</div>
-</div>
+<div class="book-placeholder">
+<p>本节内容待补充。</p>
 </div>
 </section>
 </section>
 <section id="sec-07-03" class="level2" data-number="7.3">
 <h2 data-number="7.3" class="anchored" data-anchor-id="sec-07-03"><span class="header-section-number">7.3</span> DNA比对与变异检测前处理</h2>
 <p>理解哪些处理改善调用依据及其适用条件。</p>
-<section id="src-0070-WGS-287" class="level4">
-<h4 class="anchored" data-anchor-id="src-0070-WGS-287">碱基质量校正</h4>
-<section id="src-0070-WGS-289" class="level5">
-<h5 class="anchored" data-anchor-id="src-0070-WGS-289">质量校正原理</h5>
+<section id="src-0070-WGS-287" class="level3">
+<h3 class="anchored" data-anchor-id="src-0070-WGS-287">碱基质量校正</h3>
+<section id="src-0070-WGS-289" class="level4">
+<h4 class="anchored" data-anchor-id="src-0070-WGS-289">质量校正原理</h4>
 <p>Phred碱基质量值是由测序仪内部自带的base-calling算法评估出来的，而这种base-calling算法由于受专利保护，掌握在测序仪生成商手中，研究人员并不能了解这个算法的细节，它对于人们来说就是一个黑盒子</p>
 <p>而测序仪的base-calling算法给出的质量评估并不十分准确，它带有一定程度的系统误差（非随机误差），使得实际测序质量值要么被低估，要么被高估</p>
 <p>BQSR试图利用机器学习的方法来对原始的测序质量值进行校正</p>
@@ -478,7 +469,19 @@ window.Quarto = {
 <p>对于一个给定的Run，我们发现，无论什么时候我在测序一个AA 的子序列时，改子序列后紧接着的一个任意碱基的测序错误率总是要比它的实际错误率高出1%，那么我就可以将这样的碱基找出来，将它的原始测序错误率减去1%来对它进行校正</p>
 </blockquote>
 <p>会影响测序质量评估准确性的因素有很多，主要包括序列组成、碱基在read中的位置、测序反应的cycle等等，它们以类似于叠加的形式协同产生影响，这些可能的影响因素被称作协变量 (covariable)</p>
+<div class="book-warning callout callout-style-default callout-warning callout-titled" title="注意｜BQSR 改变的是质量值">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">警告</span>注意｜BQSR 改变的是质量值
+</div>
+</div>
+<div class="callout-body-container callout-body">
 <p>注意：BQSR只校正碱基质量值而不改变碱基组成，特别是对于那些质量值偏低的碱基，我们只能说它被解析成当前碱基组成的准确性很低，但是我们又无法说明它实际更可能是哪种碱基，所以干脆不改</p>
+</div>
+</div>
 <p>那么，BQSR的工作原理是怎样的？</p>
 <p>BQSR本质上是一种回归模型</p>
 <p>前提假设：影响质量评估的因素只有reads group来源，测序的cycle和当前测序碱基的序列组成背景（这里将它上游的若干个连续位点的碱基组成看作它的背景，一般为2~6，BQSR中默认为6）</p>
@@ -487,53 +490,40 @@ window.Quarto = {
 <p>相同reads group来源，同处于一个cycle，且序列背景相同的碱基，它们具有相同的测序错误率，这样的碱基组成一个bin</p>
 </blockquote>
 <p>则可以建立这样的拟合模型：</p>
-<p><span id="eq-08-wgs-and-wes-001"><span class="math display">\[
+<p><span id="eq-08-wgs-and-wes-001" class="book-equation"><span class="equation-scroll" tabindex="0" role="region" aria-label="公式 7.1"><span class="math display">\[
 X_i=(RG_i,Cyc_i,Context_i) \quad \begin{matrix} f \\ \to \end{matrix} \quad y_i
-\tag{7.1}\]</span></span></p>
+\]</span></span><a class="equation-label" href="#eq-08-wgs-and-wes-001" aria-label="公式（7.1）">(7.1)</a></span></p>
 <p>其中，i表示当前碱基，<span class="math inline">\(RG_i\)</span>表示碱基所属的Reads Group来源，<span class="math inline">\(Cyc_i\)</span>表示该碱基所在的测序cycle，<span class="math inline">\(Context_i\)</span>表示该碱基的序列组成背景，<span class="math inline">\(y_i\)</span>表示该碱基的实际测序质量(emprical quality)</p>
 <p>这三个分量可以直接通过输入的BAM文件的记录获得，那如何获得实际的实际测序质量呢？</p>
 <p>可以通过BAM文件中的比对结果推出</p>
 <p>用给定的大型基因组测序计划得到的人群变异位点作为输入，将样本中潜在变异位点与人群注释位点overlap的部分过滤掉，则剩下的那些位点，我们假设它们都是“假”的变异位点，是测序错误导致的误检</p>
 <p>则实际测序质量为：</p>
-<p><span id="eq-08-wgs-and-wes-002"><span class="math display">\[
+<p><span id="eq-08-wgs-and-wes-002" class="book-equation"><span class="equation-scroll" tabindex="0" role="region" aria-label="公式 7.2"><span class="math display">\[
 EQ=-10\log \frac{\#mismatch + 1}{\#bases + 2}
-\tag{7.2}\]</span></span></p>
+\]</span></span><a class="equation-label" href="#eq-08-wgs-and-wes-002" aria-label="公式（7.2）">(7.2)</a></span></p>
 <p>注意：emprical quality是以bin为单位计算出来的</p>
 <p>这样，有了X和Y，就可以进行拟合模型的训练了，训练好的模型就可以用于碱基质量值的校正</p>
 <p>上述只是BQSR的基本逻辑框架，在实际的实现细节上会稍有一些差别</p>
 </section>
-<section id="src-0070-WGS-337" class="level5">
-<h5 class="anchored" data-anchor-id="src-0070-WGS-337">操作</h5>
+<section id="src-0070-WGS-337" class="level4">
+<h4 class="anchored" data-anchor-id="src-0070-WGS-337">操作</h4>
 <p><strong>1. 建立较正模型</strong></p>
 <p>质量值校正，这一步需要用到variants的known-sites，所以需要先准备好已知的snp，indel的VCF文件：</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 下载known-site的VCF文件，到Ensembl上下载</span></span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> wget <span class="at">-c</span> <span class="at">-P</span> Ref/mouse/mm10/vcf ftp://ftp.ensembl.org/pub/release-93/variation/vcf/mus_musculus/mus_musculus.vcf.gz <span class="op">&gt;</span>download.log <span class="kw">&amp;</span></span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> cd Ref/mouse/mm10/vcf <span class="kw">&amp;&amp;</span> <span class="fu">gunzip</span> mus_musculus.vcf.gz <span class="kw">&amp;&amp;</span> <span class="fu">mv</span> mus_musculus.vcf dbsnp_150.mm10.vcf</span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="co"># 建好vcf文件的索引，需要用到GATK工具集中的IndexFeatureFile，该命令会在指定的vcf文件的相同路径下生成一个以".idx"为后缀的文件</span></span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> gatk IndexFeatureFile <span class="at">-F</span> dbsnp_150.mm10.vcf</span>
-<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="co"># 建立较正模型</span></span>
-<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> gatk BaseRecalibrator <span class="at">-R</span> Ref/mouse/mm10/bwa/mm10.fa <span class="at">-I</span> PharmacogenomicsDB/mouse/SAM/ERR118300.enriched.markdup.bam <span class="at">-O</span> <span class="dt">\</span></span>
-<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>PharmacogenomicsDB/mouse/SAM/ERR118300.recal.table <span class="at">--known-sites</span> Ref/mouse/mm10/vcf/dbsnp_150.mm10.vcf</span></code></pre></div><button title="复制到剪贴板" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1" data-book-role="code" data-focus-lines="5,8"><pre data-code-text="&quot;# 下载known-site的VCF文件，到Ensembl上下载\nwget -c -P Ref/mouse/mm10/vcf ftp://ftp.ensembl.org/pub/release-93/variation/vcf/mus_musculus/mus_musculus.vcf.gz &gt;download.log &amp;\ncd Ref/mouse/mm10/vcf &amp;&amp; gunzip mus_musculus.vcf.gz &amp;&amp; mv mus_musculus.vcf dbsnp_150.mm10.vcf\n# 建好vcf文件的索引，需要用到GATK工具集中的IndexFeatureFile，该命令会在指定的vcf文件的相同路径下生成一个以\&quot;.idx\&quot;为后缀的文件\ngatk IndexFeatureFile -F dbsnp_150.mm10.vcf\n\n# 建立较正模型\ngatk BaseRecalibrator -R Ref/mouse/mm10/bwa/mm10.fa -I PharmacogenomicsDB/mouse/SAM/ERR118300.enriched.markdup.bam -O \\\nPharmacogenomicsDB/mouse/SAM/ERR118300.recal.table --known-sites Ref/mouse/mm10/vcf/dbsnp_150.mm10.vcf&quot;" class="sourceCode numberSource bash numberLines code-with-copy"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1"></a><span class="co"># 下载known-site的VCF文件，到Ensembl上下载</span></span>
+<span id="cb1-2"><a href="#cb1-2"></a><span class="fu">wget</span> <span class="at">-c</span> <span class="at">-P</span> Ref/mouse/mm10/vcf ftp://ftp.ensembl.org/pub/release-93/variation/vcf/mus_musculus/mus_musculus.vcf.gz <span class="op">&gt;</span>download.log <span class="kw">&amp;</span></span>
+<span id="cb1-3"><a href="#cb1-3"></a><span class="bu">cd</span> Ref/mouse/mm10/vcf <span class="kw">&amp;&amp;</span> <span class="fu">gunzip</span> mus_musculus.vcf.gz <span class="kw">&amp;&amp;</span> <span class="fu">mv</span> mus_musculus.vcf dbsnp_150.mm10.vcf</span>
+<span id="cb1-4"><a href="#cb1-4"></a><span class="co"># 建好vcf文件的索引，需要用到GATK工具集中的IndexFeatureFile，该命令会在指定的vcf文件的相同路径下生成一个以".idx"为后缀的文件</span></span>
+<span id="cb1-5"><a href="#cb1-5"></a><span class="ex">gatk</span> IndexFeatureFile <span class="at">-F</span> dbsnp_150.mm10.vcf</span>
+<span id="cb1-6"><a href="#cb1-6"></a></span>
+<span id="cb1-7"><a href="#cb1-7"></a><span class="co"># 建立较正模型</span></span>
+<span id="cb1-8"><a href="#cb1-8"></a><span class="ex">gatk</span> BaseRecalibrator <span class="at">-R</span> Ref/mouse/mm10/bwa/mm10.fa <span class="at">-I</span> PharmacogenomicsDB/mouse/SAM/ERR118300.enriched.markdup.bam <span class="at">-O</span> <span class="dt">\</span></span>
+<span id="cb1-9"><a href="#cb1-9"></a>PharmacogenomicsDB/mouse/SAM/ERR118300.recal.table <span class="at">--known-sites</span> Ref/mouse/mm10/vcf/dbsnp_150.mm10.vcf</span></code></pre></div><button title="复制到剪贴板" class="code-copy-button"><i class="bi"></i></button></div>
 <p><strong>2. 质量值校准</strong></p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 质量校正</span></span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> gatk ApplyBQSR <span class="at">-R</span> Ref/mouse/mm10/bwa/mm10.fa <span class="at">-I</span> PharmacogenomicsDB/mouse/SAM/ERR118300.enriched.markdup.bam <span class="at">-bqsr</span> <span class="dt">\</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2" data-book-role="code" data-focus-lines="2"><pre data-code-text="&quot;# 质量校正\ngatk ApplyBQSR -R Ref/mouse/mm10/bwa/mm10.fa -I PharmacogenomicsDB/mouse/SAM/ERR118300.enriched.markdup.bam -bqsr \\\nPharmacogenomicsDB/mouse/SAM/ERR118300.recal.table -O PharmacogenomicsDB/mouse/SAM/ERR118300.recal.bam&quot;" class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 质量校正</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="ex">gatk</span> ApplyBQSR <span class="at">-R</span> Ref/mouse/mm10/bwa/mm10.fa <span class="at">-I</span> PharmacogenomicsDB/mouse/SAM/ERR118300.enriched.markdup.bam <span class="at">-bqsr</span> <span class="dt">\</span></span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>PharmacogenomicsDB/mouse/SAM/ERR118300.recal.table <span class="at">-O</span> PharmacogenomicsDB/mouse/SAM/ERR118300.recal.bam</span></code></pre></div><button title="复制到剪贴板" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="callout callout-style-default callout-note callout-titled" title="待完善">
-<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-3-contents" aria-controls="callout-3" aria-expanded="false" aria-label="Toggle callout">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-<span class="screen-reader-only">注记</span>待完善
-</div>
-<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
-</div>
-<div id="callout-3" class="callout-3-contents callout-collapse collapse">
-<div class="callout-body-container callout-body">
-<p>消除本地路径，补完整输入输出与失败检查。</p>
-</div>
-</div>
+<div class="book-placeholder">
+<p>本节内容待补充。</p>
 </div>
 </section>
 </section>
@@ -541,16 +531,15 @@ EQ=-10\log \frac{\#mismatch + 1}{\#bases + 2}
 <section id="sec-07-04" class="level2" data-number="7.4">
 <h2 data-number="7.4" class="anchored" data-anchor-id="sec-07-04"><span class="header-section-number">7.4</span> 基因型似然与局部单倍型重组装</h2>
 <p>理解为什么一个非参考碱基不等于一个真实变异。</p>
-<section id="src-0070-WGS-363" class="level4">
-<h4 class="anchored" data-anchor-id="src-0070-WGS-363">使用GATK鉴定SNV/SNP位点</h4>
-<section id="src-0070-WGS-365" class="level5">
-<h5 class="anchored" data-anchor-id="src-0070-WGS-365">变异位点基因型推断的数学原理</h5>
-<section id="src-0070-WGS-367" class="level6">
-<h6 class="anchored" data-anchor-id="src-0070-WGS-367">单点基因型推断</h6>
+<section id="src-0070-WGS-363" class="level3">
+<h3 class="anchored" data-anchor-id="src-0070-WGS-363">使用GATK鉴定SNV/SNP位点</h3>
+<section id="src-0070-WGS-365" class="level4">
+<h4 class="anchored" data-anchor-id="src-0070-WGS-365">变异位点基因型推断的数学原理</h4>
+<p><strong>单点基因型推断</strong> <span id="src-0070-WGS-367"></span></p>
 <p>问题描述</p>
 <blockquote class="blockquote">
 <p>某一区域的比对结果如下：</p>
-<pre><code>REFERENCE: atcatgacggcaGtagcatat
+<pre data-code-text="&quot;REFERENCE: atcatgacggcaGtagcatat\n--------------------------------\nREAD1:     atcatgacggcaGtagcatat\nREAD2:         tgacggcaGtagcatat\nREAD3:     atcatgacggcaAtagca\nREAD4:            cggcaGtagcatat\nREAD5:     atcatgacggcaGtagc&quot;" class="text" data-book-role="data"><code>REFERENCE: atcatgacggcaGtagcatat
 --------------------------------
 READ1:     atcatgacggcaGtagcatat
 READ2:         tgacggcaGtagcatat
@@ -570,13 +559,13 @@ READ5:     atcatgacggcaGtagc</code></pre>
 <p>那么，如何实现呢？</p>
 </blockquote>
 <p>简单来说，就是基于各genotype(<span class="math inline">\(G_i\)</span>)的人群先验概率<span class="math inline">\(P(G_i)\)</span>以及特定样本对应位点的测序结果<span class="math inline">\(S\)</span>，推断其可能为各个<span class="math inline">\(G_i\)</span>的后验概率<span class="math inline">\(P(G | S)\)</span>，根据贝叶斯推断的方法，将后验概率最高的那种<span class="math inline">\(G_i\)</span>作为其最终推断出的genotype，即</p>
-<p><span id="eq-08-wgs-and-wes-003"><span class="math display">\[
+<p><span id="eq-08-wgs-and-wes-003" class="book-equation"><span class="equation-scroll" tabindex="0" role="region" aria-label="公式 7.3"><span class="math display">\[
 G=arg \max_{G_i} P(G_i|S)
-\tag{7.3}\]</span></span></p>
+\]</span></span><a class="equation-label" href="#eq-08-wgs-and-wes-003" aria-label="公式（7.3）">(7.3)</a></span></p>
 <p>而根据贝叶斯公式：</p>
-<p><span id="eq-08-wgs-and-wes-004"><span class="math display">\[
+<p><span id="eq-08-wgs-and-wes-004" class="book-equation"><span class="equation-scroll" tabindex="0" role="region" aria-label="公式 7.4"><span class="math display">\[
 P(G_i|S)=\frac{P(S|G_i)\cdot P(G_i)}{P(S)}
-\tag{7.4}\]</span></span></p>
+\]</span></span><a class="equation-label" href="#eq-08-wgs-and-wes-004" aria-label="公式（7.4）">(7.4)</a></span></p>
 <p>由于测序数据确定，<span class="math inline">\(P(S)\)</span>固定，可以省略，则<span class="math inline">\(P(G_i|S) \sim P(S|G_i)\cdot P(G_i)\)</span></p>
 <p>另外<span class="math inline">\(P(G_i)\)</span>是<span class="math inline">\(G_i\)</span>基因型的人群频率，已经给出，所以要想指定<span class="math inline">\(P(G_i|S)\)</span>，只需要额外算出<span class="math inline">\(P(S|G_i)\)</span>即可</p>
 <blockquote class="blockquote">
@@ -586,13 +575,13 @@ P(G_i|S)=\frac{P(S|G_i)\cdot P(G_i)}{P(S)}
 <p>例如，对于某个以A/T形式存在的位点，A的频率为1%（<span class="math inline">\(p=0.01, q=1-p=0.99\)</span>），则 | AA(<span class="math inline">\(p^2\)</span>) | AT(<span class="math inline">\(2pq\)</span>) | TT(<span class="math inline">\(q^2\)</span>) | |:— |:—|:—| |0.0001|0.0198|0.9801|</p>
 </blockquote>
 <p>我们假设各个read相互独立，则<span class="math inline">\(P(S|G_i)\)</span>就是各个read的<span class="math inline">\(P(S_i | G_i)\)</span>的乘积，即</p>
-<p><span id="eq-08-wgs-and-wes-005"><span class="math display">\[
+<p><span id="eq-08-wgs-and-wes-005" class="book-equation"><span class="equation-scroll" tabindex="0" role="region" aria-label="公式 7.5"><span class="math display">\[
 P(S|G_i)=\prod_i P(S_i | G_i)
-\tag{7.5}\]</span></span></p>
+\]</span></span><a class="equation-label" href="#eq-08-wgs-and-wes-005" aria-label="公式（7.5）">(7.5)</a></span></p>
 <p>则，下面只要分别算出各个<span class="math inline">\(P(S_i | G_i)\)</span>，最后就能得到<span class="math inline">\(P(G_i|S)\)</span></p>
 <p>那么，怎么算这个<span class="math inline">\(P(S_i | G_i)\)</span>呢？</p>
 <p>我们令</p>
-<p><span id="eq-08-wgs-and-wes-006"><span class="math display">\[
+<p><span id="eq-08-wgs-and-wes-006" class="book-equation"><span class="equation-scroll" tabindex="0" role="region" aria-label="公式 7.6"><span class="math display">\[
 G_i = \left\{
    \begin{array}{ll}
     G_0 &amp; \textrm{基因型的两个allel与参考基因组都不同} \\
@@ -600,10 +589,22 @@ G_i = \left\{
     G_2 &amp; \textrm{基因型的两个allel均与参考基因组相同}
   \end{array}
   \right.
-\tag{7.6}\]</span></span></p>
+\]</span></span><a class="equation-label" href="#eq-08-wgs-and-wes-006" aria-label="公式（7.6）">(7.6)</a></span></p>
+<div class="book-warning callout callout-style-default callout-warning callout-titled" title="注意｜简化错误模型的适用范围">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">警告</span>注意｜简化错误模型的适用范围
+</div>
+</div>
+<div class="callout-body-container callout-body">
 <p>这里采用二等位、对称翻转错误的简化教学模型；实际四碱基测序错误模型不能直接套用这些式子。</p>
+</div>
+</div>
 <p>则</p>
-<p><span id="eq-08-wgs-and-wes-007"><span class="math display">\[
+<p><span id="eq-08-wgs-and-wes-007" class="book-equation"><span class="equation-scroll" tabindex="0" role="region" aria-label="公式 7.7"><span class="math display">\[
 \left\{
   \begin{array}{ll}
   P(S_i | G_0) = (1-\epsilon_i)^{1-I_i}\cdot\epsilon_i^{I_i} \\
@@ -611,20 +612,26 @@ G_i = \left\{
   P(S_i | G_2) = (1-\epsilon_i)^{I_i} \cdot \epsilon_i^{1-I_i}
   \end{array}
 \right.
-\tag{7.7}\]</span></span></p>
+\]</span></span><a class="equation-label" href="#eq-08-wgs-and-wes-007" aria-label="公式（7.7）">(7.7)</a></span></p>
 <p>其中，<span class="math inline">\(I_i\)</span>表示该read当前位点碱基组成是否与参考位点一致，若一致<span class="math inline">\(I_i=1\)</span>，否则<span class="math inline">\(I_i=0\)</span></p>
 <blockquote class="blockquote">
 <p>对上面的<span class="math inline">\(P(S_i | G_i)\)</span>的公式，作一个简单的说明：</p>
 <p>以上的3个式子来源于下面的同一形式</p>
 </blockquote>
-<p><span id="eq-08-wgs-and-wes-008"><span class="math display">\[
+<p><span id="eq-08-wgs-and-wes-008" class="book-equation"><span class="equation-scroll" tabindex="0" role="region" aria-label="公式 7.8"><span class="math display">\[
 P(S_i | G_i)=P(I_i=1)^{I_i}\cdot P(I_i=0)^{1-I_i}
-\tag{7.8}\]</span></span></p>
+\]</span></span><a class="equation-label" href="#eq-08-wgs-and-wes-008" aria-label="公式（7.8）">(7.8)</a></span></p>
 <blockquote class="blockquote">
 <p>而不同genotype下，<span class="math inline">\(P(I_i=1)\)</span>或<span class="math inline">\(P(I_i=0)\)</span>因为表示测对和测错对应的事件不同，而得到最终不同的公式</p>
 </blockquote>
 <p>上面是将三种可能基因型的<span class="math inline">\(P(S_i | G_i)\)</span>分别表示出来，为了将它们合并在一个公式中得到更为简洁的表达方式，可采用下面的形式：</p>
 <p>符号说明：</p>
+<div id="tbl-07-wgs-and-wes-01" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-tbl figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-07-wgs-and-wes-01-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+表&nbsp;7.1: 表题待补
+</figcaption>
+<div aria-describedby="tbl-07-wgs-and-wes-01-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <table class="caption-top table">
 <colgroup>
 <col style="width: 50%">
@@ -671,6 +678,9 @@ P(S_i | G_i)=P(I_i=1)^{I_i}\cdot P(I_i=0)^{1-I_i}
 </tr>
 </tbody>
 </table>
+</div>
+</figure>
+</div>
 <p>前提假设：</p>
 <blockquote class="blockquote">
 <ul>
@@ -691,50 +701,60 @@ P(S_i | G_i)=P(I_i=1)^{I_i}\cdot P(I_i=0)^{1-I_i}
 </figure>
 </div>
 <p>对于某一个样本的某一个位点，有<span class="math inline">\(k\)</span>条 reads 比对上，其中有<span class="math inline">\(l\)</span>条 (<span class="math inline">\(0 \le l\le k\)</span>) 序列在该位点的碱基组成与 reference 一致，剩余 <span class="math inline">\(k-l\)</span> 条与 reference 不同，其中第 <span class="math inline">\(j\)</span> 条上该碱基的测序错误率为 <span class="math inline">\(\epsilon_j\)</span>，则该样本的基因型与ref一致的有 <span class="math inline">\(g \in [0,m]\)</span> 种（由于这里只考虑人的，则m取值为2，其中g=0表示该样本的基因型与ref一致的allel数为0，即与ref完全不同，例如在该位点可能的二等位为A/C，ref为A，则g=0说明该样本的genotype为C/C，同理，g=1或g=2分别表示该样本的基因型与ref一致的allel数为1或2，在上面举的例子中该样本的基因型就应该为A/C或A/A）的概率为</p>
-<p><span id="eq-08-wgs-and-wes-009"><span class="math display">\[
+<p><span id="eq-08-wgs-and-wes-009" class="book-equation"><span class="equation-scroll" tabindex="0" role="region" aria-label="公式 7.9"><span class="math display">\[
 \begin{aligned}
     &amp;\quad L(g) \\
     &amp;= Pr(d \mid g) \\
-    &amp;= \prod_{i=1}^l Pr_i(A)\prod_{j=l+1}^k Pr_j(\overline A)  &amp; (1)\\
-    &amp;= \prod_{i=1}^l [Pr_i(B , A)+Pr_i(\overline B , A)]\prod_{j=l+1}^k [Pr_j(B , \overline A)+Pr_j(\overline B , \overline A)] &amp; (2)\\
-    &amp;= \prod_{i=1}^l [Pr_i(B,C) + Pr_i(\overline B,\overline C)] \prod_{j=l+1}^k [Pr_j(B,\overline C) + Pr_j(\overline B,C)] &amp; (3)\\
+    &amp;= \prod_{i=1}^l Pr_i(A)\prod_{j=l+1}^k Pr_j(\overline A)  \\
+    &amp;= \prod_{i=1}^l [Pr_i(B , A)+Pr_i(\overline B , A)]\prod_{j=l+1}^k [Pr_j(B , \overline A)+Pr_j(\overline B , \overline A)] \\
+    &amp;= \prod_{i=1}^l [Pr_i(B,C) + Pr_i(\overline B,\overline C)] \prod_{j=l+1}^k [Pr_j(B,\overline C) + Pr_j(\overline B,C)] \\
     \end{aligned}
-\tag{7.9}\]</span></span></p>
+\]</span></span><a class="equation-label" href="#eq-08-wgs-and-wes-009" aria-label="公式（7.9）">(7.9)</a></span></p>
 <blockquote class="blockquote">
 <p>其中，<span class="math inline">\(m\)</span> 是该物种的倍性，普通人是二倍体，因此一般 <span class="math inline">\(m=2\)</span></p>
 <p>事件<span class="math inline">\(A=\{测序碱基与\text{ref}一致\}\)</span>，则<span class="math inline">\(\overline A=\{测序碱基与\text{ref}不一致\}\)</span></p>
 <p>事件<span class="math inline">\(B=\{该碱基的测序是正确的\}\)</span>，则<span class="math inline">\(\overline B=\{该碱基的测序是错误的\}\)</span></p>
 <p>事件<span class="math inline">\(C=\{实际碱基与\text{ref}一致\}\)</span>，则<span class="math inline">\(\overline C=\{实际碱基与\text{ref}不一致\}\)</span></p>
 </blockquote>
-<p>上面公式中，从(2)到(3)的推导涉及到最基本的逻辑常识，这里就不再赘述了</p>
+<p><a href="#eq-08-wgs-and-wes-009" class="quarto-xref">公式&nbsp;<span>7.9</span></a> 中，倒数第二行到最后一行的推导 涉及到最基本的逻辑常识，这里就不再赘述了</p>
 <p>由于测序错误与基因组的组成无关，即<span class="math inline">\(B \bot C\)</span>，因此上面的公式可以向下继续推导：</p>
-<p><span id="eq-08-wgs-and-wes-010"><span class="math display">\[
+<p><span id="eq-08-wgs-and-wes-010" class="book-equation"><span class="equation-scroll" tabindex="0" role="region" aria-label="公式 7.10"><span class="math display">\[
 \begin{aligned}
-    &amp;=  \prod_{i=1}^l [Pr_i(C)Pr_i(B) + Pr_i(\overline C)Pr_i(\overline B)] \prod_{j=l+1}^k [Pr_j(\overline C)Pr_j(B) + Pr_j(C)Pr_j(\overline B)] &amp; (4)\\
-    &amp;= \prod_{i=1}^l \left[ \frac{g}{m}(1-\epsilon_i) + \frac{m-g}{m}\epsilon_i \right] \prod_{j=l+1}^k \left[  \frac{m-g}{m}(1-\epsilon_j) +  \frac{g}{m}\epsilon_j\right] &amp; (5)\\
-    &amp;= \frac{1}{m^k}\prod_{i=1}^l [g(1-\epsilon_i) + (m-g)\epsilon_i] \prod_{j=l+1}^k [(m-g)(1-\epsilon_j) + g\epsilon_j] &amp; (6)
+    &amp;=  \prod_{i=1}^l [Pr_i(C)Pr_i(B) + Pr_i(\overline C)Pr_i(\overline B)] \prod_{j=l+1}^k [Pr_j(\overline C)Pr_j(B) + Pr_j(C)Pr_j(\overline B)] \\
+    &amp;= \prod_{i=1}^l \left[ \frac{g}{m}(1-\epsilon_i) + \frac{m-g}{m}\epsilon_i \right] \prod_{j=l+1}^k \left[  \frac{m-g}{m}(1-\epsilon_j) +  \frac{g}{m}\epsilon_j\right] \\
+    &amp;= \frac{1}{m^k}\prod_{i=1}^l [g(1-\epsilon_i) + (m-g)\epsilon_i] \prod_{j=l+1}^k [(m-g)(1-\epsilon_j) + g\epsilon_j]
     \end{aligned}
-\tag{7.10}\]</span></span></p>
-<p>上面公式中，(4)到(5)的推导利用了：</p>
-<p><span id="eq-08-wgs-and-wes-011"><span class="math display">\[
+\]</span></span><a class="equation-label" href="#eq-08-wgs-and-wes-010" aria-label="公式（7.10）">(7.10)</a></span></p>
+<p><a href="#eq-08-wgs-and-wes-010" class="quarto-xref">公式&nbsp;<span>7.10</span></a> 中，第一行到第二行的推导 利用了：</p>
+<p><span id="eq-08-wgs-and-wes-011" class="book-equation"><span class="equation-scroll" tabindex="0" role="region" aria-label="公式 7.11"><span class="math display">\[
 \begin{aligned}
-    &amp;Pr(B)=1-\epsilon, \quad Pr(\overline B)=\epsilon &amp; (7)\\
-    &amp;Pr(C)=\frac gm , \quad Pr(\overline C)=\frac{m-g}{m} &amp; (8)
+    &amp;Pr(B)=1-\epsilon, \quad Pr(\overline B)=\epsilon \\
+    &amp;Pr(C)=\frac gm , \quad Pr(\overline C)=\frac{m-g}{m}
     \end{aligned}
-\tag{7.11}\]</span></span></p>
+\]</span></span><a class="equation-label" href="#eq-08-wgs-and-wes-011" aria-label="公式（7.11）">(7.11)</a></span></p>
 <p><a href="#eq-08-wgs-and-wes-011" class="quarto-xref">公式&nbsp;<span>7.11</span></a> 中的第一行很好理解，在这里就不作更多的解释</p>
 <p>对 <a href="#eq-08-wgs-and-wes-011" class="quarto-xref">公式&nbsp;<span>7.11</span></a> 中的第二行，下面作一下简单的解释：</p>
 <blockquote class="blockquote">
 <p>由于上面的前提假设中就已经提到，只考虑双等位情况，ref allele即是双等位中的一种，则对于一个m倍体的个体，它该等位基因座上有m个等位基因，其中与ref allele一致的有g个，则剩下m-g个基因座上的allele与ref allele不一致</p>
 <p>则，随机从这m个基因座中抽一个，其基因型与ref一致的概率为<span class="math inline">\(Pr(C)=g/m\)</span>，与ref不一致的概率为<span class="math inline">\(Pr(\overline C)=1-g/m=(m-g)/m\)</span></p>
 </blockquote>
-</section>
-<section id="src-0070-WGS-537" class="level6">
-<h6 class="anchored" data-anchor-id="src-0070-WGS-537">单体型推断</h6>
+<p><strong>单体型推断</strong> <span id="src-0070-WGS-537"></span></p>
 <p>GATK进行SNP calling的核心算法为HaplotypeCaller，这个也是GATK中最核心的算法，理解了这个算法基本上就明白了GATK变异检测的原理</p>
 <p>HaplotypeCaller它本质上是对贝叶斯原理的应用，只是相于同类算法它有点不同之处</p>
 <p>算法思想概述：</p>
+<div class="book-core callout callout-style-default callout-note callout-titled" title="核心知识｜HaplotypeCaller 与联合分型">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">注记</span>核心知识｜HaplotypeCaller 与联合分型
+</div>
+</div>
+<div class="callout-body-container callout-body">
 <p>HaplotypeCaller 在候选变异区域进行局部重组装，生成候选单倍型，并评估 reads 对这些单倍型的支持。这里的单倍型是一个区域内的序列组合，并不等于“单倍体个体”。在常用的 GATK 胚系多样本流程中，每个样本先独立生成 gVCF，随后进行联合分型；不能把这两个阶段理解为先把整个人群的 reads 混在一起运行 HaplotypeCaller。</p>
+</div>
+</div>
 <p>下面进行详细地说明：</p>
 <p>在HaplotypeCaller中变异检测过程被分为以下四个大的步骤</p>
 <div id="fig-08-wgs-and-wes-002" class="quarto-float quarto-figure quarto-figure-center anchored">
@@ -754,7 +774,7 @@ P(S_i | G_i)=P(I_i=1)^{I_i}\cdot P(I_i=0)^{1-I_i}
 <p><strong>3. 依据所给定的read比对数据计算各个单倍型的似然值</strong></p>
 <p>在步骤2的基础上，我们就得到了在ActiveRegion中所有可能的单倍型序列，接下来需要评估现有数据中对这些单倍型的支持情况</p>
 <p>GATK使用PairHMM算法把原本比对于该区域中的每一条read依次和这些单倍型序列进行两两比对，这样我们就可以得出一个read-单倍型序列成对的似然值矩阵，例如以单倍型为列，以read为行，将矩阵记作<span class="math inline">\((a_{i,j})\)</span></p>
-<p><span id="eq-08-wgs-and-wes-012"><span class="math display">\[
+<p><span id="eq-08-wgs-and-wes-012" class="book-equation"><span class="equation-scroll" tabindex="0" role="region" aria-label="公式 7.12"><span class="math display">\[
 \begin{array}{l|c|c|c|c}
 \hline
 0 &amp; H_1 &amp; H_2 &amp; .. &amp; H_m \\
@@ -765,77 +785,87 @@ r_2 &amp; a_{21} &amp; a_{22} &amp; .. &amp; a_{2m} \\
 r_n &amp; a_{n1} &amp; a_{n2} &amp; .. &amp; a_{nm} \\
 \hline
 \end{array}
-\tag{7.12}\]</span></span></p>
+\]</span></span><a class="equation-label" href="#eq-08-wgs-and-wes-012" aria-label="公式（7.12）">(7.12)</a></span></p>
 <p>则矩阵中的某一个元素<span class="math inline">\(a_{ij}\)</span>表示在read i支持单体型为<span class="math inline">\(H_j\)</span>的似然，即<span class="math inline">\(P(r_i\mid H_j)=a_{ij}\)</span></p>
+<div class="book-warning callout callout-style-default callout-warning callout-titled" title="注意｜似然不等于概率">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">警告</span>注意｜似然不等于概率
+</div>
+</div>
+<div class="callout-body-container callout-body">
 <p>这个矩阵描述每条 read 在每个候选单倍型条件下的似然。软件随后把单倍型层面的证据映射到候选等位基因，并计算基因型似然。不能把跨 reads 的似然直接相加，写成单倍型的概率；下面在条件独立假设下使用似然乘积进行教学推导。具体聚合规则应以所使用的 GATK 版本实现为准。</p>
+</div>
+</div>
 <p>（* 在该步骤中，Pair-HMM这实际上是GATK中最为耗费计算资源的那部分了，GATK的加速也是常常以此为突破口——比如GPU加速或者把Pair-HMM模块烧录到FPGA芯片中，也有人从算法本身出发发表了关于如何更快计算Pair-HMM的文章：<code>https://journals.sagepub.com/doi/pdf/10.1177/1176934318760543</code> ）</p>
 <p>（4）计算每一个样本在最佳单倍型组合下的基因型（Genotype）</p>
 <p>在完成了步骤3之后，我们就知道了<strong>每一条read在每个候选变体位点上支持每一种等位基因（Allele）的概率</strong>了。那么，最后要做的就是通过这些似然值，计算出候选变异位点上最可能的样本基因型，也就是Genotype——这也是发现真正变异的过程。这就需要应用贝叶斯原理来完成这个计算了——GATK这也是到这一步才使用了该原理，通过计算就可以得到每一种Genotype的可能性，最后选择后验概率最高的那一个Genotype作为结果输出至VCF中</p>
 <p>后面的分析中，对于每一个变异位点假设只有二等位形式——注意：这和一个ActiveRegion中存在多种单体型不矛盾，若一个ActiveRegion在群体中存在n个变异位点，在只考虑二等位形式的前提下，该区域具有的单体型总共有<span class="math inline">\(2^n\)</span>种</p>
 <p>下面来推导某个样本中的某一个变异位点最可能的SNP形式</p>
 <p>该样本在该位点的genotype为G的后验概率为：</p>
-<p><span id="eq-08-wgs-and-wes-013"><span class="math display">\[
+<p><span id="eq-08-wgs-and-wes-013" class="book-equation"><span class="equation-scroll" tabindex="0" role="region" aria-label="公式 7.13"><span class="math display">\[
 P(G \mid D) = \frac{P(G)P(D \mid G)}{\sum_i P(G_i)P(D \mid G_i)}
-\tag{7.13}\]</span></span></p>
+\]</span></span><a class="equation-label" href="#eq-08-wgs-and-wes-013" aria-label="公式（7.13）">(7.13)</a></span></p>
 <!-- Original equation tag: 1 -->
 <p>由于分母部分对于任何形式genotype都一样，即它是个定值，所以可以忽略，因此上面的公式可以简化成：</p>
-<p><span id="eq-08-wgs-and-wes-014"><span class="math display">\[
+<p><span id="eq-08-wgs-and-wes-014" class="book-equation"><span class="equation-scroll" tabindex="0" role="region" aria-label="公式 7.14"><span class="math display">\[
 P(G \mid D) \propto P(G)P(D \mid G)
-\tag{7.14}\]</span></span></p>
+\]</span></span><a class="equation-label" href="#eq-08-wgs-and-wes-014" aria-label="公式（7.14）">(7.14)</a></span></p>
 <!-- Original equation tag: 2 -->
+<div class="book-warning callout callout-style-default callout-warning callout-titled" title="注意｜基因型先验与等位基因频率">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">警告</span>注意｜基因型先验与等位基因频率
+</div>
+</div>
+<div class="callout-body-container callout-body">
 <p>其中，<span class="math inline">\(P(G)\)</span> 是基因型 <span class="math inline">\(G\)</span> 的先验概率，不能与单个等位基因的频率混为一谈。工具对先验的处理取决于模型和参数，不能假定 GATK 默认给所有基因型相同先验。</p>
+</div>
+</div>
 <p><span class="math inline">\(P(D \mid G)\)</span>表示在已知样本genotype为G的前提下，对样本进行测序得到的测序数据为D（仅考虑该ActiveRegion范围内的）的条件概率，我们假设每条reads之间是相互独立的，所以</p>
-<p><span id="eq-08-wgs-and-wes-015"><span class="math display">\[
+<p><span id="eq-08-wgs-and-wes-015" class="book-equation"><span class="equation-scroll" tabindex="0" role="region" aria-label="公式 7.15"><span class="math display">\[
 P(D \mid G)=\prod_j P(D_j \mid G)
-\tag{7.15}\]</span></span></p>
+\]</span></span><a class="equation-label" href="#eq-08-wgs-and-wes-015" aria-label="公式（7.15）">(7.15)</a></span></p>
 <!-- Original equation tag: 3 -->
 <p>其中，<span class="math inline">\(D_j\)</span>表示该样本测序数据D中的第j条read</p>
 <p>由于我们正常人都是二倍体，则对于某一条reads，它既可能来自于同源染色体1，记作<span class="math inline">\(H_1\)</span>，也可能开自于同源染色体2，记作<span class="math inline">\(H_2\)</span>，所以</p>
-<p><span id="eq-08-wgs-and-wes-016"><span class="math display">\[
+<p><span id="eq-08-wgs-and-wes-016" class="book-equation"><span class="equation-scroll" tabindex="0" role="region" aria-label="公式 7.16"><span class="math display">\[
 \begin{aligned}
 &amp;\quad P(D_j \mid G) \\
 &amp;= P(D_j,H_1 \mid G) + P(D_j,H_2 \mid G) \\
 &amp;= P(H_1 \mid G)P(D_j \mid H_1) + P(H_2 \mid G)P(D_j \mid H_2)
 \end{aligned}
-\tag{7.16}\]</span></span></p>
+\]</span></span><a class="equation-label" href="#eq-08-wgs-and-wes-016" aria-label="公式（7.16）">(7.16)</a></span></p>
 <!-- Original equation tag: 4 -->
 <p>由于理论上一条read来源于<span class="math inline">\(H_1\)</span>还是<span class="math inline">\(H_2\)</span>的概率是均等的，都为1/2，即<span class="math inline">\(P(H_1 \mid G)=P(H_2 \mid G)=1/2\)</span>，所以</p>
-<p><span id="eq-08-wgs-and-wes-017"><span class="math display">\[
+<p><span id="eq-08-wgs-and-wes-017" class="book-equation"><span class="equation-scroll" tabindex="0" role="region" aria-label="公式 7.17"><span class="math display">\[
 P(D_j \mid G)=\frac{P(D_j \mid H_1)}{2} + \frac{P(D_j \mid H_2)}{2}
-\tag{7.17}\]</span></span></p>
+\]</span></span><a class="equation-label" href="#eq-08-wgs-and-wes-017" aria-label="公式（7.17）">(7.17)</a></span></p>
 <!-- Original equation tag: 5 -->
 <p>因此 <a href="#eq-08-wgs-and-wes-015" class="quarto-xref">公式&nbsp;<span>7.15</span></a> 可以改写成</p>
-<p><span id="eq-08-wgs-and-wes-018"><span class="math display">\[
+<p><span id="eq-08-wgs-and-wes-018" class="book-equation"><span class="equation-scroll" tabindex="0" role="region" aria-label="公式 7.18"><span class="math display">\[
 P(D \mid G)=\prod_j \left( \frac{P(D_j \mid H_1)}{2} + \frac{P(D_j \mid H_2)}{2}\right)
-\tag{7.18}\]</span></span></p>
+\]</span></span><a class="equation-label" href="#eq-08-wgs-and-wes-018" aria-label="公式（7.18）">(7.18)</a></span></p>
 <!-- Original equation tag: 6 -->
 <p>现在如果想算出<span class="math inline">\(P(G \mid D)\)</span>，就差<span class="math inline">\(P(D_j \mid H_n)\)</span>了，那么，如何算<span class="math inline">\(P(D_j \mid H_n)\)</span>呢？</p>
 <p>上面已经提到，<span class="math inline">\(P(D_j \mid H_n)\)</span>表示的是由同源染色体<span class="math inline">\(H_n\)</span>产生read <span class="math inline">\(D_j\)</span>的条件概率，而每条同源染色体有它各自的单体型，所以这里可以把<span class="math inline">\(H_n\)</span>理解为它对应的单体型，则<span class="math inline">\(P(D_j \mid H_n)\)</span>可以理解为在特定单体型<span class="math inline">\(H_n\)</span>的前提下，产生read <span class="math inline">\(D_j\)</span>的条件概率</p>
-<div class="callout callout-style-default callout-note callout-titled" title="待完善">
-<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-4-contents" aria-controls="callout-4" aria-expanded="false" aria-label="Toggle callout">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
+<div class="book-placeholder">
+<p>本节内容待补充。</p>
 </div>
-<div class="callout-title-container flex-fill">
-<span class="screen-reader-only">注记</span>待完善
-</div>
-<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
-</div>
-<div id="callout-4" class="callout-4-contents callout-collapse collapse">
-<div class="callout-body-container callout-body">
-<p>先校订数学与算法，再用可手算的小例子重新组织。</p>
-</div>
-</div>
-</div>
-</section>
 </section>
 </section>
 </section>
 <section id="sec-07-05" class="level2" data-number="7.5">
 <h2 data-number="7.5" class="anchored" data-anchor-id="sec-07-05"><span class="header-section-number">7.5</span> 单样本调用、gVCF与联合分型</h2>
 <p>理解单样本检测和多样本分型之间的关系。</p>
-<section id="src-0070-WGS-701" class="level4">
-<h4 class="anchored" data-anchor-id="src-0070-WGS-701">全外显子组数据分析实战</h4>
+<section id="src-0070-WGS-701" class="level3">
+<h3 class="anchored" data-anchor-id="src-0070-WGS-701">全外显子组数据分析实战</h3>
 <p>全外显子组测序实验的整体工作流程如下:</p>
 <ol type="1">
 <li>样品制备，核酸分离提纯；</li>
@@ -851,106 +881,95 @@ P(D \mid G)=\prod_j \left( \frac{P(D_j \mid H_1)}{2} + \frac{P(D_j \mid H_2)}{2}
 <p>所需软件： - fastqc - multiqc - bwa - samtools - gatk （此处用gatk 4.1版本） - Annovar</p>
 <p>运行代码如下：</p>
 <p>基本的处理思路是，下机序列经过数据质控后，比对到参考序列上找到最有可能的原位置，结合现有的常见突变位点信息进行筛选，过滤得到样本个体的突变位点信息，并存储在VCF（Variant Call Format）文件中。 利用ANNOVAR软件，同样地结合前人总结的突变信息（humandb/目录下）来注释和解析检测到的个体突变位点，并探索突变与个人生理状态和疾病发展的可能联系。</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="va">thread</span><span class="op">=</span>1</span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="va">ref</span><span class="op">=</span>ref/references_hg38_v0_GRCh38.primary_assembly.genome.fa</span>
-<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="va">data</span><span class="op">=</span>data/</span>
-<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a><span class="va">sample</span><span class="op">=</span>WXS_example</span>
-<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a><span class="va">gatk_db</span><span class="op">=</span>ref/gatk/</span>
-<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a><span class="va">annovar</span><span class="op">=</span>/home/huaping/software/annovar/annovar/</span>
-<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a><span class="co">###############</span></span>
-<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a><span class="co"># fastq QC</span></span>
-<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a><span class="co">################</span></span>
-<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a><span class="co">#fastq-dump SRR8381428 --split-3</span></span>
-<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a><span class="co">#fastqc -o fastqc/ ${data}/${sample}*.fq.gz</span></span>
-<span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a><span class="co">#bash check_phred.sh ${data}/${sample}_1.fq.gz</span></span>
-<span id="cb4-14"><a href="#cb4-14" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-15"><a href="#cb4-15" aria-hidden="true" tabindex="-1"></a><span class="co">##Running Trimmomatic</span></span>
-<span id="cb4-16"><a href="#cb4-16" aria-hidden="true" tabindex="-1"></a><span class="co">##Paired End Mode:</span></span>
-<span id="cb4-17"><a href="#cb4-17" aria-hidden="true" tabindex="-1"></a><span class="co">##trimmomatic PE [-threads &lt;threads] [-phred33 | -phred64] [-trimlog &lt;logFile&gt;] &lt;input 1&gt; &lt;input 2&gt; &lt;paired output 1&gt; &lt;unpaired output 1&gt; &lt;paired output 2&gt; &lt;unpaired output 2&gt; &lt;option 1&gt;...</span></span>
-<span id="cb4-18"><a href="#cb4-18" aria-hidden="true" tabindex="-1"></a><span class="bu">time</span> trimmomatic PE <span class="at">-phred33</span> <span class="va">${data}</span>/<span class="va">${sample}</span>_1.fq.gz <span class="va">${data}</span>/<span class="va">${sample}</span>_2.fq.gz <span class="va">${data}</span>/<span class="va">${sample}</span>_1.clean.fq.gz <span class="va">${data}</span>/<span class="va">${sample}</span>_1.clean.unpaired.fq.gz <span class="va">${data}</span>/<span class="va">${sample}</span>_2.clean.fq.gz <span class="va">${data}</span>/<span class="va">${sample}</span>_2.clean.unpaired.fq.gz MINLEN:20 LEADING:20 TRAILING:20 <span class="kw">&amp;&amp;</span> <span class="bu">echo</span> <span class="st">"trim done  </span><span class="va">$(</span><span class="fu">date</span> <span class="st">"+%Y-%m-%d %H:%M:%S"</span><span class="va">)</span><span class="st">"</span></span>
-<span id="cb4-19"><a href="#cb4-19" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-20"><a href="#cb4-20" aria-hidden="true" tabindex="-1"></a><span class="fu">mkdir</span> <span class="at">-p</span> fastqc/</span>
-<span id="cb4-21"><a href="#cb4-21" aria-hidden="true" tabindex="-1"></a><span class="ex">fastqc</span> <span class="at">-o</span> fastqc/ <span class="va">${data}</span>/<span class="va">${sample}</span><span class="pp">*</span>clean.fq.gz <span class="kw">&amp;&amp;</span></span>
-<span id="cb4-22"><a href="#cb4-22" aria-hidden="true" tabindex="-1"></a><span class="ex">multiqc</span> fastqc/<span class="va">${sample}</span><span class="pp">*</span>.zip <span class="at">-o</span> fastqc <span class="kw">&amp;&amp;</span>  <span class="bu">echo</span> <span class="st">"QC done   </span><span class="va">$(</span><span class="fu">date</span> <span class="st">"+%Y-%m-%d %H:%M:%S"</span><span class="va">)</span><span class="st">"</span></span>
-<span id="cb4-23"><a href="#cb4-23" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-24"><a href="#cb4-24" aria-hidden="true" tabindex="-1"></a><span class="co">##gatk annotation files download</span></span>
-<span id="cb4-25"><a href="#cb4-25" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-26"><a href="#cb4-26" aria-hidden="true" tabindex="-1"></a><span class="co">##################</span></span>
-<span id="cb4-27"><a href="#cb4-27" aria-hidden="true" tabindex="-1"></a><span class="co">##alignment</span></span>
-<span id="cb4-28"><a href="#cb4-28" aria-hidden="true" tabindex="-1"></a><span class="co">##################</span></span>
-<span id="cb4-29"><a href="#cb4-29" aria-hidden="true" tabindex="-1"></a><span class="fu">mkdir</span> <span class="at">-p</span> BAM/</span>
-<span id="cb4-30"><a href="#cb4-30" aria-hidden="true" tabindex="-1"></a><span class="co">#bwa index -a bwtsw ${ref} &amp;&amp;</span></span>
-<span id="cb4-31"><a href="#cb4-31" aria-hidden="true" tabindex="-1"></a><span class="ex">bwa</span> mem <span class="at">-M</span> <span class="at">-Y</span> <span class="at">-R</span> <span class="st">'@RG\tID:sample_1\tSM:sample\tLB:WES\tPL:Illumina'</span> <span class="va">${ref}</span> <span class="va">${data}</span>/<span class="va">${sample}</span>_1.clean.fq.gz <span class="va">${data}</span>/<span class="va">${sample}</span>_2.clean.fq.gz <span class="kw">|</span> <span class="ex">samtools</span> view <span class="at">-Sb</span> <span class="at">-</span> <span class="op">&gt;</span> BAM/<span class="va">${sample}</span>.bam <span class="kw">&amp;&amp;</span> <span class="bu">echo</span> <span class="st">"alignment done    </span><span class="va">$(</span><span class="fu">date</span> <span class="st">"+%Y-%m-%d %H:%M:%S"</span><span class="va">)</span><span class="st">"</span></span>
-<span id="cb4-32"><a href="#cb4-32" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-33"><a href="#cb4-33" aria-hidden="true" tabindex="-1"></a><span class="co">#################</span></span>
-<span id="cb4-34"><a href="#cb4-34" aria-hidden="true" tabindex="-1"></a><span class="co">#sam file preprocessing - sort and markduplicate</span></span>
-<span id="cb4-35"><a href="#cb4-35" aria-hidden="true" tabindex="-1"></a><span class="co">#################</span></span>
-<span id="cb4-36"><a href="#cb4-36" aria-hidden="true" tabindex="-1"></a><span class="ex">samtools</span> sort <span class="at">-o</span> BAM/<span class="va">${sample}</span>.sorted.bam BAM/<span class="va">${sample}</span>.bam <span class="kw">&amp;&amp;</span></span>
-<span id="cb4-37"><a href="#cb4-37" aria-hidden="true" tabindex="-1"></a><span class="ex">picard</span> MarkDuplicates <span class="at">-Xmx64g</span> I=BAM/<span class="va">${sample}</span>.sorted.bam O=BAM/<span class="va">${sample}</span>.sorted.markdup.bam M=BAM/<span class="va">${sample}</span>.sorted.markdup.txt <span class="kw">&amp;&amp;</span></span>
-<span id="cb4-38"><a href="#cb4-38" aria-hidden="true" tabindex="-1"></a><span class="ex">picard</span> BuildBamIndex <span class="at">-Xmx64g</span> I=BAM/<span class="va">${sample}</span>.sorted.markdup.bam <span class="kw">&amp;&amp;</span> <span class="bu">echo</span> <span class="st">"markduplicate done </span><span class="va">$(</span><span class="fu">date</span> <span class="st">"+%Y-%m-%d %H:%M:%S"</span><span class="va">)</span><span class="st">"</span></span>
-<span id="cb4-39"><a href="#cb4-39" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-40"><a href="#cb4-40" aria-hidden="true" tabindex="-1"></a><span class="co">#samtools faidx ${ref} &amp;&amp;</span></span>
-<span id="cb4-41"><a href="#cb4-41" aria-hidden="true" tabindex="-1"></a><span class="co">#picard CreateSequenceDictionary R=${ref} O=${ref/\.fa/}.dict &amp;&amp;</span></span>
-<span id="cb4-42"><a href="#cb4-42" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-43"><a href="#cb4-43" aria-hidden="true" tabindex="-1"></a><span class="co">##########################</span></span>
-<span id="cb4-44"><a href="#cb4-44" aria-hidden="true" tabindex="-1"></a><span class="co">#BQSR</span></span>
-<span id="cb4-45"><a href="#cb4-45" aria-hidden="true" tabindex="-1"></a><span class="co">##########################</span></span>
-<span id="cb4-46"><a href="#cb4-46" aria-hidden="true" tabindex="-1"></a><span class="ex">gatk</span> BaseRecalibrator <span class="at">-R</span> <span class="va">${ref}</span> <span class="at">-I</span> BAM/<span class="va">${sample}</span>.sorted.markdup.bam <span class="dt">\</span></span>
-<span id="cb4-47"><a href="#cb4-47" aria-hidden="true" tabindex="-1"></a>    <span class="at">--known-sites</span> <span class="va">${gatk_db}</span>resources_broad_hg38_v0_Mills_and_1000G_gold_standard.indels.hg38.vcf.gz <span class="dt">\</span></span>
-<span id="cb4-48"><a href="#cb4-48" aria-hidden="true" tabindex="-1"></a>    <span class="at">--known-sites</span> <span class="va">${gatk_db}</span>resources_broad_hg38_v0_Homo_sapiens_assembly38.known_indels.vcf.gz <span class="dt">\</span></span>
-<span id="cb4-49"><a href="#cb4-49" aria-hidden="true" tabindex="-1"></a>    <span class="at">--known-sites</span> <span class="va">${gatk_db}</span>resources_broad_hg38_v0_hapmap_3.3.hg38.vcf.gz <span class="dt">\</span></span>
-<span id="cb4-50"><a href="#cb4-50" aria-hidden="true" tabindex="-1"></a>    <span class="at">--known-sites</span> <span class="va">${gatk_db}</span>resources_broad_hg38_v0_Homo_sapiens_assembly38.dbsnp138.vcf <span class="dt">\</span></span>
-<span id="cb4-51"><a href="#cb4-51" aria-hidden="true" tabindex="-1"></a>    <span class="at">-O</span> BAM/<span class="va">${sample}</span>.BQSR.table</span>
-<span id="cb4-52"><a href="#cb4-52" aria-hidden="true" tabindex="-1"></a><span class="ex">gatk</span> ApplyBQSR <span class="at">-R</span> <span class="va">${ref}</span> <span class="at">-I</span> BAM/<span class="va">${sample}</span>.sorted.markdup.bam <span class="at">-bqsr</span> BAM/<span class="va">${sample}</span>.BQSR.table <span class="at">-O</span> BAM/<span class="va">${sample}</span>.sorted.markdup.BQSR.bam <span class="kw">&amp;&amp;</span> <span class="bu">echo</span> <span class="st">"BQSR done     </span><span class="va">$(</span><span class="fu">date</span> <span class="st">"+%Y-%m-%d %H:%M:%S"</span><span class="va">)</span><span class="st">"</span></span>
-<span id="cb4-53"><a href="#cb4-53" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-54"><a href="#cb4-54" aria-hidden="true" tabindex="-1"></a><span class="co">###########################</span></span>
-<span id="cb4-55"><a href="#cb4-55" aria-hidden="true" tabindex="-1"></a><span class="co">##Variant calling - haplotypecaller</span></span>
-<span id="cb4-56"><a href="#cb4-56" aria-hidden="true" tabindex="-1"></a><span class="co">##########################</span></span>
-<span id="cb4-57"><a href="#cb4-57" aria-hidden="true" tabindex="-1"></a><span class="fu">mkdir</span> <span class="at">-p</span> VCF/</span>
-<span id="cb4-58"><a href="#cb4-58" aria-hidden="true" tabindex="-1"></a><span class="ex">gatk</span> HaplotypeCaller <span class="at">-R</span> <span class="va">${ref}</span> <span class="at">-I</span> BAM/<span class="va">${sample}</span>.sorted.markdup.BQSR.bam <span class="at">-O</span> VCF/<span class="va">${sample}</span>.vcf <span class="kw">&amp;&amp;</span> <span class="bu">echo</span> <span class="st">"variant calling done  </span><span class="va">$(</span><span class="fu">date</span> <span class="st">"+%Y-%m-%d %H:%M:%S"</span><span class="va">)</span><span class="st">"</span></span>
-<span id="cb4-59"><a href="#cb4-59" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-60"><a href="#cb4-60" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-61"><a href="#cb4-61" aria-hidden="true" tabindex="-1"></a><span class="co">###########################</span></span>
-<span id="cb4-62"><a href="#cb4-62" aria-hidden="true" tabindex="-1"></a><span class="co">#Annotation -ANNOVAR</span></span>
-<span id="cb4-63"><a href="#cb4-63" aria-hidden="true" tabindex="-1"></a><span class="co">###########################</span></span>
-<span id="cb4-64"><a href="#cb4-64" aria-hidden="true" tabindex="-1"></a><span class="va">${annovar}</span><span class="ex">table_annovar.pl</span> VCF/<span class="va">${sample}</span>.vcf <span class="va">${annovar}</span>humandb/ <span class="at">-buildver</span> hg38 <span class="at">-out</span> VCF/<span class="va">${sample}</span> <span class="at">-remove</span> <span class="at">-protocol</span> refGene,cytoBand,exac03,avsnp147,dbnsfp30a <span class="at">-operation</span> gx,r,f,f,f <span class="at">-nastring</span> . <span class="at">-vcfinput</span> <span class="at">-polish</span> <span class="kw">&amp;&amp;</span> <span class="bu">echo</span> <span class="st">"annotation done     </span><span class="va">$(</span><span class="fu">date</span> <span class="st">"+%Y-%m-%d %H:%M:%S"</span><span class="va">)</span><span class="st">"</span></span></code></pre></div><button title="复制到剪贴板" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="callout callout-style-default callout-note callout-titled" title="待完善">
-<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-5-contents" aria-controls="callout-5" aria-expanded="false" aria-label="Toggle callout">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-<span class="screen-reader-only">注记</span>待完善
-</div>
-<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
-</div>
-<div id="callout-5" class="callout-5-contents callout-collapse collapse">
-<div class="callout-body-container callout-body">
-<p>新增流程说明与小型对照，控制队列扩展的运算规模。</p>
-</div>
-</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4" data-book-role="code" data-focus-lines="46,58,64"><pre data-code-text="&quot;thread=1\nref=ref/references_hg38_v0_GRCh38.primary_assembly.genome.fa\ndata=data/\nsample=WXS_example\ngatk_db=ref/gatk/\nannovar=/home/huaping/software/annovar/annovar/\n###############\n# fastq QC\n################\n\n#fastq-dump SRR8381428 --split-3\n#fastqc -o fastqc/ ${data}/${sample}*.fq.gz\n#bash check_phred.sh ${data}/${sample}_1.fq.gz\n\n##Running Trimmomatic\n##Paired End Mode:\n##trimmomatic PE [-threads &lt;threads] [-phred33 | -phred64] [-trimlog &lt;logFile&gt;] &lt;input 1&gt; &lt;input 2&gt; &lt;paired output 1&gt; &lt;unpaired output 1&gt; &lt;paired output 2&gt; &lt;unpaired output 2&gt; &lt;option 1&gt;...\ntime trimmomatic PE -phred33 ${data}/${sample}_1.fq.gz ${data}/${sample}_2.fq.gz ${data}/${sample}_1.clean.fq.gz ${data}/${sample}_1.clean.unpaired.fq.gz ${data}/${sample}_2.clean.fq.gz ${data}/${sample}_2.clean.unpaired.fq.gz MINLEN:20 LEADING:20 TRAILING:20 &amp;&amp; echo \&quot;trim done\t$(date \&quot;+%Y-%m-%d %H:%M:%S\&quot;)\&quot;\n\nmkdir -p fastqc/\nfastqc -o fastqc/ ${data}/${sample}*clean.fq.gz &amp;&amp;\nmultiqc fastqc/${sample}*.zip -o fastqc &amp;&amp;  echo \&quot;QC done\t$(date \&quot;+%Y-%m-%d %H:%M:%S\&quot;)\&quot;\n\n##gatk annotation files download\n\n##################\n##alignment\n##################\nmkdir -p BAM/\n#bwa index -a bwtsw ${ref} &amp;&amp;\nbwa mem -M -Y -R &#x27;@RG\\tID:sample_1\\tSM:sample\\tLB:WES\\tPL:Illumina&#x27; ${ref} ${data}/${sample}_1.clean.fq.gz ${data}/${sample}_2.clean.fq.gz | samtools view -Sb - &gt; BAM/${sample}.bam &amp;&amp; echo \&quot;alignment done\t$(date \&quot;+%Y-%m-%d %H:%M:%S\&quot;)\&quot;\n\n#################\n#sam file preprocessing - sort and markduplicate\n#################\nsamtools sort -o BAM/${sample}.sorted.bam BAM/${sample}.bam &amp;&amp;\npicard MarkDuplicates -Xmx64g I=BAM/${sample}.sorted.bam O=BAM/${sample}.sorted.markdup.bam M=BAM/${sample}.sorted.markdup.txt &amp;&amp;\npicard BuildBamIndex -Xmx64g I=BAM/${sample}.sorted.markdup.bam &amp;&amp; echo \&quot;markduplicate done\t$(date \&quot;+%Y-%m-%d %H:%M:%S\&quot;)\&quot;\n\n#samtools faidx ${ref} &amp;&amp;\n#picard CreateSequenceDictionary R=${ref} O=${ref/\\.fa/}.dict &amp;&amp;\n\n##########################\n#BQSR\n##########################\ngatk BaseRecalibrator -R ${ref} -I BAM/${sample}.sorted.markdup.bam \\\n\t--known-sites ${gatk_db}resources_broad_hg38_v0_Mills_and_1000G_gold_standard.indels.hg38.vcf.gz \\\n\t--known-sites ${gatk_db}resources_broad_hg38_v0_Homo_sapiens_assembly38.known_indels.vcf.gz \\\n\t--known-sites ${gatk_db}resources_broad_hg38_v0_hapmap_3.3.hg38.vcf.gz \\\n\t--known-sites ${gatk_db}resources_broad_hg38_v0_Homo_sapiens_assembly38.dbsnp138.vcf \\\n\t-O BAM/${sample}.BQSR.table\ngatk ApplyBQSR -R ${ref} -I BAM/${sample}.sorted.markdup.bam -bqsr BAM/${sample}.BQSR.table -O BAM/${sample}.sorted.markdup.BQSR.bam &amp;&amp; echo \&quot;BQSR done     $(date \&quot;+%Y-%m-%d %H:%M:%S\&quot;)\&quot;\n\n###########################\n##Variant calling - haplotypecaller\n##########################\nmkdir -p VCF/\ngatk HaplotypeCaller -R ${ref} -I BAM/${sample}.sorted.markdup.BQSR.bam -O VCF/${sample}.vcf &amp;&amp; echo \&quot;variant calling done\t$(date \&quot;+%Y-%m-%d %H:%M:%S\&quot;)\&quot;\n\n\n###########################\n#Annotation -ANNOVAR\n###########################\n${annovar}table_annovar.pl VCF/${sample}.vcf ${annovar}humandb/ -buildver hg38 -out VCF/${sample} -remove -protocol refGene,cytoBand,exac03,avsnp147,dbnsfp30a -operation gx,r,f,f,f -nastring . -vcfinput -polish &amp;&amp; echo \&quot;annotation done \t$(date \&quot;+%Y-%m-%d %H:%M:%S\&quot;)\&quot;&quot;" class="sourceCode numberSource bash numberLines code-with-copy"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1"></a><span class="va">thread</span><span class="op">=</span>1</span>
+<span id="cb4-2"><a href="#cb4-2"></a><span class="va">ref</span><span class="op">=</span>ref/references_hg38_v0_GRCh38.primary_assembly.genome.fa</span>
+<span id="cb4-3"><a href="#cb4-3"></a><span class="va">data</span><span class="op">=</span>data/</span>
+<span id="cb4-4"><a href="#cb4-4"></a><span class="va">sample</span><span class="op">=</span>WXS_example</span>
+<span id="cb4-5"><a href="#cb4-5"></a><span class="va">gatk_db</span><span class="op">=</span>ref/gatk/</span>
+<span id="cb4-6"><a href="#cb4-6"></a><span class="va">annovar</span><span class="op">=</span>/home/huaping/software/annovar/annovar/</span>
+<span id="cb4-7"><a href="#cb4-7"></a><span class="co">###############</span></span>
+<span id="cb4-8"><a href="#cb4-8"></a><span class="co"># fastq QC</span></span>
+<span id="cb4-9"><a href="#cb4-9"></a><span class="co">################</span></span>
+<span id="cb4-10"><a href="#cb4-10"></a></span>
+<span id="cb4-11"><a href="#cb4-11"></a><span class="co">#fastq-dump SRR8381428 --split-3</span></span>
+<span id="cb4-12"><a href="#cb4-12"></a><span class="co">#fastqc -o fastqc/ ${data}/${sample}*.fq.gz</span></span>
+<span id="cb4-13"><a href="#cb4-13"></a><span class="co">#bash check_phred.sh ${data}/${sample}_1.fq.gz</span></span>
+<span id="cb4-14"><a href="#cb4-14"></a></span>
+<span id="cb4-15"><a href="#cb4-15"></a><span class="co">##Running Trimmomatic</span></span>
+<span id="cb4-16"><a href="#cb4-16"></a><span class="co">##Paired End Mode:</span></span>
+<span id="cb4-17"><a href="#cb4-17"></a><span class="co">##trimmomatic PE [-threads &lt;threads] [-phred33 | -phred64] [-trimlog &lt;logFile&gt;] &lt;input 1&gt; &lt;input 2&gt; &lt;paired output 1&gt; &lt;unpaired output 1&gt; &lt;paired output 2&gt; &lt;unpaired output 2&gt; &lt;option 1&gt;...</span></span>
+<span id="cb4-18"><a href="#cb4-18"></a><span class="bu">time</span> trimmomatic PE <span class="at">-phred33</span> <span class="va">${data}</span>/<span class="va">${sample}</span>_1.fq.gz <span class="va">${data}</span>/<span class="va">${sample}</span>_2.fq.gz <span class="va">${data}</span>/<span class="va">${sample}</span>_1.clean.fq.gz <span class="va">${data}</span>/<span class="va">${sample}</span>_1.clean.unpaired.fq.gz <span class="va">${data}</span>/<span class="va">${sample}</span>_2.clean.fq.gz <span class="va">${data}</span>/<span class="va">${sample}</span>_2.clean.unpaired.fq.gz MINLEN:20 LEADING:20 TRAILING:20 <span class="kw">&amp;&amp;</span> <span class="bu">echo</span> <span class="st">"trim done  </span><span class="va">$(</span><span class="fu">date</span> <span class="st">"+%Y-%m-%d %H:%M:%S"</span><span class="va">)</span><span class="st">"</span></span>
+<span id="cb4-19"><a href="#cb4-19"></a></span>
+<span id="cb4-20"><a href="#cb4-20"></a><span class="fu">mkdir</span> <span class="at">-p</span> fastqc/</span>
+<span id="cb4-21"><a href="#cb4-21"></a><span class="ex">fastqc</span> <span class="at">-o</span> fastqc/ <span class="va">${data}</span>/<span class="va">${sample}</span><span class="pp">*</span>clean.fq.gz <span class="kw">&amp;&amp;</span></span>
+<span id="cb4-22"><a href="#cb4-22"></a><span class="ex">multiqc</span> fastqc/<span class="va">${sample}</span><span class="pp">*</span>.zip <span class="at">-o</span> fastqc <span class="kw">&amp;&amp;</span>  <span class="bu">echo</span> <span class="st">"QC done   </span><span class="va">$(</span><span class="fu">date</span> <span class="st">"+%Y-%m-%d %H:%M:%S"</span><span class="va">)</span><span class="st">"</span></span>
+<span id="cb4-23"><a href="#cb4-23"></a></span>
+<span id="cb4-24"><a href="#cb4-24"></a><span class="co">##gatk annotation files download</span></span>
+<span id="cb4-25"><a href="#cb4-25"></a></span>
+<span id="cb4-26"><a href="#cb4-26"></a><span class="co">##################</span></span>
+<span id="cb4-27"><a href="#cb4-27"></a><span class="co">##alignment</span></span>
+<span id="cb4-28"><a href="#cb4-28"></a><span class="co">##################</span></span>
+<span id="cb4-29"><a href="#cb4-29"></a><span class="fu">mkdir</span> <span class="at">-p</span> BAM/</span>
+<span id="cb4-30"><a href="#cb4-30"></a><span class="co">#bwa index -a bwtsw ${ref} &amp;&amp;</span></span>
+<span id="cb4-31"><a href="#cb4-31"></a><span class="ex">bwa</span> mem <span class="at">-M</span> <span class="at">-Y</span> <span class="at">-R</span> <span class="st">'@RG\tID:sample_1\tSM:sample\tLB:WES\tPL:Illumina'</span> <span class="va">${ref}</span> <span class="va">${data}</span>/<span class="va">${sample}</span>_1.clean.fq.gz <span class="va">${data}</span>/<span class="va">${sample}</span>_2.clean.fq.gz <span class="kw">|</span> <span class="ex">samtools</span> view <span class="at">-Sb</span> <span class="at">-</span> <span class="op">&gt;</span> BAM/<span class="va">${sample}</span>.bam <span class="kw">&amp;&amp;</span> <span class="bu">echo</span> <span class="st">"alignment done    </span><span class="va">$(</span><span class="fu">date</span> <span class="st">"+%Y-%m-%d %H:%M:%S"</span><span class="va">)</span><span class="st">"</span></span>
+<span id="cb4-32"><a href="#cb4-32"></a></span>
+<span id="cb4-33"><a href="#cb4-33"></a><span class="co">#################</span></span>
+<span id="cb4-34"><a href="#cb4-34"></a><span class="co">#sam file preprocessing - sort and markduplicate</span></span>
+<span id="cb4-35"><a href="#cb4-35"></a><span class="co">#################</span></span>
+<span id="cb4-36"><a href="#cb4-36"></a><span class="ex">samtools</span> sort <span class="at">-o</span> BAM/<span class="va">${sample}</span>.sorted.bam BAM/<span class="va">${sample}</span>.bam <span class="kw">&amp;&amp;</span></span>
+<span id="cb4-37"><a href="#cb4-37"></a><span class="ex">picard</span> MarkDuplicates <span class="at">-Xmx64g</span> I=BAM/<span class="va">${sample}</span>.sorted.bam O=BAM/<span class="va">${sample}</span>.sorted.markdup.bam M=BAM/<span class="va">${sample}</span>.sorted.markdup.txt <span class="kw">&amp;&amp;</span></span>
+<span id="cb4-38"><a href="#cb4-38"></a><span class="ex">picard</span> BuildBamIndex <span class="at">-Xmx64g</span> I=BAM/<span class="va">${sample}</span>.sorted.markdup.bam <span class="kw">&amp;&amp;</span> <span class="bu">echo</span> <span class="st">"markduplicate done </span><span class="va">$(</span><span class="fu">date</span> <span class="st">"+%Y-%m-%d %H:%M:%S"</span><span class="va">)</span><span class="st">"</span></span>
+<span id="cb4-39"><a href="#cb4-39"></a></span>
+<span id="cb4-40"><a href="#cb4-40"></a><span class="co">#samtools faidx ${ref} &amp;&amp;</span></span>
+<span id="cb4-41"><a href="#cb4-41"></a><span class="co">#picard CreateSequenceDictionary R=${ref} O=${ref/\.fa/}.dict &amp;&amp;</span></span>
+<span id="cb4-42"><a href="#cb4-42"></a></span>
+<span id="cb4-43"><a href="#cb4-43"></a><span class="co">##########################</span></span>
+<span id="cb4-44"><a href="#cb4-44"></a><span class="co">#BQSR</span></span>
+<span id="cb4-45"><a href="#cb4-45"></a><span class="co">##########################</span></span>
+<span id="cb4-46"><a href="#cb4-46"></a><span class="ex">gatk</span> BaseRecalibrator <span class="at">-R</span> <span class="va">${ref}</span> <span class="at">-I</span> BAM/<span class="va">${sample}</span>.sorted.markdup.bam <span class="dt">\</span></span>
+<span id="cb4-47"><a href="#cb4-47"></a>    <span class="at">--known-sites</span> <span class="va">${gatk_db}</span>resources_broad_hg38_v0_Mills_and_1000G_gold_standard.indels.hg38.vcf.gz <span class="dt">\</span></span>
+<span id="cb4-48"><a href="#cb4-48"></a>    <span class="at">--known-sites</span> <span class="va">${gatk_db}</span>resources_broad_hg38_v0_Homo_sapiens_assembly38.known_indels.vcf.gz <span class="dt">\</span></span>
+<span id="cb4-49"><a href="#cb4-49"></a>    <span class="at">--known-sites</span> <span class="va">${gatk_db}</span>resources_broad_hg38_v0_hapmap_3.3.hg38.vcf.gz <span class="dt">\</span></span>
+<span id="cb4-50"><a href="#cb4-50"></a>    <span class="at">--known-sites</span> <span class="va">${gatk_db}</span>resources_broad_hg38_v0_Homo_sapiens_assembly38.dbsnp138.vcf <span class="dt">\</span></span>
+<span id="cb4-51"><a href="#cb4-51"></a>    <span class="at">-O</span> BAM/<span class="va">${sample}</span>.BQSR.table</span>
+<span id="cb4-52"><a href="#cb4-52"></a><span class="ex">gatk</span> ApplyBQSR <span class="at">-R</span> <span class="va">${ref}</span> <span class="at">-I</span> BAM/<span class="va">${sample}</span>.sorted.markdup.bam <span class="at">-bqsr</span> BAM/<span class="va">${sample}</span>.BQSR.table <span class="at">-O</span> BAM/<span class="va">${sample}</span>.sorted.markdup.BQSR.bam <span class="kw">&amp;&amp;</span> <span class="bu">echo</span> <span class="st">"BQSR done     </span><span class="va">$(</span><span class="fu">date</span> <span class="st">"+%Y-%m-%d %H:%M:%S"</span><span class="va">)</span><span class="st">"</span></span>
+<span id="cb4-53"><a href="#cb4-53"></a></span>
+<span id="cb4-54"><a href="#cb4-54"></a><span class="co">###########################</span></span>
+<span id="cb4-55"><a href="#cb4-55"></a><span class="co">##Variant calling - haplotypecaller</span></span>
+<span id="cb4-56"><a href="#cb4-56"></a><span class="co">##########################</span></span>
+<span id="cb4-57"><a href="#cb4-57"></a><span class="fu">mkdir</span> <span class="at">-p</span> VCF/</span>
+<span id="cb4-58"><a href="#cb4-58"></a><span class="ex">gatk</span> HaplotypeCaller <span class="at">-R</span> <span class="va">${ref}</span> <span class="at">-I</span> BAM/<span class="va">${sample}</span>.sorted.markdup.BQSR.bam <span class="at">-O</span> VCF/<span class="va">${sample}</span>.vcf <span class="kw">&amp;&amp;</span> <span class="bu">echo</span> <span class="st">"variant calling done  </span><span class="va">$(</span><span class="fu">date</span> <span class="st">"+%Y-%m-%d %H:%M:%S"</span><span class="va">)</span><span class="st">"</span></span>
+<span id="cb4-59"><a href="#cb4-59"></a></span>
+<span id="cb4-60"><a href="#cb4-60"></a></span>
+<span id="cb4-61"><a href="#cb4-61"></a><span class="co">###########################</span></span>
+<span id="cb4-62"><a href="#cb4-62"></a><span class="co">#Annotation -ANNOVAR</span></span>
+<span id="cb4-63"><a href="#cb4-63"></a><span class="co">###########################</span></span>
+<span id="cb4-64"><a href="#cb4-64"></a><span class="va">${annovar}</span><span class="ex">table_annovar.pl</span> VCF/<span class="va">${sample}</span>.vcf <span class="va">${annovar}</span>humandb/ <span class="at">-buildver</span> hg38 <span class="at">-out</span> VCF/<span class="va">${sample}</span> <span class="at">-remove</span> <span class="at">-protocol</span> refGene,cytoBand,exac03,avsnp147,dbnsfp30a <span class="at">-operation</span> gx,r,f,f,f <span class="at">-nastring</span> . <span class="at">-vcfinput</span> <span class="at">-polish</span> <span class="kw">&amp;&amp;</span> <span class="bu">echo</span> <span class="st">"annotation done     </span><span class="va">$(</span><span class="fu">date</span> <span class="st">"+%Y-%m-%d %H:%M:%S"</span><span class="va">)</span><span class="st">"</span></span></code></pre></div><button title="复制到剪贴板" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="book-placeholder">
+<p>本节内容待补充。</p>
 </div>
 </section>
 </section>
 <section id="sec-07-06" class="level2" data-number="7.6">
 <h2 data-number="7.6" class="anchored" data-anchor-id="sec-07-06"><span class="header-section-number">7.6</span> VCF解读、过滤与质量评估</h2>
 <p>能区分候选位点与支持充分的结果。</p>
-<p>待完善</p>
+<div class="book-placeholder">
+<p>本节内容待补充。</p>
+</div>
 </section>
 <section id="sec-07-07" class="level2" data-number="7.7">
 <h2 data-number="7.7" class="anchored" data-anchor-id="sec-07-07"><span class="header-section-number">7.7</span> 变异注释与证据分层</h2>
 <p>区分检测结果、功能预测、数据库记录和实际证据。</p>
-<section id="src-0070-WGS-796" class="level4">
-<h4 class="anchored" data-anchor-id="src-0070-WGS-796">测序数据的下游分析方向</h4>
+<section id="src-0070-WGS-796" class="level3">
+<h3 class="anchored" data-anchor-id="src-0070-WGS-796">测序数据的下游分析方向</h3>
 <p>经过上述的流程处理，带有注释结果的突变位点将存储在VCF文件中，具体格式介绍见前面章节。除了对突变位点进行注释外，还可以进一步有选择性地对突变位点/基因进行功能性分析和关联分析。在此简单介绍一下可行的研究方向和思路和可能会用到的数据库，数据库包括现有的文献数据库（如NCBI Pubmed）和生物数据库：</p>
 <ul>
 <li>从位点/基因层面出发进行功能分析；</li>
 <li>从基因层面出发进行通路分析，发掘与目标基因相关的代谢通路及其相互关系；</li>
 <li>从样本层面出发，比较公开数据库中同类型人群的基因特征进行结果验证。同理，也可结合非公开的临床样本进行验证分析和实验分析；</li>
 </ul>
-<section id="src-0070-WGS-804" class="level5">
-<h5 class="anchored" data-anchor-id="src-0070-WGS-804">突变位点相关数据库查询</h5>
+<section id="src-0070-WGS-804" class="level4">
+<h4 class="anchored" data-anchor-id="src-0070-WGS-804">突变位点相关数据库查询</h4>
 <p><strong>OMIM</strong>（Online Mendelian Inheritance in Man）https://omim.org/ 是比较全面、权威的人类孟德尔遗传数据库，主要关注表型（孟德尔遗传病为主）和基因型之间的关系。自1960年代初开始建立，并在1987年启动在线网站，实现免费公开查询。目前，OMIM数据库保持每日更新，存储记录了超过15,000个基因的信息（截至2020年9月）。OMIM数据库界面简洁清晰、内容全面、操作简便，是遗传学、基因组学和医学领域等领域的重要数据库。</p>
 <p><strong>COSMIC</strong> （Catalogue Of Somatic Mutations In Cancer，癌症体细胞突变数据库）https://cancer.sanger.ac.uk/cosmic 主要记录与癌症相关的体细胞突变（somatic mutation）信息，可供学术研究人员免费使用。数据库自2004年建立开始快速发展，目前储存了超过1000个全基因组序列信息，1.6万例样本信息和超过250万个突变位点（截至2020年9月）。COSMIC数据库主要来自科学文献中收集已被报道的癌症基因突变位点（Tier1: 具有与癌症相关的活动记录和突变证据，突变以促进致癌转化的方式改变基因产物的活性。），或者是来自大人群癌症研究的结果位点（Tier2：在癌症样本中检测到了大量该基因的突变但与癌症的相关意义未明确）。体细胞突变是指并非由遗传得到、个体在受精卵发育后发生的突变，通常情况下体细胞突变不会造成自身后代的遗传改变。体细胞突变不一定引起表型变化，但也可能引起多种疾病，包括癌症。</p>
 <p><strong>ClinVar</strong> https://www.ncbi.nlm.nih.gov/clinvar/ 是NCBI主办的，与疾病相关的人类基因组变异数据库。它整合了dbSNP、dbVar、Pubmed、OMIM等多个数据库的遗传变异和临床表型信息。同时，每个研究机构都可以向其提交数据，并由专家团队对信息进行审核评级。按提交的注释信息和证据的可靠性，每个突变位点从高到低被评为4个星级，研究人员在查询相关位点时，可以结合注释信息、证据和专家评级综合考虑。Clinvar数据库体系依照疾病类别分成不同的数据库，并由熟悉该领域的专家团队来管理和审核，不断更新优化，形成一个标准的、可信的遗传变异-临床相关的数据库。</p>
@@ -966,8 +985,8 @@ P(D \mid G)=\prod_j \left( \frac{P(D_j \mid H_1)}{2} + \frac{P(D_j \mid H_2)}{2}
 </figure>
 </div>
 </section>
-<section id="src-0070-WGS-816" class="level5">
-<h5 class="anchored" data-anchor-id="src-0070-WGS-816">数据库使用案例</h5>
+<section id="src-0070-WGS-816" class="level4">
+<h4 class="anchored" data-anchor-id="src-0070-WGS-816">数据库使用案例</h4>
 <p>以实战代码中找到的一个突变为例，利用OMIM 和 COMICS数据库进行进一步查找。</p>
 <p><strong>根据结果VCF注释查找感兴趣的突变位点</strong> VCF文件中会突变所在位置（Func.refGene）、涉及的突变基因（Gene.refGene）以及功能变化（ExonicFunc.refGene），假如说从风险度比较高的突变开始查起，4号染色体的第81046034碱基从C变成了T，基因型GT=1/1，且被标注了“Func.refGene=exonic; Gene.refGene=BMP3; ExonicFunc.refGene=nonsynonymous_SNV“，即认为在BMP3基因的编码区上有非同义突变，由此可以去数据库中搜索基因BMP3的信息，查看突变是否与样本表征有相关关系。OMIM数据库中记录了基因功能、生化特征、基因关系图、相关文献等信息。右侧菜菜单栏还可以点击进入外部数据库，查看该基因的DNA 、蛋白质、临床资源、动物模型、细胞通路等信息。</p>
 <div id="fig-08-wgs-and-wes-006-repeat-2" class="quarto-float quarto-figure quarto-figure-center anchored">
@@ -1025,8 +1044,8 @@ P(D \mid G)=\prod_j \left( \frac{P(D_j \mid H_1)}{2} + \frac{P(D_j \mid H_2)}{2}
 </div>
 </section>
 </section>
-<section id="src-0070-WGS-840" class="level4">
-<h4 class="anchored" data-anchor-id="src-0070-WGS-840">通路分析</h4>
+<section id="src-0070-WGS-840" class="level3">
+<h3 class="anchored" data-anchor-id="src-0070-WGS-840">通路分析</h3>
 <p><strong>KEGG</strong>（Kyoto Encyclopedia of Genes and Genomes，京都基因与基因组百科全书） https://www.genome.jp/kegg/pathway.html 数据库把基因与细胞、物种进行关联，KEGG PATHWAY子数据库通过清晰明了的图表来表述基因和代谢物所参与的代谢通路，同时更全面地展现通路内部变化以及代谢通路之间的关系。数据库中将生物代谢通路划分为 6 类：细胞过程（Cellular Processes）、环境信息处理（Environmental Information Processing）、遗传信息处理（Genetic Information Processing）、人类疾病（Human Diseases）、新陈代谢（Metabolism）、生物体系统（Organismal Systems），在此基础上还继续按具体生命活动细分子通路，记录包含其通路代谢图和具体注释等信息。</p>
 <div id="fig-08-wgs-and-wes-012" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
@@ -1050,8 +1069,8 @@ P(D \mid G)=\prod_j \left( \frac{P(D_j \mid H_1)}{2} + \frac{P(D_j \mid H_2)}{2}
 </figure>
 </div>
 </section>
-<section id="src-0070-WGS-850" class="level4">
-<h4 class="anchored" data-anchor-id="src-0070-WGS-850">样本数据库寻找数据集进行验证或辅助分析</h4>
+<section id="src-0070-WGS-850" class="level3">
+<h3 class="anchored" data-anchor-id="src-0070-WGS-850">样本数据库寻找数据集进行验证或辅助分析</h3>
 <p><strong>TCGA</strong>（The Cancer Genome Atlas）https://portal.gdc.cancer.gov/ 是美国国家癌症研究所(National Cancer Institute)和美国人类基因组研究所(National Human Genome Research Institute)共同监管的一个基于肿瘤病人样本的数据库项目，旨在借助高通量测序技术对癌症基因组进行读取和分析，帮助人类理解癌症，提高对癌症的预防、诊治能力。TCGA数据库包含丰富且规范的样本多组学数据和临床数据，包括mRNA表达、miRNA表达数据、拷贝数变异、DNA甲基化、突变位点等，研究人员还可通过申请获准下载原始下机数据，是癌症研究中非常重要的数据库。</p>
 <div id="fig-08-wgs-and-wes-014" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
@@ -1064,35 +1083,36 @@ P(D \mid G)=\prod_j \left( \frac{P(D_j \mid H_1)}{2} + \frac{P(D_j \mid H_2)}{2}
 </figure>
 </div>
 <p><strong>CCLE</strong>（Cancer Cell Line Encyclopedia，癌症细胞系的百科全书）https://portals.broadinstitute.org/ccle 目前存储了1457种（截至2020年9月）癌症细胞系的免费公开基因组数据，旨在对大量癌症模型进行详细的遗传学和药理学表征分析，开发基因与药物效用相关的综合分析流程，同时在体外运用细胞系模拟癌症患者分层样本进行更多的肿瘤药理研究实验。</p>
-<div class="callout callout-style-default callout-note callout-titled" title="待完善">
-<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-6-contents" aria-controls="callout-6" aria-expanded="false" aria-label="Toggle callout">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-<span class="screen-reader-only">注记</span>待完善
-</div>
-<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
-</div>
-<div id="callout-6" class="callout-6-contents callout-collapse collapse">
-<div class="callout-body-container callout-body">
-<p>更新示例和数据库描述，强调注释版本与证据来源。</p>
-</div>
-</div>
+<div class="book-placeholder">
+<p>本节内容待补充。</p>
 </div>
 </section>
 </section>
 <section id="sec-07-08" class="level2" data-number="7.8">
 <h2 data-number="7.8" class="anchored" data-anchor-id="sec-07-08"><span class="header-section-number">7.8</span> IGV复核、基准评价与完整交付</h2>
 <p>评估分析流程的准确性并报告其检测边界。</p>
-<p>待完善</p>
+<div class="book-placeholder">
+<p>本节内容待补充。</p>
+</div>
 
 
 </section>
+<section id="footnotes" class="footnotes footnotes-end-of-document" role="doc-endnotes">
+<hr>
+<ol>
+<li id="fn1"><p>G、C碱基之间由3个氢键连接，稳定性较强，不易被打断，所以使得GC含量高的区域通常片段偏大。同时PCR时不易解旋，就算分开后，单股的GC含量高的序列也容易自身粘合形成二级结构。同时，PCR聚合酶可能对GC含量高的片段有偏好性[6]，影响PCR的效果。<a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+</ol>
+</section>
 
 </main> <!-- /main -->
+<div class="book-toolbar" role="navigation" aria-label="阅读工具">
+  <span class="book-brand">AI时代生信入门</span>
+  <button class="book-chapters-button" type="button" aria-controls="quarto-sidebar" aria-expanded="false">全书目录</button>
+  <button class="book-toc-button" type="button" aria-controls="quarto-margin-sidebar" aria-expanded="false">本章目录</button>
+  <button class="book-search-button" type="button">搜索</button>
+</div>
+<button class="book-shade" type="button" aria-label="关闭目录" hidden=""></button>
 <button class="back-top" aria-label="回到顶部" title="回到顶部" onclick="window.scrollTo({top:0,behavior:'smooth'})">↑</button>
-
 <script id="quarto-html-after-body" type="application/javascript">
   window.document.addEventListener("DOMContentLoaded", function (event) {
     const icon = "";
@@ -1529,4 +1549,5 @@ P(D \mid G)=\prod_j \left( \frac{P(D_j \mid H_1)}{2} + \frac{P(D_j \mid H_2)}{2}
 
 
 <script src="../site_libs/quarto-html/zenscroll-min.js"></script>
+<script src="../styles/reading.js"></script>
 </body></html>

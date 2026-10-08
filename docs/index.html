@@ -39,23 +39,22 @@ ul.task-list li input[type="checkbox"] {
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="site_libs/quarto-html/anchor.min.js"></script>
 <link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-ed96de9b727972fe78a7b5d16c58bf87.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-795e9e8eca1e12b12abcb09a27409631.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap-a8449e8f115e2c9741b1edc410d84446.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-2785e736d6bb3298ac36e4268fcf040f.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
   "collapse-after": 3,
   "panel-placement": "start",
-  "type": "textbox",
+  "type": "overlay",
   "limit": 50,
   "keyboard-shortcut": [
     "f",
     "/",
     "s"
   ],
-  "show-item-context": false,
   "language": {
     "search-no-results-text": "没有结果",
     "search-matching-documents-text": "匹配的文档",
@@ -101,13 +100,11 @@ ul.task-list li input[type="checkbox"] {
     <div class="pt-lg-2 mt-2 text-left sidebar-header">
     <div class="sidebar-title mb-0 py-0">
       <a href="./">AI时代生信入门</a> 
+        <div class="sidebar-tools-main">
+    <div id="quarto-search" class="quarto-navigation-tool px-1" title="搜索"></div>
+</div>
     </div>
       </div>
-        <div class="mt-2 flex-shrink-0 align-items-center">
-        <div class="sidebar-search">
-        <div id="quarto-search" class="" title="搜索"></div>
-        </div>
-        </div>
     <div class="sidebar-menu-container"> 
     <ul class="list-unstyled mt-1">
         <li class="sidebar-item">
@@ -288,20 +285,12 @@ ul.task-list li input[type="checkbox"] {
 <h2 class="unnumbered anchored" data-anchor-id="怎样使用这本书">怎样使用这本书</h2>
 <p>第一次接触生物信息学时，可以按章节顺序阅读。已有命令行和编程基础的读者，可以从第 3—4 章核对概念，再进入自己关心的实战。第 1 章作为全书前言；从第 2 章起，各章先用“本章提要”介绍目标和内容。</p>
 <p>实战中遇到统计概念时，可以回看<a href="./manuscript/11-statistics-and-learning.html">第 11 章</a>。原有 25 道基础问题及讲解已按主题并入正文，作为相关小节的知识问答；参考资料与素材说明集中放在附录。</p>
-<p>左侧目录按顺序列出各章，右侧“本章目录”用于定位当前小节。两侧标题均为单行显示，较长标题可以在目录内横向滚动查看；搜索框可以检索全书正文。公式、图片和代码均放在对应的讲解位置；较长命令可以横向滚动，并通过右上角按钮复制。</p>
-<div class="callout callout-style-default callout-note callout-titled" title="当前版本">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-<span class="screen-reader-only">注记</span>当前版本
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p>本书共有十二章、79 个编号小节，另有 11 段不编号的本章提要和一个参考资料附录，目前仍在持续修订。已有原稿的详细讲解尽量保留，尚缺的正文、练习和来源均标为“待完善”。碱基不平衡测序、单细胞与空间组学、工作流、AI 及部分统计教学仍需补写。</p>
+<p>宽屏同时显示全书目录、正文和本章目录。普通桌面保留右侧“本章目录”，点击顶部“全书目录”可打开章节列表；窄屏通过顶部按钮分别打开两种目录。目录标题均为单行显示，较长标题可以在目录内横向滚动查看。点击“搜索”可以检索全书正文。</p>
+<p>正文中的浅绿色框标出核心知识，浅黄色框提醒常见问题，浅蓝色框呈现示例与练习；灰色拓展阅读默认收起，可按需展开。公式、图和表按章编号，正文中的编号链接可跳转到对应位置。较宽公式可横向滚动，右侧编号保持可见。</p>
+<p>代码框标注语言，并提供“复制”和“展开代码”按钮；长代码带有行号，部分关键行使用浅绿色背景。复制内容不含界面行号。输出、数据和伪代码另有标签，阅读时请结合上下文区分。命令保留原有换行，较长的行可在框内横向滚动。</p>
+<div class="book-placeholder">
+<p>本书共有十二章、79 个编号小节，另有 11 段不编号的本章提要和一个参考资料附录，目前仍在持续修订。已有原稿的详细讲解尽量保留，尚缺的内容以简短占位提示标出。碱基不平衡测序、单细胞与空间组学、工作流、AI 及部分统计教学仍需补写。</p>
 <p>网页构建已经与分析代码执行分离。页面中的历史实战命令保留教学上下文，但尚未逐条在统一数据和环境中运行验收。</p>
-</div>
 </div>
 </section>
 <section id="编写团队与致谢" class="level2 unnumbered">
@@ -316,8 +305,14 @@ ul.task-list li input[type="checkbox"] {
 </section>
 
 </main> <!-- /main -->
+<div class="book-toolbar" role="navigation" aria-label="阅读工具">
+  <span class="book-brand">AI时代生信入门</span>
+  <button class="book-chapters-button" type="button" aria-controls="quarto-sidebar" aria-expanded="false">全书目录</button>
+  <button class="book-toc-button" type="button" aria-controls="quarto-margin-sidebar" aria-expanded="false">本章目录</button>
+  <button class="book-search-button" type="button">搜索</button>
+</div>
+<button class="book-shade" type="button" aria-label="关闭目录" hidden=""></button>
 <button class="back-top" aria-label="回到顶部" title="回到顶部" onclick="window.scrollTo({top:0,behavior:'smooth'})">↑</button>
-
 <script id="quarto-html-after-body" type="application/javascript">
   window.document.addEventListener("DOMContentLoaded", function (event) {
     const icon = "";
@@ -751,4 +746,5 @@ ul.task-list li input[type="checkbox"] {
 
 
 <script src="site_libs/quarto-html/zenscroll-min.js"></script>
+<script src="styles/reading.js"></script>
 </body></html>

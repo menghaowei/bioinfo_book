@@ -1,0 +1,21 @@
+/*-- scss:defaults --*/
+$primary: #186254;
+$link-color: #176859;
+$body-color: #263b3d;
+$body-bg: #fcfcf9;
+$web-font-path: false;
+$font-family-sans-serif: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", "Microsoft YaHei", "Noto Sans CJK SC", sans-serif;
+$font-size-base: 1.125rem;
+$line-height-base: 1.75;
+$headings-font-weight: 650;
+$code-color: #814d48;
+$code-bg: #f0f3ef;
+$sidebar-bg: #f3f6f1;
+$navbar-bg: #163f38;
+
+/*-- scss:rules --*/
+h1, h2, h3 { letter-spacing: -.02em; }
+h1 { line-height: 1.4; }
+h2 { border-bottom: 1px solid #d9e3db; padding-bottom: .7rem; margin-top: 3.5rem; }
+.sidebar-title { font-weight: 750; letter-spacing: .02em; }
+.sidebar-item-section > .sidebar-item-container { margin-top: 1rem; font-weight: 700; }

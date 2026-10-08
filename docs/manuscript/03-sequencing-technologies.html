@@ -20,6 +20,41 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
 </style>
 
 
@@ -39,23 +74,22 @@ ul.task-list li input[type="checkbox"] {
 <script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="../site_libs/quarto-html/anchor.min.js"></script>
 <link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting-ed96de9b727972fe78a7b5d16c58bf87.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-795e9e8eca1e12b12abcb09a27409631.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../site_libs/bootstrap/bootstrap-a8449e8f115e2c9741b1edc410d84446.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-2785e736d6bb3298ac36e4268fcf040f.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
   "collapse-after": 3,
   "panel-placement": "start",
-  "type": "textbox",
+  "type": "overlay",
   "limit": 50,
   "keyboard-shortcut": [
     "f",
     "/",
     "s"
   ],
-  "show-item-context": false,
   "language": {
     "search-no-results-text": "没有结果",
     "search-matching-documents-text": "匹配的文档",
@@ -72,6 +106,35 @@ ul.task-list li input[type="checkbox"] {
 }</script>
 <style>html{ scroll-behavior: smooth; }</style>
 
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script src="../vendor/mathjax/tex-chtml.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
 
 <link rel="stylesheet" href="../styles/book.css">
 </head>
@@ -101,13 +164,11 @@ ul.task-list li input[type="checkbox"] {
     <div class="pt-lg-2 mt-2 text-left sidebar-header">
     <div class="sidebar-title mb-0 py-0">
       <a href="../">AI时代生信入门</a> 
+        <div class="sidebar-tools-main">
+    <div id="quarto-search" class="quarto-navigation-tool px-1" title="搜索"></div>
+</div>
     </div>
       </div>
-        <div class="mt-2 flex-shrink-0 align-items-center">
-        <div class="sidebar-search">
-        <div id="quarto-search" class="" title="搜索"></div>
-        </div>
-        </div>
     <div class="sidebar-menu-container"> 
     <ul class="list-unstyled mt-1">
         <li class="sidebar-item">
@@ -235,15 +296,18 @@ ul.task-list li input[type="checkbox"] {
   </ul></li>
   <li><a href="#sec-03-05" id="toc-sec-03-05" class="nav-link" data-scroll-target="#sec-03-05"><span class="header-section-number">3.5</span> 高通量文库构建</a>
   <ul class="collapse">
+  <li><a href="#src-0020-introduction-of-NGS-24" id="toc-src-0020-introduction-of-NGS-24" class="nav-link" data-scroll-target="#src-0020-introduction-of-NGS-24">建库</a></li>
   <li><a href="#question-01-94" id="toc-question-01-94" class="nav-link" data-scroll-target="#question-01-94">知识问答 3：接头、扩增、索引与测序结构</a></li>
   <li><a href="#question-01-148" id="toc-question-01-148" class="nav-link" data-scroll-target="#question-01-148">知识问答 5：接头、引物与双端建库</a></li>
   </ul></li>
   <li><a href="#sec-03-06" id="toc-sec-03-06" class="nav-link" data-scroll-target="#sec-03-06"><span class="header-section-number">3.6</span> 测序数据的储存</a>
   <ul class="collapse">
+  <li><a href="#src-0050-RNA-seq-132" id="toc-src-0050-RNA-seq-132" class="nav-link" data-scroll-target="#src-0050-RNA-seq-132">碱基质量</a></li>
   <li><a href="#question-01-1" id="toc-question-01-1" class="nav-link" data-scroll-target="#question-01-1">知识问答 1：FASTA、FASTQ 与质量编码</a></li>
   </ul></li>
   <li><a href="#sec-03-07" id="toc-sec-03-07" class="nav-link" data-scroll-target="#sec-03-07"><span class="header-section-number">3.7</span> 读懂测序质量报告 FastQC</a>
   <ul class="collapse">
+  <li><a href="#src-0050-RNA-seq-128" id="toc-src-0050-RNA-seq-128" class="nav-link" data-scroll-target="#src-0050-RNA-seq-128">测序数据的质量控制</a></li>
   <li><a href="#src-0030-QC-of-FASTQ-7" id="toc-src-0030-QC-of-FASTQ-7" class="nav-link" data-scroll-target="#src-0030-QC-of-FASTQ-7">测序数据的质控与前处理</a></li>
   <li><a href="#src-0030-QC-of-FASTQ-9" id="toc-src-0030-QC-of-FASTQ-9" class="nav-link" data-scroll-target="#src-0030-QC-of-FASTQ-9">数据质控的目的</a></li>
   <li><a href="#src-0030-QC-of-FASTQ-11" id="toc-src-0030-QC-of-FASTQ-11" class="nav-link" data-scroll-target="#src-0030-QC-of-FASTQ-11">生成FastQ测序数据报告</a></li>
@@ -254,6 +318,7 @@ ul.task-list li input[type="checkbox"] {
   </ul></li>
   <li><a href="#sec-03-08" id="toc-sec-03-08" class="nav-link" data-scroll-target="#sec-03-08"><span class="header-section-number">3.8</span> 去除测序接头</a>
   <ul class="collapse">
+  <li><a href="#src-0050-RNA-seq-204" id="toc-src-0050-RNA-seq-204" class="nav-link" data-scroll-target="#src-0050-RNA-seq-204">用质量控制软件获取高质量测序片段</a></li>
   <li><a href="#src-0030-QC-of-FASTQ-17" id="toc-src-0030-QC-of-FASTQ-17" class="nav-link" data-scroll-target="#src-0030-QC-of-FASTQ-17">常用的数据前处理办法及思路</a></li>
   <li><a href="#question-11-3" id="toc-question-11-3" class="nav-link" data-scroll-target="#question-11-3">知识问答 11：接头处理的参数与输出</a></li>
   </ul></li>
@@ -294,7 +359,9 @@ ul.task-list li input[type="checkbox"] {
 <section id="sec-03-01" class="level2" data-number="3.1">
 <h2 data-number="3.1" class="anchored" data-anchor-id="sec-03-01"><span class="header-section-number">3.1</span> 不同测序实验究竟测到了什么</h2>
 <p>避免把不同实验的 reads 当作同一种生物学测量。</p>
-<p>待完善</p>
+<div class="book-placeholder">
+<p>本节内容待补充。</p>
+</div>
 </section>
 <section id="sec-03-02" class="level2" data-number="3.2">
 <h2 data-number="3.2" class="anchored" data-anchor-id="sec-03-02"><span class="header-section-number">3.2</span> 以Illumina为代表的第二代测序技术</h2>
@@ -373,7 +440,19 @@ ul.task-list li input[type="checkbox"] {
 </section>
 <section id="src-0020-introduction-of-NGS-55" class="level4">
 <h4 class="anchored" data-anchor-id="src-0020-introduction-of-NGS-55">测序</h4>
+<div class="book-core callout callout-style-default callout-note callout-titled" title="核心知识｜边合成边测序的循环">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">注记</span>核心知识｜边合成边测序的循环
+</div>
+</div>
+<div class="callout-body-container callout-body">
 <p>测序时，聚合酶沿模板延伸引物，加入带有可逆终止基团的核苷酸，使一轮反应主要延伸一个碱基。仪器根据荧光信号判断本轮加入的碱基，再解除终止并进入下一轮。不同代际平台的荧光编码和化学体系有所不同，不能都理解为四种碱基各自发出一种颜色。</p>
+</div>
+</div>
 <p>下图保留原稿的核苷酸示意图，原图来源：http://www.oezratty.net/。具体可逆终止基团以对应化学体系为准；原稿关于“−N2 叠氮基团”的说明不成立。</p>
 <div id="fig-03-sequencing-and-data-formats-006" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
@@ -442,7 +521,17 @@ ul.task-list li input[type="checkbox"] {
 </section>
 <section id="question-01-135" class="level4">
 <h4 class="anchored" data-anchor-id="question-01-135">2. Illumina目前的测序技术，最核心的就是边合成边测序，即我们常说的 Sequencing by synthesis （SBS），那么为什么能够实现SBS？</h4>
-<p>经过桥式PCR之后同一段序列已经成簇，下一段就是开始进行测序，这一步比较简单，就是加入primer，然后添加经过特殊处理的ATCG四种碱基，特殊的地方有两点：一个是碱基部分加入了荧光基团，可以激发出不同的颜色，另一个是脱氧核糖3号位加入了叠氮基团而不是常规的羟基，这个叠氮集团保证了每次只能够在序列上添加1个碱基. <img src="../assets/a-questions-01-05/003-illustration.jpg" id="fig-a-questions-01-05-003" class="img-fluid" alt="N2的叠氮基团 脱氧核糖核苷酸"></p>
+<p>经过桥式PCR之后同一段序列已经成簇，下一段就是开始进行测序，这一步比较简单，就是加入primer，然后添加经过特殊处理的ATCG四种碱基，特殊的地方有两点：一个是碱基部分加入了荧光基团，可以激发出不同的颜色，另一个是脱氧核糖3号位加入了叠氮基团而不是常规的羟基，这个叠氮集团保证了每次只能够在序列上添加1个碱基.</p>
+<div id="fig-a-questions-01-05-003" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-a-questions-01-05-003-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="../assets/a-questions-01-05/003-illustration.jpg" class="img-fluid figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-a-questions-01-05-003-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+图&nbsp;3.8: N2的叠氮基团 脱氧核糖核苷酸
+</figcaption>
+</figure>
+</div>
 <p>这样每1轮测序，保证只有1个碱基加入的当前测序链。这时候测序仪会发出激发光，并扫描荧光。因为一个cluster中所有的序列是一样的，所以理论上，这时候cluster中发出的荧光应该颜色一致。随后加入试剂，将脱氧核糖3号位的—N2改变成—OH，然后切掉部分荧光基团，使其在下一轮反应中，不再发出荧光。如此往复，就可以测出序列的内容。</p>
 </section>
 <section id="question-01-144" class="level4">
@@ -455,22 +544,11 @@ ul.task-list li input[type="checkbox"] {
 <h2 data-number="3.3" class="anchored" data-anchor-id="sec-03-03"><span class="header-section-number">3.3</span> MGI测序技术</h2>
 <section id="src-0020-introduction-of-NGS-84" class="level3">
 <h3 class="anchored" data-anchor-id="src-0020-introduction-of-NGS-84">华大智造测序仪</h3>
-<p>待完善</p>
-<div class="callout callout-style-default callout-note callout-titled" title="待完善">
-<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-1-contents" aria-controls="callout-1" aria-expanded="false" aria-label="Toggle callout">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
+<div class="book-placeholder">
+<p>本节内容待补充。</p>
 </div>
-<div class="callout-title-container flex-fill">
-<span class="screen-reader-only">注记</span>待完善
-</div>
-<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
-</div>
-<div id="callout-1" class="callout-1-contents callout-collapse collapse">
-<div class="callout-body-container callout-body">
-<p>修订平台特定表述和术语，不将某型号的参数写成普遍规律。</p>
-</div>
-</div>
+<div class="book-placeholder">
+<p>本节内容待补充。</p>
 </div>
 </section>
 </section>
@@ -479,15 +557,31 @@ ul.task-list li input[type="checkbox"] {
 <p>知道何时短读长不足，并正确理解长读长技术的输入输出。</p>
 <section id="src-0020-introduction-of-NGS-78" class="level3">
 <h3 class="anchored" data-anchor-id="src-0020-introduction-of-NGS-78">PacBio</h3>
-<p>待完善</p>
+<div class="book-placeholder">
+<p>本节内容待补充。</p>
+</div>
 </section>
 <section id="src-0020-introduction-of-NGS-81" class="level3">
 <h3 class="anchored" data-anchor-id="src-0020-introduction-of-NGS-81">Nanopore</h3>
-<p>待完善</p>
-<section id="src-0050-RNA-seq-85" class="level5">
-<h5 class="anchored" data-anchor-id="src-0050-RNA-seq-85">全长转录组测序</h5>
+<div class="book-placeholder">
+<p>本节内容待补充。</p>
+</div>
+<section id="src-0050-RNA-seq-85" class="level4">
+<h4 class="anchored" data-anchor-id="src-0050-RNA-seq-85">全长转录组测序</h4>
 <p>前文的短读长 RNA-seq 通常先把 RNA 转成 cDNA，再进行文库构建。长读长技术可以减少把一个转录本拆成许多短片段后再推断结构的困难，因此特别适合理解转录本异构体。</p>
+<div class="book-core callout callout-style-default callout-note callout-titled" title="核心知识｜长读长与直接 RNA 测序">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">注记</span>核心知识｜长读长与直接 RNA 测序
+</div>
+</div>
+<div class="callout-body-container callout-body">
 <p>PacBio 的 SMRT 测序观察聚合酶合成 DNA 时的荧光信号。Iso-Seq 分析的是由 RNA 逆转录得到的全长 cDNA，不能称为直接 RNA 测序。Oxford Nanopore 则根据核酸链通过纳米孔时的电流变化推断序列，既有 cDNA 测序，也有直接 RNA 测序；其常用平台不依靠外切酶逐个切下碱基再读取。</p>
+</div>
+</div>
 <p>长读长、准确度、通量和定量性能需要结合具体平台、化学版本和建库方案讨论，不能用原稿时期的单一数值概括。PacBio、Nanopore 和直接 RNA 测序的进一步比较、示例数据与练习待完善。</p>
 <p>参考：<a href="https://nanoporetech.com/platform/technology">Oxford Nanopore 技术说明</a>；<a href="https://www.pacb.com/products-and-services/applications/rna-sequencing/">PacBio RNA 测序说明</a>。</p>
 </section>
@@ -495,9 +589,21 @@ ul.task-list li input[type="checkbox"] {
 </section>
 <section id="sec-03-05" class="level2" data-number="3.5">
 <h2 data-number="3.5" class="anchored" data-anchor-id="sec-03-05"><span class="header-section-number">3.5</span> 高通量文库构建</h2>
-<section id="src-0020-introduction-of-NGS-24" class="level4">
-<h4 class="anchored" data-anchor-id="src-0020-introduction-of-NGS-24">建库</h4>
+<section id="src-0020-introduction-of-NGS-24" class="level3">
+<h3 class="anchored" data-anchor-id="src-0020-introduction-of-NGS-24">建库</h3>
+<div class="book-example callout callout-style-default callout-tip callout-titled" title="示例与练习｜片段化 DNA 文库">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">提示</span>示例与练习｜片段化 DNA 文库
+</div>
+</div>
+<div class="callout-body-container callout-body">
 <p>短读长测序每次只能读取有限长度，因此需要先把待测核酸制成适合平台的文库。下面以片段化的 DNA 文库为例：先把较长的 DNA 打断，再通过片段筛选控制长度分布。原稿以 300—500 bp 的插入片段举例；实际范围应按建库方案、读长和研究目的确定。</p>
+</div>
+</div>
 <p>打断以后会出现末端不平整的情况，用酶补平，所以现在的序列是平末端。</p>
 <p>完成补平以后，在3’端使用酶加上一个特异的碱基A</p>
 <p>加上A之后就可以利用互补配对的原则，加上adapter，这个adpater可以分成两个部分，一个部分是测序的时候需要用的引物序列，另一部分是建库扩增时候需要用的引物序列</p>
@@ -507,7 +613,7 @@ ul.task-list li input[type="checkbox"] {
 <img src="../assets/03-sequencing-and-data-formats/003-pic-03-make-lib.jpg" class="img-fluid figure-img">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-03-sequencing-and-data-formats-003-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-图&nbsp;3.8: DNA文库制备的典型流程
+图&nbsp;3.9: DNA文库制备的典型流程
 </figcaption>
 </figure>
 </div>
@@ -528,8 +634,18 @@ ul.task-list li input[type="checkbox"] {
 <p>加上adaptor之后的DNA样品与flowcell上固定的oligo（寡链核苷酸）匹配后就被固定在flowcell上，通过桥式PCR进行扩增成cluster,便于后面的荧光测序，主要步骤为：</p>
 <ul>
 <li>进行第一轮扩增，将序列补成双链。加入NaOH强碱性溶液破坏DNA的双链，并洗脱。由于最开始的序列是使用化学键连接的，所以不会被洗。</li>
-<li>加入缓冲溶液，这时候序列自由端的部分就会和旁边的oligo进行匹配 进行一轮PCR，在PCR的过程中，序列是弯成桥状，所以叫桥式PCR，一轮桥式PCR可以使得序列扩增1倍 如此循环下去，就会得到一个具有完全相同序列的cluster <img src="../assets/a-questions-01-05/001-pcr.jpg" id="fig-a-questions-01-05-001" class="img-fluid" alt="桥式PCR"></li>
+<li>加入缓冲溶液，这时候序列自由端的部分就会和旁边的oligo进行匹配 进行一轮PCR，在PCR的过程中，序列是弯成桥状，所以叫桥式PCR，一轮桥式PCR可以使得序列扩增1倍 如此循环下去，就会得到一个具有完全相同序列的cluster</li>
 </ul>
+<div id="fig-a-questions-01-05-001" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-a-questions-01-05-001-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="../assets/a-questions-01-05/001-pcr.jpg" class="img-fluid figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-a-questions-01-05-001-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+图&nbsp;3.10: 桥式PCR
+</figcaption>
+</figure>
+</div>
 <p>引用自：http://www.intechopen.com/source/html/49419/media/image2.png</p>
 </section>
 <section id="question-01-115" class="level4">
@@ -541,8 +657,19 @@ ul.task-list li input[type="checkbox"] {
 <ul>
 <li>flowcell 是指Illumina测序时，测序反应发生的位置，1个flowcell含有8条lane</li>
 <li>lane 每一个flowcell上都有8条泳道，用于测序反应，可以添加试剂，洗脱等等</li>
-<li>tile 每一次测序荧光扫描的最小单位 <img src="../assets/a-questions-01-05/002-flowcell.jpg" id="fig-a-questions-01-05-002" class="img-fluid" alt="flowcell"> 引用自：http://41j.com/blog/2012/04/nextgen-sequencing-primer/</li>
+<li>tile 每一次测序荧光扫描的最小单位</li>
 </ul>
+<div id="fig-a-questions-01-05-002" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-a-questions-01-05-002-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="../assets/a-questions-01-05/002-flowcell.jpg" class="img-fluid figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-a-questions-01-05-002-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+图&nbsp;3.11: flowcell
+</figcaption>
+</figure>
+</div>
+<p>引用自：http://41j.com/blog/2012/04/nextgen-sequencing-primer/</p>
 </section>
 <section id="question-01-128" class="level4">
 <h4 class="anchored" data-anchor-id="question-01-128">6. Illumina测序结果质量表示方法采用的是Phred33还是Phred64？</h4>
@@ -567,64 +694,56 @@ ul.task-list li input[type="checkbox"] {
 <section id="sec-03-06" class="level2" data-number="3.6">
 <h2 data-number="3.6" class="anchored" data-anchor-id="sec-03-06"><span class="header-section-number">3.6</span> 测序数据的储存</h2>
 <p>能够逐行读懂原始序列文件并解释碱基质量。</p>
-<section id="src-0050-RNA-seq-132" class="level5">
-<h5 class="anchored" data-anchor-id="src-0050-RNA-seq-132">碱基质量</h5>
-<p>Fastq文件对每一个碱基质量都基于ASCII码进行了打分（图3.9）。</p>
+<section id="src-0050-RNA-seq-132" class="level3">
+<h3 class="anchored" data-anchor-id="src-0050-RNA-seq-132">碱基质量</h3>
+<p>Fastq文件对每一个碱基质量都基于ASCII码进行了打分（ <a href="#fig-03-sequencing-and-data-formats-009" class="quarto-xref">图&nbsp;<span>3.12</span></a> ）。</p>
 <div id="fig-03-sequencing-and-data-formats-009" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-03-sequencing-and-data-formats-009-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <img src="../assets/03-sequencing-and-data-formats/009-ascll.jpg" class="img-fluid figure-img">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-03-sequencing-and-data-formats-009-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-图&nbsp;3.9: ascll
+图&nbsp;3.12: ASCII码表
 </figcaption>
 </figure>
 </div>
-<p>图3.9 ASCII码表</p>
 <p>测序质量控制软件会通过碱基的Q值（Quality Score, <em>Q</em>）对碱基进行统计和过滤。</p>
 <p>有两种格式Phred33和Phred64，分别代表碱基质量等于ASCII码值减去33或者64，例如：</p>
-<p>Phred33： <em>Phred(“F”) = 70 - 33 = 37</em></p>
-<p>Phred64 ： <em>Phred(“F”) = 70 - 64 = 6</em></p>
+<p>Phred33： <span class="math inline">\(\operatorname{Phred}(\text{F})=70-33=37\)</span></p>
+<p>Phred64 ： <span class="math inline">\(\operatorname{Phred}(\text{F})=70-64=6\)</span></p>
 <p>Q值是错误概率（Probability of incorrect base call, <em>P</em>）的对数：</p>
-<p>Q=-10log<sub>10</sub> <em>P</em></p>
+<p><span id="eq-phred-quality" class="book-equation"><span class="equation-scroll" tabindex="0" role="region" aria-label="公式 3.1"><span class="math display">\[
+Q=-10\log_{10}P
+\]</span></span><a class="equation-label" href="#eq-phred-quality" aria-label="公式（3.1）">(3.1)</a></span></p>
 <p>Q值为40则代表错误概率为0.0001；为30则代表错误概率为0.001；为20则代表错误概率为0.01；为10则代表错误概率为0.01。</p>
 </section>
 <section id="question-01-1" class="level3">
 <h3 class="anchored" data-anchor-id="question-01-1">知识问答 1：FASTA、FASTQ 与质量编码</h3>
 <section id="question-01-3" class="level4">
 <h4 class="anchored" data-anchor-id="question-01-3">1. 掌握FASTQ格式</h4>
-<section id="question-01-5" class="level5">
-<h5 class="anchored" data-anchor-id="question-01-5">1.1 格式有什么特点？</h5>
+<p><strong>1.1 格式有什么特点？</strong> <span id="question-01-5"></span></p>
 <p>fastq内容格式有4行： - 第1行主要储存序列测序时的坐标等信息；</p>
-<pre><code>举个例子：
-@ST-E00126:128:HJFLHCCXX:2:1101:7405:1133   
-1. @，开始的标记符号;
-2. ST-E00126:128:HJFLHCCXX，测序仪唯一的设备名称;  
-3. 2，lane的编号;           
-4. 1101，tail的坐标;
-5. 7405，在tail中的X坐标;
-6. 1133，在tail中的Y坐标</code></pre>
+<p>举个例子：</p>
+<p><span class="citation" data-cites="ST-E00126:128:HJFLHCCXX:2:1101:7405:1133">@ST-E00126:128:HJFLHCCXX:2:1101:7405:1133</span><br>
+1. @，开始的标记符号; 2. ST-E00126:128:HJFLHCCXX，测序仪唯一的设备名称;<br>
+3. 2，lane的编号;<br>
+4. 1101，tail的坐标; 5. 7405，在tail中的X坐标; 6. 1133，在tail中的Y坐标</p>
 <ul>
 <li>第2行就是测序得到的序列信息，一般用ATCGN来表示，其中N用于荧光信号干扰无法判断到底是哪个碱基时的代表符号；</li>
 <li>第3行以“+”开始，可以储存一些附加信息，但目前的测序fastq文件这一行一般是空的。</li>
 <li>第4行储存的是质量信息，与第2行的碱基序列是一一对应的，其中的每一个符号对应的ASCII值是经过换算的phred值，可以简单理解为对应位置碱基的测序质量值，越大说明测序的质量越好。不同的版本对应的phred值范围不同。</li>
 </ul>
-</section>
-<section id="question-01-22" class="level5">
-<h5 class="anchored" data-anchor-id="question-01-22">1.2 什么是phred值，怎么计算？</h5>
+<p><strong>1.2 什么是phred值，怎么计算？</strong> <span id="question-01-22"></span></p>
 <p>是评估这个bp测序质量的值，测序仪通过判断荧光信号的颜色来判断碱基的种类，ATCG分别对应红黄蓝绿，信号强弱不同，在这种情况下对每个结果的判断的正确性都存在一个概率值，这个值被储存为ASCII码形式，转化方式如下：</p>
 <ul>
 <li><p>将该碱基判断错误概率值P取log10之后再乘以-10，得到的结果为Q。</p>
-<p>比如，P=1%，那么对应的Q=-10*log10（0.01）=20（这个计算公式illumina平台使用，Solexa系列测序仪使用不同的公示来计算质量值：Q=-10log(P/1-P)）</p></li>
+<p>比如，P=1%，那么对应的<span class="math inline">\(Q=-10\log_{10}(0.01)=20\)</span>（这个计算公式illumina平台使用，Solexa系列测序仪使用不同的公示来计算质量值：Q=-10log(P/1-P)）</p></li>
 <li><p>把这个Q加上33或者64转成一个新的数值，称为Phred，最后把Phred对应的ASCII字符对应到这个碱基。</p>
 <p>如Q=20，Phred = 20 + 33 = 53，53在ASCII码表里对应的ASCII符号是”5”</p></li>
 </ul>
-</section>
-<section id="question-01-35" class="level5">
-<h5 class="anchored" data-anchor-id="question-01-35">1.3 phred33 与 phred64是什么意思？</h5>
+<p><strong>1.3 phred33 与 phred64是什么意思？</strong> <span id="question-01-35"></span></p>
 <p>质量字符的ASCII值和质量得分的关系有如下两种：可以粗略分为 Phred+33和Phred+64，这里的33和64就是指ASCII值转换为Q该减去的数值。</p>
 <p>在处理测序数据时，因为一些软件会根据碱基质量得分的不同做不同的处理，常要指定正确的编码方式，有必要对质量字符与质量得分的关系（Phred+33或Phred+64）作出正确的判断。当然，如果处理的是最近两年产生的测序数据，基本上都是Phred+33的，但从NCBI SRA数据库下载的较早的数据可能不同，需要注意。</p>
-</section>
 </section>
 <section id="question-01-40" class="level4">
 <h4 class="anchored" data-anchor-id="question-01-40">2. FASTA格式的构成是怎样的，有什么样的规律？</h4>
@@ -663,26 +782,37 @@ ul.task-list li input[type="checkbox"] {
 <section id="sec-03-07" class="level2" data-number="3.7">
 <h2 data-number="3.7" class="anchored" data-anchor-id="sec-03-07"><span class="header-section-number">3.7</span> 读懂测序质量报告 FastQC</h2>
 <p>依据实验背景解释质控图，而非只看红绿灯。</p>
-<section id="src-0050-RNA-seq-128" class="level4">
-<h4 class="anchored" data-anchor-id="src-0050-RNA-seq-128">测序数据的质量控制</h4>
+<section id="src-0050-RNA-seq-128" class="level3">
+<h3 class="anchored" data-anchor-id="src-0050-RNA-seq-128">测序数据的质量控制</h3>
+<div class="book-core callout callout-style-default callout-note callout-titled" title="核心知识｜质量控制包括什么">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">注记</span>核心知识｜质量控制包括什么
+</div>
+</div>
+<div class="callout-body-container callout-body">
 <p>测序原始数据是Fastq格式存储到文件，文件中包含序列的测序信息、本身碱基序列信息、碱基质量等内容。由于测序过程中存在很多或主观或客观的因素，例如样本污染或降解、接头污染以及测序过程中不可避免的测序误差等，都影响着测序数据的质量。对测序数据的质量控制可以减少数据噪音，保证结果的准确性。质量控制包括测序质量评估和高质量测序片段的获取。</p>
-<section id="src-0050-RNA-seq-154" class="level5">
-<h5 class="anchored" data-anchor-id="src-0050-RNA-seq-154">质量评估软件FastQC</h5>
+</div>
+</div>
+<section id="src-0050-RNA-seq-154" class="level4">
+<h4 class="anchored" data-anchor-id="src-0050-RNA-seq-154">质量评估软件FastQC</h4>
 <p>在进行测序数据的正式分析之前，需要对样本的整体质量进行评估，包括碱基质量评估、接头序列检测、重复序列评估等。</p>
-<p>FastQC（https://www.bioinformatics.babraham.ac.uk/projects/fastqc/）是常用的fastq质量评估软件（图3.4）。</p>
+<p>FastQC（https://www.bioinformatics.babraham.ac.uk/projects/fastqc/）是常用的fastq质量评估软件（ <a href="#fig-04-quality-control-and-alignment-033" class="quarto-xref">图&nbsp;<span>3.13</span></a> ）。</p>
 <div id="fig-04-quality-control-and-alignment-033" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-04-quality-control-and-alignment-033-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <img src="../assets/04-quality-control-and-alignment/033-fastqc1.jpg" class="img-fluid figure-img">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-04-quality-control-and-alignment-033-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-图&nbsp;3.10: fastqc1
+图&nbsp;3.13: FastQC网站
 </figcaption>
 </figure>
 </div>
-<p>图3.4 FastQC网站</p>
 <p>FastQC可以对每个位点碱基质量进行评估汇总、检测接头序列及重复序列，对GC含量分布、N碱基含量、长度分布进行统计，用网页展示结果。以下示例图片源于用FastQC对一个单端小RNA组测序样本的质量评估。</p>
-<p>FastQC会给出一个测序数据总体的质量情况（图3.5）。包括:</p>
+<p>FastQC会给出一个测序数据总体的质量情况（ <a href="#fig-04-quality-control-and-alignment-036" class="quarto-xref">图&nbsp;<span>3.14</span></a> ）。包括:</p>
 <ol type="1">
 <li>基本统计(Basic Statistics);</li>
 <li>每个位点的碱基质量（Per base sequence quality)</li>
@@ -703,47 +833,43 @@ ul.task-list li input[type="checkbox"] {
 <img src="../assets/04-quality-control-and-alignment/036-fastqc2.jpg" class="img-fluid figure-img">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-04-quality-control-and-alignment-036-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-图&nbsp;3.11: fastqc2
+图&nbsp;3.14: FastQC对一个RNA测序样本的总览
 </figcaption>
 </figure>
 </div>
-<p>图3.5 FastQC对一个RNA测序样本的总览</p>
-<p>基本信息的统计能够快速了解样本的基本情况，例如文件类型、编码方式、总read数、序列长度等（图3.6）。</p>
+<p>基本信息的统计能够快速了解样本的基本情况，例如文件类型、编码方式、总read数、序列长度等（ <a href="#fig-04-quality-control-and-alignment-037" class="quarto-xref">图&nbsp;<span>3.15</span></a> ）。</p>
 <div id="fig-04-quality-control-and-alignment-037" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-04-quality-control-and-alignment-037-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <img src="../assets/04-quality-control-and-alignment/037-fastqc3.jpg" class="img-fluid figure-img">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-04-quality-control-and-alignment-037-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-图&nbsp;3.12: fastqc2
+图&nbsp;3.15: FastQC对RNA测序样本基本信息统计
 </figcaption>
 </figure>
 </div>
-<p>图3.6 FastQC对RNA测序样本基本信息统计</p>
-<p>每个位点的碱基质量统计，能够快速了解样本的整体质量（见本小节的碱基质量图）。横轴代表碱基在reads上的位置；纵轴代表这个碱基的quality；Quality即为Fred值，计算公式-10*log10(p)，p为测错的概率，假设quality等于20，这个碱基出错的概率为0.01，假设quality等于30，这个碱基出错的概率为0.001；每一个碱基位置有一个箱型图，其中红线代表中位数，蓝线代表平均数；当然任意位置的下四分位数低于10或中位数低于25时FastQC软件会对此项评估为“warn”，当任意位置的下四分位数低于5或中位数低于20时FastQC软件会对此项评估为“fail”。</p>
+<p>每个位点的碱基质量统计，能够快速了解样本的整体质量（见本小节的碱基质量图）。横轴代表碱基在reads上的位置；纵轴代表这个碱基的quality；Quality即为Fred值，计算公式见 <a href="#eq-phred-quality" class="quarto-xref">公式&nbsp;<span>3.1</span></a> ，p为测错的概率，假设quality等于20，这个碱基出错的概率为0.01，假设quality等于30，这个碱基出错的概率为0.001；每一个碱基位置有一个箱型图，其中红线代表中位数，蓝线代表平均数；当然任意位置的下四分位数低于10或中位数低于25时FastQC软件会对此项评估为“warn”，当任意位置的下四分位数低于5或中位数低于20时FastQC软件会对此项评估为“fail”。</p>
 <div id="fig-04-quality-control-and-alignment-034" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-04-quality-control-and-alignment-034-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <img src="../assets/04-quality-control-and-alignment/034-fastqc4.jpg" class="img-fluid figure-img">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-04-quality-control-and-alignment-034-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-图&nbsp;3.13: fastqc2
+图&nbsp;3.16: FastQC对RNA测序样本的碱基质量
 </figcaption>
 </figure>
 </div>
-<p>图3.7 FastQC对RNA测序样本的碱基质量</p>
-<p>每条reads中四种碱基的统计显示碱基分布不均衡（图3.8）。一般情况下，A、T、C、G四种碱基的出现频率是均衡的，当任一位置的A/T比例与G/C比例相差超过10%时FastQC软件会对此项评估为“warn”，当任一位置的A/T比例与G/C比例相差超过20%时FastQC软件会对此项评估为“fail”。需要注意的是，评估为Fail不代表样品一定不能 用，要结合具体测序对象来分析。例如图3.7中的AT含量较高，导致评估为Fail，这是一个小RNA测序样本，小RNA中有大量的miRNA，而miRNA主要通过与mRNA富含AT碱基的3’非编码区结合，行使其调控功能，因此小RNA测序样本中AT含量高是正常现象。</p>
+<p>每条reads中四种碱基的统计显示碱基分布不均衡（ <a href="#fig-04-quality-control-and-alignment-035" class="quarto-xref">图&nbsp;<span>3.17</span></a> ）。一般情况下，A、T、C、G四种碱基的出现频率是均衡的，当任一位置的A/T比例与G/C比例相差超过10%时FastQC软件会对此项评估为“warn”，当任一位置的A/T比例与G/C比例相差超过20%时FastQC软件会对此项评估为“fail”。需要注意的是，评估为Fail不代表样品一定不能 用，要结合具体测序对象来分析。例如图3.7中的AT含量较高，导致评估为Fail，这是一个小RNA测序样本，小RNA中有大量的miRNA，而miRNA主要通过与mRNA富含AT碱基的3’非编码区结合，行使其调控功能，因此小RNA测序样本中AT含量高是正常现象。</p>
 <div id="fig-04-quality-control-and-alignment-035" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-04-quality-control-and-alignment-035-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <img src="../assets/04-quality-control-and-alignment/035-fastqc5.jpg" class="img-fluid figure-img">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-04-quality-control-and-alignment-035-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-图&nbsp;3.14: fastqc2
+图&nbsp;3.17: FastQC对RNA测序样本的碱基质量
 </figcaption>
 </figure>
 </div>
-<p>图3.8 FastQC对RNA测序样本的碱基质量</p>
 </section>
 </section>
 <section id="src-0030-QC-of-FASTQ-7" class="level3">
@@ -752,17 +878,23 @@ ul.task-list li input[type="checkbox"] {
 </section>
 <section id="src-0030-QC-of-FASTQ-9" class="level3">
 <h3 class="anchored" data-anchor-id="src-0030-QC-of-FASTQ-9">数据质控的目的</h3>
-<p>待完善</p>
+<div class="book-placeholder">
+<p>本节内容待补充。</p>
+</div>
 </section>
 <section id="src-0030-QC-of-FASTQ-11" class="level3">
 <h3 class="anchored" data-anchor-id="src-0030-QC-of-FASTQ-11">生成FastQ测序数据报告</h3>
 <section id="src-0030-QC-of-FASTQ-13" class="level4">
 <h4 class="anchored" data-anchor-id="src-0030-QC-of-FASTQ-13">FastQC</h4>
-<p>待完善</p>
+<div class="book-placeholder">
+<p>本节内容待补充。</p>
+</div>
 </section>
 <section id="src-0030-QC-of-FASTQ-15" class="level4">
 <h4 class="anchored" data-anchor-id="src-0030-QC-of-FASTQ-15">MultiQC</h4>
-<p>待完善</p>
+<div class="book-placeholder">
+<p>本节内容待补充。</p>
+</div>
 <p><span id="question-06-3"></span></p>
 </section>
 </section>
@@ -780,52 +912,63 @@ ul.task-list li input[type="checkbox"] {
 <img src="../assets/a-questions-06-10/001-6-1.jpg" class="img-fluid figure-img">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-a-questions-06-10-001-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-图&nbsp;3.15: 6 图1
+图&nbsp;3.18: 1个Illumina测序结果， reads1 的 per-base quality
 </figcaption>
 </figure>
 </div>
-<p>图1 - 1个Illumina测序结果， reads1 的 per-base quality boxplot</p>
+<p>boxplot</p>
 <div id="fig-a-questions-06-10-002" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-a-questions-06-10-002-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <img src="../assets/a-questions-06-10/002-6-2.jpg" class="img-fluid figure-img">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-a-questions-06-10-002-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-图&nbsp;3.16: 6 图2
+图&nbsp;3.19: 1个Illumina测序结果， reads2 的 per-base quality boxplot
 </figcaption>
 </figure>
 </div>
-<p>图2 - 1个Illumina测序结果， reads2 的 per-base quality boxplot</p>
 </section>
 <section id="question-06-35" class="level4">
 <h4 class="anchored" data-anchor-id="question-06-35">参考答案</h4>
 <p><strong>1.图中的横坐标表示什么意思？</strong></p>
-<pre><code>横轴是测序序列第1个碱基到第150个碱基.</code></pre>
+<div class="book-prose">
+<p>横轴是测序序列第1个碱基到第150个碱基.</p>
+</div>
 <p><strong>2.图中的纵坐标表示什么意思？</strong></p>
-<pre><code>纵坐标表示每一bp所对应的测序质量值，
-前面讲过将该碱基判断错误概率值P取log10之后再乘以-10，
-得到的结果再加上pherd值对应ASCII表所得到的值就是该碱基测序的质量值；
-Q = -10*log10（error P）
-即20表示1%的错误率，30表示0.1%的错误率；</code></pre>
+<div class="book-prose">
+<p>纵坐标表示每一bp所对应的测序质量值，<br>
+前面讲过将该碱基判断错误概率值P取log10之后再乘以-10，<br>
+得到的结果再加上pherd值对应ASCII表所得到的值就是该碱基测序的质量值；</p>
+</div>
+<p>计算公式见 <a href="#eq-phred-quality" class="quarto-xref">公式&nbsp;<span>3.1</span></a> 。</p>
+<div class="book-prose">
+<p>即20表示1%的错误率，30表示0.1%的错误率；</p>
+</div>
 <p><strong>3.图中的蓝色线是什么意思？</strong></p>
-<pre><code>蓝色的细线是各个位置的质量值的平均值的连线；</code></pre>
+<div class="book-prose">
+<p>蓝色的细线是各个位置的质量值的平均值的连线；</p>
+</div>
 <p><strong>4.图中的box 下面的bar ， 上面的bar，箱体的下沿，箱体的上沿，箱体内部的横线分别代表什么意思？</strong></p>
-<pre><code>每1个boxplot，都是该位置的所有序列的测序质量的一个统计，
-上面的bar是90%分位数；
-下面的bar是10%分位数；
-箱子的中间的横线是50%分位数；
-箱体上缘是75%分位数；
-箱体下缘是25%分位数；
-- - - - - - - - - - - - - -  
-分位数一个简单解释是：
-如果一组数的25%分位数是a，意味着a超过了这组数中25%数字的大小；</code></pre>
-<p><strong>5.图1与图2最主要的区别在哪里？结合我们之前的问题，为什么会出现这种情况？</strong></p>
-<pre><code>相比于reads1的测序结果，图2中reads2测序质量均匀性差，准确率低；
-主要原因是：
-reads2的测序是在reads150bp测序完成后，
-forward strands再通过1次桥式PCR合成reverse strands；在这之后再进行荧光测序；
-测序质量差的主要原因是因为长时间测序结束后，合成每的活性降低，
-导致合成时加不上一些碱基，最终同步性变差，主要属于phasing错误。</code></pre>
+<div class="book-prose">
+<p>每1个boxplot，都是该位置的所有序列的测序质量的一个统计，<br>
+上面的bar是90%分位数；<br>
+下面的bar是10%分位数；<br>
+箱子的中间的横线是50%分位数；<br>
+箱体上缘是75%分位数；<br>
+箱体下缘是25%分位数；<br>
+- - - - - - - - - - - - - -<br>
+分位数一个简单解释是：<br>
+如果一组数的25%分位数是a，意味着a超过了这组数中25%数字的大小；</p>
+</div>
+<p><strong>5. <a href="#fig-a-questions-06-10-001" class="quarto-xref">图&nbsp;<span>3.18</span></a> 与 <a href="#fig-a-questions-06-10-002" class="quarto-xref">图&nbsp;<span>3.19</span></a> 最主要的区别在哪里？结合我们之前的问题，为什么会出现这种情况？</strong></p>
+<div class="book-prose">
+<p>相比于reads1的测序结果， <a href="#fig-a-questions-06-10-002" class="quarto-xref">图&nbsp;<span>3.19</span></a> 中reads2测序质量均匀性差，准确率低；<br>
+主要原因是：<br>
+reads2的测序是在reads150bp测序完成后，<br>
+forward strands再通过1次桥式PCR合成reverse strands；在这之后再进行荧光测序；<br>
+测序质量差的主要原因是因为长时间测序结束后，合成每的活性降低，<br>
+导致合成时加不上一些碱基，最终同步性变差，主要属于phasing错误。</p>
+</div>
 </section>
 </section>
 <section id="question-06-79" class="level3">
@@ -834,37 +977,63 @@ forward strands再通过1次桥式PCR合成reverse strands；在这之后再进�
 <h4 class="anchored" data-anchor-id="question-06-80">原题描述</h4>
 <p>Hello 大家好！</p>
 <p>今天我们接着昨天的话题来继续进行与FastQC结果有关的提问。</p>
-<p>我们昨天主要是针对FastQC结果中的boxplot进行了相关的探索，boxplot一般是认为FastQC几张必看的质控图之一。一般情况下FastQC的结果会包含下面几个图，而我们主要会看下图圈出来的几个。 <img src="../assets/a-questions-06-10/003-7-0.jpg" id="fig-a-questions-06-10-003" class="img-fluid" alt="7 0图"></p>
+<p>我们昨天主要是针对FastQC结果中的boxplot进行了相关的探索，boxplot一般是认为FastQC几张必看的质控图之一。一般情况下FastQC的结果会包含下面几个图，而我们主要会看下图圈出来的几个。</p>
+<div id="fig-a-questions-06-10-003" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-a-questions-06-10-003-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="../assets/a-questions-06-10/003-7-0.jpg" class="img-fluid figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-a-questions-06-10-003-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+图&nbsp;3.20: 7 0图
+</figcaption>
+</figure>
+</div>
 <p>接下来的几天我们就把这些图来一个一个讨论清楚。</p>
-<p>我们昨天讨论了“Per base sequence quality”，今天先来讨论 “Per base sequence content” <img src="../assets/a-questions-06-10/004-7-1.jpg" id="fig-a-questions-06-10-004" class="img-fluid" alt="7 图1"></p>
-<p>图1</p>
+<p>我们昨天讨论了“Per base sequence quality”，今天先来讨论 “Per base sequence content”</p>
+<div id="fig-a-questions-06-10-004" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-a-questions-06-10-004-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="../assets/a-questions-06-10/004-7-1.jpg" class="img-fluid figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-a-questions-06-10-004-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+图&nbsp;3.21: 图题待补
+</figcaption>
+</figure>
+</div>
 <div id="fig-a-questions-06-10-005" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-a-questions-06-10-005-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <img src="../assets/a-questions-06-10/005-7-2.jpg" class="img-fluid figure-img">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-a-questions-06-10-005-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-图&nbsp;3.17: 7 图2
+图&nbsp;3.22: 图题待补
 </figcaption>
 </figure>
 </div>
-<p>图2</p>
 </section>
 <section id="question-06-109" class="level4">
 <h4 class="anchored" data-anchor-id="question-06-109">参考答案</h4>
-<p><strong>1.图1与图2中横坐标是什么意思？纵坐标是什么意思？</strong></p>
-<pre><code>横轴代表1到150bp;纵轴代表ATCG在该bp的百分比。</code></pre>
-<p><strong>2.图1是1个正常的DNA 全基因组测序结果，为什么前面的几bp线是波动的？后面的线是平衡的？</strong></p>
-<pre><code>根据Wason-Crick配对原则，A和T应该相等，G和C应该相等；
-但是一般测序的时候，刚开始测序仪状态不稳定，很可能出现不平衡的情况。
-像这种情况，
-如果测序的得分很高，可以不进行trim开始部分的序列信息；
-如果测序得分很低，需要进行trim开始部分的序列信息。</code></pre>
-<p><strong>3.图2是1个特殊RNA建库的测序结果，4条线出现波动更可能是什么原因造成的？</strong></p>
-<pre><code>RNA是单链核苷酸，GC或AT的含量并没有直接的关系，
-4条线的波动是由于模板中ATCG的量不同导致的（就是所谓GC不平衡）。</code></pre>
-<p><strong>4.在图1中你能不能看出一个恒定的量？（提示，同一物种间相同，不同物种间一般不同）如果能看出来，这个量是什么？数值大约是多少？</strong></p>
-<pre><code>GC含量在同一物种中是一个恒定值。图中GC总体比例大约在42%（目测）。</code></pre>
+<p><strong>1. <a href="#fig-a-questions-06-10-004" class="quarto-xref">图&nbsp;<span>3.21</span></a> 与 <a href="#fig-a-questions-06-10-005" class="quarto-xref">图&nbsp;<span>3.22</span></a> 中横坐标是什么意思？纵坐标是什么意思？</strong></p>
+<div class="book-prose">
+<p>横轴代表1到150bp;纵轴代表ATCG在该bp的百分比。</p>
+</div>
+<p><strong>2. <a href="#fig-a-questions-06-10-004" class="quarto-xref">图&nbsp;<span>3.21</span></a> 是1个正常的DNA 全基因组测序结果，为什么前面的几bp线是波动的？后面的线是平衡的？</strong></p>
+<div class="book-prose">
+<p>根据Wason-Crick配对原则，A和T应该相等，G和C应该相等；<br>
+但是一般测序的时候，刚开始测序仪状态不稳定，很可能出现不平衡的情况。<br>
+像这种情况，<br>
+如果测序的得分很高，可以不进行trim开始部分的序列信息；<br>
+如果测序得分很低，需要进行trim开始部分的序列信息。</p>
+</div>
+<p><strong>3. <a href="#fig-a-questions-06-10-005" class="quarto-xref">图&nbsp;<span>3.22</span></a> 是1个特殊RNA建库的测序结果，4条线出现波动更可能是什么原因造成的？</strong></p>
+<div class="book-prose">
+<p>RNA是单链核苷酸，GC或AT的含量并没有直接的关系，<br>
+4条线的波动是由于模板中ATCG的量不同导致的（就是所谓GC不平衡）。</p>
+</div>
+<p><strong>4.在 <a href="#fig-a-questions-06-10-004" class="quarto-xref">图&nbsp;<span>3.21</span></a> 中你能不能看出一个恒定的量？（提示，同一物种间相同，不同物种间一般不同）如果能看出来，这个量是什么？数值大约是多少？</strong></p>
+<div class="book-prose">
+<p>GC含量在同一物种中是一个恒定值。图中GC总体比例大约在42%（目测）。</p>
+</div>
 </section>
 </section>
 <section id="question-06-136" class="level3">
@@ -872,21 +1041,38 @@ forward strands再通过1次桥式PCR合成reverse strands；在这之后再进�
 <section id="question-06-137" class="level4">
 <h4 class="anchored" data-anchor-id="question-06-137">原题描述</h4>
 <p>Hello 大家好！ 我们又见面了！</p>
-<p>最近总搞FastQC报告的研读，是不是都看烦了？没关系，我们再搞最后2次，就进入下一个主题啦！昨天的问题中，我们告诉大家FastQC的报告中最重要的几张图都在下面用红框框出来了。 <img src="../assets/a-questions-06-10/006-8-0.jpg" id="fig-a-questions-06-10-006" class="img-fluid" alt="8 图0"></p>
-<p>今天我们来研读2张图。 第1张图是：Per sequence GC content<br>
-<img src="../assets/a-questions-06-10/007-8-1-1.jpg" id="fig-a-questions-06-10-007" class="img-fluid" alt="8 图1 1"></p>
-<p>图1-1 human 全基因组测序FastQC 结果图</p>
+<p>最近总搞FastQC报告的研读，是不是都看烦了？没关系，我们再搞最后2次，就进入下一个主题啦！昨天的问题中，我们告诉大家FastQC的报告中最重要的几张图都在下面用红框框出来了。</p>
+<div id="fig-a-questions-06-10-006" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-a-questions-06-10-006-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="../assets/a-questions-06-10/006-8-0.jpg" class="img-fluid figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-a-questions-06-10-006-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+图&nbsp;3.23: 图题待补
+</figcaption>
+</figure>
+</div>
+<p>今天我们来研读2张图。 第1张图是：Per sequence GC content</p>
+<div id="fig-a-questions-06-10-007" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-a-questions-06-10-007-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="../assets/a-questions-06-10/007-8-1-1.jpg" class="img-fluid figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-a-questions-06-10-007-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+图&nbsp;3.24: human 全基因组测序FastQC 结果图
+</figcaption>
+</figure>
+</div>
 <div id="fig-a-questions-06-10-008" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-a-questions-06-10-008-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <img src="../assets/a-questions-06-10/008-8-1-2.jpg" class="img-fluid figure-img">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-a-questions-06-10-008-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-图&nbsp;3.18: 8 图1 2
+图&nbsp;3.25: human 全基因组测序FastQC 结果图
 </figcaption>
 </figure>
 </div>
-<p>图1-2 human 全基因组测序FastQC 结果图</p>
 <p>第2张图是：Sequence Length Distribution</p>
 <div id="fig-a-questions-06-10-009" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
@@ -894,44 +1080,54 @@ forward strands再通过1次桥式PCR合成reverse strands；在这之后再进�
 <img src="../assets/a-questions-06-10/009-8-2-1.jpg" class="img-fluid figure-img">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-a-questions-06-10-009-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-图&nbsp;3.19: 8 图2 1
+图&nbsp;3.26: 刚下机以后的fastq数据进行FastQC 结果图
 </figcaption>
 </figure>
 </div>
-<p>图2-1 刚下机以后的fastq数据进行FastQC 结果图</p>
 </section>
 <section id="question-06-178" class="level4">
 <h4 class="anchored" data-anchor-id="question-06-178">参考答案</h4>
-<p><strong>1.图1-1 与 图1-2 中的横坐标是什么意思？纵坐标是什么意思？</strong></p>
-<pre><code>横轴是0 - 100%； 纵轴是拥有相对GC含量的序列所对应的数量.</code></pre>
-<p><strong>2.图1-1中是human全基因组测序，结合昨天的问题，那么peak的中间大约应该在多少？</strong></p>
-<pre><code>上一次的问题中GC总体比例大约在42%左右，所以如果这是human全基因组测序，那么peak在横坐标对应42的位置比较好。</code></pre>
-<p><strong>3.图1-2与图1-1有哪些显著的不同？造成这些不同的原因有可能是什么？遇到这个问题，我们通常应该做些什么？</strong></p>
-<pre><code>图1-1有一个peak,并且与理论值（蓝线）基本重合；
-而图1-2有两个，并且其中一个peak与蓝线相差很多，当红色的线出现双峰，基本是混入了其他物种的DNA序列。
-遇到这个问题，首先进行mapping统计有多大比例reads map到了目标参考基因组上，如果比例非常低说明污染严重，数据不可用；
-如果大部分reads都map成功，剩余一部分可以通过blast检查是混入了哪些污染物，过滤掉这些reads就可以，不影响后续的分析。</code></pre>
-<p><strong>4.图2-1的横坐标是什么意思？纵坐标是什么意思？</strong></p>
-<pre><code>横坐标代表序列长度，纵坐标代表长度为某一bp的序列所对应的数量。</code></pre>
-<p><strong>5.图2-1是刚下机的fastq数据进行FastQC 结果图，有什么特点？为什么会出现这样的结果？如果对刚下机的fastq数据进行cutadapter，图2-1还会是这样的结果吗？为什么？</strong></p>
-<pre><code>测序仪成功下机的数据都是整齐的一定长度的序列，比如最常用的illumina X Ten是双端150bp；
-测序过程当中产生的不足150bp的序列在下机时已经被过滤掉了；
-如果进行cut adapter，序列的长度将不一致，因为reads中包含信息的insert的长度并不完全一致，
-150bp的测序长度是否已经包含了adapter的序列是未知的，因此cutadapter之后的reads长度不同.</code></pre>
+<p><strong>1. <a href="#fig-a-questions-06-10-007" class="quarto-xref">图&nbsp;<span>3.24</span></a> 与 <a href="#fig-a-questions-06-10-008" class="quarto-xref">图&nbsp;<span>3.25</span></a> 中的横坐标是什么意思？纵坐标是什么意思？</strong></p>
+<div class="book-prose">
+<p>横轴是0 - 100%； 纵轴是拥有相对GC含量的序列所对应的数量.</p>
+</div>
+<p><strong>2. <a href="#fig-a-questions-06-10-007" class="quarto-xref">图&nbsp;<span>3.24</span></a> 中是human全基因组测序，结合昨天的问题，那么peak的中间大约应该在多少？</strong></p>
+<div class="book-prose">
+<p>上一次的问题中GC总体比例大约在42%左右，所以如果这是human全基因组测序，那么peak在横坐标对应42的位置比较好。</p>
+</div>
+<p><strong>3. <a href="#fig-a-questions-06-10-008" class="quarto-xref">图&nbsp;<span>3.25</span></a> 与 <a href="#fig-a-questions-06-10-007" class="quarto-xref">图&nbsp;<span>3.24</span></a> 有哪些显著的不同？造成这些不同的原因有可能是什么？遇到这个问题，我们通常应该做些什么？</strong></p>
+<div class="book-prose">
+<p><a href="#fig-a-questions-06-10-007" class="quarto-xref">图&nbsp;<span>3.24</span></a> 有一个peak,并且与理论值（蓝线）基本重合；<br>
+而 <a href="#fig-a-questions-06-10-008" class="quarto-xref">图&nbsp;<span>3.25</span></a> 有两个，并且其中一个peak与蓝线相差很多，当红色的线出现双峰，基本是混入了其他物种的DNA序列。<br>
+遇到这个问题，首先进行mapping统计有多大比例reads map到了目标参考基因组上，如果比例非常低说明污染严重，数据不可用；<br>
+如果大部分reads都map成功，剩余一部分可以通过blast检查是混入了哪些污染物，过滤掉这些reads就可以，不影响后续的分析。</p>
+</div>
+<p><strong>4. <a href="#fig-a-questions-06-10-009" class="quarto-xref">图&nbsp;<span>3.26</span></a> 的横坐标是什么意思？纵坐标是什么意思？</strong></p>
+<div class="book-prose">
+<p>横坐标代表序列长度，纵坐标代表长度为某一bp的序列所对应的数量。</p>
+</div>
+<p><strong>5. <a href="#fig-a-questions-06-10-009" class="quarto-xref">图&nbsp;<span>3.26</span></a> 是刚下机的fastq数据进行FastQC 结果图，有什么特点？为什么会出现这样的结果？如果对刚下机的fastq数据进行cutadapter， <a href="#fig-a-questions-06-10-009" class="quarto-xref">图&nbsp;<span>3.26</span></a> 还会是这样的结果吗？为什么？</strong></p>
+<div class="book-prose">
+<p>测序仪成功下机的数据都是整齐的一定长度的序列，比如最常用的illumina X Ten是双端150bp；<br>
+测序过程当中产生的不足150bp的序列在下机时已经被过滤掉了；<br>
+如果进行cut adapter，序列的长度将不一致，因为reads中包含信息的insert的长度并不完全一致，<br>
+150bp的测序长度是否已经包含了adapter的序列是未知的，因此cutadapter之后的reads长度不同.</p>
+</div>
 </section>
 <section id="question-06-211" class="level4">
 <h4 class="anchored" data-anchor-id="question-06-211">能力扩展题：</h4>
 <p><strong>6.请想办法，计算Human genome 19（hg19）每一条染色体的GC含量。</strong></p>
-<pre><code>思路1
-- UCSC或Emble下载Human genome 19（hg19）染色体序列；
-- 直接把下载的序列使用Fastqc检测序列“质量”，
-- report中Sequence content across all bases会显示GC结果。
-
-思路2
-- UCSC或Emble下载Human genome 19（hg19）染色体序列；
-- 写Python程序依次读取序列内容；
-- 统计每一条染色体的GC含量；
-- 具体的代码及方法可以参考知乎Live</code></pre>
+<div class="book-prose">
+<p>思路1<br>
+- UCSC或Emble下载Human genome 19（hg19）染色体序列；<br>
+- 直接把下载的序列使用Fastqc检测序列“质量”，<br>
+- report中Sequence content across all bases会显示GC结果。</p>
+<p>思路2<br>
+- UCSC或Emble下载Human genome 19（hg19）染色体序列；<br>
+- 写Python程序依次读取序列内容；<br>
+- 统计每一条染色体的GC含量；<br>
+- 具体的代码及方法可以参考知乎Live</p>
+</div>
 </section>
 </section>
 <section id="question-06-289" class="level3">
@@ -941,48 +1137,63 @@ forward strands再通过1次桥式PCR合成reverse strands；在这之后再进�
 <p>Hello大家好！</p>
 <p>我们又见面了！今天是我们的FastQC中最后1次提问啦！今天，我们要聊得是adapter与kmer的问题。</p>
 <p>我们在生物信息学100个基础问题 —— 第5题 测序建库的adapter 的时候讨论过adapter的问题，我们知道adapter的最主要的作用是为了能够与flowcell连接，方便进行桥式PCR。那么我们的fastq文件中到底含不含adapter呢？FastQC报告就能告诉我们。</p>
-<p>同时呢，我们今天还会讨论kmer的问题，相关的报告FastQC也会输出出来。 Part I adapter部分 <img src="../assets/a-questions-06-10/011-10-1-1.jpg" id="fig-a-questions-06-10-011" class="img-fluid" alt="10 图1 1"></p>
-<p>图 1-1 1个正常的adapter报告</p>
+<p>同时呢，我们今天还会讨论kmer的问题，相关的报告FastQC也会输出出来。 Part I adapter部分</p>
+<div id="fig-a-questions-06-10-011" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-a-questions-06-10-011-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="../assets/a-questions-06-10/011-10-1-1.jpg" class="img-fluid figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-a-questions-06-10-011-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+图&nbsp;3.27: 1个正常的adapter报告
+</figcaption>
+</figure>
+</div>
 <div id="fig-a-questions-06-10-012" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-a-questions-06-10-012-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <img src="../assets/a-questions-06-10/012-10-1-2.jpg" class="img-fluid figure-img">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-a-questions-06-10-012-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-图&nbsp;3.20: 10 图1 2
+图&nbsp;3.28: 1个RNA-Seq的adapter报告
 </figcaption>
 </figure>
 </div>
-<p>图 1-2 1个RNA-Seq的adapter报告</p>
-<p>Part II kmer部分 <img src="../assets/a-questions-06-10/013-10-2-1.jpg" id="fig-a-questions-06-10-013" class="img-fluid" alt="10 图2 1"></p>
-<p>图 2-1 正常的RNA-Seq建库kmer统计</p>
+<p>Part II kmer部分</p>
+<div id="fig-a-questions-06-10-013" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-a-questions-06-10-013-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="../assets/a-questions-06-10/013-10-2-1.jpg" class="img-fluid figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-a-questions-06-10-013-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+图&nbsp;3.29: 正常的RNA-Seq建库kmer统计
+</figcaption>
+</figure>
+</div>
 <div id="fig-a-questions-06-10-014" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-a-questions-06-10-014-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <img src="../assets/a-questions-06-10/014-10-2-2.jpg" class="img-fluid figure-img">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-a-questions-06-10-014-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-图&nbsp;3.21: 10 图2 2
+图&nbsp;3.30: 加入random barcode的RNA-Seq建库kmer统计
 </figcaption>
 </figure>
 </div>
-<p>图 2-2 加入random barcode的RNA-Seq建库kmer统计</p>
 <div id="fig-a-questions-06-10-015" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-a-questions-06-10-015-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <img src="../assets/a-questions-06-10/015-10-2-3.jpg" class="img-fluid figure-img">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-a-questions-06-10-015-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-图&nbsp;3.22: 10 图2 3
+图&nbsp;3.31: kmer的统计显著性分析
 </figcaption>
 </figure>
 </div>
-<p>图 2-3 kmer的统计显著性分析</p>
 </section>
 <section id="question-06-340" class="level4">
 <h4 class="anchored" data-anchor-id="question-06-340">参考答案-关于adapter的问题：</h4>
-<p><strong>1.Illumina的通用adapter序列是什么？图1-1与图1-2中的各种不同颜色的图例是什么意思？</strong></p>
-<pre><code>Illumina Paired End Adapters (cannot be used for multiplexing)
+<p><strong>1.Illumina的通用adapter序列是什么？ <a href="#fig-a-questions-06-10-011" class="quarto-xref">图&nbsp;<span>3.27</span></a> 与 <a href="#fig-a-questions-06-10-012" class="quarto-xref">图&nbsp;<span>3.28</span></a> 中的各种不同颜色的图例是什么意思？</strong></p>
+<pre data-code-text="&quot;Illumina Paired End Adapters (cannot be used for multiplexing)\n\nTop adapter\n    \n    5′ ACACTCTTTCCCTACACGACGCTCTTCCGATC*T 3’\n\nBottom adapter\n    \n    \n    5′ P-GATCGGAAGAGCGGTTCAGCAGGAATGCCGAG 3’&quot;" class="text" data-book-role="data"><code>Illumina Paired End Adapters (cannot be used for multiplexing)
 
 Top adapter
     
@@ -991,43 +1202,55 @@ Top adapter
 Bottom adapter
     
     
-    5′ P-GATCGGAAGAGCGGTTCAGCAGGAATGCCGAG 3’
-
-**来源**
-http://bioinformatics.cvr.ac.uk/blog/illumina-adapter-and-primer-sequences/
-
-不同颜色的图例代表不同的测序通用的adapter；
-如果在当时fastqc分析的时候-a选项没有内容，则默认使用图例中的通用adapter序列进行统计。</code></pre>
-<p><strong>2.图1-1与图1-2中的横坐标与纵坐标分别是什么意思？</strong></p>
-<pre><code>横坐标代表reads中的位置，纵坐标代表adapter序列含量的百分比。</code></pre>
-<p><strong>3.图1-1与图1-2中最显著的差异是什么？如果两者都是RNA-Seq的数据，哪个可以继续下游分析，哪个不能够进行下游分析？为什么？</strong></p>
-<pre><code>图1-1的结果表明少量的序列3'端测到了少部分adapter序列，且测序时使用的是红色图例代表的adapter；
-图1-2的结果表明测序时使用的是红色图例代表的adapter；除了前20bp，reads后半段序列有很高比例都是adapter，建库可能存在问题。</code></pre>
+    5′ P-GATCGGAAGAGCGGTTCAGCAGGAATGCCGAG 3’</code></pre>
+<div class="book-prose">
+<p><strong>来源</strong><br>
+http://bioinformatics.cvr.ac.uk/blog/illumina-adapter-and-primer-sequences/</p>
+<p>不同颜色的图例代表不同的测序通用的adapter；<br>
+如果在当时fastqc分析的时候-a选项没有内容，则默认使用图例中的通用adapter序列进行统计。</p>
+</div>
+<p><strong>2. <a href="#fig-a-questions-06-10-011" class="quarto-xref">图&nbsp;<span>3.27</span></a> 与 <a href="#fig-a-questions-06-10-012" class="quarto-xref">图&nbsp;<span>3.28</span></a> 中的横坐标与纵坐标分别是什么意思？</strong></p>
+<div class="book-prose">
+<p>横坐标代表reads中的位置，纵坐标代表adapter序列含量的百分比。</p>
+</div>
+<p><strong>3. <a href="#fig-a-questions-06-10-011" class="quarto-xref">图&nbsp;<span>3.27</span></a> 与 <a href="#fig-a-questions-06-10-012" class="quarto-xref">图&nbsp;<span>3.28</span></a> 中最显著的差异是什么？如果两者都是RNA-Seq的数据，哪个可以继续下游分析，哪个不能够进行下游分析？为什么？</strong></p>
+<div class="book-prose">
+<p><a href="#fig-a-questions-06-10-011" class="quarto-xref">图&nbsp;<span>3.27</span></a> 的结果表明少量的序列3’端测到了少部分adapter序列，且测序时使用的是红色图例代表的adapter；<br>
+<a href="#fig-a-questions-06-10-012" class="quarto-xref">图&nbsp;<span>3.28</span></a> 的结果表明测序时使用的是红色图例代表的adapter；除了前20bp，reads后半段序列有很高比例都是adapter，建库可能存在问题。</p>
+</div>
 </section>
 <section id="question-06-375" class="level4">
 <h4 class="anchored" data-anchor-id="question-06-375">参考答案-关于kmer的问题：</h4>
-<p><strong>4.kmer就是一定长度的序列，比如AATTCCGG就可以叫做8-mer。那么图2-1余图2-2中的横坐标什么意思？纵坐标什么意思？</strong></p>
-<pre><code>横坐标代表短序列的长度，纵坐标代表某长度的短序列在所有reads中所出现的频率百分比。</code></pre>
-<p><strong>5.图2-1与图2-2中哪个kmer问题比较严重？为什么？</strong></p>
-<pre><code>图2-2的问题更严重，因为该图中kmer的出现位置集中且数量较多，可能是加入了random barcode,出现了duplication问题。</code></pre>
-<p><strong>6.图2-2中是在reads的5’端加入了约10bp左右的随机序列，结合 生物信息学100个基础问题 —— 第9题 读懂FastQC报告中的duplicate问题 这样做的目的是什么？</strong></p>
-<pre><code>一般在进行RNA—Seq测序时是不会进行remove duplication；
-但是一些比较特殊的建库流程比如说单细胞RNA-Seq测序时PCR扩增轮数较多，可能出现大量的duplication；
-对于这些建库方法，通常需要添加random barcode，然后需要根据random barcode进行remove duplication。</code></pre>
-<p><strong>7.思考题：图2-3是FastQC生成的kmer是否显著的统计报告。其中的每一列是什么意思？这个统计显著性检验计算的p-value是使用什么方法计算的？</strong></p>
-<pre><code>- 第一列：kmer内容
-- 第二列：kmer在序列中某一位置出现的观测数量
-- 第三列：二项分布统计检验P-value
-- 第四列：kmer在某一位置的观察值与理论值的比值
-- 第五列：观察值与理论值比值最高值出现的位置</code></pre>
+<p><strong>4.kmer就是一定长度的序列，比如AATTCCGG就可以叫做8-mer。那么 <a href="#fig-a-questions-06-10-013" class="quarto-xref">图&nbsp;<span>3.29</span></a> 余 <a href="#fig-a-questions-06-10-014" class="quarto-xref">图&nbsp;<span>3.30</span></a> 中的横坐标什么意思？纵坐标什么意思？</strong></p>
+<div class="book-prose">
+<p>横坐标代表短序列的长度，纵坐标代表某长度的短序列在所有reads中所出现的频率百分比。</p>
+</div>
+<p><strong>5. <a href="#fig-a-questions-06-10-013" class="quarto-xref">图&nbsp;<span>3.29</span></a> 与 <a href="#fig-a-questions-06-10-014" class="quarto-xref">图&nbsp;<span>3.30</span></a> 中哪个kmer问题比较严重？为什么？</strong></p>
+<div class="book-prose">
+<p><a href="#fig-a-questions-06-10-014" class="quarto-xref">图&nbsp;<span>3.30</span></a> 的问题更严重，因为该图中kmer的出现位置集中且数量较多，可能是加入了random barcode,出现了duplication问题。</p>
+</div>
+<p><strong>6. <a href="#fig-a-questions-06-10-014" class="quarto-xref">图&nbsp;<span>3.30</span></a> 中是在reads的5’端加入了约10bp左右的随机序列，结合 生物信息学100个基础问题 —— 第9题 读懂FastQC报告中的duplicate问题 这样做的目的是什么？</strong></p>
+<div class="book-prose">
+<p>一般在进行RNA—Seq测序时是不会进行remove duplication；<br>
+但是一些比较特殊的建库流程比如说单细胞RNA-Seq测序时PCR扩增轮数较多，可能出现大量的duplication；<br>
+对于这些建库方法，通常需要添加random barcode，然后需要根据random barcode进行remove duplication。</p>
+</div>
+<p><strong>7.思考题： <a href="#fig-a-questions-06-10-015" class="quarto-xref">图&nbsp;<span>3.31</span></a> 是FastQC生成的kmer是否显著的统计报告。其中的每一列是什么意思？这个统计显著性检验计算的p-value是使用什么方法计算的？</strong></p>
+<div class="book-prose">
+<p>- 第一列：kmer内容<br>
+- 第二列：kmer在序列中某一位置出现的观测数量<br>
+- 第三列：二项分布统计检验P-value<br>
+- 第四列：kmer在某一位置的观察值与理论值的比值<br>
+- 第五列：观察值与理论值比值最高值出现的位置</p>
+</div>
 </section>
 </section>
 </section>
 <section id="sec-03-08" class="level2" data-number="3.8">
 <h2 data-number="3.8" class="anchored" data-anchor-id="sec-03-08"><span class="header-section-number">3.8</span> 去除测序接头</h2>
 <p>理解何时修剪、如何保持配对关系以及如何验证处理效果。</p>
-<section id="src-0050-RNA-seq-204" class="level5">
-<h5 class="anchored" data-anchor-id="src-0050-RNA-seq-204">用质量控制软件获取高质量测序片段</h5>
+<section id="src-0050-RNA-seq-204" class="level3">
+<h3 class="anchored" data-anchor-id="src-0050-RNA-seq-204">用质量控制软件获取高质量测序片段</h3>
 <p>对评估后确定数据质量合格的样品，进行进一步的分析。使用Trimmomatic、Cutadapt、Fastx-toolkit、NGSQC等去除数据中的低质量测序片段、接头序列等，以获得高质量测序片段，即clean reads。对于低质量的reads，例如Q值过低、含N过多的reads片段要进行切除或过滤，接头序列包括用于区分DNA片段来自哪个样本的barcode序列、DNA片段的PCR扩增序列，以及DNA片段与测序仪 lane结合的序列。需要切除这部分序列。</p>
 <p>Trimmomatic采取滑动窗口的方式对reads质量进行评估，如果窗口碱基质量均值小于指定值，则将该read去除，还可以用于reads的修剪和接头的去除、去除reads 3‘/5’端指定长度，或者质量低于指定值的碱基。Cutadapt偏重对接头的处理，存在于reads内部或者两端的5’/3’接头的去除，设置接头错配率、接头是否含有indel以及在接头中设置通配碱基N等，去除含N过多的reads和低质量碱基。Fastx-toolkit可以对碱基质量进行过滤以及统计。</p>
 </section>
@@ -1047,9 +1270,20 @@ http://bioinformatics.cvr.ac.uk/blog/illumina-adapter-and-primer-sequences/
 <h4 class="anchored" data-anchor-id="question-11-4">问题描述</h4>
 <p>Hello大家好！我们又见面了！</p>
 <p>通过前面的生物信息学10个基础问题，我相信大家对测序的基本原理，FASTA与FASTQ格式以及FastQC的质控报告都有了一个清楚的认识。那么接下来，我们就要进一步学习，学习如何把原始的FASTQ测序结果一步一步的准备成可以用来比对（mapping）的质控过后的FASTQ。</p>
-<p>在生物信息学100个基础问题 —— 第10题 读懂FastQC报告之adapter与kmer中，我们知道，测序结果中可能会有若干条序列存在adapter的信息，而adapter的信息一般是不在基因组上存在的。所以，在比对之前如果不把adapter去干净，我相信你会得到1个非常非常低的mapping rate。 <img src="../assets/a-questions-11-15/001-11-1.jpg" id="fig-a-questions-11-15-001" class="img-fluid" alt="11 图1"> 通常情况下，我们都是使用cutadapt这个软件进行adapter（接头）序列的去除。cutadapt这个软件不但支持单端序列，还支持双端序列的切除，同时还支持gz格式的自动压缩与解压缩。1个常用的切除命令类似： 在linux 命令行模式下</p>
-<pre><code>cutadapt -a ADAPTER_FWD -A ADAPTER_REV -o out.1.fastq -p out.2.fastq   
-reads.1.fastq reads.2.fastq</code></pre>
+<p>在生物信息学100个基础问题 —— 第10题 读懂FastQC报告之adapter与kmer中，我们知道，测序结果中可能会有若干条序列存在adapter的信息，而adapter的信息一般是不在基因组上存在的。所以，在比对之前如果不把adapter去干净，我相信你会得到1个非常非常低的mapping rate。</p>
+<div id="fig-a-questions-11-15-001" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-a-questions-11-15-001-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="../assets/a-questions-11-15/001-11-1.jpg" class="img-fluid figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-a-questions-11-15-001-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+图&nbsp;3.32: 图题待补
+</figcaption>
+</figure>
+</div>
+<p>通常情况下，我们都是使用cutadapt这个软件进行adapter（接头）序列的去除。cutadapt这个软件不但支持单端序列，还支持双端序列的切除，同时还支持gz格式的自动压缩与解压缩。1个常用的切除命令类似： 在linux 命令行模式下</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2" data-book-role="code"><pre data-code-text="&quot;cutadapt -a ADAPTER_FWD -A ADAPTER_REV -o out.1.fastq -p out.2.fastq   \nreads.1.fastq reads.2.fastq&quot;" class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="ex">cutadapt</span> <span class="at">-a</span> ADAPTER_FWD <span class="at">-A</span> ADAPTER_REV <span class="at">-o</span> out.1.fastq <span class="at">-p</span> out.2.fastq   </span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="ex">reads.1.fastq</span> reads.2.fastq</span></code></pre></div><button title="复制到剪贴板" class="code-copy-button"><i class="bi"></i></button></div>
 <ul>
 <li>-a是第1个文件的adapter序列</li>
 <li>-A是第2个文件的adapter序列</li>
@@ -1064,53 +1298,63 @@ reads.1.fastq reads.2.fastq</code></pre>
 <img src="../assets/a-questions-11-15/002-11-2.jpg" class="img-fluid figure-img">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-a-questions-11-15-002-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-图&nbsp;3.23: 11 图2
+图&nbsp;3.33: 图题待补
 </figcaption>
 </figure>
 </div>
 <p>那么我们今天需要思考的问题，与切除adapter的具体内容有关。</p>
 <p><strong>1. cutadapt中-a/-A 参数与-g/-G参数分别代表什么意思？Illumina测序过程中，一般不会用到哪个参数？</strong></p>
-<pre><code>-a 后面跟一段核苷酸序列，代表单端测序中3'端需要去掉的adapter；
--A 代表双端测序中，read2的3'端需要去掉的adapter；
-注意：如果是双端测序数据，-a针对read1起作用；
-
--g 后面也分别是一段核苷酸序列，代表单端测序中5'端adapter序列;
--G 的用法可以类比-a/-A，是针对reads2的5'端的adapter；
-
-通常情况下，Illumina测序过程中5'端不会测出adapter序列，所以-G/-g一般不会被用到。</code></pre>
+<div class="book-prose">
+<p>-a 后面跟一段核苷酸序列，代表单端测序中3’端需要去掉的adapter；<br>
+-A 代表双端测序中，read2的3’端需要去掉的adapter；<br>
+注意：如果是双端测序数据，-a针对read1起作用；</p>
+<p>-g 后面也分别是一段核苷酸序列，代表单端测序中5’端adapter序列;<br>
+-G 的用法可以类比-a/-A，是针对reads2的5’端的adapter；</p>
+<p>通常情况下，Illumina测序过程中5’端不会测出adapter序列，所以-G/-g一般不会被用到。</p>
+</div>
 <p><strong>2. cutadapt可以过滤一些非常短的reads，请解释其中-m 参数是什么意思？为什么要过滤一些非常短的reads？</strong></p>
-<pre><code>-m 后面跟着是一个数字；
-意思是当每条read切完adapter后如果序列长度低于这个数字就会被舍弃，
-因为如果序列长度过短，则这条read不宜被用于后续的mapping。</code></pre>
-<p><strong>3. 在测序的过程中，我们经常发现一些序列的3’端的测序质量不太好（如图2所示），即使去掉adapter以后还是需要把低质量的序列再去除1次，从而保证后续的mapping质量。cutadapt可以使用一些办法来去除3’端质量不太好的序列。请说明用哪个参数来设置相关的cutoff，并简要说明cutadapt对read质量判断的策略与方法。</strong></p>
-<pre><code>使用-q命令可以再在cut adapter时将测序质量值差的序列去掉，设定一个质量值，低于该分数的bp将被  
-切掉，具体命令是:  
-    &gt; cutadapt -q 10 -o output.fastq input.fastq 
-    
-需要注意的是,-q后面的数字表示质量值的低阈值，如果FASTQ文件质量值采用pherd33标准，则不用备注；
-但如果FASTQ文件采用phred64标准，则需要在代码中添加 “--quality-base=64”。
-
-- - - - - - - - - - - - - - - - - - - - 
-cutadapt 去除3'端低质量序列的核心算法
-- - - - - - - - - - - - - - - - - - - - 
-phred = -10 × log10(Error Probability)
-
-假设我们有13bp的序列，其序列和phred值分别为：
-    A,T,G,C,C,G,T,A,C,C,G,G,T,T,A
-    42, 42, 41, 41, 40, 26, 27, 8, 7, 11, 4, 2, 3
-
-假设我们的-q参数选择10，首先先对所有序列的质量值减去这个-q后面的参数，结果：
-    32, 32, 31, 31, 30, 16, 17, -2, -3, 1, -6, -8, -7
-
-随后从3'方向向5'方向进行累加，结果如下：
-    164, 132, 100, 69, 38, 8, -8, -25, -23, -20, -21, -15, -7
-    
-则从3'到5'遇到累加结果的第1位大于0的位置即为保留的第1位；
-所以最终保留cut的结果为：
-    A,T,G,C,C,G,T,A--cut here--C,C,G,G,T,T,A
-
-这样做的好处是可以得到比较稳定的高测序质量值，防止因为3'端某个质量值突然提高而终止去除。
-</code></pre>
+<div class="book-prose">
+<p>-m 后面跟着是一个数字；<br>
+意思是当每条read切完adapter后如果序列长度低于这个数字就会被舍弃，<br>
+因为如果序列长度过短，则这条read不宜被用于后续的mapping。</p>
+</div>
+<p><strong>3. 在测序的过程中，我们经常发现一些序列的3’端的测序质量不太好（如 <a href="#fig-a-questions-11-15-002" class="quarto-xref">图&nbsp;<span>3.33</span></a> 所示），即使去掉adapter以后还是需要把低质量的序列再去除1次，从而保证后续的mapping质量。cutadapt可以使用一些办法来去除3’端质量不太好的序列。请说明用哪个参数来设置相关的cutoff，并简要说明cutadapt对read质量判断的策略与方法。</strong></p>
+<div class="book-prose">
+<p>使用-q命令可以再在cut adapter时将测序质量值差的序列去掉，设定一个质量值，低于该分数的bp将被<br>
+切掉，具体命令是:</p>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3" data-book-role="code"><pre data-code-text="&quot;cutadapt -q 10 -o output.fastq input.fastq \n\t&quot;" class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="ex">cutadapt</span> <span class="at">-q</span> 10 <span class="at">-o</span> output.fastq input.fastq </span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>    </span></code></pre></div><button title="复制到剪贴板" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="book-prose">
+<p>需要注意的是,-q后面的数字表示质量值的低阈值，如果FASTQ文件质量值采用pherd33标准，则不用备注；<br>
+但如果FASTQ文件采用phred64标准，则需要在代码中添加 “–quality-base=64”。</p>
+<p>- - - - - - - - - - - - - - - - - - - -<br>
+cutadapt 去除3’端低质量序列的核心算法<br>
+- - - - - - - - - - - - - - - - - - - -</p>
+</div>
+<p>质量值的计算公式见 <a href="#eq-phred-quality" class="quarto-xref">公式&nbsp;<span>3.1</span></a> 。</p>
+<div class="book-prose">
+<p>假设我们有13bp的序列，其序列和phred值分别为：</p>
+</div>
+<pre data-code-text="&quot;\tA,T,G,C,C,G,T,A,C,C,G,G,T,T,A\n\t42, 42, 41, 41, 40, 26, 27, 8, 7, 11, 4, 2, 3&quot;" class="text" data-book-role="data"><code>    A,T,G,C,C,G,T,A,C,C,G,G,T,T,A
+    42, 42, 41, 41, 40, 26, 27, 8, 7, 11, 4, 2, 3</code></pre>
+<div class="book-prose">
+<p>假设我们的-q参数选择10，首先先对所有序列的质量值减去这个-q后面的参数，结果：</p>
+</div>
+<pre data-code-text="&quot;\t32, 32, 31, 31, 30, 16, 17, -2, -3, 1, -6, -8, -7&quot;" class="text" data-book-role="data"><code>    32, 32, 31, 31, 30, 16, 17, -2, -3, 1, -6, -8, -7</code></pre>
+<div class="book-prose">
+<p>随后从3’方向向5’方向进行累加，结果如下：</p>
+</div>
+<pre data-code-text="&quot;\t164, 132, 100, 69, 38, 8, -8, -25, -23, -20, -21, -15, -7\n\t&quot;" class="text" data-book-role="data"><code>    164, 132, 100, 69, 38, 8, -8, -25, -23, -20, -21, -15, -7
+    </code></pre>
+<div class="book-prose">
+<p>则从3’到5’遇到累加结果的第1位大于0的位置即为保留的第1位；<br>
+所以最终保留cut的结果为：</p>
+</div>
+<pre data-code-text="&quot;\tA,T,G,C,C,G,T,A--cut here--C,C,G,G,T,T,A&quot;" class="text" data-book-role="data"><code>    A,T,G,C,C,G,T,A--cut here--C,C,G,G,T,T,A</code></pre>
+<div class="book-prose">
+<p>这样做的好处是可以得到比较稳定的高测序质量值，防止因为3’端某个质量值突然提高而终止去除。</p>
+</div>
 </section>
 </section>
 </section>
@@ -1120,15 +1364,21 @@ phred = -10 × log10(Error Probability)
 <h3 class="anchored" data-anchor-id="src-0030-QC-of-FASTQ-23">针对FASTQ文件的其他操作 （seqkit）</h3>
 <section id="src-0030-QC-of-FASTQ-25" class="level4">
 <h4 class="anchored" data-anchor-id="src-0030-QC-of-FASTQ-25">trim到相同长度</h4>
-<p>待完善</p>
+<div class="book-placeholder">
+<p>本节内容待补充。</p>
+</div>
 </section>
 <section id="src-0030-QC-of-FASTQ-27" class="level4">
 <h4 class="anchored" data-anchor-id="src-0030-QC-of-FASTQ-27">随机筛选</h4>
-<p>待完善</p>
+<div class="book-placeholder">
+<p>本节内容待补充。</p>
+</div>
 </section>
 <section id="src-0030-QC-of-FASTQ-29" class="level4">
 <h4 class="anchored" data-anchor-id="src-0030-QC-of-FASTQ-29">等等</h4>
-<p>待完善</p>
+<div class="book-placeholder">
+<p>本节内容待补充。</p>
+</div>
 </section>
 </section>
 <section id="question-11-86" class="level3">
@@ -1138,7 +1388,28 @@ phred = -10 × log10(Error Probability)
 <p>Hello大家好！我们又见面了！</p>
 <p>上一次我们说到了cutadapt软件的使用问题，其中我们着重强调了1个参数-m，不知道大家还有没有印象。今天我们问题就是要使用-m参数和另一个工具联合的一个妙用。不过在这之前，我们还得先介绍1个工具箱叫fastx_toolkit.</p>
 <p>fastx_toolkit是一个系列内容的软件包，其中主要的内容是对比对前的fastq文件做质控。比如切掉一些不要的内容（fastx_trimmer），比如FASTQ与FASTA格式的转换（fastq_to_fasta），比如分单链测序的index（fastx_barcode_splitter）等等。我们今天主要是给大家说一下fastx_trimmer的用处。</p>
-<p>fastx_trimmer主要是切掉一些fastq中你不想要的序列，比如有些序列5’端有若干bp的质量不好的或者碱基不稳定的部分；或者是5’端有一些用来去重复（duplicate）的random barcode（如图1所示）；还可能是3’端一些质量不好的碱基。 <img src="../assets/a-questions-11-15/003-12-1.jpg" id="fig-a-questions-11-15-003" class="img-fluid" alt="12 图1"> 这里我再给大家1张图，就是之前我们展示过的Human普通的RNA-Seq测序的adapter分布图（图2）。 <img src="../assets/a-questions-11-15/004-12-2.jpg" id="fig-a-questions-11-15-004" class="img-fluid" alt="12 图2"></p>
+<p>fastx_trimmer主要是切掉一些fastq中你不想要的序列，比如有些序列5’端有若干bp的质量不好的或者碱基不稳定的部分；或者是5’端有一些用来去重复（duplicate）的random barcode（如 <a href="#fig-a-questions-11-15-003" class="quarto-xref">图&nbsp;<span>3.34</span></a> 所示）；还可能是3’端一些质量不好的碱基。</p>
+<div id="fig-a-questions-11-15-003" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-a-questions-11-15-003-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="../assets/a-questions-11-15/003-12-1.jpg" class="img-fluid figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-a-questions-11-15-003-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+图&nbsp;3.34: 图题待补
+</figcaption>
+</figure>
+</div>
+<p>这里我再给大家1张图，就是之前我们展示过的Human普通的RNA-Seq测序的adapter分布图（ <a href="#fig-a-questions-11-15-004" class="quarto-xref">图&nbsp;<span>3.35</span></a> ）。</p>
+<div id="fig-a-questions-11-15-004" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-a-questions-11-15-004-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="../assets/a-questions-11-15/004-12-2.jpg" class="img-fluid figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-a-questions-11-15-004-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+图&nbsp;3.35: 图题待补
+</figcaption>
+</figure>
+</div>
 <p>在实际数据分析与处理的过程中，会有下面几个要求：</p>
 <p><strong>1. fastq文件中的adapter肯定是需要去掉的;</strong></p>
 <p><strong>2. 一些头部的random barcode也是需要去掉的；</strong></p>
@@ -1149,31 +1420,30 @@ phred = -10 × log10(Error Probability)
 <p><strong>2. 处理过后的fastq文件中的开头10bp是random barcode也需要去；</strong></p>
 <p><strong>3. 最后得到的序列长度完全一致（不满足上述要求的扔掉）；</strong></p>
 <p>假设我们的输入文件是：input.fastq 假设我们的操作系统是：Linux Ubuntu 其中的adapter序列是：AGATCGGAAGAGCGTCGTGTAGGGAAAGAGTGTAGATCTCGGTGGTCGCCGTATCATT 请参考cutadapt与fastx_trimmer这两个软件的使用说明，设计处理路线图。如果有可能，请给出相应的参数。</p>
-<pre><code>为了达到最终目的，处理过程主要分为3步：
-第1步：
-    使用fastqc获得序列3'端adapter以及5'端random barcode的信息；
-
-第2步：
-    使用cutadapt去掉3'端的adapter，务必注意需要使用-m参数，只保留一定长度以上的序列；
-
-第3步：
-    使用fastx_trimmer去除5'端不想要random barcode，同时截取相同长度的序列，
-保证最后得到的序列长度完全一致。
-
-参考代码及参数如下：  
-# step 1, FastQC
-fastqc -q -t 3 -o ./FastQC_result ./input.fastq
-
-# step 2, cut adapter
-cutadapt -25 -m 125 \
--a AGATCGGAAGAGCGTCGTGTAGGGAAAGAGTGTAGATCTCGGTGGTCGCCGTATCATT \
--o input_cutadapt.fq.gz input.fastq &amp;
-
-# step 3, trim
-zcat input_cutadapt.fq.gz | fastx_trimmer \
--f 11 -l 125 -z -o ./input_cutadapt_trim11_125.fq.gz
-
-# 经过上述3个步骤，可以获得长度统一为115bp的序列！</code></pre>
+<div class="book-prose">
+<p>为了达到最终目的，处理过程主要分为3步：<br>
+第1步：<br>
+使用fastqc获得序列3’端adapter以及5’端random barcode的信息；</p>
+<p>第2步：<br>
+使用cutadapt去掉3’端的adapter，务必注意需要使用-m参数，只保留一定长度以上的序列；</p>
+<p>第3步：<br>
+使用fastx_trimmer去除5’端不想要random barcode，同时截取相同长度的序列，<br>
+保证最后得到的序列长度完全一致。</p>
+<p>参考代码及参数如下：</p>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb8" data-book-role="code" data-focus-lines="2,5,10"><pre data-code-text="&quot;# step 1, FastQC\nfastqc -q -t 3 -o ./FastQC_result ./input.fastq\n\n# step 2, cut adapter\ncutadapt -25 -m 125 \\\n-a AGATCGGAAGAGCGTCGTGTAGGGAAAGAGTGTAGATCTCGGTGGTCGCCGTATCATT \\\n-o input_cutadapt.fq.gz input.fastq &amp;\n\n# step 3, trim\nzcat input_cutadapt.fq.gz | fastx_trimmer \\\n-f 11 -l 125 -z -o ./input_cutadapt_trim11_125.fq.gz\n\n# 经过上述3个步骤，可以获得长度统一为115bp的序列！&quot;" class="sourceCode numberSource bash numberLines code-with-copy"><code class="sourceCode bash"><span id="cb8-1"><a href="#cb8-1"></a><span class="co"># step 1, FastQC</span></span>
+<span id="cb8-2"><a href="#cb8-2"></a><span class="ex">fastqc</span> <span class="at">-q</span> <span class="at">-t</span> 3 <span class="at">-o</span> ./FastQC_result ./input.fastq</span>
+<span id="cb8-3"><a href="#cb8-3"></a></span>
+<span id="cb8-4"><a href="#cb8-4"></a><span class="co"># step 2, cut adapter</span></span>
+<span id="cb8-5"><a href="#cb8-5"></a><span class="ex">cutadapt</span> <span class="at">-25</span> <span class="at">-m</span> 125 <span class="dt">\</span></span>
+<span id="cb8-6"><a href="#cb8-6"></a>-a AGATCGGAAGAGCGTCGTGTAGGGAAAGAGTGTAGATCTCGGTGGTCGCCGTATCATT <span class="dt">\</span></span>
+<span id="cb8-7"><a href="#cb8-7"></a>-o input_cutadapt.fq.gz input.fastq <span class="kw">&amp;</span></span>
+<span id="cb8-8"><a href="#cb8-8"></a></span>
+<span id="cb8-9"><a href="#cb8-9"></a><span class="co"># step 3, trim</span></span>
+<span id="cb8-10"><a href="#cb8-10"></a><span class="fu">zcat</span> input_cutadapt.fq.gz <span class="kw">|</span> <span class="ex">fastx_trimmer</span> <span class="dt">\</span></span>
+<span id="cb8-11"><a href="#cb8-11"></a>-f 11 <span class="at">-l</span> 125 <span class="at">-z</span> <span class="at">-o</span> ./input_cutadapt_trim11_125.fq.gz</span>
+<span id="cb8-12"><a href="#cb8-12"></a></span>
+<span id="cb8-13"><a href="#cb8-13"></a><span class="co"># 经过上述3个步骤，可以获得长度统一为115bp的序列！</span></span></code></pre></div><button title="复制到剪贴板" class="code-copy-button"><i class="bi"></i></button></div>
 
 
 </section>
@@ -1181,8 +1451,14 @@ zcat input_cutadapt.fq.gz | fastx_trimmer \
 </section>
 
 </main> <!-- /main -->
+<div class="book-toolbar" role="navigation" aria-label="阅读工具">
+  <span class="book-brand">AI时代生信入门</span>
+  <button class="book-chapters-button" type="button" aria-controls="quarto-sidebar" aria-expanded="false">全书目录</button>
+  <button class="book-toc-button" type="button" aria-controls="quarto-margin-sidebar" aria-expanded="false">本章目录</button>
+  <button class="book-search-button" type="button">搜索</button>
+</div>
+<button class="book-shade" type="button" aria-label="关闭目录" hidden=""></button>
 <button class="back-top" aria-label="回到顶部" title="回到顶部" onclick="window.scrollTo({top:0,behavior:'smooth'})">↑</button>
-
 <script id="quarto-html-after-body" type="application/javascript">
   window.document.addEventListener("DOMContentLoaded", function (event) {
     const icon = "";
@@ -1619,4 +1895,5 @@ zcat input_cutadapt.fq.gz | fastx_trimmer \
 
 
 <script src="../site_libs/quarto-html/zenscroll-min.js"></script>
+<script src="../styles/reading.js"></script>
 </body></html>

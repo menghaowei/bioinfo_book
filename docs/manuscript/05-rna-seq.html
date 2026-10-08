@@ -74,23 +74,22 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="../site_libs/quarto-html/anchor.min.js"></script>
 <link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting-ed96de9b727972fe78a7b5d16c58bf87.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-795e9e8eca1e12b12abcb09a27409631.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../site_libs/bootstrap/bootstrap-a8449e8f115e2c9741b1edc410d84446.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-2785e736d6bb3298ac36e4268fcf040f.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
   "collapse-after": 3,
   "panel-placement": "start",
-  "type": "textbox",
+  "type": "overlay",
   "limit": 50,
   "keyboard-shortcut": [
     "f",
     "/",
     "s"
   ],
-  "show-item-context": false,
   "language": {
     "search-no-results-text": "没有结果",
     "search-matching-documents-text": "匹配的文档",
@@ -165,13 +164,11 @@ window.Quarto = {
     <div class="pt-lg-2 mt-2 text-left sidebar-header">
     <div class="sidebar-title mb-0 py-0">
       <a href="../">AI时代生信入门</a> 
+        <div class="sidebar-tools-main">
+    <div id="quarto-search" class="quarto-navigation-tool px-1" title="搜索"></div>
+</div>
     </div>
       </div>
-        <div class="mt-2 flex-shrink-0 align-items-center">
-        <div class="sidebar-search">
-        <div id="quarto-search" class="" title="搜索"></div>
-        </div>
-        </div>
     <div class="sidebar-menu-container"> 
     <ul class="list-unstyled mt-1">
         <li class="sidebar-item">
@@ -292,12 +289,32 @@ window.Quarto = {
   </ul></li>
   <li><a href="#sec-05-03" id="toc-sec-05-03" class="nav-link" data-scroll-target="#sec-05-03"><span class="header-section-number">5.3</span> RNA-seq质控与剪接感知比对</a>
   <ul class="collapse">
+  <li><a href="#src-0050-RNA-seq-247" id="toc-src-0050-RNA-seq-247" class="nav-link" data-scroll-target="#src-0050-RNA-seq-247">序列比对</a></li>
+  <li><a href="#src-0050-RNA-seq-423" id="toc-src-0050-RNA-seq-423" class="nav-link" data-scroll-target="#src-0050-RNA-seq-423">质量控制</a></li>
+  <li><a href="#src-0050-RNA-seq-455" id="toc-src-0050-RNA-seq-455" class="nav-link" data-scroll-target="#src-0050-RNA-seq-455">建立参考基因组索引</a></li>
+  <li><a href="#src-0050-RNA-seq-518" id="toc-src-0050-RNA-seq-518" class="nav-link" data-scroll-target="#src-0050-RNA-seq-518">序列比对</a></li>
   <li><a href="#question-21-285" id="toc-question-21-285" class="nav-link" data-scroll-target="#question-21-285">知识问答 23：RNA 与 DNA 的比对差异</a></li>
   </ul></li>
-  <li><a href="#sec-05-04" id="toc-sec-05-04" class="nav-link" data-scroll-target="#sec-05-04"><span class="header-section-number">5.4</span> 从reads到基因和转录本定量</a></li>
-  <li><a href="#sec-05-05" id="toc-sec-05-05" class="nav-link" data-scroll-target="#sec-05-05"><span class="header-section-number">5.5</span> counts、TPM与样本探索</a></li>
-  <li><a href="#sec-05-06" id="toc-sec-05-06" class="nav-link" data-scroll-target="#sec-05-06"><span class="header-section-number">5.6</span> 差异表达模型与结果解释</a></li>
-  <li><a href="#sec-05-07" id="toc-sec-05-07" class="nav-link" data-scroll-target="#sec-05-07"><span class="header-section-number">5.7</span> 功能富集与结果展示</a></li>
+  <li><a href="#sec-05-04" id="toc-sec-05-04" class="nav-link" data-scroll-target="#sec-05-04"><span class="header-section-number">5.4</span> 从reads到基因和转录本定量</a>
+  <ul class="collapse">
+  <li><a href="#src-0050-RNA-seq-286" id="toc-src-0050-RNA-seq-286" class="nav-link" data-scroll-target="#src-0050-RNA-seq-286">转录本组装</a></li>
+  <li><a href="#src-0050-RNA-seq-625" id="toc-src-0050-RNA-seq-625" class="nav-link" data-scroll-target="#src-0050-RNA-seq-625">转录组拼接</a></li>
+  <li><a href="#src-0050-RNA-seq-692" id="toc-src-0050-RNA-seq-692" class="nav-link" data-scroll-target="#src-0050-RNA-seq-692">表达定量</a></li>
+  </ul></li>
+  <li><a href="#sec-05-05" id="toc-sec-05-05" class="nav-link" data-scroll-target="#sec-05-05"><span class="header-section-number">5.5</span> counts、TPM与样本探索</a>
+  <ul class="collapse">
+  <li><a href="#src-0050-RNA-seq-300" id="toc-src-0050-RNA-seq-300" class="nav-link" data-scroll-target="#src-0050-RNA-seq-300">表达定量</a></li>
+  </ul></li>
+  <li><a href="#sec-05-06" id="toc-sec-05-06" class="nav-link" data-scroll-target="#sec-05-06"><span class="header-section-number">5.6</span> 差异表达模型与结果解释</a>
+  <ul class="collapse">
+  <li><a href="#src-0050-RNA-seq-360" id="toc-src-0050-RNA-seq-360" class="nav-link" data-scroll-target="#src-0050-RNA-seq-360">表达差异分析</a></li>
+  <li><a href="#src-0050-RNA-seq-768" id="toc-src-0050-RNA-seq-768" class="nav-link" data-scroll-target="#src-0050-RNA-seq-768">差异分析</a></li>
+  </ul></li>
+  <li><a href="#sec-05-07" id="toc-sec-05-07" class="nav-link" data-scroll-target="#sec-05-07"><span class="header-section-number">5.7</span> 功能富集与结果展示</a>
+  <ul class="collapse">
+  <li><a href="#src-0050-RNA-seq-376" id="toc-src-0050-RNA-seq-376" class="nav-link" data-scroll-target="#src-0050-RNA-seq-376">基因注释</a></li>
+  <li><a href="#src-0050-RNA-seq-930" id="toc-src-0050-RNA-seq-930" class="nav-link" data-scroll-target="#src-0050-RNA-seq-930">火山图与聚类图绘制</a></li>
+  </ul></li>
   <li><a href="#sec-05-08" id="toc-sec-05-08" class="nav-link" data-scroll-target="#sec-05-08"><span class="header-section-number">5.8</span> 完整交付、错误案例与拓展入口</a>
   <ul class="collapse">
   <li><a href="#src-0050-RNA-seq-1122" id="toc-src-0050-RNA-seq-1122" class="nav-link" data-scroll-target="#src-0050-RNA-seq-1122">其他RNA测序的分析简述</a></li>
@@ -342,7 +359,7 @@ window.Quarto = {
 <section id="src-0050-RNA-seq-5" class="level3">
 <h3 class="anchored" data-anchor-id="src-0050-RNA-seq-5">什么是RNA-Seq？</h3>
 <p>RNA可以分为能够编码蛋白基因的信使RNA（mRNA）<a href="#fn2" class="footnote-ref" id="fnref2" role="doc-noteref"><sup>2</sup></a>和非蛋白编码RNA （non-coding RNA, ncRNA），例如人类基因组，含有约20000个蛋白编码基因和7000个非蛋白编码RNA基因。随着研究的深入，生命科学研究者对RNA的认识逐渐全面，陆续发现了生物体中多种类型的非编码RNA，有持家非编码RNA（house-keeping non-coding RNA）：在翻译过程中起转运作用的tRNA<a href="#fn3" class="footnote-ref" id="fnref3" role="doc-noteref"><sup>3</sup></a>、核糖体的组成成分rRNA<a href="#fn4" class="footnote-ref" id="fnref4" role="doc-noteref"><sup>4</sup></a> 、参与mRNA剪接的snRNA（small nuclear RNA）<a href="#fn5" class="footnote-ref" id="fnref5" role="doc-noteref"><sup>5</sup></a>等；还有能够起到调控作用的非编码RNA：长非编码RNA（long non-coding RNA, lncRNA）、miRNA（mircoRNA）<a href="#fn6" class="footnote-ref" id="fnref6" role="doc-noteref"><sup>6</sup></a>、小干扰RNA（small interfering RNA, siRNA）和环状RNA（circRNA）等。</p>
-<p>研究人员通常会对mRNA和一些调控非编码RNA感兴趣，针对不同类型的RNA，采取的测序手段也不同，主要表现为样本建库策略的不同。测序仪通常只能对DNA序列进行测序，测序之前对样品里的目标待测RNA进行处理的过程称为“文库的制备”，简称建库（<a href="#fig-06-rna-seq-001" class="quarto-xref">图&nbsp;<span>5.1</span></a>）。</p>
+<p>研究人员通常会对mRNA和一些调控非编码RNA感兴趣，针对不同类型的RNA，采取的测序手段也不同，主要表现为样本建库策略的不同。测序仪通常只能对DNA序列进行测序，测序之前对样品里的目标待测RNA进行处理的过程称为“文库的制备”，简称建库（<a href="#fig-06-rna-seq-001" class="quarto-xref">图&nbsp;<span>5.1</span></a> ）。</p>
 <div id="fig-06-rna-seq-001" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-06-rna-seq-001-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
@@ -356,7 +373,7 @@ window.Quarto = {
 <p>用富集polyA方式可以获得mRNA的表达信息、也可以获得部分lncRNA（含有polyA 的lncRNA）的表达信息；通过去rRNA方式建库可以检测到mRNA、全部lncRNA、circRNA的表达信息；去线性建库则是专门为了检测circRNA的表达；短片端建库能够获得以miRNA为主的小RNA表达信息。选用何种建库方式，应结合研究目的来进行实验设计。</p>
 <section id="src-0050-RNA-seq-15" class="level4">
 <h4 class="anchored" data-anchor-id="src-0050-RNA-seq-15">对mRNA测序</h4>
-<p>研究蛋白编码基因表达应采用富集poly-A的方式进行建库测序（<a href="#fig-06-rna-seq-001" class="quarto-xref">图&nbsp;<span>5.1</span></a>）。利用多数真核 mRNA 具有 poly(A) 尾的特性，对样本中含有poly-A的RNA进行富集。需要注意的是，部分lncRNA也含有poly-A结构，所以采取这一方式建库也可以检测到这部分lncRNA的表达。mRNA测序一般采取双端测序，测序读长150bp，数据量要求在6G clean reads左右。</p>
+<p>研究蛋白编码基因表达应采用富集poly-A的方式进行建库测序（<a href="#fig-06-rna-seq-001" class="quarto-xref">图&nbsp;<span>5.1</span></a> ）。利用多数真核 mRNA 具有 poly(A) 尾的特性，对样本中含有poly-A的RNA进行富集。需要注意的是，部分lncRNA也含有poly-A结构，所以采取这一方式建库也可以检测到这部分lncRNA的表达。mRNA测序一般采取双端测序，测序读长150bp，数据量要求在6G clean reads左右。</p>
 <p>建库分为多个步骤：</p>
 <ol type="1">
 <li>用磁珠捕获含有poly-A结构的RNA；</li>
@@ -375,32 +392,31 @@ window.Quarto = {
 <li>以及位于两个编码基因之间非编码区的基因间区长非编码RNA（intergenic lncRNA, lincRNA）。</li>
 </ol>
 <p>lncRNA的发挥多种调控功能，扮演信号分子、诱导因子、引导分子、支架分子等多种角色<a href="#fn8" class="footnote-ref" id="fnref8" role="doc-noteref"><sup>8</sup></a>。</p>
-<p>对lncRNA 进行测序需要采用去rRNA的方法建库，以最大限度地保留lncRNA（<a href="#fig-06-rna-seq-001" class="quarto-xref">图&nbsp;<span>5.1</span></a>）。与此同时，mRNA、snoRNA、snRNA、tRNA和cricRNA的表达也能在rRNA建库转录组测序中得到。与富集polyA方法不同的是，建库的第一步是去除样本中的rRNA，接下的步骤则与富集polyA方式建库差不多。lncRNA测序一般采取双端测序，测序读长150bp，数据量要求在10～12G clean reads。</p>
+<p>对lncRNA 进行测序需要采用去rRNA的方法建库，以最大限度地保留lncRNA（<a href="#fig-06-rna-seq-001" class="quarto-xref">图&nbsp;<span>5.1</span></a> ）。与此同时，mRNA、snoRNA、snRNA、tRNA和cricRNA的表达也能在rRNA建库转录组测序中得到。与富集polyA方法不同的是，建库的第一步是去除样本中的rRNA，接下的步骤则与富集polyA方式建库差不多。lncRNA测序一般采取双端测序，测序读长150bp，数据量要求在10～12G clean reads。</p>
 </section>
 <section id="src-0050-RNA-seq-39" class="level4">
 <h4 class="anchored" data-anchor-id="src-0050-RNA-seq-39">small RNA-seq</h4>
+<div class="book-core callout callout-style-default callout-note callout-titled" title="核心知识｜microRNA 与小 RNA 测序">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">注记</span>核心知识｜microRNA 与小 RNA 测序
+</div>
+</div>
+<div class="callout-body-container callout-body">
 <p>microRNA广泛存在于动植中，是一类长度为22nt左右的小非编码RNA，通过抑制蛋白质翻译或者降解mRNA，在多种生物学过程中发挥调控作用。对microRNA测序需要做小RNA测序（small RNA-seq ），建库过程中需要回收小片段，这是与mRNA建库的主要不同之处。miRNA的功能涉及多种生物学过程，有潜力成为许多疾病包括癌症的标志物。建库起始样本可以用总RNA，也可以用分离纯化得到的small RNA。</p>
+</div>
+</div>
 <p>1.基于small RNA本身对结构特征在3‘端和5’端连上接头序列，多数small RNA具有天然的磷酸化5‘端，且3‘端具有羟基基团，便于核酸序列的连接； 2.然后进行少量逆转录PCR扩增； 3.通过PAGE胶对特定大小的small RNA片段进行纯化，小RNA片段较短20～30nt，加上接头序列后长度在150bp左右； 4.对文库的片段大小、纯度和浓度进行质检。 5. 将得到的文库扩增后上机测序，测序读长50bp，数据量要求在10～20M clean reads。</p>
 </section>
 <section id="src-0050-RNA-seq-49" class="level4">
 <h4 class="anchored" data-anchor-id="src-0050-RNA-seq-49">circRNA-seq</h4>
 <p>通常情况下，DNA和RNA是以线性形式存在的，有时候也以环状的形式出现，例如线粒体DNA和细菌DNA、类病毒和一些RNA病毒的单链环状RNA基因组。近年研究发现，真核生物细胞普遍且稳定存在环状的RNA，是mRNA剪接过程中形成的，主要通过吸附miRNA来实现转录水平的调控。circRNA能够类似“海绵”一样竞 争性结合miRNA或RNA结合蛋白，从而可能在生理和疾病过程中 发挥重要的功能。</p>
 <p>去rRNA的方式，是目前最常用的方法，可以捕捉环形RNA的信息；另外，也可以通过去线性RNA的方式建库测序，核糖核酸酶R从RNA的自由3’端向5’端方向逐一水解线性RNA，烟草酸性磷酸酶和终止子外切酶能够从5’端向3’端方向逐一水解RNA，而环形RNA没有3’与5‘端和poly(A)，因此不会被降解；还可以利用环形RNA与线性RNA电泳迁移速度的不同来实现对环形RNA的特异性捕获，因为环形RNA会比等长的线性RNA迁移速度快，并且凝胶交联程度越高这种差别就会越大<a href="#fn9" class="footnote-ref" id="fnref9" role="doc-noteref"><sup>9</sup></a>。总的来说rRNA的方式建库具有更高的性价比，能够同时获得mRNA、lncRNA和circRNA的信息。</p>
-<div class="callout callout-style-default callout-note callout-titled" title="待完善">
-<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-1-contents" aria-controls="callout-1" aria-expanded="false" aria-label="Toggle callout">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-<span class="screen-reader-only">注记</span>待完善
-</div>
-<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
-</div>
-<div id="callout-1" class="callout-1-contents callout-collapse collapse">
-<div class="callout-body-container callout-body">
-<p>校订生物学表述，收束到bulk RNA-seq主线。</p>
-</div>
-</div>
+<div class="book-placeholder">
+<p>本节内容待补充。</p>
 </div>
 <p>单细胞与空间转录组的技术背景和分析入口见<a href="../manuscript/09-single-cell-and-spatial-omics.html">第 9 章</a>。</p>
 </section>
@@ -411,7 +427,7 @@ window.Quarto = {
 <p>让后续各步骤对应同一批样本和同一个研究问题。</p>
 <section id="src-0050-RNA-seq-101" class="level3">
 <h3 class="anchored" data-anchor-id="src-0050-RNA-seq-101">RNA-seq的分析</h3>
-<p>有参转录组分析一般包括：测序数据的质量控制、构建参考基因组索引、将read比对到参考基因组、拼接新的转录本（可选）、基因表达的定量、差异表达基因的分析，以及对目标基因群进行注释和富集分析（<a href="#fig-06-rna-seq-003" class="quarto-xref">图&nbsp;<span>5.2</span></a>）。</p>
+<p>有参转录组分析一般包括：测序数据的质量控制、构建参考基因组索引、将read比对到参考基因组、拼接新的转录本（可选）、基因表达的定量、差异表达基因的分析，以及对目标基因群进行注释和富集分析（<a href="#fig-06-rna-seq-003" class="quarto-xref">图&nbsp;<span>5.2</span></a> ）。</p>
 <div id="fig-06-rna-seq-003" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-06-rna-seq-003-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
@@ -458,24 +474,11 @@ window.Quarto = {
 </ul>
 <p>(网页截图)</p>
 <p><em>方法二，使用命令行下载</em></p>
-<pre class="shell"><code>$wget </code></pre>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1" data-book-role="code"><pre data-code-text="&quot;wget &quot;" class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">wget</span> </span></code></pre></div><button title="复制到剪贴板" class="code-copy-button"><i class="bi"></i></button></div>
 <p>这里选用的是人类样本，因此需要下载人类基因组和基因组注释文件。基因组文件可以从UCSC genome browser （https://genome.ucsc.edu/index.html）和 Ensembl（http://asia.ensembl.org/index.html）网站上获取。</p>
 <p>(网页截图)</p>
-<div class="callout callout-style-default callout-note callout-titled" title="待完善">
-<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-2-contents" aria-controls="callout-2" aria-expanded="false" aria-label="Toggle callout">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-<span class="screen-reader-only">注记</span>待完善
-</div>
-<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
-</div>
-<div id="callout-2" class="callout-2-contents callout-collapse collapse">
-<div class="callout-body-container callout-body">
-<p>选定主案例，补数据包、下载与校验脚本。</p>
-</div>
-</div>
+<div class="book-placeholder">
+<p>本节内容待补充。</p>
 </div>
 </section>
 </section>
@@ -483,17 +486,17 @@ window.Quarto = {
 <section id="sec-05-03" class="level2" data-number="5.3">
 <h2 data-number="5.3" class="anchored" data-anchor-id="sec-05-03"><span class="header-section-number">5.3</span> RNA-seq质控与剪接感知比对</h2>
 <p>确认文库特征和比对策略适合表达分析。</p>
-<section id="src-0050-RNA-seq-247" class="level4">
-<h4 class="anchored" data-anchor-id="src-0050-RNA-seq-247">序列比对</h4>
+<section id="src-0050-RNA-seq-247" class="level3">
+<h3 class="anchored" data-anchor-id="src-0050-RNA-seq-247">序列比对</h3>
 <p>建立好参考基因组索引之后，测序得到的短reads可以据此进行基因组匹配，将高通量测序结果回溯基因组位置，这个过程叫做序列比对（reads mapping），将对象数量众多的reads（&gt;100M reads pairs）比对到一条唯一且长度不短的参考基因组（&gt;3Gbp），强调回溯的动作，需要较高的计算成本和巧妙的比对策略。这与在进化分析等工作中提到的双序列比对 （pairwise alignment）和多序列比对（multiple sequences alignment）不同，alignment的比对通量较低，更多的强调两条序列或者少数几条序列之间的比对。RNA比对用到的三种策略是Exon-first approach, seed-extend approach, Potential limitations of exon-first approaches。常用的算法是BWT算法和后缀树（Suffix tree），这一点我们在之前的章节已经有所介绍，这里就不再赘述了。</p>
 <p>序列比对是获得每条测序片段在参考基因组上对应染色体上的位置坐标、正负链等信息。比对率能反映实验测序样品与参考基因组的相似关系，也反映了测序质量的高低。一般情况下，在80%以上，回帖多个位置的测序序列占总体百分比通常不超过10%。常用比对软件Tophat2、Bowtie2、STAR、HISAT2、RSEM等。</p>
-<section id="src-0050-RNA-seq-253" class="level5">
-<h5 class="anchored" data-anchor-id="src-0050-RNA-seq-253">SAM文件与BAM文件</h5>
+<section id="src-0050-RNA-seq-253" class="level4">
+<h4 class="anchored" data-anchor-id="src-0050-RNA-seq-253">SAM文件与BAM文件</h4>
 <p>序列比对文件采取SAM（The Sequence Alignment/Map format）文件、BAM文件格式。Heng Li等人完成了SAM文件、BAM文件的标准制定，并开发了初代对软件。SAM文件由两部分组成：头部区和主体区，头部区以“@”开始，提供比对的总体信息，例如SAM格式版本、比对参考序列、比对使用的命令等；主体区是比对结果，每一行储存一个比对结果，共11个主列和1个可选列。</p>
 <p>关于SAM文件与BAM文件的详细介绍与基本操作，也请翻看前面的章节。我们这里再次提出这个标题，只是想反复为读者强调，这个文件的重要性，以及强调概念无论是DNA还是RNA的比对结果，都是可以保存成对应的SAM/BAM文件的。</p>
 </section>
-<section id="src-0050-RNA-seq-259" class="level5">
-<h5 class="anchored" data-anchor-id="src-0050-RNA-seq-259">序列比对软件</h5>
+<section id="src-0050-RNA-seq-259" class="level4">
+<h4 class="anchored" data-anchor-id="src-0050-RNA-seq-259">序列比对软件</h4>
 <ul>
 <li>Bowtie和Bowtie2</li>
 </ul>
@@ -518,171 +521,164 @@ window.Quarto = {
 <p>如果比对任务非常多，数据量很大，我们推荐使用STAR这个比对软件得到最终的比对结果。</p>
 </section>
 </section>
-<section id="src-0050-RNA-seq-423" class="level4">
-<h4 class="anchored" data-anchor-id="src-0050-RNA-seq-423">质量控制</h4>
+<section id="src-0050-RNA-seq-423" class="level3">
+<h3 class="anchored" data-anchor-id="src-0050-RNA-seq-423">质量控制</h3>
 <p>从GEO数据库下载的数据文件格式为SRA，需要使用官方提供的SRA Toolkit进行转换，将sra文件转换为fastq格式文件，软件下载链接： https://github.com/ncbi/sra-tools/wiki/02.-Installing-SRA-Toolkit。</p>
-<pre class="shell"><code>$fastq-dump SRR1573494.sra</code></pre>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2" data-book-role="code"><pre data-code-text="&quot;fastq-dump SRR1573494.sra&quot;" class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="ex">fastq-dump</span> SRR1573494.sra</span></code></pre></div><button title="复制到剪贴板" class="code-copy-button"><i class="bi"></i></button></div>
 <p>使用FastQC做质量控制：</p>
-<pre class="shell"><code>$fastqc SRR1573494.fq</code></pre>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3" data-book-role="code"><pre data-code-text="&quot;fastqc SRR1573494.fq&quot;" class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="ex">fastqc</span> SRR1573494.fq</span></code></pre></div><button title="复制到剪贴板" class="code-copy-button"><i class="bi"></i></button></div>
 <p>使用cutadapt去除接头序列，过滤数据质量：</p>
-<pre class="shell"><code>$cutadapt -j 6 --times 1 -e 0.1 -O 3 --quality-cutoff 25 -m 55 \
--a AGATCGGAAGAGCACACGTCTGAACTCCAGTCAC \
--A AGATCGGAAGAGCGTCGTGTAGGGAAAGAGTGTAGATCTCGGTGGTCGCCGTATCATT \
--o fix.fastq/test_R1_cutadapt.temp.fq.gz \
--p fix.fastq/test_R2_cutadapt.temp.fq.gz \
- raw.fastq/test_R1.fq.gz \
- raw.fastq/test_R2.fq.gz &gt; fix.fastq/test_cutadapt.temp.log 2&gt;&amp;1 &amp;</code></pre>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4" data-book-role="code"><pre data-code-text="&quot;cutadapt -j 6 --times 1 -e 0.1 -O 3 --quality-cutoff 25 -m 55 \\\n-a AGATCGGAAGAGCACACGTCTGAACTCCAGTCAC \\\n-A AGATCGGAAGAGCGTCGTGTAGGGAAAGAGTGTAGATCTCGGTGGTCGCCGTATCATT \\\n-o fix.fastq/test_R1_cutadapt.temp.fq.gz \\\n-p fix.fastq/test_R2_cutadapt.temp.fq.gz \\\n raw.fastq/test_R1.fq.gz \\\n raw.fastq/test_R2.fq.gz &gt; fix.fastq/test_cutadapt.temp.log 2&gt;&amp;1 &amp;&quot;" class="sourceCode numberSource bash numberLines code-with-copy"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1"></a><span class="ex">cutadapt</span> <span class="at">-j</span> 6 <span class="at">--times</span> 1 <span class="at">-e</span> 0.1 <span class="at">-O</span> 3 <span class="at">--quality-cutoff</span> 25 <span class="at">-m</span> 55 <span class="dt">\</span></span>
+<span id="cb4-2"><a href="#cb4-2"></a>-a AGATCGGAAGAGCACACGTCTGAACTCCAGTCAC <span class="dt">\</span></span>
+<span id="cb4-3"><a href="#cb4-3"></a>-A AGATCGGAAGAGCGTCGTGTAGGGAAAGAGTGTAGATCTCGGTGGTCGCCGTATCATT <span class="dt">\</span></span>
+<span id="cb4-4"><a href="#cb4-4"></a>-o fix.fastq/test_R1_cutadapt.temp.fq.gz <span class="dt">\</span></span>
+<span id="cb4-5"><a href="#cb4-5"></a>-p fix.fastq/test_R2_cutadapt.temp.fq.gz <span class="dt">\</span></span>
+<span id="cb4-6"><a href="#cb4-6"></a> raw.fastq/test_R1.fq.gz <span class="dt">\</span></span>
+<span id="cb4-7"><a href="#cb4-7"></a> raw.fastq/test_R2.fq.gz <span class="op">&gt;</span> fix.fastq/test_cutadapt.temp.log <span class="dv">2</span><span class="op">&gt;&amp;</span><span class="dv">1</span> <span class="kw">&amp;</span></span></code></pre></div><button title="复制到剪贴板" class="code-copy-button"><i class="bi"></i></button></div>
 <p>也可以使用fastx_toolkit去除接头序列，过滤数据质量：</p>
-<pre class="shell"><code>$fastq_quality_filter -v -q 20 -p 80 -Q 33 -i SRR1573494.fastq -o SRR1573494_q20_p80.fq</code></pre>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5" data-book-role="code"><pre data-code-text="&quot;fastq_quality_filter -v -q 20 -p 80 -Q 33 -i SRR1573494.fastq -o SRR1573494_q20_p80.fq&quot;" class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="ex">fastq_quality_filter</span> <span class="at">-v</span> <span class="at">-q</span> 20 <span class="at">-p</span> 80 <span class="at">-Q</span> 33 <span class="at">-i</span> SRR1573494.fastq <span class="at">-o</span> SRR1573494_q20_p80.fq</span></code></pre></div><button title="复制到剪贴板" class="code-copy-button"><i class="bi"></i></button></div>
 </section>
-<section id="src-0050-RNA-seq-455" class="level4">
-<h4 class="anchored" data-anchor-id="src-0050-RNA-seq-455">建立参考基因组索引</h4>
-<section id="src-0050-RNA-seq-457" class="level5">
-<h5 class="anchored" data-anchor-id="src-0050-RNA-seq-457">HISAT2</h5>
+<section id="src-0050-RNA-seq-455" class="level3">
+<h3 class="anchored" data-anchor-id="src-0050-RNA-seq-455">建立参考基因组索引</h3>
+<section id="src-0050-RNA-seq-457" class="level4">
+<h4 class="anchored" data-anchor-id="src-0050-RNA-seq-457">HISAT2</h4>
 <p>使用<code>hisat2</code>构建基因组索引：</p>
-<pre class="shell"><code>$hisat2_extract_splice_sites.py Homo_sapiens.GRCh38.101.gtf &gt;genome.ss
-$hisat2_extract_exons.py Homo_sapiens.GRCh38.101.gtf &gt;genome.exon
-$hisat2-build -p 20 Homo_sapiens.GRCh38.dna.toplevel.fa genome
-$hisat2-build -p 20 --exon genome.exon --ss genome.ss Homo_sapiens.GRCh38.dna.toplevel.fa genome_tran
-$hisat2-build ref_hg38.fa ref_hg38.fa &gt; hisat2_build.log 2&gt;&amp;1 &amp;
-#download some resource
-##SNP
-http://hgdownload.cse.ucsc.edu/goldenPath/hg38/database/
-
-##GTF
-
-#make exon 
-$hisat2_extract_exons.py hg38_refseq.gtf &gt; hg38_refseq.exon &amp;
-
-#make splice site
-$hisat2_extract_splice_sites.py hg38_refseq.gtf &gt; hg38_refseq.ss &amp;
-
-#make snp and haplotype
-$hisat2_extract_snps_haplotypes_UCSC.py ref_hg38.fa snp151Common.txt snp151Common &amp;
-
-#build index
-$hisat2-build -p 6 --snp snp151Common.snp --haplotype snp151Common.haplotype --exon hg38_refseq.exon  --ss hg38_refseq.ss ref_hg38.fa ref_hg38.fa.snp_gtf &gt; hisat2_build.log 2&gt;&amp;1 &amp; 
-
-# hisat2-build——hisat2构建索引的命令
-
-# -p——使用多少个核，20代表使用20个核心
-
-# Homo_sapiens.GRCh38.dna.toplevel.fa——从Ensembl数据库下载的人类基因组文件
-
-# genome——将索引命名为genome</code></pre>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb6" data-book-role="code" data-focus-lines="3"><pre data-code-text="&quot;hisat2_extract_splice_sites.py Homo_sapiens.GRCh38.101.gtf &gt;genome.ss\nhisat2_extract_exons.py Homo_sapiens.GRCh38.101.gtf &gt;genome.exon\nhisat2-build -p 20 Homo_sapiens.GRCh38.dna.toplevel.fa genome\nhisat2-build -p 20 --exon genome.exon --ss genome.ss Homo_sapiens.GRCh38.dna.toplevel.fa genome_tran\nhisat2-build ref_hg38.fa ref_hg38.fa &gt; hisat2_build.log 2&gt;&amp;1 &amp;&quot;" class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="ex">hisat2_extract_splice_sites.py</span> Homo_sapiens.GRCh38.101.gtf <span class="op">&gt;</span>genome.ss</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="ex">hisat2_extract_exons.py</span> Homo_sapiens.GRCh38.101.gtf <span class="op">&gt;</span>genome.exon</span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="ex">hisat2-build</span> <span class="at">-p</span> 20 Homo_sapiens.GRCh38.dna.toplevel.fa genome</span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a><span class="ex">hisat2-build</span> <span class="at">-p</span> 20 <span class="at">--exon</span> genome.exon <span class="at">--ss</span> genome.ss Homo_sapiens.GRCh38.dna.toplevel.fa genome_tran</span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a><span class="ex">hisat2-build</span> ref_hg38.fa ref_hg38.fa <span class="op">&gt;</span> hisat2_build.log <span class="dv">2</span><span class="op">&gt;&amp;</span><span class="dv">1</span> <span class="kw">&amp;</span></span></code></pre></div><button title="复制到剪贴板" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="book-prose">
+<p>#download some resource<br>
+##SNP<br>
+http://hgdownload.cse.ucsc.edu/goldenPath/hg38/database/</p>
+<p>##GTF</p>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb7" data-book-role="code" data-focus-lines="11"><pre data-code-text="&quot;#make exon \nhisat2_extract_exons.py hg38_refseq.gtf &gt; hg38_refseq.exon &amp;\n\n#make splice site\nhisat2_extract_splice_sites.py hg38_refseq.gtf &gt; hg38_refseq.ss &amp;\n\n#make snp and haplotype\nhisat2_extract_snps_haplotypes_UCSC.py ref_hg38.fa snp151Common.txt snp151Common &amp;\n\n#build index\nhisat2-build -p 6 --snp snp151Common.snp --haplotype snp151Common.haplotype --exon hg38_refseq.exon  --ss hg38_refseq.ss ref_hg38.fa ref_hg38.fa.snp_gtf &gt; hisat2_build.log 2&gt;&amp;1 &amp; \n\n# hisat2-build——hisat2构建索引的命令\n\n# -p——使用多少个核，20代表使用20个核心\n\n# Homo_sapiens.GRCh38.dna.toplevel.fa——从Ensembl数据库下载的人类基因组文件\n\n# genome——将索引命名为genome&quot;" class="sourceCode numberSource bash numberLines code-with-copy"><code class="sourceCode bash"><span id="cb7-1"><a href="#cb7-1"></a><span class="co">#make exon </span></span>
+<span id="cb7-2"><a href="#cb7-2"></a><span class="ex">hisat2_extract_exons.py</span> hg38_refseq.gtf <span class="op">&gt;</span> hg38_refseq.exon <span class="kw">&amp;</span></span>
+<span id="cb7-3"><a href="#cb7-3"></a></span>
+<span id="cb7-4"><a href="#cb7-4"></a><span class="co">#make splice site</span></span>
+<span id="cb7-5"><a href="#cb7-5"></a><span class="ex">hisat2_extract_splice_sites.py</span> hg38_refseq.gtf <span class="op">&gt;</span> hg38_refseq.ss <span class="kw">&amp;</span></span>
+<span id="cb7-6"><a href="#cb7-6"></a></span>
+<span id="cb7-7"><a href="#cb7-7"></a><span class="co">#make snp and haplotype</span></span>
+<span id="cb7-8"><a href="#cb7-8"></a><span class="ex">hisat2_extract_snps_haplotypes_UCSC.py</span> ref_hg38.fa snp151Common.txt snp151Common <span class="kw">&amp;</span></span>
+<span id="cb7-9"><a href="#cb7-9"></a></span>
+<span id="cb7-10"><a href="#cb7-10"></a><span class="co">#build index</span></span>
+<span id="cb7-11"><a href="#cb7-11"></a><span class="ex">hisat2-build</span> <span class="at">-p</span> 6 <span class="at">--snp</span> snp151Common.snp <span class="at">--haplotype</span> snp151Common.haplotype <span class="at">--exon</span> hg38_refseq.exon  <span class="at">--ss</span> hg38_refseq.ss ref_hg38.fa ref_hg38.fa.snp_gtf <span class="op">&gt;</span> hisat2_build.log <span class="dv">2</span><span class="op">&gt;&amp;</span><span class="dv">1</span> <span class="kw">&amp;</span> </span>
+<span id="cb7-12"><a href="#cb7-12"></a></span>
+<span id="cb7-13"><a href="#cb7-13"></a><span class="co"># hisat2-build——hisat2构建索引的命令</span></span>
+<span id="cb7-14"><a href="#cb7-14"></a></span>
+<span id="cb7-15"><a href="#cb7-15"></a><span class="co"># -p——使用多少个核，20代表使用20个核心</span></span>
+<span id="cb7-16"><a href="#cb7-16"></a></span>
+<span id="cb7-17"><a href="#cb7-17"></a><span class="co"># Homo_sapiens.GRCh38.dna.toplevel.fa——从Ensembl数据库下载的人类基因组文件</span></span>
+<span id="cb7-18"><a href="#cb7-18"></a></span>
+<span id="cb7-19"><a href="#cb7-19"></a><span class="co"># genome——将索引命名为genome</span></span></code></pre></div><button title="复制到剪贴板" class="code-copy-button"><i class="bi"></i></button></div>
 <p>参数解释：</p>
-<pre><code>-p &lt;int&gt; default: 1 设置多线程运行
---snp &lt;path&gt; 输入一个包含SNP信息的文件，含5列数据：SNP ID、参考序列ID、SNP类型（single、deletion或insertion）、SNP位点（以第一个碱基位点为0计算）、变异碱基信息。
---haplotype &lt;path&gt; 单倍型信息文件，表明--snp参数指定的某些变异位点子啊要分析的样品中是单倍型的，和气变异位点碱基信息一致。含5列数据：Haplotype ID、参考序列ID、起始位点（以第一个碱基位点为0计算）、结束位点、逗号分隔的多个SNP ID。
---ss &lt;path&gt; 输入一个包含有剪接位点（Splicing Site）信息的文件。该文件可以利用HISAT2软件自带的hisat2_extract_splice_sites.py程序对编码蛋白基因结构注释GTF文件转换获得。
---exon &lt;path&gt; 输入一个含有外显子信息的文件。利用HISAT2软件自带的hisat2_extract_exons.py程序对编码蛋白基因结构注释GTF文件转换获得该文件。
-</code></pre>
+<div class="book-prose">
+<p>-p &lt;int&gt; default: 1 设置多线程运行<br>
+–snp &lt;path&gt; 输入一个包含SNP信息的文件，含5列数据：SNP ID、参考序列ID、SNP类型（single、deletion或insertion）、SNP位点（以第一个碱基位点为0计算）、变异碱基信息。<br>
+–haplotype &lt;path&gt; 单倍型信息文件，表明–snp参数指定的某些变异位点子啊要分析的样品中是单倍型的，和气变异位点碱基信息一致。含5列数据：Haplotype ID、参考序列ID、起始位点（以第一个碱基位点为0计算）、结束位点、逗号分隔的多个SNP ID。<br>
+–ss &lt;path&gt; 输入一个包含有剪接位点（Splicing Site）信息的文件。该文件可以利用HISAT2软件自带的hisat2_extract_splice_sites.py程序对编码蛋白基因结构注释GTF文件转换获得。<br>
+–exon &lt;path&gt; 输入一个含有外显子信息的文件。利用HISAT2软件自带的hisat2_extract_exons.py程序对编码蛋白基因结构注释GTF文件转换获得该文件。</p>
+</div>
 </section>
-<section id="src-0050-RNA-seq-505" class="level5">
-<h5 class="anchored" data-anchor-id="src-0050-RNA-seq-505">STAR</h5>
+<section id="src-0050-RNA-seq-505" class="level4">
+<h4 class="anchored" data-anchor-id="src-0050-RNA-seq-505">STAR</h4>
 <p>还可以使用STAR构建基因组索引：</p>
-<pre class="shell"><code>$STAR --runThreadN 12 --runMode genomeGenerate \
---genomeDir /home/menghaowei/ngs_course/reference/STAR_index \
---genomeFastaFiles /home/menghaowei/ngs_course/reference/STAR_index/ref_hg38.fa \
---sjdbGTFfile /home/menghaowei/ngs_course/reference/gtf/hg38_refseq_from_ucsc.rm_XM_XR.fix_name.gtf \
---sjdbOverhang 150 &amp; 
-</code></pre>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb8" data-book-role="code"><pre data-code-text="&quot;STAR --runThreadN 12 --runMode genomeGenerate \\\n--genomeDir /home/menghaowei/ngs_course/reference/STAR_index \\\n--genomeFastaFiles /home/menghaowei/ngs_course/reference/STAR_index/ref_hg38.fa \\\n--sjdbGTFfile /home/menghaowei/ngs_course/reference/gtf/hg38_refseq_from_ucsc.rm_XM_XR.fix_name.gtf \\\n--sjdbOverhang 150 &amp; &quot;" class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="ex">STAR</span> <span class="at">--runThreadN</span> 12 <span class="at">--runMode</span> genomeGenerate <span class="dt">\</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>--genomeDir /home/menghaowei/ngs_course/reference/STAR_index <span class="dt">\</span></span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>--genomeFastaFiles /home/menghaowei/ngs_course/reference/STAR_index/ref_hg38.fa <span class="dt">\</span></span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>--sjdbGTFfile /home/menghaowei/ngs_course/reference/gtf/hg38_refseq_from_ucsc.rm_XM_XR.fix_name.gtf <span class="dt">\</span></span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>--sjdbOverhang 150 <span class="kw">&amp;</span> </span></code></pre></div><button title="复制到剪贴板" class="code-copy-button"><i class="bi"></i></button></div>
 </section>
 </section>
-<section id="src-0050-RNA-seq-518" class="level4">
-<h4 class="anchored" data-anchor-id="src-0050-RNA-seq-518">序列比对</h4>
-<section id="src-0050-RNA-seq-520" class="level5">
-<h5 class="anchored" data-anchor-id="src-0050-RNA-seq-520">Tophat</h5>
+<section id="src-0050-RNA-seq-518" class="level3">
+<h3 class="anchored" data-anchor-id="src-0050-RNA-seq-518">序列比对</h3>
+<section id="src-0050-RNA-seq-520" class="level4">
+<h4 class="anchored" data-anchor-id="src-0050-RNA-seq-520">Tophat</h4>
 <p>使用Tophat将转录组数据的reads比对到参考基因组：</p>
-<pre class="shell"><code>$tophat -r 50 -p 50 –G chrX.gtf  -o ERR188044 index/chrx.index ERR188044_chrX_1.fastq.fa ERR188044_chrX_2.fastq.fa</code></pre>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb9" data-book-role="code"><pre data-code-text="&quot;tophat -r 50 -p 50 –G chrX.gtf  -o ERR188044 index/chrx.index ERR188044_chrX_1.fastq.fa ERR188044_chrX_2.fastq.fa&quot;" class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="ex">tophat</span> <span class="at">-r</span> 50 <span class="at">-p</span> 50 –G chrX.gtf  <span class="at">-o</span> ERR188044 index/chrx.index ERR188044_chrX_1.fastq.fa ERR188044_chrX_2.fastq.fa</span></code></pre></div><button title="复制到剪贴板" class="code-copy-button"><i class="bi"></i></button></div>
 <p>也使用Tophat2比对到参考基因组：</p>
-<pre class="shell"><code>tophat2 -o ./test_tophat2 -p 6 \
--G /home/menghaowei/ngs_course/reference/gtf/hg38_refseq_from_ucsc.rm_XM_XR.fix_name.gtf \
-/home/menghaowei/ngs_course/reference/bowtie2_index/ref_hg38.fa \
-./fix.fastq/test_R1_cutadapt.fq.gz \
-./fix.fastq/test_R2_cutadapt.fq.gz &gt; test_tophat2/test_tophat2.log 2&gt;&amp;1 &amp; </code></pre>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb10" data-book-role="code"><pre data-code-text="&quot;tophat2 -o ./test_tophat2 -p 6 \\\n-G /home/menghaowei/ngs_course/reference/gtf/hg38_refseq_from_ucsc.rm_XM_XR.fix_name.gtf \\\n/home/menghaowei/ngs_course/reference/bowtie2_index/ref_hg38.fa \\\n./fix.fastq/test_R1_cutadapt.fq.gz \\\n./fix.fastq/test_R2_cutadapt.fq.gz &gt; test_tophat2/test_tophat2.log 2&gt;&amp;1 &amp; &quot;" class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="ex">tophat2</span> <span class="at">-o</span> ./test_tophat2 <span class="at">-p</span> 6 <span class="dt">\</span></span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>-G /home/menghaowei/ngs_course/reference/gtf/hg38_refseq_from_ucsc.rm_XM_XR.fix_name.gtf <span class="dt">\</span></span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>/home/menghaowei/ngs_course/reference/bowtie2_index/ref_hg38.fa <span class="dt">\</span></span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>./fix.fastq/test_R1_cutadapt.fq.gz <span class="dt">\</span></span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>./fix.fastq/test_R2_cutadapt.fq.gz <span class="op">&gt;</span> test_tophat2/test_tophat2.log <span class="dv">2</span><span class="op">&gt;&amp;</span><span class="dv">1</span> <span class="kw">&amp;</span> </span></code></pre></div><button title="复制到剪贴板" class="code-copy-button"><i class="bi"></i></button></div>
 </section>
-<section id="src-0050-RNA-seq-538" class="level5">
-<h5 class="anchored" data-anchor-id="src-0050-RNA-seq-538">HISAT2</h5>
+<section id="src-0050-RNA-seq-538" class="level4">
+<h4 class="anchored" data-anchor-id="src-0050-RNA-seq-538">HISAT2</h4>
 <p>也使用<code>hisat2</code>比对到参考基因组：</p>
-<pre class="shell"><code>$hisat2 -p 12 \
--x /home/menghaowei/ngs_course/reference/hisat2_index/ref_hg38.fa \
--1 ./fix.fastq/test_R1_cutadapt.fq.gz \
--2 ./fix.fastq/test_R2_cutadapt.fq.gz \
--S ./bam/test_hisat2.sam &gt; ./bam/test_hisat2.log 2&gt;&amp;1 &amp;
-
-#mapping
-$hisat2 -p 6 \
--x /Users/meng/ngs_course/reference/hisat2_index/ref_hg38.fa.snp_gtf \
--1 ./fix.fastq/test_R1_cutadapt.fq.gz \
--2 ./fix.fastq/test_R2_cutadapt.fq.gz \
--S ./bam/test_hisat2.sam &gt; ./bam/test_hisat2.log 2&gt;&amp;1 &amp;
-</code></pre>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb12"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="va">$hisat2</span> <span class="at">-x</span> genome <span class="at">-u</span> 1000000 <span class="at">-p</span> 24 <span class="at">-I</span> 0 <span class="at">-X</span> 500 <span class="at">--fr</span> <span class="at">--min-intronlen</span> 20 <span class="at">--max-intronlen</span> 4000 <span class="at">-1</span> reads.1.fastq <span class="at">-2</span> read.2.fastq <span class="at">-U</span> single.fastq <span class="at">-S</span> result.sam</span></code></pre></div><button title="复制到剪贴板" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb11" data-book-role="code"><pre data-code-text="&quot;hisat2 -p 12 \\\n-x /home/menghaowei/ngs_course/reference/hisat2_index/ref_hg38.fa \\\n-1 ./fix.fastq/test_R1_cutadapt.fq.gz \\\n-2 ./fix.fastq/test_R2_cutadapt.fq.gz \\\n-S ./bam/test_hisat2.sam &gt; ./bam/test_hisat2.log 2&gt;&amp;1 &amp;\n\n#mapping\nhisat2 -p 6 \\\n-x /Users/meng/ngs_course/reference/hisat2_index/ref_hg38.fa.snp_gtf \\\n-1 ./fix.fastq/test_R1_cutadapt.fq.gz \\\n-2 ./fix.fastq/test_R2_cutadapt.fq.gz \\\n-S ./bam/test_hisat2.sam &gt; ./bam/test_hisat2.log 2&gt;&amp;1 &amp;&quot;" class="sourceCode numberSource bash numberLines code-with-copy"><code class="sourceCode bash"><span id="cb11-1"><a href="#cb11-1"></a><span class="ex">hisat2</span> <span class="at">-p</span> 12 <span class="dt">\</span></span>
+<span id="cb11-2"><a href="#cb11-2"></a>-x /home/menghaowei/ngs_course/reference/hisat2_index/ref_hg38.fa <span class="dt">\</span></span>
+<span id="cb11-3"><a href="#cb11-3"></a>-1 ./fix.fastq/test_R1_cutadapt.fq.gz <span class="dt">\</span></span>
+<span id="cb11-4"><a href="#cb11-4"></a>-2 ./fix.fastq/test_R2_cutadapt.fq.gz <span class="dt">\</span></span>
+<span id="cb11-5"><a href="#cb11-5"></a>-S ./bam/test_hisat2.sam <span class="op">&gt;</span> ./bam/test_hisat2.log <span class="dv">2</span><span class="op">&gt;&amp;</span><span class="dv">1</span> <span class="kw">&amp;</span></span>
+<span id="cb11-6"><a href="#cb11-6"></a></span>
+<span id="cb11-7"><a href="#cb11-7"></a><span class="co">#mapping</span></span>
+<span id="cb11-8"><a href="#cb11-8"></a><span class="ex">hisat2</span> <span class="at">-p</span> 6 <span class="dt">\</span></span>
+<span id="cb11-9"><a href="#cb11-9"></a>-x /Users/meng/ngs_course/reference/hisat2_index/ref_hg38.fa.snp_gtf <span class="dt">\</span></span>
+<span id="cb11-10"><a href="#cb11-10"></a>-1 ./fix.fastq/test_R1_cutadapt.fq.gz <span class="dt">\</span></span>
+<span id="cb11-11"><a href="#cb11-11"></a>-2 ./fix.fastq/test_R2_cutadapt.fq.gz <span class="dt">\</span></span>
+<span id="cb11-12"><a href="#cb11-12"></a>-S ./bam/test_hisat2.sam <span class="op">&gt;</span> ./bam/test_hisat2.log <span class="dv">2</span><span class="op">&gt;&amp;</span><span class="dv">1</span> <span class="kw">&amp;</span></span></code></pre></div><button title="复制到剪贴板" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb12" data-book-role="code"><pre data-code-text="&quot;hisat2 -x genome -u 1000000 -p 24 -I 0 -X 500 --fr --min-intronlen 20 --max-intronlen 4000 -1 reads.1.fastq -2 read.2.fastq -U single.fastq -S result.sam&quot;" class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="ex">hisat2</span> <span class="at">-x</span> genome <span class="at">-u</span> 1000000 <span class="at">-p</span> 24 <span class="at">-I</span> 0 <span class="at">-X</span> 500 <span class="at">--fr</span> <span class="at">--min-intronlen</span> 20 <span class="at">--max-intronlen</span> 4000 <span class="at">-1</span> reads.1.fastq <span class="at">-2</span> read.2.fastq <span class="at">-U</span> single.fastq <span class="at">-S</span> result.sam</span></code></pre></div><button title="复制到剪贴板" class="code-copy-button"><i class="bi"></i></button></div>
 <p>参数：</p>
-<pre><code>-x &lt;hisat-idx&gt; 设置索引数据文件前缀
--1 &lt;m1&gt; 双末端测序结果的第一个文件，若有多组数据，使用逗号将文件分隔，reads长度可以不一致
--2 &lt;m2&gt; 双末端测序结果第二个文件，顺序和-1参数对应。
--U &lt;r&gt; 单端数据文件，若有多组数据，使用逗号将文件分隔
---sra-acc &lt;SRA accession number&gt; 输入SRA登录号。多组数据之间用逗号分隔，HISAT将自动下载数据并识别数据类型，进行比对。参数大正常使用需要安装NCBI-NGS toolkit
--S &lt;hit&gt; 设置输出文件名。
-</code></pre>
+<div class="book-prose">
+<p>-x &lt;hisat-idx&gt; 设置索引数据文件前缀<br>
+-1 &lt;m1&gt; 双末端测序结果的第一个文件，若有多组数据，使用逗号将文件分隔，reads长度可以不一致<br>
+-2 &lt;m2&gt; 双末端测序结果第二个文件，顺序和-1参数对应。<br>
+-U &lt;r&gt; 单端数据文件，若有多组数据，使用逗号将文件分隔<br>
+–sra-acc &lt;SRA accession number&gt; 输入SRA登录号。多组数据之间用逗号分隔，HISAT将自动下载数据并识别数据类型，进行比对。参数大正常使用需要安装NCBI-NGS toolkit<br>
+-S &lt;hit&gt; 设置输出文件名。</p>
+</div>
 </section>
-<section id="src-0050-RNA-seq-574" class="level5">
-<h5 class="anchored" data-anchor-id="src-0050-RNA-seq-574">STAR</h5>
+<section id="src-0050-RNA-seq-574" class="level4">
+<h4 class="anchored" data-anchor-id="src-0050-RNA-seq-574">STAR</h4>
 <p>也使用STAR比对到参考基因组：</p>
-<pre class="shell"><code>STAR \
---genomeDir /home/menghaowei/ngs_course/reference/STAR_index \
---runThreadN 6 \
---readFilesIn ./fix.fastq/test_R1_cutadapt.fq.gz ./fix.fastq/test_R2_cutadapt.fq.gz \
---readFilesCommand zcat \
---outFileNamePrefix ./bam/test_STAR \
---outSAMtype BAM Unsorted \
---outSAMstrandField intronMotif \
---outSAMattributes All \
---outFilterIntronMotifs RemoveNoncanonical &gt; ./bam/test_STAR.log 2&gt;&amp;1 &amp; </code></pre>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb13" data-book-role="code"><pre data-code-text="&quot;STAR \\\n--genomeDir /home/menghaowei/ngs_course/reference/STAR_index \\\n--runThreadN 6 \\\n--readFilesIn ./fix.fastq/test_R1_cutadapt.fq.gz ./fix.fastq/test_R2_cutadapt.fq.gz \\\n--readFilesCommand zcat \\\n--outFileNamePrefix ./bam/test_STAR \\\n--outSAMtype BAM Unsorted \\\n--outSAMstrandField intronMotif \\\n--outSAMattributes All \\\n--outFilterIntronMotifs RemoveNoncanonical &gt; ./bam/test_STAR.log 2&gt;&amp;1 &amp; &quot;" class="sourceCode numberSource bash numberLines code-with-copy"><code class="sourceCode bash"><span id="cb13-1"><a href="#cb13-1"></a><span class="ex">STAR</span> <span class="dt">\</span></span>
+<span id="cb13-2"><a href="#cb13-2"></a>--genomeDir /home/menghaowei/ngs_course/reference/STAR_index <span class="dt">\</span></span>
+<span id="cb13-3"><a href="#cb13-3"></a>--runThreadN 6 <span class="dt">\</span></span>
+<span id="cb13-4"><a href="#cb13-4"></a>--readFilesIn ./fix.fastq/test_R1_cutadapt.fq.gz ./fix.fastq/test_R2_cutadapt.fq.gz <span class="dt">\</span></span>
+<span id="cb13-5"><a href="#cb13-5"></a>--readFilesCommand zcat <span class="dt">\</span></span>
+<span id="cb13-6"><a href="#cb13-6"></a>--outFileNamePrefix ./bam/test_STAR <span class="dt">\</span></span>
+<span id="cb13-7"><a href="#cb13-7"></a>--outSAMtype BAM Unsorted <span class="dt">\</span></span>
+<span id="cb13-8"><a href="#cb13-8"></a>--outSAMstrandField intronMotif <span class="dt">\</span></span>
+<span id="cb13-9"><a href="#cb13-9"></a>--outSAMattributes All <span class="dt">\</span></span>
+<span id="cb13-10"><a href="#cb13-10"></a>--outFilterIntronMotifs RemoveNoncanonical <span class="op">&gt;</span> ./bam/test_STAR.log <span class="dv">2</span><span class="op">&gt;&amp;</span><span class="dv">1</span> <span class="kw">&amp;</span> </span></code></pre></div><button title="复制到剪贴板" class="code-copy-button"><i class="bi"></i></button></div>
 <p>参数解释：</p>
-<pre><code>-b 默认输出SAM格式文件，该参数设置输出BAM格式
--h 默认输出不带头部信息的SAM文件，参数设定输出SAM文件带头部信息
--H 只输出头部信息
--S 默认输入是BAW文件，若是输入SAM文件，最好加这个参数
-</code></pre>
+<div class="book-prose">
+<p>-b 默认输出SAM格式文件，该参数设置输出BAM格式<br>
+-h 默认输出不带头部信息的SAM文件，参数设定输出SAM文件带头部信息<br>
+-H 只输出头部信息<br>
+-S 默认输入是BAW文件，若是输入SAM文件，最好加这个参数</p>
+</div>
 </section>
-<section id="src-0050-RNA-seq-601" class="level5">
-<h5 class="anchored" data-anchor-id="src-0050-RNA-seq-601">samtools操作SAM/BAM文件</h5>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb16"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="ex">samtools</span> view <span class="pp">[</span><span class="ss">options</span><span class="pp">]</span> <span class="op">&lt;</span>in.bam<span class="op">&gt;</span> <span class="kw">|</span> <span class="op">&lt;</span>in.sam<span class="op">&gt;</span> <span class="ex">[region1</span> <span class="pp">[</span><span class="ss">...</span><span class="pp">]</span>]</span>
-<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a><span class="va">$samtools</span> view <span class="at">-bS</span> adc.sam <span class="op">&gt;</span>abc.bam</span>
-<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a><span class="va">$samtools</span> view <span class="at">-b</span> <span class="at">-S</span> abc.sam <span class="at">-o</span> abc.bam</span>
-<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb16-5"><a href="#cb16-5" aria-hidden="true" tabindex="-1"></a><span class="ex">提取比对到参考序列上的比对结果：</span></span>
-<span id="cb16-6"><a href="#cb16-6" aria-hidden="true" tabindex="-1"></a><span class="va">$samtools</span> view <span class="at">-bF</span> 4 abc.bam <span class="op">&gt;</span>abc.F.bam</span>
-<span id="cb16-7"><a href="#cb16-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb16-8"><a href="#cb16-8" aria-hidden="true" tabindex="-1"></a><span class="ex">提取paired</span> reads中两条reads都比对到参考序列上的比对结果，只需要把两个4+8的值12作为过滤参数：</span>
-<span id="cb16-9"><a href="#cb16-9" aria-hidden="true" tabindex="-1"></a><span class="va">$samtools</span> view <span class="at">-bf</span> 4 abc.bam <span class="op">&gt;</span>abc.f.bam</span>
-<span id="cb16-10"><a href="#cb16-10" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb16-11"><a href="#cb16-11" aria-hidden="true" tabindex="-1"></a><span class="ex">提取BAM文件中比对到scaffold1上的比对结果，并保存到SAM文件格式：</span></span>
-<span id="cb16-12"><a href="#cb16-12" aria-hidden="true" tabindex="-1"></a><span class="va">$samtools</span> view abc.bam scaffold1 <span class="op">&gt;</span>scaffold1.sam</span>
-<span id="cb16-13"><a href="#cb16-13" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb16-14"><a href="#cb16-14" aria-hidden="true" tabindex="-1"></a><span class="ex">提取能比对到scaffold1</span> 30k到100 k区域到比对结果：</span>
-<span id="cb16-15"><a href="#cb16-15" aria-hidden="true" tabindex="-1"></a><span class="va">$samtools</span> view abc.bam scaffold1:30000-10000 <span class="op">&gt;</span> scaffold1_30k-100k.sam</span>
-<span id="cb16-16"><a href="#cb16-16" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb16-17"><a href="#cb16-17" aria-hidden="true" tabindex="-1"></a><span class="ex">根据FASTA文件，将header加入到SAM或BAM文件中：</span></span>
-<span id="cb16-18"><a href="#cb16-18" aria-hidden="true" tabindex="-1"></a><span class="va">$samtools</span> view <span class="at">-T</span> genome.fasta <span class="at">-h</span> scaffold1.bam <span class="op">&gt;</span>scaffold1.h.sam</span></code></pre></div><button title="复制到剪贴板" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="callout callout-style-default callout-note callout-titled" title="待完善">
-<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-3-contents" aria-controls="callout-3" aria-expanded="false" aria-label="Toggle callout">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
+<section id="src-0050-RNA-seq-601" class="level4">
+<h4 class="anchored" data-anchor-id="src-0050-RNA-seq-601">samtools操作SAM/BAM文件</h4>
+<pre data-code-text="&quot;samtools view [options] &lt;in.bam&gt; | &lt;in.sam&gt; [region1 [...]]&quot;" class="text" data-book-role="data"><code>samtools view [options] &lt;in.bam&gt; | &lt;in.sam&gt; [region1 [...]]</code></pre>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb15" data-book-role="code"><pre data-code-text="&quot;samtools view -bS adc.sam &gt;abc.bam\nsamtools view -b -S abc.sam -o abc.bam&quot;" class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="ex">samtools</span> view <span class="at">-bS</span> adc.sam <span class="op">&gt;</span>abc.bam</span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a><span class="ex">samtools</span> view <span class="at">-b</span> <span class="at">-S</span> abc.sam <span class="at">-o</span> abc.bam</span></code></pre></div><button title="复制到剪贴板" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="book-prose">
+<p>提取比对到参考序列上的比对结果：</p>
 </div>
-<div class="callout-title-container flex-fill">
-<span class="screen-reader-only">注记</span>待完善
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb16" data-book-role="code"><pre data-code-text="&quot;samtools view -bF 4 abc.bam &gt;abc.F.bam&quot;" class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="ex">samtools</span> view <span class="at">-bF</span> 4 abc.bam <span class="op">&gt;</span>abc.F.bam</span></code></pre></div><button title="复制到剪贴板" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="book-prose">
+<p>提取paired reads中两条reads都比对到参考序列上的比对结果，只需要把两个4+8的值12作为过滤参数：</p>
 </div>
-<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb17" data-book-role="code"><pre data-code-text="&quot;samtools view -bf 4 abc.bam &gt;abc.f.bam&quot;" class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="ex">samtools</span> view <span class="at">-bf</span> 4 abc.bam <span class="op">&gt;</span>abc.f.bam</span></code></pre></div><button title="复制到剪贴板" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="book-prose">
+<p>提取BAM文件中比对到scaffold1上的比对结果，并保存到SAM文件格式：</p>
 </div>
-<div id="callout-3" class="callout-3-contents callout-collapse collapse">
-<div class="callout-body-container callout-body">
-<p>选择一条主要路线，解释RNA特异QC；其他工具作对照。</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb18" data-book-role="code"><pre data-code-text="&quot;samtools view abc.bam scaffold1 &gt;scaffold1.sam&quot;" class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="ex">samtools</span> view abc.bam scaffold1 <span class="op">&gt;</span>scaffold1.sam</span></code></pre></div><button title="复制到剪贴板" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="book-prose">
+<p>提取能比对到scaffold1 30k到100 k区域到比对结果：</p>
 </div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb19" data-book-role="code"><pre data-code-text="&quot;samtools view abc.bam scaffold1:30000-10000 &gt; scaffold1_30k-100k.sam&quot;" class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="ex">samtools</span> view abc.bam scaffold1:30000-10000 <span class="op">&gt;</span> scaffold1_30k-100k.sam</span></code></pre></div><button title="复制到剪贴板" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="book-prose">
+<p>根据FASTA文件，将header加入到SAM或BAM文件中：</p>
 </div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb20" data-book-role="code"><pre data-code-text="&quot;samtools view -T genome.fasta -h scaffold1.bam &gt;scaffold1.h.sam&quot;" class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="ex">samtools</span> view <span class="at">-T</span> genome.fasta <span class="at">-h</span> scaffold1.bam <span class="op">&gt;</span>scaffold1.h.sam</span></code></pre></div><button title="复制到剪贴板" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="book-placeholder">
+<p>本节内容待补充。</p>
 </div>
 </section>
 </section>
@@ -704,11 +700,10 @@ $hisat2 -p 6 \
 <img src="../assets/a-questions-21-25/006-23-1.jpg" class="img-fluid figure-img">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-a-questions-21-25-006-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-图&nbsp;5.4: 23 图1
+图&nbsp;5.4: 通过可变剪切同1个基因可以形成多种蛋白（https://en.wikipedia.org/wiki/Alternative_splicing）
 </figcaption>
 </figure>
 </div>
-<p>图1 通过可变剪切同1个基因可以形成多种蛋白（https://en.wikipedia.org/wiki/Alternative_splicing）</p>
 </section>
 <section id="question-21-307" class="level4">
 <h4 class="anchored" data-anchor-id="question-21-307">2.RNA比对的常用软件</h4>
@@ -722,13 +717,17 @@ $hisat2 -p 6 \
 <section id="question-21-314" class="level4">
 <h4 class="anchored" data-anchor-id="question-21-314">3.提出问题</h4>
 <p><strong>问题1：如果你有一套标准的polyA捕获得到的RNA-Seq测序数据，对reads进行了前处理工作与质量控制工作，但是你的比对策略为：先尝试mapping，把能mapping到基因组上的reads都先mapping；然后把不能进行mapping的reads进行一定规则的拆分，再进行第二轮mapping，从而解决跨intron区域的问题（以上为tophat的mapping策略）。请问，这样mapping的最大问题是什么？（提示，需要知道一些假基因的概念！）</strong></p>
-<pre><code>首先解释一下假基因，假基因（Pseudogenes）是指是一类染色体上的基因片段。假基因的序列通常与  
-对应的基因相似，但至少是丧失了  一部分功能，基因不能表达或其编码的蛋白质没有功能；这种基因  
-在基因组上的分布非常普遍，那么在假基因普遍存在的情况下上述比对策略就会受到假基因的干扰，会有  
-很多基因比对到假基因上。</code></pre>
+<div class="book-prose">
+<p>首先解释一下假基因，假基因（Pseudogenes）是指是一类染色体上的基因片段。假基因的序列通常与<br>
+对应的基因相似，但至少是丧失了 一部分功能，基因不能表达或其编码的蛋白质没有功能；这种基因<br>
+在基因组上的分布非常普遍，那么在假基因普遍存在的情况下上述比对策略就会受到假基因的干扰，会有<br>
+很多基因比对到假基因上。</p>
+</div>
 <p><strong>问题2：在human中，是不是所有的蛋白基因（protein coding gene）都含有intron？</strong></p>
-<pre><code>并不是，SRY基因是人体Y染色体上的一段基因，该基因是决定男性睾丸发育的主要基因，存在于Y染色体  
-的短臂末端上，该基因只有一个exon。</code></pre>
+<div class="book-prose">
+<p>并不是，SRY基因是人体Y染色体上的一段基因，该基因是决定男性睾丸发育的主要基因，存在于Y染色体<br>
+的短臂末端上，该基因只有一个exon。</p>
+</div>
 <div id="fig-a-questions-21-25-007" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-a-questions-21-25-007-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
@@ -741,23 +740,25 @@ $hisat2 -p 6 \
 </div>
 <p>答2 SRY基因结构,没有intron.</p>
 <p><strong>问题3：在human中，是不是所有的蛋白基因的成熟mRNA都有polyA尾巴？</strong></p>
-<pre><code>并不是，组蛋白mRNA末端就没有polyA尾巴。</code></pre>
+<div class="book-prose">
+<p>并不是，组蛋白mRNA末端就没有polyA尾巴。</p>
+</div>
 </section>
 </section>
 </section>
 <section id="sec-05-04" class="level2" data-number="5.4">
 <h2 data-number="5.4" class="anchored" data-anchor-id="sec-05-04"><span class="header-section-number">5.4</span> 从reads到基因和转录本定量</h2>
 <p>理解计数由哪些归属规则产生。</p>
-<section id="src-0050-RNA-seq-286" class="level4">
-<h4 class="anchored" data-anchor-id="src-0050-RNA-seq-286">转录本组装</h4>
+<section id="src-0050-RNA-seq-286" class="level3">
+<h3 class="anchored" data-anchor-id="src-0050-RNA-seq-286">转录本组装</h3>
 <p>组装转录本是一个可选项，如果想挖掘测序数据中的新转录本，则需要做这一步分析。拼接软件根据参考基因组将测序处理得到的高质量测序片段比对到该参考基因组上，然后对比对上的片段进行转录本组装。Cufflinks、StringTie和Scripture都是常用的转录本组装软件。</p>
 <p>Cufflinks可以依赖或者不依赖物种基因组注释文件进行转录本拼接。利用Tophat或HISAT2比对的结果来组装转录本。Cufflinks其实是一套软件，包括组装转录本的Cufflinks、合并gtf文件的Cuffcompare、比较转录本的Cuffcompare、定量转录本的Cuffquant、对多样本标准化的Cuffnorm，以及计算不同组差异表达的Cuffdiff。</p>
 <p>（ Cufflinks套件示意图）</p>
 <p>Cufflinks是根据Tophat或HISAT2比对结果，输入文件是排序后的BAM或SAM文件，据此进行序列分析，获得含有转录本序列信息和表达信息的GTF文件。但Cufflinks得到的GTF文件不包括起始密码子和终止密码子，是不标准的，称为transfrag转录片段。Cufflinks的输出文件包括表达量FPKM文件genes.fpkm_tracking、isoforms.fpkm_tracking，和GTF文件transcripts.gtf，包含序列名、来源、特征、起始坐标、终止坐标、得分、正负链、读码框、属性这九种信息。但Cufflinks命令只能对一个SAM/BAM文件进行分析，在处理多个样品时，可以使用cuffmerge将多个样品的transcripts.gtf文件合为一个更加全面的转录本注释文件。</p>
 <p>StringTie是Cufflinks的升级版本，其下游常使用Ballgown软件分析差异表达。和 Cufflinks一样，输入文件是按坐标排序后的BAM文件，不能对具有多位点比对结果的reads进行过滤，否则会导致转录本序列不完整。进行转录本组装后可以用于基因测序或者与参考GTF/GFF3文件比较以寻找新转录本。但StringTie不直接提供表达量raw count文件，可以使用prepDE.py程序，根据GTF结果文件中的coverage信息，转换得到raw count数据，用于edgeR和DESeq2等其他差异表达软件的分析。</p>
 <p>Scripture根据比对得到的spilce reads构建出连接图，采用统计法，分析连接序列与非连接序列比对区域的丰度信息，对可能的连接路径进行评分，依据得分情况选择可能的转录本，依据双端测序reads之间的距离，简介转录本或过滤非转录本。</p>
-<section id="src-0050-RNA-seq-349" class="level5">
-<h5 class="anchored" data-anchor-id="src-0050-RNA-seq-349">表达定量软件</h5>
+<section id="src-0050-RNA-seq-349" class="level4">
+<h4 class="anchored" data-anchor-id="src-0050-RNA-seq-349">表达定量软件</h4>
 <p>常用的表达定量软件有HTSeq、Cuffquant+Cuffnorm、featureCount。定量分析得到的Counts数据用于接下来的不同样品间的基因表达量差异分析。</p>
 <p>HTSeq是用python编写的用于read计数的软件，用于有参考基因组的转录组测序数据的基因表达定量分析，需要SAM和基因组GTF文件。HTSeq软件根据SAM/BAM比对结果文件和基因结构注释GTF文件得到基因水平的counts表达量。HTSeq有有三种计算模式，ambigous表示read比对到多个基因上，no_feature表示read没有比对到基因组上。</p>
 <p>（示意图）</p>
@@ -765,114 +766,112 @@ $hisat2 -p 6 \
 <p>featureCount</p>
 </section>
 </section>
-<section id="src-0050-RNA-seq-625" class="level4">
-<h4 class="anchored" data-anchor-id="src-0050-RNA-seq-625">转录组拼接</h4>
-<section id="src-0050-RNA-seq-627" class="level5">
-<h5 class="anchored" data-anchor-id="src-0050-RNA-seq-627">Cufflinks</h5>
+<section id="src-0050-RNA-seq-625" class="level3">
+<h3 class="anchored" data-anchor-id="src-0050-RNA-seq-625">转录组拼接</h3>
+<section id="src-0050-RNA-seq-627" class="level4">
+<h4 class="anchored" data-anchor-id="src-0050-RNA-seq-627">Cufflinks</h4>
 <p>使用Cufflinks组装转录本：</p>
-<pre class="shell"><code>$cufflinks -o ERR188044/cufflink ERR188044/accepted_hits_sorted.bam -p 50 -g chrX.gtf -b chrX.fa
-</code></pre>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb21" data-book-role="code"><pre data-code-text="&quot;cufflinks -o ERR188044/cufflink ERR188044/accepted_hits_sorted.bam -p 50 -g chrX.gtf -b chrX.fa&quot;" class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="ex">cufflinks</span> <span class="at">-o</span> ERR188044/cufflink ERR188044/accepted_hits_sorted.bam <span class="at">-p</span> 50 <span class="at">-g</span> chrX.gtf <span class="at">-b</span> chrX.fa</span></code></pre></div><button title="复制到剪贴板" class="code-copy-button"><i class="bi"></i></button></div>
 <p>使用Cuffmerge合并新的转录本:</p>
-<pre class="shell"><code>#使用cuffmerge:
-$cuffmerge -g Homo_sapiens.GRCh37.85.gtf -s hisat/human_genome.fa -p 40 -o merged.gtf assemblies.txt
-
-#使用cuffcompare:
-$cuffcompare -r Homo_sapiens.GRCh38.85.gtf -i 1.txt -o cuffcmp01
-</code></pre>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb22" data-book-role="code" data-focus-lines="2,5"><pre data-code-text="&quot;#使用cuffmerge:\ncuffmerge -g Homo_sapiens.GRCh37.85.gtf -s hisat/human_genome.fa -p 40 -o merged.gtf assemblies.txt\n\n#使用cuffcompare:\ncuffcompare -r Homo_sapiens.GRCh38.85.gtf -i 1.txt -o cuffcmp01&quot;" class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="co">#使用cuffmerge:</span></span>
+<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a><span class="ex">cuffmerge</span> <span class="at">-g</span> Homo_sapiens.GRCh37.85.gtf <span class="at">-s</span> hisat/human_genome.fa <span class="at">-p</span> 40 <span class="at">-o</span> merged.gtf assemblies.txt</span>
+<span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-4"><a href="#cb22-4" aria-hidden="true" tabindex="-1"></a><span class="co">#使用cuffcompare:</span></span>
+<span id="cb22-5"><a href="#cb22-5" aria-hidden="true" tabindex="-1"></a><span class="ex">cuffcompare</span> <span class="at">-r</span> Homo_sapiens.GRCh38.85.gtf <span class="at">-i</span> 1.txt <span class="at">-o</span> cuffcmp01</span></code></pre></div><button title="复制到剪贴板" class="code-copy-button"><i class="bi"></i></button></div>
 </section>
-<section id="src-0050-RNA-seq-647" class="level5">
-<h5 class="anchored" data-anchor-id="src-0050-RNA-seq-647">StringTie</h5>
+<section id="src-0050-RNA-seq-647" class="level4">
+<h4 class="anchored" data-anchor-id="src-0050-RNA-seq-647">StringTie</h4>
 <p>使用StringTie组装转录本：</p>
-<pre class="shell"><code></code></pre>
 <p>Cufflinks输入的必须是排序后的BAM或SAM文件，对于剪接性比对结果，记录中要有XS标签。“XS:A:-”标签表明reads比对到了负义链上，使用HISAT2软件对非链特异性测序的RNA-seq数据进行比对时，一定要添加–dta-cufflinks参数，从而使跨过内含子的剪接性比对结果中含有XS标签，否则cufflinks命令不能正确处理结果。</p>
 <p>cufflinks的输出结果有genes.fpkm_tracking, isoforms.fpkm_tracking, transcripts.gtf。前两个时表达量FPKM结果文件，第三个是GTF文件，用于描述基因在染色体上的结构信息：序列名、来源、特征、起始坐标、终止坐标、得分、正负链、读码框、属性。不包含起始密码子和终止密码子，因此GTF不是标准的</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb23"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="va">$cufflinks</span> <span class="at">-p</span> 4 <span class="at">-b</span> genome.fasta <span class="at">-u</span> <span class="at">-o</span> sample1 <span class="at">-L</span> sample1 tophat.ba。m</span></code></pre></div><button title="复制到剪贴板" class="code-copy-button"><i class="bi"></i></button></div>
-<pre><code>-o | --output-dir &lt;string&gt;  设置输出文件夹名称
--p | --num-threads 设置CPU线程数
--G | --GTF &lt;reference_annotation.gtf.gff&gt; 提供包含有基因结构信息的格式为GTF或GFF文件，计算文件中转录本的表达量。
--g | --GTF-guide 提供GFF文件，以此知道转录本组装。</code></pre>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb23" data-book-role="code"><pre data-code-text="&quot;cufflinks -p 4 -b genome.fasta -u -o sample1 -L sample1 tophat.ba。m&quot;" class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="ex">cufflinks</span> <span class="at">-p</span> 4 <span class="at">-b</span> genome.fasta <span class="at">-u</span> <span class="at">-o</span> sample1 <span class="at">-L</span> sample1 tophat.ba。m</span></code></pre></div><button title="复制到剪贴板" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="book-prose">
+<p>-o | –output-dir &lt;string&gt; 设置输出文件夹名称<br>
+-p | –num-threads 设置CPU线程数<br>
+-G | –GTF &lt;reference_annotation.gtf.gff&gt; 提供包含有基因结构信息的格式为GTF或GFF文件，计算文件中转录本的表达量。<br>
+-g | –GTF-guide 提供GFF文件，以此知道转录本组装。</p>
+</div>
 <p>cufflinks命令只能对一个SAM/BAM文件进行表达量分析，不同样品表达量不同，为了获得全面的基因注释信息，用cuffmerge将cufflinks命令生成的多个transcripts.gtf文件融合为一个更全面的转录本注释结果。</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb25"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> cuffmerge <span class="at">-o</span> ./merged_asm <span class="at">-p</span> 4 <span class="at">-s</span> genome.fasta assembly_GTF_list.txt</span></code></pre></div><button title="复制到剪贴板" class="code-copy-button"><i class="bi"></i></button></div>
-<pre><code>-o | --output-dir &lt;string&gt;  设置输出文件夹名称
--p | --num-threads 设置CPU线程数
--s | --ref-sequence &lt;seq_dir&gt; 基因组DNA序列</code></pre>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb27"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="ex">对一个样品数据进行组装：</span></span>
-<span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a><span class="va">$stringtie</span> sample.bam <span class="at">--rf</span> <span class="at">-l</span> sample1 <span class="at">-o</span> sample1.gtf <span class="at">-p</span> 4</span>
-<span id="cb27-3"><a href="#cb27-3" aria-hidden="true" tabindex="-1"></a><span class="ex">对多个样本对GTF文件进行整合：</span></span>
-<span id="cb27-4"><a href="#cb27-4" aria-hidden="true" tabindex="-1"></a><span class="va">$stringtie</span> <span class="at">--merge</span> <span class="at">-o</span> merge.gtf sample1.gtf sample2.gtf </span>
-<span id="cb27-5"><a href="#cb27-5" aria-hidden="true" tabindex="-1"></a><span class="ex">对一个样品的表达量进行分析</span></span>
-<span id="cb27-6"><a href="#cb27-6" aria-hidden="true" tabindex="-1"></a><span class="va">$stringtie</span> sample1.demulpos.bam <span class="at">--rf</span> <span class="at">-o</span> sample1.gtf <span class="at">-p</span> 8 <span class="at">-e</span> <span class="at">-G</span> genome.gtf</span></code></pre></div><button title="复制到剪贴板" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb24" data-book-role="code"><pre data-code-text="&quot;cuffmerge -o ./merged_asm -p 4 -s genome.fasta assembly_GTF_list.txt&quot;" class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="ex">cuffmerge</span> <span class="at">-o</span> ./merged_asm <span class="at">-p</span> 4 <span class="at">-s</span> genome.fasta assembly_GTF_list.txt</span></code></pre></div><button title="复制到剪贴板" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="book-prose">
+<p>-o | –output-dir &lt;string&gt; 设置输出文件夹名称<br>
+-p | –num-threads 设置CPU线程数<br>
+-s | –ref-sequence &lt;seq_dir&gt; 基因组DNA序列</p>
+</div>
+<div class="book-prose">
+<p>对一个样品数据进行组装：</p>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb25" data-book-role="code" data-focus-lines="1"><pre data-code-text="&quot;stringtie sample.bam --rf -l sample1 -o sample1.gtf -p 4&quot;" class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="ex">stringtie</span> sample.bam <span class="at">--rf</span> <span class="at">-l</span> sample1 <span class="at">-o</span> sample1.gtf <span class="at">-p</span> 4</span></code></pre></div><button title="复制到剪贴板" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="book-prose">
+<p>对多个样本对GTF文件进行整合：</p>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb26" data-book-role="code" data-focus-lines="1"><pre data-code-text="&quot;stringtie --merge -o merge.gtf sample1.gtf sample2.gtf &quot;" class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="ex">stringtie</span> <span class="at">--merge</span> <span class="at">-o</span> merge.gtf sample1.gtf sample2.gtf </span></code></pre></div><button title="复制到剪贴板" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="book-prose">
+<p>对一个样品的表达量进行分析</p>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb27" data-book-role="code" data-focus-lines="1"><pre data-code-text="&quot;stringtie sample1.demulpos.bam --rf -o sample1.gtf -p 8 -e -G genome.gtf&quot;" class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="ex">stringtie</span> sample1.demulpos.bam <span class="at">--rf</span> <span class="at">-o</span> sample1.gtf <span class="at">-p</span> 8 <span class="at">-e</span> <span class="at">-G</span> genome.gtf</span></code></pre></div><button title="复制到剪贴板" class="code-copy-button"><i class="bi"></i></button></div>
 </section>
 </section>
-<section id="src-0050-RNA-seq-692" class="level4">
-<h4 class="anchored" data-anchor-id="src-0050-RNA-seq-692">表达定量</h4>
-<section id="src-0050-RNA-seq-694" class="level5">
-<h5 class="anchored" data-anchor-id="src-0050-RNA-seq-694">HTSeq</h5>
+<section id="src-0050-RNA-seq-692" class="level3">
+<h3 class="anchored" data-anchor-id="src-0050-RNA-seq-692">表达定量</h3>
+<section id="src-0050-RNA-seq-694" class="level4">
+<h4 class="anchored" data-anchor-id="src-0050-RNA-seq-694">HTSeq</h4>
 <p>使用HTSeq对基因表达进行定量：</p>
-<pre class="shell"><code>htseq-count -f bam -r pos \
---max-reads-in-buffer 1000000 \
---stranded no \
---minaqual 10 \
---type exon --idattr gene_id \
---mode union --nonunique none --secondary-alignments ignore --supplementary-alignments ignore \
---counts_output ./count_result/test_count.tsv \
---nprocesses 1 \
-./bam/test_hisat2.sort.bam  ./reference/gtf/hg38_refseq_from_ucsc.rm_XM_XR.fix_name.gtf &gt; ./count_result/test_count.HTSeq.log  2&gt;&amp;1 &amp; </code></pre>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb28" data-book-role="code"><pre data-code-text="&quot;htseq-count -f bam -r pos \\\n--max-reads-in-buffer 1000000 \\\n--stranded no \\\n--minaqual 10 \\\n--type exon --idattr gene_id \\\n--mode union --nonunique none --secondary-alignments ignore --supplementary-alignments ignore \\\n--counts_output ./count_result/test_count.tsv \\\n--nprocesses 1 \\\n./bam/test_hisat2.sort.bam  ./reference/gtf/hg38_refseq_from_ucsc.rm_XM_XR.fix_name.gtf &gt; ./count_result/test_count.HTSeq.log  2&gt;&amp;1 &amp; &quot;" class="sourceCode numberSource bash numberLines code-with-copy"><code class="sourceCode bash"><span id="cb28-1"><a href="#cb28-1"></a><span class="ex">htseq-count</span> <span class="at">-f</span> bam <span class="at">-r</span> pos <span class="dt">\</span></span>
+<span id="cb28-2"><a href="#cb28-2"></a>--max-reads-in-buffer 1000000 <span class="dt">\</span></span>
+<span id="cb28-3"><a href="#cb28-3"></a>--stranded no <span class="dt">\</span></span>
+<span id="cb28-4"><a href="#cb28-4"></a>--minaqual 10 <span class="dt">\</span></span>
+<span id="cb28-5"><a href="#cb28-5"></a>--type exon <span class="at">--idattr</span> gene_id <span class="dt">\</span></span>
+<span id="cb28-6"><a href="#cb28-6"></a>--mode union <span class="at">--nonunique</span> none <span class="at">--secondary-alignments</span> ignore <span class="at">--supplementary-alignments</span> ignore <span class="dt">\</span></span>
+<span id="cb28-7"><a href="#cb28-7"></a>--counts_output ./count_result/test_count.tsv <span class="dt">\</span></span>
+<span id="cb28-8"><a href="#cb28-8"></a>--nprocesses 1 <span class="dt">\</span></span>
+<span id="cb28-9"><a href="#cb28-9"></a>./bam/test_hisat2.sort.bam  ./reference/gtf/hg38_refseq_from_ucsc.rm_XM_XR.fix_name.gtf <span class="op">&gt;</span> ./count_result/test_count.HTSeq.log  <span class="dv">2</span><span class="op">&gt;&amp;</span><span class="dv">1</span> <span class="kw">&amp;</span> </span></code></pre></div><button title="复制到剪贴板" class="code-copy-button"><i class="bi"></i></button></div>
 </section>
-<section id="src-0050-RNA-seq-710" class="level5">
-<h5 class="anchored" data-anchor-id="src-0050-RNA-seq-710">featureCount</h5>
+<section id="src-0050-RNA-seq-710" class="level4">
+<h4 class="anchored" data-anchor-id="src-0050-RNA-seq-710">featureCount</h4>
 <p>使用featureCount对基因表达进行定量：</p>
-<pre class="shell"><code>$featureCounts -t exon -g gene_id \
--Q 10 --primary -s 0 -p -T 1 \
--a ./reference/gtf/hg38_refseq_from_ucsc.rm_XM_XR.fix_name.gtf \
--o ./count_result/test_count.featureCounts \
-./bam/test_hisat2.sort.bam \
-./bam/test_hisat2.sort.2.bam &gt; ./count_result/test_count.featureCounts.log  2&gt;&amp;1 &amp; </code></pre>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb29" data-book-role="code"><pre data-code-text="&quot;featureCounts -t exon -g gene_id \\\n-Q 10 --primary -s 0 -p -T 1 \\\n-a ./reference/gtf/hg38_refseq_from_ucsc.rm_XM_XR.fix_name.gtf \\\n-o ./count_result/test_count.featureCounts \\\n./bam/test_hisat2.sort.bam \\\n./bam/test_hisat2.sort.2.bam &gt; ./count_result/test_count.featureCounts.log  2&gt;&amp;1 &amp; &quot;" class="sourceCode numberSource bash numberLines code-with-copy"><code class="sourceCode bash"><span id="cb29-1"><a href="#cb29-1"></a><span class="ex">featureCounts</span> <span class="at">-t</span> exon <span class="at">-g</span> gene_id <span class="dt">\</span></span>
+<span id="cb29-2"><a href="#cb29-2"></a>-Q 10 <span class="at">--primary</span> <span class="at">-s</span> 0 <span class="at">-p</span> <span class="at">-T</span> 1 <span class="dt">\</span></span>
+<span id="cb29-3"><a href="#cb29-3"></a>-a ./reference/gtf/hg38_refseq_from_ucsc.rm_XM_XR.fix_name.gtf <span class="dt">\</span></span>
+<span id="cb29-4"><a href="#cb29-4"></a>-o ./count_result/test_count.featureCounts <span class="dt">\</span></span>
+<span id="cb29-5"><a href="#cb29-5"></a>./bam/test_hisat2.sort.bam <span class="dt">\</span></span>
+<span id="cb29-6"><a href="#cb29-6"></a>./bam/test_hisat2.sort.2.bam <span class="op">&gt;</span> ./count_result/test_count.featureCounts.log  <span class="dv">2</span><span class="op">&gt;&amp;</span><span class="dv">1</span> <span class="kw">&amp;</span> </span></code></pre></div><button title="复制到剪贴板" class="code-copy-button"><i class="bi"></i></button></div>
 <p>-a参数默认值为10，忽略掉比对到多个位置的reads信息，其结果有利于后续差异分析。输入的GTF文件不能包含可变剪接信息，否者HTSe会认为没个可变剪接都是单独的基因，导致能比对到多个可变剪接转录本傻姑娘的reads计算结果是ambiguous，不能计算到基因的count中。</p>
 <p>ambigous表示read比对到多个基因上，no_feature表示read没有比对到基因组上。</p>
-<pre><code># 非链特异性真核转录组测序数据
-$htseq-count -f sam -r name -s no -a 10 -t exon -i gene_id -m union hisat2.sam genome.gtf &gt;counts_out.txt
-
-# 链特异行真核转录测序数据
-$htseq-count -f sam -r name -s reverse -a 10 -t exon -i gene_id -m union hisat2.sam genome.gtf &gt;count_out.gtf
-
-# 非链特异原核生物转录组测序数据
-$htseq-count -f sam -r name -s no -a 10 -t exon -i gene_id -m intercextion-strict bowtie2.sam genome.gtf &gt;counts_out.txt</code></pre>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb30" data-book-role="code" data-focus-lines="2,5"><pre data-code-text="&quot;# 非链特异性真核转录组测序数据\nhtseq-count -f sam -r name -s no -a 10 -t exon -i gene_id -m union hisat2.sam genome.gtf &gt;counts_out.txt\n\n# 链特异行真核转录测序数据\nhtseq-count -f sam -r name -s reverse -a 10 -t exon -i gene_id -m union hisat2.sam genome.gtf &gt;count_out.gtf\n\n# 非链特异原核生物转录组测序数据\nhtseq-count -f sam -r name -s no -a 10 -t exon -i gene_id -m intercextion-strict bowtie2.sam genome.gtf &gt;counts_out.txt&quot;" class="sourceCode numberSource bash numberLines code-with-copy"><code class="sourceCode bash"><span id="cb30-1"><a href="#cb30-1"></a><span class="co"># 非链特异性真核转录组测序数据</span></span>
+<span id="cb30-2"><a href="#cb30-2"></a><span class="ex">htseq-count</span> <span class="at">-f</span> sam <span class="at">-r</span> name <span class="at">-s</span> no <span class="at">-a</span> 10 <span class="at">-t</span> exon <span class="at">-i</span> gene_id <span class="at">-m</span> union hisat2.sam genome.gtf <span class="op">&gt;</span>counts_out.txt</span>
+<span id="cb30-3"><a href="#cb30-3"></a></span>
+<span id="cb30-4"><a href="#cb30-4"></a><span class="co"># 链特异行真核转录测序数据</span></span>
+<span id="cb30-5"><a href="#cb30-5"></a><span class="ex">htseq-count</span> <span class="at">-f</span> sam <span class="at">-r</span> name <span class="at">-s</span> reverse <span class="at">-a</span> 10 <span class="at">-t</span> exon <span class="at">-i</span> gene_id <span class="at">-m</span> union hisat2.sam genome.gtf <span class="op">&gt;</span>count_out.gtf</span>
+<span id="cb30-6"><a href="#cb30-6"></a></span>
+<span id="cb30-7"><a href="#cb30-7"></a><span class="co"># 非链特异原核生物转录组测序数据</span></span>
+<span id="cb30-8"><a href="#cb30-8"></a><span class="ex">htseq-count</span> <span class="at">-f</span> sam <span class="at">-r</span> name <span class="at">-s</span> no <span class="at">-a</span> 10 <span class="at">-t</span> exon <span class="at">-i</span> gene_id <span class="at">-m</span> intercextion-strict bowtie2.sam genome.gtf <span class="op">&gt;</span>counts_out.txt</span></code></pre></div><button title="复制到剪贴板" class="code-copy-button"><i class="bi"></i></button></div>
 <p>参数说明：</p>
-<pre><code>-f | --format default:sam 设置输入文件格式，sam或者bam
--r | --order default: name 设置输入文件排序方式，name或者pos。前者按reads名排，后者比对的参考基因组位置进行排序。当测序时间是双端测序是，输入文件按照pos排序，两端的比对结果在文件中不是紧邻的两行，程序会将reads对的第一个比对结果放入内存，知道读取到另一端read的比对结果，选pos可能会导致内存使用过多。其他表达量分析软件要求输入SAM/BAM文件是pos排序的，很多软件出处结果也是按照name排序，有所不同。
--s | --stranded default:yes 设置是否链特异性测序。值可以为yes,no,reverse.分别代表：非链特异性测序;单端yes表示read比对到基因的正义链上，双端测序表示read1比对到正义链上，reads比对到负义链傻姑娘；reverse表示双端测序与yes值相反的结果。
--a | --a default: 10 忽略比对质量低于此值的比对结果。
--t | --type default: exon 程序会对该指定的feature(GTF/GFF文件第三列)进行表达量计算，而GTF/GFF文件中其它的feature都会被忽略
--i | -idattr default:gene_id 设置feature ID 是由GTF/GFF文件第九列那个标签决定的，若GTF/GFF文件多行具有相同feature ID, 则它们来自同一个feature,程序会计算这些features的表达量之和赋给相应的feature ID。
--m | --mode deault: union 设置表达量计算模式。参数的值可以有union，intersection-strict, intersection-nonempty。原核生物用intersection-strict,真核生物用union模式。
--o | --samout 输出一个SAM文件，比对结果多一个XF标签，表示 read比对到了某个feature上。
--q | --quiet 不输出程序运行的状态信息和警告信息</code></pre>
+<div class="book-prose">
+<p>-f | –format default:sam 设置输入文件格式，sam或者bam<br>
+-r | –order default: name 设置输入文件排序方式，name或者pos。前者按reads名排，后者比对的参考基因组位置进行排序。当测序时间是双端测序是，输入文件按照pos排序，两端的比对结果在文件中不是紧邻的两行，程序会将reads对的第一个比对结果放入内存，知道读取到另一端read的比对结果，选pos可能会导致内存使用过多。其他表达量分析软件要求输入SAM/BAM文件是pos排序的，很多软件出处结果也是按照name排序，有所不同。<br>
+-s | –stranded default:yes 设置是否链特异性测序。值可以为yes,no,reverse.分别代表：非链特异性测序;单端yes表示read比对到基因的正义链上，双端测序表示read1比对到正义链上，reads比对到负义链傻姑娘；reverse表示双端测序与yes值相反的结果。<br>
+-a | –a default: 10 忽略比对质量低于此值的比对结果。<br>
+-t | –type default: exon 程序会对该指定的feature(GTF/GFF文件第三列)进行表达量计算，而GTF/GFF文件中其它的feature都会被忽略<br>
+-i | -idattr default:gene_id 设置feature ID 是由GTF/GFF文件第九列那个标签决定的，若GTF/GFF文件多行具有相同feature ID, 则它们来自同一个feature,程序会计算这些features的表达量之和赋给相应的feature ID。<br>
+-m | –mode deault: union 设置表达量计算模式。参数的值可以有union，intersection-strict, intersection-nonempty。原核生物用intersection-strict,真核生物用union模式。<br>
+-o | –samout 输出一个SAM文件，比对结果多一个XF标签，表示 read比对到了某个feature上。<br>
+-q | –quiet 不输出程序运行的状态信息和警告信息</p>
+</div>
 </section>
-<section id="src-0050-RNA-seq-752" class="level5">
-<h5 class="anchored" data-anchor-id="src-0050-RNA-seq-752">cuffquant</h5>
+<section id="src-0050-RNA-seq-752" class="level4">
+<h4 class="anchored" data-anchor-id="src-0050-RNA-seq-752">cuffquant</h4>
 <p>用于对一个SAM/BAM文件进行表达量计算，生成一个二进制的结果文件。这部分计算比较消耗计算资源。</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb32"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> cuffquant <span class="at">-o</span> sample1 <span class="at">-p</span> 4 <span class="at">-b</span> genome.fasta <span class="at">-u</span> genome.gtf sample1.sam</span></code></pre></div><button title="复制到剪贴板" class="code-copy-button"><i class="bi"></i></button></div>
-<pre><code>-o | --output-dir &lt;string&gt;  设置输出文件夹名称
--p | --num-threads 设置CPU线程数
--b | --frag-bias-correct &lt;genome.fa&gt; 知道Cufflinks运行偏差检测和校正算法（bias detection and correction algorithm），提高转录子丰度计算的精确性。
--u | --multi-read-coreect 让cufflinks更精确地比对到genome多个位点的reads
--library-type default:fr-unstranded 设置是否为链特异测序或其种类，默认为非链特异性的RNA-seq</code></pre>
-<div class="callout callout-style-default callout-note callout-titled" title="待完善">
-<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-4-contents" aria-controls="callout-4" aria-expanded="false" aria-label="Toggle callout">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb31" data-book-role="code"><pre data-code-text="&quot;cuffquant -o sample1 -p 4 -b genome.fasta -u genome.gtf sample1.sam&quot;" class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a><span class="ex">cuffquant</span> <span class="at">-o</span> sample1 <span class="at">-p</span> 4 <span class="at">-b</span> genome.fasta <span class="at">-u</span> genome.gtf sample1.sam</span></code></pre></div><button title="复制到剪贴板" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="book-prose">
+<p>-o | –output-dir &lt;string&gt; 设置输出文件夹名称<br>
+-p | –num-threads 设置CPU线程数<br>
+-b | –frag-bias-correct &lt;genome.fa&gt; 知道Cufflinks运行偏差检测和校正算法（bias detection and correction algorithm），提高转录子丰度计算的精确性。<br>
+-u | –multi-read-coreect 让cufflinks更精确地比对到genome多个位点的reads<br>
+-library-type default:fr-unstranded 设置是否为链特异测序或其种类，默认为非链特异性的RNA-seq</p>
 </div>
-<div class="callout-title-container flex-fill">
-<span class="screen-reader-only">注记</span>待完善
-</div>
-<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
-</div>
-<div id="callout-4" class="callout-4-contents callout-collapse collapse">
-<div class="callout-body-container callout-body">
-<p>补计数规则练习；按需要介绍Salmon/tximport，避免把拼装写成必经步骤。</p>
-</div>
-</div>
+<div class="book-placeholder">
+<p>本节内容待补充。</p>
 </div>
 </section>
 </section>
@@ -880,11 +879,11 @@ $htseq-count -f sam -r name -s no -a 10 -t exon -i gene_id -m intercextion-stric
 <section id="sec-05-05" class="level2" data-number="5.5">
 <h2 data-number="5.5" class="anchored" data-anchor-id="sec-05-05"><span class="header-section-number">5.5</span> counts、TPM与样本探索</h2>
 <p>为统计检验和可视化选择正确的数据表示。</p>
-<section id="src-0050-RNA-seq-300" class="level4">
-<h4 class="anchored" data-anchor-id="src-0050-RNA-seq-300">表达定量</h4>
+<section id="src-0050-RNA-seq-300" class="level3">
+<h3 class="anchored" data-anchor-id="src-0050-RNA-seq-300">表达定量</h3>
 <p>通过前面的序列比对分析，获得了能够map到各个基因的reads数，也就是原始的count数。但原始的count数并不能完全表征基因的表达情况，因为不同基因的长度不同，不同批次数据的测序量也不同，所以需要通过计算矫正测序深度和基因长度带来的影响，即对基因的表达进行标准化定量（*Manuel Garber et.al., Nat Methods, 2011）。</p>
-<section id="src-0050-RNA-seq-304" class="level5">
-<h5 class="anchored" data-anchor-id="src-0050-RNA-seq-304">基因表达定量方式RPKM、FPKM、TPM</h5>
+<section id="src-0050-RNA-seq-304" class="level4">
+<h4 class="anchored" data-anchor-id="src-0050-RNA-seq-304">基因表达定量方式RPKM、FPKM、TPM</h4>
 <p>例如，在同一个样本中，基因A和基因B的count数都是1000，而基因A的长度分别为100 bp和200 bp，我们不能认为基因A和基因B的表达水平是一样的；再比如，基因A在样本1、2中的count数分别为1000和2000，此时无法判断基因A在样本2的表达水平是样本1中的两倍，因为在测序实验过程不同样品的测序量不是完全一致的；由于基因本身长度的不同、不同样本测序量的差异，不能使用原始的count数来表征基因的表达水平。</p>
 <p>基因的表达进行标准化定量包括多种方式，包括：</p>
 <ol type="1">
@@ -894,40 +893,57 @@ $htseq-count -f sam -r name -s no -a 10 -t exon -i gene_id -m intercextion-stric
 <li>CPM（counts per million mapped reads）等。</li>
 </ol>
 <p>各自的适用范围和优缺点不同，了解各自的原理才能在分析过程中选择最适合的定量方式:</p>
-<pre><code>RPM or CPM =( Number of reads mapped to gene x 10^6 )/ Total number of mapped reads</code></pre>
-<p><em>RPKM=(Number of reads mapped to gene x 10^3 x 10^6) / (Total number of mapped reads x gene length in bp)</em></p>
-<p><span id="eq-06-rna-seq-001"><span class="math display">\[
+<p><span id="eq-rpm-cpm-definition" class="book-equation"><span class="equation-scroll" tabindex="0" role="region" aria-label="公式 5.1"><span class="math display">\[
+\mathrm{RPM}\ \text{or}\ \mathrm{CPM}=\frac{\text{Number of reads mapped to gene}\times10^6}{\text{Total number of mapped reads}}
+\]</span></span><a class="equation-label" href="#eq-rpm-cpm-definition" aria-label="公式（5.1）">(5.1)</a></span></p>
+<p><span id="eq-rpkm-definition" class="book-equation"><span class="equation-scroll" tabindex="0" role="region" aria-label="公式 5.2"><span class="math display">\[
+\mathrm{RPKM}=\frac{\text{Number of reads mapped to gene}\times10^3\times10^6}{\text{Total number of mapped reads}\times\text{gene length in bp}}
+\]</span></span><a class="equation-label" href="#eq-rpkm-definition" aria-label="公式（5.2）">(5.2)</a></span></p>
+<p><span id="eq-06-rna-seq-001" class="book-equation"><span class="equation-scroll" tabindex="0" role="region" aria-label="公式 5.3"><span class="math display">\[
 \mathrm{FPKM}_i=\frac{F_i}{L_i\,(\mathrm{kb})\times N_F\,(\mathrm{million})}
-\tag{5.1}\]</span></span></p>
+\]</span></span><a class="equation-label" href="#eq-06-rna-seq-001" aria-label="公式（5.3）">(5.3)</a></span></p>
 <p>其中 <span class="math inline">\(F_i\)</span> 为分配到基因或转录本 <span class="math inline">\(i\)</span> 的 fragment 数，<span class="math inline">\(N_F\)</span> 为所采用统计口径下的总 fragment 数。</p>
 <p>RPKM适用于单端测序。假设回贴到geneA 的 reads count为 CountA，geneA的exon总长度为Len(A) Kbp，总的测序量为D兆(million)reads，那么：</p>
-<pre><code>geneA RPKM = CountA / Len(A) / D</code></pre>
-<p>FPKM适用于双端测序。RPKM与FPKM唯一的不同之处在第一个单词，reads即测序得到的读长片段，fragment则是指在双端测序中read1和read2在参考基因组上确定的片段。FPKM 与 RPKM 的分子和分母使用不同的计数单位，不能普遍写成 FPKM=RPKM/2。若每个 fragment 的两端都被计为 reads，分子和分母都会同比变化。</p>
+<p><span id="eq-rpkm-example" class="book-equation"><span class="equation-scroll" tabindex="0" role="region" aria-label="公式 5.4"><span class="math display">\[
+\mathrm{RPKM}_{\mathrm{geneA}}=\frac{\mathrm{CountA}}{\mathrm{Len}(A)\,D}
+\]</span></span><a class="equation-label" href="#eq-rpkm-example" aria-label="公式（5.4）">(5.4)</a></span></p>
+<div class="book-warning callout callout-style-default callout-warning callout-titled" title="注意｜FPKM 与 RPKM 的计数单位">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">警告</span>注意｜FPKM 与 RPKM 的计数单位
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>FPKM适用于双端测序。RPKM与FPKM唯一的不同之处在第一个单词，reads即测序得到的读长片段，fragment则是指在双端测序中read1和read2在参考基因组上确定的片段。FPKM 与 RPKM 的分子和分母使用不同的计数单位，不能普遍写成 <span class="math inline">\(\mathrm{FPKM}=\mathrm{RPKM}/2\)</span>。若每个 fragment 的两端都被计为 reads，分子和分母都会同比变化。</p>
+</div>
+</div>
 <p>目前，应用最广泛的Illumina测序平台主要采用的是双端测序，因此FPKM也是目前最常见的基因表达定量方式。FPKM能够矫正gene长度以及测序深度对gene表达定量的影响，但不同样本的FPKM总和是不一致的，解决这个问题，可以使用TPM定量方式。</p>
+<div class="book-warning callout callout-style-default callout-warning callout-titled" title="注意｜TPM 的含义与边界">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">警告</span>注意｜TPM 的含义与边界
+</div>
+</div>
+<div class="callout-body-container callout-body">
 <p>TPM 先将计数除以长度，再使每个样本内的总和为 <span class="math inline">\(10^6\)</span>。它描述样本内的相对丰度，不会自动消除组成偏差或批次效应，也不能替代差异表达模型所需的 counts。</p>
-<p><span id="eq-06-rna-seq-002"><span class="math display">\[
+</div>
+</div>
+<p><span id="eq-06-rna-seq-002" class="book-equation"><span class="equation-scroll" tabindex="0" role="region" aria-label="公式 5.5"><span class="math display">\[
 \mathrm{TPM}_i=10^6\frac{C_i/L_i}{\sum_j C_j/L_j}
-\tag{5.2}\]</span></span></p>
+\]</span></span><a class="equation-label" href="#eq-06-rna-seq-002" aria-label="公式（5.5）">(5.5)</a></span></p>
 <p>但RNA-Seq的定量有时候也会发生失败。例如，部分跨样本归一化方法依赖表达变化的总体分布，不能把下面两条当作所有 RNA-seq 方法都必须满足的统一前提： 1. 绝大多数的gene不发生表达量的变化； 2. 特别高表达的gene不发生表达量的变化。</p>
 <p>而且，如果仔细思考，你会发现普通的RNA-Seq定量计算采取的方式是样本内相对定量，定量值取决于基因本身的表达量和样本的表达总量的比值。所以，当上述假设不成立时，RNA-Seq的定量就会发很大的偏差。这个时候TPM可能会带来比FPKM/RPKM更大的偏倚（bias），所以从这个角度来看，并不会存在绝对的好与绝对的坏的定量矫正方法。不能一味地，人云亦云地认为TPM就是比FPKM更好的矫正办法。</p>
 <p>当不满足上述两条假设时，我们往往需要通过绝对定量进行解决。这个时候，我们可以利用绝对定量的内参(spike-ins)进行绝对定量。最常见的办法是在做RNA-Seq实验的过程中就加入已知绝对摩尔数的内参序列，最常用的是ERCC spike-in，随后就可以根据ERCC spike-in的绝对物质的量来对基因进行定量。</p>
 <p>另一个解决策略是选用管家基因（Housekeeping gene）对表达量进行矫正。管家基因是在不同的组织、器官、在不同的外界刺激中均有表达、参与最基础的生理过程、维持细胞的基本生理状态的基因，其表达量总体一般不发生大的变化。针对不同样本间的管家基因，也可以做一条类似于spike-in的标准曲线，通过这条标准曲线可以矫正数据，随后就可以正常进行差异表达分析。</p>
 <p>但是无论是参入spike-in还是使用管家基因进行矫正，都可能会引入新的差异（variation），关于这一点我们一定要有个清醒的认识。</p>
-<div class="callout callout-style-default callout-note callout-titled" title="待完善">
-<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-5-contents" aria-controls="callout-5" aria-expanded="false" aria-label="Toggle callout">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-<span class="screen-reader-only">注记</span>待完善
-</div>
-<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
-</div>
-<div id="callout-5" class="callout-5-contents callout-collapse collapse">
-<div class="callout-body-container callout-body">
-<p>修正FPKM换算和过滤示例，将处理选择与统计章关联。</p>
-</div>
-</div>
+<div class="book-placeholder">
+<p>本节内容待补充。</p>
 </div>
 </section>
 </section>
@@ -935,8 +951,8 @@ $htseq-count -f sam -r name -s no -a 10 -t exon -i gene_id -m intercextion-stric
 <section id="sec-05-06" class="level2" data-number="5.6">
 <h2 data-number="5.6" class="anchored" data-anchor-id="sec-05-06"><span class="header-section-number">5.6</span> 差异表达模型与结果解释</h2>
 <p>完成正确的条件比较并读懂差异结果。</p>
-<section id="src-0050-RNA-seq-360" class="level4">
-<h4 class="anchored" data-anchor-id="src-0050-RNA-seq-360">表达差异分析</h4>
+<section id="src-0050-RNA-seq-360" class="level3">
+<h3 class="anchored" data-anchor-id="src-0050-RNA-seq-360">表达差异分析</h3>
 <p>寻找差异表达的基本假设是样本中的大部分基因表达不变。基于这个假设，对样本中的基因表达做定量计算，寻找不同样本之间发生差异性表达的基因。而RNA-Seq定量的本质是相对定量，即测定指标的相对比例，如浓度、Fold change；这区别于绝对定量测定的是客观的数值等 ，例如温度、高度、长度等。</p>
 <p>cuffdiff、cuffdiff2、DESeq、DESeq2 （Moderated estimation of fold change and dispersion for RNA-Seq data with DESeq2）、edgeR （Small-sample estimation of negative binomial dispersion, with applications to SAGE data）(edgeR: a Bioconductor package for differentical expression analysis of digital gene expression data) 都是常用的表达差异分析软件，此外imma::voom (voom: precision weights unlock linear model analysis tools for RNA-Seq read counts)也可用于差分析。</p>
 <p>在差异表达分析过程中，常常会根据基因的差异表达情况绘制火山图：</p>
@@ -945,165 +961,154 @@ $htseq-count -f sam -r name -s no -a 10 -t exon -i gene_id -m intercextion-stric
 <p>（聚类图）</p>
 <p>聚类采用两种思路，寻找最近的样本进行聚集，即聚类法 agglomerative；剥离出最远的样本的方法，即分割法divisive。</p>
 </section>
-<section id="src-0050-RNA-seq-768" class="level4">
-<h4 class="anchored" data-anchor-id="src-0050-RNA-seq-768">差异分析</h4>
-<section id="src-0050-RNA-seq-770" class="level5">
-<h5 class="anchored" data-anchor-id="src-0050-RNA-seq-770">Cuffdiff</h5>
+<section id="src-0050-RNA-seq-768" class="level3">
+<h3 class="anchored" data-anchor-id="src-0050-RNA-seq-768">差异分析</h3>
+<section id="src-0050-RNA-seq-770" class="level4">
+<h4 class="anchored" data-anchor-id="src-0050-RNA-seq-770">Cuffdiff</h4>
 <p>cuffdiff 用于基因表达差异性的显著性分析，若基因组较小可直接使用，基因组较大的可以先用cuffquant处理后再进行差异分析。</p>
-<pre><code>cuffdiff -L lample1,sample2 -p 4 -u -b genome.fasta genome.gtf sample1_rep1.sam,sample2_rep2.sam sample2_rep1.sam,sample2_rep2.sam</code></pre>
-<pre><code>-o | --output-dir &lt;string&gt; default: ./ 设置输出文件夹目录
--L | --lables &lt;lable1,lable2,...,lableN&gt; default:q1,q2,...,qN 设置每一个样本的样品名
--p | --num-threads 设置CPU线程数
--T | --time-series  让cuffdiff按样品顺序进行比对
--u | --multi-read-correct initial estimation，好精确衡量比对到genome多个位点的reads
--b ｜ --frag-bias-correct 提供一个fasta文件来知道cufflinks运行的新的bias detection and correction algorithm。提高转录本丰度的计算。</code></pre>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb32" data-book-role="code"><pre data-code-text="&quot;cuffdiff -L lample1,sample2 -p 4 -u -b genome.fasta genome.gtf sample1_rep1.sam,sample2_rep2.sam sample2_rep1.sam,sample2_rep2.sam&quot;" class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a><span class="ex">cuffdiff</span> <span class="at">-L</span> lample1,sample2 <span class="at">-p</span> 4 <span class="at">-u</span> <span class="at">-b</span> genome.fasta genome.gtf sample1_rep1.sam,sample2_rep2.sam sample2_rep1.sam,sample2_rep2.sam</span></code></pre></div><button title="复制到剪贴板" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="book-prose">
+<p>-o | –output-dir &lt;string&gt; default: ./ 设置输出文件夹目录<br>
+-L | –lables &lt;lable1,lable2,…,lableN&gt; default:q1,q2,…,qN 设置每一个样本的样品名<br>
+-p | –num-threads 设置CPU线程数<br>
+-T | –time-series 让cuffdiff按样品顺序进行比对<br>
+-u | –multi-read-correct initial estimation，好精确衡量比对到genome多个位点的reads<br>
+-b ｜ –frag-bias-correct 提供一个fasta文件来知道cufflinks运行的新的bias detection and correction algorithm。提高转录本丰度的计算。</p>
+</div>
 <p>使用cuffdiff进行差异分析：</p>
-<pre><code>cuffdiff -o cuffdiff -p 50 -L male,female -u chrX.gtf ERR188044/accepted_hits_sorted.bam,ERR188104/accepted_hits_sorted.bam,ERR188454/accepted_hits_sorted.bam ERR188234/accepted_hits_sorted.bam,ERR188273/accepted_hits_sorted.bam,ERR204916/accepted_hits_sorted.bam</code></pre>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb33" data-book-role="code"><pre data-code-text="&quot;cuffdiff -o cuffdiff -p 50 -L male,female -u chrX.gtf ERR188044/accepted_hits_sorted.bam,ERR188104/accepted_hits_sorted.bam,ERR188454/accepted_hits_sorted.bam ERR188234/accepted_hits_sorted.bam,ERR188273/accepted_hits_sorted.bam,ERR204916/accepted_hits_sorted.bam&quot;" class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a><span class="ex">cuffdiff</span> <span class="at">-o</span> cuffdiff <span class="at">-p</span> 50 <span class="at">-L</span> male,female <span class="at">-u</span> chrX.gtf ERR188044/accepted_hits_sorted.bam,ERR188104/accepted_hits_sorted.bam,ERR188454/accepted_hits_sorted.bam ERR188234/accepted_hits_sorted.bam,ERR188273/accepted_hits_sorted.bam,ERR204916/accepted_hits_sorted.bam</span></code></pre></div><button title="复制到剪贴板" class="code-copy-button"><i class="bi"></i></button></div>
 </section>
-<section id="src-0050-RNA-seq-793" class="level5">
-<h5 class="anchored" data-anchor-id="src-0050-RNA-seq-793">DEseq</h5>
+<section id="src-0050-RNA-seq-793" class="level4">
+<h4 class="anchored" data-anchor-id="src-0050-RNA-seq-793">DEseq</h4>
 <p>使用R语言DEseq包进行差异分析：</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb39"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(DESeq2)</span>
-<span id="cb39-2"><a href="#cb39-2" aria-hidden="true" tabindex="-1"></a><span class="co"># count table </span></span>
-<span id="cb39-3"><a href="#cb39-3" aria-hidden="true" tabindex="-1"></a>count_df <span class="ot">&lt;-</span> <span class="fu">read.table</span>(<span class="at">file =</span> <span class="st">"./03.code_and_data/out_table/293T-RNASeq-Ctrl_vs_KD.STAR.hg38.featureCounts.FixColName.tsv"</span>,<span class="at">header =</span> T,<span class="at">sep =</span> <span class="st">"</span><span class="sc">\t</span><span class="st">"</span>)</span>
-<span id="cb39-4"><a href="#cb39-4" aria-hidden="true" tabindex="-1"></a><span class="co"># filter </span></span>
-<span id="cb39-5"><a href="#cb39-5" aria-hidden="true" tabindex="-1"></a><span class="fu">colnames</span>(count_df)</span>
-<span id="cb39-6"><a href="#cb39-6" aria-hidden="true" tabindex="-1"></a>count_df.filter <span class="ot">&lt;-</span> count_df[<span class="fu">rowSums</span>(count_df) <span class="sc">&gt;</span> <span class="dv">20</span> <span class="sc">&amp;</span> <span class="fu">apply</span>(count_df,<span class="dv">1</span>,<span class="cf">function</span>(x){ <span class="fu">all</span>(x <span class="sc">&gt;</span> <span class="dv">0</span>) }),]</span>
-<span id="cb39-7"><a href="#cb39-7" aria-hidden="true" tabindex="-1"></a><span class="co"># condition table</span></span>
-<span id="cb39-8"><a href="#cb39-8" aria-hidden="true" tabindex="-1"></a>sample_df <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
-<span id="cb39-9"><a href="#cb39-9" aria-hidden="true" tabindex="-1"></a>  <span class="at">condition =</span> <span class="fu">c</span>(<span class="fu">rep</span>(<span class="st">"ctrl"</span>,<span class="dv">2</span>), <span class="fu">rep</span>(<span class="st">"KD"</span>,<span class="dv">2</span>)),</span>
-<span id="cb39-10"><a href="#cb39-10" aria-hidden="true" tabindex="-1"></a>  <span class="at">cell_line =</span> <span class="st">"293T"</span></span>
-<span id="cb39-11"><a href="#cb39-11" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb39-12"><a href="#cb39-12" aria-hidden="true" tabindex="-1"></a><span class="fu">rownames</span>(sample_df) <span class="ot">&lt;-</span> <span class="fu">colnames</span>(count_df.filter)</span>
-<span id="cb39-13"><a href="#cb39-13" aria-hidden="true" tabindex="-1"></a>deseq2.obj <span class="ot">&lt;-</span> <span class="fu">DESeqDataSetFromMatrix</span>(<span class="at">countData =</span> count_df.filter, <span class="at">colData =</span> sample_df, <span class="at">design =</span> <span class="sc">~</span>condition)</span>
-<span id="cb39-14"><a href="#cb39-14" aria-hidden="true" tabindex="-1"></a>deseq2.obj</span>
-<span id="cb39-15"><a href="#cb39-15" aria-hidden="true" tabindex="-1"></a><span class="co"># --------------------------------------------------------&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;</span></span>
-<span id="cb39-16"><a href="#cb39-16" aria-hidden="true" tabindex="-1"></a><span class="co"># directly get test result </span></span>
-<span id="cb39-17"><a href="#cb39-17" aria-hidden="true" tabindex="-1"></a><span class="co"># --------------------------------------------------------&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;</span></span>
-<span id="cb39-18"><a href="#cb39-18" aria-hidden="true" tabindex="-1"></a>deseq2.obj <span class="ot">&lt;-</span> <span class="fu">DESeqDataSetFromMatrix</span>(<span class="at">countData =</span> count_df.filter, <span class="at">colData =</span> sample_df, <span class="at">design =</span> <span class="sc">~</span>condition)</span>
-<span id="cb39-19"><a href="#cb39-19" aria-hidden="true" tabindex="-1"></a>deseq2.obj</span>
-<span id="cb39-20"><a href="#cb39-20" aria-hidden="true" tabindex="-1"></a><span class="co"># test </span></span>
-<span id="cb39-21"><a href="#cb39-21" aria-hidden="true" tabindex="-1"></a>deseq2.obj <span class="ot">&lt;-</span> <span class="fu">DESeq</span>(deseq2.obj)</span>
-<span id="cb39-22"><a href="#cb39-22" aria-hidden="true" tabindex="-1"></a><span class="co"># get result</span></span>
-<span id="cb39-23"><a href="#cb39-23" aria-hidden="true" tabindex="-1"></a>deseq2.obj.res <span class="ot">&lt;-</span> <span class="fu">results</span>(deseq2.obj)</span>
-<span id="cb39-24"><a href="#cb39-24" aria-hidden="true" tabindex="-1"></a>deseq2.obj.res.df <span class="ot">&lt;-</span> <span class="fu">as.data.frame</span>(deseq2.obj.res)</span>
-<span id="cb39-25"><a href="#cb39-25" aria-hidden="true" tabindex="-1"></a><span class="co"># --------------------------------------------------------&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;</span></span>
-<span id="cb39-26"><a href="#cb39-26" aria-hidden="true" tabindex="-1"></a><span class="co"># step by step get test result </span></span>
-<span id="cb39-27"><a href="#cb39-27" aria-hidden="true" tabindex="-1"></a><span class="co"># --------------------------------------------------------&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;</span></span>
-<span id="cb39-28"><a href="#cb39-28" aria-hidden="true" tabindex="-1"></a>deseq2.obj <span class="ot">&lt;-</span> <span class="fu">DESeqDataSetFromMatrix</span>(<span class="at">countData =</span> count_df, <span class="at">colData =</span> sample_df, <span class="at">design =</span> <span class="sc">~</span>condition)</span>
-<span id="cb39-29"><a href="#cb39-29" aria-hidden="true" tabindex="-1"></a>deseq2.obj</span>
-<span id="cb39-30"><a href="#cb39-30" aria-hidden="true" tabindex="-1"></a><span class="co"># normalization </span></span>
-<span id="cb39-31"><a href="#cb39-31" aria-hidden="true" tabindex="-1"></a>deseq2.obj <span class="ot">&lt;-</span> <span class="fu">estimateSizeFactors</span>(deseq2.obj)</span>
-<span id="cb39-32"><a href="#cb39-32" aria-hidden="true" tabindex="-1"></a><span class="fu">sizeFactors</span>(deseq2.obj)</span>
-<span id="cb39-33"><a href="#cb39-33" aria-hidden="true" tabindex="-1"></a><span class="co"># dispersion</span></span>
-<span id="cb39-34"><a href="#cb39-34" aria-hidden="true" tabindex="-1"></a>deseq2.obj <span class="ot">&lt;-</span> <span class="fu">estimateDispersions</span>(deseq2.obj)</span>
-<span id="cb39-35"><a href="#cb39-35" aria-hidden="true" tabindex="-1"></a><span class="fu">dispersions</span>(deseq2.obj)</span>
-<span id="cb39-36"><a href="#cb39-36" aria-hidden="true" tabindex="-1"></a><span class="co"># plot dispersion</span></span>
-<span id="cb39-37"><a href="#cb39-37" aria-hidden="true" tabindex="-1"></a><span class="fu">plotDispEsts</span>(deseq2.obj, <span class="at">ymin =</span> <span class="fl">1e-4</span>)</span>
-<span id="cb39-38"><a href="#cb39-38" aria-hidden="true" tabindex="-1"></a><span class="co"># test </span></span>
-<span id="cb39-39"><a href="#cb39-39" aria-hidden="true" tabindex="-1"></a>deseq2.obj <span class="ot">&lt;-</span> <span class="fu">nbinomWaldTest</span>(deseq2.obj)</span>
-<span id="cb39-40"><a href="#cb39-40" aria-hidden="true" tabindex="-1"></a>deseq2.obj.res <span class="ot">&lt;-</span> <span class="fu">results</span>(deseq2.obj)</span></code></pre></div><button title="复制到剪贴板" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb34" data-book-role="code" data-focus-lines="21,23,34"><pre data-code-text="&quot;library(DESeq2)\n# count table \ncount_df &lt;- read.table(file = \&quot;./03.code_and_data/out_table/293T-RNASeq-Ctrl_vs_KD.STAR.hg38.featureCounts.FixColName.tsv\&quot;,header = T,sep = \&quot;\\t\&quot;)\n# filter \ncolnames(count_df)\ncount_df.filter &lt;- count_df[rowSums(count_df) &gt; 20 &amp; apply(count_df,1,function(x){ all(x &gt; 0) }),]\n# condition table\nsample_df &lt;- data.frame(\n  condition = c(rep(\&quot;ctrl\&quot;,2), rep(\&quot;KD\&quot;,2)),\n  cell_line = \&quot;293T\&quot;\n)\nrownames(sample_df) &lt;- colnames(count_df.filter)\ndeseq2.obj &lt;- DESeqDataSetFromMatrix(countData = count_df.filter, colData = sample_df, design = ~condition)\ndeseq2.obj\n# --------------------------------------------------------&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;\n# directly get test result \n# --------------------------------------------------------&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;\ndeseq2.obj &lt;- DESeqDataSetFromMatrix(countData = count_df.filter, colData = sample_df, design = ~condition)\ndeseq2.obj\n# test \ndeseq2.obj &lt;- DESeq(deseq2.obj)\n# get result\ndeseq2.obj.res &lt;- results(deseq2.obj)\ndeseq2.obj.res.df &lt;- as.data.frame(deseq2.obj.res)\n# --------------------------------------------------------&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;\n# step by step get test result \n# --------------------------------------------------------&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;\ndeseq2.obj &lt;- DESeqDataSetFromMatrix(countData = count_df, colData = sample_df, design = ~condition)\ndeseq2.obj\n# normalization \ndeseq2.obj &lt;- estimateSizeFactors(deseq2.obj)\nsizeFactors(deseq2.obj)\n# dispersion\ndeseq2.obj &lt;- estimateDispersions(deseq2.obj)\ndispersions(deseq2.obj)\n# plot dispersion\nplotDispEsts(deseq2.obj, ymin = 1e-4)\n# test \ndeseq2.obj &lt;- nbinomWaldTest(deseq2.obj)\ndeseq2.obj.res &lt;- results(deseq2.obj)&quot;" class="sourceCode numberSource r numberLines code-with-copy"><code class="sourceCode r"><span id="cb34-1"><a href="#cb34-1"></a><span class="fu">library</span>(DESeq2)</span>
+<span id="cb34-2"><a href="#cb34-2"></a><span class="co"># count table </span></span>
+<span id="cb34-3"><a href="#cb34-3"></a>count_df <span class="ot">&lt;-</span> <span class="fu">read.table</span>(<span class="at">file =</span> <span class="st">"./03.code_and_data/out_table/293T-RNASeq-Ctrl_vs_KD.STAR.hg38.featureCounts.FixColName.tsv"</span>,<span class="at">header =</span> T,<span class="at">sep =</span> <span class="st">"</span><span class="sc">\t</span><span class="st">"</span>)</span>
+<span id="cb34-4"><a href="#cb34-4"></a><span class="co"># filter </span></span>
+<span id="cb34-5"><a href="#cb34-5"></a><span class="fu">colnames</span>(count_df)</span>
+<span id="cb34-6"><a href="#cb34-6"></a>count_df.filter <span class="ot">&lt;-</span> count_df[<span class="fu">rowSums</span>(count_df) <span class="sc">&gt;</span> <span class="dv">20</span> <span class="sc">&amp;</span> <span class="fu">apply</span>(count_df,<span class="dv">1</span>,<span class="cf">function</span>(x){ <span class="fu">all</span>(x <span class="sc">&gt;</span> <span class="dv">0</span>) }),]</span>
+<span id="cb34-7"><a href="#cb34-7"></a><span class="co"># condition table</span></span>
+<span id="cb34-8"><a href="#cb34-8"></a>sample_df <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
+<span id="cb34-9"><a href="#cb34-9"></a>  <span class="at">condition =</span> <span class="fu">c</span>(<span class="fu">rep</span>(<span class="st">"ctrl"</span>,<span class="dv">2</span>), <span class="fu">rep</span>(<span class="st">"KD"</span>,<span class="dv">2</span>)),</span>
+<span id="cb34-10"><a href="#cb34-10"></a>  <span class="at">cell_line =</span> <span class="st">"293T"</span></span>
+<span id="cb34-11"><a href="#cb34-11"></a>)</span>
+<span id="cb34-12"><a href="#cb34-12"></a><span class="fu">rownames</span>(sample_df) <span class="ot">&lt;-</span> <span class="fu">colnames</span>(count_df.filter)</span>
+<span id="cb34-13"><a href="#cb34-13"></a>deseq2.obj <span class="ot">&lt;-</span> <span class="fu">DESeqDataSetFromMatrix</span>(<span class="at">countData =</span> count_df.filter, <span class="at">colData =</span> sample_df, <span class="at">design =</span> <span class="sc">~</span>condition)</span>
+<span id="cb34-14"><a href="#cb34-14"></a>deseq2.obj</span>
+<span id="cb34-15"><a href="#cb34-15"></a><span class="co"># --------------------------------------------------------&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;</span></span>
+<span id="cb34-16"><a href="#cb34-16"></a><span class="co"># directly get test result </span></span>
+<span id="cb34-17"><a href="#cb34-17"></a><span class="co"># --------------------------------------------------------&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;</span></span>
+<span id="cb34-18"><a href="#cb34-18"></a>deseq2.obj <span class="ot">&lt;-</span> <span class="fu">DESeqDataSetFromMatrix</span>(<span class="at">countData =</span> count_df.filter, <span class="at">colData =</span> sample_df, <span class="at">design =</span> <span class="sc">~</span>condition)</span>
+<span id="cb34-19"><a href="#cb34-19"></a>deseq2.obj</span>
+<span id="cb34-20"><a href="#cb34-20"></a><span class="co"># test </span></span>
+<span id="cb34-21"><a href="#cb34-21"></a>deseq2.obj <span class="ot">&lt;-</span> <span class="fu">DESeq</span>(deseq2.obj)</span>
+<span id="cb34-22"><a href="#cb34-22"></a><span class="co"># get result</span></span>
+<span id="cb34-23"><a href="#cb34-23"></a>deseq2.obj.res <span class="ot">&lt;-</span> <span class="fu">results</span>(deseq2.obj)</span>
+<span id="cb34-24"><a href="#cb34-24"></a>deseq2.obj.res.df <span class="ot">&lt;-</span> <span class="fu">as.data.frame</span>(deseq2.obj.res)</span>
+<span id="cb34-25"><a href="#cb34-25"></a><span class="co"># --------------------------------------------------------&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;</span></span>
+<span id="cb34-26"><a href="#cb34-26"></a><span class="co"># step by step get test result </span></span>
+<span id="cb34-27"><a href="#cb34-27"></a><span class="co"># --------------------------------------------------------&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;</span></span>
+<span id="cb34-28"><a href="#cb34-28"></a>deseq2.obj <span class="ot">&lt;-</span> <span class="fu">DESeqDataSetFromMatrix</span>(<span class="at">countData =</span> count_df, <span class="at">colData =</span> sample_df, <span class="at">design =</span> <span class="sc">~</span>condition)</span>
+<span id="cb34-29"><a href="#cb34-29"></a>deseq2.obj</span>
+<span id="cb34-30"><a href="#cb34-30"></a><span class="co"># normalization </span></span>
+<span id="cb34-31"><a href="#cb34-31"></a>deseq2.obj <span class="ot">&lt;-</span> <span class="fu">estimateSizeFactors</span>(deseq2.obj)</span>
+<span id="cb34-32"><a href="#cb34-32"></a><span class="fu">sizeFactors</span>(deseq2.obj)</span>
+<span id="cb34-33"><a href="#cb34-33"></a><span class="co"># dispersion</span></span>
+<span id="cb34-34"><a href="#cb34-34"></a>deseq2.obj <span class="ot">&lt;-</span> <span class="fu">estimateDispersions</span>(deseq2.obj)</span>
+<span id="cb34-35"><a href="#cb34-35"></a><span class="fu">dispersions</span>(deseq2.obj)</span>
+<span id="cb34-36"><a href="#cb34-36"></a><span class="co"># plot dispersion</span></span>
+<span id="cb34-37"><a href="#cb34-37"></a><span class="fu">plotDispEsts</span>(deseq2.obj, <span class="at">ymin =</span> <span class="fl">1e-4</span>)</span>
+<span id="cb34-38"><a href="#cb34-38"></a><span class="co"># test </span></span>
+<span id="cb34-39"><a href="#cb34-39"></a>deseq2.obj <span class="ot">&lt;-</span> <span class="fu">nbinomWaldTest</span>(deseq2.obj)</span>
+<span id="cb34-40"><a href="#cb34-40"></a>deseq2.obj.res <span class="ot">&lt;-</span> <span class="fu">results</span>(deseq2.obj)</span></code></pre></div><button title="复制到剪贴板" class="code-copy-button"><i class="bi"></i></button></div>
 </section>
-<section id="src-0050-RNA-seq-840" class="level5">
-<h5 class="anchored" data-anchor-id="src-0050-RNA-seq-840">edgeR</h5>
+<section id="src-0050-RNA-seq-840" class="level4">
+<h4 class="anchored" data-anchor-id="src-0050-RNA-seq-840">edgeR</h4>
 <p>使用R语言edgeR包进行差异分析：</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb40"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb40-1"><a href="#cb40-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(edgeR)</span>
-<span id="cb40-2"><a href="#cb40-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb40-3"><a href="#cb40-3" aria-hidden="true" tabindex="-1"></a><span class="co"># --------------------------------------------------------&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;</span></span>
-<span id="cb40-4"><a href="#cb40-4" aria-hidden="true" tabindex="-1"></a><span class="co"># make obj </span></span>
-<span id="cb40-5"><a href="#cb40-5" aria-hidden="true" tabindex="-1"></a><span class="co"># --------------------------------------------------------&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;</span></span>
-<span id="cb40-6"><a href="#cb40-6" aria-hidden="true" tabindex="-1"></a><span class="co"># count table </span></span>
-<span id="cb40-7"><a href="#cb40-7" aria-hidden="true" tabindex="-1"></a>count_df <span class="ot">&lt;-</span> <span class="fu">read.table</span>(<span class="at">file =</span> <span class="st">"./03.code_and_data/out_table/293T-RNASeq-Ctrl_vs_KD.STAR.hg38.featureCounts.FixColName.tsv"</span>,<span class="at">header =</span> T,<span class="at">sep =</span> <span class="st">"</span><span class="sc">\t</span><span class="st">"</span>)</span>
-<span id="cb40-8"><a href="#cb40-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb40-9"><a href="#cb40-9" aria-hidden="true" tabindex="-1"></a><span class="co"># filter </span></span>
-<span id="cb40-10"><a href="#cb40-10" aria-hidden="true" tabindex="-1"></a><span class="fu">colnames</span>(count_df)</span>
-<span id="cb40-11"><a href="#cb40-11" aria-hidden="true" tabindex="-1"></a>count_df.filter <span class="ot">&lt;-</span> count_df[<span class="fu">rowSums</span>(count_df) <span class="sc">&gt;</span> <span class="dv">20</span> <span class="sc">&amp;</span> <span class="fu">apply</span>(count_df,<span class="dv">1</span>,<span class="cf">function</span>(x){ <span class="fu">all</span>(x <span class="sc">&gt;</span> <span class="dv">0</span>) }),]</span>
-<span id="cb40-12"><a href="#cb40-12" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb40-13"><a href="#cb40-13" aria-hidden="true" tabindex="-1"></a><span class="co"># condition table</span></span>
-<span id="cb40-14"><a href="#cb40-14" aria-hidden="true" tabindex="-1"></a>group_info <span class="ot">=</span> <span class="fu">c</span>(<span class="fu">rep</span>(<span class="st">"ctrl"</span>,<span class="dv">2</span>), <span class="fu">rep</span>(<span class="st">"KD"</span>,<span class="dv">2</span>))</span>
-<span id="cb40-15"><a href="#cb40-15" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb40-16"><a href="#cb40-16" aria-hidden="true" tabindex="-1"></a>dge.list.obj <span class="ot">&lt;-</span> <span class="fu">DGEList</span>(<span class="at">counts =</span> count_df.filter, <span class="at">group =</span> group_info)</span>
-<span id="cb40-17"><a href="#cb40-17" aria-hidden="true" tabindex="-1"></a>dge.list.obj</span>
-<span id="cb40-18"><a href="#cb40-18" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb40-19"><a href="#cb40-19" aria-hidden="true" tabindex="-1"></a><span class="co"># --------------------------------------------------------&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;</span></span>
-<span id="cb40-20"><a href="#cb40-20" aria-hidden="true" tabindex="-1"></a><span class="co"># Normalization</span></span>
-<span id="cb40-21"><a href="#cb40-21" aria-hidden="true" tabindex="-1"></a><span class="co"># --------------------------------------------------------&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;</span></span>
-<span id="cb40-22"><a href="#cb40-22" aria-hidden="true" tabindex="-1"></a><span class="co"># Normalization method: "TMM","TMMwsp","RLE","upperquartile","none"</span></span>
-<span id="cb40-23"><a href="#cb40-23" aria-hidden="true" tabindex="-1"></a>dge.list.obj <span class="ot">&lt;-</span> <span class="fu">calcNormFactors</span>(dge.list.obj,<span class="at">method =</span> <span class="st">"TMM"</span>)</span>
-<span id="cb40-24"><a href="#cb40-24" aria-hidden="true" tabindex="-1"></a>dge.list.obj<span class="sc">$</span>samples</span>
-<span id="cb40-25"><a href="#cb40-25" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb40-26"><a href="#cb40-26" aria-hidden="true" tabindex="-1"></a>dge.list.obj <span class="ot">&lt;-</span> <span class="fu">calcNormFactors</span>(dge.list.obj,<span class="at">method =</span> <span class="st">"TMMwsp"</span>)</span>
-<span id="cb40-27"><a href="#cb40-27" aria-hidden="true" tabindex="-1"></a>dge.list.obj<span class="sc">$</span>samples</span>
-<span id="cb40-28"><a href="#cb40-28" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb40-29"><a href="#cb40-29" aria-hidden="true" tabindex="-1"></a>dge.list.obj <span class="ot">&lt;-</span> <span class="fu">calcNormFactors</span>(dge.list.obj,<span class="at">method =</span> <span class="st">"upperquartile"</span>)</span>
-<span id="cb40-30"><a href="#cb40-30" aria-hidden="true" tabindex="-1"></a>dge.list.obj<span class="sc">$</span>samples</span>
-<span id="cb40-31"><a href="#cb40-31" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb40-32"><a href="#cb40-32" aria-hidden="true" tabindex="-1"></a>dge.list.obj <span class="ot">&lt;-</span> <span class="fu">calcNormFactors</span>(dge.list.obj,<span class="at">method =</span> <span class="st">"RLE"</span>) <span class="co"># DESeq2, cuffdiff</span></span>
-<span id="cb40-33"><a href="#cb40-33" aria-hidden="true" tabindex="-1"></a>dge.list.obj<span class="sc">$</span>samples</span>
-<span id="cb40-34"><a href="#cb40-34" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb40-35"><a href="#cb40-35" aria-hidden="true" tabindex="-1"></a>dge.list.obj <span class="ot">&lt;-</span> <span class="fu">calcNormFactors</span>(dge.list.obj,<span class="at">method =</span> <span class="st">"none"</span>)</span>
-<span id="cb40-36"><a href="#cb40-36" aria-hidden="true" tabindex="-1"></a>dge.list.obj<span class="sc">$</span>samples</span>
-<span id="cb40-37"><a href="#cb40-37" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb40-38"><a href="#cb40-38" aria-hidden="true" tabindex="-1"></a><span class="co"># raw data plot MDS</span></span>
-<span id="cb40-39"><a href="#cb40-39" aria-hidden="true" tabindex="-1"></a><span class="fu">plotMDS</span>(dge.list.obj)</span>
-<span id="cb40-40"><a href="#cb40-40" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb40-41"><a href="#cb40-41" aria-hidden="true" tabindex="-1"></a><span class="co"># --------------------------------------------------------&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;</span></span>
-<span id="cb40-42"><a href="#cb40-42" aria-hidden="true" tabindex="-1"></a><span class="co"># make design matrix</span></span>
-<span id="cb40-43"><a href="#cb40-43" aria-hidden="true" tabindex="-1"></a><span class="co"># --------------------------------------------------------&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;</span></span>
-<span id="cb40-44"><a href="#cb40-44" aria-hidden="true" tabindex="-1"></a>design.mat <span class="ot">&lt;-</span> <span class="fu">model.matrix</span>(<span class="sc">~</span>group_info)</span>
-<span id="cb40-45"><a href="#cb40-45" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb40-46"><a href="#cb40-46" aria-hidden="true" tabindex="-1"></a><span class="co"># --------------------------------------------------------&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;</span></span>
-<span id="cb40-47"><a href="#cb40-47" aria-hidden="true" tabindex="-1"></a><span class="co"># estimate dispersion</span></span>
-<span id="cb40-48"><a href="#cb40-48" aria-hidden="true" tabindex="-1"></a><span class="co"># --------------------------------------------------------&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;</span></span>
-<span id="cb40-49"><a href="#cb40-49" aria-hidden="true" tabindex="-1"></a>dge.list.obj <span class="ot">&lt;-</span> <span class="fu">estimateDisp</span>(dge.list.obj,design.mat)</span>
-<span id="cb40-50"><a href="#cb40-50" aria-hidden="true" tabindex="-1"></a>dge.list.obj<span class="sc">$</span>common.dispersion</span>
-<span id="cb40-51"><a href="#cb40-51" aria-hidden="true" tabindex="-1"></a>dge.list.obj<span class="sc">$</span>tagwise.dispersion</span>
-<span id="cb40-52"><a href="#cb40-52" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb40-53"><a href="#cb40-53" aria-hidden="true" tabindex="-1"></a><span class="co"># 1st common dispersion</span></span>
-<span id="cb40-54"><a href="#cb40-54" aria-hidden="true" tabindex="-1"></a>dge.list.obj <span class="ot">&lt;-</span> <span class="fu">estimateCommonDisp</span>(dge.list.obj)</span>
-<span id="cb40-55"><a href="#cb40-55" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb40-56"><a href="#cb40-56" aria-hidden="true" tabindex="-1"></a><span class="co"># 2nd tagwise dispersion</span></span>
-<span id="cb40-57"><a href="#cb40-57" aria-hidden="true" tabindex="-1"></a>dge.list.obj <span class="ot">&lt;-</span> <span class="fu">estimateTagwiseDisp</span>(dge.list.obj)</span>
-<span id="cb40-58"><a href="#cb40-58" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb40-59"><a href="#cb40-59" aria-hidden="true" tabindex="-1"></a><span class="co"># plot dispersion</span></span>
-<span id="cb40-60"><a href="#cb40-60" aria-hidden="true" tabindex="-1"></a><span class="fu">plotBCV</span>(dge.list.obj, <span class="at">cex =</span> <span class="fl">0.8</span>)</span>
-<span id="cb40-61"><a href="#cb40-61" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb40-62"><a href="#cb40-62" aria-hidden="true" tabindex="-1"></a><span class="co"># plot var and mean</span></span>
-<span id="cb40-63"><a href="#cb40-63" aria-hidden="true" tabindex="-1"></a><span class="fu">plotMeanVar</span>(dge.list.obj, <span class="at">show.raw=</span><span class="cn">TRUE</span>, <span class="at">show.tagwise=</span><span class="cn">TRUE</span>, <span class="at">show.binned=</span><span class="cn">TRUE</span>)</span>
-<span id="cb40-64"><a href="#cb40-64" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb40-65"><a href="#cb40-65" aria-hidden="true" tabindex="-1"></a><span class="co"># --------------------------------------------------------&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;</span></span>
-<span id="cb40-66"><a href="#cb40-66" aria-hidden="true" tabindex="-1"></a><span class="co"># test with likelihood ratio test</span></span>
-<span id="cb40-67"><a href="#cb40-67" aria-hidden="true" tabindex="-1"></a><span class="co"># --------------------------------------------------------&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;</span></span>
-<span id="cb40-68"><a href="#cb40-68" aria-hidden="true" tabindex="-1"></a>dge.list.res <span class="ot">&lt;-</span> <span class="fu">exactTest</span>(dge.list.obj)</span>
-<span id="cb40-69"><a href="#cb40-69" aria-hidden="true" tabindex="-1"></a>DEGs.res <span class="ot">&lt;-</span> <span class="fu">as.data.frame</span>(<span class="fu">topTags</span>(dge.list.res,<span class="at">n=</span><span class="fu">nrow</span>(count_df.filter),<span class="at">sort.by =</span> <span class="st">"logFC"</span>))</span>
-<span id="cb40-70"><a href="#cb40-70" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb40-71"><a href="#cb40-71" aria-hidden="true" tabindex="-1"></a><span class="co"># MA plot</span></span>
-<span id="cb40-72"><a href="#cb40-72" aria-hidden="true" tabindex="-1"></a>select.sign.gene <span class="ot">=</span> <span class="fu">decideTestsDGE</span>(dge.list.res, <span class="at">p.value =</span> <span class="fl">0.001</span>) </span>
-<span id="cb40-73"><a href="#cb40-73" aria-hidden="true" tabindex="-1"></a>select.sign.gene_id <span class="ot">=</span> <span class="fu">rownames</span>(dge.list.res)[<span class="fu">as.logical</span>(select.sign.gene)]</span>
-<span id="cb40-74"><a href="#cb40-74" aria-hidden="true" tabindex="-1"></a><span class="fu">plotSmear</span>(dge.list.res, <span class="at">de.tags =</span> select.sign.gene_id, <span class="at">cex =</span> <span class="fl">0.5</span>,<span class="at">ylim=</span><span class="fu">c</span>(<span class="sc">-</span><span class="dv">4</span>,<span class="dv">4</span>)) </span>
-<span id="cb40-75"><a href="#cb40-75" aria-hidden="true" tabindex="-1"></a><span class="fu">abline</span>(<span class="at">h =</span> <span class="fu">c</span>(<span class="sc">-</span><span class="dv">2</span>, <span class="dv">2</span>), <span class="at">col =</span> <span class="st">"blue"</span>)</span>
-<span id="cb40-76"><a href="#cb40-76" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb40-77"><a href="#cb40-77" aria-hidden="true" tabindex="-1"></a><span class="co"># --------------------------------------------------------&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;</span></span>
-<span id="cb40-78"><a href="#cb40-78" aria-hidden="true" tabindex="-1"></a><span class="co"># test with likelihood ratio test</span></span>
-<span id="cb40-79"><a href="#cb40-79" aria-hidden="true" tabindex="-1"></a><span class="co"># --------------------------------------------------------&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;</span></span>
-<span id="cb40-80"><a href="#cb40-80" aria-hidden="true" tabindex="-1"></a>fit <span class="ot">&lt;-</span> <span class="fu">glmFit</span>(dge.list.obj, design.mat)</span>
-<span id="cb40-81"><a href="#cb40-81" aria-hidden="true" tabindex="-1"></a>lrt <span class="ot">&lt;-</span> <span class="fu">glmLRT</span>(fit, <span class="at">coef=</span><span class="dv">2</span>)</span>
-<span id="cb40-82"><a href="#cb40-82" aria-hidden="true" tabindex="-1"></a>DEGs.res.lrt <span class="ot">&lt;-</span> <span class="fu">as.data.frame</span>(<span class="fu">topTags</span>(lrt,<span class="at">n=</span><span class="fu">nrow</span>(count_df.filter),<span class="at">sort.by =</span> <span class="st">"logFC"</span>))</span></code></pre></div><button title="复制到剪贴板" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="callout callout-style-default callout-note callout-titled" title="待完善">
-<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-6-contents" aria-controls="callout-6" aria-expanded="false" aria-label="Toggle callout">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-<span class="screen-reader-only">注记</span>待完善
-</div>
-<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
-</div>
-<div id="callout-6" class="callout-6-contents callout-collapse collapse">
-<div class="callout-body-container callout-body">
-<p>补模型解释、样本顺序断言、比较方向验证和预期结果。</p>
-</div>
-</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb35" data-book-role="code" data-focus-lines="23,44,49"><pre data-code-text="&quot;library(edgeR)\n\n# --------------------------------------------------------&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;\n# make obj \n# --------------------------------------------------------&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;\n# count table \ncount_df &lt;- read.table(file = \&quot;./03.code_and_data/out_table/293T-RNASeq-Ctrl_vs_KD.STAR.hg38.featureCounts.FixColName.tsv\&quot;,header = T,sep = \&quot;\\t\&quot;)\n\n# filter \ncolnames(count_df)\ncount_df.filter &lt;- count_df[rowSums(count_df) &gt; 20 &amp; apply(count_df,1,function(x){ all(x &gt; 0) }),]\n\n# condition table\ngroup_info = c(rep(\&quot;ctrl\&quot;,2), rep(\&quot;KD\&quot;,2))\n\ndge.list.obj &lt;- DGEList(counts = count_df.filter, group = group_info)\ndge.list.obj\n\n# --------------------------------------------------------&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;\n# Normalization\n# --------------------------------------------------------&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;\n# Normalization method: \&quot;TMM\&quot;,\&quot;TMMwsp\&quot;,\&quot;RLE\&quot;,\&quot;upperquartile\&quot;,\&quot;none\&quot;\ndge.list.obj &lt;- calcNormFactors(dge.list.obj,method = \&quot;TMM\&quot;)\ndge.list.obj$samples\n\ndge.list.obj &lt;- calcNormFactors(dge.list.obj,method = \&quot;TMMwsp\&quot;)\ndge.list.obj$samples\n\ndge.list.obj &lt;- calcNormFactors(dge.list.obj,method = \&quot;upperquartile\&quot;)\ndge.list.obj$samples\n\ndge.list.obj &lt;- calcNormFactors(dge.list.obj,method = \&quot;RLE\&quot;) # DESeq2, cuffdiff\ndge.list.obj$samples\n\ndge.list.obj &lt;- calcNormFactors(dge.list.obj,method = \&quot;none\&quot;)\ndge.list.obj$samples\n\n# raw data plot MDS\nplotMDS(dge.list.obj)\n\n# --------------------------------------------------------&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;\n# make design matrix\n# --------------------------------------------------------&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;\ndesign.mat &lt;- model.matrix(~group_info)\n\n# --------------------------------------------------------&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;\n# estimate dispersion\n# --------------------------------------------------------&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;\ndge.list.obj &lt;- estimateDisp(dge.list.obj,design.mat)\ndge.list.obj$common.dispersion\ndge.list.obj$tagwise.dispersion\n\n# 1st common dispersion\ndge.list.obj &lt;- estimateCommonDisp(dge.list.obj)\n\n# 2nd tagwise dispersion\ndge.list.obj &lt;- estimateTagwiseDisp(dge.list.obj)\n\n# plot dispersion\nplotBCV(dge.list.obj, cex = 0.8)\n\n# plot var and mean\nplotMeanVar(dge.list.obj, show.raw=TRUE, show.tagwise=TRUE, show.binned=TRUE)\n\n# --------------------------------------------------------&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;\n# test with likelihood ratio test\n# --------------------------------------------------------&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;\ndge.list.res &lt;- exactTest(dge.list.obj)\nDEGs.res &lt;- as.data.frame(topTags(dge.list.res,n=nrow(count_df.filter),sort.by = \&quot;logFC\&quot;))\n\n# MA plot\nselect.sign.gene = decideTestsDGE(dge.list.res, p.value = 0.001) \nselect.sign.gene_id = rownames(dge.list.res)[as.logical(select.sign.gene)]\nplotSmear(dge.list.res, de.tags = select.sign.gene_id, cex = 0.5,ylim=c(-4,4)) \nabline(h = c(-2, 2), col = \&quot;blue\&quot;)\n\n# --------------------------------------------------------&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;\n# test with likelihood ratio test\n# --------------------------------------------------------&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;\nfit &lt;- glmFit(dge.list.obj, design.mat)\nlrt &lt;- glmLRT(fit, coef=2)\nDEGs.res.lrt &lt;- as.data.frame(topTags(lrt,n=nrow(count_df.filter),sort.by = \&quot;logFC\&quot;))&quot;" class="sourceCode numberSource r numberLines code-with-copy"><code class="sourceCode r"><span id="cb35-1"><a href="#cb35-1"></a><span class="fu">library</span>(edgeR)</span>
+<span id="cb35-2"><a href="#cb35-2"></a></span>
+<span id="cb35-3"><a href="#cb35-3"></a><span class="co"># --------------------------------------------------------&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;</span></span>
+<span id="cb35-4"><a href="#cb35-4"></a><span class="co"># make obj </span></span>
+<span id="cb35-5"><a href="#cb35-5"></a><span class="co"># --------------------------------------------------------&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;</span></span>
+<span id="cb35-6"><a href="#cb35-6"></a><span class="co"># count table </span></span>
+<span id="cb35-7"><a href="#cb35-7"></a>count_df <span class="ot">&lt;-</span> <span class="fu">read.table</span>(<span class="at">file =</span> <span class="st">"./03.code_and_data/out_table/293T-RNASeq-Ctrl_vs_KD.STAR.hg38.featureCounts.FixColName.tsv"</span>,<span class="at">header =</span> T,<span class="at">sep =</span> <span class="st">"</span><span class="sc">\t</span><span class="st">"</span>)</span>
+<span id="cb35-8"><a href="#cb35-8"></a></span>
+<span id="cb35-9"><a href="#cb35-9"></a><span class="co"># filter </span></span>
+<span id="cb35-10"><a href="#cb35-10"></a><span class="fu">colnames</span>(count_df)</span>
+<span id="cb35-11"><a href="#cb35-11"></a>count_df.filter <span class="ot">&lt;-</span> count_df[<span class="fu">rowSums</span>(count_df) <span class="sc">&gt;</span> <span class="dv">20</span> <span class="sc">&amp;</span> <span class="fu">apply</span>(count_df,<span class="dv">1</span>,<span class="cf">function</span>(x){ <span class="fu">all</span>(x <span class="sc">&gt;</span> <span class="dv">0</span>) }),]</span>
+<span id="cb35-12"><a href="#cb35-12"></a></span>
+<span id="cb35-13"><a href="#cb35-13"></a><span class="co"># condition table</span></span>
+<span id="cb35-14"><a href="#cb35-14"></a>group_info <span class="ot">=</span> <span class="fu">c</span>(<span class="fu">rep</span>(<span class="st">"ctrl"</span>,<span class="dv">2</span>), <span class="fu">rep</span>(<span class="st">"KD"</span>,<span class="dv">2</span>))</span>
+<span id="cb35-15"><a href="#cb35-15"></a></span>
+<span id="cb35-16"><a href="#cb35-16"></a>dge.list.obj <span class="ot">&lt;-</span> <span class="fu">DGEList</span>(<span class="at">counts =</span> count_df.filter, <span class="at">group =</span> group_info)</span>
+<span id="cb35-17"><a href="#cb35-17"></a>dge.list.obj</span>
+<span id="cb35-18"><a href="#cb35-18"></a></span>
+<span id="cb35-19"><a href="#cb35-19"></a><span class="co"># --------------------------------------------------------&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;</span></span>
+<span id="cb35-20"><a href="#cb35-20"></a><span class="co"># Normalization</span></span>
+<span id="cb35-21"><a href="#cb35-21"></a><span class="co"># --------------------------------------------------------&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;</span></span>
+<span id="cb35-22"><a href="#cb35-22"></a><span class="co"># Normalization method: "TMM","TMMwsp","RLE","upperquartile","none"</span></span>
+<span id="cb35-23"><a href="#cb35-23"></a>dge.list.obj <span class="ot">&lt;-</span> <span class="fu">calcNormFactors</span>(dge.list.obj,<span class="at">method =</span> <span class="st">"TMM"</span>)</span>
+<span id="cb35-24"><a href="#cb35-24"></a>dge.list.obj<span class="sc">$</span>samples</span>
+<span id="cb35-25"><a href="#cb35-25"></a></span>
+<span id="cb35-26"><a href="#cb35-26"></a>dge.list.obj <span class="ot">&lt;-</span> <span class="fu">calcNormFactors</span>(dge.list.obj,<span class="at">method =</span> <span class="st">"TMMwsp"</span>)</span>
+<span id="cb35-27"><a href="#cb35-27"></a>dge.list.obj<span class="sc">$</span>samples</span>
+<span id="cb35-28"><a href="#cb35-28"></a></span>
+<span id="cb35-29"><a href="#cb35-29"></a>dge.list.obj <span class="ot">&lt;-</span> <span class="fu">calcNormFactors</span>(dge.list.obj,<span class="at">method =</span> <span class="st">"upperquartile"</span>)</span>
+<span id="cb35-30"><a href="#cb35-30"></a>dge.list.obj<span class="sc">$</span>samples</span>
+<span id="cb35-31"><a href="#cb35-31"></a></span>
+<span id="cb35-32"><a href="#cb35-32"></a>dge.list.obj <span class="ot">&lt;-</span> <span class="fu">calcNormFactors</span>(dge.list.obj,<span class="at">method =</span> <span class="st">"RLE"</span>) <span class="co"># DESeq2, cuffdiff</span></span>
+<span id="cb35-33"><a href="#cb35-33"></a>dge.list.obj<span class="sc">$</span>samples</span>
+<span id="cb35-34"><a href="#cb35-34"></a></span>
+<span id="cb35-35"><a href="#cb35-35"></a>dge.list.obj <span class="ot">&lt;-</span> <span class="fu">calcNormFactors</span>(dge.list.obj,<span class="at">method =</span> <span class="st">"none"</span>)</span>
+<span id="cb35-36"><a href="#cb35-36"></a>dge.list.obj<span class="sc">$</span>samples</span>
+<span id="cb35-37"><a href="#cb35-37"></a></span>
+<span id="cb35-38"><a href="#cb35-38"></a><span class="co"># raw data plot MDS</span></span>
+<span id="cb35-39"><a href="#cb35-39"></a><span class="fu">plotMDS</span>(dge.list.obj)</span>
+<span id="cb35-40"><a href="#cb35-40"></a></span>
+<span id="cb35-41"><a href="#cb35-41"></a><span class="co"># --------------------------------------------------------&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;</span></span>
+<span id="cb35-42"><a href="#cb35-42"></a><span class="co"># make design matrix</span></span>
+<span id="cb35-43"><a href="#cb35-43"></a><span class="co"># --------------------------------------------------------&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;</span></span>
+<span id="cb35-44"><a href="#cb35-44"></a>design.mat <span class="ot">&lt;-</span> <span class="fu">model.matrix</span>(<span class="sc">~</span>group_info)</span>
+<span id="cb35-45"><a href="#cb35-45"></a></span>
+<span id="cb35-46"><a href="#cb35-46"></a><span class="co"># --------------------------------------------------------&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;</span></span>
+<span id="cb35-47"><a href="#cb35-47"></a><span class="co"># estimate dispersion</span></span>
+<span id="cb35-48"><a href="#cb35-48"></a><span class="co"># --------------------------------------------------------&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;</span></span>
+<span id="cb35-49"><a href="#cb35-49"></a>dge.list.obj <span class="ot">&lt;-</span> <span class="fu">estimateDisp</span>(dge.list.obj,design.mat)</span>
+<span id="cb35-50"><a href="#cb35-50"></a>dge.list.obj<span class="sc">$</span>common.dispersion</span>
+<span id="cb35-51"><a href="#cb35-51"></a>dge.list.obj<span class="sc">$</span>tagwise.dispersion</span>
+<span id="cb35-52"><a href="#cb35-52"></a></span>
+<span id="cb35-53"><a href="#cb35-53"></a><span class="co"># 1st common dispersion</span></span>
+<span id="cb35-54"><a href="#cb35-54"></a>dge.list.obj <span class="ot">&lt;-</span> <span class="fu">estimateCommonDisp</span>(dge.list.obj)</span>
+<span id="cb35-55"><a href="#cb35-55"></a></span>
+<span id="cb35-56"><a href="#cb35-56"></a><span class="co"># 2nd tagwise dispersion</span></span>
+<span id="cb35-57"><a href="#cb35-57"></a>dge.list.obj <span class="ot">&lt;-</span> <span class="fu">estimateTagwiseDisp</span>(dge.list.obj)</span>
+<span id="cb35-58"><a href="#cb35-58"></a></span>
+<span id="cb35-59"><a href="#cb35-59"></a><span class="co"># plot dispersion</span></span>
+<span id="cb35-60"><a href="#cb35-60"></a><span class="fu">plotBCV</span>(dge.list.obj, <span class="at">cex =</span> <span class="fl">0.8</span>)</span>
+<span id="cb35-61"><a href="#cb35-61"></a></span>
+<span id="cb35-62"><a href="#cb35-62"></a><span class="co"># plot var and mean</span></span>
+<span id="cb35-63"><a href="#cb35-63"></a><span class="fu">plotMeanVar</span>(dge.list.obj, <span class="at">show.raw=</span><span class="cn">TRUE</span>, <span class="at">show.tagwise=</span><span class="cn">TRUE</span>, <span class="at">show.binned=</span><span class="cn">TRUE</span>)</span>
+<span id="cb35-64"><a href="#cb35-64"></a></span>
+<span id="cb35-65"><a href="#cb35-65"></a><span class="co"># --------------------------------------------------------&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;</span></span>
+<span id="cb35-66"><a href="#cb35-66"></a><span class="co"># test with likelihood ratio test</span></span>
+<span id="cb35-67"><a href="#cb35-67"></a><span class="co"># --------------------------------------------------------&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;</span></span>
+<span id="cb35-68"><a href="#cb35-68"></a>dge.list.res <span class="ot">&lt;-</span> <span class="fu">exactTest</span>(dge.list.obj)</span>
+<span id="cb35-69"><a href="#cb35-69"></a>DEGs.res <span class="ot">&lt;-</span> <span class="fu">as.data.frame</span>(<span class="fu">topTags</span>(dge.list.res,<span class="at">n=</span><span class="fu">nrow</span>(count_df.filter),<span class="at">sort.by =</span> <span class="st">"logFC"</span>))</span>
+<span id="cb35-70"><a href="#cb35-70"></a></span>
+<span id="cb35-71"><a href="#cb35-71"></a><span class="co"># MA plot</span></span>
+<span id="cb35-72"><a href="#cb35-72"></a>select.sign.gene <span class="ot">=</span> <span class="fu">decideTestsDGE</span>(dge.list.res, <span class="at">p.value =</span> <span class="fl">0.001</span>) </span>
+<span id="cb35-73"><a href="#cb35-73"></a>select.sign.gene_id <span class="ot">=</span> <span class="fu">rownames</span>(dge.list.res)[<span class="fu">as.logical</span>(select.sign.gene)]</span>
+<span id="cb35-74"><a href="#cb35-74"></a><span class="fu">plotSmear</span>(dge.list.res, <span class="at">de.tags =</span> select.sign.gene_id, <span class="at">cex =</span> <span class="fl">0.5</span>,<span class="at">ylim=</span><span class="fu">c</span>(<span class="sc">-</span><span class="dv">4</span>,<span class="dv">4</span>)) </span>
+<span id="cb35-75"><a href="#cb35-75"></a><span class="fu">abline</span>(<span class="at">h =</span> <span class="fu">c</span>(<span class="sc">-</span><span class="dv">2</span>, <span class="dv">2</span>), <span class="at">col =</span> <span class="st">"blue"</span>)</span>
+<span id="cb35-76"><a href="#cb35-76"></a></span>
+<span id="cb35-77"><a href="#cb35-77"></a><span class="co"># --------------------------------------------------------&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;</span></span>
+<span id="cb35-78"><a href="#cb35-78"></a><span class="co"># test with likelihood ratio test</span></span>
+<span id="cb35-79"><a href="#cb35-79"></a><span class="co"># --------------------------------------------------------&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;</span></span>
+<span id="cb35-80"><a href="#cb35-80"></a>fit <span class="ot">&lt;-</span> <span class="fu">glmFit</span>(dge.list.obj, design.mat)</span>
+<span id="cb35-81"><a href="#cb35-81"></a>lrt <span class="ot">&lt;-</span> <span class="fu">glmLRT</span>(fit, <span class="at">coef=</span><span class="dv">2</span>)</span>
+<span id="cb35-82"><a href="#cb35-82"></a>DEGs.res.lrt <span class="ot">&lt;-</span> <span class="fu">as.data.frame</span>(<span class="fu">topTags</span>(lrt,<span class="at">n=</span><span class="fu">nrow</span>(count_df.filter),<span class="at">sort.by =</span> <span class="st">"logFC"</span>))</span></code></pre></div><button title="复制到剪贴板" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="book-placeholder">
+<p>本节内容待补充。</p>
 </div>
 </section>
 </section>
@@ -1111,48 +1116,60 @@ $htseq-count -f sam -r name -s no -a 10 -t exon -i gene_id -m intercextion-stric
 <section id="sec-05-07" class="level2" data-number="5.7">
 <h2 data-number="5.7" class="anchored" data-anchor-id="sec-05-07"><span class="header-section-number">5.7</span> 功能富集与结果展示</h2>
 <p>把差异结果转化为有边界的生物学解释。</p>
-<section id="src-0050-RNA-seq-376" class="level4">
-<h4 class="anchored" data-anchor-id="src-0050-RNA-seq-376">基因注释</h4>
+<section id="src-0050-RNA-seq-376" class="level3">
+<h3 class="anchored" data-anchor-id="src-0050-RNA-seq-376">基因注释</h3>
 <p>GO数据库 (Gene Ontology, 基因本体论)是关于基因和蛋白质知识的标准词汇，对基因进行了三个维度的注释生物学过程 (Biological Process, BP)、分子功能 (Molecular Function, MF)和细胞成分(Cellular Component,CC),是所有基因的共有属性的描述。GO富集分析是常用的分析方法，它主要是给定一 个筛选后的gene集，对其进行功能注释，随后通过Fisher exact test或者Chi-Square test进行富集分析检验。</p>
 <p>（有向无环图）</p>
 <p>KEGG数据库是对基因进行信号通路、代谢等过程注释的数据库。</p>
 <p>（代谢通路图）</p>
+<div class="book-core callout callout-style-default callout-note callout-titled" title="核心知识｜功能注释与富集分析">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">注记</span>核心知识｜功能注释与富集分析
+</div>
+</div>
+<div class="callout-body-container callout-body">
 <p>在上一步的RNA-seq分析中获得了差异表达基因。要了解差异表达基因的功能，一般会对基因进行GO和KEGG pathway注释。很多情况下，研究者希望得到的信息是一群基因主要集中在了那些功能上，则需要对基因集进行GO和KEGG pathway的富集注释。例如在某些胁迫活着药物处理下，引起了机体内大量基因的表达变化，KEGG pathway富集分析可以提示这种处理下，有哪些通路发生了大量的表达基因表达变化。所以基因注释和富集分析是不一样的，注释解释的是单个基因有哪些功能、参与了哪些通路，而富集分析研究某一基因集在某一通路或者其他注释信息（BP，MF，CC）中是否富集。气泡图是在富集分析中常用的图：</p>
+</div>
+</div>
 <p>（气泡图）</p>
 <p>R语言clusterProfiler包和在线软件DAVID注释网站都是常用的基因注释和富集分析工具。其中clusterProfiler工具包是由南方医科大学的余光创老师用心打造的一个工具包。该工具包已经成功运行若干年，更新及时，与时俱进，深受业内好评，可以作为富集分析的一个重要工具进行使用。</p>
 </section>
-<section id="src-0050-RNA-seq-930" class="level4">
-<h4 class="anchored" data-anchor-id="src-0050-RNA-seq-930">火山图与聚类图绘制</h4>
-<section id="src-0050-RNA-seq-932" class="level5">
-<h5 class="anchored" data-anchor-id="src-0050-RNA-seq-932">火山图</h5>
+<section id="src-0050-RNA-seq-930" class="level3">
+<h3 class="anchored" data-anchor-id="src-0050-RNA-seq-930">火山图与聚类图绘制</h3>
+<section id="src-0050-RNA-seq-932" class="level4">
+<h4 class="anchored" data-anchor-id="src-0050-RNA-seq-932">火山图</h4>
 <p>使用R语言ggplot2包绘制火山图</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb41"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb41-1"><a href="#cb41-1" aria-hidden="true" tabindex="-1"></a><span class="fu">require</span>(ggplot2)</span>
-<span id="cb41-2"><a href="#cb41-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb41-3"><a href="#cb41-3" aria-hidden="true" tabindex="-1"></a><span class="fu">bmp</span>(<span class="at">filename=</span><span class="st">"M3 volcan plot.bmp"</span>,<span class="at">width =</span> <span class="dv">400</span>,<span class="at">height =</span> <span class="dv">300</span>)</span>
-<span id="cb41-4"><a href="#cb41-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb41-5"><a href="#cb41-5" aria-hidden="true" tabindex="-1"></a><span class="do">##Highlight genes that have an absolute fold change &gt; 2 and a p-value &lt; Bonferroni cut-off</span></span>
-<span id="cb41-6"><a href="#cb41-6" aria-hidden="true" tabindex="-1"></a>a <span class="ot">&lt;-</span> <span class="fu">read.table</span>(<span class="st">"M3-vol.txt"</span>,<span class="at">header=</span>T,<span class="at">sep=</span><span class="st">"</span><span class="sc">\t</span><span class="st">"</span>)</span>
-<span id="cb41-7"><a href="#cb41-7" aria-hidden="true" tabindex="-1"></a>P.Value <span class="ot">&lt;-</span> <span class="fu">c</span>(a<span class="sc">$</span>pvalue)</span>
-<span id="cb41-8"><a href="#cb41-8" aria-hidden="true" tabindex="-1"></a>FC <span class="ot">&lt;-</span> <span class="fu">c</span>(a<span class="sc">$</span>log2)</span>
-<span id="cb41-9"><a href="#cb41-9" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(P.Value, FC)</span>
-<span id="cb41-10"><a href="#cb41-10" aria-hidden="true" tabindex="-1"></a> </span>
-<span id="cb41-11"><a href="#cb41-11" aria-hidden="true" tabindex="-1"></a>df<span class="sc">$</span>threshold <span class="ot">=</span> <span class="fu">as.factor</span>(<span class="fu">abs</span>(df<span class="sc">$</span>FC) <span class="sc">&gt;</span> <span class="dv">1</span> <span class="sc">&amp;</span> df<span class="sc">$</span>P.Value <span class="sc">&lt;</span> <span class="fl">0.05</span>)</span>
-<span id="cb41-12"><a href="#cb41-12" aria-hidden="true" tabindex="-1"></a><span class="co">#df$color_flag &lt;- ifelse(df$FC &gt; 1, ifelse(df$FC &lt; -0.5))</span></span>
-<span id="cb41-13"><a href="#cb41-13" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb41-14"><a href="#cb41-14" aria-hidden="true" tabindex="-1"></a><span class="do">##Construct the plot object</span></span>
-<span id="cb41-15"><a href="#cb41-15" aria-hidden="true" tabindex="-1"></a>g <span class="ot">=</span> <span class="fu">ggplot</span>(<span class="at">data=</span>df, <span class="fu">aes</span>(<span class="at">x=</span>FC, <span class="at">y=</span><span class="sc">-</span><span class="fu">log10</span>(P.Value), <span class="at">colour=</span>threshold)) <span class="sc">+</span></span>
-<span id="cb41-16"><a href="#cb41-16" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb41-17"><a href="#cb41-17" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">alpha=</span><span class="fl">0.4</span>, <span class="at">size=</span><span class="fl">1.75</span>) <span class="sc">+</span></span>
-<span id="cb41-18"><a href="#cb41-18" aria-hidden="true" tabindex="-1"></a>  <span class="fu">xlim</span>(<span class="fu">c</span>(<span class="sc">-</span><span class="dv">20</span>, <span class="dv">20</span>)) <span class="sc">+</span> <span class="fu">ylim</span>(<span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">5</span>)) <span class="sc">+</span></span>
-<span id="cb41-19"><a href="#cb41-19" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_set</span>(<span class="fu">theme_bw</span>())<span class="sc">+</span></span>
-<span id="cb41-20"><a href="#cb41-20" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">panel.grid.major=</span><span class="fu">element_line</span>(<span class="at">colour=</span><span class="cn">NA</span>))<span class="sc">+</span></span>
-<span id="cb41-21"><a href="#cb41-21" aria-hidden="true" tabindex="-1"></a>  <span class="fu">xlab</span>(<span class="st">"log2 fold change"</span>) <span class="sc">+</span> <span class="fu">ylab</span>(<span class="st">"-log10 p-value"</span>)</span>
-<span id="cb41-22"><a href="#cb41-22" aria-hidden="true" tabindex="-1"></a>g</span>
-<span id="cb41-23"><a href="#cb41-23" aria-hidden="true" tabindex="-1"></a><span class="fu">dev.off</span>()</span>
-<span id="cb41-24"><a href="#cb41-24" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb41-25"><a href="#cb41-25" aria-hidden="true" tabindex="-1"></a><span class="fu">rm</span>(<span class="at">list=</span><span class="fu">ls</span>())</span></code></pre></div><button title="复制到剪贴板" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb36" data-book-role="code" data-focus-lines="11,15"><pre data-code-text="&quot;require(ggplot2)\n\nbmp(filename=\&quot;M3 volcan plot.bmp\&quot;,width = 400,height = 300)\n\n##Highlight genes that have an absolute fold change &gt; 2 and a p-value &lt; Bonferroni cut-off\na &lt;- read.table(\&quot;M3-vol.txt\&quot;,header=T,sep=\&quot;\\t\&quot;)\nP.Value &lt;- c(a$pvalue)\nFC &lt;- c(a$log2)\ndf &lt;- data.frame(P.Value, FC)\n \ndf$threshold = as.factor(abs(df$FC) &gt; 1 &amp; df$P.Value &lt; 0.05)\n#df$color_flag &lt;- ifelse(df$FC &gt; 1, ifelse(df$FC &lt; -0.5))\n\n##Construct the plot object\ng = ggplot(data=df, aes(x=FC, y=-log10(P.Value), colour=threshold)) +\n  \n  geom_point(alpha=0.4, size=1.75) +\n  xlim(c(-20, 20)) + ylim(c(0, 5)) +\n  theme_set(theme_bw())+\n  theme(panel.grid.major=element_line(colour=NA))+\n  xlab(\&quot;log2 fold change\&quot;) + ylab(\&quot;-log10 p-value\&quot;)\ng\ndev.off()\n\nrm(list=ls())&quot;" class="sourceCode numberSource r numberLines code-with-copy"><code class="sourceCode r"><span id="cb36-1"><a href="#cb36-1"></a><span class="fu">require</span>(ggplot2)</span>
+<span id="cb36-2"><a href="#cb36-2"></a></span>
+<span id="cb36-3"><a href="#cb36-3"></a><span class="fu">bmp</span>(<span class="at">filename=</span><span class="st">"M3 volcan plot.bmp"</span>,<span class="at">width =</span> <span class="dv">400</span>,<span class="at">height =</span> <span class="dv">300</span>)</span>
+<span id="cb36-4"><a href="#cb36-4"></a></span>
+<span id="cb36-5"><a href="#cb36-5"></a><span class="do">##Highlight genes that have an absolute fold change &gt; 2 and a p-value &lt; Bonferroni cut-off</span></span>
+<span id="cb36-6"><a href="#cb36-6"></a>a <span class="ot">&lt;-</span> <span class="fu">read.table</span>(<span class="st">"M3-vol.txt"</span>,<span class="at">header=</span>T,<span class="at">sep=</span><span class="st">"</span><span class="sc">\t</span><span class="st">"</span>)</span>
+<span id="cb36-7"><a href="#cb36-7"></a>P.Value <span class="ot">&lt;-</span> <span class="fu">c</span>(a<span class="sc">$</span>pvalue)</span>
+<span id="cb36-8"><a href="#cb36-8"></a>FC <span class="ot">&lt;-</span> <span class="fu">c</span>(a<span class="sc">$</span>log2)</span>
+<span id="cb36-9"><a href="#cb36-9"></a>df <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(P.Value, FC)</span>
+<span id="cb36-10"><a href="#cb36-10"></a> </span>
+<span id="cb36-11"><a href="#cb36-11"></a>df<span class="sc">$</span>threshold <span class="ot">=</span> <span class="fu">as.factor</span>(<span class="fu">abs</span>(df<span class="sc">$</span>FC) <span class="sc">&gt;</span> <span class="dv">1</span> <span class="sc">&amp;</span> df<span class="sc">$</span>P.Value <span class="sc">&lt;</span> <span class="fl">0.05</span>)</span>
+<span id="cb36-12"><a href="#cb36-12"></a><span class="co">#df$color_flag &lt;- ifelse(df$FC &gt; 1, ifelse(df$FC &lt; -0.5))</span></span>
+<span id="cb36-13"><a href="#cb36-13"></a></span>
+<span id="cb36-14"><a href="#cb36-14"></a><span class="do">##Construct the plot object</span></span>
+<span id="cb36-15"><a href="#cb36-15"></a>g <span class="ot">=</span> <span class="fu">ggplot</span>(<span class="at">data=</span>df, <span class="fu">aes</span>(<span class="at">x=</span>FC, <span class="at">y=</span><span class="sc">-</span><span class="fu">log10</span>(P.Value), <span class="at">colour=</span>threshold)) <span class="sc">+</span></span>
+<span id="cb36-16"><a href="#cb36-16"></a>  </span>
+<span id="cb36-17"><a href="#cb36-17"></a>  <span class="fu">geom_point</span>(<span class="at">alpha=</span><span class="fl">0.4</span>, <span class="at">size=</span><span class="fl">1.75</span>) <span class="sc">+</span></span>
+<span id="cb36-18"><a href="#cb36-18"></a>  <span class="fu">xlim</span>(<span class="fu">c</span>(<span class="sc">-</span><span class="dv">20</span>, <span class="dv">20</span>)) <span class="sc">+</span> <span class="fu">ylim</span>(<span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">5</span>)) <span class="sc">+</span></span>
+<span id="cb36-19"><a href="#cb36-19"></a>  <span class="fu">theme_set</span>(<span class="fu">theme_bw</span>())<span class="sc">+</span></span>
+<span id="cb36-20"><a href="#cb36-20"></a>  <span class="fu">theme</span>(<span class="at">panel.grid.major=</span><span class="fu">element_line</span>(<span class="at">colour=</span><span class="cn">NA</span>))<span class="sc">+</span></span>
+<span id="cb36-21"><a href="#cb36-21"></a>  <span class="fu">xlab</span>(<span class="st">"log2 fold change"</span>) <span class="sc">+</span> <span class="fu">ylab</span>(<span class="st">"-log10 p-value"</span>)</span>
+<span id="cb36-22"><a href="#cb36-22"></a>g</span>
+<span id="cb36-23"><a href="#cb36-23"></a><span class="fu">dev.off</span>()</span>
+<span id="cb36-24"><a href="#cb36-24"></a></span>
+<span id="cb36-25"><a href="#cb36-25"></a><span class="fu">rm</span>(<span class="at">list=</span><span class="fu">ls</span>())</span></code></pre></div><button title="复制到剪贴板" class="code-copy-button"><i class="bi"></i></button></div>
 <p>输入文件格式为：</p>
-<pre><code>log2    pvalue
+<pre data-code-text="&quot;log2\tpvalue\n2.04705\t5.00E-05\n1.17727\t2.25E-03\n2.08625\t3.11E-02\n1.66692\t3.58E-02\n-1.72558\t4.24E-02\n2.44106\t4.26E-02\n...`...\n... ...\n... ...&quot;" class="text" data-book-role="data"><code>log2    pvalue
 2.04705 5.00E-05
 1.17727 2.25E-03
 2.08625 3.11E-02
@@ -1163,25 +1180,24 @@ $htseq-count -f sam -r name -s no -a 10 -t exon -i gene_id -m intercextion-stric
 ... ...
 ... ...</code></pre>
 </section>
-<section id="src-0050-RNA-seq-979" class="level5">
-<h5 class="anchored" data-anchor-id="src-0050-RNA-seq-979">聚类图</h5>
+<section id="src-0050-RNA-seq-979" class="level4">
+<h4 class="anchored" data-anchor-id="src-0050-RNA-seq-979">聚类图</h4>
 <p>使用R语言gplots包绘制火山图</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb43"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb43-1"><a href="#cb43-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(<span class="st">"gplots"</span>)</span>
-<span id="cb43-2"><a href="#cb43-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb43-3"><a href="#cb43-3" aria-hidden="true" tabindex="-1"></a>est <span class="ot">&lt;-</span> <span class="fu">read.table</span>(<span class="at">file =</span> <span class="st">"DEgene.txt"</span>, <span class="at">header =</span> T, <span class="at">row.names=</span><span class="dv">1</span>)</span>
-<span id="cb43-4"><a href="#cb43-4" aria-hidden="true" tabindex="-1"></a><span class="fu">tiff</span>(<span class="st">"DEgene.tiff"</span>, <span class="at">width =</span> <span class="dv">1000</span>, <span class="at">height =</span> <span class="dv">1000</span>, <span class="at">units =</span> <span class="st">"px"</span>, <span class="at">res=</span><span class="dv">80</span>)</span>
-<span id="cb43-5"><a href="#cb43-5" aria-hidden="true" tabindex="-1"></a><span class="fu">heatmap.2</span>(<span class="fu">as.matrix</span>(est),  <span class="at">margins =</span> <span class="fu">c</span>(<span class="dv">13</span>, <span class="dv">13</span>),<span class="at">col=</span><span class="fu">redgreen</span>(<span class="dv">100</span>), <span class="at">scale =</span> <span class="st">"row"</span>, <span class="at">dendrogram =</span> <span class="st">"column"</span>,</span>
-<span id="cb43-6"><a href="#cb43-6" aria-hidden="true" tabindex="-1"></a>         <span class="at">key =</span> T, <span class="at">keysize=</span><span class="fl">0.8</span>, <span class="at">symkey =</span> T, <span class="at">density.info =</span> <span class="st">"none"</span>, <span class="at">trace =</span> <span class="st">"none"</span>)</span>
-<span id="cb43-7"><a href="#cb43-7" aria-hidden="true" tabindex="-1"></a><span class="fu">dev.off</span>()</span>
-<span id="cb43-8"><a href="#cb43-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb43-9"><a href="#cb43-9" aria-hidden="true" tabindex="-1"></a>est <span class="ot">&lt;-</span> <span class="fu">read.table</span>(<span class="at">file =</span> <span class="st">"heatmap.txt"</span>, <span class="at">header =</span> T, <span class="at">row.names=</span><span class="dv">1</span>)</span>
-<span id="cb43-10"><a href="#cb43-10" aria-hidden="true" tabindex="-1"></a><span class="fu">svg</span>(<span class="at">file=</span><span class="st">"e3.svg"</span>, <span class="at">width =</span> <span class="dv">100</span>, <span class="at">height =</span> <span class="dv">100</span>)</span>
-<span id="cb43-11"><a href="#cb43-11" aria-hidden="true" tabindex="-1"></a><span class="fu">heatmap.2</span>(<span class="fu">as.matrix</span>(est),  <span class="at">margins =</span> <span class="fu">c</span>(<span class="dv">13</span>, <span class="dv">13</span>),<span class="at">col=</span><span class="fu">redgreen</span>(<span class="dv">100</span>), <span class="at">scale =</span> <span class="st">"row"</span>, <span class="at">dendrogram =</span> <span class="st">"column"</span>,</span>
-<span id="cb43-12"><a href="#cb43-12" aria-hidden="true" tabindex="-1"></a>          <span class="at">key =</span> T, <span class="at">keysize=</span><span class="fl">0.8</span>, <span class="at">symkey =</span> T, <span class="at">density.info =</span> <span class="st">"none"</span>, <span class="at">trace =</span> <span class="st">"none"</span>)</span>
-<span id="cb43-13"><a href="#cb43-13" aria-hidden="true" tabindex="-1"></a><span class="fu">dev.off</span>()</span>
-<span id="cb43-14"><a href="#cb43-14" aria-hidden="true" tabindex="-1"></a></span></code></pre></div><button title="复制到剪贴板" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb38" data-book-role="code" data-focus-lines="5"><pre data-code-text="&quot;library(\&quot;gplots\&quot;)\n\nest &lt;- read.table(file = \&quot;DEgene.txt\&quot;, header = T, row.names=1)\ntiff(\&quot;DEgene.tiff\&quot;, width = 1000, height = 1000, units = \&quot;px\&quot;, res=80)\nheatmap.2(as.matrix(est),  margins = c(13, 13),col=redgreen(100), scale = \&quot;row\&quot;, dendrogram = \&quot;column\&quot;,\n         key = T, keysize=0.8, symkey = T, density.info = \&quot;none\&quot;, trace = \&quot;none\&quot;)\ndev.off()\n\nest &lt;- read.table(file = \&quot;heatmap.txt\&quot;, header = T, row.names=1)\nsvg(file=\&quot;e3.svg\&quot;, width = 100, height = 100)\nheatmap.2(as.matrix(est),  margins = c(13, 13),col=redgreen(100), scale = \&quot;row\&quot;, dendrogram = \&quot;column\&quot;,\n          key = T, keysize=0.8, symkey = T, density.info = \&quot;none\&quot;, trace = \&quot;none\&quot;)\ndev.off()&quot;" class="sourceCode numberSource r numberLines code-with-copy"><code class="sourceCode r"><span id="cb38-1"><a href="#cb38-1"></a><span class="fu">library</span>(<span class="st">"gplots"</span>)</span>
+<span id="cb38-2"><a href="#cb38-2"></a></span>
+<span id="cb38-3"><a href="#cb38-3"></a>est <span class="ot">&lt;-</span> <span class="fu">read.table</span>(<span class="at">file =</span> <span class="st">"DEgene.txt"</span>, <span class="at">header =</span> T, <span class="at">row.names=</span><span class="dv">1</span>)</span>
+<span id="cb38-4"><a href="#cb38-4"></a><span class="fu">tiff</span>(<span class="st">"DEgene.tiff"</span>, <span class="at">width =</span> <span class="dv">1000</span>, <span class="at">height =</span> <span class="dv">1000</span>, <span class="at">units =</span> <span class="st">"px"</span>, <span class="at">res=</span><span class="dv">80</span>)</span>
+<span id="cb38-5"><a href="#cb38-5"></a><span class="fu">heatmap.2</span>(<span class="fu">as.matrix</span>(est),  <span class="at">margins =</span> <span class="fu">c</span>(<span class="dv">13</span>, <span class="dv">13</span>),<span class="at">col=</span><span class="fu">redgreen</span>(<span class="dv">100</span>), <span class="at">scale =</span> <span class="st">"row"</span>, <span class="at">dendrogram =</span> <span class="st">"column"</span>,</span>
+<span id="cb38-6"><a href="#cb38-6"></a>         <span class="at">key =</span> T, <span class="at">keysize=</span><span class="fl">0.8</span>, <span class="at">symkey =</span> T, <span class="at">density.info =</span> <span class="st">"none"</span>, <span class="at">trace =</span> <span class="st">"none"</span>)</span>
+<span id="cb38-7"><a href="#cb38-7"></a><span class="fu">dev.off</span>()</span>
+<span id="cb38-8"><a href="#cb38-8"></a></span>
+<span id="cb38-9"><a href="#cb38-9"></a>est <span class="ot">&lt;-</span> <span class="fu">read.table</span>(<span class="at">file =</span> <span class="st">"heatmap.txt"</span>, <span class="at">header =</span> T, <span class="at">row.names=</span><span class="dv">1</span>)</span>
+<span id="cb38-10"><a href="#cb38-10"></a><span class="fu">svg</span>(<span class="at">file=</span><span class="st">"e3.svg"</span>, <span class="at">width =</span> <span class="dv">100</span>, <span class="at">height =</span> <span class="dv">100</span>)</span>
+<span id="cb38-11"><a href="#cb38-11"></a><span class="fu">heatmap.2</span>(<span class="fu">as.matrix</span>(est),  <span class="at">margins =</span> <span class="fu">c</span>(<span class="dv">13</span>, <span class="dv">13</span>),<span class="at">col=</span><span class="fu">redgreen</span>(<span class="dv">100</span>), <span class="at">scale =</span> <span class="st">"row"</span>, <span class="at">dendrogram =</span> <span class="st">"column"</span>,</span>
+<span id="cb38-12"><a href="#cb38-12"></a>          <span class="at">key =</span> T, <span class="at">keysize=</span><span class="fl">0.8</span>, <span class="at">symkey =</span> T, <span class="at">density.info =</span> <span class="st">"none"</span>, <span class="at">trace =</span> <span class="st">"none"</span>)</span>
+<span id="cb38-13"><a href="#cb38-13"></a><span class="fu">dev.off</span>()</span></code></pre></div><button title="复制到剪贴板" class="code-copy-button"><i class="bi"></i></button></div>
 <p>输入文件格式为：</p>
-<pre><code>hsa-miR-6087    4.835286667 2.680141333
+<pre data-code-text="&quot;hsa-miR-6087\t4.835286667\t2.680141333\nhsa-miR-663a\t5.537003333\t3.407306667\nhsa-miR-6821-5p\t3.699006667\t2.02985\nhsa-miR-1469\t6.229766667\t4.79053\nhsa-miR-3665\t4.710016667\t3.276396667\nhsa-miR-2861\t4.070266667\t2.670983333\nhsa-miR-4466\t3.904726667\t2.54759\nhsa-miR-1915-3p\t3.367876667\t2.018898\nhsa-miR-6090\t5.80658\t4.459086667\n...\t...\t...\n...\t...\t...\n...\t...\t...&quot;" class="text" data-book-role="data"><code>hsa-miR-6087    4.835286667 2.680141333
 hsa-miR-663a    5.537003333 3.407306667
 hsa-miR-6821-5p 3.699006667 2.02985
 hsa-miR-1469    6.229766667 4.79053
@@ -1194,117 +1210,103 @@ hsa-miR-6090    5.80658 4.459086667
 ... ... ...
 ... ... ...</code></pre>
 </section>
-<section id="src-0050-RNA-seq-1018" class="level5">
-<h5 class="anchored" data-anchor-id="src-0050-RNA-seq-1018">GO注释</h5>
+<section id="src-0050-RNA-seq-1018" class="level4">
+<h4 class="anchored" data-anchor-id="src-0050-RNA-seq-1018">GO注释</h4>
 <p>使用R语言clusterProfiler包进行GO注释:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb45"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb45-1"><a href="#cb45-1" aria-hidden="true" tabindex="-1"></a><span class="co"># ----------------------------------------------------------------------&gt;&gt;&gt;&gt;&gt;&gt;&gt;</span></span>
-<span id="cb45-2"><a href="#cb45-2" aria-hidden="true" tabindex="-1"></a><span class="co"># GO analysis</span></span>
-<span id="cb45-3"><a href="#cb45-3" aria-hidden="true" tabindex="-1"></a><span class="co"># ----------------------------------------------------------------------&gt;&gt;&gt;&gt;&gt;&gt;&gt;</span></span>
-<span id="cb45-4"><a href="#cb45-4" aria-hidden="true" tabindex="-1"></a><span class="fu">rm</span>(<span class="at">list=</span><span class="fu">ls</span>())</span>
-<span id="cb45-5"><a href="#cb45-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb45-6"><a href="#cb45-6" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(clusterProfiler)</span>
-<span id="cb45-7"><a href="#cb45-7" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
-<span id="cb45-8"><a href="#cb45-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb45-9"><a href="#cb45-9" aria-hidden="true" tabindex="-1"></a><span class="co"># laod table </span></span>
-<span id="cb45-10"><a href="#cb45-10" aria-hidden="true" tabindex="-1"></a>cuffdiff_res <span class="ot">&lt;-</span> <span class="fu">read_tsv</span>(<span class="st">"./03.code_and_data/cuffdiff_result/gene_exp.diff"</span>)</span>
-<span id="cb45-11"><a href="#cb45-11" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb45-12"><a href="#cb45-12" aria-hidden="true" tabindex="-1"></a><span class="co"># rename colname</span></span>
-<span id="cb45-13"><a href="#cb45-13" aria-hidden="true" tabindex="-1"></a><span class="fu">colnames</span>(cuffdiff_res)</span>
-<span id="cb45-14"><a href="#cb45-14" aria-hidden="true" tabindex="-1"></a><span class="fu">colnames</span>(cuffdiff_res)[<span class="dv">10</span>] <span class="ot">=</span> <span class="st">"log2FC"</span></span>
-<span id="cb45-15"><a href="#cb45-15" aria-hidden="true" tabindex="-1"></a><span class="fu">colnames</span>(cuffdiff_res)</span>
-<span id="cb45-16"><a href="#cb45-16" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb45-17"><a href="#cb45-17" aria-hidden="true" tabindex="-1"></a><span class="co"># filter </span></span>
-<span id="cb45-18"><a href="#cb45-18" aria-hidden="true" tabindex="-1"></a>cuffdiff_res.filter <span class="ot">&lt;-</span> <span class="fu">filter</span>(cuffdiff_res, status <span class="sc">==</span> <span class="st">"OK"</span>)</span>
-<span id="cb45-19"><a href="#cb45-19" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb45-20"><a href="#cb45-20" aria-hidden="true" tabindex="-1"></a><span class="co"># real sign</span></span>
-<span id="cb45-21"><a href="#cb45-21" aria-hidden="true" tabindex="-1"></a>real_sign <span class="ot">=</span> <span class="fu">rep</span>(<span class="st">"no"</span>,<span class="fu">nrow</span>(cuffdiff_res.filter))</span>
-<span id="cb45-22"><a href="#cb45-22" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb45-23"><a href="#cb45-23" aria-hidden="true" tabindex="-1"></a>select.FPKM <span class="ot">&lt;-</span> (cuffdiff_res.filter<span class="sc">$</span>value_1 <span class="sc">&gt;</span> <span class="dv">1</span> <span class="sc">|</span> cuffdiff_res.filter<span class="sc">$</span>value_2 <span class="sc">&gt;</span> <span class="dv">1</span>)</span>
-<span id="cb45-24"><a href="#cb45-24" aria-hidden="true" tabindex="-1"></a><span class="fu">table</span>(select.FPKM)</span>
-<span id="cb45-25"><a href="#cb45-25" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb45-26"><a href="#cb45-26" aria-hidden="true" tabindex="-1"></a>select.log2FC <span class="ot">&lt;-</span> <span class="fu">abs</span>(cuffdiff_res.filter<span class="sc">$</span>log2FC) <span class="sc">&gt;</span> <span class="dv">1</span></span>
-<span id="cb45-27"><a href="#cb45-27" aria-hidden="true" tabindex="-1"></a><span class="fu">table</span>(select.log2FC)</span>
-<span id="cb45-28"><a href="#cb45-28" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb45-29"><a href="#cb45-29" aria-hidden="true" tabindex="-1"></a>select.qval <span class="ot">&lt;-</span> (cuffdiff_res.filter<span class="sc">$</span>q_value <span class="sc">&lt;</span> <span class="fl">0.05</span>)</span>
-<span id="cb45-30"><a href="#cb45-30" aria-hidden="true" tabindex="-1"></a><span class="fu">table</span>(select.qval)</span>
-<span id="cb45-31"><a href="#cb45-31" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb45-32"><a href="#cb45-32" aria-hidden="true" tabindex="-1"></a>real_sign[select.FPKM <span class="sc">&amp;</span> select.log2FC <span class="sc">&amp;</span> select.qval] <span class="ot">&lt;-</span> <span class="st">"yes"</span></span>
-<span id="cb45-33"><a href="#cb45-33" aria-hidden="true" tabindex="-1"></a><span class="fu">table</span>(real_sign)</span>
-<span id="cb45-34"><a href="#cb45-34" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb45-35"><a href="#cb45-35" aria-hidden="true" tabindex="-1"></a><span class="co"># select sign DEGs</span></span>
-<span id="cb45-36"><a href="#cb45-36" aria-hidden="true" tabindex="-1"></a>cuffdiff_res.filter.DEG <span class="ot">&lt;-</span> cuffdiff_res.filter[select.FPKM <span class="sc">&amp;</span> select.log2FC <span class="sc">&amp;</span> select.qval,]</span>
-<span id="cb45-37"><a href="#cb45-37" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb45-38"><a href="#cb45-38" aria-hidden="true" tabindex="-1"></a><span class="co"># load annotation file</span></span>
-<span id="cb45-39"><a href="#cb45-39" aria-hidden="true" tabindex="-1"></a><span class="co"># BiocManager::install("org.Hs.eg.db")</span></span>
-<span id="cb45-40"><a href="#cb45-40" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(org.Hs.eg.db)</span>
-<span id="cb45-41"><a href="#cb45-41" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb45-42"><a href="#cb45-42" aria-hidden="true" tabindex="-1"></a><span class="co"># GO </span></span>
-<span id="cb45-43"><a href="#cb45-43" aria-hidden="true" tabindex="-1"></a>DEG.gene_symbol <span class="ot">=</span> <span class="fu">as.character</span>(cuffdiff_res.filter.DEG<span class="sc">$</span>gene_id)</span>
-<span id="cb45-44"><a href="#cb45-44" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb45-45"><a href="#cb45-45" aria-hidden="true" tabindex="-1"></a>erich.go.BP <span class="ot">=</span> <span class="fu">enrichGO</span>(<span class="at">gene =</span> DEG.gene_symbol,</span>
-<span id="cb45-46"><a href="#cb45-46" aria-hidden="true" tabindex="-1"></a>                       <span class="at">OrgDb =</span> org.Hs.eg.db,</span>
-<span id="cb45-47"><a href="#cb45-47" aria-hidden="true" tabindex="-1"></a>                       <span class="at">keyType =</span> <span class="st">"SYMBOL"</span>,</span>
-<span id="cb45-48"><a href="#cb45-48" aria-hidden="true" tabindex="-1"></a>                       <span class="at">ont =</span> <span class="st">"BP"</span>,</span>
-<span id="cb45-49"><a href="#cb45-49" aria-hidden="true" tabindex="-1"></a>                       <span class="at">pvalueCutoff =</span> <span class="fl">0.5</span>,</span>
-<span id="cb45-50"><a href="#cb45-50" aria-hidden="true" tabindex="-1"></a>                       <span class="at">qvalueCutoff =</span> <span class="fl">0.5</span>)</span>
-<span id="cb45-51"><a href="#cb45-51" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb45-52"><a href="#cb45-52" aria-hidden="true" tabindex="-1"></a>erich.go.CC <span class="ot">=</span> <span class="fu">enrichGO</span>(<span class="at">gene =</span> DEG.gene_symbol,</span>
-<span id="cb45-53"><a href="#cb45-53" aria-hidden="true" tabindex="-1"></a>                       <span class="at">OrgDb =</span> org.Hs.eg.db,</span>
-<span id="cb45-54"><a href="#cb45-54" aria-hidden="true" tabindex="-1"></a>                       <span class="at">keyType =</span> <span class="st">"SYMBOL"</span>,</span>
-<span id="cb45-55"><a href="#cb45-55" aria-hidden="true" tabindex="-1"></a>                       <span class="at">ont =</span> <span class="st">"CC"</span>,</span>
-<span id="cb45-56"><a href="#cb45-56" aria-hidden="true" tabindex="-1"></a>                       <span class="at">pvalueCutoff =</span> <span class="fl">0.5</span>,</span>
-<span id="cb45-57"><a href="#cb45-57" aria-hidden="true" tabindex="-1"></a>                       <span class="at">qvalueCutoff =</span> <span class="fl">0.5</span>)</span>
-<span id="cb45-58"><a href="#cb45-58" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb45-59"><a href="#cb45-59" aria-hidden="true" tabindex="-1"></a>erich.go.MF <span class="ot">=</span> <span class="fu">enrichGO</span>(<span class="at">gene =</span> DEG.gene_symbol,</span>
-<span id="cb45-60"><a href="#cb45-60" aria-hidden="true" tabindex="-1"></a>                       <span class="at">OrgDb =</span> org.Hs.eg.db,</span>
-<span id="cb45-61"><a href="#cb45-61" aria-hidden="true" tabindex="-1"></a>                       <span class="at">keyType =</span> <span class="st">"SYMBOL"</span>,</span>
-<span id="cb45-62"><a href="#cb45-62" aria-hidden="true" tabindex="-1"></a>                       <span class="at">ont =</span> <span class="st">"MF"</span>,</span>
-<span id="cb45-63"><a href="#cb45-63" aria-hidden="true" tabindex="-1"></a>                       <span class="at">pvalueCutoff =</span> <span class="fl">0.5</span>,</span>
-<span id="cb45-64"><a href="#cb45-64" aria-hidden="true" tabindex="-1"></a>                       <span class="at">qvalueCutoff =</span> <span class="fl">0.5</span>)</span>
-<span id="cb45-65"><a href="#cb45-65" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb45-66"><a href="#cb45-66" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb45-67"><a href="#cb45-67" aria-hidden="true" tabindex="-1"></a><span class="fu">dotplot</span>(erich.go.CC)</span>
-<span id="cb45-68"><a href="#cb45-68" aria-hidden="true" tabindex="-1"></a><span class="fu">dotplot</span>(erich.go.BP)</span>
-<span id="cb45-69"><a href="#cb45-69" aria-hidden="true" tabindex="-1"></a><span class="fu">dotplot</span>(erich.go.MF)</span>
-<span id="cb45-70"><a href="#cb45-70" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb45-71"><a href="#cb45-71" aria-hidden="true" tabindex="-1"></a><span class="co"># save image to file</span></span>
-<span id="cb45-72"><a href="#cb45-72" aria-hidden="true" tabindex="-1"></a><span class="fu">pdf</span>(<span class="at">file=</span><span class="st">"./03.code_and_data/out_image/20200926-enrich.go.BP.Dotplot.pdf"</span>,<span class="at">width =</span> <span class="dv">10</span>,<span class="at">height =</span> <span class="dv">6</span>)</span>
-<span id="cb45-73"><a href="#cb45-73" aria-hidden="true" tabindex="-1"></a><span class="fu">dotplot</span>(erich.go.BP)</span>
-<span id="cb45-74"><a href="#cb45-74" aria-hidden="true" tabindex="-1"></a><span class="fu">dev.off</span>()</span></code></pre></div><button title="复制到剪贴板" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb40" data-book-role="code" data-focus-lines="36,45,72"><pre data-code-text="&quot;# ----------------------------------------------------------------------&gt;&gt;&gt;&gt;&gt;&gt;&gt;\n# GO analysis\n# ----------------------------------------------------------------------&gt;&gt;&gt;&gt;&gt;&gt;&gt;\nrm(list=ls())\n\nlibrary(clusterProfiler)\nlibrary(tidyverse)\n\n# laod table \ncuffdiff_res &lt;- read_tsv(\&quot;./03.code_and_data/cuffdiff_result/gene_exp.diff\&quot;)\n\n# rename colname\ncolnames(cuffdiff_res)\ncolnames(cuffdiff_res)[10] = \&quot;log2FC\&quot;\ncolnames(cuffdiff_res)\n\n# filter \ncuffdiff_res.filter &lt;- filter(cuffdiff_res, status == \&quot;OK\&quot;)\n\n# real sign\nreal_sign = rep(\&quot;no\&quot;,nrow(cuffdiff_res.filter))\n\nselect.FPKM &lt;- (cuffdiff_res.filter$value_1 &gt; 1 | cuffdiff_res.filter$value_2 &gt; 1)\ntable(select.FPKM)\n\nselect.log2FC &lt;- abs(cuffdiff_res.filter$log2FC) &gt; 1\ntable(select.log2FC)\n\nselect.qval &lt;- (cuffdiff_res.filter$q_value &lt; 0.05)\ntable(select.qval)\n\nreal_sign[select.FPKM &amp; select.log2FC &amp; select.qval] &lt;- \&quot;yes\&quot;\ntable(real_sign)\n\n# select sign DEGs\ncuffdiff_res.filter.DEG &lt;- cuffdiff_res.filter[select.FPKM &amp; select.log2FC &amp; select.qval,]\n\n# load annotation file\n# BiocManager::install(\&quot;org.Hs.eg.db\&quot;)\nlibrary(org.Hs.eg.db)\n\n# GO \nDEG.gene_symbol = as.character(cuffdiff_res.filter.DEG$gene_id)\n\nerich.go.BP = enrichGO(gene = DEG.gene_symbol,\n                       OrgDb = org.Hs.eg.db,\n                       keyType = \&quot;SYMBOL\&quot;,\n                       ont = \&quot;BP\&quot;,\n                       pvalueCutoff = 0.5,\n                       qvalueCutoff = 0.5)\n\nerich.go.CC = enrichGO(gene = DEG.gene_symbol,\n                       OrgDb = org.Hs.eg.db,\n                       keyType = \&quot;SYMBOL\&quot;,\n                       ont = \&quot;CC\&quot;,\n                       pvalueCutoff = 0.5,\n                       qvalueCutoff = 0.5)\n\nerich.go.MF = enrichGO(gene = DEG.gene_symbol,\n                       OrgDb = org.Hs.eg.db,\n                       keyType = \&quot;SYMBOL\&quot;,\n                       ont = \&quot;MF\&quot;,\n                       pvalueCutoff = 0.5,\n                       qvalueCutoff = 0.5)\n\n\ndotplot(erich.go.CC)\ndotplot(erich.go.BP)\ndotplot(erich.go.MF)\n\n# save image to file\npdf(file=\&quot;./03.code_and_data/out_image/20200926-enrich.go.BP.Dotplot.pdf\&quot;,width = 10,height = 6)\ndotplot(erich.go.BP)\ndev.off()&quot;" class="sourceCode numberSource r numberLines code-with-copy"><code class="sourceCode r"><span id="cb40-1"><a href="#cb40-1"></a><span class="co"># ----------------------------------------------------------------------&gt;&gt;&gt;&gt;&gt;&gt;&gt;</span></span>
+<span id="cb40-2"><a href="#cb40-2"></a><span class="co"># GO analysis</span></span>
+<span id="cb40-3"><a href="#cb40-3"></a><span class="co"># ----------------------------------------------------------------------&gt;&gt;&gt;&gt;&gt;&gt;&gt;</span></span>
+<span id="cb40-4"><a href="#cb40-4"></a><span class="fu">rm</span>(<span class="at">list=</span><span class="fu">ls</span>())</span>
+<span id="cb40-5"><a href="#cb40-5"></a></span>
+<span id="cb40-6"><a href="#cb40-6"></a><span class="fu">library</span>(clusterProfiler)</span>
+<span id="cb40-7"><a href="#cb40-7"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb40-8"><a href="#cb40-8"></a></span>
+<span id="cb40-9"><a href="#cb40-9"></a><span class="co"># laod table </span></span>
+<span id="cb40-10"><a href="#cb40-10"></a>cuffdiff_res <span class="ot">&lt;-</span> <span class="fu">read_tsv</span>(<span class="st">"./03.code_and_data/cuffdiff_result/gene_exp.diff"</span>)</span>
+<span id="cb40-11"><a href="#cb40-11"></a></span>
+<span id="cb40-12"><a href="#cb40-12"></a><span class="co"># rename colname</span></span>
+<span id="cb40-13"><a href="#cb40-13"></a><span class="fu">colnames</span>(cuffdiff_res)</span>
+<span id="cb40-14"><a href="#cb40-14"></a><span class="fu">colnames</span>(cuffdiff_res)[<span class="dv">10</span>] <span class="ot">=</span> <span class="st">"log2FC"</span></span>
+<span id="cb40-15"><a href="#cb40-15"></a><span class="fu">colnames</span>(cuffdiff_res)</span>
+<span id="cb40-16"><a href="#cb40-16"></a></span>
+<span id="cb40-17"><a href="#cb40-17"></a><span class="co"># filter </span></span>
+<span id="cb40-18"><a href="#cb40-18"></a>cuffdiff_res.filter <span class="ot">&lt;-</span> <span class="fu">filter</span>(cuffdiff_res, status <span class="sc">==</span> <span class="st">"OK"</span>)</span>
+<span id="cb40-19"><a href="#cb40-19"></a></span>
+<span id="cb40-20"><a href="#cb40-20"></a><span class="co"># real sign</span></span>
+<span id="cb40-21"><a href="#cb40-21"></a>real_sign <span class="ot">=</span> <span class="fu">rep</span>(<span class="st">"no"</span>,<span class="fu">nrow</span>(cuffdiff_res.filter))</span>
+<span id="cb40-22"><a href="#cb40-22"></a></span>
+<span id="cb40-23"><a href="#cb40-23"></a>select.FPKM <span class="ot">&lt;-</span> (cuffdiff_res.filter<span class="sc">$</span>value_1 <span class="sc">&gt;</span> <span class="dv">1</span> <span class="sc">|</span> cuffdiff_res.filter<span class="sc">$</span>value_2 <span class="sc">&gt;</span> <span class="dv">1</span>)</span>
+<span id="cb40-24"><a href="#cb40-24"></a><span class="fu">table</span>(select.FPKM)</span>
+<span id="cb40-25"><a href="#cb40-25"></a></span>
+<span id="cb40-26"><a href="#cb40-26"></a>select.log2FC <span class="ot">&lt;-</span> <span class="fu">abs</span>(cuffdiff_res.filter<span class="sc">$</span>log2FC) <span class="sc">&gt;</span> <span class="dv">1</span></span>
+<span id="cb40-27"><a href="#cb40-27"></a><span class="fu">table</span>(select.log2FC)</span>
+<span id="cb40-28"><a href="#cb40-28"></a></span>
+<span id="cb40-29"><a href="#cb40-29"></a>select.qval <span class="ot">&lt;-</span> (cuffdiff_res.filter<span class="sc">$</span>q_value <span class="sc">&lt;</span> <span class="fl">0.05</span>)</span>
+<span id="cb40-30"><a href="#cb40-30"></a><span class="fu">table</span>(select.qval)</span>
+<span id="cb40-31"><a href="#cb40-31"></a></span>
+<span id="cb40-32"><a href="#cb40-32"></a>real_sign[select.FPKM <span class="sc">&amp;</span> select.log2FC <span class="sc">&amp;</span> select.qval] <span class="ot">&lt;-</span> <span class="st">"yes"</span></span>
+<span id="cb40-33"><a href="#cb40-33"></a><span class="fu">table</span>(real_sign)</span>
+<span id="cb40-34"><a href="#cb40-34"></a></span>
+<span id="cb40-35"><a href="#cb40-35"></a><span class="co"># select sign DEGs</span></span>
+<span id="cb40-36"><a href="#cb40-36"></a>cuffdiff_res.filter.DEG <span class="ot">&lt;-</span> cuffdiff_res.filter[select.FPKM <span class="sc">&amp;</span> select.log2FC <span class="sc">&amp;</span> select.qval,]</span>
+<span id="cb40-37"><a href="#cb40-37"></a></span>
+<span id="cb40-38"><a href="#cb40-38"></a><span class="co"># load annotation file</span></span>
+<span id="cb40-39"><a href="#cb40-39"></a><span class="co"># BiocManager::install("org.Hs.eg.db")</span></span>
+<span id="cb40-40"><a href="#cb40-40"></a><span class="fu">library</span>(org.Hs.eg.db)</span>
+<span id="cb40-41"><a href="#cb40-41"></a></span>
+<span id="cb40-42"><a href="#cb40-42"></a><span class="co"># GO </span></span>
+<span id="cb40-43"><a href="#cb40-43"></a>DEG.gene_symbol <span class="ot">=</span> <span class="fu">as.character</span>(cuffdiff_res.filter.DEG<span class="sc">$</span>gene_id)</span>
+<span id="cb40-44"><a href="#cb40-44"></a></span>
+<span id="cb40-45"><a href="#cb40-45"></a>erich.go.BP <span class="ot">=</span> <span class="fu">enrichGO</span>(<span class="at">gene =</span> DEG.gene_symbol,</span>
+<span id="cb40-46"><a href="#cb40-46"></a>                       <span class="at">OrgDb =</span> org.Hs.eg.db,</span>
+<span id="cb40-47"><a href="#cb40-47"></a>                       <span class="at">keyType =</span> <span class="st">"SYMBOL"</span>,</span>
+<span id="cb40-48"><a href="#cb40-48"></a>                       <span class="at">ont =</span> <span class="st">"BP"</span>,</span>
+<span id="cb40-49"><a href="#cb40-49"></a>                       <span class="at">pvalueCutoff =</span> <span class="fl">0.5</span>,</span>
+<span id="cb40-50"><a href="#cb40-50"></a>                       <span class="at">qvalueCutoff =</span> <span class="fl">0.5</span>)</span>
+<span id="cb40-51"><a href="#cb40-51"></a></span>
+<span id="cb40-52"><a href="#cb40-52"></a>erich.go.CC <span class="ot">=</span> <span class="fu">enrichGO</span>(<span class="at">gene =</span> DEG.gene_symbol,</span>
+<span id="cb40-53"><a href="#cb40-53"></a>                       <span class="at">OrgDb =</span> org.Hs.eg.db,</span>
+<span id="cb40-54"><a href="#cb40-54"></a>                       <span class="at">keyType =</span> <span class="st">"SYMBOL"</span>,</span>
+<span id="cb40-55"><a href="#cb40-55"></a>                       <span class="at">ont =</span> <span class="st">"CC"</span>,</span>
+<span id="cb40-56"><a href="#cb40-56"></a>                       <span class="at">pvalueCutoff =</span> <span class="fl">0.5</span>,</span>
+<span id="cb40-57"><a href="#cb40-57"></a>                       <span class="at">qvalueCutoff =</span> <span class="fl">0.5</span>)</span>
+<span id="cb40-58"><a href="#cb40-58"></a></span>
+<span id="cb40-59"><a href="#cb40-59"></a>erich.go.MF <span class="ot">=</span> <span class="fu">enrichGO</span>(<span class="at">gene =</span> DEG.gene_symbol,</span>
+<span id="cb40-60"><a href="#cb40-60"></a>                       <span class="at">OrgDb =</span> org.Hs.eg.db,</span>
+<span id="cb40-61"><a href="#cb40-61"></a>                       <span class="at">keyType =</span> <span class="st">"SYMBOL"</span>,</span>
+<span id="cb40-62"><a href="#cb40-62"></a>                       <span class="at">ont =</span> <span class="st">"MF"</span>,</span>
+<span id="cb40-63"><a href="#cb40-63"></a>                       <span class="at">pvalueCutoff =</span> <span class="fl">0.5</span>,</span>
+<span id="cb40-64"><a href="#cb40-64"></a>                       <span class="at">qvalueCutoff =</span> <span class="fl">0.5</span>)</span>
+<span id="cb40-65"><a href="#cb40-65"></a></span>
+<span id="cb40-66"><a href="#cb40-66"></a></span>
+<span id="cb40-67"><a href="#cb40-67"></a><span class="fu">dotplot</span>(erich.go.CC)</span>
+<span id="cb40-68"><a href="#cb40-68"></a><span class="fu">dotplot</span>(erich.go.BP)</span>
+<span id="cb40-69"><a href="#cb40-69"></a><span class="fu">dotplot</span>(erich.go.MF)</span>
+<span id="cb40-70"><a href="#cb40-70"></a></span>
+<span id="cb40-71"><a href="#cb40-71"></a><span class="co"># save image to file</span></span>
+<span id="cb40-72"><a href="#cb40-72"></a><span class="fu">pdf</span>(<span class="at">file=</span><span class="st">"./03.code_and_data/out_image/20200926-enrich.go.BP.Dotplot.pdf"</span>,<span class="at">width =</span> <span class="dv">10</span>,<span class="at">height =</span> <span class="dv">6</span>)</span>
+<span id="cb40-73"><a href="#cb40-73"></a><span class="fu">dotplot</span>(erich.go.BP)</span>
+<span id="cb40-74"><a href="#cb40-74"></a><span class="fu">dev.off</span>()</span></code></pre></div><button title="复制到剪贴板" class="code-copy-button"><i class="bi"></i></button></div>
 </section>
-<section id="src-0050-RNA-seq-1100" class="level5">
-<h5 class="anchored" data-anchor-id="src-0050-RNA-seq-1100">4. KEGG注释</h5>
+<section id="src-0050-RNA-seq-1100" class="level4">
+<h4 class="anchored" data-anchor-id="src-0050-RNA-seq-1100">4. KEGG注释</h4>
 <p>使用R语言clusterProfiler包进行KEGG注释:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb46"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb46-1"><a href="#cb46-1" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb46-2"><a href="#cb46-2" aria-hidden="true" tabindex="-1"></a><span class="co"># ----------------------------------------------------------------------&gt;&gt;&gt;&gt;&gt;&gt;&gt;</span></span>
-<span id="cb46-3"><a href="#cb46-3" aria-hidden="true" tabindex="-1"></a><span class="co"># KEGG analysis</span></span>
-<span id="cb46-4"><a href="#cb46-4" aria-hidden="true" tabindex="-1"></a><span class="co"># ----------------------------------------------------------------------&gt;&gt;&gt;&gt;&gt;&gt;&gt;</span></span>
-<span id="cb46-5"><a href="#cb46-5" aria-hidden="true" tabindex="-1"></a><span class="co"># convert id</span></span>
-<span id="cb46-6"><a href="#cb46-6" aria-hidden="true" tabindex="-1"></a>DEG.entrez_id <span class="ot">=</span> <span class="fu">mapIds</span>(<span class="at">x =</span> org.Hs.eg.db,</span>
-<span id="cb46-7"><a href="#cb46-7" aria-hidden="true" tabindex="-1"></a>                       <span class="at">keys =</span> DEG.gene_symbol,</span>
-<span id="cb46-8"><a href="#cb46-8" aria-hidden="true" tabindex="-1"></a>                       <span class="at">keytype =</span> <span class="st">"SYMBOL"</span>,</span>
-<span id="cb46-9"><a href="#cb46-9" aria-hidden="true" tabindex="-1"></a>                       <span class="at">column =</span> <span class="st">"ENTREZID"</span>)</span>
-<span id="cb46-10"><a href="#cb46-10" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb46-11"><a href="#cb46-11" aria-hidden="true" tabindex="-1"></a>erich.kegg.res <span class="ot">&lt;-</span> <span class="fu">enrichKEGG</span>(<span class="at">gene =</span> DEG.entrez_id,</span>
-<span id="cb46-12"><a href="#cb46-12" aria-hidden="true" tabindex="-1"></a>                             <span class="at">organism =</span> <span class="st">"hsa"</span>,</span>
-<span id="cb46-13"><a href="#cb46-13" aria-hidden="true" tabindex="-1"></a>                             <span class="at">keyType =</span> <span class="st">"kegg"</span>)</span>
-<span id="cb46-14"><a href="#cb46-14" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb46-15"><a href="#cb46-15" aria-hidden="true" tabindex="-1"></a><span class="fu">barplot</span>(erich.kegg.res)</span></code></pre></div><button title="复制到剪贴板" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="callout callout-style-default callout-note callout-titled" title="待完善">
-<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-7-contents" aria-controls="callout-7" aria-expanded="false" aria-label="Toggle callout">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-<span class="screen-reader-only">注记</span>待完善
-</div>
-<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
-</div>
-<div id="callout-7" class="callout-7-contents callout-collapse collapse">
-<div class="callout-body-container callout-body">
-<p>统一显著性规则与图例，新增GSEA和背景选择的反例。</p>
-</div>
-</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb41" data-book-role="code" data-focus-lines="6,11"><pre data-code-text="&quot;# ----------------------------------------------------------------------&gt;&gt;&gt;&gt;&gt;&gt;&gt;\n# KEGG analysis\n# ----------------------------------------------------------------------&gt;&gt;&gt;&gt;&gt;&gt;&gt;\n# convert id\nDEG.entrez_id = mapIds(x = org.Hs.eg.db,\n                       keys = DEG.gene_symbol,\n                       keytype = \&quot;SYMBOL\&quot;,\n                       column = \&quot;ENTREZID\&quot;)\n\nerich.kegg.res &lt;- enrichKEGG(gene = DEG.entrez_id,\n                             organism = \&quot;hsa\&quot;,\n                             keyType = \&quot;kegg\&quot;)\n\nbarplot(erich.kegg.res)&quot;" class="sourceCode numberSource r numberLines code-with-copy"><code class="sourceCode r"><span id="cb41-1"><a href="#cb41-1"></a><span class="co"># ----------------------------------------------------------------------&gt;&gt;&gt;&gt;&gt;&gt;&gt;</span></span>
+<span id="cb41-2"><a href="#cb41-2"></a><span class="co"># KEGG analysis</span></span>
+<span id="cb41-3"><a href="#cb41-3"></a><span class="co"># ----------------------------------------------------------------------&gt;&gt;&gt;&gt;&gt;&gt;&gt;</span></span>
+<span id="cb41-4"><a href="#cb41-4"></a><span class="co"># convert id</span></span>
+<span id="cb41-5"><a href="#cb41-5"></a>DEG.entrez_id <span class="ot">=</span> <span class="fu">mapIds</span>(<span class="at">x =</span> org.Hs.eg.db,</span>
+<span id="cb41-6"><a href="#cb41-6"></a>                       <span class="at">keys =</span> DEG.gene_symbol,</span>
+<span id="cb41-7"><a href="#cb41-7"></a>                       <span class="at">keytype =</span> <span class="st">"SYMBOL"</span>,</span>
+<span id="cb41-8"><a href="#cb41-8"></a>                       <span class="at">column =</span> <span class="st">"ENTREZID"</span>)</span>
+<span id="cb41-9"><a href="#cb41-9"></a></span>
+<span id="cb41-10"><a href="#cb41-10"></a>erich.kegg.res <span class="ot">&lt;-</span> <span class="fu">enrichKEGG</span>(<span class="at">gene =</span> DEG.entrez_id,</span>
+<span id="cb41-11"><a href="#cb41-11"></a>                             <span class="at">organism =</span> <span class="st">"hsa"</span>,</span>
+<span id="cb41-12"><a href="#cb41-12"></a>                             <span class="at">keyType =</span> <span class="st">"kegg"</span>)</span>
+<span id="cb41-13"><a href="#cb41-13"></a></span>
+<span id="cb41-14"><a href="#cb41-14"></a><span class="fu">barplot</span>(erich.kegg.res)</span></code></pre></div><button title="复制到剪贴板" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="book-placeholder">
+<p>本节内容待补充。</p>
 </div>
 </section>
 </section>
@@ -1386,21 +1388,8 @@ hsa-miR-6090    5.80658 4.459086667
 <li>lncRNA与基因之间还有着Cis调控和反式作用等作用。（3）circRNA除了能与miRNA进行作用，与其宿主基因之间表达关系，与宿主基因转录的mRNA则源自同一个基因。</li>
 </ol>
 <p>可见，生物体内的RNA之间有着千丝万缕的联系，有时候会竞争，有时候会协同作用。</p>
-<div class="callout callout-style-default callout-note callout-titled" title="待完善">
-<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-8-contents" aria-controls="callout-8" aria-expanded="false" aria-label="Toggle callout">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-<span class="screen-reader-only">注记</span>待完善
-</div>
-<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
-</div>
-<div id="callout-8" class="callout-8-contents callout-collapse collapse">
-<div class="callout-body-container callout-body">
-<p>新增结课任务、答案和AI生成代码审查题。</p>
-</div>
-</div>
+<div class="book-placeholder">
+<p>本节内容待补充。</p>
 </div>
 
 
@@ -1423,8 +1412,14 @@ hsa-miR-6090    5.80658 4.459086667
 </section>
 
 </main> <!-- /main -->
+<div class="book-toolbar" role="navigation" aria-label="阅读工具">
+  <span class="book-brand">AI时代生信入门</span>
+  <button class="book-chapters-button" type="button" aria-controls="quarto-sidebar" aria-expanded="false">全书目录</button>
+  <button class="book-toc-button" type="button" aria-controls="quarto-margin-sidebar" aria-expanded="false">本章目录</button>
+  <button class="book-search-button" type="button">搜索</button>
+</div>
+<button class="book-shade" type="button" aria-label="关闭目录" hidden=""></button>
 <button class="back-top" aria-label="回到顶部" title="回到顶部" onclick="window.scrollTo({top:0,behavior:'smooth'})">↑</button>
-
 <script id="quarto-html-after-body" type="application/javascript">
   window.document.addEventListener("DOMContentLoaded", function (event) {
     const icon = "";
@@ -1861,4 +1856,5 @@ hsa-miR-6090    5.80658 4.459086667
 
 
 <script src="../site_libs/quarto-html/zenscroll-min.js"></script>
+<script src="../styles/reading.js"></script>
 </body></html>
