@@ -12,6 +12,37 @@ for p in OUT.rglob('*.html'):
  s=p.read_text()
  rel=os.path.relpath(OUT/'vendor/mathjax/tex-chtml.js',p.parent).replace(os.sep,'/')
  s=re.sub(r'src="[^"]*(?:vendor/mathjax/tex-chtml\.js|mathjax@[^"/]+/es5/tex-mml-chtml\.js)"',f'src="{rel}"',s)
+ # Quarto expands tabs before highlighting. Retain source text for faithful copying,
+ # including tab-delimited SAM/GTF examples. Fail if source and rendered blocks diverge.
+ source=ROOT/p.relative_to(OUT).with_suffix('.md')
+ if not source.is_file():source=source.with_suffix('.qmd')
+ if source.is_file():
+  blocks=[];body=None;quoted=False
+  for line in source.read_text().splitlines(keepends=True):
+   if body is None:quoted=line.startswith('> ```')
+   if quoted:line=re.sub(r'^> ?', '',line)
+   if re.match(r'^```',line):
+    if body is None:body=[]
+    else:blocks.append(''.join(body).strip('\n'));body=None
+   elif body is not None:body.append(line)
+  pre_count=len(re.findall(r'<pre(?=[\s>])',s))
+  if pre_count!=len(blocks):raise SystemExit(f'Code block mismatch: {source.name}: {len(blocks)} source / {pre_count} HTML')
+  raw_blocks=iter(blocks)
+  def source_text(m):
+   raw=escape(json.dumps(next(raw_blocks),ensure_ascii=False),quote=True)
+   return f'<pre data-code-text="{raw}"'
+  s=re.sub(r'<pre data-code-text="[^"]*"', '<pre',s)
+  s=re.sub(r'<pre(?=[\s>])',source_text,s)
+ # Keep equation numbers visible while the expression scrolls independently.
+ def equation(m):
+  anchor,expression,number=m.groups()
+  return (f'<span id="{anchor}" class="book-equation"><span class="equation-scroll" tabindex="0" role="region" aria-label="公式 {number}">'
+          f'<span class="math display">\\[{expression}\\]</span></span>'
+          f'<a class="equation-label" href="#{anchor}" aria-label="公式（{number}）">({number})</a></span>')
+ s=re.sub(r'<span id="(eq-[^"<>]+)"><span class="math display">\\\[(.*?)\\tag\{([^{}]+)\}\\\]</span></span>',equation,s,flags=re.S)
+ if '<main class="content"' in s and 'styles/reading.js' not in s:
+  reading=os.path.relpath(OUT/'styles/reading.js',p.parent).replace(os.sep,'/')
+  s=s.replace('</body>',f'<script src="{reading}"></script>\n</body>')
  p.write_text(s)
 (OUT/'.nojekyll').touch()
 # Operational metadata stays out of the public website and Git history.

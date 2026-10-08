@@ -12,7 +12,7 @@
 
 选取相互兼容的参考资源并理解注释差异。
 
-#### 构建参考基因组索引 {#src-0050-RNA-seq-210}
+### 构建参考基因组索引 {#src-0050-RNA-seq-210}
 
 在上一步的分析中获取到的clean reads，需要将它们回帖到基因组上，在此之前，我们要建立一个基因组索引。对于有参考基因组的转录组分析，构建参考基因组索引是非常关键的一步。构建参考基因组这一步，在许多分析中，操作类似，比如之前章节介绍BWT算法时讲到的，以及后续ChIP-Seq，WGS分析中也会用到类似的操作。
 
@@ -20,19 +20,18 @@ RNA-Seq分析中参考基因组包括基因组DNA序列和基因组注释文件�
 
 （加一些网站图片）
 
-##### 构建参考基因组索引的软件 {#src-0050-RNA-seq-241}
+#### 构建参考基因组索引的软件 {#src-0050-RNA-seq-241}
 
 构建参考基因组索引的软件有：BWA（Fast and accurate short read alignment with Burrows-Wheeler transform. Heng Li and Richard Burbin），Bowtie（Ultrafast and memory-efficient alignment of short DNA sequences to the human genome），Bowtie2，HISAT，HISAT2。
 
 此外，BLASR（Basic Local Alignment with Successive Refinement）主要用于将PacBio测序的reads和参考序列进行匹配，这是一个处理三代测序的软件。用sawriter命令建库、blasr进行序列比对。
 
-::: {.callout-note title="待完善" collapse="true"}
-修订格式与 ID 解释，增加参考版本不匹配的排错练习。
+::: {.book-placeholder}
+本节内容待补充。
 :::
-
 ## 参考转录本与基因注释 {#sec-04-03}
 
-##### GTF与GFF 文件 {#src-0050-RNA-seq-218}
+### GTF与GFF 文件 {#src-0050-RNA-seq-218}
 
 RNA-Seq中一个很重要的注释文件就是GTF文件或者是GFF文件。这个文件主要保存
 
@@ -42,24 +41,33 @@ RNA-Seq中一个很重要的注释文件就是GTF文件或者是GFF文件。这�
 
 一个标准的GTF/GFF2.0文件需要包括9列内容（https://asia.ensembl.org/info/website/upload/gff.html）：
 
-``` 
-seqname    #序列名，一般为染色体名
-source	   #来源，注释来源的软件名、数据库名等，没有则用“.”表示
-feature    #特征类型，包括gene、mRNA、exon、CDS
-start      #起始坐标位点
-end        #终止坐标位点
-score      #得分，该条注释信息可信度的打分，没有则用“.”表示
-strand     #正负链，“+”表示正莲，“-”表示负莲
-frame      #读码框，表示读码框的位置。当feature为CDS、start_codon、stop_codon时，frame值分别为0、1、2，0表示读码框在该位点进行读码，1表示读码框在该位点1个碱基后进行读码，2表示读码框在该位点2个碱基后进行读码。当feature为其他类型时，则用“.”表示。
-attribute  #属性，包含众多属性。格式为“tag=value”，不同属性之间以分号相隔。
 
-```
+::: {.book-prose}
+
+seqname    #序列名，一般为染色体名  
+source	   #来源，注释来源的软件名、数据库名等，没有则用“.”表示  
+feature    #特征类型，包括gene、mRNA、exon、CDS  
+start      #起始坐标位点  
+end        #终止坐标位点  
+score      #得分，该条注释信息可信度的打分，没有则用“.”表示  
+strand     #正负链，“+”表示正莲，“-”表示负莲  
+frame      #读码框，表示读码框的位置。当feature为CDS、start_codon、stop_codon时，frame值分别为0、1、2，0表示读码框在该位点进行读码，1表示读码框在该位点1个碱基后进行读码，2表示读码框在该位点2个碱基后进行读码。当feature为其他类型时，则用“.”表示。  
+attribute  #属性，包含众多属性。格式为“tag=value”，不同属性之间以分号相隔。  
+
+
+:::
 
 ### 坐标的起点与区间边界
 
 
 
+
+::::: {.callout-warning .book-warning title="注意｜先核对坐标体系"}
+
 把一种文件里的区间拿到另一种工具中使用之前，要同时核对参考版本、染色体名称、坐标起点和右边界是否包含在区间内。SAM 文本中的 POS 从 1 开始计数；BED 通常使用从 0 开始、右端不包含的区间。相同的数字不一定表示同一段序列。
+
+:::::
+
 
 系统示例、转换练习和容易混淆的边界情况待完善。规范来源：[SAM/BAM 格式规范](https://samtools.github.io/hts-specs/SAMv1.pdf)。
 
@@ -75,9 +83,10 @@ Hello大家好！我们又见面了！
 
 #### 1. 我们为什么需要基因注释文件？ {#question-21-359}
 
-![24 图1](../assets/a-questions-21-25/008-24-1.jpg){#fig-a-questions-21-25-008}  
 
- 图1. 通过对外显子（exon）的可变剪切，同1个基因可以形成多种蛋白（https://en.wikipedia.org/wiki/Alternative_splicing）  
+![通过对外显子（exon）的可变剪切，同1个基因可以形成多种蛋白（https://en.wikipedia.org/wiki/Alternative_splicing）](../assets/a-questions-21-25/008-24-1.jpg){#fig-a-questions-21-25-008}
+
+
 
 我们的gene在基因组上的结构不是连续的，而是exon-intron-exon（exon=外显子，intron=内含子）分隔开的。基因要表达，首先会先发生转录过程，转录出包含intron的pre-mRNA序列，然后再进行可变剪切，加5'帽子，3' PolyA尾巴等一系列复杂的加工过程才会形成成熟的mRNA。
 
@@ -92,44 +101,48 @@ GFF = General Feature Format
 
 GFF有若干个版本，简单来说，GTF是GFF文件的其中一个版本，我们一般认为GTF文件就是GFF 2.0版本的内容。一个标准的GTF/GFF2.0文件需要包括9列内容，一个简单的示意图如下：  
 
-![24 图2](../assets/a-questions-21-25/009-24-2.jpg){#fig-a-questions-21-25-009}  
 
- 图2. 1个标准的GTF格式文件，文件不包括前面的行号 
+![1个标准的GTF格式文件，文件不包括前面的行号](../assets/a-questions-21-25/009-24-2.jpg){#fig-a-questions-21-25-009}
+
+
  
-```
-# 所有的列必须用TAB分隔，总共有9列内容，第9列是补充列；
-# 补充列的内容可以为空，但是前面8列必须有内容，如果想表达空的概念，则需要用"."；
 
-# 第1列 seqname
-染色体的名称，需要与genome FASTA文件中的染色体名对应，别一个用"chr1"一个用"Chr1"；
+::: {.book-prose}
 
-# 第2列 source
-注释来自哪里，比如图2表示来自NCBI RefSeq数据库；
+\# 所有的列必须用TAB分隔，总共有9列内容，第9列是补充列；  
+\# 补充列的内容可以为空，但是前面8列必须有内容，如果想表达空的概念，则需要用"."；  
 
-# 第3列 feature
-此行的注释类型，一般有exon，CDS，stop_codon, start_codon等等；
+\# 第1列 seqname  
+染色体的名称，需要与genome FASTA文件中的染色体名对应，别一个用"chr1"一个用"Chr1"；  
 
-# 第4，5列 start，end
-此行注释的起始和终止位置，标准的GTF/GFF都是以1为染色体的起点（1-based system）;
-注意！无论这个gene是正链还是负链，start的坐标都小于end坐标；
+\# 第2列 source  
+注释来自哪里，比如 @fig-a-questions-21-25-009 表示来自NCBI RefSeq数据库；  
 
-# 第6列 score
-一般存放打分值，比如拼装的可信度之类。下载的官方注释文件一般为0.0
+\# 第3列 feature  
+此行的注释类型，一般有exon，CDS，stop_codon, start_codon等等；  
 
-# 第7列 strand
-正链基因标记为 "+", 负链基因标记为 "-";
+\# 第4，5列 start，end  
+此行注释的起始和终止位置，标准的GTF/GFF都是以1为染色体的起点（1-based system）;  
+注意！无论这个gene是正链还是负链，start的坐标都小于end坐标；  
 
-# 第8列 frame
-只可能是0,1,2这3个值,表示与CDS中codon的相对位置；
-0表示，这个region的第1bp就是正好是codon 三连密码子的第1个碱基；
-1表示，这个region的第2bp就是正好是codon 三连密码子的第1个碱基；
-2表示，这个region的第3bp就是正好是codon 三连密码子的第1个碱基；
+\# 第6列 score  
+一般存放打分值，比如拼装的可信度之类。下载的官方注释文件一般为0.0  
 
-# 第9列 attribute
-一般会记录 gene_id 与transcript_id;
-这一列是可选列，可以增加很多内容。在程序处理过程中，相同的attribute会合并在一起处理。
-比如，所有gene_id=SGIP1的行都会先汇总在一起，表示1个基因。
-```  
+\# 第7列 strand  
+正链基因标记为 "+", 负链基因标记为 "-";  
+
+\# 第8列 frame  
+只可能是0,1,2这3个值,表示与CDS中codon的相对位置；  
+0表示，这个region的第1bp就是正好是codon 三连密码子的第1个碱基；  
+1表示，这个region的第2bp就是正好是codon 三连密码子的第1个碱基；  
+2表示，这个region的第3bp就是正好是codon 三连密码子的第1个碱基；  
+
+\# 第9列 attribute  
+一般会记录 gene_id 与transcript_id;  
+这一列是可选列，可以增加很多内容。在程序处理过程中，相同的attribute会合并在一起处理。  
+比如，所有gene_id=SGIP1的行都会先汇总在一起，表示1个基因。  
+
+:::
 
 #### 3.提出问题 {#question-21-421}
 
@@ -138,25 +151,37 @@ GFF有若干个版本，简单来说，GTF是GFF文件的其中一个版本，�
 
 1. 你认为GTF/GFF的文件格式设计合理吗？为什么？  
 
-```
+
+::: {.book-prose}
+
 并不是非常合理，这种格式虽然包括了注释需要的全部信息，但是同一个基因不同的elements并不在  
 一行，在mapping的时候需要用循环一行一行去判断该element是否还同属一个基因，比较耗费和内存，  
-如果不选择GTF文件，而是选择下图所示的“all files from selected table”文件，这种文件的注释信息的组合方式与GTF不同，是以一个基因为一行，包括了这个基因中的各个elements，这样的注释方法使比对过程更加便捷。 
-```
-![24 答1](../assets/a-questions-21-25/010-24-1.jpg){#fig-a-questions-21-25-010}  
+如果不选择GTF文件，而是选择下图所示的“all files from selected table”文件，这种文件的注释信息的组合方式与GTF不同，是以一个基因为一行，包括了这个基因中的各个elements，这样的注释方法使比对过程更加便捷。  
+
+:::
+
+![24 答1](../assets/a-questions-21-25/010-24-1.jpg){#fig-a-questions-21-25-010}
+
 
  答1. 另一种注释文件
 
 
-```
-all files from selected table 文件内容示例：
+
+::: {.book-prose}
+
+all files from selected table 文件内容示例：  
+
+:::
+
+```{.text data-book-role="data"}
 #bin	name	chrom	strand	txStart	txEnd	cdsStart	cdsEnd	exonCount	exonStarts	exonEnds	score	name2	cdsStartStat	cdsEndStat	exonFrames
 1251	NM_004261.4	chr1	-	87328127	87380048	87329156	87379794	5	87328127,87333735,87346344,87368963,87379710,	87329288,87333785,87346408,87369131,87380048,	0	SELENOF	cmpl	cmpl	0,1,0,0,0,
 ```
 
 2. 如果告知，transcript_id 为NM001308203.1，gene_id 为SGIP1, 在转录本上的坐标为101，那么对应基因组的坐标是多少？请写出答案与简要程序思路。注释信息如下：
 
-```
+
+```{.text data-book-role="data"}
 chr1	hg19_ncbiRefSeq	exon	66999252	66999355	0.000000	+	.	gene_id "SGIP1"; transcript_id "NM_001308203.1";
 chr1	hg19_ncbiRefSeq	start_codon	67000042	67000044	0.000000	+	.	gene_id "SGIP1"; transcript_id "NM_001308203.1";
 chr1	hg19_ncbiRefSeq	CDS	67000042	67000051	0.000000	+	0	gene_id "SGIP1"; transcript_id "NM_001308203.1";
@@ -206,10 +231,13 @@ chr1	hg19_ncbiRefSeq	exon	67208756	67216822	0.000000
 ***
 
 
-```
-判断的思路是根据注释信息计算chr1上的exon的分布与长度，转录本上的坐标值代表了该片段之前的exon长度，那么以该题为例，chr1上该基因第一个Exon的长度是 6699355-66999252+1=104， 转录本坐标是101，说明该片段就是map到这个exon上的，坐标是6699355+101-1=6699455 
 
-```
+::: {.book-prose}
+
+判断的思路是根据注释信息计算chr1上的exon的分布与长度，转录本上的坐标值代表了该片段之前的exon长度，那么以该题为例，chr1上该基因第一个Exon的长度是 6699355-66999252+1=104， 转录本坐标是101，说明该片段就是map到这个exon上的，坐标是6699355+101-1=6699455  
+
+
+:::
 
 ### 知识问答 25：参考转录本与注释资源 {#question-21-506}
 
@@ -224,11 +252,12 @@ Hello everyone! 我们又见面了！
 
 **1. 什么是参考GTF/GFF文件**  
 
-针对一些已经通过测序计划，拼装好基因组序列信息的物种，一般会同时提供其转录组的注释信息，也就是我们所说的GTF/GFF文件。常用的模式生物，比如human（人），mouse（小鼠），rat（大鼠），chicken（鸡），lizard（蜥蜴），Arabidopsis thaliana（拟南芥）等等都已经有非常好的 全基因组参考序列（FASTA文件），以及转录组注释信息（GTF或GFF文件）。因此，直接到能够提供下载地址的网站上下载就好了。图1给大家展示了已经公布参考基因组哺乳动物的系统发生树，大家可以看看人类和哪种动物演化距离最近。
+针对一些已经通过测序计划，拼装好基因组序列信息的物种，一般会同时提供其转录组的注释信息，也就是我们所说的GTF/GFF文件。常用的模式生物，比如human（人），mouse（小鼠），rat（大鼠），chicken（鸡），lizard（蜥蜴），Arabidopsis thaliana（拟南芥）等等都已经有非常好的 全基因组参考序列（FASTA文件），以及转录组注释信息（GTF或GFF文件）。因此，直接到能够提供下载地址的网站上下载就好了。 @fig-a-questions-21-25-011 给大家展示了已经公布参考基因组哺乳动物的系统发生树，大家可以看看人类和哪种动物演化距离最近。
 
-![25 图1](../assets/a-questions-21-25/011-25-1.jpg){#fig-a-questions-21-25-011}  
 
- 图1 已经公布参考基因组的哺乳动物系统发生树（http://asia.ensembl.org/info/about/speciestree.html）     
+![已经公布参考基因组的哺乳动物系统发生树（http://asia.ensembl.org/info/about/speciestree.html）](../assets/a-questions-21-25/011-25-1.jpg){#fig-a-questions-21-25-011}
+
+
 
 多说一句，这个下载下来的FASTA文件就是我们所谓的参考基因组，需要用这个文件去构建mapping的index；下载下来的GTF文件是转录组注释信息，一般在计算表达量的时候需要提供。
 
@@ -256,78 +285,95 @@ Hello everyone! 我们又见面了！
 
 **3.1 从UCSC genome browser下载human的GTF文件**
 
-```
-1. 打开UCSC genome browser网站 （图3.1-1）
-2. 在Tools里选择 Table Browser(图3.1-2）
-3. 打开Table Browser以后，设置相关的需要内容（图3.1-3）
-4. 点击get output即可下载
 
-# hg19 = human genome 19是常用的human参考基因组版本号；
-# RefSeq gene是全部经过人工检查过的gene注释文件；
-```
-![25 图2](../assets/a-questions-21-25/012-25-2.jpg){#fig-a-questions-21-25-012}  
+::: {.book-prose}
 
- 图3.1-1 打开UCSC genome browser网站  
+1\. 打开UCSC genome browser网站 （ @fig-a-questions-21-25-012 ）  
+2\. 在Tools里选择 Table Browser( @fig-a-questions-21-25-013 ）  
+3\. 打开Table Browser以后，设置相关的需要内容（ @fig-a-questions-21-25-014 ）  
+4\. 点击get output即可下载  
+
+\# hg19 = human genome 19是常用的human参考基因组版本号；  
+\# RefSeq gene是全部经过人工检查过的gene注释文件；  
+
+:::
+
+![打开UCSC genome browser网站](../assets/a-questions-21-25/012-25-2.jpg){#fig-a-questions-21-25-012}
+
+
   
  
 ***
-![25 图3](../assets/a-questions-21-25/013-25-3.jpg){#fig-a-questions-21-25-013}  
 
- 图3.1-2 在Tools里选择 Table Browser
+![在Tools里选择 Table Browser](../assets/a-questions-21-25/013-25-3.jpg){#fig-a-questions-21-25-013}
+
+
   
   
 ***
-![25 图4](../assets/a-questions-21-25/014-25-4.jpg){#fig-a-questions-21-25-014}  
 
- 图3.1-3 打开Table Browser以后，设置相关的需要内容  
+![打开Table Browser以后，设置相关的需要内容](../assets/a-questions-21-25/014-25-4.jpg){#fig-a-questions-21-25-014}
+
+
 
 **3.2 Ensembl下载human的GTF文件**  
 在下载之前我必须跟大家提个醒。
 
-```
-* 对于动物相关的信息都请访问Ensembl的动物站：http://www.ensembl.org/index.html
-* 对于植物相关的信息都请访问Ensembl的植物站：http://plants.ensembl.org/index.html
-```
+
+::: {.book-prose}
+
+\* 对于动物相关的信息都请访问Ensembl的动物站：http://www.ensembl.org/index.html  
+\* 对于植物相关的信息都请访问Ensembl的植物站：http://plants.ensembl.org/index.html  
+
+:::
 
 我们在这里还是以下载human hg19版本的GTF文件为例，操作步骤如下：  
 
-```
-1. 登陆Ensembl网站，并跳转到hg19版本界面 （图3.2-1）
-2. 继续选择跳转到hg19版本界面（图3.2-2）
-3. 在hg19版本的Ensembl界面中选择download（图3.2-3）
-4. 在download页面中选择Download a sequence or region （图3.2-4）
-5. 在左边栏选择 FTP download 然后选择下载 GTF文件（图3.2-5）
-6. 选择注释好的GTF进行下载（图3.2-6）  
-```  
 
-![25 图5](../assets/a-questions-21-25/015-25-5.jpg){#fig-a-questions-21-25-015}  
+::: {.book-prose}
 
- 图3.2-1 登陆Ensembl网站，并跳转到hg19版本界面
+1\. 登陆Ensembl网站，并跳转到hg19版本界面 （ @fig-a-questions-21-25-015 ）  
+2\. 继续选择跳转到hg19版本界面（ @fig-a-questions-21-25-016 ）  
+3\. 在hg19版本的Ensembl界面中选择download（ @fig-a-questions-21-25-017 ）  
+4\. 在download页面中选择Download a sequence or region （图3.2-4）  
+5\. 在左边栏选择 FTP download 然后选择下载 GTF文件（ @fig-a-questions-21-25-018 ）  
+6\. 选择注释好的GTF进行下载（ @fig-a-questions-21-25-019 ）  
+
+:::
+
+
+![登陆Ensembl网站，并跳转到hg19版本界面](../assets/a-questions-21-25/015-25-5.jpg){#fig-a-questions-21-25-015}
+
+
   
 ***
  
 
-![25 图6](../assets/a-questions-21-25/016-25-6.jpg){#fig-a-questions-21-25-016}  
 
- 图3.2-2 继续选择跳转到hg19版本界面
+![继续选择跳转到hg19版本界面](../assets/a-questions-21-25/016-25-6.jpg){#fig-a-questions-21-25-016}
 
-***
-![25 图7](../assets/a-questions-21-25/017-25-7.jpg){#fig-a-questions-21-25-017}  
-
- 图3.2-3 在hg19版本的Ensembl界面中选择download  
 
 
 ***
 
-![25 图8](../assets/a-questions-21-25/018-25-8.jpg){#fig-a-questions-21-25-018}  
+![在hg19版本的Ensembl界面中选择download](../assets/a-questions-21-25/017-25-7.jpg){#fig-a-questions-21-25-017}
 
- 图3.2-5 在左边栏选择 FTP download 然后选择下载 GTF文件  
+
 
 
 ***
-![25 图9](../assets/a-questions-21-25/019-25-9.jpg){#fig-a-questions-21-25-019}  
 
- 图3.2-6 选择注释好的GTF进行下载   
+
+![在左边栏选择 FTP download 然后选择下载 GTF文件](../assets/a-questions-21-25/018-25-8.jpg){#fig-a-questions-21-25-018}
+
+
+
+
+***
+
+![选择注释好的GTF进行下载](../assets/a-questions-21-25/019-25-9.jpg){#fig-a-questions-21-25-019}
+
+
 
 
 #### 4. 提问环节 {#question-21-655}
@@ -336,33 +382,53 @@ Hello everyone! 我们又见面了！
 
 下载的文件及压缩文件大小如下：
 
-![25 答1](../assets/a-questions-21-25/020-25-1.jpg){#fig-a-questions-21-25-020} 
+
+![25 答1](../assets/a-questions-21-25/020-25-1.jpg){#fig-a-questions-21-25-020}
+
 
 **2. 下载这两个文件解压缩以后的大小是否有差异，差异大不大？**  
 
-```
-两个网站下载的GTF文件大小差异较大，解压之后hg19_RefSeq_GTF_UCSC文件126M，Homo_sapiens.GRCh37.87.chr.gtf文件大小是1.2G。
-```
+
+::: {.book-prose}
+
+两个网站下载的GTF文件大小差异较大，解压之后hg19_RefSeq_GTF_UCSC文件126M，Homo_sapiens.GRCh37.87.chr.gtf文件大小是1.2G。  
+
+:::
  
 
 
 **3. 解压并使用Linux less命令打开这两个文件，观察这两个文件的transcript_id以及gene_id是否相同，再找找看有哪些其他地方的不同。** 
 
-```
+
+::: {.book-prose}
+
 两个文件的transcript_id以及gene_id均不相同，Ensembl网站下载的gtf文件transcript_id以及  
 gene_id均以ENSG和ENSG开头，全称是Ensembl Transcript ID和Ensembl Gene ID，而UCSC网站  
 下载的gtf文件transcript_id以及gene_id均以NM开头,在NCBI数据库中代表mRNA；除此之外，UCSC  
 的注释信息非常简练，而Ensemble网站中的gtf文件注释信息相比于UCSC更加全面，但也存在冗余，NCBI  
 数据库中的基因注释被验证的比例更大，所以在比对策略上可以选择先使用UCSC的GTF文件筛选目标基因，  
-再利用Ensemble数据库的GTF文件找到更加详细的注释。
-```
+再利用Ensemble数据库的GTF文件找到更加详细的注释。  
 
-```
-Ensembl gtf文件：
+:::
+
+
+::: {.book-prose}
+
+Ensembl gtf文件：  
+
+:::
+
+```{.text data-book-role="data"}
 1       havana  exon    12613   12721   .       +       .       gene_id "ENSG00000223972"; gene_version "4"; transcript_id "ENST00000456328"; transcript_version "2"; exon_number "2"; gene_name "DDX11L1"; gene_source "ensembl_havana"; gene_biotype "pseudogene"; transcript_name "DDX11L1-002"; transcript_source "havana"; transcript_biotype "processed_transcript"; havana_transcript "OTTHUMT00000362751"; havana_transcript_version "1"; exon_id "ENSE00003582793"; exon_version "1"; tag "basic";
 ```
-```
-UCSC gtf文件：
+
+::: {.book-prose}
+
+UCSC gtf文件：  
+
+:::
+
+```{.text data-book-role="data"}
 chr1    hg19_ncbiRefSeq exon    66999929        67000051        0.000000        +       .       gene_id "NM_001308203.1"; transcript_id "NM_001308203.1";
 ```
 
@@ -405,7 +471,9 @@ BLAST的基本原理就是先对数据库所有序列建立index，在输入序�
 说回到我们手上的高通量数据，类比blast查询，fq文件就是我们要检索的序列，reference genome就是我们手上存在的数据库，我们要做的事情就是把fq里面的序列全部在reference genome上找一下位置。与blast不同的是这回我们面对的是成千上万条序列的检索，而对应的数据库则小了很多，而且检索序列相对于传统的sanger测序序列其实短了很多，根据这些特性不同，软件设计者们设计了各式各样的软件，但按照所使用的核心算法不同，大致可以拆分成两大阵营：hash-table algorithm以及 BWT algorithm
 
 
+
 ![高通量序列比对原理 Mohammed Alser et al.2020.Technology dictates algorithms: Recent developments in read alignment](../assets/04-quality-control-and-alignment/001-illustration.png){#fig-04-quality-control-and-alignment-001}
+
 
 
 
@@ -420,14 +488,16 @@ BLAST的基本原理就是先对数据库所有序列建立index，在输入序�
 而根据哈希表所采用的比对策略不同，又可以分为连续种子序列（contiguous seed）策略与间隔种子（spaced seed）策略。
 在了解这两种不同的比对策略之前，让我们先来实际看看哈希表是大概怎么构建的。
 
-##### 哈希表的构建 {#src-0040-mapping-and-BAM-operation-46}
+**哈希表的构建** []{#src-0040-mapping-and-BAM-operation-46}
 
-了解哈希表之前，我们需要补充一个概念k-mer：所谓k-mer，就是将一段序列拆分成包含k个碱基的迭代子序列，即从一条母序列中迭代的选取长度为K个碱基的序列，若母序列的长度为L，k-mer长度为K，那么就可以得到L-K+1个k-mer。
+了解哈希表之前，我们需要补充一个概念k-mer：所谓k-mer，就是将一段序列拆分成包含k个碱基的迭代子序列，即从一条母序列中迭代的选取长度为K个碱基的序列，若母序列的长度为L，k-mer长度为K，那么就可以得到$L-K+1$个k-mer。
 
 DNA序列是由A,T,C,G四种碱基排序而成，我们可以按四进制给序列进行计数，而后转换为十进制作为哈希表的关键码值生成函数H（x）。
 
 
-![原稿配图](../assets/04-quality-control-and-alignment/002-illustration.png){#fig-04-quality-control-and-alignment-002}
+
+![图题待补](../assets/04-quality-control-and-alignment/002-illustration.png){#fig-04-quality-control-and-alignment-002}
+
 
 
 举个例子，如果某个子序列为ATGCT，其中我们设定A->0, T->1, C->2, G->3,则H（x） = 1 x 4^0 + 2 x 4^1 + 3 x 4^2 + 4 x 4^3 + 0 x 4^4 = 121,这样我们就得到了5-mer序列在哈希表中的关键码值。将上面的方法进一步推广，即可得到在x长度为n的序列，H(X) = I(n) x 4^n + I(n-1) x 4^(n-1) + ... + I(1) X 4^0。
@@ -435,11 +505,13 @@ DNA序列是由A,T,C,G四种碱基排序而成，我们可以按四进制给序�
 在得到一个哈希表之后，我们就相当于知道了所有seed序列的位置，在检索输入序列后，即可快速进行比对反馈，而后进行延伸就得到了序列所在位置。
 
 
+
 ![k-mer为5](../assets/04-quality-control-and-alignment/003-illustration.png){#fig-04-quality-control-and-alignment-003}
 
 
 
-##### 连续种子序列策略 {#src-0040-mapping-and-BAM-operation-59}
+
+**连续种子序列策略** []{#src-0040-mapping-and-BAM-operation-59}
 
 连续种子序列策略是将短序列拆分成k-mer长的子序列，而后查看由基因组k-mer的子序列所构建的哈希表数据结构进行匹配，从而完成整个回溯过程。
   
@@ -447,11 +519,13 @@ DNA序列是由A,T,C,G四种碱基排序而成，我们可以按四进制给序�
   
 
 
+
 ![鸽洞原理](../assets/04-quality-control-and-alignment/004-illustration.png){#fig-04-quality-control-and-alignment-004}
 
 
 
-##### 间隔种子序列策略 {#src-0040-mapping-and-BAM-operation-66}
+
+**间隔种子序列策略** []{#src-0040-mapping-and-BAM-operation-66}
 
 所谓的间隔种子序列策略，就是种子序列中间允许存在若干个不确定的碱基，即在比对过程种允许mismatch的存在。举个例子，间隔种子序列AGxCGTAA，既可以跟AGGCGTAA匹配，也可以跟AGCCGTAA匹配。这样做的优势就是明显增加了比对算法的灵敏度，但反过来，比对所消耗的时间复杂度明显增加。
 
@@ -465,13 +539,17 @@ DNA序列是由A,T,C,G四种碱基排序而成，我们可以按四进制给序�
 (1)给定一个子序列，譬如：ACAACG，给其后面加入一个后缀$,而后迭代排序。
 
 
-![原稿配图](../assets/04-quality-control-and-alignment/005-illustration.png){#fig-04-quality-control-and-alignment-005}
+
+![图题待补](../assets/04-quality-control-and-alignment/005-illustration.png){#fig-04-quality-control-and-alignment-005}
+
 
 
 (2)按照ASCII码进行大小排序，得到转置矩阵。
 
 
-![原稿配图](../assets/04-quality-control-and-alignment/006-illustration.png){#fig-04-quality-control-and-alignment-006}
+
+![图题待补](../assets/04-quality-control-and-alignment/006-illustration.png){#fig-04-quality-control-and-alignment-006}
+
 
 
 (3)取每个串的最后一个字符串，连成一个序列，即得到BWT='GC$AAC'。
@@ -482,23 +560,30 @@ DNA序列是由A,T,C,G四种碱基排序而成，我们可以按四进制给序�
 (2)F列中的每一个元素，都是其同一行中的L列的下一个元素。也就是L列是F列的前一个元素。
 
 
+
 ![此时我们确定了开头就是G](../assets/04-quality-control-and-alignment/007-illustration.png){#fig-04-quality-control-and-alignment-007}
+
+
 
 
 ![由此确定了第二个字符是C，即目前的序列是GC](../assets/04-quality-control-and-alignment/008-illustration.png){#fig-04-quality-control-and-alignment-008}
 
 
+
+
 ![确定了是后缀的第二个C，然后这个C的前缀指对后缀的第三个A，我们就知道了目前的序列是GCA](../assets/04-quality-control-and-alignment/009-illustration.png){#fig-04-quality-control-and-alignment-009}
+
+
 
 
 ![后面依次类推，得到GCAA,而后就是GCAAC,GCAACA](../assets/04-quality-control-and-alignment/010-illustration.png){#fig-04-quality-control-and-alignment-010}
 
 
 
-::: {.callout-note title="待完善" collapse="true"}
-纠正现有数值例题及概念混用；长推导作为本节扩展阅读。
-:::
 
+::: {.book-placeholder}
+本节内容待补充。
+:::
 ### 知识问答 13：双序列比对 {#question-11-158}
 
 #### 问题描述 {#question-11-160}
@@ -532,56 +617,89 @@ https://link.zhihu.com/?target=https%3A//www.bilibili.com/video/av10042290/%3Fp%
 
 今天的问题：
 
-如果我们假设比对的 scoring matrix 如下图1所示，同时gap的罚分d = -5
+如果我们假设比对的 scoring matrix 如下 @fig-a-questions-11-15-005 所示，同时gap的罚分$d=-5$
 
-![13 图1](../assets/a-questions-11-15/005-13-1.jpg){#fig-a-questions-11-15-005}
+
+![图题待补](../assets/a-questions-11-15/005-13-1.jpg){#fig-a-questions-11-15-005}
+
  
 假设我们的 seq1 = AAGT，seq2=AGCT；那么我们进行双序列比对，需要填写下面的表格。
- ![13 表1](../assets/a-questions-11-15/006-13-1.jpg){#fig-a-questions-11-15-006}
+
+![13 表1](../assets/a-questions-11-15/006-13-1.jpg){#fig-a-questions-11-15-006}
+
  
 **1. 使用Needleman-Wunsch算法（全局比对），那么表1应该怎么填写？最终的比对结果是什么？**  
 
 
 计算过程如下：
- ![13 全局比对](../assets/a-questions-11-15/007-illustration.png){#fig-a-questions-11-15-007}
+
+![13 全局比对](../assets/a-questions-11-15/007-illustration.png){#fig-a-questions-11-15-007}
+
 最终的比对结果为
- ![13 全局比对结果](../assets/a-questions-11-15/008-illustration.jpg){#fig-a-questions-11-15-008}
+
+![13 全局比对结果](../assets/a-questions-11-15/008-illustration.jpg){#fig-a-questions-11-15-008}
+
 
 **2. 使用Smith-Waterman算法（局部比对），那么表1应该怎么填写？最终的比对结果是什么？**  
 
 
 计算过程如下：
+
 ![13 局部比对](../assets/a-questions-11-15/009-illustration.png){#fig-a-questions-11-15-009}
 
+
+
+::: {.book-prose}
+
+注意：在进行局部比对回溯的时候，需要从第1个非零的碱基开始，沿对角线方向到第1个遇到0的结果为止。因此本题中，局部比对的结果有3个：  
+
+第1个结果是（浅蓝色）：  
+
+:::
+
+```{.text data-book-role="data"}
+A
+A
 ```
-注意：在进行局部比对回溯的时候，需要从第1个非零的碱基开始，沿对角线方向到第1个遇到0的结果为止。因此本题中，局部比对的结果有3个：
 
-第1个结果是（浅蓝色）：
-A
-A
+::: {.book-prose}
 
-第2个结果是（黄色）：
+第2个结果是（黄色）：  
+
+:::
+
+```{.text data-book-role="data"}
 A	A	G
 A	-	G
+```
 
-第3个结果是（深蓝色）：
+::: {.book-prose}
+
+第3个结果是（深蓝色）：  
+
+:::
+
+```{.text data-book-role="data"}
 T
 T
 ```
 
 **3. 请思考，为什么有的时候需要全局比对，有的时候需要局部比对？**  
 
-```
-全局比对，是从头到尾对序列的每一个碱基都进行比对，找到最优解；
-局部比对，是为了找到两条序列中最相似的部分，可以有多个结果；
 
-全局比对能找到2条序列比对的最优解，用处很大自不必说，单独说说局部比对的相关意义与必要性。
+::: {.book-prose}
 
-随着越来越多的序列信息的产生，人们发现对于：
-1.某些蛋白序列虽然整体相差很大，但是对于某些特殊的功能域却有着极高的相似性；
-2.而且在不同物种中序列和功能都相当保守，这在全局比对中是很难发现的；
-3.另一方面随着70年代内含子的发现比对算法必须要能够处理由于内含子导致的大片段的差异。
-```
+全局比对，是从头到尾对序列的每一个碱基都进行比对，找到最优解；  
+局部比对，是为了找到两条序列中最相似的部分，可以有多个结果；  
+
+全局比对能找到2条序列比对的最优解，用处很大自不必说，单独说说局部比对的相关意义与必要性。  
+
+随着越来越多的序列信息的产生，人们发现对于：  
+1.某些蛋白序列虽然整体相差很大，但是对于某些特殊的功能域却有着极高的相似性；  
+2.而且在不同物种中序列和功能都相当保守，这在全局比对中是很难发现的；  
+3.另一方面随着70年代内含子的发现比对算法必须要能够处理由于内含子导致的大片段的差异。  
+
+:::
 
 ### 知识问答 14：BLAST 序列搜索 {#question-11-253}
 
@@ -597,7 +715,9 @@ Hello,大家好！
 
 我们在第13问中学习到的是pairwise alignment的两种算法，全局比对算法与局部比对算法，无论哪种算法，得到的都是2条序列比对的最优解，当然某些时候最优解有可能有多个。那所有的序列比对问题是不是都可以用这种算法来解决了呢？ 我们来算这么1笔账。
 
-![14 图1](../assets/a-questions-11-15/010-14-1.jpg){#fig-a-questions-11-15-010}
+
+![图题待补](../assets/a-questions-11-15/010-14-1.jpg){#fig-a-questions-11-15-010}
+
 假设我有1条序列 SeqA = 100bp（这个不是很长哟~），我想找到这条序列的相似序列。目前已知的非冗余核酸序列库，序列有47193206条，按平均长度在0.1Mbp左右。如果我们想要找到SeqA的相似序列，使用局部比对算法，那么至少就需要100bp × 0.1Mbp  × 47193206条 次比较运算等于471930 × 10^9，现在服务器最快的CPU，单核心1秒可以大约运行3×10^9次，假设我们的服务器有20个核心，那么 —— 
 
 完成任务大约需要的时间 = 471930 × 10^9 ÷ 3 × 10^9 ÷ 20 = 7860秒 大约是130分钟；
@@ -616,28 +736,38 @@ Hello,大家好！
 
 **1. BLAST提高搜索速度的核心算法的名称是什么？**
 
-```
-启发式算法！
-```
+
+::: {.book-prose}
+
+启发式算法！  
+
+:::
 **2. BLAST结果中E-value是什么意思？**  
 
-```
-在BLAST结果中每一条匹配序列都会有匹配的score值和E值；
-S值表示两序列的相似度，分值越高表明它们之间相似的程度越大；
-E值是可靠性的评价，它表明在随机的情况下出现这种相似度的序列的条数。
-- - - - - - - - - - - - - - - - - - - - 
-S值越大越好，最大是100%；E值越小越好，注意E值有可能大于1！
-```
+
+::: {.book-prose}
+
+在BLAST结果中每一条匹配序列都会有匹配的score值和E值；  
+S值表示两序列的相似度，分值越高表明它们之间相似的程度越大；  
+E值是可靠性的评价，它表明在随机的情况下出现这种相似度的序列的条数。  
+\- - - - - - - - - - - - - - - - - - - -  
+S值越大越好，最大是100%；E值越小越好，注意E值有可能大于1！  
+
+:::
 **3. 如果想要降低BLAST的假阳性，你通常需要做什么？**    
 
-```
-- Word size的选择，BLAST算法将目标序列分割成一系列具有字段长度的小的序列进行数据库搜索，因此当此值越小得到的搜索结果越多，假阳性也就越多。
-- 根据序列长度调整E值，如果检索序列较短可适当提高E值，反之可降低E值。
-- 空位罚分的选择，严谨的罚分会让相似度高的序列错过，而松弛的罚分会使检索结果过多。
-- 序列检索前将低复杂度的序列先去除，尤其是DNA序列中的重复片段。
-```
+
+::: {.book-prose}
+
+\- Word size的选择，BLAST算法将目标序列分割成一系列具有字段长度的小的序列进行数据库搜索，因此当此值越小得到的搜索结果越多，假阳性也就越多。  
+\- 根据序列长度调整E值，如果检索序列较短可适当提高E值，反之可降低E值。  
+\- 空位罚分的选择，严谨的罚分会让相似度高的序列错过，而松弛的罚分会使检索结果过多。  
+\- 序列检索前将低复杂度的序列先去除，尤其是DNA序列中的重复片段。  
+
+:::
 **4. 假设给你一条序列，运行结果中序列相似度最高的来自于哪个物种？**
-```
+
+```{.text data-book-role="data"}
 >Protein Sequence
 MVRAPCCEKMGLKKGPWTPEEDQILISYIQSNGHG
 NWRALPKLAGLLRCGKSCRLRWTNYLRPDIKRGNF
@@ -647,23 +777,29 @@ QIALKSSNNFSNIKEDGPGLGSGPNSPQLSSSEMS
 TVTADSLAVTMDISNSNDQIDSSENFIPEIDESFW
 TDGLSTSGGGEELQVQFPFHDMKQENVEKDVGAKL
 EDDMDFWYSVFIKSGDLLELPEF 
+```
+
+::: {.book-prose}
 
 **使用网站**  
 
-BLAST：http://blast.ncbi.nlm.nih.gov 
+BLAST：http://blast.ncbi.nlm.nih.gov  
 
 **参数设置**  
- 
-Database: Non-redundant protein sequences (nr) 
-Algorithm: blastp 
-Word size: 3 
-Matrix: BLOSUM62 
-Gap Costs: Existence: 11 Extension: 1 
-其他参数默认
-```
+
+Database: Non-redundant protein sequences (nr)  
+Algorithm: blastp  
+Word size: 3  
+Matrix: BLOSUM62  
+Gap Costs: Existence: 11 Extension: 1  
+其他参数默认  
+
+:::
 
 运行结果：
+
 ![14 答1](../assets/a-questions-11-15/011-14-1.jpg){#fig-a-questions-11-15-011}
+
  由图中结果可知，序列相似度最高的的物种是Solanum lycopersicum，番茄。
 
 ### 知识问答 15：BLAT 与快速定位 {#question-11-341}
@@ -693,9 +829,13 @@ BLAT的功能，简单来说就是我有1条序列SeqA，我想知道SeqA在某�
 
 或者可以通过打开UCSC genome browser --> tools --> BLAT的方式打开；
 
-![15 图1](../assets/a-questions-11-15/012-15-1.jpg){#fig-a-questions-11-15-012}
+
+![图题待补](../assets/a-questions-11-15/012-15-1.jpg){#fig-a-questions-11-15-012}
+
 点开BLAT以后的页面如下：
-![15 图2](../assets/a-questions-11-15/013-15-2.jpg){#fig-a-questions-11-15-013}
+
+![图题待补](../assets/a-questions-11-15/013-15-2.jpg){#fig-a-questions-11-15-013}
+
 第1行是你要选择的基因组的参数，比如我们这里常用的就是人的参考基因组hg19版本。
 
 下面的白框可以用来输入序列，用标准的FASTA格式就行。之后点submit就大功告成！
@@ -727,31 +867,44 @@ EMBOSS Water < Pairwise Sequence Alignment < EMBL-EBI
 首先我们通过blat检索来看一下这两条序列分别定位于染色体上的什么位置，通过blat可得：
  hsa-mir-7641-2和 hsa-mir-7641-1比对到了5SRNA中间的一段序列上：  
  
- ![15 答1 1](../assets/a-questions-11-15/014-15-1-1.jpg){#fig-a-questions-11-15-014} 
+
+![15 答1 1](../assets/a-questions-11-15/014-15-1-1.jpg){#fig-a-questions-11-15-014}
+
   
- ![15 答1 2](../assets/a-questions-11-15/015-15-1-2.jpg){#fig-a-questions-11-15-015}  
+
+![15 答1 2](../assets/a-questions-11-15/015-15-1-2.jpg){#fig-a-questions-11-15-015}
+
  
 对5SRNA序列与两条目的序列分别做局部双序列比对：  
 
 hsa-mir-7641-1与5SRNA比对结果：  
 
- ![15 答2](../assets/a-questions-11-15/016-15-2.jpg){#fig-a-questions-11-15-016}  
+
+![15 答2](../assets/a-questions-11-15/016-15-2.jpg){#fig-a-questions-11-15-016}
+
  
 hsa-mir-7641-2与5SRNA比对结果：  
  
- ![15 答3](../assets/a-questions-11-15/017-15-3.jpg){#fig-a-questions-11-15-017}   
+
+![15 答3](../assets/a-questions-11-15/017-15-3.jpg){#fig-a-questions-11-15-017}
+
       
 两条目标序列局部双序列比对结果：  
- ![15 答4](../assets/a-questions-11-15/018-15-4.jpg){#fig-a-questions-11-15-018} 
-  
- ```
-从上述比对结果可以看出：
-1.这2条目标序列与5SRNA中的一段序列高度重合；
-2.这2条目标序列重合的区域高度相似；
-结合前面的问题中提到本次实验属于小RNA的测序，
-那么建库过程中核糖体RNA不可能完全去除，最终导致了之前的比对结果。
 
-```
+![15 答4](../assets/a-questions-11-15/018-15-4.jpg){#fig-a-questions-11-15-018}
+
+  
+
+::: {.book-prose}
+
+从上述比对结果可以看出：  
+1.这2条目标序列与5SRNA中的一段序列高度重合；  
+2.这2条目标序列重合的区域高度相似；  
+结合前面的问题中提到本次实验属于小RNA的测序，  
+那么建库过程中核糖体RNA不可能完全去除，最终导致了之前的比对结果。  
+
+
+:::
 
 ## 根据数据选择比对策略 {#sec-04-05}
 
@@ -772,48 +925,60 @@ bowtie与bowtie2，其实bowtie2更像是对bowtie的一个补充。比起bowtie
 
 下面本书就以bowtie2的安装与使用为例，讲解在使用过程中应该注意的事项。
 
-##### bowtie2的安装 {#src-0040-mapping-and-BAM-operation-111}
+**bowtie2的安装** []{#src-0040-mapping-and-BAM-operation-111}
 
 由于bowtie2有将安装包放进conda的channel--bioconda里面，故而最为方便的安装方式是直接使用conda进行安装
 
 首先，如果我们在不知道具体哪个channel的情况下，可以在浏览器中输入“conda cloud”进行检索（以必应为例）
 
 
-![原稿配图](../assets/04-quality-control-and-alignment/011-illustration.png){#fig-04-quality-control-and-alignment-011}
+
+![图题待补](../assets/04-quality-control-and-alignment/011-illustration.png){#fig-04-quality-control-and-alignment-011}
+
 
 
 点进去即可搜索bowtie2
 
 
-![原稿配图](../assets/04-quality-control-and-alignment/012-illustration.png){#fig-04-quality-control-and-alignment-012}
+
+![图题待补](../assets/04-quality-control-and-alignment/012-illustration.png){#fig-04-quality-control-and-alignment-012}
+
 
 
 搜索结果如下
 
 
-![原稿配图](../assets/04-quality-control-and-alignment/013-illustration.png){#fig-04-quality-control-and-alignment-013}
+
+![图题待补](../assets/04-quality-control-and-alignment/013-illustration.png){#fig-04-quality-control-and-alignment-013}
+
 
 
 点进入即可看到安装命令行
 
 
-![原稿配图](../assets/04-quality-control-and-alignment/014-illustration.png){#fig-04-quality-control-and-alignment-014}
+
+![图题待补](../assets/04-quality-control-and-alignment/014-illustration.png){#fig-04-quality-control-and-alignment-014}
 
 
-```
+
+
+```{.bash data-book-role="code"}
 conda install -c bioconda bowtie2
 #在软件检索完成之后，按照提示输入y即可按照完成
-
 ```
 
 
-![原稿配图](../assets/04-quality-control-and-alignment/015-illustration.png){#fig-04-quality-control-and-alignment-015}
+
+![图题待补](../assets/04-quality-control-and-alignment/015-illustration.png){#fig-04-quality-control-and-alignment-015}
+
 
 
 按照完成后即可在命令行中敲出bowtie2，连按tab键补齐三下即可看到所有bowtie2开头的命令
 
 
-![原稿配图](../assets/04-quality-control-and-alignment/016-illustration.png){#fig-04-quality-control-and-alignment-016}
+
+![图题待补](../assets/04-quality-control-and-alignment/016-illustration.png){#fig-04-quality-control-and-alignment-016}
+
 
 
 这种按照方法较为简单，推荐刚入门的新手使用，而对于已经熟悉了的读者，则可以自行下载，并配置全局调用，此处简单介绍，各位以后想自己安装了就可以自行尝试
@@ -821,31 +986,40 @@ conda install -c bioconda bowtie2
 首先在搜索引擎上搜索bowtie2
 
 
-![原稿配图](../assets/04-quality-control-and-alignment/017-illustration.png){#fig-04-quality-control-and-alignment-017}
+
+![图题待补](../assets/04-quality-control-and-alignment/017-illustration.png){#fig-04-quality-control-and-alignment-017}
+
 
 
 进入官网，即可看到每个版本修复的问题，而在右下角提供的github链接则为我们要下载的源码地址
 
 
-![原稿配图](../assets/04-quality-control-and-alignment/018-illustration.png){#fig-04-quality-control-and-alignment-018}
+
+![图题待补](../assets/04-quality-control-and-alignment/018-illustration.png){#fig-04-quality-control-and-alignment-018}
+
 
 
 点击绿色的clone按键，在window的用户可以下载为zip而后解压传输到服务器上，如果服务器网络较好，也可以通过clone的方式下载到服务器上
 
 
-![原稿配图](../assets/04-quality-control-and-alignment/019-illustration.png){#fig-04-quality-control-and-alignment-019}
+
+![图题待补](../assets/04-quality-control-and-alignment/019-illustration.png){#fig-04-quality-control-and-alignment-019}
 
 
-```
+
+
+```{.bash data-book-role="code"}
 git clone https://github.com/BenLangmead/bowtie2.git
-
 ```
 
 
-![原稿配图](../assets/04-quality-control-and-alignment/020-illustration.png){#fig-04-quality-control-and-alignment-020}
+
+![图题待补](../assets/04-quality-control-and-alignment/020-illustration.png){#fig-04-quality-control-and-alignment-020}
 
 
-```
+
+
+```{.bash .numberLines data-book-role="code" data-focus-lines="19,22"}
 #由于bowtie2是无需编译的，下载完成后，即可立即使用
 
 #进入下载后的文件夹，不知道文件夹全名是什么可以ls一下，即可看到当前目录的所有文件跟文件夹，选择进入
@@ -868,17 +1042,18 @@ export PATH="$PATH:/home/Alfred/biosoft/bowtie2/bowtie2-2.3.5.1-linux-x86_64/"
 
 #ESC键退出编辑模式，并按:wq，退出并保存
 source ~/.bashrc #更新当前环境
-
 ```
 
 由于购买此书基本为新手，故而不推荐大家一开始就进行自行下载，更新环境，能用conda解决就用conda解决，等熟悉了Linux的操作逻辑再自行翻阅尝试即可。
 
-##### bowtie2的使用 {#src-0040-mapping-and-BAM-operation-188}
+**bowtie2的使用** []{#src-0040-mapping-and-BAM-operation-188}
 
 作为一名生信从业的科研人员，我们面对不熟悉的软件，第一件事并不是火急火燎的去乱问别人，而是应该秉承着先检索前人使用经验与阅读说明书的原则去熟悉一个新软件，在GitHub的下载页面下面即有bowtie2的使用简要说明
 
 
-![原稿配图](../assets/04-quality-control-and-alignment/021-illustration.png){#fig-04-quality-control-and-alignment-021}
+
+![图题待补](../assets/04-quality-control-and-alignment/021-illustration.png){#fig-04-quality-control-and-alignment-021}
+
 
 
 下面由我跟大家用实际例子做个介绍
@@ -886,95 +1061,103 @@ source ~/.bashrc #更新当前环境
 首先，我们需要从书上提供的地址下载参考基因组，下载完成之后即为一个fa文件
 
 
-![原稿配图](../assets/04-quality-control-and-alignment/022-illustration.png){#fig-04-quality-control-and-alignment-022}
+
+![图题待补](../assets/04-quality-control-and-alignment/022-illustration.png){#fig-04-quality-control-and-alignment-022}
+
 
 
 我们使用bowtie2做的第一件事就是对这个参考基因组构建一个索引，这一步的目的就是上文提到构建索引表，供后续比对检索回帖
 
-```
+
+```{.bash data-book-role="code" data-focus-lines="1"}
 bowtie2-build chrX.fa chrX.fa
 # bowtie2-build命令为构建索引的命令
 # 第一个chrX.fa代表输入的参考序列
 # 第二个chrX.fa代表输出的索引文件前缀
 # 产生六个.bt2新文件
-
 ```
 
 
-![原稿配图](../assets/04-quality-control-and-alignment/023-illustration.png){#fig-04-quality-control-and-alignment-023}
+
+![图题待补](../assets/04-quality-control-and-alignment/023-illustration.png){#fig-04-quality-control-and-alignment-023}
+
 
 
 接着就是拿我们在上一个步骤处理干净的clean data进行回帖操作，这一步可以理解为将所有短序列在参考基因组上找回他们对应的位置，下面我们对bowtie2的参数进行一个大概的认知。
 
-```
-#必选参数
-# -x <int> 选择索引前缀，即刚刚由bowtie2-build所生成的chrX.fa。
-# -1 <int> 双端测序对应的R1.fa，可以为多个文件，并用逗号分开；需要与-2中的R2.fa文件一一对应。
-# -2 <int> 双端测序对应的R2.fa.
-# -U <int> 单端测序对应的fa，可以为多个文件，并用逗号分开。
-# -S <int> 指定所生成的SAM格式的文件前缀。
-#常用可选参数
-# -p/--threads <num> 设置线程数.默认为1
-# --reorder 配合-p使用，使比对结果在顺序与fq的reads顺序一致
-# --seed <int> 设置随机种子
-# --no-unal 不记录没比对上的reads
-# --un-gz <path> 将unpaired reads输出到指定的<path>,并以gzip形式压缩
-# --al-gz <path> 将至少能比对1次以上的unpaired reads写入<path>，并以gzip形式压缩
-# -5/--trim5 <int> 剪掉5'端<int>个碱基再比对
-# -3/--trim3 <int> 剪掉3'端<int>个碱基再比对
-#比对参数
-#-N <int> 比对时允许的mismatch数目，除非是跨物种比对，一般不更改
-#-L <int> 设置比对时reads种子的长度
-#-i <int> 设置两个相邻种子间的间隔碱基数
-#--n-ceil <func> 设置reads中允许含有的N碱基数目
-#--gbar <int> 设置头尾<int>个碱基内不允许的gap数
-#--end-to-end 全局比对，为默认模式
-#--local 局部比对，多用于找motif，read两端的一些碱基不进行比对罚分
-#罚分参数
-#--ma <int> 设置匹配得分，仅在--local时生效，比对上一个碱基得<int>分，默认为2，而全局比对时为0
-#--mp MX,MN 设置错配罚分，MX即最高罚分，MN为最低分，默认为MX=6，MN=2，如果设置--ignore-qual则每次错配为MX
-#--np <int> 当匹配到N时的罚分，默认为1
-#--rdg <int1>,<int2> 设置read上打开gap罚分<int1>，延长gap罚分<int2>,默认为5，3
-#--rfg <int1>,<int2> 设置reference上打开gap罚分<int1>，延长gap罚分<int2>,默认为5，3
-#--score-min <func> 设置有效比对的最小分值，在全局比对时默认为L,-0.6,-0.6，在局部比对时默认为G,20,8
-#双端比对参数
-#-I/--minins <int> 设置允许插入片段最小长度，默认为0
-#-X/--maxins <int> 设置允许插入片段最大长度，默认为500
 
-```
+::: {.book-prose}
+
+#必选参数  
+\# -x &lt;int&gt; 选择索引前缀，即刚刚由bowtie2-build所生成的chrX.fa。  
+\# -1 &lt;int&gt; 双端测序对应的R1.fa，可以为多个文件，并用逗号分开；需要与-2中的R2.fa文件一一对应。  
+\# -2 &lt;int&gt; 双端测序对应的R2.fa.  
+\# -U &lt;int&gt; 单端测序对应的fa，可以为多个文件，并用逗号分开。  
+\# -S &lt;int&gt; 指定所生成的SAM格式的文件前缀。  
+#常用可选参数  
+\# -p/--threads &lt;num&gt; 设置线程数.默认为1  
+\# --reorder 配合-p使用，使比对结果在顺序与fq的reads顺序一致  
+\# --seed &lt;int&gt; 设置随机种子  
+\# --no-unal 不记录没比对上的reads  
+\# --un-gz &lt;path&gt; 将unpaired reads输出到指定的&lt;path&gt;,并以gzip形式压缩  
+\# --al-gz &lt;path&gt; 将至少能比对1次以上的unpaired reads写入&lt;path&gt;，并以gzip形式压缩  
+\# -5/--trim5 &lt;int&gt; 剪掉5'端&lt;int&gt;个碱基再比对  
+\# -3/--trim3 &lt;int&gt; 剪掉3'端&lt;int&gt;个碱基再比对  
+#比对参数  
+#-N &lt;int&gt; 比对时允许的mismatch数目，除非是跨物种比对，一般不更改  
+#-L &lt;int&gt; 设置比对时reads种子的长度  
+#-i &lt;int&gt; 设置两个相邻种子间的间隔碱基数  
+#--n-ceil &lt;func&gt; 设置reads中允许含有的N碱基数目  
+#--gbar &lt;int&gt; 设置头尾&lt;int&gt;个碱基内不允许的gap数  
+#--end-to-end 全局比对，为默认模式  
+#--local 局部比对，多用于找motif，read两端的一些碱基不进行比对罚分  
+#罚分参数  
+#--ma &lt;int&gt; 设置匹配得分，仅在--local时生效，比对上一个碱基得&lt;int&gt;分，默认为2，而全局比对时为0  
+#--mp MX,MN 设置错配罚分，MX即最高罚分，MN为最低分，默认为MX=6，MN=2，如果设置--ignore-qual则每次错配为MX  
+#--np &lt;int&gt; 当匹配到N时的罚分，默认为1  
+#--rdg &lt;int1&gt;,&lt;int2&gt; 设置read上打开gap罚分&lt;int1&gt;，延长gap罚分&lt;int2&gt;,默认为5，3  
+#--rfg &lt;int1&gt;,&lt;int2&gt; 设置reference上打开gap罚分&lt;int1&gt;，延长gap罚分&lt;int2&gt;,默认为5，3  
+#--score-min &lt;func&gt; 设置有效比对的最小分值，在全局比对时默认为L,-0.6,-0.6，在局部比对时默认为G,20,8  
+#双端比对参数  
+#-I/--minins &lt;int&gt; 设置允许插入片段最小长度，默认为0  
+#-X/--maxins &lt;int&gt; 设置允许插入片段最大长度，默认为500  
+
+
+:::
 
 看到这么多参数可能会觉得头晕目眩，其实在我们正常使用中，仅仅是选择必须参数与多线程即可，在比对完成后查看结果再进行调整。
 
-```
+
+```{.bash data-book-role="code" data-focus-lines="1"}
 bowtie2 -p 10 -x chrX.fa -1 ERR188245_chrX_1.fastq.gz -2 ERR188245_chrX_2.fastq.gz -S ERR188245.sam &
-
 ```
 
-##### 对比结果检查 {#src-0040-mapping-and-BAM-operation-256}
+**对比结果检查** []{#src-0040-mapping-and-BAM-operation-256}
 
 在比对完成之后，bowtie2会输出一段log文件，记录着比对情况，但那只是初略的比对情况，简单的检查可以用，但如果是涉及每个染色体的比对情况，则推荐用qualimap2进行检查。该软件的安装，使用conda即可
 
-```
+
+```{.bash data-book-role="code"}
 conda install -c bioconda qualimap
 ```
 
 而后进行质检也非常简单，选择bamqc即可：
 
-```
+
+```{.bash data-book-role="code"}
 qualimap bamqc -bam ERR188245.sam -outdir bamqc_result -outformat PDF:HTML
 ```
 
 如果想看注释的区域也可以加上gff文件的参数：
 
-```
+
+```{.bash data-book-role="code"}
 qualimap bamqc -bam ERR188245.sam -gff chrX.gff -outdir bamqc_result -outformat PDF:HTML
-
 ```
 
-::: {.callout-note title="待完善" collapse="true"}
-修订工具适用范围，用同一类 reads 展示策略差异。
+::: {.book-placeholder}
+本节内容待补充。
 :::
-
 ### 知识问答 16：高通量序列比对实践 {#question-16-2}
 
 #### 问题描述 {#question-16-3}
@@ -987,8 +1170,9 @@ Hello大家好！我们又见面了！
 
 首先来看一下技术路线图：  
 
-![16 图1](../assets/a-questions-16-20/001-16-1.jpg){#fig-a-questions-16-20-001}  
- 图1.从FASTQ到SAM路线图  
+
+![从FASTQ到SAM路线图](../assets/a-questions-16-20/001-16-1.jpg){#fig-a-questions-16-20-001}
+
 我们的核心任务是从FASTQ文件开始，经过中间的质控，最终找到序列在基因组上的定位。
 
 那么，我们之前的算法和方法能不能高效完成这个问题呢，答案是不行的！因为这次我们的输入常常是10^7 甚至更多的reads，而且是要在全基因组上寻找定位，比如人的基因组有3Gbp大！所以如果不优化算法，估计mapping这个问题就要等到地老天荒。关于mapping的算法问题，我之前录过1期视频，专门推导了为什么应用BWT算法就可以完成我们这项艰巨的任务。
@@ -1003,20 +1187,30 @@ Hello大家好！我们又见面了！
 
 一般建立index的输入文件为参考基因组序列（FASTA格式）和1个我们指定的index-name；输出为若干个以index-name为开头的index文件。比如我们使用Bowtie2，以human reference genome建立index的命令为：    
   
-```
-build-index by Bowtie2
-> bowtie2-build hg19_only_chromosome.fa  hg19_only_chromosome &
+
+::: {.book-prose}
+
+build-index by Bowtie2  
+
+:::
+
+```{.bash data-book-role="code"}
+bowtie2-build hg19_only_chromosome.fa  hg19_only_chromosome &
 ```
 
-```
-解释
-> bowtie2-build为建立index的命令，安装bowtie2以后就可以用；
-> hg19_only_chromosome.fa 为human genome的参考基因组，FASTA格式；
-> hg19_only_chromosome 为建立index需要指定的名称；  
-```
-最终建立index输出结果如图2：  
-![16 图1](../assets/a-questions-16-20/001-16-1.jpg){#fig-a-questions-16-20-001-repeat-2}  
-图2.使用bowtie2建立的human genome index  
+
+::: {.book-prose}
+
+解释  
+&gt; bowtie2-build为建立index的命令，安装bowtie2以后就可以用；  
+&gt; hg19_only_chromosome.fa 为human genome的参考基因组，FASTA格式；  
+&gt; hg19_only_chromosome 为建立index需要指定的名称；  
+
+:::
+最终建立index输出结果如 @fig-a-questions-16-20-001-repeat-2 ：  
+
+![使用bowtie2建立的human genome index](../assets/a-questions-16-20/001-16-1.jpg){#fig-a-questions-16-20-001-repeat-2}
+
  
 那么今天的任务是，请观看我的两个视频：  
 
@@ -1040,24 +1234,31 @@ build-index by Bowtie2
 
 **1. 为什么FASTQ文件的快速比对需要建立index？**  
   
-```
-主要是为了加快比对速度，Index简单来说就是若干个文件，方便程序快速地访问及搜索基因组；
-在Index的帮助下，比对软件可以把序列比对的问题的时间复杂度降低。
-```  
+
+::: {.book-prose}
+
+主要是为了加快比对速度，Index简单来说就是若干个文件，方便程序快速地访问及搜索基因组；  
+在Index的帮助下，比对软件可以把序列比对的问题的时间复杂度降低。  
+
+:::
 
 **2. 如果我从1个网站上下载的是1个物种的参考转录组的序列，其中包含了A,U,C,G碱基，我的FASTQ为该物种转录组测序的结果，用A,G,T,C，4种碱基来表示。那么需不需要在建立index之前把参考转录组中的U全部都换成T？**  
 
-```  
-需要转化，因为比对程序并不能将U直接识别为T。
-```
+
+::: {.book-prose}
+
+需要转化，因为比对程序并不能将U直接识别为T。  
+
+:::
 
 **3. 请在Linux环境下，下载human genome 19参考基因组的1号染色体序列；并使用bowtie建立index。**   
 
 
 - 下载 human genome 19参考基因组的1号染色体序列        
 
-```
-> weget -c -o ./test http://hgdownload.soe.ucsc.edu/goldenPath/hg19/chromosomes/chr1.fa.gz &   
+
+```{.bash data-book-role="code"}
+weget -c -o ./test http://hgdownload.soe.ucsc.edu/goldenPath/hg19/chromosomes/chr1.fa.gz &   
 # -o，将文件下载到指定目录中
 # -c，断点传续
 # &,后台运行
@@ -1065,15 +1266,17 @@ build-index by Bowtie2
 
 - 下载得到的文件为 chr1.fa.gz，压缩格式，解压文件  
  
-``` 
-> gzip -d ./test/chr1.fa.gz 
+
+```{.bash data-book-role="code"}
+gzip -d ./test/chr1.fa.gz 
 ```
 
 - 解压得到chr1.fa，下一步建立Index  
 
 
-```
-> bowtie2-build ./test/chr1.fa ./test/chr1_bowtie2_index &
+
+```{.bash data-book-role="code"}
+bowtie2-build ./test/chr1.fa ./test/chr1_bowtie2_index &
 ```
 
 - 得到`chr1_bowtie2_index.bt2`，注意，调用index时使用的名字为`chr1_bowtie2_index`
@@ -1088,7 +1291,8 @@ Hello 大家好！ 我们又见面了！
 
 在我们BBQ100的第1问中，我们就问了大家一个问题FASTQ格式中的第4行记录的是什么内容。我们也给大家进行了解答，FASTQ格式的第4行记录的是每一个碱基的测序质量信息，也叫phred值。1个FASTQ记录的例子如下：
 
-```
+
+```{.text data-book-role="data"}
 @HWI-ST1350:124:C1C2TACXX:3:1101:1223:2042
 CTTTTCGAGTCAGACACATGACAGCCGGCAGCAACTGGAATGGCAGCAATT
 +
@@ -1101,16 +1305,19 @@ BBCFFFFFGHHHHJJIJJIIJJJJIJJJGIJIIJJIJIGIIJJGIIIJIIG
 那么MAPQ是什么意思呢？
 根据SAM文件的官方定义：
 
-```
+
+::: {.book-prose}
+
 MAPQ: Mapping Quality. It equals  -10 log10 Pr{mapping position is wrong}, rounded to the nearest integer. A  
- value 255 indicates that the mapping quality is not available.
-```
+value 255 indicates that the mapping quality is not available.  
+
+:::
 
 简单翻译一下：MAPQ是mapping的质量值，计算方法与FASTQ的质量值类似，
 
-```
-MAPQ=-10 * log10{mapping出错的概率}
-```
+$$
+\mathrm{MAPQ}=-10\log_{10}\Pr\{\text{mapping出错}\}
+$$ {#eq-mapq-definition}
 当MAPQ=255的时候，代表MAPQ没有意义，就是一个占位符。
 
 那么怎么计算MAPQ呢？
@@ -1118,10 +1325,11 @@ MAPQ=-10 * log10{mapping出错的概率}
 
 而我的回答是：根据mapping的情况，然后结合碱基的测序质量值进行评估。核心思想是，低质量的碱基如果进行了mismatch（错配），那么很有可能是测序错误导致的，不应该罚太多分；低质量的碱基如果与参考基因组完美match（匹配），那么也很有可能是测序错误导致的，不应该加太多分。
 
-以我们下面的图1内容为例，第5列是MAPQ值，一般在后续分析的时候，我们都需要把MAPQ质量过低的reads去掉，一般的cutoff是MAPQ≥10，严格一些的比如去寻找somatic mutation的时候需要MAPQ≥30.  
+以我们下面的 @fig-a-questions-16-20-006 内容为例，第5列是MAPQ值，一般在后续分析的时候，我们都需要把MAPQ质量过低的reads去掉，一般的cutoff是MAPQ≥10，严格一些的比如去寻找somatic mutation的时候需要MAPQ≥30.  
 
-![18 图1](../assets/a-questions-16-20/006-18-1.jpg){#fig-a-questions-16-20-006}    
- 图1 标准的SAM文件截图 
+
+![标准的SAM文件截图](../assets/a-questions-16-20/006-18-1.jpg){#fig-a-questions-16-20-006}
+
  
 
 #### 参考答案 {#question-16-291}
@@ -1130,27 +1338,36 @@ MAPQ=-10 * log10{mapping出错的概率}
 
 **1. 如果mapping的时候输入的是FASTA文件，那么MAPQ还有意义吗？为什么？**
 
-```
-没有意义。FASTA不包含测序质量信息，因此最后的MAPQ无法计算，也没有意义，常用255代替。
-```
+
+::: {.book-prose}
+
+没有意义。FASTA不包含测序质量信息，因此最后的MAPQ无法计算，也没有意义，常用255代替。  
+
+:::
 **2. 不同的比对软件比如bwa与bowtie2，计算出来的MAPQ意义相同吗？为什么？**
   
-```
-BWA与Bowtie2的核心算法相同，但是比对策略和最终判断输出结果的评价体系不同。
-MAPQ虽然代表的均是mapping的质量值，但是不同算法软件间的MAPQ不能同时比较。
-简单来说，我们不能认为BWA 中 MAPQ=42就要好于Bowtie的MAPQ=40，反之亦然！
 
-```
+::: {.book-prose}
+
+BWA与Bowtie2的核心算法相同，但是比对策略和最终判断输出结果的评价体系不同。  
+MAPQ虽然代表的均是mapping的质量值，但是不同算法软件间的MAPQ不能同时比较。  
+简单来说，我们不能认为BWA 中 MAPQ=42就要好于Bowtie的MAPQ=40，反之亦然！  
+
+
+:::
 
 **3. 请写出samtools view 命令获得MAPQ大于等于20的sam文件，假设原始的sam文件名为raw.sam，过滤后的sam文件名为filter_MAPQ20.sam**
 
-```
+
+```{.bash data-book-role="code" data-focus-lines="1"}
 samtools view -S -q 20 ./raw.sam > ./filter_MAPQ20.sam  
 # -S input is sam file;
 # -q INT minimum mapping quality ;
-```  
+```
 运行结果：
-![18 答1](../assets/a-questions-16-20/007-18-1.jpg){#fig-a-questions-16-20-007}    
+
+![18 答1](../assets/a-questions-16-20/007-18-1.jpg){#fig-a-questions-16-20-007}
+
  答1 质量值均高于20   
 
 
@@ -1170,13 +1387,15 @@ samtools view -S -q 20 ./raw.sam > ./filter_MAPQ20.sam
 
 经过bowtie2比对之后，会生成一个后缀是sam的结果文件，这个文件里面就记录了我们的比对的结果，下面我们使用less指令查看这个文件，看看有什么玄妙的地方
 
-```
+
+```{.bash data-book-role="code"}
 less ERR188245.sam
-
 ```
 
 
-![原稿配图](../assets/04-quality-control-and-alignment/024-illustration.png){#fig-04-quality-control-and-alignment-024}
+
+![图题待补](../assets/04-quality-control-and-alignment/024-illustration.png){#fig-04-quality-control-and-alignment-024}
+
 
 
 我们可以看到第一行是@HD开头，VN表示版本号，SO表示是否经过排序如果是排过序的是显示coordinate，没有排序则是unsorted
@@ -1187,27 +1406,42 @@ less ERR188245.sam
 第一列即ERR开头的这些表示的是read的编号，即fq文件的第一行
 第二列是一列数字，这列数字叫做flag，即位标识，表示的是比对上的情况，是下面这些情况的数值之和
 
-```
-0：比对到参考序列的正链上
-1：是paired-end或mate pair中的一条
-2：同一模板的各片段满足比对软件定义的正确配对条件（proper pair）
-4：没有比对到参考序列上
-8：另一片段（mate）未比对到参考序列
-16：比对到参考序列的负链上
-32：双末端reads的另一条（mate）比对到参考序列的负链上
-64：这条read是mate 1
-128：这条read是mate 2
-#后续根据比对情况进行过滤就是用到这些数字
 
-```
+::: {.book-prose}
+
+0：比对到参考序列的正链上  
+1：是paired-end或mate pair中的一条  
+2：同一模板的各片段满足比对软件定义的正确配对条件（proper pair）  
+4：没有比对到参考序列上  
+8：另一片段（mate）未比对到参考序列  
+16：比对到参考序列的负链上  
+32：双末端reads的另一条（mate）比对到参考序列的负链上  
+64：这条read是mate 1  
+128：这条read是mate 2  
+#后续根据比对情况进行过滤就是用到这些数字  
+
+
+:::
 
 第三列是表示比对上的参考基因组的某条染色体，如果什么都没比对上则是'*'
 
 第四列是比对上的染色体的具体位置起始位置，从1计数，如果比对不上则是以0计数
 
+
+::::: {.callout-warning .book-warning title="注意｜MAPQ 阈值不是通用保证"}
+
 第五列是比对质量 MAPQ，用 Phred 标度表达比对位置错误的概率。SAM 规范并未将取值限制为 0—60；255 表示没有可用的比对质量。具体算法、上限和过滤阈值依赖比对软件及分析目的，不能把 MAPQ≥20 当作普遍的可信保证。
 
+:::::
+
+
+
+::::: {.callout-tip .book-example title="示例与练习｜读懂 CIGAR"}
+
 第六列是比对情况表达式，CIGAR，主要由soft  clipping 、match/mismatch、insertion、deletion、 padding、skipped bases、hard clipping、match、mismatch对应字母S、M、I、D、P、N、H、=、X跟数字组成，例如 `3S38M432N38M` 表示先软剪切 3 个碱基，再比对 38 个碱基、跳过参考上的 432 个碱基、再比对 38 个碱基；`M` 同时包含匹配与错配，`S` 必须大写
+
+:::::
+
 
 第七列表示下一片段比对上的参考序列的标号，同一片段用=，没有另外片段则为'*'
 
@@ -1227,14 +1461,15 @@ less ERR188245.sam
 
 那么转成二进制文件之后，要怎么打开呢？很明显使用less这种打开文本文件的是不适合的了。这个时候就要提到bwa之父李恒大神为sam与bam开发的一个处理利器samtools。首先是国际惯例，安装
 
-```
-conda install -c bioconda samtools
 
+```{.bash data-book-role="code"}
+conda install -c bioconda samtools
 ```
 
 安装完毕之后就可以在命令行上使用了，首先是将sam文件转换为bam文件：
 
-```
+
+```{.bash data-book-role="code" data-focus-lines="2,5"}
 # 将sam文件转换为bam文件
 samtools view -b -S ERR188245.sam > ERR188245.bam
 
@@ -1244,7 +1479,8 @@ samtools view -h ERR188245.bam > ERR188245.sam
 
 那么问题来了，转为bam文件之后，怎么用samtools查看？我们可以将bam转为sam，然后再利用管道符用less查看：
 
-```
+
+```{.bash .numberLines data-book-role="code" data-focus-lines="2,5,8"}
 # 查看完整的bam文件
 samtools view -h ERR188245_chrX.bam | less -S
 
@@ -1253,7 +1489,6 @@ samtools view -H ERR188245_chrX.bam
 
 #如果想跳过头文件
 samtools view ERR188245_chrX.bam  | less -S
-
 ```
 
 #### BAM文件的排序 {#src-0040-mapping-and-BAM-operation-364}
@@ -1262,7 +1497,8 @@ samtools view ERR188245_chrX.bam  | less -S
 
 使用samtools对bam文件进行排序：
 
-```
+
+```{.bash .numberLines data-book-role="code" data-focus-lines="1"}
 samtools sort -@ 20 -m 8G -O bam -o ERR188245_chrX.sorted.bam ERR188245_chrX.bam
 # @：指定线程数
 # m：每个线程分配的最大内存
@@ -1272,30 +1508,30 @@ samtools sort -@ 20 -m 8G -O bam -o ERR188245_chrX.sorted.bam ERR188245_chrX.bam
 ```
 
 如果是picard的话，可以参考下面的命令：
-```
-java -jar picard.jar SortSam I=ERR188245_chrX.bam  O=ERR188245_chrX.sorted.bam  SORT_ORDER=coordinate
 
+```{.bash data-book-role="code"}
+java -jar picard.jar SortSam I=ERR188245_chrX.bam  O=ERR188245_chrX.sorted.bam  SORT_ORDER=coordinate
 ```
 
 如果使用GATK工具，对bam文件进行排序，可以参考：
 
-```
+
+```{.bash .numberLines data-book-role="code" data-focus-lines="3,6"}
 #如果是gatk的话, 先建立index与dict
 samtools faidx chrX.fa
 gatk CreateSequenceDictionary -R chrX.fa -O chrX.dict
 
 #再使用gatk进行排序
 gatk SortSam -I ERR188245_chrX.bam -O ERR188245_chrX.sorted.bam -R chrX.fa -SO coordinate --CREATE_INDEX
-
 ```
 
 #### BAM文件的index的建立 {#src-0040-mapping-and-BAM-operation-396}
 
 经过排序之后的bam文件，就可以建立索引，如果不排序则会报错。建立bam文件的索引文件，是为了更方便地
 
-```
-samtools index ERR188245_chrX.sorted.bam
 
+```{.bash data-book-role="code"}
+samtools index ERR188245_chrX.sorted.bam
 ```
 
 运行完上面的命令，即可在文件夹中获得一个index文件，一般情况下默认的文件名为bam文件名后面增加`.bai`后缀。比如这里就会生成`ERR188245_chrX.sorted.bam.bai`文件。我们在对排序完的bam文件进行一些特殊的操作时，一般都需要index文件和bam文件在同一文件夹中，否则可能会出现报错的现象。
@@ -1304,7 +1540,8 @@ samtools index ERR188245_chrX.sorted.bam
 
 果然想通过mapping质量或者比对情况进行过滤，那samtools一定是处理代码最为简洁的。
 
-```
+
+```{.bash .numberLines data-book-role="code" data-focus-lines="1"}
 samtools view -h -b -q 20 -F 4 -F 256 ERR188245_chrX.sorted.bam > ERR188245_chrX.q1F4F256.sorted.bam
 
 #-f 提取提取出没有mapping上的reads
@@ -1320,9 +1557,9 @@ samtools view -h -b -q 20 -F 4 -F 256 ERR188245_chrX.sorted.bam > ERR188245_chrX
 
 如果相对bam文件进行一些基础的统计分析，比如测序片段的数目，整体的突变情况，基因组测序结果的覆盖度等等，都可以用下面的命令生成报告。
 
-```
-samtools flagstat ERR188245_chrX.sorted.bam
 
+```{.bash data-book-role="code"}
+samtools flagstat ERR188245_chrX.sorted.bam
 ```
 
 结果文件统计bam文件中reads的比对情况，如多少reads比对上等信息，其中的结果比较丰富，但是需要再使用R或者Python编程进行生成图表。所以，当不追求速度的情况下还是建议用qualimap2软件。
@@ -1349,28 +1586,36 @@ Hello大家好！ 我们今天又见面了！
 
 输入文件应该包含：
 
-```  
-1. 测序结果（通常是FASTQ或者是FASTQ的压缩文件）
-2. 之前建立好的参考基因组的index文件（不同的mapping软件建立的方法大同小异，但一般都是提前构建）
-```  
+
+::: {.book-prose}
+
+1\. 测序结果（通常是FASTQ或者是FASTQ的压缩文件）  
+2\. 之前建立好的参考基因组的index文件（不同的mapping软件建立的方法大同小异，但一般都是提前构建）  
+
+:::
 输出文件应该包括：  
 
-```  
-1. 比对的结果文件（一般是SAM文件格式或者是BAM文件格式）
-2. 比对的情况报告
-```  
+
+::: {.book-prose}
+
+1\. 比对的结果文件（一般是SAM文件格式或者是BAM文件格式）  
+2\. 比对的情况报告  
+
+:::
 今天我们就要谈一谈SAM/BAM文件格式。
 
 首先先说二者之间的关系，BAM文件是SAM文件的压缩格式，压缩以后可以节省空间，排好序的BAM文件还可以提供随机访问功能，性能优良。但是BAM文件和SAM文件储存的内容是完全一样的。我们以后还要单独再说BAM文件的操作方法，今天我们把重点放在文件中的内容上。
 
-SAM文件的全称是：Sequence Alignment Map，它设计之初就是为了存储mapping结果的。一个标准的SAM文件由2部分组成，第1部分是以“@”开头的头部，在文件的最前面；第2部分就是紧跟在头部后面的比对结果文件。我们先来看一个例子（图1）。  
+SAM文件的全称是：Sequence Alignment Map，它设计之初就是为了存储mapping结果的。一个标准的SAM文件由2部分组成，第1部分是以“@”开头的头部，在文件的最前面；第2部分就是紧跟在头部后面的比对结果文件。我们先来看一个例子（ @fig-a-questions-16-20-002 ）。  
 
-![17 图1](../assets/a-questions-16-20/002-17-1.jpg){#fig-a-questions-16-20-002}   
+
+![SAM文件的内容](../assets/a-questions-16-20/002-17-1.jpg){#fig-a-questions-16-20-002}
+
  
-图1 SAM文件的内容   
  在Linux中，访问sam文件最好用的工具是samtools，常用的操作如下：
  
- ```
+
+```{.bash .numberLines data-book-role="code" data-focus-lines="4,7,10"}
 # 假设SAM文件的文件名是 test.sam
 
 # 1.只查看头部
@@ -1384,15 +1629,16 @@ samtools view -h test.sam
 
 # 4.查看帮助文档
 samtools view  
-
- ```  
+```
 另外，通常情况下，1行SAM文件的内容包含有多列，标准的SAM文件会包含11列内容，其中每一列的内容代表的意思与简单的描述如下。我们今天主要关注的是前面4列内容。   
  
-![17 图2](../assets/a-questions-16-20/003-17-2.jpg){#fig-a-questions-16-20-003}    
- 图2 标准SAM文件中的11列内容代表的含义    
+
+![标准SAM文件中的11列内容代表的含义](../assets/a-questions-16-20/003-17-2.jpg){#fig-a-questions-16-20-003}
+
  
-![17 图3](../assets/a-questions-16-20/004-17-3.jpg){#fig-a-questions-16-20-004}    
- 图3 SAM文件中的前4列内容    
+
+![SAM文件中的前4列内容](../assets/a-questions-16-20/004-17-3.jpg){#fig-a-questions-16-20-004}
+
 
 
 #### 参考答案 {#question-16-188}
@@ -1401,45 +1647,56 @@ samtools view
 
 **1. SAM文件的头部内容中常见的标志符号有@HD，@SQ，@PG，请问这三者后面跟随的信息分别是什么意思？**  
 
-```
-- 这三者都属于注释信息；
-- @HD:说明符合标准的版本、对比结果是否进行了排序
-- @SQ:参考序列说明
-- @PG:得到的文件都经过了哪些处理，比如mapping的详细程序等等；
-```
 
-**2. 图3是SAM文件内容的前4列（最前面的序号是我加上去的，不包含在SAM文件中），那么请你解释一下这4列分别代表什么意思？其中的FLAG是第几列，是什么意思？**  
+::: {.book-prose}
 
-```
-- QNAME：比对片段的编号；以及read name，通常包括测序平台的信息；
-- FALG：比对情况的代表值，也叫做位标识，每一个数字代表一种比对情况，这里的值是符合情况的数字相加总和；
-- flag取值：
-1（1）该read是成对的paired reads中的一个 
-2（10）paired reads中每个都正确比对到参考序列上 
-4（100）该read没比对到参考序列上 
-8（1000）与该read成对的matepair read没有比对到参考序列上 
-16（10000）该read其反向互补序列能够比对到参考序列 
-32（100000）与该read成对的matepair read其反向互补序列能够比对到参考序列 
-64（1000000）在paired reads中，该read是与参考序列比对的第一条 
-128（10000000）在paired reads中，该read是与参考序列比对的第二条 
-256（100000000）该read是次优的比对结果 
-512（1000000000）该read没有通过质量控制 
-1024（10000000000）由于PCR或测序错误产生的重复reads 
-2048（100000000000）补充匹配的read
-```
+\- 这三者都属于注释信息；  
+\- @HD:说明符合标准的版本、对比结果是否进行了排序  
+\- @SQ:参考序列说明  
+\- @PG:得到的文件都经过了哪些处理，比如mapping的详细程序等等；  
 
-**3. 如果1条序列的FLAG=83 （图3标号38的行）请解释其比对含义。**  
+:::
+
+**2.  @fig-a-questions-16-20-004 是SAM文件内容的前4列（最前面的序号是我加上去的，不包含在SAM文件中），那么请你解释一下这4列分别代表什么意思？其中的FLAG是第几列，是什么意思？**  
+
+
+::: {.book-prose}
+
+\- QNAME：比对片段的编号；以及read name，通常包括测序平台的信息；  
+\- FALG：比对情况的代表值，也叫做位标识，每一个数字代表一种比对情况，这里的值是符合情况的数字相加总和；  
+\- flag取值：  
+1（1）该read是成对的paired reads中的一个  
+2（10）paired reads中每个都正确比对到参考序列上  
+4（100）该read没比对到参考序列上  
+8（1000）与该read成对的matepair read没有比对到参考序列上  
+16（10000）该read其反向互补序列能够比对到参考序列  
+32（100000）与该read成对的matepair read其反向互补序列能够比对到参考序列  
+64（1000000）在paired reads中，该read是与参考序列比对的第一条  
+128（10000000）在paired reads中，该read是与参考序列比对的第二条  
+256（100000000）该read是次优的比对结果  
+512（1000000000）该read没有通过质量控制  
+1024（10000000000）由于PCR或测序错误产生的重复reads  
+2048（100000000000）补充匹配的read  
+
+:::
+
+**3. 如果1条序列的FLAG=83 （ @fig-a-questions-16-20-004 标号38的行）请解释其比对含义。**  
 
 使用Explain SAM Flags工具，结果如下：
 
-![17 答1](../assets/a-questions-16-20/005-17-1.jpg){#fig-a-questions-16-20-005}    
-```
-FLAG = 1+2+16+64=83 ，不同数字对应的解释如上。即当FLAG=83时，这代表着：
-（1）序列是双端测序的结果；
-（2）mapping的结果正常；
-（3）reads mapping到了genome的负链上；
-（4）此reads为reads1
-```
+
+![17 答1](../assets/a-questions-16-20/005-17-1.jpg){#fig-a-questions-16-20-005}
+
+
+::: {.book-prose}
+
+$\mathrm{FLAG}=1+2+16+64=83$ ，不同数字对应的解释如上。即当FLAG=83时，这代表着：  
+（1）序列是双端测序的结果；  
+（2）mapping的结果正常；  
+（3）reads mapping到了genome的负链上；  
+（4）此reads为reads1  
+
+:::
 
 
 参考资料：
@@ -1459,37 +1716,46 @@ Hello大家好！我们又见面了！
 
 我们之前学习到了从SAM文件是用来存储序列mapping结果的标准格式，BAM文件是SAM文件的压缩格式，二者在信息层面是等价的。
 
-SAM/BAM文件的前面5列，分别记录了，各位可以对照下图1中的内容对应一下。
+SAM/BAM文件的前面5列，分别记录了，各位可以对照下 @fig-a-questions-16-20-008 中的内容对应一下。
 
-```
-1. 序列的名称；
-2. FLAG值；
-3. 比对到的染色体；
-4. 比对到的染色体的具体位置；
-5. 比对的质量值， 也叫MAPQ；
-```
 
-![19 图1](../assets/a-questions-16-20/008-19-1.jpg){#fig-a-questions-16-20-008}    
- 图1 全基因组测序的比对数据   
+::: {.book-prose}
+
+1\. 序列的名称；  
+2\. FLAG值；  
+3\. 比对到的染色体；  
+4\. 比对到的染色体的具体位置；  
+5\. 比对的质量值， 也叫MAPQ；  
+
+:::
+
+
+![全基因组测序的比对数据](../assets/a-questions-16-20/008-19-1.jpg){#fig-a-questions-16-20-008}
+
  那么第6列信息到底是什么呢？它其实是比对的一个简单描述，有一个很好听的名字叫CIGAR值（对滴，就是雪茄烟的那个单词）。
 
 CIGAR = Concise Idiosyncratic Gapped Alignment Report 
 
 我们先来简单理解一下CIGAR值。
 
-```
-例子1：如图1第37行，CIGAR = 56M1I30M；
-它的含义就是：这条序列与参考基因组相比；
-前56bp能够match上；
-中间有1bp的insertion（相比于参考基因组有1bp的插入）；
-最后是30bp的match
 
-例子2：如图1第50行，CIGAR=145M，
-含义就是：这条序列与参考基因组比对的结果是145bp完全match上。
-```
-那么常用的CIGAR标记符号都有哪些呢？根据SAM格式的官方文档如图2所示。
+::: {.book-prose}
 
-![19 表1](../assets/a-questions-16-20/009-19-1.jpg){#fig-a-questions-16-20-009}    
+例子1：如 @fig-a-questions-16-20-008 第37行，CIGAR = 56M1I30M；  
+它的含义就是：这条序列与参考基因组相比；  
+前56bp能够match上；  
+中间有1bp的insertion（相比于参考基因组有1bp的插入）；  
+最后是30bp的match  
+
+例子2：如 @fig-a-questions-16-20-008 第50行，CIGAR=145M，  
+含义就是：这条序列与参考基因组比对的结果是145bp完全match上。  
+
+:::
+那么常用的CIGAR标记符号都有哪些呢？根据SAM格式的官方文档如 @fig-a-questions-16-20-010 所示。
+
+
+![19 表1](../assets/a-questions-16-20/009-19-1.jpg){#fig-a-questions-16-20-009}
+
  表1 常用的CIGAR符号 
     
 目前，我们只需要了解到前面7个，后面的=，X已经很不常用了，大家可以先忽略一下。
@@ -1501,31 +1767,41 @@ CIGAR = Concise Idiosyncratic Gapped Alignment Report
 
 **1. M,I,D,N分别是什么意思？如果1条序列的CIGAR=150M， 那么是不是可以说这150bp的区域中没有mismatch（错配）的现象？**
 
-```
-M:序列匹配或错配
-I:参考序列上的插入
-D:参考序列上的缺失
-N:参考序列上的跳跃区
-150M不能说150bp区域区域中没有错配，因为M表示完全匹配;
-但是无论reads与序列的正确匹配或是错误匹配该位置都显示为M 。
-```
+
+::: {.book-prose}
+
+M:序列匹配或错配  
+I:参考序列上的插入  
+D:参考序列上的缺失  
+N:参考序列上的跳跃区  
+150M不能说150bp区域区域中没有错配，因为M表示完全匹配;  
+但是无论reads与序列的正确匹配或是错误匹配该位置都显示为M 。  
+
+:::
 **2. 如果1条序列来自于成熟的mRNA，在mapping到基因组的时候会有什么问题？如果这条序列中间正好跨过了200bp的intron，前后各有75bp mapping到了exon上，那么这条序列的CIGAR值应该怎么写？**
 
-```
-- 错配，intron,跳跃区；
-- CIGAR：75M200N75M
-```
+
+::: {.book-prose}
+
+\- 错配，intron,跳跃区；  
+\- CIGAR：75M200N75M  
+
+:::
 **3. 根据下图提示，请理解clip的含义，无论是softclip还是hardclip。**
 
-![19 图2](../assets/a-questions-16-20/010-19-2.jpg){#fig-a-questions-16-20-010}    
- 图2 引自 http://bioinformatics.cvr.ac.uk/blog/tag/cigar-string/ 
 
-```
-以r003序列为例，两个比对结果中序列剪切之后进行比对，那么所对应的CIGAR分别是5S6M和6H14N5M;
-最终bam文件中序列分别是11bp和25bp,
-这说明，在read进行softclip后，reads的原始信息在BAM文件中依然保留；
-但是hardclip中，reads只在BAM文件中保留了切除以后的序列将直接被删除。
-```
+![引自 http://bioinformatics.cvr.ac.uk/blog/tag/cigar-string/](../assets/a-questions-16-20/010-19-2.jpg){#fig-a-questions-16-20-010}
+
+
+
+::: {.book-prose}
+
+以r003序列为例，两个比对结果中序列剪切之后进行比对，那么所对应的CIGAR分别是5S6M和6H14N5M;  
+最终bam文件中序列分别是11bp和25bp,  
+这说明，在read进行softclip后，reads的原始信息在BAM文件中依然保留；  
+但是hardclip中，reads只在BAM文件中保留了切除以后的序列将直接被删除。  
+
+:::
 大家在看了我们的BBQ100活动以后，也不要忘了支持我们的知乎Live！
 
 孟浩巍的知乎 Live - 生物信息学
@@ -1545,7 +1821,9 @@ Hello大家好！今天我们又见面了！
 今天我们来继续探索SAM/BAM文件的信息列。
 
 我们之前已经说过，1个标准的SAM文件包含前面的11列标准信息列和若干标识符信息列（如表1所示），其中前面的6列我们已经为大家解释清楚。那么今天我们来继续探索剩下的7到11列。 
-![20 表1](../assets/a-questions-16-20/011-20-1.jpg){#fig-a-questions-16-20-011}    
+
+![20 表1](../assets/a-questions-16-20/011-20-1.jpg){#fig-a-questions-16-20-011}
+
  表1 SAM格式的标准11列信息介绍 
  
 第7列，一般情况下是指Pair read的另一半的比对的参考基因组；
@@ -1557,12 +1835,14 @@ Hello大家好！今天我们又见面了！
 第10列，进行比对read的序列信息；
 
 第11列，进行比对read的质量信息；  
-![20 图1](../assets/a-questions-16-20/012-20-1.jpg){#fig-a-questions-16-20-012}    
- 图1 SAM文件的截图，包含11列   
- 对于我们今天的简单讲解，其实还涉及到很多概念，就比如在SAM官方文档中，对template，segment，read的各自定义就很让人挠头，我也是用了很长的时间才弄懂学会的。大家有兴趣的可以看一下图2我的截图，看看里面的定义
+
+![SAM文件的截图，包含11列](../assets/a-questions-16-20/012-20-1.jpg){#fig-a-questions-16-20-012}
+
+ 对于我们今天的简单讲解，其实还涉及到很多概念，就比如在SAM官方文档中，对template，segment，read的各自定义就很让人挠头，我也是用了很长的时间才弄懂学会的。大家有兴趣的可以看一下 @fig-a-questions-16-20-013 我的截图，看看里面的定义
  
-![20 图2](../assets/a-questions-16-20/013-20-2.jpg){#fig-a-questions-16-20-013}    
- 图2 SAM官方文档中对一些概念的解释（很让人难懂）     
+
+![SAM官方文档中对一些概念的解释（很让人难懂）](../assets/a-questions-16-20/013-20-2.jpg){#fig-a-questions-16-20-013}
+
   
 
 
@@ -1570,29 +1850,39 @@ Hello大家好！今天我们又见面了！
 
 那么我们今天的问题如下：
 
-**1. 图1中第20行，第9列记录了TLEN值，请你根据今天的文章与图1中的信息，列出算式计算TLEN值。**
+**1.  @fig-a-questions-16-20-012 中第20行，第9列记录了TLEN值，请你根据今天的文章与 @fig-a-questions-16-20-012 中的信息，列出算式计算TLEN值。**
 
-```
--（11123-10946+145） = -322 
-```
-![20 答2](../assets/a-questions-16-20/014-20-2.jpg){#fig-a-questions-16-20-014}  
+$$
+-(11123-10946+145)=-322
+$$ {#eq-tlen-example}
+
+![20 答2](../assets/a-questions-16-20/014-20-2.jpg){#fig-a-questions-16-20-014}
+
 
 
 **2. 如果使用FASTA文件作为input，第11列的质量值是否还有意义？为什么？**
 
-```
-没有意义，因为fasta文件信息不包含read的质量值，11列的质量值本身是测序质量值，所以没有参考意义。
-```
+
+::: {.book-prose}
+
+没有意义，因为fasta文件信息不包含read的质量值，11列的质量值本身是测序质量值，所以没有参考意义。  
+
+:::
 
 **3. 有没有可能通过SAM文件，提取里面的序列信息并转换成FASTQ格式的文件？如果可能，请你写出程序思路。**
 
-```
+
+```{.bash data-book-role="code"}
 samtools view -b -h -S filter_MAPQ20.sam > filter_MAPQ20.bam
 samtools bam2fq filter_MAPQ20.bam > filter_MAPQ20.fastq
+```
 
+```{.text data-book-role="data"}
 # [M::bam2fq_mainloop] processed 629 reads
 ```
-![20 答1](../assets/a-questions-16-20/015-20-1.jpg){#fig-a-questions-16-20-015}    
+
+![20 答1](../assets/a-questions-16-20/015-20-1.jpg){#fig-a-questions-16-20-015}
+
  
 
 [该问题参考资料](http://www.metagenomics.wiki/tools/samtools/converting-bam-to-fastq)
@@ -1610,13 +1900,15 @@ Hello大家好！我们今天又见面了！
 
 我们先给大家举个例子，这是一个human的全基因组测序比对的SAM文件的11列以后的信息。第11列之前学习过了是reads的质量值，那么后面的若干标记比如MD:Z:145等等这些符号是什么意思呢？
 
-![21 图1](../assets/a-questions-21-25/001-21-1.jpg){#fig-a-questions-21-25-001}  
 
-图1 SAM文件的11列以后的信息截图   
+![SAM文件的11列以后的信息截图](../assets/a-questions-21-25/001-21-1.jpg){#fig-a-questions-21-25-001}
+
+
  
 我把上面图中的部分行的信息放到这里，供大家查阅（11列以后的内容要一直向右拖拽) 
 
-```
+
+```{.text data-book-role="data"}
 ST-E00126:128:HJFLHCCXX:2:1206:8105:9730	99	chr1	11670	1	145M	=	11898	315 AGGTGAAGCCCTGGAGATTCTTATTAGTGATTTGGGCTGGGGCCTGGCCATGTGTATTTTTTTAAATTTCCACTGATGATTTTGCTGCATGGCCGGTGTTGAGAATGACTGCGCAAATTTGCCGGATTTCCTTTGCTGTTCCTGC	KKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKFKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKFKKFKKKKKKKKKKKKKKKKKKKFFKKKKKKKKKKFKKKKKKKKKKKKKKKFAK	MD:Z:145	PG:Z:MarkDuplicates	XG:i:0	NM:i:0	XM:i:0	XN:i:0	XO:i:0	AS:i:0	XS:i:0	YS:i:0	YT:Z:CP
 ST-E00126:128:HJFLHCCXX:2:2107:22820:18520	99	chr1	11682	1	145M	=	11920	325	GGAGATTCTTATTAGTGATTTCGGCTGGTGCCTGGCCATGTGTATTTTTTTAAATTTCCACTGATGATTTTGCTGCATGGCCGGTGTTGAGAATGACTGCGCAAATTTGCCGGATTTCCTTTGCTGTTCCTGCATGTAGTTTAAA	KKKKAAKKAFFKKKKKKFKFKKKFKKKKKKKKKKFKFKKKKKKKKKKKKKKFKFFKKKKKKFAAKAKKKKKKKKKKKKFFKKKFFFKKFKFFKKKKKKKKFFFFFKKKKKKK7<FFKKKKKKAFK<F<<7<AA,,7AA<7F7AA<	MD:Z:21G6G116	PG:Z:MarkDuplicates	XG:i:0	NM:i:2	XM:i:2	XN:i:0	XO:i:0	AS:i:-12	XS:i:-12	YS:i:-6	YT:Z:CP
 ST-E00126:128:HJFLHCCXX:2:1210:9110:60026	163	chr1	11703	1	87M	=	11840	282	GGGCTGGGGCCTGGCCATGTGTATTTTTTTAAATTTCCACTGATGATTTTGCTGCATGGCCGGTGTTGAGAATGACTGTGCAAATTT	7FKAFKFKFFFKKF<FKKKFKKKFKK7F<KFFKFKKKKKKKFFFF,FKKKKKKKFFKKKKK(7<,AAK<F7AAFKKFKFKFF<A<7<	MD:Z:78C8	PG:Z:MarkDuplicates	XG:i:0	NM:i:1	XM:i:1	XN:i:0	XO:i:0	AS:i:-5	XS:i:-5	YS:i:-33	YT:Z:CP
@@ -1625,22 +1917,32 @@ ST-E00126:128:HJFLHCCXX:2:2210:15382:54752	163	chr1	11714	1	87M	=	11866	297	TGGC
 ```
 
 
+
+::::: {.callout-note .book-core title="核心知识｜SAM 可选字段的组成"}
+
 一般呢，我们都把11列以后的内容称为可选择区域（optional fields），这个区域所有的格式都必须是TAG:TYPE:VALUE的形式，比如MD:Z:145就是一个符合规范的可选区域的值。
+
+:::::
+
 
 根据SAM格式官方文档的信息，我们需要记住以下内容：
 
-```
-1. 所有的TAG都是2个字母，一般情况下都是大写字母。并且TAG在1行的比对结果中只能出现1次。
-2. 所有的TYPE都是单字母，大小写敏感，它是用来定义后面VALUE的类型；
-3. VALUE可长可短，但是需要和之前的TYPE相呼应。  
 
-```
+::: {.book-prose}
+
+1\. 所有的TAG都是2个字母，一般情况下都是大写字母。并且TAG在1行的比对结果中只能出现1次。  
+2\. 所有的TYPE都是单字母，大小写敏感，它是用来定义后面VALUE的类型；  
+3\. VALUE可长可短，但是需要和之前的TYPE相呼应。  
+
+
+:::
 关于TYPE不同字母对应的不同数据类型，把SAM的官方文档贴一下，共大家参考。其中，最常用的就是i（带符号的数字）；Z（可直接输出字符串，可以包含空格）；  
 
 
-![21 图2](../assets/a-questions-21-25/002-21-2.jpg){#fig-a-questions-21-25-002}  
 
-图2 TYPE的字母与不同数据类型之间的对应关系
+![TYPE的字母与不同数据类型之间的对应关系](../assets/a-questions-21-25/002-21-2.jpg){#fig-a-questions-21-25-002}
+
+
  
     
   
@@ -1648,13 +1950,20 @@ ST-E00126:128:HJFLHCCXX:2:2210:15382:54752	163	chr1	11714	1	87M	=	11866	297	TGGC
 
 那么常用的TAG都有哪些，都代表什么含义呢？要知道，不同的比对软件可能会在SAM文件的后面加上不同的TAG，所以我们在查询TAG含义的时候一定要从所用比对软件的官方文档中去查找。而SAM文件的header部分又包含了@PG字符段可以帮助我们还原比对软件的参数设置，因此我们拿到一个SAM文件就可以通过查阅文档的方式了解TAG的基本信息。
 
-```
-使用samtools可以查看sam文件的header部分
+
+::: {.book-prose}
+
+使用samtools可以查看sam文件的header部分  
+
+:::
+
+```{.bash data-book-role="code"}
 samtools view -H test.sam
 ```
 比如，我们这里的@PG内容如下 
 
-```
+
+```{.text data-book-role="data"}
 @PG	ID:bowtie2-5DEB9F7A	PN:bowtie2	VN:2.2.5	CL:"/home/biotools/bowtie2-2.2.5/bowtie2-align-s --wrapper basic-0 -p 4 --phred33 -x /lustre/user/reference/hg19/hg19_combine -S ./tmp.data/fastq/genome-sequence.sam -1 ./tmp.data/fastq/genome-sequence_L3_1_trim5.fastq -2 ./tmp.data/fastq/genome-sequence_L3_2_trim5_92.fastq"
 ```
 
@@ -1663,69 +1972,72 @@ samtools view -H test.sam
 
 **我们今天的问题很简单，请根据bowtie2的官方文档，解释下面的比对信息：**
 
-```
-ST-E00126:128:HJFLHCCXX:2:2107:22820:18520	99	chr1	11682	1	145M	=	11920	325	GGAGATTCTTATTAGTGATTTCGGCTGGTGCCTGGCCATGTGTATTTTTTTAAATTTCCACTGATGATTTTGCTGCATGGCCGGTGTTGAGAATGACTGCGCAAATTTGCCGGATTTCCTTTGCTGTTCCTGCATGTAGTTTAAA	KKKKAAKKAFFKKKKKKFKFKKKFKKKKKKKKKKFKFKKKKKKKKKKKKKKFKFFKKKKKKFAAKAKKKKKKKKKKKKFFKKKFFFKKFKFFKKKKKKKKFFFFFKKKKKKK7<FFKKKKKKAFK<F<<7<AA,,7AA<7F7AA<	MD:Z:21G6G116	XG:i:0	NM:i:2	XM:i:2	XN:i:0	XO:i:0	AS:i:-12	XS:i:-12	YS:i:-6	YT:Z:CP
 
+```{.text data-book-role="data"}
+ST-E00126:128:HJFLHCCXX:2:2107:22820:18520	99	chr1	11682	1	145M	=	11920	325	GGAGATTCTTATTAGTGATTTCGGCTGGTGCCTGGCCATGTGTATTTTTTTAAATTTCCACTGATGATTTTGCTGCATGGCCGGTGTTGAGAATGACTGCGCAAATTTGCCGGATTTCCTTTGCTGTTCCTGCATGTAGTTTAAA	KKKKAAKKAFFKKKKKKFKFKKKFKKKKKKKKKKFKFKKKKKKKKKKKKKKFKFFKKKKKKFAAKAKKKKKKKKKKKKFFKKKFFFKKFKFFKKKKKKKKFFFFFKKKKKKK7<FFKKKKKKAFK<F<<7<AA,,7AA<7F7AA<	MD:Z:21G6G116	XG:i:0	NM:i:2	XM:i:2	XN:i:0	XO:i:0	AS:i:-12	XS:i:-12	YS:i:-6	YT:Z:CP
 ```
 **Anwser**
 
-```
-1. ST-E00126:128:HJFLHCCXX:2:2107:22820:18520
-> 序列名称，比对片段的编号，通常包括测序平台的信息
 
-2. 99
-> Flag值
+::: {.book-prose}
 
-3. chr1
-> 回帖到的染色体名称
+1\. ST-E00126:128:HJFLHCCXX:2:2107:22820:18520  
+&gt; 序列名称，比对片段的编号，通常包括测序平台的信息  
 
-4. 11682
-> 比对到染色体上的具体位置（比对到正链最左边bp的位置点）
+2\. 99  
+&gt; Flag值  
 
-5. 1
-> 比对的质量值，叫做MAPQ，MAPQ=-10 * log10{mapping出错的概率}
+3\. chr1  
+&gt; 回帖到的染色体名称  
 
-6. 145M
-> CIGAR值，描述具体的比对情况
+4\. 11682  
+&gt; 比对到染色体上的具体位置（比对到正链最左边bp的位置点）  
 
-7. =
-> pair reads中与该序列配对的read所mapping到的参考序列，如果没有mapping到同一条参考序列上，则用“*”代替。
+5\. 1  
+&gt; 比对的质量值，叫做MAPQ，MAPQ=-10 * log10{mapping出错的概率}  
 
-8. 11920
-> pair reads中与该序列配对的read所mapping到的参考序列的具体位置
+6\. 145M  
+&gt; CIGAR值，描述具体的比对情况  
 
-9. 325
-> 通过分析pair reads mapping到同一条参考序列上位置的推断得到fragment的长度
+7\. =  
+&gt; pair reads中与该序列配对的read所mapping到的参考序列，如果没有mapping到同一条参考序列上，则用“*”代替。  
 
-10. GGAGA....TTAAA
-> read序列信息
-11. KKKKA....F7AA<
-> read序列测序每一bp的质量值
-12. MD:Z:21G6G116
-> MD:Z:表示在比对过程中有mismatch的情况，后面字符串表示mismatch的具体位置
-13. XG:i:0
-> XG:i有gap的存在，后面数字表示gap的总长度（read和reference上的都计算在内）
-14. NM:i:2
-> 编辑距离，为了将read map到reference上，对read进行单核苷酸编辑（替换、插入以及删除）的最小长度
-15. XM:i:2
-> mismatche的具体数目
-16. XN:i:0
-> 序列覆盖区的参考基因组上不确定的base数
-17. XO:i:0
-> gap的具体数目
+8\. 11920  
+&gt; pair reads中与该序列配对的read所mapping到的参考序列的具体位置  
 
-18. AS:i:-12
-> 比对分数，允许负值，局部比对最终可以大于0，但是全局比对中不会
+9\. 325  
+&gt; 通过分析pair reads mapping到同一条参考序列上位置的推断得到fragment的长度  
 
-19. XS:i:-12
-> 比对过程中出现的比最终报告分数（AS:i:-12）高的比对值，同样允许负值，局部比对最终可以大于0，但是全局比对中不会。当一条序列能够同时比对到多个位点，且出现连续局部相似度极高的情况下会出现这种情况。
-20. YS:i:-6
-> 与该序列配对的pair read的比对分数
-	
-21. YT:Z:CP
-> YT:Z:代表pair-read的比对情况，“UU”代表没有配对的read； "CP"代表序列为pair reads之一，pair align cordantly；"DP"表序列为pair reads之一，pair align discordantly；"UP"代表序列为pair reads之一，但是pair没有比对到参考基因组上。
+10\. GGAGA....TTAAA  
+&gt; read序列信息  
+11\. KKKKA....F7AA&lt;  
+&gt; read序列测序每一bp的质量值  
+12\. MD:Z:21G6G116  
+&gt; MD:Z:表示在比对过程中有mismatch的情况，后面字符串表示mismatch的具体位置  
+13\. XG:i:0  
+&gt; XG:i有gap的存在，后面数字表示gap的总长度（read和reference上的都计算在内）  
+14\. NM:i:2  
+&gt; 编辑距离，为了将read map到reference上，对read进行单核苷酸编辑（替换、插入以及删除）的最小长度  
+15\. XM:i:2  
+&gt; mismatche的具体数目  
+16\. XN:i:0  
+&gt; 序列覆盖区的参考基因组上不确定的base数  
+17\. XO:i:0  
+&gt; gap的具体数目  
 
-```
+18\. AS:i:-12  
+&gt; 比对分数，允许负值，局部比对最终可以大于0，但是全局比对中不会  
+
+19\. XS:i:-12  
+&gt; 比对过程中出现的比最终报告分数（AS:i:-12）高的比对值，同样允许负值，局部比对最终可以大于0，但是全局比对中不会。当一条序列能够同时比对到多个位点，且出现连续局部相似度极高的情况下会出现这种情况。  
+20\. YS:i:-6  
+&gt; 与该序列配对的pair read的比对分数  
+
+21\. YT:Z:CP  
+&gt; YT:Z:代表pair-read的比对情况，“UU”代表没有配对的read； "CP"代表序列为pair reads之一，pair align cordantly；"DP"表序列为pair reads之一，pair align discordantly；"UP"代表序列为pair reads之一，但是pair没有比对到参考基因组上。  
+
+
+:::
 参考资料：  
 
 1.  [Bowtie 2-官方使用手册-SAM output部分](https://link.zhihu.com/?target=http%3A//bowtie-bio.sourceforge.net/bowtie2/manual.shtml%23sam-output)
@@ -1776,82 +2088,140 @@ BAM文件是SAM文件的一种压缩格式，也是最常用的一种比对结�
 
 **1. 使用samtools view 命令查看test.sam的header，请记录各条染色体的长度；同时告知这个test.sam文件是使用哪种mapping软件进行mapping的？** 
 
-```
-查看header中的@PG ID，显示使用的mapping软件是bowtie2，header中显示各条染色体的长度如下图：
-``` 
+
+::: {.book-prose}
+
+查看header中的@PG ID，显示使用的mapping软件是bowtie2，header中显示各条染色体的长度如下图：  
+
+:::
   
  
-![22 答1](../assets/a-questions-21-25/003-22-1.jpg){#fig-a-questions-21-25-003}    
+
+![22 答1](../assets/a-questions-21-25/003-22-1.jpg){#fig-a-questions-21-25-003}
+
  答1. 各条染色体的长度 
 
 **2. 使用samtools view命令将test.sam文件转换成test.bam文件，并保留header区域，写出命令并记录test.sam，test.bam的文件大小。**  
 
-```
-使用的命令如下：( -b：输出文件为bam格式; -h,输出中包含header信息) 
+
+::: {.book-prose}
+
+使用的命令如下：( -b：输出文件为bam格式; -h,输出中包含header信息)  
+
+:::
+
+```{.bash data-book-role="code"}
 samtools view -b -h test.sam > test.bam
+```
+
+::: {.book-prose}
 
 结果显示test.sam文件大小是3.9M，而test.bam文件则是660K，bam文件会小很多；  
-```
+
+:::
 **3. 使用less命令分别查看test.sam，test.bam文件，为什么bam文件会输出乱码？使用samtools view命令再试试看？**
 
-```
+
+::: {.book-prose}
+
 less命令可以正常查看sam文件，但是不能正常查看bam文件，因为bam文件是二进制文件，所以需要使用  
-samtools view test.bam来查看bam文件。
-```  
+samtools view test.bam来查看bam文件。  
+
+:::
 
 **4. 使用samtools sort命令对test.bam文件进行排序，输出文件名为test_sort.bam，并记录文件大小。**
 首先解释一下samtools sort命令：  
 
-```
-sort命令的使用：
 
+::: {.book-prose}
+
+sort命令的使用：  
+
+
+:::
+
+```{.text data-book-role="data"}
 samtools sort [-l level] [-m maxMem] [-o out.bam] [-O format] [-n] [-T tmpprefix] [-@ threads]   
 [in.sam|in.bam]  
-参数：
-   -l INT 设置输出文件压缩等级。0-9，0是不压缩，9是压缩等级最高。不设置此参数时，使用默认  
-  压缩等级；
-   -m INT 设置每个线程运行时的内存大小，可以使用K，M和G表示内存大小。
-   -n 设置按照read名称进行排序；
-   -o FILE 设置最终排序后的输出文件名；
-   -T PREFIX 设置临时文件的前缀；
-   -O FORMAT 设置最终输出的文件格式，可以是bam，sam或者cram，默认为bam；
-   -@ INT 设置排序和压缩是的线程数量，默认是单线程。
 ```
-```
-对test.bam进行排序，不压缩，默认线程，设置最终输出名称为test_sort.bam，  
-默认临时文件前缀，默认输出bam文件，默认单线程；
-使用命令如下：
-samtools sort -o test_sort.bam test.bam
 
-结果显示  test.bam 660K; test_sort.bam 660K 也就是排序之后的bam文件大小不变。
+::: {.book-prose}
+
+参数：  
+-l INT 设置输出文件压缩等级。0-9，0是不压缩，9是压缩等级最高。不设置此参数时，使用默认  
+压缩等级；  
+-m INT 设置每个线程运行时的内存大小，可以使用K，M和G表示内存大小。  
+-n 设置按照read名称进行排序；  
+-o FILE 设置最终排序后的输出文件名；  
+-T PREFIX 设置临时文件的前缀；  
+-O FORMAT 设置最终输出的文件格式，可以是bam，sam或者cram，默认为bam；  
+-@ INT 设置排序和压缩是的线程数量，默认是单线程。  
+
+:::
+
+::: {.book-prose}
+
+对test.bam进行排序，不压缩，默认线程，设置最终输出名称为test_sort.bam，  
+默认临时文件前缀，默认输出bam文件，默认单线程；  
+使用命令如下：  
+
+:::
+
+```{.bash data-book-role="code"}
+samtools sort -o test_sort.bam test.bam
 ```
+
+::: {.book-prose}
+
+结果显示  test.bam 660K; test_sort.bam 660K 也就是排序之后的bam文件大小不变。  
+
+:::
 
 
 **5. 使用samtools index 对test_sort.bam建立index，写出命令并记录其文件大小。**  
 
-```
+
+```{.text data-book-role="data"}
 samtools index [-bc] [-m INT] <in.bam> [out.index]  
-参数：
--b 创建bai索引文献(默认);
--c 创建csi索引文献;
--m INT 创建csi索引文献，最小间隔值2^INT;
+```
 
-> samtools index test_sort.bam    
+::: {.book-prose}
 
-> ls -hs   
+参数：  
+-b 创建bai索引文献(默认);  
+-c 创建csi索引文献;  
+-m INT 创建csi索引文献，最小间隔值2^INT;  
 
+
+:::
+
+```{.bash data-book-role="code"}
+samtools index test_sort.bam    
+
+ls -hs   
+```
+
+```{.text data-book-role="data"}
 结果： test_sort.bam.bai 4.0K
 ```
 
 
 **6. 使用samtools tview使用下面的命令查看chr1:160000-160100区域的比对情况，并截图**  
  
-```
-使用的命令如下：
-samtools tview -p chr1:160000-160100  test_sort.bam 
-```  
 
-![22 答3](../assets/a-questions-21-25/004-22-3.jpg){#fig-a-questions-21-25-004}     
+::: {.book-prose}
+
+使用的命令如下：  
+
+:::
+
+```{.bash data-book-role="code"}
+samtools tview -p chr1:160000-160100  test_sort.bam 
+```
+
+
+![22 答3](../assets/a-questions-21-25/004-22-3.jpg){#fig-a-questions-21-25-004}
+
    答2. chr1:160000-160100区域的比对情况 
  
 
@@ -1859,9 +2229,10 @@ samtools tview -p chr1:160000-160100  test_sort.bam
 
 资料1：本次主要是对samtools的一个应用，我建议大家直接看samtools的说明文档，比如对于view功能，直接在命令行敲击samtools view，再按回车就能出现说明文档，如下图所示
 
-![22 图1](../assets/a-questions-21-25/005-22-1.jpg){#fig-a-questions-21-25-005}  
 
- 图1 samtools view的说明文档  
+![samtools view的说明文档](../assets/a-questions-21-25/005-22-1.jpg){#fig-a-questions-21-25-005}
+
+
 
 [资料2：samtools manual page](https://link.zhihu.com/?target=http%3A//www.htslib.org/doc/samtools.html)
 
@@ -1869,15 +2240,21 @@ samtools tview -p chr1:160000-160100  test_sort.bam
 
 #### 5. 多说几句话 {#question-21-279}
 
+
+::::: {.callout-note .book-extension title="拓展阅读｜继续学习软件的方法" collapse="true"}
+
 大家以后要用的软件种类非常多，不可能所有的软件你都学过，总有一个从不会到会的过程。在学习使用各种软件的过程中要学会类比，要学会推理，要想清楚我们的input是什么output是什么。不能乱搞一气，想不明白其中的道理，就像一个黑盒子，最后就是你不知道扔进去是什么，也不知道扔出来是什么，这不完蛋了？
 
 至于软件使用方法的学习，一定要多看官方的说明文档！入门的时候看看别人的介绍或者是指导资料什么的尚可，但是一定有了一定基础以后一定要多阅读官方的说明文档，受益无穷的！
+
+:::::
+
 
 ## 测序深度与复杂度 {#sec-04-07}
 
 能区分数据量、有效信息量和覆盖不足。
 
-#### 覆盖度估算 {#src-0070-WGS-9}
+### 覆盖度估算 {#src-0070-WGS-9}
 
 假设构建的基因组文库无区域偏好性，测序片段来自于基因组各个区域的概率均等，则我们可以估计特定建库方式下，一定的library size的序列所能覆盖的基因组区域
 
@@ -1917,7 +2294,9 @@ $$ {#eq-04-quality-control-and-alignment-003}
 
 因此，我们获得了全基因组各碱基位点的测序深度的概率分布（概率质量分布PMF）估计，如下图（以$\lambda=40$为例）：
 
+
 ![snp calling estimate depth distribution](../assets/04-quality-control-and-alignment/038-snp-calling-estimate-depth-distribution.png){#fig-04-quality-control-and-alignment-038}
+
 
 依据测序深度的概率分布，可以很容易推出测序深度大于指定阈值$d$的基因组区域比例：
 
@@ -1932,23 +2311,26 @@ $$ {#eq-04-quality-control-and-alignment-004}
 不过实际的基因组测序深度分布与泊松分布并不完全一致，由于GC偏好性等因素的影响，之前推导过程中依据的全基因组来源等概率的假设并不完全成立，从而使实际的分布相对于理论分布，存在明显的overdispersion（即$Var(D) > E(D)$）
 
 
+
 ![snp calling estimate depth distribution](../assets/04-quality-control-and-alignment/038-snp-calling-estimate-depth-distribution.png){#fig-04-quality-control-and-alignment-038-repeat-2}
+
 
  
 
 Bentley et al, Nature, 2008
 
 
+
 ![snp calling possion overdispersion](../assets/04-quality-control-and-alignment/039-snp-calling-possion-overdispersion.png){#fig-04-quality-control-and-alignment-039}
+
 
  
 
 Shen et al, Nature, 2008
 
-::: {.callout-note title="待完善" collapse="true"}
-先给直观例子，将较长推导放到扩展框。
+::: {.book-placeholder}
+本节内容待补充。
 :::
-
 ### 重复 reads 与文库复杂度
 
 避免对所有实验套用同一去重复策略。
@@ -1959,29 +2341,30 @@ Shen et al, Nature, 2008
 
 去除duplication的方法一般有两种，1个是使用samtools rmdup命令，另一个是使用GATK/Picard工具中的MarkDuplicates。
 
-```
-samtools rmdup ERR188245_chrX.sorted.bam ERR188245_chrX.sorted.rmdup.bam
 
+```{.bash data-book-role="code"}
+samtools rmdup ERR188245_chrX.sorted.bam ERR188245_chrX.sorted.rmdup.bam
 ```
 由于samtools的算法是针对单端测序的，故而在对双端测序的bam文件处理效果奇差无比，在处理双端测序的文件时，通常我们更推荐使用gatk或者Picard。
 
 首先对duplicate进行标记
 
-```
-gatk MarkDuplicates -I ERR188245_chrX.sorted.bam -O ERR188245_chrX.sorted.mkdup.bam -M ERR188245_chrX.metrics --CREATE_INDEX
 
+```{.bash data-book-role="code"}
+gatk MarkDuplicates -I ERR188245_chrX.sorted.bam -O ERR188245_chrX.sorted.mkdup.bam -M ERR188245_chrX.metrics --CREATE_INDEX
 ```
 
 接着就是移除duplicate，但一般也只是标记不移除。
 
-```
-gatk MarkDuplicates REMOVE_DUPLICATES=true -I ERR188245_chrX.sorted.mkdup.bam -O ERR188245_chrX.sorted.rmdup.bam -M ERR188245_chrX.metrics
 
+```{.bash data-book-role="code"}
+gatk MarkDuplicates REMOVE_DUPLICATES=true -I ERR188245_chrX.sorted.mkdup.bam -O ERR188245_chrX.sorted.rmdup.bam -M ERR188245_chrX.metrics
 ```
 
 或者使用Picard一步进行上述GATK的两步过程：
 
-```
+
+```{.bash data-book-role="code"}
 java -jar picard.jar MarkDuplicates I=ERR188245_chrX.sorted.bam O=ERR188245_chrX.sorted.mkdup.bam M=ERR188245_chrX.metrics ASO=coordinate REMOVE_DUPLICATES=true
 ```
 
@@ -1991,14 +2374,16 @@ java -jar picard.jar MarkDuplicates I=ERR188245_chrX.sorted.bam O=ERR188245_chrX
 
 
 
-##### 去除PCR重复 {#src-0070-WGS-48}
+**去除PCR重复** []{#src-0070-WGS-48}
 
 
 
-###### duplicate产生原因 {#src-0070-WGS-50}
+**duplicate产生原因** []{#src-0070-WGS-50}
+
 
 
 ![GATK4 pipeline remove duplicates reason of duplicates](../assets/04-quality-control-and-alignment/040-gatk4-pipeline-remove-duplicates-reason-of-duplicates.jpg){#fig-04-quality-control-and-alignment-040}
+
 
  
 
@@ -2018,7 +2403,7 @@ PCR扩增时，同一个DNA片段会产生多个相同的拷贝，第4步测序�
 
 它是文库分子的两条互补链同时都与Flowcell上的引物结合分别形成了各自的cluster被测序，最后产生的这对reads是完全反向互补的。比对到参考基因组时，也分别在正负链的相同位置上，在有些分析中也会被认为是一种duplicates。
 
-###### 用泊松分布解释duplicate问题 {#src-0070-WGS-70}
+**用泊松分布解释duplicate问题** []{#src-0070-WGS-70}
 
 求解duplicate rate，相当于是在问这样一个问题：
 
@@ -2148,7 +2533,7 @@ $$ {#eq-04-quality-control-and-alignment-012}
 
 
 
-这是我们在已知原始文库中该片段拷贝数$k_i$的情况下，能得出的结果，若我们不知道，则可以知道$k_i \sim Possion(\lambda)$，其中$\lambda=\frac{M\cdot l}{G}$，上式(4)就变成了
+这是我们在已知原始文库中该片段拷贝数$k_i$的情况下，能得出的结果，若我们不知道，则可以知道$k_i \sim Possion(\lambda)$，其中$\lambda=\frac{M\cdot l}{G}$， @eq-04-quality-control-and-alignment-012 就变成了
 
 
 
@@ -2160,7 +2545,7 @@ $$ {#eq-04-quality-control-and-alignment-013}
 
 
 
-而且每种片段被抽中的可能性均满足(5)
+而且每种片段被抽中的可能性均满足 @eq-04-quality-control-and-alignment-013 
 
 所以
 
@@ -2192,7 +2577,7 @@ $$ {#eq-04-quality-control-and-alignment-015}
 
 
 
-上式(7)中的$\sum_{k=0}^{\infty} \frac{1}{k!}(\lambda e^{-m/M})^k$（其中$\lambda e^{-m/M} \to 0$）近似指数函数$e^x$在$(0, f(0))$处的泰勒展开式：
+ @eq-04-quality-control-and-alignment-015 中的$\sum_{k=0}^{\infty} \frac{1}{k!}(\lambda e^{-m/M})^k$（其中$\lambda e^{-m/M} \to 0$）近似指数函数$e^x$在$(0, f(0))$处的泰勒展开式：
 
 
 
@@ -2224,7 +2609,7 @@ $$ {#eq-04-quality-control-and-alignment-017}
 
 由于$m \ll M$，则$-m/M \to 0^-$，且由于$e^x$在$x=0$处的一阶泰勒公式为：$e^x=1+x+o(x)$，则此时$e^{-m/M} \approx 1-m/M$
 
-则(9)可以化简为：
+则 @eq-04-quality-control-and-alignment-017 可以化简为：
 
 
 
@@ -2252,7 +2637,7 @@ $$ {#eq-04-quality-control-and-alignment-019}
 
 
 
-###### PCR bias的影响 {#src-0070-WGS-208}
+**PCR bias的影响** []{#src-0070-WGS-208}
 
 1. DNA在打断的那一步会发生一些损失，主要表现是会引发一些碱基发生颠换变换（嘌呤-变嘧啶或者嘧啶变嘌呤），带来假的变异。PCR过程会扩大这个信号，导致最后的检测结果中混入了假的结果；
 
@@ -2261,14 +2646,18 @@ $$ {#eq-04-quality-control-and-alignment-019}
 3. 对于真实的变异，PCR反应可能会对包含某一个碱基的DNA模版扩增更加剧烈（这个现象称为PCR Bias）。因此， 如果反应体系是对含有reference allele的模板扩增偏向强烈，那么变异碱基的信息会变小，从而会导致假阴。
 
 
+
 ![GATK4 pipeline remove duplicates 1](../assets/04-quality-control-and-alignment/041-gatk4-pipeline-remove-duplicates-1.png){#fig-04-quality-control-and-alignment-041}
 
 
 
-###### 操作 {#src-0070-WGS-218}
+
+**操作** []{#src-0070-WGS-218}
+
 
 
 ![GATK4 pipeline remove duplicates 3](../assets/04-quality-control-and-alignment/042-gatk4-pipeline-remove-duplicates-3.png){#fig-04-quality-control-and-alignment-042}
+
 
 
 **1. 排序（SortSam）**
@@ -2277,24 +2666,31 @@ $$ {#eq-04-quality-control-and-alignment-019}
 - GATK4的排序功能是通过`picard SortSam`工具实现的。虽然`samtools sort`工具也可以实现该功能，但是在GATK流程中还是推荐用picard实现，因为SortSam会在输出文件的头信息部分添加一个SO标签用于说明文件已经被成功排序，且**这个标签是必须的**，GATK需要检查这个标签以保证后续分析可以正常进行
 - `https://software.broadinstitute.org/gatk/documentation/tooldocs/current/picard_sam_SortSam.php`
 
-```bash
+
+```{.bash .numberLines data-book-role="code" data-focus-lines="2,4"}
 # 使用GATK命令
-$ gatk SortSam -I mapping/T.chr17.sam -O preprocess/T.chr17.sort.bam -R database/chr17.fa -SO coordinate --CREATE_INDEX
+gatk SortSam -I mapping/T.chr17.sam -O preprocess/T.chr17.sort.bam -R database/chr17.fa -SO coordinate --CREATE_INDEX
 # 使用picard命令
-$ java -jar picard.jar SortSam \
+java -jar picard.jar SortSam \
       I=input.bam \
       O=sorted.bam \
       SORT_ORDER=coordinate
 ```
 
 
+
 ![GATK4 pipeline remove duplicates 4](../assets/04-quality-control-and-alignment/043-gatk4-pipeline-remove-duplicates-4.png){#fig-04-quality-control-and-alignment-043}
+
 
 
 如何检查是否成功排序？
 
-```bash
-$ samtools view -H /path/to/my.bam
+
+```{.bash data-book-role="code"}
+samtools view -H /path/to/my.bam
+```
+
+```{.text data-book-role="data"}
 @HD     VN:1.0  GO:none SO:coordinate
 @SQ     SN:1    LN:247249719
 @SQ     SN:2    LN:242951149
@@ -2332,20 +2728,21 @@ $ samtools view -H /path/to/my.bam
 - 标记文库中的重复
 - `https://software.broadinstitute.org/gatk/documentation/tooldocs/current/picard_sam_markduplicates_MarkDuplicates.php`
 
-```bash
-gatk MarkDuplicates -I preprocess/T.chr17.sort.bam -O preprocess/T.chr17.markdup.bam -M preprocess/T.chr17.metrics --CREATE_INDEX
 
+```{.bash data-book-role="code"}
+gatk MarkDuplicates -I preprocess/T.chr17.sort.bam -O preprocess/T.chr17.markdup.bam -M preprocess/T.chr17.metrics --CREATE_INDEX
 ```
+
 
 
 ![GATK4 pipeline remove duplicates 5](../assets/04-quality-control-and-alignment/044-gatk4-pipeline-remove-duplicates-5.png){#fig-04-quality-control-and-alignment-044}
 
 
 
-::: {.callout-note title="待完善" collapse="true"}
-补 UMI 思路、处理适用条件及影响比较。
-:::
 
+::: {.book-placeholder}
+本节内容待补充。
+:::
 ### 知识问答 9：重复序列与文库复杂度 {#question-06-227}
 
 #### 原题描述 {#question-06-228}
@@ -2353,32 +2750,43 @@ gatk MarkDuplicates -I preprocess/T.chr17.sort.bam -O preprocess/T.chr17.markdup
 今天我们来详细聊聊duplicate问题。duplicate的产生主要是因为Illumina建库的过程中，一般会需要使用PCR来帮助扩增插入序列的浓度。在扩增的过程中，如果PCR扩增轮数过大，就会出现duplicate的问题，即产生一模一样的若干条序列。
 
 FastQC中“Sequence Duplication Levels”图是用来刻画duplicate情况的。
- ![9 图1](../assets/a-questions-06-10/010-9-1.jpg){#fig-a-questions-06-10-010}
+
+![duplicate结果图](../assets/a-questions-06-10/010-9-1.jpg){#fig-a-questions-06-10-010}
+
  
-  图1 duplicate结果图
 
 
 #### 参考答案 {#question-06-240}
 
-**1.图1中的横坐标是什么意思，纵坐标是什么意思？**
+**1. @fig-a-questions-06-10-010 中的横坐标是什么意思，纵坐标是什么意思？**
 
-```
-横坐标代表序列重复水平；纵坐标代表重复水平序列占所有序列的百分比。
-```
-**2.图1中的红线和蓝线分别代表什么意思？**
 
-```
-红线代表去duplicate之后序列理论重复性分布（服从possion distribution 或者 binomial distribution）情况，
-蓝线代表全部的序列重复性分布情况。
-```
-**3.图1中的duplicate是全部序列的duplicate的情况吗？还是随机筛选了一部分？为什么要这样做？**
+::: {.book-prose}
 
-```
-是选择的每一个文件里前100,000条序列作为样本进行的计算，因为样本本身很大，前100,000已经能够代表样本的重复性。
-```
+横坐标代表序列重复水平；纵坐标代表重复水平序列占所有序列的百分比。  
+
+:::
+**2. @fig-a-questions-06-10-010 中的红线和蓝线分别代表什么意思？**
+
+
+::: {.book-prose}
+
+红线代表去duplicate之后序列理论重复性分布（服从possion distribution 或者 binomial distribution）情况，  
+蓝线代表全部的序列重复性分布情况。  
+
+:::
+**3. @fig-a-questions-06-10-010 中的duplicate是全部序列的duplicate的情况吗？还是随机筛选了一部分？为什么要这样做？**
+
+
+::: {.book-prose}
+
+是选择的每一个文件里前100,000条序列作为样本进行的计算，因为样本本身很大，前100,000已经能够代表样本的重复性。  
+
+:::
 **4.如果让你写程序，判断1个fastq文件中duplicate的比例，你的大概思路是什么？**
 
-```
+
+```{.text data-book-role="pseudocode"}
 # Python风格的伪代码：
 
 # 第1步对序列进行排序	
@@ -2404,11 +2812,14 @@ print duplication_num
 
 **5.既然谈到了duplicate的问题，那就存在remove duplicate的问题，什么情况下应该去duplicate，什么情况下不去除？ （仅需要思考一下，以后我们会有专题讨论这个问题）**
 
-```
-DNA-Seq中序列如果是随机打断需要考虑deduplicaion；酶切的样本一般不需要考虑这个问题；
-RNA-Seq一般不考虑remove duplication（有paper专门讨论过这个问题）；
-单细胞测序需要建库过程中需要添加random barcode，且必须考虑duplication。
-```
+
+::: {.book-prose}
+
+DNA-Seq中序列如果是随机打断需要考虑deduplicaion；酶切的样本一般不需要考虑这个问题；  
+RNA-Seq一般不考虑remove duplication（有paper专门讨论过这个问题）；  
+单细胞测序需要建库过程中需要添加random barcode，且必须考虑duplication。  
+
+:::
 
 ## IGV {#sec-04-08}
 
@@ -2422,33 +2833,41 @@ RNA-Seq一般不考虑remove duplication（有paper专门讨论过这个问题�
 打开bing，搜索IGV
 
 
-![原稿配图](../assets/04-quality-control-and-alignment/025-illustration.png){#fig-04-quality-control-and-alignment-025}
+
+![图题待补](../assets/04-quality-control-and-alignment/025-illustration.png){#fig-04-quality-control-and-alignment-025}
+
 
 
 本次以桌面版为例
 
 
-![原稿配图](../assets/04-quality-control-and-alignment/026-illustration.png){#fig-04-quality-control-and-alignment-026}
+
+![图题待补](../assets/04-quality-control-and-alignment/026-illustration.png){#fig-04-quality-control-and-alignment-026}
 
 
-![原稿配图](../assets/04-quality-control-and-alignment/027-illustration.png){#fig-04-quality-control-and-alignment-027}
+
+
+![图题待补](../assets/04-quality-control-and-alignment/027-illustration.png){#fig-04-quality-control-and-alignment-027}
+
 
 
 而后按照指示安装完成之后，我们来处理一下我们的bam文件，为导入到IGV里做准备
 
-```
+
+```{.bash data-book-role="code" data-focus-lines="2,5"}
 #如果还没对序列排序，记得先排序
 samtools sort -@ 2 -o ERR188044_chrX.sorted.bam ERR188044_chrX.bam
 
 #排好序之后，对bam文件建立index
 samtools index -@ 2 ERR188044_chrX.sorted.bam ERR188044_chrX.sorted.bai
-
 ```
 
 而后我们打开安装好的IGV，可以看到如下界面
 
 
-![原稿配图](../assets/04-quality-control-and-alignment/028-illustration.png){#fig-04-quality-control-and-alignment-028}
+
+![图题待补](../assets/04-quality-control-and-alignment/028-illustration.png){#fig-04-quality-control-and-alignment-028}
+
 
 
 选择File--> Load from File--->加载想要查看的bam文件
@@ -2456,29 +2875,38 @@ samtools index -@ 2 ERR188044_chrX.sorted.bam ERR188044_chrX.sorted.bai
 导入成功后，可以选择染色体，由于我们的测序只测了chrX，故而选择chrX
 
 
-![原稿配图](../assets/04-quality-control-and-alignment/029-illustration.png){#fig-04-quality-control-and-alignment-029}
+
+![图题待补](../assets/04-quality-control-and-alignment/029-illustration.png){#fig-04-quality-control-and-alignment-029}
 
 
-![原稿配图](../assets/04-quality-control-and-alignment/030-illustration.png){#fig-04-quality-control-and-alignment-030}
 
 
-![原稿配图](../assets/04-quality-control-and-alignment/031-illustration.png){#fig-04-quality-control-and-alignment-031}
+![图题待补](../assets/04-quality-control-and-alignment/030-illustration.png){#fig-04-quality-control-and-alignment-030}
+
+
+
+
+![图题待补](../assets/04-quality-control-and-alignment/031-illustration.png){#fig-04-quality-control-and-alignment-031}
+
 
 
 不断双击想查看的位置，即可放大该位置
 
 
-![原稿配图](../assets/04-quality-control-and-alignment/032-illustration.png){#fig-04-quality-control-and-alignment-032}
+
+![图题待补](../assets/04-quality-control-and-alignment/032-illustration.png){#fig-04-quality-control-and-alignment-032}
+
 
 
 IGV工具是可视化bam文件的一个非常好的方法，好好利用可以事半功倍地帮助我们检查bam文件中的比对问题，更好地展示结果。
 
-::: {.callout-note title="待完善" collapse="true"}
-新增统一 QC 检查表；专题特异指标留到对应章展开。
+::: {.book-placeholder}
+本节内容待补充。
 :::
-
 ## 下载公共数据进行分析 {#sec-04-09}
 
 能将论文中的数据编号转化为清晰的分析输入。
 
-待完善
+::: {.book-placeholder}
+本节内容待补充。
+:::

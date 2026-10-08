@@ -27,6 +27,7 @@ for p in OUT.rglob('*.html'):
  parser=Page();parser.feed(p.read_text());pages[p.resolve()]=parser
  for d in parser.duplicates:errors.append(f'Duplicate anchor: {p.relative_to(OUT)}#{d}')
  if re.search(r'(?<![\w])\?\?(?:\s*</|\s*fig|\s*sec|\s*eq)',p.read_text()):errors.append(f'Unresolved Quarto reference: {p.relative_to(OUT)}')
+ if 'class="quarto-unresolved-ref"' in p.read_text():errors.append(f'Unresolved Quarto reference: {p.relative_to(OUT)}')
 for p,parser in pages.items():
  for tag,key,link in parser.links:
   u=urlsplit(link)

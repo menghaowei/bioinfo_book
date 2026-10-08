@@ -6,8 +6,11 @@
 
 ## BS-seq 甲基化测序 {#sec-08-01}
 
-待完善
-
+::: {.book-placeholder}
+本节内容待补充。
+:::
 ## GLORI m6A测序 {#sec-08-02}
 
-待完善
+::: {.book-placeholder}
+本节内容待补充。
+:::

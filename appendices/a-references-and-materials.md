@@ -20,6 +20,8 @@
 | [Oxford Nanopore 技术说明](https://nanoporetech.com/platform/technology) | 纳米孔电流信号 |
 | [PacBio RNA 测序](https://www.pacb.com/products-and-services/applications/rna-sequencing/) | 全长 cDNA 与 Iso-Seq |
 
+: 表题待补 {#tbl-a-references-and-materials-01}
+
 ## 待完善的引用与素材
 
 原稿 RNA-seq 及已移入单细胞与空间组学章的内容共有文献编号 1—13，但未提供完整的逐条参考文献表。本版保留编号并转换为可点击脚注，脚注明确标为“完整书目信息待完善”，不推测文献出处。

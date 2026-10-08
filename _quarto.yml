@@ -3,7 +3,7 @@ project:
   output-dir: docs
   resources:
     - assets/**
-    - styles/book.css
+    - styles/**
   post-render:
     - python3 scripts/post_render.py
 
@@ -13,7 +13,8 @@ book:
   author: "生物信息学实战手册编写团队"
   language: zh-CN
   site-url: https://book.bioinfo.info/
-  search: true
+  search:
+    type: overlay
   page-navigation: true
   sidebar:
     title: "AI时代生信入门"
@@ -42,6 +43,7 @@ book:
 lang: zh-CN
 pandoc-args:
   - --data-dir=pandoc-data
+  - --preserve-tabs
 format:
   html:
     theme: [cosmo, styles/book.scss]
@@ -54,6 +56,7 @@ format:
     code-copy: true
     code-overflow: scroll
     code-fold: false
+    highlight-style: tango
     smooth-scroll: true
     link-external-newwindow: true
     html-math-method:
@@ -61,9 +64,9 @@ format:
       url: ../vendor/mathjax/tex-chtml.js
     include-after-body: includes/reading.html
     grid:
-      body-width: 830px
-      sidebar-width: 480px
-      margin-width: 530px
+      body-width: 860px
+      sidebar-width: 320px
+      margin-width: 320px
 
 execute:
   enabled: false

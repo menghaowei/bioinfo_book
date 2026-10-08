@@ -18,11 +18,13 @@ RNA测序（RNA sequencing，RNA-Seq）是一种非常成熟的研究转录组�
 
 RNA可以分为能够编码蛋白基因的信使RNA（mRNA）[^rna-ref-2]和非蛋白编码RNA （non-coding RNA, ncRNA），例如人类基因组，含有约20000个蛋白编码基因和7000个非蛋白编码RNA基因。随着研究的深入，生命科学研究者对RNA的认识逐渐全面，陆续发现了生物体中多种类型的非编码RNA，有持家非编码RNA（house-keeping non-coding RNA）：在翻译过程中起转运作用的tRNA[^rna-ref-3]、核糖体的组成成分rRNA[^rna-ref-4] 、参与mRNA剪接的snRNA（small nuclear RNA）[^rna-ref-5]等；还有能够起到调控作用的非编码RNA：长非编码RNA（long non-coding RNA, lncRNA）、miRNA（mircoRNA）[^rna-ref-6]、小干扰RNA（small interfering RNA, siRNA）和环状RNA（circRNA）等。
 
-研究人员通常会对mRNA和一些调控非编码RNA感兴趣，针对不同类型的RNA，采取的测序手段也不同，主要表现为样本建库策略的不同。测序仪通常只能对DNA序列进行测序，测序之前对样品里的目标待测RNA进行处理的过程称为“文库的制备”，简称建库（@fig-06-rna-seq-001）。 
+研究人员通常会对mRNA和一些调控非编码RNA感兴趣，针对不同类型的RNA，采取的测序手段也不同，主要表现为样本建库策略的不同。测序仪通常只能对DNA序列进行测序，测序之前对样品里的目标待测RNA进行处理的过程称为“文库的制备”，简称建库（@fig-06-rna-seq-001 ）。 
 	
 
 
+
 ![RNA 测序的主要建库策略](../assets/06-rna-seq/001-rna-seq-all.jpg){#fig-06-rna-seq-001}
+
 
 
 
@@ -30,7 +32,7 @@ RNA可以分为能够编码蛋白基因的信使RNA（mRNA）[^rna-ref-2]和非�
 
 #### 对mRNA测序 {#src-0050-RNA-seq-15}
 
-研究蛋白编码基因表达应采用富集poly-A的方式进行建库测序（@fig-06-rna-seq-001）。利用多数真核 mRNA 具有 poly(A) 尾的特性，对样本中含有poly-A的RNA进行富集。需要注意的是，部分lncRNA也含有poly-A结构，所以采取这一方式建库也可以检测到这部分lncRNA的表达。mRNA测序一般采取双端测序，测序读长150bp，数据量要求在6G clean reads左右。
+研究蛋白编码基因表达应采用富集poly-A的方式进行建库测序（@fig-06-rna-seq-001 ）。利用多数真核 mRNA 具有 poly(A) 尾的特性，对样本中含有poly-A的RNA进行富集。需要注意的是，部分lncRNA也含有poly-A结构，所以采取这一方式建库也可以检测到这部分lncRNA的表达。mRNA测序一般采取双端测序，测序读长150bp，数据量要求在6G clean reads左右。
 
 建库分为多个步骤：
 
@@ -50,11 +52,17 @@ RNA可以分为能够编码蛋白基因的信使RNA（mRNA）[^rna-ref-2]和非�
 
 lncRNA的发挥多种调控功能，扮演信号分子、诱导因子、引导分子、支架分子等多种角色[^rna-ref-8]。
 
-对lncRNA 进行测序需要采用去rRNA的方法建库，以最大限度地保留lncRNA（@fig-06-rna-seq-001）。与此同时，mRNA、snoRNA、snRNA、tRNA和cricRNA的表达也能在rRNA建库转录组测序中得到。与富集polyA方法不同的是，建库的第一步是去除样本中的rRNA，接下的步骤则与富集polyA方式建库差不多。lncRNA测序一般采取双端测序，测序读长150bp，数据量要求在10～12G clean reads。
+对lncRNA 进行测序需要采用去rRNA的方法建库，以最大限度地保留lncRNA（@fig-06-rna-seq-001 ）。与此同时，mRNA、snoRNA、snRNA、tRNA和cricRNA的表达也能在rRNA建库转录组测序中得到。与富集polyA方法不同的是，建库的第一步是去除样本中的rRNA，接下的步骤则与富集polyA方式建库差不多。lncRNA测序一般采取双端测序，测序读长150bp，数据量要求在10～12G clean reads。
 
 #### small RNA-seq {#src-0050-RNA-seq-39}
 
+
+::::: {.callout-note .book-core title="核心知识｜microRNA 与小 RNA 测序"}
+
 microRNA广泛存在于动植中，是一类长度为22nt左右的小非编码RNA，通过抑制蛋白质翻译或者降解mRNA，在多种生物学过程中发挥调控作用。对microRNA测序需要做小RNA测序（small RNA-seq ），建库过程中需要回收小片段，这是与mRNA建库的主要不同之处。miRNA的功能涉及多种生物学过程，有潜力成为许多疾病包括癌症的标志物。建库起始样本可以用总RNA，也可以用分离纯化得到的small RNA。
+
+:::::
+
 
 1.基于small RNA本身对结构特征在3‘端和5’端连上接头序列，多数small RNA具有天然的磷酸化5‘端，且3‘端具有羟基基团，便于核酸序列的连接；
 2.然后进行少量逆转录PCR扩增；
@@ -68,10 +76,9 @@ microRNA广泛存在于动植中，是一类长度为22nt左右的小非编码RN
 
 去rRNA的方式，是目前最常用的方法，可以捕捉环形RNA的信息；另外，也可以通过去线性RNA的方式建库测序，核糖核酸酶R从RNA的自由3'端向5'端方向逐一水解线性RNA，烟草酸性磷酸酶和终止子外切酶能够从5'端向3'端方向逐一水解RNA，而环形RNA没有3'与5‘端和poly(A)，因此不会被降解；还可以利用环形RNA与线性RNA电泳迁移速度的不同来实现对环形RNA的特异性捕获，因为环形RNA会比等长的线性RNA迁移速度快，并且凝胶交联程度越高这种差别就会越大[^rna-ref-9]。总的来说rRNA的方式建库具有更高的性价比，能够同时获得mRNA、lncRNA和circRNA的信息。
 
-::: {.callout-note title="待完善" collapse="true"}
-校订生物学表述，收束到bulk RNA-seq主线。
+::: {.book-placeholder}
+本节内容待补充。
 :::
-
 单细胞与空间转录组的技术背景和分析入口见[第 9 章](09-single-cell-and-spatial-omics.md)。
 
 ## 建立贯穿全章的示例项目 {#sec-05-02}
@@ -80,10 +87,12 @@ microRNA广泛存在于动植中，是一类长度为22nt左右的小非编码RN
 
 ### RNA-seq的分析 {#src-0050-RNA-seq-101}
 
-有参转录组分析一般包括：测序数据的质量控制、构建参考基因组索引、将read比对到参考基因组、拼接新的转录本（可选）、基因表达的定量、差异表达基因的分析，以及对目标基因群进行注释和富集分析（@fig-06-rna-seq-003）。	
+有参转录组分析一般包括：测序数据的质量控制、构建参考基因组索引、将read比对到参考基因组、拼接新的转录本（可选）、基因表达的定量、差异表达基因的分析，以及对目标基因群进行注释和富集分析（@fig-06-rna-seq-003 ）。	
+
 
 
 ![有参考基因组的 RNA-seq 分析流程](../assets/06-rna-seq/003-rna-seq-analysis.jpg){#fig-06-rna-seq-003}
+
 
 
 
@@ -105,7 +114,9 @@ BWA、Bowtie、Bowtie2、HISAT、HISAT2、STAR等软件用于构建参考基因�
 得到的差异基因需要注释起功能，常用软件为clusterprofer、DAVID网站、Metascape网站等。
 
 
+
 ![原稿列举的 RNA-seq 分析软件](../assets/06-rna-seq/004-rna-seq-software2.jpg){#fig-06-rna-seq-004}
+
 
 
 
@@ -133,35 +144,35 @@ BWA、Bowtie、Bowtie2、HISAT、HISAT2、STAR等软件用于构建参考基因�
 
 *方法二，使用命令行下载*
 
-```shell
-$wget 
+
+```{.bash data-book-role="code"}
+wget 
 ```
 
 这里选用的是人类样本，因此需要下载人类基因组和基因组注释文件。基因组文件可以从UCSC genome browser （https://genome.ucsc.edu/index.html）和 Ensembl（http://asia.ensembl.org/index.html）网站上获取。
 
 (网页截图)
 
-::: {.callout-note title="待完善" collapse="true"}
-选定主案例，补数据包、下载与校验脚本。
+::: {.book-placeholder}
+本节内容待补充。
 :::
-
 ## RNA-seq质控与剪接感知比对 {#sec-05-03}
 
 确认文库特征和比对策略适合表达分析。
 
-#### 序列比对 {#src-0050-RNA-seq-247}
+### 序列比对 {#src-0050-RNA-seq-247}
 
 建立好参考基因组索引之后，测序得到的短reads可以据此进行基因组匹配，将高通量测序结果回溯基因组位置，这个过程叫做序列比对（reads mapping），将对象数量众多的reads（>100M reads pairs）比对到一条唯一且长度不短的参考基因组（>3Gbp），强调回溯的动作，需要较高的计算成本和巧妙的比对策略。这与在进化分析等工作中提到的双序列比对 （pairwise alignment）和多序列比对（multiple sequences alignment）不同，alignment的比对通量较低，更多的强调两条序列或者少数几条序列之间的比对。RNA比对用到的三种策略是Exon-first approach, seed-extend approach, Potential limitations of exon-first approaches。常用的算法是BWT算法和后缀树（Suffix tree），这一点我们在之前的章节已经有所介绍，这里就不再赘述了。
 
 序列比对是获得每条测序片段在参考基因组上对应染色体上的位置坐标、正负链等信息。比对率能反映实验测序样品与参考基因组的相似关系，也反映了测序质量的高低。一般情况下，在80%以上，回帖多个位置的测序序列占总体百分比通常不超过10%。常用比对软件Tophat2、Bowtie2、STAR、HISAT2、RSEM等。
 
-##### SAM文件与BAM文件 {#src-0050-RNA-seq-253}
+#### SAM文件与BAM文件 {#src-0050-RNA-seq-253}
 
 序列比对文件采取SAM（The Sequence Alignment/Map format）文件、BAM文件格式。Heng Li等人完成了SAM文件、BAM文件的标准制定，并开发了初代对软件。SAM文件由两部分组成：头部区和主体区，头部区以“@”开始，提供比对的总体信息，例如SAM格式版本、比对参考序列、比对使用的命令等；主体区是比对结果，每一行储存一个比对结果，共11个主列和1个可选列。
 
 关于SAM文件与BAM文件的详细介绍与基本操作，也请翻看前面的章节。我们这里再次提出这个标题，只是想反复为读者强调，这个文件的重要性，以及强调概念无论是DNA还是RNA的比对结果，都是可以保存成对应的SAM/BAM文件的。
 
-##### 序列比对软件 {#src-0050-RNA-seq-259}
+#### 序列比对软件 {#src-0050-RNA-seq-259}
 
 - Bowtie和Bowtie2
 
@@ -188,24 +199,27 @@ STAR(STAR: ultrafast universal RNA-Seq aligner，Alexander Dobin)的优势在于
 
 如果比对任务非常多，数据量很大，我们推荐使用STAR这个比对软件得到最终的比对结果。
 
-#### 质量控制 {#src-0050-RNA-seq-423}
+### 质量控制 {#src-0050-RNA-seq-423}
 
 从GEO数据库下载的数据文件格式为SRA，需要使用官方提供的SRA Toolkit进行转换，将sra文件转换为fastq格式文件，软件下载链接： https://github.com/ncbi/sra-tools/wiki/02.-Installing-SRA-Toolkit。
 
-```shell
-$fastq-dump SRR1573494.sra
+
+```{.bash data-book-role="code"}
+fastq-dump SRR1573494.sra
 ```
 
 使用FastQC做质量控制：
 
- ```shell
-$fastqc SRR1573494.fq
- ```
+
+```{.bash data-book-role="code"}
+fastqc SRR1573494.fq
+```
 
 使用cutadapt去除接头序列，过滤数据质量：
 
-```shell
-$cutadapt -j 6 --times 1 -e 0.1 -O 3 --quality-cutoff 25 -m 55 \
+
+```{.bash .numberLines data-book-role="code"}
+cutadapt -j 6 --times 1 -e 0.1 -O 3 --quality-cutoff 25 -m 55 \
 -a AGATCGGAAGAGCACACGTCTGAACTCCAGTCAC \
 -A AGATCGGAAGAGCGTCGTGTAGGGAAAGAGTGTAGATCTCGGTGGTCGCCGTATCATT \
 -o fix.fastq/test_R1_cutadapt.temp.fq.gz \
@@ -216,41 +230,51 @@ $cutadapt -j 6 --times 1 -e 0.1 -O 3 --quality-cutoff 25 -m 55 \
 
 也可以使用fastx_toolkit去除接头序列，过滤数据质量：
 
-```shell
-$fastq_quality_filter -v -q 20 -p 80 -Q 33 -i SRR1573494.fastq -o SRR1573494_q20_p80.fq
+
+```{.bash data-book-role="code"}
+fastq_quality_filter -v -q 20 -p 80 -Q 33 -i SRR1573494.fastq -o SRR1573494_q20_p80.fq
 ```
 
-#### 建立参考基因组索引 {#src-0050-RNA-seq-455}
+### 建立参考基因组索引 {#src-0050-RNA-seq-455}
 
 
 
-##### HISAT2 {#src-0050-RNA-seq-457}
+#### HISAT2 {#src-0050-RNA-seq-457}
 
 使用`hisat2`构建基因组索引：
 
-```shell
-$hisat2_extract_splice_sites.py Homo_sapiens.GRCh38.101.gtf >genome.ss
-$hisat2_extract_exons.py Homo_sapiens.GRCh38.101.gtf >genome.exon
-$hisat2-build -p 20 Homo_sapiens.GRCh38.dna.toplevel.fa genome
-$hisat2-build -p 20 --exon genome.exon --ss genome.ss Homo_sapiens.GRCh38.dna.toplevel.fa genome_tran
-$hisat2-build ref_hg38.fa ref_hg38.fa > hisat2_build.log 2>&1 &
-#download some resource
-##SNP
-http://hgdownload.cse.ucsc.edu/goldenPath/hg38/database/
 
-##GTF
+```{.bash data-book-role="code" data-focus-lines="3"}
+hisat2_extract_splice_sites.py Homo_sapiens.GRCh38.101.gtf >genome.ss
+hisat2_extract_exons.py Homo_sapiens.GRCh38.101.gtf >genome.exon
+hisat2-build -p 20 Homo_sapiens.GRCh38.dna.toplevel.fa genome
+hisat2-build -p 20 --exon genome.exon --ss genome.ss Homo_sapiens.GRCh38.dna.toplevel.fa genome_tran
+hisat2-build ref_hg38.fa ref_hg38.fa > hisat2_build.log 2>&1 &
+```
 
+::: {.book-prose}
+
+#download some resource  
+##SNP  
+http://hgdownload.cse.ucsc.edu/goldenPath/hg38/database/  
+
+##GTF  
+
+
+:::
+
+```{.bash .numberLines data-book-role="code" data-focus-lines="11"}
 #make exon 
-$hisat2_extract_exons.py hg38_refseq.gtf > hg38_refseq.exon &
+hisat2_extract_exons.py hg38_refseq.gtf > hg38_refseq.exon &
 
 #make splice site
-$hisat2_extract_splice_sites.py hg38_refseq.gtf > hg38_refseq.ss &
+hisat2_extract_splice_sites.py hg38_refseq.gtf > hg38_refseq.ss &
 
 #make snp and haplotype
-$hisat2_extract_snps_haplotypes_UCSC.py ref_hg38.fa snp151Common.txt snp151Common &
+hisat2_extract_snps_haplotypes_UCSC.py ref_hg38.fa snp151Common.txt snp151Common &
 
 #build index
-$hisat2-build -p 6 --snp snp151Common.snp --haplotype snp151Common.haplotype --exon hg38_refseq.exon  --ss hg38_refseq.ss ref_hg38.fa ref_hg38.fa.snp_gtf > hisat2_build.log 2>&1 & 
+hisat2-build -p 6 --snp snp151Common.snp --haplotype snp151Common.haplotype --exon hg38_refseq.exon  --ss hg38_refseq.ss ref_hg38.fa ref_hg38.fa.snp_gtf > hisat2_build.log 2>&1 & 
 
 # hisat2-build——hisat2构建索引的命令
 
@@ -263,43 +287,48 @@ $hisat2-build -p 6 --snp snp151Common.snp --haplotype snp151Common.haplotype --e
 
 参数解释：
 
-```
--p <int> default: 1 设置多线程运行
---snp <path> 输入一个包含SNP信息的文件，含5列数据：SNP ID、参考序列ID、SNP类型（single、deletion或insertion）、SNP位点（以第一个碱基位点为0计算）、变异碱基信息。
---haplotype <path> 单倍型信息文件，表明--snp参数指定的某些变异位点子啊要分析的样品中是单倍型的，和气变异位点碱基信息一致。含5列数据：Haplotype ID、参考序列ID、起始位点（以第一个碱基位点为0计算）、结束位点、逗号分隔的多个SNP ID。
---ss <path> 输入一个包含有剪接位点（Splicing Site）信息的文件。该文件可以利用HISAT2软件自带的hisat2_extract_splice_sites.py程序对编码蛋白基因结构注释GTF文件转换获得。
---exon <path> 输入一个含有外显子信息的文件。利用HISAT2软件自带的hisat2_extract_exons.py程序对编码蛋白基因结构注释GTF文件转换获得该文件。
 
-```
+::: {.book-prose}
 
-##### STAR {#src-0050-RNA-seq-505}
+-p &lt;int&gt; default: 1 设置多线程运行  
+--snp &lt;path&gt; 输入一个包含SNP信息的文件，含5列数据：SNP ID、参考序列ID、SNP类型（single、deletion或insertion）、SNP位点（以第一个碱基位点为0计算）、变异碱基信息。  
+--haplotype &lt;path&gt; 单倍型信息文件，表明--snp参数指定的某些变异位点子啊要分析的样品中是单倍型的，和气变异位点碱基信息一致。含5列数据：Haplotype ID、参考序列ID、起始位点（以第一个碱基位点为0计算）、结束位点、逗号分隔的多个SNP ID。  
+--ss &lt;path&gt; 输入一个包含有剪接位点（Splicing Site）信息的文件。该文件可以利用HISAT2软件自带的hisat2_extract_splice_sites.py程序对编码蛋白基因结构注释GTF文件转换获得。  
+--exon &lt;path&gt; 输入一个含有外显子信息的文件。利用HISAT2软件自带的hisat2_extract_exons.py程序对编码蛋白基因结构注释GTF文件转换获得该文件。  
+
+
+:::
+
+#### STAR {#src-0050-RNA-seq-505}
 
 还可以使用STAR构建基因组索引：
 
-```shell
-$STAR --runThreadN 12 --runMode genomeGenerate \
+
+```{.bash data-book-role="code"}
+STAR --runThreadN 12 --runMode genomeGenerate \
 --genomeDir /home/menghaowei/ngs_course/reference/STAR_index \
 --genomeFastaFiles /home/menghaowei/ngs_course/reference/STAR_index/ref_hg38.fa \
 --sjdbGTFfile /home/menghaowei/ngs_course/reference/gtf/hg38_refseq_from_ucsc.rm_XM_XR.fix_name.gtf \
 --sjdbOverhang 150 & 
-
 ```
 
-#### 序列比对 {#src-0050-RNA-seq-518}
+### 序列比对 {#src-0050-RNA-seq-518}
 
 
 
-##### Tophat {#src-0050-RNA-seq-520}
+#### Tophat {#src-0050-RNA-seq-520}
 
 使用Tophat将转录组数据的reads比对到参考基因组：
 
-```shell
-$tophat -r 50 -p 50 –G chrX.gtf  -o ERR188044 index/chrx.index ERR188044_chrX_1.fastq.fa ERR188044_chrX_2.fastq.fa
+
+```{.bash data-book-role="code"}
+tophat -r 50 -p 50 –G chrX.gtf  -o ERR188044 index/chrx.index ERR188044_chrX_1.fastq.fa ERR188044_chrX_2.fastq.fa
 ```
 
 也使用Tophat2比对到参考基因组：
 
-```shell
+
+```{.bash data-book-role="code"}
 tophat2 -o ./test_tophat2 -p 6 \
 -G /home/menghaowei/ngs_course/reference/gtf/hg38_refseq_from_ucsc.rm_XM_XR.fix_name.gtf \
 /home/menghaowei/ngs_course/reference/bowtie2_index/ref_hg38.fa \
@@ -307,47 +336,52 @@ tophat2 -o ./test_tophat2 -p 6 \
 ./fix.fastq/test_R2_cutadapt.fq.gz > test_tophat2/test_tophat2.log 2>&1 & 
 ```
 
-##### HISAT2 {#src-0050-RNA-seq-538}
+#### HISAT2 {#src-0050-RNA-seq-538}
 
 也使用`hisat2`比对到参考基因组：
 
-```shell
-$hisat2 -p 12 \
+
+```{.bash .numberLines data-book-role="code"}
+hisat2 -p 12 \
 -x /home/menghaowei/ngs_course/reference/hisat2_index/ref_hg38.fa \
 -1 ./fix.fastq/test_R1_cutadapt.fq.gz \
 -2 ./fix.fastq/test_R2_cutadapt.fq.gz \
 -S ./bam/test_hisat2.sam > ./bam/test_hisat2.log 2>&1 &
 
 #mapping
-$hisat2 -p 6 \
+hisat2 -p 6 \
 -x /Users/meng/ngs_course/reference/hisat2_index/ref_hg38.fa.snp_gtf \
 -1 ./fix.fastq/test_R1_cutadapt.fq.gz \
 -2 ./fix.fastq/test_R2_cutadapt.fq.gz \
 -S ./bam/test_hisat2.sam > ./bam/test_hisat2.log 2>&1 &
-
 ```
 
-``` sh
-$hisat2 -x genome -u 1000000 -p 24 -I 0 -X 500 --fr --min-intronlen 20 --max-intronlen 4000 -1 reads.1.fastq -2 read.2.fastq -U single.fastq -S result.sam
+
+```{.bash data-book-role="code"}
+hisat2 -x genome -u 1000000 -p 24 -I 0 -X 500 --fr --min-intronlen 20 --max-intronlen 4000 -1 reads.1.fastq -2 read.2.fastq -U single.fastq -S result.sam
 ```
 
 参数：
 
-```
--x <hisat-idx> 设置索引数据文件前缀
--1 <m1> 双末端测序结果的第一个文件，若有多组数据，使用逗号将文件分隔，reads长度可以不一致
--2 <m2> 双末端测序结果第二个文件，顺序和-1参数对应。
--U <r> 单端数据文件，若有多组数据，使用逗号将文件分隔
---sra-acc <SRA accession number> 输入SRA登录号。多组数据之间用逗号分隔，HISAT将自动下载数据并识别数据类型，进行比对。参数大正常使用需要安装NCBI-NGS toolkit
--S <hit> 设置输出文件名。
 
-```
+::: {.book-prose}
 
-##### STAR {#src-0050-RNA-seq-574}
+-x &lt;hisat-idx&gt; 设置索引数据文件前缀  
+-1 &lt;m1&gt; 双末端测序结果的第一个文件，若有多组数据，使用逗号将文件分隔，reads长度可以不一致  
+-2 &lt;m2&gt; 双末端测序结果第二个文件，顺序和-1参数对应。  
+-U &lt;r&gt; 单端数据文件，若有多组数据，使用逗号将文件分隔  
+--sra-acc &lt;SRA accession number&gt; 输入SRA登录号。多组数据之间用逗号分隔，HISAT将自动下载数据并识别数据类型，进行比对。参数大正常使用需要安装NCBI-NGS toolkit  
+-S &lt;hit&gt; 设置输出文件名。  
+
+
+:::
+
+#### STAR {#src-0050-RNA-seq-574}
 
 也使用STAR比对到参考基因组：
 
-```shell
+
+```{.bash .numberLines data-book-role="code"}
 STAR \
 --genomeDir /home/menghaowei/ngs_course/reference/STAR_index \
 --runThreadN 6 \
@@ -362,42 +396,82 @@ STAR \
 
 参数解释：
 
-```
--b 默认输出SAM格式文件，该参数设置输出BAM格式
--h 默认输出不带头部信息的SAM文件，参数设定输出SAM文件带头部信息
--H 只输出头部信息
--S 默认输入是BAW文件，若是输入SAM文件，最好加这个参数
 
-```
+::: {.book-prose}
 
-##### samtools操作SAM/BAM文件 {#src-0050-RNA-seq-601}
+-b 默认输出SAM格式文件，该参数设置输出BAM格式  
+-h 默认输出不带头部信息的SAM文件，参数设定输出SAM文件带头部信息  
+-H 只输出头部信息  
+-S 默认输入是BAW文件，若是输入SAM文件，最好加这个参数  
 
-``` sh
-samtools view [options] <in.bam> | <in.sam> [region1 [...]]
-$samtools view -bS adc.sam >abc.bam
-$samtools view -b -S abc.sam -o abc.bam
 
-提取比对到参考序列上的比对结果：
-$samtools view -bF 4 abc.bam >abc.F.bam
-
-提取paired reads中两条reads都比对到参考序列上的比对结果，只需要把两个4+8的值12作为过滤参数：
-$samtools view -bf 4 abc.bam >abc.f.bam
-
-提取BAM文件中比对到scaffold1上的比对结果，并保存到SAM文件格式：
-$samtools view abc.bam scaffold1 >scaffold1.sam
-
-提取能比对到scaffold1 30k到100 k区域到比对结果：
-$samtools view abc.bam scaffold1:30000-10000 > scaffold1_30k-100k.sam
-
-根据FASTA文件，将header加入到SAM或BAM文件中：
-$samtools view -T genome.fasta -h scaffold1.bam >scaffold1.h.sam
-
-```
-
-::: {.callout-note title="待完善" collapse="true"}
-选择一条主要路线，解释RNA特异QC；其他工具作对照。
 :::
 
+#### samtools操作SAM/BAM文件 {#src-0050-RNA-seq-601}
+
+
+```{.text data-book-role="data"}
+samtools view [options] <in.bam> | <in.sam> [region1 [...]]
+```
+
+```{.bash data-book-role="code"}
+samtools view -bS adc.sam >abc.bam
+samtools view -b -S abc.sam -o abc.bam
+```
+
+::: {.book-prose}
+
+提取比对到参考序列上的比对结果：  
+
+:::
+
+```{.bash data-book-role="code"}
+samtools view -bF 4 abc.bam >abc.F.bam
+```
+
+::: {.book-prose}
+
+提取paired reads中两条reads都比对到参考序列上的比对结果，只需要把两个4+8的值12作为过滤参数：  
+
+:::
+
+```{.bash data-book-role="code"}
+samtools view -bf 4 abc.bam >abc.f.bam
+```
+
+::: {.book-prose}
+
+提取BAM文件中比对到scaffold1上的比对结果，并保存到SAM文件格式：  
+
+:::
+
+```{.bash data-book-role="code"}
+samtools view abc.bam scaffold1 >scaffold1.sam
+```
+
+::: {.book-prose}
+
+提取能比对到scaffold1 30k到100 k区域到比对结果：  
+
+:::
+
+```{.bash data-book-role="code"}
+samtools view abc.bam scaffold1:30000-10000 > scaffold1_30k-100k.sam
+```
+
+::: {.book-prose}
+
+根据FASTA文件，将header加入到SAM或BAM文件中：  
+
+:::
+
+```{.bash data-book-role="code"}
+samtools view -T genome.fasta -h scaffold1.bam >scaffold1.h.sam
+```
+
+::: {.book-placeholder}
+本节内容待补充。
+:::
 ### 知识问答 23：RNA 与 DNA 的比对差异 {#question-21-285}
 
 #### 问题描述 {#question-21-286}
@@ -416,9 +490,10 @@ Hello大家好！我们今天又见面了！
 
 对我们mapping影响最大的因素是：真核生物转录出来的初步的mRNA都是带有intron（内含子）的，随后都需要在co-transcription（转录的同时） 或post-transcription（转录以后）阶段通过：1. alternative splicing（可变剪切）剪切掉intron；2.polyA尾巴； 3.加5'的帽子结构。这3个步骤，将不成熟的mRNA变为最终成熟的mRNA再转运出核，行使功能。
 
-![23 图1](../assets/a-questions-21-25/006-23-1.jpg){#fig-a-questions-21-25-006}  
 
-图1 通过可变剪切同1个基因可以形成多种蛋白（https://en.wikipedia.org/wiki/Alternative_splicing）
+![通过可变剪切同1个基因可以形成多种蛋白（https://en.wikipedia.org/wiki/Alternative_splicing）](../assets/a-questions-21-25/006-23-1.jpg){#fig-a-questions-21-25-006}
+
+
  
 
 #### 2.RNA比对的常用软件 {#question-21-307}
@@ -435,35 +510,46 @@ Hello大家好！我们今天又见面了！
 
 **问题1：如果你有一套标准的polyA捕获得到的RNA-Seq测序数据，对reads进行了前处理工作与质量控制工作，但是你的比对策略为：先尝试mapping，把能mapping到基因组上的reads都先mapping；然后把不能进行mapping的reads进行一定规则的拆分，再进行第二轮mapping，从而解决跨intron区域的问题（以上为tophat的mapping策略）。请问，这样mapping的最大问题是什么？（提示，需要知道一些假基因的概念！）**
 
-```
+
+::: {.book-prose}
+
 首先解释一下假基因，假基因（Pseudogenes）是指是一类染色体上的基因片段。假基因的序列通常与  
 对应的基因相似，但至少是丧失了  一部分功能，基因不能表达或其编码的蛋白质没有功能；这种基因  
 在基因组上的分布非常普遍，那么在假基因普遍存在的情况下上述比对策略就会受到假基因的干扰，会有  
-很多基因比对到假基因上。
-```  
+很多基因比对到假基因上。  
+
+:::
 
 
 **问题2：在human中，是不是所有的蛋白基因（protein coding gene）都含有intron？**  
 
-```
+
+::: {.book-prose}
+
 并不是，SRY基因是人体Y染色体上的一段基因，该基因是决定男性睾丸发育的主要基因，存在于Y染色体  
-的短臂末端上，该基因只有一个exon。
-```
-![23 答1](../assets/a-questions-21-25/007-23-1.jpg){#fig-a-questions-21-25-007}    
+的短臂末端上，该基因只有一个exon。  
+
+:::
+
+![23 答1](../assets/a-questions-21-25/007-23-1.jpg){#fig-a-questions-21-25-007}
+
    
  答2 SRY基因结构,没有intron.    
 
 **问题3：在human中，是不是所有的蛋白基因的成熟mRNA都有polyA尾巴？**
 
-```
-并不是，组蛋白mRNA末端就没有polyA尾巴。
-```
+
+::: {.book-prose}
+
+并不是，组蛋白mRNA末端就没有polyA尾巴。  
+
+:::
 
 ## 从reads到基因和转录本定量 {#sec-05-04}
 
 理解计数由哪些归属规则产生。
 
-#### 转录本组装 {#src-0050-RNA-seq-286}
+### 转录本组装 {#src-0050-RNA-seq-286}
 
 组装转录本是一个可选项，如果想挖掘测序数据中的新转录本，则需要做这一步分析。拼接软件根据参考基因组将测序处理得到的高质量测序片段比对到该参考基因组上，然后对比对上的片段进行转录本组装。Cufflinks、StringTie和Scripture都是常用的转录本组装软件。
 
@@ -477,7 +563,7 @@ StringTie是Cufflinks的升级版本，其下游常使用Ballgown软件分析差
 
 Scripture根据比对得到的spilce reads构建出连接图，采用统计法，分析连接序列与非连接序列比对区域的丰度信息，对可能的连接路径进行评分，依据得分情况选择可能的转录本，依据双端测序reads之间的距离，简介转录本或过滤非转录本。
 
-##### 表达定量软件 {#src-0050-RNA-seq-349}
+#### 表达定量软件 {#src-0050-RNA-seq-349}
 
 常用的表达定量软件有HTSeq、Cuffquant+Cuffnorm、featureCount。定量分析得到的Counts数据用于接下来的不同样品间的基因表达量差异分析。
 
@@ -489,84 +575,111 @@ Cuffquant是Cufflinks一套的基因表达定量软件，输入一个SAM/BAM文�
 
 featureCount
 
-#### 转录组拼接  {#src-0050-RNA-seq-625}
+### 转录组拼接  {#src-0050-RNA-seq-625}
 
 
 
-##### Cufflinks {#src-0050-RNA-seq-627}
+#### Cufflinks {#src-0050-RNA-seq-627}
 
 使用Cufflinks组装转录本：
 
-```shell
-$cufflinks -o ERR188044/cufflink ERR188044/accepted_hits_sorted.bam -p 50 -g chrX.gtf -b chrX.fa
 
+```{.bash data-book-role="code"}
+cufflinks -o ERR188044/cufflink ERR188044/accepted_hits_sorted.bam -p 50 -g chrX.gtf -b chrX.fa
 ```
 
 使用Cuffmerge合并新的转录本:
 
-```shell
+
+```{.bash data-book-role="code" data-focus-lines="2,5"}
 #使用cuffmerge:
-$cuffmerge -g Homo_sapiens.GRCh37.85.gtf -s hisat/human_genome.fa -p 40 -o merged.gtf assemblies.txt
+cuffmerge -g Homo_sapiens.GRCh37.85.gtf -s hisat/human_genome.fa -p 40 -o merged.gtf assemblies.txt
 
 #使用cuffcompare:
-$cuffcompare -r Homo_sapiens.GRCh38.85.gtf -i 1.txt -o cuffcmp01
-
+cuffcompare -r Homo_sapiens.GRCh38.85.gtf -i 1.txt -o cuffcmp01
 ```
 
-##### StringTie {#src-0050-RNA-seq-647}
+#### StringTie {#src-0050-RNA-seq-647}
 
 使用StringTie组装转录本：
 
-```shell
-
-```
 
 Cufflinks输入的必须是排序后的BAM或SAM文件，对于剪接性比对结果，记录中要有XS标签。“XS:A:-”标签表明reads比对到了负义链上，使用HISAT2软件对非链特异性测序的RNA-seq数据进行比对时，一定要添加--dta-cufflinks参数，从而使跨过内含子的剪接性比对结果中含有XS标签，否则cufflinks命令不能正确处理结果。
 
 cufflinks的输出结果有genes.fpkm_tracking, isoforms.fpkm_tracking, transcripts.gtf。前两个时表达量FPKM结果文件，第三个是GTF文件，用于描述基因在染色体上的结构信息：序列名、来源、特征、起始坐标、终止坐标、得分、正负链、读码框、属性。不包含起始密码子和终止密码子，因此GTF不是标准的
 
-``` sh
-$cufflinks -p 4 -b genome.fasta -u -o sample1 -L sample1 tophat.ba。m
+
+```{.bash data-book-role="code"}
+cufflinks -p 4 -b genome.fasta -u -o sample1 -L sample1 tophat.ba。m
 ```
 
-```
--o | --output-dir <string>  设置输出文件夹名称
--p | --num-threads 设置CPU线程数
--G | --GTF <reference_annotation.gtf.gff> 提供包含有基因结构信息的格式为GTF或GFF文件，计算文件中转录本的表达量。
--g | --GTF-guide 提供GFF文件，以此知道转录本组装。
-```
+
+::: {.book-prose}
+
+-o | --output-dir &lt;string&gt;  设置输出文件夹名称  
+-p | --num-threads 设置CPU线程数  
+-G | --GTF &lt;reference_annotation.gtf.gff&gt; 提供包含有基因结构信息的格式为GTF或GFF文件，计算文件中转录本的表达量。  
+-g | --GTF-guide 提供GFF文件，以此知道转录本组装。  
+
+:::
 
 cufflinks命令只能对一个SAM/BAM文件进行表达量分析，不同样品表达量不同，为了获得全面的基因注释信息，用cuffmerge将cufflinks命令生成的多个transcripts.gtf文件融合为一个更全面的转录本注释结果。
 
- ``` sh
-$ cuffmerge -o ./merged_asm -p 4 -s genome.fasta assembly_GTF_list.txt
- ```
 
-```
--o | --output-dir <string>  设置输出文件夹名称
--p | --num-threads 设置CPU线程数
--s | --ref-sequence <seq_dir> 基因组DNA序列
+```{.bash data-book-role="code"}
+cuffmerge -o ./merged_asm -p 4 -s genome.fasta assembly_GTF_list.txt
 ```
 
-``` sh
-对一个样品数据进行组装：
-$stringtie sample.bam --rf -l sample1 -o sample1.gtf -p 4
-对多个样本对GTF文件进行整合：
-$stringtie --merge -o merge.gtf sample1.gtf sample2.gtf 
-对一个样品的表达量进行分析
-$stringtie sample1.demulpos.bam --rf -o sample1.gtf -p 8 -e -G genome.gtf
 
+::: {.book-prose}
+
+-o | --output-dir &lt;string&gt;  设置输出文件夹名称  
+-p | --num-threads 设置CPU线程数  
+-s | --ref-sequence &lt;seq_dir&gt; 基因组DNA序列  
+
+:::
+
+
+::: {.book-prose}
+
+对一个样品数据进行组装：  
+
+:::
+
+```{.bash data-book-role="code" data-focus-lines="1"}
+stringtie sample.bam --rf -l sample1 -o sample1.gtf -p 4
 ```
 
-#### 表达定量 {#src-0050-RNA-seq-692}
+::: {.book-prose}
+
+对多个样本对GTF文件进行整合：  
+
+:::
+
+```{.bash data-book-role="code" data-focus-lines="1"}
+stringtie --merge -o merge.gtf sample1.gtf sample2.gtf 
+```
+
+::: {.book-prose}
+
+对一个样品的表达量进行分析  
+
+:::
+
+```{.bash data-book-role="code" data-focus-lines="1"}
+stringtie sample1.demulpos.bam --rf -o sample1.gtf -p 8 -e -G genome.gtf
+```
+
+### 表达定量 {#src-0050-RNA-seq-692}
 
 
 
-##### HTSeq {#src-0050-RNA-seq-694}
+#### HTSeq {#src-0050-RNA-seq-694}
 
 使用HTSeq对基因表达进行定量：
 
-```shell
+
+```{.bash .numberLines data-book-role="code"}
 htseq-count -f bam -r pos \
 --max-reads-in-buffer 1000000 \
 --stranded no \
@@ -578,12 +691,13 @@ htseq-count -f bam -r pos \
 ./bam/test_hisat2.sort.bam  ./reference/gtf/hg38_refseq_from_ucsc.rm_XM_XR.fix_name.gtf > ./count_result/test_count.HTSeq.log  2>&1 & 
 ```
 
-##### featureCount {#src-0050-RNA-seq-710}
+#### featureCount {#src-0050-RNA-seq-710}
 
 使用featureCount对基因表达进行定量：
 
-```shell
-$featureCounts -t exon -g gene_id \
+
+```{.bash .numberLines data-book-role="code"}
+featureCounts -t exon -g gene_id \
 -Q 10 --primary -s 0 -p -T 1 \
 -a ./reference/gtf/hg38_refseq_from_ucsc.rm_XM_XR.fix_name.gtf \
 -o ./count_result/test_count.featureCounts \
@@ -595,60 +709,67 @@ $featureCounts -t exon -g gene_id \
 
 ambigous表示read比对到多个基因上，no_feature表示read没有比对到基因组上。
 
-```
+
+```{.bash .numberLines data-book-role="code" data-focus-lines="2,5"}
 # 非链特异性真核转录组测序数据
-$htseq-count -f sam -r name -s no -a 10 -t exon -i gene_id -m union hisat2.sam genome.gtf >counts_out.txt
+htseq-count -f sam -r name -s no -a 10 -t exon -i gene_id -m union hisat2.sam genome.gtf >counts_out.txt
 
 # 链特异行真核转录测序数据
-$htseq-count -f sam -r name -s reverse -a 10 -t exon -i gene_id -m union hisat2.sam genome.gtf >count_out.gtf
+htseq-count -f sam -r name -s reverse -a 10 -t exon -i gene_id -m union hisat2.sam genome.gtf >count_out.gtf
 
 # 非链特异原核生物转录组测序数据
-$htseq-count -f sam -r name -s no -a 10 -t exon -i gene_id -m intercextion-strict bowtie2.sam genome.gtf >counts_out.txt
+htseq-count -f sam -r name -s no -a 10 -t exon -i gene_id -m intercextion-strict bowtie2.sam genome.gtf >counts_out.txt
 ```
 
 参数说明：
 
-```
--f | --format default:sam 设置输入文件格式，sam或者bam
--r | --order default: name 设置输入文件排序方式，name或者pos。前者按reads名排，后者比对的参考基因组位置进行排序。当测序时间是双端测序是，输入文件按照pos排序，两端的比对结果在文件中不是紧邻的两行，程序会将reads对的第一个比对结果放入内存，知道读取到另一端read的比对结果，选pos可能会导致内存使用过多。其他表达量分析软件要求输入SAM/BAM文件是pos排序的，很多软件出处结果也是按照name排序，有所不同。
--s | --stranded default:yes 设置是否链特异性测序。值可以为yes,no,reverse.分别代表：非链特异性测序;单端yes表示read比对到基因的正义链上，双端测序表示read1比对到正义链上，reads比对到负义链傻姑娘；reverse表示双端测序与yes值相反的结果。
--a | --a default: 10 忽略比对质量低于此值的比对结果。
--t | --type default: exon 程序会对该指定的feature(GTF/GFF文件第三列)进行表达量计算，而GTF/GFF文件中其它的feature都会被忽略
--i | -idattr default:gene_id 设置feature ID 是由GTF/GFF文件第九列那个标签决定的，若GTF/GFF文件多行具有相同feature ID, 则它们来自同一个feature,程序会计算这些features的表达量之和赋给相应的feature ID。
--m | --mode deault: union 设置表达量计算模式。参数的值可以有union，intersection-strict, intersection-nonempty。原核生物用intersection-strict,真核生物用union模式。
--o | --samout 输出一个SAM文件，比对结果多一个XF标签，表示 read比对到了某个feature上。
--q | --quiet 不输出程序运行的状态信息和警告信息
-```
 
-##### cuffquant {#src-0050-RNA-seq-752}
+::: {.book-prose}
+
+-f | --format default:sam 设置输入文件格式，sam或者bam  
+-r | --order default: name 设置输入文件排序方式，name或者pos。前者按reads名排，后者比对的参考基因组位置进行排序。当测序时间是双端测序是，输入文件按照pos排序，两端的比对结果在文件中不是紧邻的两行，程序会将reads对的第一个比对结果放入内存，知道读取到另一端read的比对结果，选pos可能会导致内存使用过多。其他表达量分析软件要求输入SAM/BAM文件是pos排序的，很多软件出处结果也是按照name排序，有所不同。  
+-s | --stranded default:yes 设置是否链特异性测序。值可以为yes,no,reverse.分别代表：非链特异性测序;单端yes表示read比对到基因的正义链上，双端测序表示read1比对到正义链上，reads比对到负义链傻姑娘；reverse表示双端测序与yes值相反的结果。  
+-a | --a default: 10 忽略比对质量低于此值的比对结果。  
+-t | --type default: exon 程序会对该指定的feature(GTF/GFF文件第三列)进行表达量计算，而GTF/GFF文件中其它的feature都会被忽略  
+-i | -idattr default:gene_id 设置feature ID 是由GTF/GFF文件第九列那个标签决定的，若GTF/GFF文件多行具有相同feature ID, 则它们来自同一个feature,程序会计算这些features的表达量之和赋给相应的feature ID。  
+-m | --mode deault: union 设置表达量计算模式。参数的值可以有union，intersection-strict, intersection-nonempty。原核生物用intersection-strict,真核生物用union模式。  
+-o | --samout 输出一个SAM文件，比对结果多一个XF标签，表示 read比对到了某个feature上。  
+-q | --quiet 不输出程序运行的状态信息和警告信息  
+
+:::
+
+#### cuffquant {#src-0050-RNA-seq-752}
 
 用于对一个SAM/BAM文件进行表达量计算，生成一个二进制的结果文件。这部分计算比较消耗计算资源。
 
-``` sh
-$ cuffquant -o sample1 -p 4 -b genome.fasta -u genome.gtf sample1.sam
+
+```{.bash data-book-role="code"}
+cuffquant -o sample1 -p 4 -b genome.fasta -u genome.gtf sample1.sam
 ```
 
-```
--o | --output-dir <string>  设置输出文件夹名称
--p | --num-threads 设置CPU线程数
--b | --frag-bias-correct <genome.fa> 知道Cufflinks运行偏差检测和校正算法（bias detection and correction algorithm），提高转录子丰度计算的精确性。
--u | --multi-read-coreect 让cufflinks更精确地比对到genome多个位点的reads
--library-type default:fr-unstranded 设置是否为链特异测序或其种类，默认为非链特异性的RNA-seq
-```
 
-::: {.callout-note title="待完善" collapse="true"}
-补计数规则练习；按需要介绍Salmon/tximport，避免把拼装写成必经步骤。
+::: {.book-prose}
+
+-o | --output-dir &lt;string&gt;  设置输出文件夹名称  
+-p | --num-threads 设置CPU线程数  
+-b | --frag-bias-correct &lt;genome.fa&gt; 知道Cufflinks运行偏差检测和校正算法（bias detection and correction algorithm），提高转录子丰度计算的精确性。  
+-u | --multi-read-coreect 让cufflinks更精确地比对到genome多个位点的reads  
+-library-type default:fr-unstranded 设置是否为链特异测序或其种类，默认为非链特异性的RNA-seq  
+
 :::
 
+::: {.book-placeholder}
+本节内容待补充。
+:::
 ## counts、TPM与样本探索 {#sec-05-05}
 
 为统计检验和可视化选择正确的数据表示。
 
-#### 表达定量 {#src-0050-RNA-seq-300}
+### 表达定量 {#src-0050-RNA-seq-300}
 
 通过前面的序列比对分析，获得了能够map到各个基因的reads数，也就是原始的count数。但原始的count数并不能完全表征基因的表达情况，因为不同基因的长度不同，不同批次数据的测序量也不同，所以需要通过计算矫正测序深度和基因长度带来的影响，即对基因的表达进行标准化定量（*Manuel Garber et.al., Nat Methods, 2011）。
 
-##### 基因表达定量方式RPKM、FPKM、TPM {#src-0050-RNA-seq-304}
+#### 基因表达定量方式RPKM、FPKM、TPM {#src-0050-RNA-seq-304}
 
 例如，在同一个样本中，基因A和基因B的count数都是1000，而基因A的长度分别为100 bp和200 bp，我们不能认为基因A和基因B的表达水平是一样的；再比如，基因A在样本1、2中的count数分别为1000和2000，此时无法判断基因A在样本2的表达水平是样本1中的两倍，因为在测序实验过程不同样品的测序量不是完全一致的；由于基因本身长度的不同、不同样本测序量的差异，不能使用原始的count数来表征基因的表达水平。
 
@@ -661,11 +782,13 @@ $ cuffquant -o sample1 -p 4 -b genome.fasta -u genome.gtf sample1.sam
 
 各自的适用范围和优缺点不同，了解各自的原理才能在分析过程中选择最适合的定量方式:
 
-```
-RPM or CPM =( Number of reads mapped to gene x 10^6 )/ Total number of mapped reads
-```
+$$
+\mathrm{RPM}\ \text{or}\ \mathrm{CPM}=\frac{\text{Number of reads mapped to gene}\times10^6}{\text{Total number of mapped reads}}
+$$ {#eq-rpm-cpm-definition}
 
-*RPKM=(Number of reads mapped to gene x 10^3 x 10^6) / (Total number of mapped reads x gene length in bp)*
+$$
+\mathrm{RPKM}=\frac{\text{Number of reads mapped to gene}\times10^3\times10^6}{\text{Total number of mapped reads}\times\text{gene length in bp}}
+$$ {#eq-rpkm-definition}
 
 
 
@@ -679,15 +802,27 @@ $$ {#eq-06-rna-seq-001}
 
 RPKM适用于单端测序。假设回贴到geneA 的 reads count为 CountA，geneA的exon总长度为Len(A) Kbp，总的测序量为D兆(million)reads，那么：
 
-``` 
-geneA RPKM = CountA / Len(A) / D
-```
+$$
+\mathrm{RPKM}_{\mathrm{geneA}}=\frac{\mathrm{CountA}}{\mathrm{Len}(A)\,D}
+$$ {#eq-rpkm-example}
 
-FPKM适用于双端测序。RPKM与FPKM唯一的不同之处在第一个单词，reads即测序得到的读长片段，fragment则是指在双端测序中read1和read2在参考基因组上确定的片段。FPKM 与 RPKM 的分子和分母使用不同的计数单位，不能普遍写成 FPKM=RPKM/2。若每个 fragment 的两端都被计为 reads，分子和分母都会同比变化。
+
+::::: {.callout-warning .book-warning title="注意｜FPKM 与 RPKM 的计数单位"}
+
+FPKM适用于双端测序。RPKM与FPKM唯一的不同之处在第一个单词，reads即测序得到的读长片段，fragment则是指在双端测序中read1和read2在参考基因组上确定的片段。FPKM 与 RPKM 的分子和分母使用不同的计数单位，不能普遍写成 $\mathrm{FPKM}=\mathrm{RPKM}/2$。若每个 fragment 的两端都被计为 reads，分子和分母都会同比变化。
+
+:::::
+
 
 目前，应用最广泛的Illumina测序平台主要采用的是双端测序，因此FPKM也是目前最常见的基因表达定量方式。FPKM能够矫正gene长度以及测序深度对gene表达定量的影响，但不同样本的FPKM总和是不一致的，解决这个问题，可以使用TPM定量方式。
 
+
+::::: {.callout-warning .book-warning title="注意｜TPM 的含义与边界"}
+
 TPM 先将计数除以长度，再使每个样本内的总和为 $10^6$。它描述样本内的相对丰度，不会自动消除组成偏差或批次效应，也不能替代差异表达模型所需的 counts。
+
+:::::
+
 
 
 
@@ -709,15 +844,14 @@ $$ {#eq-06-rna-seq-002}
 
 但是无论是参入spike-in还是使用管家基因进行矫正，都可能会引入新的差异（variation），关于这一点我们一定要有个清醒的认识。
 
-::: {.callout-note title="待完善" collapse="true"}
-修正FPKM换算和过滤示例，将处理选择与统计章关联。
+::: {.book-placeholder}
+本节内容待补充。
 :::
-
 ## 差异表达模型与结果解释 {#sec-05-06}
 
 完成正确的条件比较并读懂差异结果。
 
-#### 表达差异分析 {#src-0050-RNA-seq-360}
+### 表达差异分析 {#src-0050-RNA-seq-360}
 
 寻找差异表达的基本假设是样本中的大部分基因表达不变。基于这个假设，对样本中的基因表达做定量计算，寻找不同样本之间发生差异性表达的基因。而RNA-Seq定量的本质是相对定量，即测定指标的相对比例，如浓度、Fold change；这区别于绝对定量测定的是客观的数值等 ，例如温度、高度、长度等。
 
@@ -733,38 +867,44 @@ cuffdiff、cuffdiff2、DESeq、DESeq2 （Moderated estimation of fold change and
 
 聚类采用两种思路，寻找最近的样本进行聚集，即聚类法 agglomerative；剥离出最远的样本的方法，即分割法divisive。
 
-#### 差异分析 {#src-0050-RNA-seq-768}
+### 差异分析 {#src-0050-RNA-seq-768}
 
 
 
-##### Cuffdiff {#src-0050-RNA-seq-770}
+#### Cuffdiff {#src-0050-RNA-seq-770}
 
 cuffdiff 用于基因表达差异性的显著性分析，若基因组较小可直接使用，基因组较大的可以先用cuffquant处理后再进行差异分析。
 
-```
+
+```{.bash data-book-role="code"}
 cuffdiff -L lample1,sample2 -p 4 -u -b genome.fasta genome.gtf sample1_rep1.sam,sample2_rep2.sam sample2_rep1.sam,sample2_rep2.sam
 ```
 
-```
--o | --output-dir <string> default: ./ 设置输出文件夹目录
--L | --lables <lable1,lable2,...,lableN> default:q1,q2,...,qN 设置每一个样本的样品名
--p | --num-threads 设置CPU线程数
--T | --time-series  让cuffdiff按样品顺序进行比对
--u | --multi-read-correct initial estimation，好精确衡量比对到genome多个位点的reads
--b ｜ --frag-bias-correct 提供一个fasta文件来知道cufflinks运行的新的bias detection and correction algorithm。提高转录本丰度的计算。
-```
+
+::: {.book-prose}
+
+-o | --output-dir &lt;string&gt; default: ./ 设置输出文件夹目录  
+-L | --lables &lt;lable1,lable2,...,lableN&gt; default:q1,q2,...,qN 设置每一个样本的样品名  
+-p | --num-threads 设置CPU线程数  
+-T | --time-series  让cuffdiff按样品顺序进行比对  
+-u | --multi-read-correct initial estimation，好精确衡量比对到genome多个位点的reads  
+-b ｜ --frag-bias-correct 提供一个fasta文件来知道cufflinks运行的新的bias detection and correction algorithm。提高转录本丰度的计算。  
+
+:::
 
 使用cuffdiff进行差异分析：
 
-```
+
+```{.bash data-book-role="code"}
 cuffdiff -o cuffdiff -p 50 -L male,female -u chrX.gtf ERR188044/accepted_hits_sorted.bam,ERR188104/accepted_hits_sorted.bam,ERR188454/accepted_hits_sorted.bam ERR188234/accepted_hits_sorted.bam,ERR188273/accepted_hits_sorted.bam,ERR204916/accepted_hits_sorted.bam
 ```
 
-##### DEseq {#src-0050-RNA-seq-793}
+#### DEseq {#src-0050-RNA-seq-793}
 
 使用R语言DEseq包进行差异分析：
 
-```R
+
+```{.r .numberLines data-book-role="code" data-focus-lines="21,23,34"}
 library(DESeq2)
 # count table 
 count_df <- read.table(file = "./03.code_and_data/out_table/293T-RNASeq-Ctrl_vs_KD.STAR.hg38.featureCounts.FixColName.tsv",header = T,sep = "\t")
@@ -807,11 +947,12 @@ deseq2.obj <- nbinomWaldTest(deseq2.obj)
 deseq2.obj.res <- results(deseq2.obj)
 ```
 
-##### edgeR {#src-0050-RNA-seq-840}
+#### edgeR {#src-0050-RNA-seq-840}
 
 使用R语言edgeR包进行差异分析：
 
-```R
+
+```{.r .numberLines data-book-role="code" data-focus-lines="23,44,49"}
 library(edgeR)
 
 # -------------------------------------------------------->>>>>>>>>>
@@ -894,18 +1035,16 @@ abline(h = c(-2, 2), col = "blue")
 fit <- glmFit(dge.list.obj, design.mat)
 lrt <- glmLRT(fit, coef=2)
 DEGs.res.lrt <- as.data.frame(topTags(lrt,n=nrow(count_df.filter),sort.by = "logFC"))
-
 ```
 
-::: {.callout-note title="待完善" collapse="true"}
-补模型解释、样本顺序断言、比较方向验证和预期结果。
+::: {.book-placeholder}
+本节内容待补充。
 :::
-
 ## 功能富集与结果展示 {#sec-05-07}
 
 把差异结果转化为有边界的生物学解释。
 
-#### 基因注释 {#src-0050-RNA-seq-376}
+### 基因注释 {#src-0050-RNA-seq-376}
 
 GO数据库 (Gene Ontology, 基因本体论)是关于基因和蛋白质知识的标准词汇，对基因进行了三个维度的注释生物学过程 (Biological Process, BP)、分子功能 (Molecular Function, MF)和细胞成分(Cellular Component,CC),是所有基因的共有属性的描述。GO富集分析是常用的分析方法，它主要是给定一 个筛选后的gene集，对其进行功能注释，随后通过Fisher exact test或者Chi-Square test进行富集分析检验。
 
@@ -915,21 +1054,28 @@ KEGG数据库是对基因进行信号通路、代谢等过程注释的数据库�
 
 （代谢通路图）
 
+
+::::: {.callout-note .book-core title="核心知识｜功能注释与富集分析"}
+
 在上一步的RNA-seq分析中获得了差异表达基因。要了解差异表达基因的功能，一般会对基因进行GO和KEGG pathway注释。很多情况下，研究者希望得到的信息是一群基因主要集中在了那些功能上，则需要对基因集进行GO和KEGG pathway的富集注释。例如在某些胁迫活着药物处理下，引起了机体内大量基因的表达变化，KEGG pathway富集分析可以提示这种处理下，有哪些通路发生了大量的表达基因表达变化。所以基因注释和富集分析是不一样的，注释解释的是单个基因有哪些功能、参与了哪些通路，而富集分析研究某一基因集在某一通路或者其他注释信息（BP，MF，CC）中是否富集。气泡图是在富集分析中常用的图：
+
+:::::
+
 
 （气泡图）
 
 R语言clusterProfiler包和在线软件DAVID注释网站都是常用的基因注释和富集分析工具。其中clusterProfiler工具包是由南方医科大学的余光创老师用心打造的一个工具包。该工具包已经成功运行若干年，更新及时，与时俱进，深受业内好评，可以作为富集分析的一个重要工具进行使用。
 
-#### 火山图与聚类图绘制 {#src-0050-RNA-seq-930}
+### 火山图与聚类图绘制 {#src-0050-RNA-seq-930}
 
 
 
-##### 火山图 {#src-0050-RNA-seq-932}
+#### 火山图 {#src-0050-RNA-seq-932}
 
 使用R语言ggplot2包绘制火山图
 
-```R
+
+```{.r .numberLines data-book-role="code" data-focus-lines="11,15"}
 require(ggplot2)
 
 bmp(filename="M3 volcan plot.bmp",width = 400,height = 300)
@@ -959,7 +1105,8 @@ rm(list=ls())
 
 输入文件格式为：
 
-```
+
+```{.text data-book-role="data"}
 log2	pvalue
 2.04705	5.00E-05
 1.17727	2.25E-03
@@ -972,11 +1119,12 @@ log2	pvalue
 ... ...
 ```
 
-##### 聚类图 {#src-0050-RNA-seq-979}
+#### 聚类图 {#src-0050-RNA-seq-979}
 
 使用R语言gplots包绘制火山图
 
-```R
+
+```{.r .numberLines data-book-role="code" data-focus-lines="5"}
 library("gplots")
 
 est <- read.table(file = "DEgene.txt", header = T, row.names=1)
@@ -990,13 +1138,12 @@ svg(file="e3.svg", width = 100, height = 100)
 heatmap.2(as.matrix(est),  margins = c(13, 13),col=redgreen(100), scale = "row", dendrogram = "column",
           key = T, keysize=0.8, symkey = T, density.info = "none", trace = "none")
 dev.off()
-
-
 ```
 
 输入文件格式为：
 
-```
+
+```{.text data-book-role="data"}
 hsa-miR-6087	4.835286667	2.680141333
 hsa-miR-663a	5.537003333	3.407306667
 hsa-miR-6821-5p	3.699006667	2.02985
@@ -1011,11 +1158,12 @@ hsa-miR-6090	5.80658	4.459086667
 ...	...	...
 ```
 
-##### GO注释 {#src-0050-RNA-seq-1018}
+#### GO注释 {#src-0050-RNA-seq-1018}
 
 使用R语言clusterProfiler包进行GO注释:
 
-```R
+
+```{.r .numberLines data-book-role="code" data-focus-lines="36,45,72"}
 # ---------------------------------------------------------------------->>>>>>>
 # GO analysis
 # ---------------------------------------------------------------------->>>>>>>
@@ -1090,15 +1238,14 @@ dotplot(erich.go.MF)
 pdf(file="./03.code_and_data/out_image/20200926-enrich.go.BP.Dotplot.pdf",width = 10,height = 6)
 dotplot(erich.go.BP)
 dev.off()
-
 ```
 
-##### 4. KEGG注释 {#src-0050-RNA-seq-1100}
+#### 4. KEGG注释 {#src-0050-RNA-seq-1100}
 
 使用R语言clusterProfiler包进行KEGG注释:
 
-```R
 
+```{.r .numberLines data-book-role="code" data-focus-lines="6,11"}
 # ---------------------------------------------------------------------->>>>>>>
 # KEGG analysis
 # ---------------------------------------------------------------------->>>>>>>
@@ -1115,10 +1262,9 @@ erich.kegg.res <- enrichKEGG(gene = DEG.entrez_id,
 barplot(erich.kegg.res)
 ```
 
-::: {.callout-note title="待完善" collapse="true"}
-统一显著性规则与图例，新增GSEA和背景选择的反例。
+::: {.book-placeholder}
+本节内容待补充。
 :::
-
 ## 完整交付、错误案例与拓展入口 {#sec-05-08}
 
 独立完成分析，并能解释结果是否可信。
@@ -1134,7 +1280,9 @@ barplot(erich.kegg.res)
 已知lncRNA的分析与mRNA是类似的，可以从基因组注释文件中获取已知lncRNA。也可以通过与长非编码RNA数据库比较，获得已知的lncRNA转录本。lncRNA相关的数据库有lncRNAdb、NONCODE、NRED、LNCIPedia等。lncRNAdb（http://www.lncrnadb.org/）只收录已经被实验验证的真核生物lncRNAs数据库；NONCODE（http://www.noncode.org/）是ncRNA相关注释数据库；NRED收录人和鼠的长非编码RNA数据；LNCipdedia（https://lncipedia.org/）是人类LincRNA转录序列和结构注释数据库。
 
 
+
 ![RNA-seq-lncRNA-analysis](../assets/06-rna-seq/005-rna-seq-lncrna-analysis.jpg){#fig-06-rna-seq-005}
+
 
 
 而新lncRNA的预测分析则需要预测转录本的编码潜能和序列同源性等指标，主要包括：
@@ -1156,7 +1304,9 @@ lncRNA数据分析中，表达定量和差异表达分析和mRNA的分析方法�
 small RNA-seq一般是为了获取miRNA的表达信息，miRNA广泛存在于动植物中，通过抑制蛋白质翻译或降解mRNA，在多种生物学过程中发挥着重要的调控作用。
 
 
+
 ![small-RNA-seq-analysis](../assets/06-rna-seq/006-small-rna-seq-analysis.jpg){#fig-06-rna-seq-006}
+
 
 
 small RNA-seq原始数据的处理与RNA-seq有所不同：
@@ -1173,7 +1323,9 @@ small RNA-seq原始数据的处理与RNA-seq有所不同：
 cirRNA常被认为是前体mRNA不正常剪接的结果，因此序列常包括两个以上的外显子。环状RNA断裂成线装RNA，测序会发现不能直接比对到基因组上，会跨越一个剪接信号GTAG，信号前后会比对到基因组上的不同位置。利用Tophat2、Bowtie1、 Bowtie2、 Samtools进行比对。
 
 
+
 ![circRNA-seq-analysis](../assets/06-rna-seq/007-circrna-seq-analysis.jpg){#fig-06-rna-seq-007}
+
 
 
 circBase （ http://www.circbase.org/）是一个通过收集和整合已经发布的circRNA数据构建的数据库，包括6个物种：人 (hg19)、小鼠(mm9) 、秀丽线虫(ce6)、黑腹果蝇 (dm3)、非洲 矛尾鱼 (latCha1)、印尼矛尾鱼 (latCha1)。circRNADb （ http://202.195.183.4:8000/circrnadb/circRNADb.php）是一个蛋白质编码注释的人类环状RNAs的综合数据库。CIRCpedia（ http://www.picb.ac.cn/rnomics/circpedia/）对人和小鼠组织和细胞系样品中环状RNA分子的可变反向剪接(可变环化)和可变剪接进行了归类。
@@ -1183,7 +1335,9 @@ circBase （ http://www.circbase.org/）是一个通过收集和整合已经发�
 ceRNA并不是一种新发现的RNA，而是由于体内多种RNA之间的相互作用形成的一种现象，称为内源竞争性RNA。例如circRNA能够吸附miRNA，而miRNA能够作用于mRNA，此时circRNA与mRNA就形成了一种竞争的关系，这种RNA直接的竞争称为内源竞争RNA（ceRNA）。
 
 
+
 ![ceRNA](../assets/06-rna-seq/008-cerna.jpg){#fig-06-rna-seq-008}
+
 
 
 1. miRNA是内源竞争RNA争夺的目标，除了mRNA和circRNA，部分具有类mRNA结构的lncRNA也能够与miRNA进行结合lncRNA与miRNA之间的作用，是miRNA与lncRNA的3‘非编码区结合，类似与miRNA与mRNA之间的作用。 miRcode（ Transcriptome-wide microRNA target prediction including lncRNAs，http://www.mircode.org/，Human）。
@@ -1191,10 +1345,9 @@ ceRNA并不是一种新发现的RNA，而是由于体内多种RNA之间的相互
 
 可见，生物体内的RNA之间有着千丝万缕的联系，有时候会竞争，有时候会协同作用。
 
-::: {.callout-note title="待完善" collapse="true"}
-新增结课任务、答案和AI生成代码审查题。
+::: {.book-placeholder}
+本节内容待补充。
 :::
-
 [^rna-ref-1]: 原稿文献编号 1；完整书目信息待完善。
 
 [^rna-ref-2]: 原稿文献编号 2；完整书目信息待完善。
