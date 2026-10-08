@@ -12,7 +12,7 @@ ROOT=Path(__file__).resolve().parents[1];OUT=ROOT/'docs'
 manifest=json.loads((ROOT/'scripts/validation-manifest.json').read_text())
 errors=[];warnings=[]
 class Page(HTMLParser):
- def __init__(self):super().__init__();self.ids=set();self.links=[];self.duplicates=[];self.h2=0;self.imgs=0
+ def __init__(self):super().__init__();self.ids=set();self.links=[];self.duplicates=[];self.h2=0;self.imgs=0;self.parents=[];self.tables=0;self.table_errors=[]
  def handle_starttag(self,tag,attrs):
   a=dict(attrs)
   if a.get('id'):
@@ -22,10 +22,27 @@ class Page(HTMLParser):
   if tag=='img':self.imgs+=1
   for key in ('href','src','poster'):
    if a.get(key):self.links.append((tag,key,a[key]))
+  ancestors=[name for name,_ in self.parents]
+  regions=[attrs for _,attrs in self.parents if 'book-table-scroll' in attrs.get('class','').split()]
+  if tag=='table' and 'main' in ancestors and 'table' not in ancestors:
+   self.tables+=1
+   if len(regions)!=1 or not self.parents or 'book-table-scroll' not in self.parents[-1][1].get('class','').split():
+    self.table_errors.append('Reading table must have exactly one immediate scroll wrapper')
+   elif regions[0].get('tabindex')!='0' or regions[0].get('role')!='region' or not regions[0].get('aria-label'):
+    self.table_errors.append('Table scroll region must be labelled and keyboard accessible')
+  if tag in ('caption','figcaption') and regions and 'main' in ancestors:
+   self.table_errors.append('Table caption must remain outside the horizontal scroll region')
+  if tag not in {'area','base','br','col','embed','hr','img','input','link','meta','param','source','track','wbr'}:
+   self.parents.append((tag,a))
+ def handle_endtag(self,tag):
+  for i in range(len(self.parents)-1,-1,-1):
+   if self.parents[i][0]==tag:
+    del self.parents[i:];break
 pages={}
 for p in OUT.rglob('*.html'):
  parser=Page();parser.feed(p.read_text());pages[p.resolve()]=parser
  for d in parser.duplicates:errors.append(f'Duplicate anchor: {p.relative_to(OUT)}#{d}')
+ for message in parser.table_errors:errors.append(f'{p.relative_to(OUT)}: {message}')
  if re.search(r'(?<![\w])\?\?(?:\s*</|\s*fig|\s*sec|\s*eq)',p.read_text()):errors.append(f'Unresolved Quarto reference: {p.relative_to(OUT)}')
  if 'class="quarto-unresolved-ref"' in p.read_text():errors.append(f'Unresolved Quarto reference: {p.relative_to(OUT)}')
 for p,parser in pages.items():
@@ -101,7 +118,7 @@ for name in ['README.md','HANDOFF.md','build.json','archive','editorial','handof
 license_page=OUT/'license.html'
 if not license_page.is_file() or 'MENG Haowei' not in license_page.read_text():
  errors.append('Missing copyright page for MENG Haowei')
-report={'chapters':len(chapters),'planned_sections':planned,'chapter_summaries':summaries,'appendices':len(appendices),'integrated_questions':len(manifest.get('integrated_questions',[])),'legacy_redirects':len(redirects),'rendered_html_pages':len(pages),'required_anchors':sum(map(len,manifest['required_anchors'].values())),'rendered_images':sum(x.imgs for x in pages.values()),'errors':sorted(set(errors)),'warnings':warnings,'scope':'Structure, assets and internal links; scientific examples not executed.'}
+report={'chapters':len(chapters),'planned_sections':planned,'chapter_summaries':summaries,'appendices':len(appendices),'integrated_questions':len(manifest.get('integrated_questions',[])),'legacy_redirects':len(redirects),'rendered_html_pages':len(pages),'required_anchors':sum(map(len,manifest['required_anchors'].values())),'rendered_images':sum(x.imgs for x in pages.values()),'rendered_tables':sum(x.tables for x in pages.values()),'errors':sorted(set(errors)),'warnings':warnings,'scope':'Structure, assets, internal links and table scroll wrappers; scientific examples not executed.'}
 logs=ROOT/'build-logs';logs.mkdir(exist_ok=True)
 (logs/'validation.json').write_text(json.dumps(report,ensure_ascii=False,indent=2)+'\n')
 print(json.dumps(report,ensure_ascii=False,indent=2))

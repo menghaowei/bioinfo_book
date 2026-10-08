@@ -32,8 +32,6 @@ apt（Advance Packaging Tool）是Debian系Linux发行版的默认包管理工�
 
 `apt`是2014年正式发布的心得apt包管理工具的命令，相较于`apt-get`系列命令它更为简洁易用。
 
-**apt取待的apt-get系命令**
-
 | apt 命令 | 取代的命令 | 命令的功能 |
 |:----- |:----- | ----- |
 | apt install | apt-get install | 安装软件包 |
@@ -46,16 +44,14 @@ apt（Advance Packaging Tool）是Debian系Linux发行版的默认包管理工�
 | apt search | apt-cache search | 搜索应用程序 |
 | apt show | apt-cache show | 显示装细节 |
 
-: 表题待补 {#tbl-02-environment-and-programming-01}
-
-**新的apt命令**
+: apt 取代的 apt-get 系列命令 {#tbl-02-environment-and-programming-01}
 
 | 新的apt命令 | 命令的功能 |
 | ----- | ----- |
 | apt list | 列出包含条件的包（已安装，可升级等） |
 | apt edit-sources | 编辑源列表 |
 
-: 表题待补 {#tbl-02-environment-and-programming-02}
+: 新的 apt 命令 {#tbl-02-environment-and-programming-02}
 
 **apt镜像设置**
 
@@ -74,8 +70,6 @@ apt默认的镜像在国内的访问速度是较慢的，所以设置一个国�
 
 yum（Yellow dog Updater, Modified）使用RedHat系（Red Hat、Cent OS、Fedora）发行版的默认包管理工具。
 
-**常用yum命令**
-
 | 命令 | 功能 |
 | ----- | ----- |
 | yum install | 安装软件包 |
@@ -87,7 +81,7 @@ yum（Yellow dog Updater, Modified）使用RedHat系（Red Hat、Cent OS、Fedor
 | yum info | 显示指定软件包的信息 |
 | yum clean | 清理过期缓存 |
 
-: 表题待补 {#tbl-02-environment-and-programming-03}
+: 常用 yum 命令 {#tbl-02-environment-and-programming-03}
 
 **yum镜像**
 

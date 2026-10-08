@@ -66,7 +66,9 @@ main h4 { margin-top:1.6rem; font-size:1.06rem; line-height:1.5; }
 figure { margin:1.8rem auto; }
 figure img { max-width:100%; height:auto; border-radius:4px; }
 figcaption { color:#4c6257; line-height:1.65; font-size:.85rem; }
-main.content table { display:block; max-width:100%; overflow-x:auto; font-size:.9rem; }
+main.content .book-table-scroll { width:100%; max-width:100%; overflow-x:auto; margin:1rem 0; }
+main.content .book-table-scroll:focus-visible { outline:2px solid #317baf; outline-offset:2px; }
+main.content .book-table-scroll > table { display:table; width:auto; max-width:100%; margin:0 auto; font-size:.9rem; }
 blockquote { border-left:3px solid #90b29c; color:#425b50; }
 .book-placeholder { color:#637167; border-left:2px solid #cbd5cd; padding:.35rem .8rem; font-size:.83rem; margin:1.2rem 0; }
 .book-placeholder p { margin:0; }

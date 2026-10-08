@@ -371,8 +371,6 @@ $$ {#eq-08-wgs-and-wes-008}
 
 上面是将三种可能基因型的$P(S_i | G_i)$分别表示出来，为了将它们合并在一个公式中得到更为简洁的表达方式，可采用下面的形式：
 
-符号说明：
-
 | Symbol | Description |
 |:---|:---|
 | $n$	| Number of samples |
@@ -384,7 +382,7 @@ $$ {#eq-08-wgs-and-wes-008}
 | $Pr\{A\}$ | Probability of an event A |
 | $L_i(\theta)$ | Likelihood function for the $i$-th sample: $L_i(\theta)=Pr\{d_i \mid \theta\}$ |
 
-: 表题待补 {#tbl-07-wgs-and-wes-01}
+: 符号说明 {#tbl-07-wgs-and-wes-01}
 
 前提假设：
 

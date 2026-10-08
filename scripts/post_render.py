@@ -2,6 +2,7 @@
 """Complete the portable HTML output after Quarto rendering."""
 from pathlib import Path
 from html import escape
+from table_layout import wrap_tables
 import json,os,shutil,subprocess,datetime,re
 ROOT=Path(__file__).resolve().parents[1];OUT=ROOT/'docs'
 manifest=json.loads((ROOT/'scripts/validation-manifest.json').read_text())
@@ -40,6 +41,8 @@ for p in OUT.rglob('*.html'):
           f'<span class="math display">\\[{expression}\\]</span></span>'
           f'<a class="equation-label" href="#{anchor}" aria-label="公式（{number}）">({number})</a></span>')
  s=re.sub(r'<span id="(eq-[^"<>]+)"><span class="math display">\\\[(.*?)\\tag\{([^{}]+)\}\\\]</span></span>',equation,s,flags=re.S)
+ # Keep table layout intact; scroll an outer region instead of the table itself.
+ s=wrap_tables(s)
  if '<main class="content"' in s and 'styles/reading.js' not in s:
   reading=os.path.relpath(OUT/'styles/reading.js',p.parent).replace(os.sep,'/')
   s=s.replace('</body>',f'<script src="{reading}"></script>\n</body>')
