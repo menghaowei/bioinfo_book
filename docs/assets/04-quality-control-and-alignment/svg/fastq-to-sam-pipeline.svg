@@ -1,29 +1,29 @@
-<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 520 620' role='img' aria-labelledby='t d'>
+<svg xmlns='http://www.w3.org/2000/svg' width='430' height='600' viewBox='0 0 430 600' role='img' aria-labelledby='t d'>
 <title id='t'>从 FASTQ 到排序索引 BAM 的技术路线（竖版）</title>
 <desc id='d'>主线为数据：FASTQ 经质控得到 clean reads，比对得到 SAM，排序索引得到 BAM；每步操作与所用软件标注在箭头旁。</desc>
-<text x='190' y='36' font-family="'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size='15' fill='#333333' font-weight='bold' text-anchor='middle'>从测序数据到排序索引的 BAM</text>
-<rect x='80' y='64' width='220' height='40' rx='3' fill='#e8f4f1' stroke='#186254' stroke-width='1.2'/>
-<text x='190' y='90' font-family="ui-monospace, 'SFMono-Regular', Menlo, Consolas, 'Liberation Mono', monospace" font-size='16' fill='#186254' font-weight='bold' text-anchor='middle'>FASTQ</text>
-<rect x='80' y='160' width='220' height='40' rx='3' fill='#e8f4f1' stroke='#186254' stroke-width='1.2'/>
-<text x='190' y='186' font-family="ui-monospace, 'SFMono-Regular', Menlo, Consolas, 'Liberation Mono', monospace" font-size='16' fill='#186254' font-weight='bold' text-anchor='middle'>clean reads</text>
-<rect x='80' y='256' width='220' height='40' rx='3' fill='#e8f4f1' stroke='#186254' stroke-width='1.2'/>
-<text x='190' y='282' font-family="ui-monospace, 'SFMono-Regular', Menlo, Consolas, 'Liberation Mono', monospace" font-size='16' fill='#186254' font-weight='bold' text-anchor='middle'>SAM</text>
-<rect x='80' y='352' width='220' height='40' rx='3' fill='#e8f4f1' stroke='#186254' stroke-width='1.2'/>
-<text x='190' y='378' font-family="ui-monospace, 'SFMono-Regular', Menlo, Consolas, 'Liberation Mono', monospace" font-size='16' fill='#186254' font-weight='bold' text-anchor='middle'>BAM（排序+索引）</text>
-<line x1='190' y1='108' x2='190' y2='156' stroke='#186254' stroke-width='1.6'/>
-<line x1='190.0' y1='156.0' x2='193.9' y2='147.9' stroke='#186254' stroke-width='1.6'/>
-<line x1='190.0' y1='156.0' x2='186.1' y2='147.9' stroke='#186254' stroke-width='1.6'/>
-<text x='208' y='126' font-family="'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size='13' fill='#333333' font-weight='bold' text-anchor='start'>质控</text>
-<text x='208' y='144' font-family="'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size='12' fill='#6b7280' font-weight='normal' text-anchor='start'>FastQC / cutadapt</text>
-<line x1='190' y1='204' x2='190' y2='252' stroke='#186254' stroke-width='1.6'/>
-<line x1='190.0' y1='252.0' x2='193.9' y2='243.9' stroke='#186254' stroke-width='1.6'/>
-<line x1='190.0' y1='252.0' x2='186.1' y2='243.9' stroke='#186254' stroke-width='1.6'/>
-<text x='208' y='222' font-family="'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size='13' fill='#333333' font-weight='bold' text-anchor='start'>回贴比对</text>
-<text x='208' y='240' font-family="'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size='12' fill='#6b7280' font-weight='normal' text-anchor='start'>bowtie2 / bwa + 索引</text>
-<line x1='190' y1='300' x2='190' y2='348' stroke='#186254' stroke-width='1.6'/>
-<line x1='190.0' y1='348.0' x2='193.9' y2='339.9' stroke='#186254' stroke-width='1.6'/>
-<line x1='190.0' y1='348.0' x2='186.1' y2='339.9' stroke='#186254' stroke-width='1.6'/>
-<text x='208' y='318' font-family="'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size='13' fill='#333333' font-weight='bold' text-anchor='start'>转换 · 排序 · 索引</text>
-<text x='208' y='336' font-family="'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size='12' fill='#6b7280' font-weight='normal' text-anchor='start'>samtools</text>
-<text x='190' y='454' font-family="'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size='12' fill='#6b7280' font-weight='normal' text-anchor='middle'>下游分析与检查：qualimap / IGV / 表达量 / 变异 ……</text>
+<text x='150' y='36' font-family="'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size='15' fill='#333333' font-weight='bold' text-anchor='middle'>从测序数据到排序索引的 BAM</text>
+<rect x='30' y='64' width='240' height='40' rx='3' fill='#e8f4f1' stroke='#186254' stroke-width='1.2'/>
+<text x='150' y='90' font-family="ui-monospace, 'SFMono-Regular', Menlo, Consolas, 'Liberation Mono', monospace" font-size='16' fill='#186254' font-weight='bold' text-anchor='middle'>FASTQ</text>
+<rect x='30' y='154' width='240' height='40' rx='3' fill='#e8f4f1' stroke='#186254' stroke-width='1.2'/>
+<text x='150' y='180' font-family="ui-monospace, 'SFMono-Regular', Menlo, Consolas, 'Liberation Mono', monospace" font-size='16' fill='#186254' font-weight='bold' text-anchor='middle'>clean reads</text>
+<rect x='30' y='244' width='240' height='40' rx='3' fill='#e8f4f1' stroke='#186254' stroke-width='1.2'/>
+<text x='150' y='270' font-family="ui-monospace, 'SFMono-Regular', Menlo, Consolas, 'Liberation Mono', monospace" font-size='16' fill='#186254' font-weight='bold' text-anchor='middle'>SAM</text>
+<rect x='30' y='334' width='240' height='40' rx='3' fill='#e8f4f1' stroke='#186254' stroke-width='1.2'/>
+<text x='150' y='360' font-family="ui-monospace, 'SFMono-Regular', Menlo, Consolas, 'Liberation Mono', monospace" font-size='16' fill='#186254' font-weight='bold' text-anchor='middle'>BAM（排序+索引）</text>
+<line x1='150' y1='108' x2='150' y2='150' stroke='#186254' stroke-width='1.6'/>
+<line x1='150.0' y1='150.0' x2='153.9' y2='141.9' stroke='#186254' stroke-width='1.6'/>
+<line x1='150.0' y1='150.0' x2='146.1' y2='141.9' stroke='#186254' stroke-width='1.6'/>
+<text x='164' y='124' font-family="'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size='13' fill='#333333' font-weight='bold' text-anchor='start'>质控</text>
+<text x='164' y='142' font-family="'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size='12' fill='#6b7280' font-weight='normal' text-anchor='start'>FastQC / cutadapt</text>
+<line x1='150' y1='198' x2='150' y2='240' stroke='#186254' stroke-width='1.6'/>
+<line x1='150.0' y1='240.0' x2='153.9' y2='231.9' stroke='#186254' stroke-width='1.6'/>
+<line x1='150.0' y1='240.0' x2='146.1' y2='231.9' stroke='#186254' stroke-width='1.6'/>
+<text x='164' y='214' font-family="'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size='13' fill='#333333' font-weight='bold' text-anchor='start'>回贴比对</text>
+<text x='164' y='232' font-family="'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size='12' fill='#6b7280' font-weight='normal' text-anchor='start'>Bowtie 2 / BWA + 索引</text>
+<line x1='150' y1='288' x2='150' y2='330' stroke='#186254' stroke-width='1.6'/>
+<line x1='150.0' y1='330.0' x2='153.9' y2='321.9' stroke='#186254' stroke-width='1.6'/>
+<line x1='150.0' y1='330.0' x2='146.1' y2='321.9' stroke='#186254' stroke-width='1.6'/>
+<text x='164' y='304' font-family="'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size='13' fill='#333333' font-weight='bold' text-anchor='start'>转换 · 排序 · 索引</text>
+<text x='164' y='322' font-family="'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size='12' fill='#6b7280' font-weight='normal' text-anchor='start'>samtools</text>
+<text x='150' y='422' font-family="'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size='12' fill='#6b7280' font-weight='normal' text-anchor='middle'>下游分析：qualimap / IGV / 表达量 / 变异</text>
 </svg>

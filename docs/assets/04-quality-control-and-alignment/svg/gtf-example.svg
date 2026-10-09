@@ -1,4 +1,4 @@
-<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1532 290' role='img' aria-labelledby='t d'>
+<svg xmlns='http://www.w3.org/2000/svg' width='1532' height='290' viewBox='0 0 1532 290' role='img' aria-labelledby='t d'>
 <title id='t'>标准 GTF 格式文件示例</title>
 <desc id='d'>GTF 每行 9 列，以 TAB 分隔；示例为人类 SGIP1 基因的部分注释行。</desc>
 <text x='46' y='42' font-family="'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size='15' fill='#333333' font-weight='bold' text-anchor='start'>一个标准 GTF 文件的示例（人类 SGIP1 基因，节选）</text>

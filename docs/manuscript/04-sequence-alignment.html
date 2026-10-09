@@ -376,7 +376,7 @@ window.Quarto = {
 <li>
 <details class="book-section"><summary><a class="book-nav-link book-section-link no-external" href="#sec-04-05" data-book-level="2" data-book-target="sec-04-05" id="book-nav-4-sec-04-05">4.5 根据数据选择比对策略</a></summary><ul>
 <li class="book-nav-leaf"><a class="book-nav-link book-section-link no-external" href="#src-0040-mapping-and-BAM-operation-98" data-book-level="3" data-book-target="src-0040-mapping-and-BAM-operation-98" id="book-nav-4-src-0040-mapping-and-BAM-operation-98">常用比对软件与选择</a></li>
-<li class="book-nav-leaf"><a class="book-nav-link book-section-link no-external" href="#src-0040-mapping-and-BAM-operation-108" data-book-level="3" data-book-target="src-0040-mapping-and-BAM-operation-108" id="book-nav-4-src-0040-mapping-and-BAM-operation-108">bowtie2 实操</a></li>
+<li class="book-nav-leaf"><a class="book-nav-link book-section-link no-external" href="#src-0040-mapping-and-BAM-operation-108" data-book-level="3" data-book-target="src-0040-mapping-and-BAM-operation-108" id="book-nav-4-src-0040-mapping-and-BAM-operation-108">Bowtie 2 实操</a></li>
 </ul></details>
 </li>
 <li>
@@ -760,7 +760,7 @@ window.Quarto = {
 </section>
 <section id="sec-04-01" class="level2" data-number="4.1">
 <h2 data-number="4.1" class="anchored" data-anchor-id="sec-04-01"><span class="header-section-number">4.1</span> 概览</h2>
-<p>经过上一章的质控，我们手上已经有了干净的测序数据（clean reads）。本章的核心任务用一句话概括：<strong>把处理后的 clean reads 通过比对放回参考基因组，得到记录每条 read 位置与比对情况的 BAM 文件</strong>。围绕这条主线，我们依次认识参考基因组与常用注释（比对的“地图”），学习序列比对的算法原理（双序列比对、BLAST、哈希表与 BWT），根据数据特点选择比对软件并实际操作，把结果保存成 SAM/BAM 文件，做排序、过滤与统计，用 IGV 目视检查，最后把公共数据库的数据下载下来作为练习输入。本章就沿着这条主线展开：先认识参考基因组与常用注释（它们是比对的“地图”），再学习序列比对的算法原理（双序列比对、BLAST、哈希表与 BWT），然后根据数据特点选择比对软件并实际操作，把结果保存成 SAM/BAM 文件，做排序、过滤与统计，用 IGV 目视检查，最后把公共数据库的数据下载下来作为练习输入。</p>
+<p>经过上一章的质控，我们手上已经有了干净的测序数据（clean reads）。本章的核心任务用一句话概括：<strong>把处理后的 clean reads 通过比对放回参考基因组，得到记录每条 read 位置与比对情况的 BAM 文件</strong>。围绕这条主线，我们依次认识参考基因组与常用注释（比对的“地图”），学习序列比对的算法原理（双序列比对、BLAST、哈希表与 BWT），根据数据特点选择比对软件并实际操作，把结果保存成 SAM/BAM 文件，做排序、过滤与统计，用 IGV 目视检查，最后把公共数据库的数据下载下来作为练习输入。</p>
 <div id="fig-a-questions-16-20-001" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-a-questions-16-20-001-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
@@ -900,7 +900,7 @@ window.Quarto = {
 <p>软件会更新换代，但“为参考序列建索引、再把 reads 定位上去”的逻辑没有变。以 Bowtie2 为例，建立 index 的输入是参考基因组序列（FASTA 格式）和 1 个我们指定的 index 名称，输出是若干个以该名称为开头的 index 文件：</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1" data-book-role="code"><pre data-code-text="&quot;bowtie2-build hg19_only_chromosome.fa  hg19_only_chromosome&quot;" class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="ex">bowtie2-build</span> hg19_only_chromosome.fa  hg19_only_chromosome</span></code></pre></div><button title="复制到剪贴板" class="code-copy-button"><i class="bi"></i></button></div>
 <p>其中 <code>bowtie2-build</code> 为建立 index 的命令；<code>hg19_only_chromosome.fa</code> 为参考基因组（FASTA 格式）；<code>hg19_only_chromosome</code> 是我们指定的 index 名称。执行完成后会生成以它为前缀的 6 个 <code>.bt2</code> 索引文件（形如 <code>hg19_only_chromosome.1.bt2</code> 到 <code>hg19_only_chromosome.rev.2.bt2</code>），调用 index 时使用的名字就是 <code>hg19_only_chromosome</code>。</p>
-<p>为什么 bowtie、bowtie2、bwa 的索引能做到又小又快？靠的正是 <strong>BWT/FM 索引</strong>——具体算法推导在本章 4.4.6 一节，这里先记住结论：有了索引，比对软件可以把序列定位问题的时间复杂度降到对数级别。</p>
+<p>为什么 Bowtie、Bowtie 2、BWA 的索引能做到又小又快？靠的正是 <strong>BWT/FM 索引</strong>——具体算法推导在本章 4.4.6 一节，这里先记住结论：有了索引，比对软件可以把序列定位问题的时间复杂度降到对数级别。</p>
 <div class="book-example callout callout-style-default callout-tip callout-titled" title="示例与练习｜为什么要建索引？参考转录组的 U 要不要换成 T？">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -927,7 +927,7 @@ window.Quarto = {
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>请在 Linux 环境下，下载 human genome 19 参考基因组的 1 号染色体序列，并使用 bowtie2 建立 index。</p>
+<p>请在 Linux 环境下，下载 human genome 19 参考基因组的 1 号染色体序列，并使用 Bowtie 2 建立 index。</p>
 <p><strong>参考解答</strong>：</p>
 <ul>
 <li>下载 1 号染色体序列（该链接 2026 年 10 月核对可访问）：</li>
@@ -1247,7 +1247,7 @@ chr1    hg19_ncbiRefSeq stop_codon  67208776    67208778    0.000000    +   .   
 <p>在转录组分析中经常听到“用 XX 软件拼装转录本”，不是说有了参考转录组还要再拼一个，而是两种场景：</p>
 <ol type="1">
 <li><strong>无参考基因组的物种</strong>：需要先用 RNA-Seq 数据自己拼出参考转录组（包括注释信息），再做下游分析；</li>
-<li><strong>注释非常好的物种（如 human）</strong>：不同细胞系的转录组存在结构变异和转录本差异（比如同一个基因在参考注释中从 chr1:1000~15000 转录，在某个细胞系中实际是 chr1:980~15050），有时需要根据已知注释和测序数据做修正，常用软件有 StringTie 等（cufflinks 是更早期的工具，现在已较少使用）。</li>
+<li><strong>注释非常好的物种（如 human）</strong>：不同细胞系的转录组存在结构变异和转录本差异（比如同一个基因在参考注释中从 chr1:1000~15000 转录，在某个细胞系中实际是 chr1:980~15050），有时需要根据已知注释和测序数据做修正，常用软件有 StringTie 等（Cufflinks 是更早期的工具，现在已较少使用）。</li>
 </ol>
 <p>不过对于有参考转录组的物种，一般建议不要自己拼转录本、也不要做修正，意义不大——除非研究的体系非常特殊。</p>
 </div>
@@ -1413,7 +1413,11 @@ A G              A G C T</code></pre>
 </div>
 <p><span id="question-11-253"></span></p>
 <p><span id="question-11-255"></span></p>
-<p>BLAST 为什么快？我们先算一笔账（ <a href="#fig-a-questions-11-15-010" class="quarto-xref">图&nbsp;<span>4.19</span></a> ）。假设有 1 条 100bp 的序列 SeqA（不算长），想在核酸库中找相似序列：以 2017 年前后的 NCBI 非冗余核酸库（nt）为参照，当时库里有约 47,193,206 条序列、平均长度按 0.1Mbp 计，用精确的局部比对逐条比较至少需要 100bp × 0.1Mbp × 47,193,206 ≈ 4.7×10^14 次运算；按单核每秒约 3×10^9 次、20 个核心计算，大约需要 130 分钟——序列变成 1000bp 就是 1300 分钟。为找一个相似性花两个小时，显然不划算。</p>
+<p>BLAST 为什么快？我们先算一笔账（ <a href="#fig-a-questions-11-15-010" class="quarto-xref">图&nbsp;<span>4.19</span></a> ）。假设有 1 条 100bp 的序列 SeqA（不算长），想在核酸库中找相似序列：以 2017 年前后的 NCBI 非冗余核酸库（nt）为参照，当时库里有约 47,193,206 条序列、平均长度按 0.1Mbp 计，用精确的局部比对逐条比较，运算量为</p>
+<p><span id="eq-blast-operation-count" class="book-equation"><span class="equation-scroll" tabindex="0" role="region" aria-label="公式 4.1"><span class="math display">\[
+100\,\mathrm{bp} \times 0.1\,\mathrm{Mbp} \times 47{,}193{,}206 \approx 4.7\times10^{14}
+\]</span></span><a class="equation-label" href="#eq-blast-operation-count" aria-label="公式（4.1）">(4.1)</a></span></p>
+<p>按单核每秒约 <span class="math inline">\(3\times10^{9}\)</span> 次、20 个核心计算，大约需要 130 分钟（见 <a href="#eq-blast-operation-count" class="quarto-xref">公式&nbsp;<span>4.1</span></a> ）——序列变成 1000bp 就是 1300 分钟。为找一个相似性花两个小时，显然不划算。</p>
 <div id="fig-a-questions-11-15-010" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-a-questions-11-15-010-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
@@ -1628,7 +1632,15 @@ UCUCGUUUGAUCUCGGAAGCUAAGCAGGGUUGGGCCUGGUUAGUACUUGGAUGGGAAACUU</code></pre>
 </figcaption>
 </figure>
 </div>
-<p>举个例子，如果某个子序列为ATGCT，其中我们设定A-&gt;0, T-&gt;1, C-&gt;2, G-&gt;3，并把序列末端的碱基当作最低位，则H(ATGCT) = 1 x 4^0 + 2 x 4^1 + 3 x 4^2 + 1 x 4^3 + 0 x 4^4 = 121，这样我们就得到了5-mer序列在哈希表中的关键码值。将上面的方法进一步推广，即可得到长度为n的序列的通用公式：H(X) = I(n) x 4^(n-1) + I(n-1) x 4^(n-2) + … + I(1) x 4^0。</p>
+<p>举个例子，如果某个子序列为ATGCT，其中我们设定A-&gt;0, T-&gt;1, C-&gt;2, G-&gt;3，并把序列末端的碱基当作最低位，则</p>
+<p><span id="eq-hash-key-example" class="book-equation"><span class="equation-scroll" tabindex="0" role="region" aria-label="公式 4.2"><span class="math display">\[
+H(\mathrm{ATGCT}) = 1\times4^0 + 2\times4^1 + 3\times4^2 + 1\times4^3 + 0\times4^4 = 121
+\]</span></span><a class="equation-label" href="#eq-hash-key-example" aria-label="公式（4.2）">(4.2)</a></span></p>
+<p>这样我们就得到了 5-mer 序列在哈希表中的关键码值（ <a href="#eq-hash-key-example" class="quarto-xref">公式&nbsp;<span>4.2</span></a> ）。将上面的方法进一步推广，对长度为 <span class="math inline">\(n\)</span> 的序列有通式</p>
+<p><span id="eq-hash-key-function" class="book-equation"><span class="equation-scroll" tabindex="0" role="region" aria-label="公式 4.3"><span class="math display">\[
+H(X) = I(n)\times4^{\,n-1} + I(n-1)\times4^{\,n-2} + \cdots + I(1)\times4^0
+\]</span></span><a class="equation-label" href="#eq-hash-key-function" aria-label="公式（4.3）">(4.3)</a></span></p>
+<p>其中 <span class="math inline">\(I(j)\)</span> 是第 <span class="math inline">\(j\)</span> 个碱基对应的编码值（见 <a href="#eq-hash-key-function" class="quarto-xref">公式&nbsp;<span>4.3</span></a> ）。</p>
 <p>把参考基因组所有 k-mer 的位置都存进哈希表（ <a href="#fig-04-quality-control-and-alignment-003" class="quarto-xref">图&nbsp;<span>4.30</span></a> 以 k=5 为例），我们就相当于知道了所有 seed 序列的位置，在检索输入序列后，即可快速进行比对反馈，而后进行延伸就得到了序列所在位置。</p>
 <div id="fig-04-quality-control-and-alignment-003" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
@@ -1663,7 +1675,7 @@ UCUCGUUUGAUCUCGGAAGCUAAGCAGGGUUGGGCCUGGUUAGUACUUGGAUGGGAAACUU</code></pre>
 </section>
 <section id="src-0040-mapping-and-BAM-operation-69" class="level3">
 <h3 class="anchored" data-anchor-id="src-0040-mapping-and-BAM-operation-69">BWT 与 FM 索引</h3>
-<p>无论采用的是连续种子策略还是间隔种子策略，两者都存在共同的问题，即面对高重复序列的真核生物基因组时，比对效果会比较差，究其原因就是因为k-mer分割所导致的。为了解决这个问题，软件设计者们把目光投向了另一类索引结构：后缀树与后缀数组。后缀树把参考序列的所有后缀组织成一棵树，查询很快，但把所有后缀完整存下来非常吃内存；后缀数组省得多，但对人类基因组来说仍然不小。这一方向真正的突破在于：<strong>不需要真的存下整棵树或整个数组，只需要存下参考序列的 BWT 字符串和少量辅助数组，就能模拟在后缀数组上的查找</strong>，这就是 FM 索引（FM-index）。bowtie、bwa 这类软件正是靠它做到了既省内存又快速定位。</p>
+<p>无论采用的是连续种子策略还是间隔种子策略，两者都存在共同的问题，即面对高重复序列的真核生物基因组时，比对效果会比较差，究其原因就是因为k-mer分割所导致的。为了解决这个问题，软件设计者们把目光投向了另一类索引结构：后缀树与后缀数组。后缀树把参考序列的所有后缀组织成一棵树，查询很快，但把所有后缀完整存下来非常吃内存；后缀数组省得多，但对人类基因组来说仍然不小。这一方向真正的突破在于：<strong>不需要真的存下整棵树或整个数组，只需要存下参考序列的 BWT 字符串和少量辅助数组，就能模拟在后缀数组上的查找</strong>，这就是 FM 索引（FM-index）。Bowtie、BWA 这类软件正是靠它做到了既省内存又快速定位。</p>
 <p>所谓BWT (Burrows-Wheeler Transform)数据转换算法，原本是用于文本压缩的一种变换（压缩工具 bzip2 就使用了它），其大致原理是将原来的文本转换为一个相似的文本，转换后使得相同的字符位置连续或者相邻，再通过其他手段对文本进行压缩。</p>
 <p>构建BWT的步骤大致如下：</p>
 <ol type="1">
@@ -1753,7 +1765,7 @@ UCUCGUUUGAUCUCGGAAGCUAAGCAGGGUUGGGCCUGGUUAGUACUUGGAUGGGAAACUU</code></pre>
 </figcaption>
 </figure>
 </div>
-<p>有了上面的推导再回头看 4.2.1 的建索引：<strong>目前 bwa、bowtie、bowtie2 的核心用的都是 BWT/FM 索引</strong>——把人类基因组的 BWT 字符串和少量辅助数组存下来，就能既省内存、又以对数级时间完成海量 reads 的定位，这正是它们能“秒级”完成上千万条 reads 比对的底层原因。</p>
+<p>有了上面的推导再回头看 4.2.1 的建索引：<strong>目前 BWA、Bowtie、Bowtie 2 的核心用的都是 BWT/FM 索引</strong>——把人类基因组的 BWT 字符串和少量辅助数组存下来，就能既省内存、又以对数级时间完成海量 reads 的定位，这正是它们能“秒级”完成上千万条 reads 比对的底层原因。</p>
 <div class="book-placeholder">
 <p>本节内容待补充。</p>
 </div>
@@ -1764,7 +1776,7 @@ UCUCGUUUGAUCUCGGAAGCUAAGCAGGGUUGGGCCUGGUUAGUACUUGGAUGGGAAACUU</code></pre>
 <p>能为 DNA 与 RNA 选择合适策略并解释未比对或多重比对。</p>
 <section id="src-0040-mapping-and-BAM-operation-98" class="level3">
 <h3 class="anchored" data-anchor-id="src-0040-mapping-and-BAM-operation-98">常用比对软件与选择</h3>
-<p>现在最为流行的二代测序比对软件基本都是基于 BWT/FM 索引的，例如最早的 bowtie 与 bwa；bowtie2 是它们的同族后继版本，支持空位与局部比对；在 RNA-Seq 方向，TopHat2（已停止维护）曾经流行，如今的主流是 HISAT2 与 STAR 等剪接比对软件。需要说明的是：TopHat2 内部调用 bowtie2 做比对，而 HISAT2 是独立的实现，使用的是层次化 FM 索引（图 FM 索引），并不是”基于 bowtie2 改进”而来。软件会更新换代，但底层索引思想都来自本章前面讲的 BWT。</p>
+<p>现在最为流行的二代测序比对软件基本都是基于 BWT/FM 索引的，例如最早的 Bowtie 与 BWA；Bowtie 2 是它们的同族后继版本，支持空位与局部比对；在 RNA-Seq 方向，TopHat2（已停止维护）曾经流行，如今的主流是 HISAT2 与 STAR 等剪接比对软件。需要说明的是：TopHat2 内部调用 Bowtie 2 做比对，而 HISAT2 是独立的实现，使用的是层次化 FM 索引（图 FM 索引），并不是”基于 Bowtie 2 改进”而来。软件会更新换代，但底层索引思想都来自本章前面讲的 BWT。</p>
 <p>面对一个具体项目，可以按数据类型先做一轮初筛（ <a href="#tbl-04-aligner-choices" class="quarto-xref">表&nbsp;<span>4.3</span></a> ；表中软件均收录于 bioconda，2026 年 10 月核对可安装）：</p>
 <div id="tbl-04-aligner-choices" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-tbl figure">
@@ -1788,7 +1800,7 @@ UCUCGUUUGAUCUCGGAAGCUAAGCAGGGUUGGGCCUGGUUAGUACUUGGAUGGGAAACUU</code></pre>
 <tbody>
 <tr class="odd">
 <td>DNA 测序（WGS/WES/ChIP 等）</td>
-<td>bwa mem、bowtie2</td>
+<td>BWA-MEM、Bowtie 2</td>
 <td>读长中等、需要唯一定位与空位支持</td>
 </tr>
 <tr class="even">
@@ -1798,7 +1810,7 @@ UCUCGUUUGAUCUCGGAAGCUAAGCAGGGUUGGGCCUGGUUAGUACUUGGAUGGGAAACUU</code></pre>
 </tr>
 <tr class="odd">
 <td>small RNA（miRNA 等，18–30nt）</td>
-<td>bowtie（v1）</td>
+<td>Bowtie（v1）</td>
 <td>序列很短，不允许空位的严格全局比对更合适</td>
 </tr>
 <tr class="even">
@@ -1811,17 +1823,17 @@ UCUCGUUUGAUCUCGGAAGCUAAGCAGGGUUGGGCCUGGUUAGUACUUGGAUGGGAAACUU</code></pre>
 </div>
 </figure>
 </div>
-<p>本章仅对 bwa、bowtie 以及 bowtie2 做深入比较，方便读者在科研工作中选择。</p>
-<p>首先说一下bwa，其优势在于提供了更多的比对模式选择，可以根据基因组大小进行比对模式选择，也可以根据序列长短进行比对模式选择，同时mem模式对长序列提供了更好的支持，可以处理三代测序数据，更常见于重测序数据的处理。</p>
-<p>bowtie与bowtie2，其实bowtie2更像是对bowtie的一个升级。比起bowtie，bowtie2支持了gap，也支持了局部比对，在中长序列（50-1000bp）的处理上更具速度与准确性。但在面对small RNA等短序列的时候，不允许gap的bowtie更具优势，究其原因就是比对上更为严格，仅支持全局最优的序列作为比对成功序列。</p>
-<p>至于bwa与bowtie2在处理转录组数据时谁更具备优势，其实很难界定，更多是看个人的工具使用倾向。真正针对”reads 跨外显子”这一问题的，是表中的剪接比对软件；HISAT2 在 2019 年下半年的大版本更新后性能有明显提升，在许多研究中被越来越多地使用。</p>
+<p>本章仅对 BWA、Bowtie 以及 Bowtie 2 做深入比较，方便读者在科研工作中选择。</p>
+<p>首先说一下BWA，其优势在于提供了更多的比对模式选择，可以根据基因组大小进行比对模式选择，也可以根据序列长短进行比对模式选择，同时mem模式对长序列提供了更好的支持，可以处理三代测序数据，更常见于重测序数据的处理。</p>
+<p>Bowtie与Bowtie 2，其实Bowtie 2更像是对Bowtie的一个升级。比起Bowtie，Bowtie 2支持了gap，也支持了局部比对，在中长序列（50-1000bp）的处理上更具速度与准确性。但在面对small RNA等短序列的时候，不允许gap的Bowtie更具优势，究其原因就是比对上更为严格，仅支持全局最优的序列作为比对成功序列。</p>
+<p>至于BWA与Bowtie 2在处理转录组数据时谁更具备优势，其实很难界定，更多是看个人的工具使用倾向。真正针对”reads 跨外显子”这一问题的，是表中的剪接比对软件；HISAT2 在 2019 年下半年的大版本更新后性能有明显提升，在许多研究中被越来越多地使用。</p>
 </section>
 <section id="src-0040-mapping-and-BAM-operation-108" class="level3">
-<h3 class="anchored" data-anchor-id="src-0040-mapping-and-BAM-operation-108">bowtie2 实操</h3>
-<p>下面本书就以bowtie2的安装与使用为例，讲解在使用过程中应该注意的事项。</p>
+<h3 class="anchored" data-anchor-id="src-0040-mapping-and-BAM-operation-108">Bowtie 2 实操</h3>
+<p>下面本书就以Bowtie 2的安装与使用为例，讲解在使用过程中应该注意的事项。</p>
 <section id="src-0040-mapping-and-BAM-operation-111" class="level4">
-<h4 class="anchored" data-anchor-id="src-0040-mapping-and-BAM-operation-111">bowtie2 的安装</h4>
-<p>由于bowtie2有将安装包放进conda的channel–bioconda里面，故而最为方便的安装方式是直接使用conda进行安装。可以直接访问 bioconda 的软件页面（<a href="https://anaconda.org/bioconda/bowtie2" class="uri">https://anaconda.org/bioconda/bowtie2</a>，2026 年 10 月核对可访问），也可以按下图在 Anaconda 云端检索（以下截图摄于 2019 年前后，界面可能已有调整，操作逻辑一致：搜索软件名，进入软件页，复制安装命令）。</p>
+<h4 class="anchored" data-anchor-id="src-0040-mapping-and-BAM-operation-111">Bowtie 2 的安装</h4>
+<p>由于Bowtie 2有将安装包放进conda的channel–bioconda里面，故而最为方便的安装方式是直接使用conda进行安装。可以直接访问 bioconda 的软件页面（<a href="https://anaconda.org/bioconda/bowtie2" class="uri">https://anaconda.org/bioconda/bowtie2</a>，2026 年 10 月核对可访问），也可以按下图在 Anaconda 云端检索（以下截图摄于 2019 年前后，界面可能已有调整，操作逻辑一致：搜索软件名，进入软件页，复制安装命令）。</p>
 <p>首先，如果我们在不知道具体哪个channel的情况下，可以在浏览器中输入“conda cloud”进行检索（以必应为例）</p>
 <div id="fig-04-quality-control-and-alignment-011" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
@@ -1833,14 +1845,14 @@ UCUCGUUUGAUCUCGGAAGCUAAGCAGGGUUGGGCCUGGUUAGUACUUGGAUGGGAAACUU</code></pre>
 </figcaption>
 </figure>
 </div>
-<p>点进去即可搜索bowtie2</p>
+<p>点进去即可搜索Bowtie 2</p>
 <div id="fig-04-quality-control-and-alignment-012" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-04-quality-control-and-alignment-012-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <img src="../assets/04-quality-control-and-alignment/012-illustration.png" class="img-fluid figure-img">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-04-quality-control-and-alignment-012-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-图&nbsp;4.39: 在 Anaconda Cloud 中搜索 bowtie2（2019 年前后界面）
+图&nbsp;4.39: 在 Anaconda Cloud 中搜索 Bowtie 2（2019 年前后界面）
 </figcaption>
 </figure>
 </div>
@@ -1851,7 +1863,7 @@ UCUCGUUUGAUCUCGGAAGCUAAGCAGGGUUGGGCCUGGUUAGUACUUGGAUGGGAAACUU</code></pre>
 <img src="../assets/04-quality-control-and-alignment/013-illustration.png" class="img-fluid figure-img">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-04-quality-control-and-alignment-013-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-图&nbsp;4.40: 搜索结果中的 bowtie2 软件页面入口（2019 年前后界面）
+图&nbsp;4.40: 搜索结果中的 Bowtie 2 软件页面入口（2019 年前后界面）
 </figcaption>
 </figure>
 </div>
@@ -1862,7 +1874,7 @@ UCUCGUUUGAUCUCGGAAGCUAAGCAGGGUUGGGCCUGGUUAGUACUUGGAUGGGAAACUU</code></pre>
 <img src="../assets/04-quality-control-and-alignment/014-illustration.png" class="img-fluid figure-img">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-04-quality-control-and-alignment-014-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-图&nbsp;4.41: bowtie2 软件页面上给出的 conda 安装命令（2019 年前后界面）
+图&nbsp;4.41: Bowtie 2 软件页面上给出的 conda 安装命令（2019 年前后界面）
 </figcaption>
 </figure>
 </div>
@@ -1874,30 +1886,30 @@ UCUCGUUUGAUCUCGGAAGCUAAGCAGGGUUGGGCCUGGUUAGUACUUGGAUGGGAAACUU</code></pre>
 <img src="../assets/04-quality-control-and-alignment/015-illustration.png" class="img-fluid figure-img">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-04-quality-control-and-alignment-015-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-图&nbsp;4.42: conda install 安装 bowtie2 的完成界面
+图&nbsp;4.42: conda install 安装 Bowtie 2 的完成界面
 </figcaption>
 </figure>
 </div>
-<p>按照完成后即可在命令行中敲出bowtie2，连按tab键补齐三下即可看到所有bowtie2开头的命令</p>
+<p>按照完成后即可在命令行中敲出Bowtie 2，连按tab键补齐三下即可看到所有Bowtie 2开头的命令</p>
 <div id="fig-04-quality-control-and-alignment-016" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-04-quality-control-and-alignment-016-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <img src="../assets/04-quality-control-and-alignment/016-illustration.png" class="img-fluid figure-img">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-04-quality-control-and-alignment-016-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-图&nbsp;4.43: 命令行中输入 bowtie2 后连按 Tab 补齐，可以看到 bowtie2 相关的全部命令
+图&nbsp;4.43: 命令行中输入 Bowtie 2 后连按 Tab 补齐，可以看到 Bowtie 2 相关的全部命令
 </figcaption>
 </figure>
 </div>
 <p>这种按照方法较为简单，推荐刚入门的新手使用，而对于已经熟悉了的读者，则可以自行下载，并配置全局调用，此处简单介绍，各位以后想自己安装了就可以自行尝试</p>
-<p>首先在搜索引擎上搜索bowtie2</p>
+<p>首先在搜索引擎上搜索Bowtie 2</p>
 <div id="fig-04-quality-control-and-alignment-017" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-04-quality-control-and-alignment-017-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <img src="../assets/04-quality-control-and-alignment/017-illustration.png" class="img-fluid figure-img">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-04-quality-control-and-alignment-017-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-图&nbsp;4.44: 在搜索引擎中搜索 bowtie2，进入官方网站
+图&nbsp;4.44: 在搜索引擎中搜索 Bowtie 2，进入官方网站
 </figcaption>
 </figure>
 </div>
@@ -1908,7 +1920,7 @@ UCUCGUUUGAUCUCGGAAGCUAAGCAGGGUUGGGCCUGGUUAGUACUUGGAUGGGAAACUU</code></pre>
 <img src="../assets/04-quality-control-and-alignment/018-illustration.png" class="img-fluid figure-img">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-04-quality-control-and-alignment-018-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-图&nbsp;4.45: bowtie2 官网列出了各版本修复的问题，右下角是 GitHub 源码地址
+图&nbsp;4.45: Bowtie 2 官网列出了各版本修复的问题，右下角是 GitHub 源码地址
 </figcaption>
 </figure>
 </div>
@@ -1930,7 +1942,7 @@ UCUCGUUUGAUCUCGGAAGCUAAGCAGGGUUGGGCCUGGUUAGUACUUGGAUGGGAAACUU</code></pre>
 <img src="../assets/04-quality-control-and-alignment/020-illustration.png" class="img-fluid figure-img">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-04-quality-control-and-alignment-020-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-图&nbsp;4.47: git clone 下载 bowtie2 源码的过程
+图&nbsp;4.47: git clone 下载 Bowtie 2 源码的过程
 </figcaption>
 </figure>
 </div>
@@ -1959,15 +1971,15 @@ UCUCGUUUGAUCUCGGAAGCUAAGCAGGGUUGGGCCUGGUUAGUACUUGGAUGGGAAACUU</code></pre>
 <p>考虑到阅读本书的多是刚入门的读者，不推荐一开始就自行下载、更新环境，能用conda解决就用conda解决，等熟悉了Linux的操作逻辑再自行翻阅尝试即可。</p>
 </section>
 <section id="src-0040-mapping-and-BAM-operation-188" class="level4">
-<h4 class="anchored" data-anchor-id="src-0040-mapping-and-BAM-operation-188">bowtie2 的使用</h4>
-<p>作为一名生信从业的科研人员，我们面对不熟悉的软件，第一件事并不是火急火燎的去乱问别人，而是应该秉承着先检索前人使用经验与阅读说明书的原则去熟悉一个新软件，在GitHub的下载页面下面即有bowtie2的使用简要说明</p>
+<h4 class="anchored" data-anchor-id="src-0040-mapping-and-BAM-operation-188">Bowtie 2 的使用</h4>
+<p>作为一名生信从业的科研人员，我们面对不熟悉的软件，第一件事并不是火急火燎的去乱问别人，而是应该秉承着先检索前人使用经验与阅读说明书的原则去熟悉一个新软件，在GitHub的下载页面下面即有Bowtie 2的使用简要说明</p>
 <div id="fig-04-quality-control-and-alignment-021" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-04-quality-control-and-alignment-021-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <img src="../assets/04-quality-control-and-alignment/021-illustration.png" class="img-fluid figure-img">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-04-quality-control-and-alignment-021-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-图&nbsp;4.48: GitHub 下载页面下方带有 bowtie2 的使用简要说明
+图&nbsp;4.48: GitHub 下载页面下方带有 Bowtie 2 的使用简要说明
 </figcaption>
 </figure>
 </div>
@@ -1983,7 +1995,7 @@ UCUCGUUUGAUCUCGGAAGCUAAGCAGGGUUGGGCCUGGUUAGUACUUGGAUGGGAAACUU</code></pre>
 </figcaption>
 </figure>
 </div>
-<p>我们使用bowtie2做的第一件事就是对这个参考基因组构建一个索引，这一步的目的就是上文提到构建索引表，供后续比对检索回帖</p>
+<p>我们使用Bowtie 2做的第一件事就是对这个参考基因组构建一个索引，这一步的目的就是上文提到构建索引表，供后续比对检索回帖</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb18" data-book-role="code"><pre data-code-text="&quot;bowtie2-build chrX.fa chrX.fa\n# bowtie2-build命令为构建索引的命令\n# 第一个chrX.fa代表输入的参考序列\n# 第二个chrX.fa代表输出的索引文件前缀\n# 产生以 chrX.fa 为前缀的六个 .bt2 索引文件&quot;" class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="ex">bowtie2-build</span> chrX.fa chrX.fa</span>
 <span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a><span class="co"># bowtie2-build命令为构建索引的命令</span></span>
 <span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a><span class="co"># 第一个chrX.fa代表输入的参考序列</span></span>
@@ -1995,11 +2007,11 @@ UCUCGUUUGAUCUCGGAAGCUAAGCAGGGUUGGGCCUGGUUAGUACUUGGAUGGGAAACUU</code></pre>
 <img src="../assets/04-quality-control-and-alignment/023-illustration.png" class="img-fluid figure-img">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-04-quality-control-and-alignment-023-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-图&nbsp;4.50: bowtie2-build 生成的六个 .bt2 索引文件
+图&nbsp;4.50: Bowtie 2-build 生成的六个 .bt2 索引文件
 </figcaption>
 </figure>
 </div>
-<p>接着就是拿我们在上一个步骤处理干净的clean data进行回帖操作，这一步可以理解为将所有短序列在参考基因组上找回他们对应的位置，下面我们对bowtie2的参数进行一个大概的认知。</p>
+<p>接着就是拿我们在上一个步骤处理干净的clean data进行回帖操作，这一步可以理解为将所有短序列在参考基因组上找回他们对应的位置，下面我们对Bowtie 2的参数进行一个大概的认知。</p>
 <pre data-code-text="&quot;#必选参数\n# -x &lt;bt2-idx&gt;   索引前缀，即刚刚由 bowtie2-build 生成的 chrX.fa\n# -1 &lt;m1&gt;        双端测序对应的 R1.fastq，可为多个文件并用逗号分开，需与 -2 的文件一一对应\n# -2 &lt;m2&gt;        双端测序对应的 R2.fastq\n# -U &lt;r&gt;         单端测序对应的 fastq，可为多个文件并用逗号分开\n# -S &lt;sam&gt;       指定输出的 SAM 文件名\n#常用可选参数\n# -p/--threads &lt;num&gt;  设置线程数，默认为1\n# --reorder           配合-p使用，使比对结果顺序与fq的reads顺序一致\n# --seed &lt;int&gt;        设置随机种子\n# --no-unal           不记录没比对上的reads\n# --un-gz &lt;path&gt;      将unpaired的未比对reads输出到&lt;path&gt;并以gzip压缩\n# --al-gz &lt;path&gt;      将至少能比对1次以上的unpaired reads写入&lt;path&gt;并以gzip压缩\n# -5/--trim5 &lt;int&gt;    剪掉5&#x27;端&lt;int&gt;个碱基再比对\n# -3/--trim3 &lt;int&gt;    剪掉3&#x27;端&lt;int&gt;个碱基再比对\n#比对参数\n# -N &lt;int&gt;       种子区域内允许的mismatch数目（默认0），除非是跨物种比对，一般不更改\n# -L &lt;int&gt;       设置比对时reads种子的长度\n# -i &lt;func&gt;      设置两个相邻种子间的间隔函数\n# --n-ceil &lt;func&gt;  设置reads中允许含有的N碱基数目\n# --gbar &lt;int&gt;   设置头尾&lt;int&gt;个碱基内不允许出现gap\n# --end-to-end   全局比对，为默认模式\n# --local        局部比对，read两端的碱基可以不参与比对罚分\n#罚分参数\n# --ma &lt;int&gt;     设置匹配得分，仅在--local时生效，默认为2，全局比对时匹配不加分\n# --mp MX,MN     设置错配罚分，MX为最高罚分，MN为最低罚分，默认为MX=6，MN=2；设置--ignore-qual时每次错配罚MX\n# --np &lt;int&gt;     当匹配到N时的罚分，默认为1\n# --rdg &lt;int1&gt;,&lt;int2&gt;  设置read上打开gap罚分&lt;int1&gt;、延长gap罚分&lt;int2&gt;，默认为5,3\n# --rfg &lt;int1&gt;,&lt;int2&gt;  设置reference上打开gap罚分&lt;int1&gt;、延长gap罚分&lt;int2&gt;，默认为5,3\n# --score-min &lt;func&gt;   设置有效比对的最小分值函数，全局比对默认为L,-0.6,-0.6，局部比对默认为G,20,8\n#双端比对参数\n# -I/--minins &lt;int&gt;  设置允许插入片段最小长度，默认为0\n# -X/--maxins &lt;int&gt;  设置允许插入片段最大长度，默认为500&quot;" class="text" data-book-role="data" data-code-title="bowtie2 常用参数速查"><code>#必选参数
 # -x &lt;bt2-idx&gt;   索引前缀，即刚刚由 bowtie2-build 生成的 chrX.fa
 # -1 &lt;m1&gt;        双端测序对应的 R1.fastq，可为多个文件并用逗号分开，需与 -2 的文件一一对应
@@ -2038,7 +2050,7 @@ UCUCGUUUGAUCUCGGAAGCUAAGCAGGGUUGGGCCUGGUUAGUACUUGGAUGGGAAACUU</code></pre>
 </section>
 <section id="src-0040-mapping-and-BAM-operation-256" class="level4">
 <h4 class="anchored" data-anchor-id="src-0040-mapping-and-BAM-operation-256">比对结果检查</h4>
-<p>在比对完成之后，bowtie2会输出一段log文件，记录着比对情况，但那只是粗略的比对情况，简单的检查可以用；如果要查看每个染色体的比对情况，则推荐用qualimap2进行检查。该软件的安装使用conda即可（注意：qualimap bamqc 的输入是排序后的 BAM 文件，SAM 或未排序的 BAM 需要先转换排序，下一节会讲到）。</p>
+<p>在比对完成之后，Bowtie 2会输出一段log文件，记录着比对情况，但那只是粗略的比对情况，简单的检查可以用；如果要查看每个染色体的比对情况，则推荐用Qualimap 2进行检查。该软件的安装使用conda即可（注意：qualimap bamqc 的输入是排序后的 BAM 文件，SAM 或未排序的 BAM 需要先转换排序，下一节会讲到）。</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb21" data-book-role="code"><pre data-code-text="&quot;conda install -c bioconda qualimap&quot;" class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="ex">conda</span> install <span class="at">-c</span> bioconda qualimap</span></code></pre></div><button title="复制到剪贴板" class="code-copy-button"><i class="bi"></i></button></div>
 <p>而后进行质检也非常简单，选择bamqc即可：</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb22" data-book-role="code"><pre data-code-text="&quot;qualimap bamqc -bam ERR188245_chrX.sorted.bam -outdir bamqc_result -outformat PDF:HTML&quot;" class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="ex">qualimap</span> bamqc <span class="at">-bam</span> ERR188245_chrX.sorted.bam <span class="at">-outdir</span> bamqc_result <span class="at">-outformat</span> PDF:HTML</span></code></pre></div><button title="复制到剪贴板" class="code-copy-button"><i class="bi"></i></button></div>
@@ -2060,7 +2072,7 @@ UCUCGUUUGAUCUCGGAAGCUAAGCAGGGUUGGGCCUGGUUAGUACUUGGAUGGGAAACUU</code></pre>
 <section id="src-0040-mapping-and-BAM-operation-278" class="level3">
 <h3 class="anchored" data-anchor-id="src-0040-mapping-and-BAM-operation-278">SAM 与 BAM 总览</h3>
 <p>SAM 的全称是 Sequence Alignment Map，设计之初就是为了存储 mapping 结果。BAM 是 SAM 的二进制压缩版本：内容完全等价，体积小得多，排好序后还能随机访问。一个标准的 SAM 文件由两部分组成：第 1 部分是以 <code>@</code> 开头的头部；第 2 部分是紧跟在头部后面的比对结果。</p>
-<p>经过 bowtie2 比对之后，会生成一个后缀是 sam 的结果文件。下面我们使用 less 指令查看这个文件（ <a href="#fig-04-quality-control-and-alignment-024" class="quarto-xref">图&nbsp;<span>4.51</span></a> ； <a href="#fig-a-questions-16-20-002" class="quarto-xref">图&nbsp;<span>4.52</span></a> 是另一份文件的完整视图）：</p>
+<p>经过 Bowtie 2 比对之后，会生成一个后缀是 sam 的结果文件。下面我们使用 less 指令查看这个文件（ <a href="#fig-04-quality-control-and-alignment-024" class="quarto-xref">图&nbsp;<span>4.51</span></a> ； <a href="#fig-a-questions-16-20-002" class="quarto-xref">图&nbsp;<span>4.52</span></a> 是另一份文件的完整视图）：</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb24" data-book-role="code"><pre data-code-text="&quot;less ERR188245.sam&quot;" class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="fu">less</span> ERR188245.sam</span></code></pre></div><button title="复制到剪贴板" class="code-copy-button"><i class="bi"></i></button></div>
 <div id="fig-04-quality-control-and-alignment-024" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
@@ -2068,7 +2080,7 @@ UCUCGUUUGAUCUCGGAAGCUAAGCAGGGUUGGGCCUGGUUAGUACUUGGAUGGGAAACUU</code></pre>
 <img src="../assets/04-quality-control-and-alignment/024-illustration.png" class="img-fluid figure-img">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-04-quality-control-and-alignment-024-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-图&nbsp;4.51: 用 less 查看 bowtie2 输出的 SAM 文件：@ 开头的头文件与比对结果行
+图&nbsp;4.51: 用 less 查看 Bowtie 2 输出的 SAM 文件：@ 开头的头文件与比对结果行
 </figcaption>
 </figure>
 </div>
@@ -2179,9 +2191,9 @@ UCUCGUUUGAUCUCGGAAGCUAAGCAGGGUUGGGCCUGGUUAGUACUUGGAUGGGAAACUU</code></pre>
 <p>MAPQ: Mapping Quality. It equals -10 log10 Pr{mapping position is wrong}, rounded to the nearest integer. A value 255 indicates that the mapping quality is not available.</p>
 </blockquote>
 <p>翻译过来：MAPQ 的计算方法与 FASTQ 的质量值同源，</p>
-<p><span id="eq-mapq-definition" class="book-equation"><span class="equation-scroll" tabindex="0" role="region" aria-label="公式 4.1"><span class="math display">\[
+<p><span id="eq-mapq-definition" class="book-equation"><span class="equation-scroll" tabindex="0" role="region" aria-label="公式 4.4"><span class="math display">\[
 \mathrm{MAPQ}=-10\log_{10}\Pr\{\text{mapping出错}\}
-\]</span></span><a class="equation-label" href="#eq-mapq-definition" aria-label="公式（4.1）">(4.1)</a></span></p>
+\]</span></span><a class="equation-label" href="#eq-mapq-definition" aria-label="公式（4.4）">(4.4)</a></span></p>
 <p>当 MAPQ=255 时，代表该值不可用，只是一个占位符。至于“mapping 出错的概率”怎么算：各软件结合比对情况与碱基测序质量评估——核心思想是低质量碱基若发生错配，很可能是测序错误，不应重罚；低质量碱基即使完美匹配，置信度也不高。</p>
 <div id="fig-a-questions-16-20-006" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
@@ -2304,7 +2316,7 @@ UCUCGUUUGAUCUCGGAAGCUAAGCAGGGUUGGGCCUGGUUAGUACUUGGAUGGGAAACUU</code></pre>
 </figcaption>
 </figure>
 </div>
-<p><strong>参考解答</strong>：可以手工分解，FLAG 是各二进制位之和：<span class="math inline">\(\mathrm{FLAG}=1+2+16+64=83\)</span>。也可以用 Picard 的 <a href="https://broadinstitute.github.io/picard/explain-flags.html">Explain SAM Flags 工具</a>（2026 年 10 月核对可访问），输入 83 即可得到分解（ <a href="#fig-a-questions-16-20-005" class="quarto-xref">图&nbsp;<span>4.55</span></a> ）。FLAG=83 表示：</p>
+<p><strong>参考解答</strong>：可以手工分解，FLAG 是各二进制位之和：<span class="math inline">\(\mathrm{FLAG}=1+2+16+64=83\)</span>。也可以用 Picard 的 <a href="https://broadinstitute.github.io/Picard/explain-flags.html">Explain SAM Flags 工具</a>（2026 年 10 月核对可访问），输入 83 即可得到分解（ <a href="#fig-a-questions-16-20-005" class="quarto-xref">图&nbsp;<span>4.55</span></a> ）。FLAG=83 表示：</p>
 <ol type="1">
 <li>序列是双端测序的结果；</li>
 <li>满足正确配对条件（proper pair）；</li>
@@ -2379,9 +2391,9 @@ UCUCGUUUGAUCUCGGAAGCUAAGCAGGGUUGGGCCUGGUUAGUACUUGGAUGGGAAACUU</code></pre>
 </figure>
 </div>
 <p><strong>参考解答</strong>：该 read 对中下游 read 起点为 11123，上游 read 起点为 10946、read 长 145bp，覆盖区总长 <span class="math inline">\(11123-10946+145=322\)</span>；下游 read 的 TLEN 取负值：</p>
-<p><span id="eq-tlen-example" class="book-equation"><span class="equation-scroll" tabindex="0" role="region" aria-label="公式 4.2"><span class="math display">\[
+<p><span id="eq-tlen-example" class="book-equation"><span class="equation-scroll" tabindex="0" role="region" aria-label="公式 4.5"><span class="math display">\[
 -(11123-10946+145)=-322
-\]</span></span><a class="equation-label" href="#eq-tlen-example" aria-label="公式（4.2）">(4.2)</a></span></p>
+\]</span></span><a class="equation-label" href="#eq-tlen-example" aria-label="公式（4.5）">(4.5)</a></span></p>
 <p>计算过程见 <a href="#fig-a-questions-16-20-014" class="quarto-xref">图&nbsp;<span>4.58</span></a> 。</p>
 <div id="fig-a-questions-16-20-014" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
@@ -2407,7 +2419,7 @@ UCUCGUUUGAUCUCGGAAGCUAAGCAGGGUUGGGCCUGGUUAGUACUUGGAUGGGAAACUU</code></pre>
 <div class="callout-body-container callout-body">
 <p><strong>问题 1</strong>：如果 mapping 时输入的是 FASTA 文件（而不是 FASTQ），第 5 列 MAPQ 还有意义吗？第 11 列 QUAL 呢？</p>
 <p><strong>参考解答</strong>：都没有意义。FASTA 不包含测序质量信息：MAPQ 无法结合碱基质量计算，常用 255 占位；第 11 列本身是测序质量值，同样无从谈起。</p>
-<p><strong>问题 2</strong>：不同的比对软件（比如 bwa 与 bowtie2）计算出来的 MAPQ 意义相同吗？</p>
+<p><strong>问题 2</strong>：不同的比对软件（比如 BWA 与 Bowtie 2）计算出来的 MAPQ 意义相同吗？</p>
 <p><strong>参考解答</strong>：不能直接比较。BWA 与 Bowtie2 的核心索引思想相同，但比对策略和评价体系不同。不能认为 BWA 的 MAPQ=42 就好于 Bowtie2 的 MAPQ=40，反之亦然。</p>
 </div>
 </div>
@@ -2474,7 +2486,7 @@ UCUCGUUUGAUCUCGGAAGCUAAGCAGGGUUGGGCCUGGUUAGUACUUGGAUGGGAAACUU</code></pre>
 </figure>
 </div>
 <p><span id="fig-a-questions-21-25-002"></span></p>
-<p>查询 TAG 含义一定要从所用比对软件的官方文档中查找：SAM 文件头部的 <span class="citation" data-cites="PG">@PG</span> 字段记录了产生文件的软件与命令行，用 <code>samtools view -H</code> 就能看到。比如下面这个 <span class="citation" data-cites="PG">@PG</span> 说明文件由 bowtie2 2.2.5 产生：</p>
+<p>查询 TAG 含义一定要从所用比对软件的官方文档中查找：SAM 文件头部的 <span class="citation" data-cites="PG">@PG</span> 字段记录了产生文件的软件与命令行，用 <code>samtools view -H</code> 就能看到。比如下面这个 <span class="citation" data-cites="PG">@PG</span> 说明文件由 Bowtie 2 2.2.5 产生：</p>
 <pre data-code-text="&quot;@PG\tID:bowtie2-5DEB9F7A\tPN:bowtie2\tVN:2.2.5\tCL:\&quot;/home/biotools/bowtie2-2.2.5/bowtie2-align-s --wrapper basic-0 -p 4 --phred33 -x /lustre/user/reference/hg19/hg19_combine -S ./tmp.data/fastq/genome-sequence.sam -1 ./tmp.data/fastq/genome-sequence_L3_1_trim5.fastq -2 ./tmp.data/fastq/genome-sequence_L3_2_trim5_92.fastq\&quot;&quot;" class="text" data-book-role="data"><code>@PG ID:bowtie2-5DEB9F7A PN:bowtie2  VN:2.2.5    CL:"/home/biotools/bowtie2-2.2.5/bowtie2-align-s --wrapper basic-0 -p 4 --phred33 -x /lustre/user/reference/hg19/hg19_combine -S ./tmp.data/fastq/genome-sequence.sam -1 ./tmp.data/fastq/genome-sequence_L3_1_trim5.fastq -2 ./tmp.data/fastq/genome-sequence_L3_2_trim5_92.fastq"</code></pre>
 <div class="book-example callout callout-style-default callout-tip callout-titled" title="示例与练习｜逐项解读一条完整比对记录">
 <div class="callout-header d-flex align-content-center">
@@ -2486,7 +2498,7 @@ UCUCGUUUGAUCUCGGAAGCUAAGCAGGGUUGGGCCUGGUUAGUACUUGGAUGGGAAACUU</code></pre>
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>下面是一条 bowtie2 产生的真实比对记录（human 全基因组比对，<a href="#fig-a-questions-21-25-001" class="quarto-xref">图&nbsp;<span>4.59</span></a> 是它在文件中的样子）。请对照 <a href="http://bowtie-bio.sourceforge.net/bowtie2/manual.shtml#sam-output">bowtie2 官方手册的 SAM output 一节</a>（2026 年 10 月核对可访问），解释每个字段与标签。</p>
+<p>下面是一条 Bowtie 2 产生的真实比对记录（human 全基因组比对，<a href="#fig-a-questions-21-25-001" class="quarto-xref">图&nbsp;<span>4.59</span></a> 是它在文件中的样子）。请对照 <a href="http://Bowtie-bio.sourceforge.net/Bowtie%202/manual.shtml#sam-output">Bowtie 2 官方手册的 SAM output 一节</a>（2026 年 10 月核对可访问），解释每个字段与标签。</p>
 <pre data-code-text="&quot;ST-E00126:128:HJFLHCCXX:2:2107:22820:18520\t99\tchr1\t11682\t1\t145M\t=\t11920\t325\tGGAGATTCTTATTAGTGATTTCGGCTGGTGCCTGGCCATGTGTATTTTTTTAAATTTCCACTGATGATTTTGCTGCATGGCCGGTGTTGAGAATGACTGCGCAAATTTGCCGGATTTCCTTTGCTGTTCCTGCATGTAGTTTAAA\tKKKKAAKKAFFKKKKKKFKFKKKFKKKKKKKKKKFKFKKKKKKKKKKKKKKFKFFKKKKKKFAAKAKKKKKKKKKKKKFFKKKFFFKKFKFFKKKKKKKKFFFFFKKKKKKK7&lt;FFKKKKKKAFK&lt;F&lt;&lt;7&lt;AA,,7AA&lt;7F7AA&lt;\tMD:Z:21G6G116\tXG:i:0\tNM:i:2\tXM:i:2\tXN:i:0\tXO:i:0\tAS:i:-12\tXS:i:-12\tYS:i:-6\tYT:Z:CP&quot;" class="text" data-book-role="data"><code>ST-E00126:128:HJFLHCCXX:2:2107:22820:18520  99  chr1    11682   1   145M    =   11920   325 GGAGATTCTTATTAGTGATTTCGGCTGGTGCCTGGCCATGTGTATTTTTTTAAATTTCCACTGATGATTTTGCTGCATGGCCGGTGTTGAGAATGACTGCGCAAATTTGCCGGATTTCCTTTGCTGTTCCTGCATGTAGTTTAAA   KKKKAAKKAFFKKKKKKFKFKKKFKKKKKKKKKKFKFKKKKKKKKKKKKKKFKFFKKKKKKFAAKAKKKKKKKKKKKKFFKKKFFFKKFKFFKKKKKKKKFFFFFKKKKKKK7&lt;FFKKKKKKAFK&lt;F&lt;&lt;7&lt;AA,,7AA&lt;7F7AA&lt;   MD:Z:21G6G116   XG:i:0  NM:i:2  XM:i:2  XN:i:0  XO:i:0  AS:i:-12    XS:i:-12    YS:i:-6 YT:Z:CP</code></pre>
 <div id="fig-a-questions-21-25-001" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
@@ -2503,7 +2515,7 @@ UCUCGUUUGAUCUCGGAAGCUAAGCAGGGUUGGGCCUGGUUAGUACUUGGAUGGGAAACUU</code></pre>
 <li><code>ST-E00126:...:18520</code>：read 名称，通常含测序平台信息；</li>
 <li><code>99</code>：FLAG（=1+2+32+64：双端、正确配对、mate 在负链、read1）；</li>
 <li><code>chr1</code>、<code>11682</code>：比对到的染色体与位置；</li>
-<li><code>1</code>：MAPQ；</li>
+<li><code>1</code>：MAPQ，<span class="math inline">\(\mathrm{MAPQ}=-10\log_{10}\Pr\{\text{mapping 出错}\}\)</span>；</li>
 <li><code>145M</code>：CIGAR；</li>
 <li><code>=</code>、<code>11920</code>：mate 比对到同一染色体及其位置；</li>
 <li><code>325</code>：TLEN；</li>
@@ -2514,7 +2526,7 @@ UCUCGUUUGAUCUCGGAAGCUAAGCAGGGUUGGGCCUGGUUAGUACUUGGAUGGGAAACUU</code></pre>
 <li><code>XM:i:2</code>：错配数目；</li>
 <li><code>XN:i:0</code>：覆盖区内参考上不确定碱基（N）的数目；</li>
 <li><code>XO:i:0</code>：gap 打开次数；</li>
-<li><code>AS:i:-12</code>：本条比对得分（bowtie2 全局模式得分常为负，local 模式不小于 0）；</li>
+<li><code>AS:i:-12</code>：本条比对得分（Bowtie 2 全局模式得分常为负，local 模式不小于 0）；</li>
 <li><code>XS:i:-12</code>：除本条外最佳候选比对的得分（second-best，通常小于等于 AS；AS 与 XS 接近说明比对位置存在歧义）；</li>
 <li><code>YS:i:-6</code>：配对 read 的比对得分；</li>
 <li><code>YT:Z:CP</code>：配对类型：<code>UU</code> 未配对、<code>CP</code> concordant、<code>DP</code> discordant、<code>UP</code> 配对的另一条未比对上。</li>
@@ -2541,7 +2553,7 @@ UCUCGUUUGAUCUCGGAAGCUAAGCAGGGUUGGGCCUGGUUAGUACUUGGAUGGGAAACUU</code></pre>
 <section id="sec-04-06-sam-bam-convert" class="level4">
 <h4 class="anchored" data-anchor-id="sec-04-06-sam-bam-convert">SAM 与 BAM 互转</h4>
 <p>由于我们的sam文件是文本类的文件，这就导致比对所产生的结果文件动辄大几G，对我们硬盘的造成了很大存储压力，如果压缩则能够减小很多体积，而直接转成二进制文件则更为节约体积，故而就诞生了一种二进制格式bam来对比对结果进行存储，除了是二进制以外其存储的内容与sam文件无异。怎么区分这两个呢，我觉得用英文区分就很简单可以区分开，s是string的意思，字符，文本的意思，b是binary的意思，二进制的意思，一下子就知道两者的区别了。</p>
-<p>那么转成二进制文件之后，要怎么打开呢？很明显使用less这种打开文本文件的是不适合的了。这个时候就要提到bwa之父李恒大神为sam与bam开发的一个处理利器samtools。首先是国际惯例，安装</p>
+<p>那么转成二进制文件之后，要怎么打开呢？很明显使用less这种打开文本文件的是不适合的了。这个时候就要提到BWA之父李恒大神为sam与bam开发的一个处理利器samtools。首先是国际惯例，安装</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb29" data-book-role="code"><pre data-code-text="&quot;conda install -c bioconda samtools&quot;" class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="ex">conda</span> install <span class="at">-c</span> bioconda samtools</span></code></pre></div><button title="复制到剪贴板" class="code-copy-button"><i class="bi"></i></button></div>
 <p>安装完毕之后就可以在命令行上使用了，首先是将sam文件转换为bam文件：</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb30" data-book-role="code"><pre data-code-text="&quot;# 将sam文件转换为bam文件\nsamtools view -b ERR188245.sam &gt; ERR188245.bam\n\n# 同样的，我们可以把bam文件转为sam文件\nsamtools view -h ERR188245.bam &gt; ERR188245.sam&quot;" class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 将sam文件转换为bam文件</span></span>
@@ -2561,7 +2573,7 @@ UCUCGUUUGAUCUCGGAAGCUAAGCAGGGUUGGGCCUGGUUAGUACUUGGAUGGGAAACUU</code></pre>
 </section>
 <section id="src-0040-mapping-and-BAM-operation-364" class="level4">
 <h4 class="anchored" data-anchor-id="src-0040-mapping-and-BAM-operation-364">BAM文件的排序</h4>
-<p>如果我们是做全基因组测序，那么在进行下游分析之前，需要对bam文件进行一个排序，这个功能可以用samtools，也可以用Picard或者gatk做到。</p>
+<p>如果我们是做全基因组测序，那么在进行下游分析之前，需要对bam文件进行一个排序，这个功能可以用samtools，也可以用Picard或者GATK做到。</p>
 <p>使用samtools对bam文件进行排序：</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb32" data-book-role="code"><pre data-code-text="&quot;samtools sort -@ 20 -m 8G -O bam -o ERR188245_chrX.sorted.bam ERR188245_chrX.bam\n# @：指定线程数\n# m：每个线程分配的最大内存\n# O：输出文件格式\n# o：输出文件的名字\n# 输入文件放在最后&quot;" class="sourceCode numberSource bash numberLines code-with-copy"><code class="sourceCode bash"><span id="cb32-1"><a href="#cb32-1"></a><span class="ex">samtools</span> sort <span class="at">-@</span> 20 <span class="at">-m</span> 8G <span class="at">-O</span> bam <span class="at">-o</span> ERR188245_chrX.sorted.bam ERR188245_chrX.bam</span>
 <span id="cb32-2"><a href="#cb32-2"></a><span class="co"># @：指定线程数</span></span>
@@ -2569,7 +2581,7 @@ UCUCGUUUGAUCUCGGAAGCUAAGCAGGGUUGGGCCUGGUUAGUACUUGGAUGGGAAACUU</code></pre>
 <span id="cb32-4"><a href="#cb32-4"></a><span class="co"># O：输出文件格式</span></span>
 <span id="cb32-5"><a href="#cb32-5"></a><span class="co"># o：输出文件的名字</span></span>
 <span id="cb32-6"><a href="#cb32-6"></a><span class="co"># 输入文件放在最后</span></span></code></pre></div><button title="复制到剪贴板" class="code-copy-button"><i class="bi"></i></button></div>
-<p>如果是picard的话，可以参考下面的命令：</p>
+<p>如果是Picard的话，可以参考下面的命令：</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb33" data-book-role="code"><pre data-code-text="&quot;java -jar picard.jar SortSam I=ERR188245_chrX.bam  O=ERR188245_chrX.sorted.bam  SORT_ORDER=coordinate&quot;" class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a><span class="ex">java</span> <span class="at">-jar</span> picard.jar SortSam I=ERR188245_chrX.bam  O=ERR188245_chrX.sorted.bam  SORT_ORDER=coordinate</span></code></pre></div><button title="复制到剪贴板" class="code-copy-button"><i class="bi"></i></button></div>
 <p>如果使用GATK工具，对bam文件进行排序，可以参考：</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb34" data-book-role="code"><pre data-code-text="&quot;#如果是gatk的话, 先建立index与dict\nsamtools faidx chrX.fa\ngatk CreateSequenceDictionary -R chrX.fa -O chrX.dict\n\n#再使用gatk进行排序\ngatk SortSam -I ERR188245_chrX.bam -O ERR188245_chrX.sorted.bam -R chrX.fa -SO coordinate --CREATE_INDEX&quot;" class="sourceCode numberSource bash numberLines code-with-copy"><code class="sourceCode bash"><span id="cb34-1"><a href="#cb34-1"></a><span class="co">#如果是gatk的话, 先建立index与dict</span></span>
@@ -2602,7 +2614,7 @@ UCUCGUUUGAUCUCGGAAGCUAAGCAGGGUUGGGCCUGGUUAGUACUUGGAUGGGAAACUU</code></pre>
 <h4 class="anchored" data-anchor-id="src-0040-mapping-and-BAM-operation-421">对比对结果进行统计</h4>
 <p>如果想对bam文件进行一些基础的统计分析，比如测序片段的数目，整体的突变情况，基因组测序结果的覆盖度等等，都可以用下面的命令生成报告。</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb37" data-book-role="code"><pre data-code-text="&quot;samtools flagstat ERR188245_chrX.sorted.bam&quot;" class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a><span class="ex">samtools</span> flagstat ERR188245_chrX.sorted.bam</span></code></pre></div><button title="复制到剪贴板" class="code-copy-button"><i class="bi"></i></button></div>
-<p>结果文件统计bam文件中reads的比对情况，如多少reads比对上等信息，其中的结果比较丰富，但是需要再使用R或者Python编程进行生成图表。所以，当不追求速度的情况下还是建议用qualimap2软件。</p>
+<p>结果文件统计bam文件中reads的比对情况，如多少reads比对上等信息，其中的结果比较丰富，但是需要再使用R或者Python编程进行生成图表。所以，当不追求速度的情况下还是建议用Qualimap 2软件。</p>
 <p>顺带一提，SAM 不仅记录比对，还保留了 reads 的原始序列，所以也能反向提取 FASTQ：</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb38" data-book-role="code"><pre data-code-text="&quot;samtools view -b -h filter_MAPQ20.sam &gt; filter_MAPQ20.bam\nsamtools bam2fq filter_MAPQ20.bam &gt; filter_MAPQ20.fastq&quot;" class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a><span class="ex">samtools</span> view <span class="at">-b</span> <span class="at">-h</span> filter_MAPQ20.sam <span class="op">&gt;</span> filter_MAPQ20.bam</span>
 <span id="cb38-2"><a href="#cb38-2" aria-hidden="true" tabindex="-1"></a><span class="ex">samtools</span> bam2fq filter_MAPQ20.bam <span class="op">&gt;</span> filter_MAPQ20.fastq</span></code></pre></div><button title="复制到剪贴板" class="code-copy-button"><i class="bi"></i></button></div>
@@ -2626,7 +2638,7 @@ UCUCGUUUGAUCUCGGAAGCUAAGCAGGGUUGGGCCUGGUUAGUACUUGGAUGGGAAACUU</code></pre>
 <p><span id="question-21-279"></span></p>
 <p>准备一个很小的测试文件 test.sam（约 4MB，可从<a href="https://pan.baidu.com/s/15gVVYPRu3VbF_uKbJUUGrA">百度网盘</a>下载，密码 2drn；分享链接若失效，可按 4.2.1 的方法自行比对生成小数据），然后用 samtools 完成下面的操作。</p>
 <p><strong>问题 1</strong>：用 <code>samtools view</code> 查看 test.sam 的 header，记录各条染色体的长度；这个文件是用哪种 mapping 软件产生的？</p>
-<p><strong>参考解答</strong>：查看 header 中的 <span class="citation" data-cites="PG">@PG</span> ID，显示使用的软件是 bowtie2；各条染色体的长度见 <a href="#fig-a-questions-21-25-003" class="quarto-xref">图&nbsp;<span>4.60</span></a> 。</p>
+<p><strong>参考解答</strong>：查看 header 中的 <span class="citation" data-cites="PG">@PG</span> ID，显示使用的软件是 Bowtie 2；各条染色体的长度见 <a href="#fig-a-questions-21-25-003" class="quarto-xref">图&nbsp;<span>4.60</span></a> 。</p>
 <div id="fig-a-questions-21-25-003" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-a-questions-21-25-003-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
@@ -2698,18 +2710,18 @@ UCUCGUUUGAUCUCGGAAGCUAAGCAGGGUUGGGCCUGGUUAGUACUUGGAUGGGAAACUU</code></pre>
 <p>假设构建的基因组文库无区域偏好性，测序片段来自于基因组各个区域的概率均等，则我们可以估计特定建库方式下，一定的library size的序列所能覆盖的基因组区域</p>
 <p>已知目标基因组的长度为<span class="math inline">\(G\)</span>，测序片段长度（read size）为<span class="math inline">\(S\)</span>，library size为<span class="math inline">\(N\)</span>，则某一条read来自于一个长度为<span class="math inline">\(L\)</span>的基因组区段的概率为<span class="math inline">\(\frac{L}{G}\)</span></p>
 <p>此时，设随机变量：</p>
-<p><span id="eq-04-quality-control-and-alignment-001" class="book-equation"><span class="equation-scroll" tabindex="0" role="region" aria-label="公式 4.3"><span class="math display">\[
+<p><span id="eq-04-quality-control-and-alignment-001" class="book-equation"><span class="equation-scroll" tabindex="0" role="region" aria-label="公式 4.6"><span class="math display">\[
 D=\text{起始于一个长度为}L\text{的区段的reads数}
-\]</span></span><a class="equation-label" href="#eq-04-quality-control-and-alignment-001" aria-label="公式（4.3）">(4.3)</a></span></p>
+\]</span></span><a class="equation-label" href="#eq-04-quality-control-and-alignment-001" aria-label="公式（4.6）">(4.6)</a></span></p>
 <p>则D服从二项分布：</p>
-<p><span id="eq-04-quality-control-and-alignment-002" class="book-equation"><span class="equation-scroll" tabindex="0" role="region" aria-label="公式 4.4"><span class="math display">\[
+<p><span id="eq-04-quality-control-and-alignment-002" class="book-equation"><span class="equation-scroll" tabindex="0" role="region" aria-label="公式 4.7"><span class="math display">\[
 D \sim Binomial(N,\frac{L}{G})
-\]</span></span><a class="equation-label" href="#eq-04-quality-control-and-alignment-002" aria-label="公式（4.4）">(4.4)</a></span></p>
+\]</span></span><a class="equation-label" href="#eq-04-quality-control-and-alignment-002" aria-label="公式（4.7）">(4.7)</a></span></p>
 <p>令<span class="math inline">\(L=S\)</span>，则起始于该长度为S的区段的reads，均覆盖该区段的最后一个碱基，即此时D就是该碱基位置的测序深度</p>
 <p>我们知道，对于二项分布，当其实验次数<span class="math inline">\(N\to \infty\)</span>，概率<span class="math inline">\(P\to 0\)</span>时，二项分布近似于泊松分布，在这里，因为<span class="math inline">\(S&lt;&lt;G\)</span>，则<span class="math inline">\(P=\frac{S}{G} \to 0\)</span>，且<span class="math inline">\(N\)</span>非常大，可以用泊松分布近似，即：</p>
-<p><span id="eq-04-quality-control-and-alignment-003" class="book-equation"><span class="equation-scroll" tabindex="0" role="region" aria-label="公式 4.5"><span class="math display">\[
+<p><span id="eq-04-quality-control-and-alignment-003" class="book-equation"><span class="equation-scroll" tabindex="0" role="region" aria-label="公式 4.8"><span class="math display">\[
 D \sim \text{Poisson}(\lambda), \quad \lambda=N\frac{S}{G}
-\]</span></span><a class="equation-label" href="#eq-04-quality-control-and-alignment-003" aria-label="公式（4.5）">(4.5)</a></span></p>
+\]</span></span><a class="equation-label" href="#eq-04-quality-control-and-alignment-003" aria-label="公式（4.8）">(4.8)</a></span></p>
 <p>因此，我们获得了全基因组各碱基位点的测序深度的概率分布（概率质量分布PMF）估计，如下图（以<span class="math inline">\(\lambda=40\)</span>为例）：</p>
 <div id="fig-04-quality-control-and-alignment-038" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
@@ -2722,9 +2734,9 @@ D \sim \text{Poisson}(\lambda), \quad \lambda=N\frac{S}{G}
 </figure>
 </div>
 <p>依据测序深度的概率分布，可以很容易推出测序深度大于指定阈值<span class="math inline">\(d\)</span>的基因组区域比例：</p>
-<p><span id="eq-04-quality-control-and-alignment-004" class="book-equation"><span class="equation-scroll" tabindex="0" role="region" aria-label="公式 4.6"><span class="math display">\[
+<p><span id="eq-04-quality-control-and-alignment-004" class="book-equation"><span class="equation-scroll" tabindex="0" role="region" aria-label="公式 4.9"><span class="math display">\[
 P(D\ge d) = \sum_{i=d,...,\infty}P(D=i)
-\]</span></span><a class="equation-label" href="#eq-04-quality-control-and-alignment-004" aria-label="公式（4.6）">(4.6)</a></span></p>
+\]</span></span><a class="equation-label" href="#eq-04-quality-control-and-alignment-004" aria-label="公式（4.9）">(4.9)</a></span></p>
 <p>不过实际的基因组测序深度分布与泊松分布并不完全一致：由于GC偏好性等因素的影响，“全基因组各区域来源等概率”的假设并不完全成立，实际分布相对于理论分布存在明显的过度离散（overdispersion，即 <span class="math inline">\(Var(D) &gt; E(D)\)</span>）。实测深度分布见 <a href="#fig-04-quality-control-and-alignment-039" class="quarto-xref">图&nbsp;<span>4.64</span></a> ：实测分布（柱）比同均值的泊松分布（线）更“胖”，说明有些区域深度远高于预期、有些远低于预期。以 Bentley 等人 2008 年的整基因组测序数据为例，实测方差约为同均值泊松分布的 2.26 倍<a href="#fn6" class="footnote-ref" id="fnref6" role="doc-noteref"><sup>6</sup></a>。</p>
 <div id="fig-04-quality-control-and-alignment-039" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
@@ -2821,7 +2833,7 @@ print(duplication_num)</code></pre>
 <section id="src-0040-mapping-and-BAM-operation-433" class="level4">
 <h4 class="anchored" data-anchor-id="src-0040-mapping-and-BAM-operation-433">去除 duplicate：MarkDuplicates 实操</h4>
 <p>这一步，我们经常叫<code>remove duplication</code>。所谓的duplication一般是指构建测序文库的过程中，会有PCR扩增的步骤，这个步骤往往会对片段进行多次扩增。如果有来源于同一个原始片段的测序结果比对到了基因组上，有可能会对我们的下游分析造成一些影响。所以，某些情况下需要对bam文件进行冗余的去除，这里的冗余一般习惯上称为<code>duplication</code>。</p>
-<p>去除duplication的常用工具是 GATK/Picard 的 MarkDuplicates（按坐标排序后运行）。早期常用 <code>samtools rmdup</code>，但它对双端数据表现不佳，已在 samtools 1.14 起被移除；新版 samtools 的替代流程是 <code>samtools collate</code> + <code>samtools fixmate</code> + <code>samtools markdup</code>，本书以 GATK 为例。</p>
+<p>去除duplication的常用工具是 GATK/Picard 的 MarkDuplicates（按坐标排序后运行）。早期常用 <code>samtools rmdup</code>，它对双端数据的处理有已知问题；官方目前保留它仅为向后兼容，明确推荐改用 <code>samtools collate</code> + <code>samtools fixmate</code> + <code>samtools markdup</code> 流程（依据 samtools 官方 NEWS，2026 年 10 月核对）。去重工具本书以 GATK 的 MarkDuplicates 为例。</p>
 <p>MarkDuplicates 最常见的用法是<strong>只标记、不删除</strong>：duplicate 会被打上 FLAG 1024，供后续步骤按需过滤（这是推荐做法，保留的信息最完整）：</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb41" data-book-role="code"><pre data-code-text="&quot;gatk MarkDuplicates -I ERR188245_chrX.sorted.bam -O ERR188245_chrX.sorted.mkdup.bam -M ERR188245_chrX.metrics --CREATE_INDEX&quot;" class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb41-1"><a href="#cb41-1" aria-hidden="true" tabindex="-1"></a><span class="ex">gatk</span> MarkDuplicates <span class="at">-I</span> ERR188245_chrX.sorted.bam <span class="at">-O</span> ERR188245_chrX.sorted.mkdup.bam <span class="at">-M</span> ERR188245_chrX.metrics <span class="at">--CREATE_INDEX</span></span></code></pre></div><button title="复制到剪贴板" class="code-copy-button"><i class="bi"></i></button></div>
 <p>如果确有必要直接删除 duplicate，在同一条命令里加 <code>REMOVE_DUPLICATES=true</code> 即可（注意不要对已标记过的文件重复运行 MarkDuplicates，二次运行会重复计数）：</p>
@@ -2848,7 +2860,7 @@ print(duplication_num)</code></pre>
 <ul>
 <li>对sam文件进行排序并生成bam文件，将sam文件中同一染色体对应的条目按照坐标顺序从小到大进行排序。</li>
 <li>排序本身用上一节讲过的 <code>samtools sort</code> 也可以完成，两种工具都会在头信息里写入 <code>SO:coordinate</code> 标签说明文件已按坐标排序；GATK 流程推荐统一用 Picard/GATK 的 SortSam，主要是为了与后续 GATK 工具链保持一致。</li>
-<li>工具文档：<a href="https://broadinstitute.github.io/picard/command-line-overview.html#SortSam">Picard/GATK SortSam</a>（2026 年 10 月核对可访问；也可在 <a href="https://gatk.broadinstitute.org">gatk.broadinstitute.org</a> 的 Tool Documentation 中查找同名工具）。</li>
+<li>工具文档：<a href="https://broadinstitute.github.io/Picard/command-line-overview.html#SortSam">Picard/GATK SortSam</a>（2026 年 10 月核对可访问；也可在 <a href="https://GATK.broadinstitute.org">GATK.broadinstitute.org</a> 的 Tool Documentation 中查找同名工具）。</li>
 </ul>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb44" data-book-role="code"><pre data-code-text="&quot;# 使用GATK命令\ngatk SortSam -I mapping/T.chr17.sam -O preprocess/T.chr17.sort.bam -SO coordinate --CREATE_INDEX\n# 使用picard命令\njava -jar picard.jar SortSam \\\n      I=input.bam \\\n      O=sorted.bam \\\n      SORT_ORDER=coordinate&quot;" class="sourceCode numberSource bash numberLines code-with-copy"><code class="sourceCode bash"><span id="cb44-1"><a href="#cb44-1"></a><span class="co"># 使用GATK命令</span></span>
 <span id="cb44-2"><a href="#cb44-2"></a><span class="ex">gatk</span> SortSam <span class="at">-I</span> mapping/T.chr17.sam <span class="at">-O</span> preprocess/T.chr17.sort.bam <span class="at">-SO</span> coordinate <span class="at">--CREATE_INDEX</span></span>
@@ -2902,7 +2914,7 @@ print(duplication_num)</code></pre>
 <p><strong>2. 标记重复（Markduplicates）</strong></p>
 <ul>
 <li>标记文库中的重复。</li>
-<li>工具文档：<a href="https://broadinstitute.github.io/picard/command-line-overview.html#MarkDuplicates">Picard/GATK MarkDuplicates</a>（2026 年 10 月核对可访问）。</li>
+<li>工具文档：<a href="https://broadinstitute.github.io/Picard/command-line-overview.html#MarkDuplicates">Picard/GATK MarkDuplicates</a>（2026 年 10 月核对可访问）。</li>
 </ul>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb47" data-book-role="code"><pre data-code-text="&quot;gatk MarkDuplicates -I preprocess/T.chr17.sort.bam -O preprocess/T.chr17.markdup.bam -M preprocess/T.chr17.metrics --CREATE_INDEX&quot;" class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb47-1"><a href="#cb47-1" aria-hidden="true" tabindex="-1"></a><span class="ex">gatk</span> MarkDuplicates <span class="at">-I</span> preprocess/T.chr17.sort.bam <span class="at">-O</span> preprocess/T.chr17.markdup.bam <span class="at">-M</span> preprocess/T.chr17.metrics <span class="at">--CREATE_INDEX</span></span></code></pre></div><button title="复制到剪贴板" class="code-copy-button"><i class="bi"></i></button></div>
 <div id="fig-04-quality-control-and-alignment-044" class="quarto-float quarto-figure quarto-figure-center anchored">
@@ -2923,9 +2935,9 @@ print(duplication_num)</code></pre>
 <p>对于已经建好的测序文库，其中有 N 种序列片段，每条片段长度均为 l，每种片段的拷贝数为 <span class="math inline">\(k_i(i=1,...,N)\)</span>，文库大小（library size）为 M，即 <span class="math inline">\(M=\sum_{i=1}^{N}k_i\)</span>。现在从这个文库中随机抽取 <span class="math inline">\(m\)</span> 条序列（<span class="math inline">\(m \ll M\)</span>）进行测序，问 duplicate rate 是多少？</p>
 </blockquote>
 <p>先给结论：</p>
-<p><span id="eq-04-quality-control-and-alignment-006" class="book-equation"><span class="equation-scroll" tabindex="0" role="region" aria-label="公式 4.7"><span class="math display">\[
+<p><span id="eq-04-quality-control-and-alignment-006" class="book-equation"><span class="equation-scroll" tabindex="0" role="region" aria-label="公式 4.10"><span class="math display">\[
 duplicate\,rate \approx 1-\frac{\lambda N}{M}
-\]</span></span><a class="equation-label" href="#eq-04-quality-control-and-alignment-006" aria-label="公式（4.7）">(4.7)</a></span></p>
+\]</span></span><a class="equation-label" href="#eq-04-quality-control-and-alignment-006" aria-label="公式（4.10）">(4.10)</a></span></p>
 <p>其中 <span class="math inline">\(\lambda=Ml/G\)</span>。当测序对象 G、片段长度 l 和总文库大小 M 都确定时，<span class="math inline">\(\lambda/M\)</span> 是常数，此时 duplicate rate 只与原始文库中序列片段的种类数 N 有关，且是负相关——<strong>文库复杂度越高（N 越大），duplicate rate 越低</strong>。这个结论与直觉一致：文库越复杂，随机抽到同一条片段的概率越小。</p>
 <p>完整推导过程较长，放在下面的拓展阅读中，有兴趣的读者可以展开验证。</p>
 <div class="book-extension callout callout-style-default callout-note callout-titled" title="拓展阅读｜duplicate rate 泊松近似的完整推导">
@@ -2942,26 +2954,26 @@ duplicate\,rate \approx 1-\frac{\lambda N}{M}
 <div class="callout-body-container callout-body">
 <p>采用逆向思维：假设 m 条序列中总共有 n 种片段，则 duplicate rate <span class="math inline">\(d=1-\frac{n}{m}\)</span>。问题转化为“从 M 条中抽 m 条，理论上能抽中多少种片段”。</p>
 <p>对于原始文库中的任意一种片段 i，设随机变量</p>
-<p><span id="eq-04-quality-control-and-alignment-008" class="book-equation"><span class="equation-scroll" tabindex="0" role="region" aria-label="公式 4.8"><span class="math display">\[
+<p><span id="eq-04-quality-control-and-alignment-008" class="book-equation"><span class="equation-scroll" tabindex="0" role="region" aria-label="公式 4.11"><span class="math display">\[
 X_i = \left\{
   \begin{array}{ll}
     1 &amp; 该片段被至少抽中一次 \\
     0 &amp; 该片段未被抽中
   \end{array}
 \right.
-\]</span></span><a class="equation-label" href="#eq-04-quality-control-and-alignment-008" aria-label="公式（4.8）">(4.8)</a></span></p>
-<p>（按这种形式设定的随机变量称为<strong>示性函数</strong>。）则总共被抽中的片段种类数 <span class="math inline">\(n=\sum_{i=1}^{N}X_i\)</span>，见 <a href="#eq-04-quality-control-and-alignment-009" class="quarto-xref">公式&nbsp;<span>4.9</span></a> 。</p>
-<p><span id="eq-04-quality-control-and-alignment-009" class="book-equation"><span class="equation-scroll" tabindex="0" role="region" aria-label="公式 4.9"><span class="math display">\[
+\]</span></span><a class="equation-label" href="#eq-04-quality-control-and-alignment-008" aria-label="公式（4.11）">(4.11)</a></span></p>
+<p>（按这种形式设定的随机变量称为<strong>示性函数</strong>。）则总共被抽中的片段种类数 <span class="math inline">\(n=\sum_{i=1}^{N}X_i\)</span>，见 <a href="#eq-04-quality-control-and-alignment-009" class="quarto-xref">公式&nbsp;<span>4.12</span></a> 。</p>
+<p><span id="eq-04-quality-control-and-alignment-009" class="book-equation"><span class="equation-scroll" tabindex="0" role="region" aria-label="公式 4.12"><span class="math display">\[
 n=\sum_{i=1}^{N}X_i
-\]</span></span><a class="equation-label" href="#eq-04-quality-control-and-alignment-009" aria-label="公式（4.9）">(4.9)</a></span></p>
+\]</span></span><a class="equation-label" href="#eq-04-quality-control-and-alignment-009" aria-label="公式（4.12）">(4.12)</a></span></p>
 <!-- Original equation tag: 2 -->
-<p>我们需要 <span class="math inline">\(n\)</span> 的期望，由期望的线性性质，见 <a href="#eq-04-quality-control-and-alignment-010" class="quarto-xref">公式&nbsp;<span>4.10</span></a> ：</p>
-<p><span id="eq-04-quality-control-and-alignment-010" class="book-equation"><span class="equation-scroll" tabindex="0" role="region" aria-label="公式 4.10"><span class="math display">\[
+<p>我们需要 <span class="math inline">\(n\)</span> 的期望，由期望的线性性质，见 <a href="#eq-04-quality-control-and-alignment-010" class="quarto-xref">公式&nbsp;<span>4.13</span></a> ：</p>
+<p><span id="eq-04-quality-control-and-alignment-010" class="book-equation"><span class="equation-scroll" tabindex="0" role="region" aria-label="公式 4.13"><span class="math display">\[
 E(n)=E(\sum_{i=1}^{N}X_i)=\sum_{i=1}^{N}E(X_i)
-\]</span></span><a class="equation-label" href="#eq-04-quality-control-and-alignment-010" aria-label="公式（4.10）">(4.10)</a></span></p>
+\]</span></span><a class="equation-label" href="#eq-04-quality-control-and-alignment-010" aria-label="公式（4.13）">(4.13)</a></span></p>
 <!-- Original equation tag: 3 -->
 <p>于是只需求 <span class="math inline">\(E(X_i)\)</span> 的通式。再设 <span class="math inline">\(\theta_i=\)</span> 该种片段被抽中的次数，则 <span class="math inline">\(\theta_i \sim Binomial(m, \frac{k_i}{M})\)</span>；由于 <span class="math inline">\(\frac{k_i}{M} \to 0\)</span>、m 较大，可用泊松分布近似：<span class="math inline">\(\theta_i \sim \text{Poisson}(\lambda_i)\)</span>，其中 <span class="math inline">\(\lambda_i=\frac{m\cdot k_i}{M}\)</span>。于是</p>
-<p><span id="eq-04-quality-control-and-alignment-012" class="book-equation"><span class="equation-scroll" tabindex="0" role="region" aria-label="公式 4.11"><span class="math display">\[
+<p><span id="eq-04-quality-control-and-alignment-012" class="book-equation"><span class="equation-scroll" tabindex="0" role="region" aria-label="公式 4.14"><span class="math display">\[
 \begin{aligned}
 &amp;\quad E(X_i) \\
 &amp;= P(X_i=1) \\
@@ -2970,20 +2982,20 @@ E(n)=E(\sum_{i=1}^{N}X_i)=\sum_{i=1}^{N}E(X_i)
 &amp;= 1-e^{-\lambda_i} \\
 &amp;= 1-e^{-m\cdot k_i/M}
 \end{aligned}
-\]</span></span><a class="equation-label" href="#eq-04-quality-control-and-alignment-012" aria-label="公式（4.11）">(4.11)</a></span></p>
+\]</span></span><a class="equation-label" href="#eq-04-quality-control-and-alignment-012" aria-label="公式（4.14）">(4.14)</a></span></p>
 <!-- Original equation tag: 4 -->
-<p>这是已知拷贝数 <span class="math inline">\(k_i\)</span> 时的结果；若不知道 <span class="math inline">\(k_i\)</span>，可设 <span class="math inline">\(k_i \sim \text{Poisson}(\lambda)\)</span>，其中 <span class="math inline">\(\lambda=\frac{M\cdot l}{G}\)</span>， <a href="#eq-04-quality-control-and-alignment-012" class="quarto-xref">公式&nbsp;<span>4.11</span></a> 就变成了对 k 求期望，见 <a href="#eq-04-quality-control-and-alignment-013" class="quarto-xref">公式&nbsp;<span>4.12</span></a> ：</p>
-<p><span id="eq-04-quality-control-and-alignment-013" class="book-equation"><span class="equation-scroll" tabindex="0" role="region" aria-label="公式 4.12"><span class="math display">\[
+<p>这是已知拷贝数 <span class="math inline">\(k_i\)</span> 时的结果；若不知道 <span class="math inline">\(k_i\)</span>，可设 <span class="math inline">\(k_i \sim \text{Poisson}(\lambda)\)</span>，其中 <span class="math inline">\(\lambda=\frac{M\cdot l}{G}\)</span>， <a href="#eq-04-quality-control-and-alignment-012" class="quarto-xref">公式&nbsp;<span>4.14</span></a> 就变成了对 k 求期望，见 <a href="#eq-04-quality-control-and-alignment-013" class="quarto-xref">公式&nbsp;<span>4.15</span></a> ：</p>
+<p><span id="eq-04-quality-control-and-alignment-013" class="book-equation"><span class="equation-scroll" tabindex="0" role="region" aria-label="公式 4.15"><span class="math display">\[
 E(X_i)=E(1-e^{-m\cdot k_i/M})=\sum_{k=0}^{\infty} (1-e^{-m\cdot k_i/M})\cdot p_k
-\]</span></span><a class="equation-label" href="#eq-04-quality-control-and-alignment-013" aria-label="公式（4.12）">(4.12)</a></span></p>
+\]</span></span><a class="equation-label" href="#eq-04-quality-control-and-alignment-013" aria-label="公式（4.15）">(4.15)</a></span></p>
 <!-- Original equation tag: 5 -->
-<p>每种片段被抽中的可能性都满足 <a href="#eq-04-quality-control-and-alignment-013" class="quarto-xref">公式&nbsp;<span>4.12</span></a> ，所以</p>
-<p><span id="eq-04-quality-control-and-alignment-014" class="book-equation"><span class="equation-scroll" tabindex="0" role="region" aria-label="公式 4.13"><span class="math display">\[
+<p>每种片段被抽中的可能性都满足 <a href="#eq-04-quality-control-and-alignment-013" class="quarto-xref">公式&nbsp;<span>4.15</span></a> ，所以</p>
+<p><span id="eq-04-quality-control-and-alignment-014" class="book-equation"><span class="equation-scroll" tabindex="0" role="region" aria-label="公式 4.16"><span class="math display">\[
 E(n)=\sum_{i=1}^{N}E(X_i)=N\cdot E(X_i)=N\cdot \sum_{k=0}^{\infty} (1-e^{-m\cdot k_i/M})\cdot p_k
-\]</span></span><a class="equation-label" href="#eq-04-quality-control-and-alignment-014" aria-label="公式（4.13）">(4.13)</a></span></p>
+\]</span></span><a class="equation-label" href="#eq-04-quality-control-and-alignment-014" aria-label="公式（4.16）">(4.16)</a></span></p>
 <!-- Original equation tag: 6 -->
-<p>把 <span class="math inline">\(d=1-\frac{E(n)}{m}\)</span> 代入展开，见 <a href="#eq-04-quality-control-and-alignment-015" class="quarto-xref">公式&nbsp;<span>4.14</span></a> ：</p>
-<p><span id="eq-04-quality-control-and-alignment-015" class="book-equation"><span class="equation-scroll" tabindex="0" role="region" aria-label="公式 4.14"><span class="math display">\[
+<p>把 <span class="math inline">\(d=1-\frac{E(n)}{m}\)</span> 代入展开，见 <a href="#eq-04-quality-control-and-alignment-015" class="quarto-xref">公式&nbsp;<span>4.17</span></a> ：</p>
+<p><span id="eq-04-quality-control-and-alignment-015" class="book-equation"><span class="equation-scroll" tabindex="0" role="region" aria-label="公式 4.17"><span class="math display">\[
 \begin{aligned}
 &amp;\quad d \\
 &amp;=1-\frac{E(n)}{m} \\
@@ -2991,15 +3003,15 @@ E(n)=\sum_{i=1}^{N}E(X_i)=N\cdot E(X_i)=N\cdot \sum_{k=0}^{\infty} (1-e^{-m\cdot
 &amp;=1-\frac{N}{m}\sum_{k=0}^{\infty} (1-e^{-m\cdot k_i/M})\cdot \frac{\lambda^k}{k!}e^{-\lambda} \\
 &amp;=1-\frac{N}{m}+\frac{Ne^{-\lambda}}{m}\sum_{k=0}^{\infty} \frac{1}{k!}(\lambda e^{-m/M})^k
 \end{aligned}
-\]</span></span><a class="equation-label" href="#eq-04-quality-control-and-alignment-015" aria-label="公式（4.14）">(4.14)</a></span></p>
+\]</span></span><a class="equation-label" href="#eq-04-quality-control-and-alignment-015" aria-label="公式（4.17）">(4.17)</a></span></p>
 <!-- Original equation tag: 7 -->
-<p><a href="#eq-04-quality-control-and-alignment-015" class="quarto-xref">公式&nbsp;<span>4.14</span></a> 中的 <span class="math inline">\(\sum_{k=0}^{\infty} \frac{1}{k!}(\lambda e^{-m/M})^k\)</span>（其中 <span class="math inline">\(\lambda e^{-m/M} \to 0\)</span>）正是指数函数 <span class="math inline">\(e^x\)</span> 的泰勒展开式，见 <a href="#eq-04-quality-control-and-alignment-016" class="quarto-xref">公式&nbsp;<span>4.15</span></a> ：</p>
-<p><span id="eq-04-quality-control-and-alignment-016" class="book-equation"><span class="equation-scroll" tabindex="0" role="region" aria-label="公式 4.15"><span class="math display">\[
+<p><a href="#eq-04-quality-control-and-alignment-015" class="quarto-xref">公式&nbsp;<span>4.17</span></a> 中的 <span class="math inline">\(\sum_{k=0}^{\infty} \frac{1}{k!}(\lambda e^{-m/M})^k\)</span>（其中 <span class="math inline">\(\lambda e^{-m/M} \to 0\)</span>）正是指数函数 <span class="math inline">\(e^x\)</span> 的泰勒展开式，见 <a href="#eq-04-quality-control-and-alignment-016" class="quarto-xref">公式&nbsp;<span>4.18</span></a> ：</p>
+<p><span id="eq-04-quality-control-and-alignment-016" class="book-equation"><span class="equation-scroll" tabindex="0" role="region" aria-label="公式 4.18"><span class="math display">\[
 e^x=\sum_{n=0}^{\infty} \frac{x^n}{n!}
-\]</span></span><a class="equation-label" href="#eq-04-quality-control-and-alignment-016" aria-label="公式（4.15）">(4.15)</a></span></p>
+\]</span></span><a class="equation-label" href="#eq-04-quality-control-and-alignment-016" aria-label="公式（4.18）">(4.18)</a></span></p>
 <!-- Original equation tag: 8 -->
 <p>因此可以得到</p>
-<p><span id="eq-04-quality-control-and-alignment-017" class="book-equation"><span class="equation-scroll" tabindex="0" role="region" aria-label="公式 4.16"><span class="math display">\[
+<p><span id="eq-04-quality-control-and-alignment-017" class="book-equation"><span class="equation-scroll" tabindex="0" role="region" aria-label="公式 4.19"><span class="math display">\[
 \begin{aligned}
 &amp;\quad d \\
 &amp;=1-\frac{N}{m}+\frac{Ne^{-\lambda}}{m}\sum_{k=0}^{\infty} \frac{1}{k!}(\lambda e^{-m/M})^k \\
@@ -3007,10 +3019,10 @@ e^x=\sum_{n=0}^{\infty} \frac{x^n}{n!}
 &amp;=1-\frac{N}{m}\left(1-e^{-\lambda}\cdot e^{\lambda e^{-m/M}}\right) \\
 &amp;=1-\frac{N}{m}\left(1-e^{\lambda (e^{-m/M}-1)}\right)
 \end{aligned}
-\]</span></span><a class="equation-label" href="#eq-04-quality-control-and-alignment-017" aria-label="公式（4.16）">(4.16)</a></span></p>
+\]</span></span><a class="equation-label" href="#eq-04-quality-control-and-alignment-017" aria-label="公式（4.19）">(4.19)</a></span></p>
 <!-- Original equation tag: 9 -->
-<p>由于 <span class="math inline">\(m \ll M\)</span>，则 <span class="math inline">\(-m/M \to 0^-\)</span>，且 <span class="math inline">\(e^x\)</span> 在 <span class="math inline">\(x=0\)</span> 处的一阶泰勒展开为 <span class="math inline">\(e^x=1+x+o(x)\)</span>，故 <span class="math inline">\(e^{-m/M} \approx 1-m/M\)</span>。 <a href="#eq-04-quality-control-and-alignment-017" class="quarto-xref">公式&nbsp;<span>4.16</span></a> 可以化简为：</p>
-<p><span id="eq-04-quality-control-and-alignment-018" class="book-equation"><span class="equation-scroll" tabindex="0" role="region" aria-label="公式 4.17"><span class="math display">\[
+<p>由于 <span class="math inline">\(m \ll M\)</span>，则 <span class="math inline">\(-m/M \to 0^-\)</span>，且 <span class="math inline">\(e^x\)</span> 在 <span class="math inline">\(x=0\)</span> 处的一阶泰勒展开为 <span class="math inline">\(e^x=1+x+o(x)\)</span>，故 <span class="math inline">\(e^{-m/M} \approx 1-m/M\)</span>。 <a href="#eq-04-quality-control-and-alignment-017" class="quarto-xref">公式&nbsp;<span>4.19</span></a> 可以化简为：</p>
+<p><span id="eq-04-quality-control-and-alignment-018" class="book-equation"><span class="equation-scroll" tabindex="0" role="region" aria-label="公式 4.20"><span class="math display">\[
 \begin{aligned}
 &amp;\quad d \\
 &amp;\approx 1-\frac{N}{m}(1-e^{-\lambda m/M}) \\
@@ -3018,12 +3030,12 @@ e^x=\sum_{n=0}^{\infty} \frac{x^n}{n!}
 &amp;=1-\frac{N}{m}\frac{\lambda m}{M} \\
 &amp;=1-\frac{\lambda N}{M}
 \end{aligned}
-\]</span></span><a class="equation-label" href="#eq-04-quality-control-and-alignment-018" aria-label="公式（4.17）">(4.17)</a></span></p>
+\]</span></span><a class="equation-label" href="#eq-04-quality-control-and-alignment-018" aria-label="公式（4.20）">(4.20)</a></span></p>
 <!-- Original equation tag: 10 -->
 <p>故最终得到</p>
-<p><span id="eq-04-quality-control-and-alignment-019" class="book-equation"><span class="equation-scroll" tabindex="0" role="region" aria-label="公式 4.18"><span class="math display">\[
+<p><span id="eq-04-quality-control-and-alignment-019" class="book-equation"><span class="equation-scroll" tabindex="0" role="region" aria-label="公式 4.21"><span class="math display">\[
 d\approx 1-\frac{\lambda N}{M}
-\]</span></span><a class="equation-label" href="#eq-04-quality-control-and-alignment-019" aria-label="公式（4.18）">(4.18)</a></span></p>
+\]</span></span><a class="equation-label" href="#eq-04-quality-control-and-alignment-019" aria-label="公式（4.21）">(4.21)</a></span></p>
 </div>
 </div>
 </div>
@@ -3072,7 +3084,7 @@ d\approx 1-\frac{\lambda N}{M}
 <p>确认数据足以支持目标分析，并发现流程中的明显错误。</p>
 <section id="src-0040-mapping-and-BAM-operation-467" class="level3">
 <h3 class="anchored" data-anchor-id="src-0040-mapping-and-BAM-operation-467">IGV 工具的介绍</h3>
-<p>samtools 的 flagstat 或 qualimap2 能告诉我们<strong>总体</strong>的比对情况，但有时候我们只想看染色体上某一段区域，或者想直观地看某个编码区的比对细节——这时就需要一个可视化的基因组浏览器：IGV（Integrative Genomics Viewer）。它把 BAM 里每条 read 的位置、正负链、错配、插入缺失都画在基因组坐标上，是检查比对问题、准备组会/论文配图的利器。</p>
+<p>samtools 的 flagstat 或 Qualimap 2 能告诉我们<strong>总体</strong>的比对情况，但有时候我们只想看染色体上某一段区域，或者想直观地看某个编码区的比对细节——这时就需要一个可视化的基因组浏览器：IGV（Integrative Genomics Viewer）。它把 BAM 里每条 read 的位置、正负链、错配、插入缺失都画在基因组坐标上，是检查比对问题、准备组会/论文配图的利器。</p>
 </section>
 <section id="sec-04-08-download" class="level3">
 <h3 class="anchored" data-anchor-id="sec-04-08-download">IGV 的下载与安装</h3>

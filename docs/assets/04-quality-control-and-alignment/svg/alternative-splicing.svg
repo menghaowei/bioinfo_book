@@ -1,4 +1,4 @@
-<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 760 320' role='img' aria-labelledby='t d'>
+<svg xmlns='http://www.w3.org/2000/svg' width='840' height='320' viewBox='0 0 840 320' role='img' aria-labelledby='t d'>
 <title id='t'>可变剪接示意图</title>
 <desc id='d'>同一个基因经不同的剪接方式，从一条 pre-mRNA 生成多种成熟 mRNA。</desc>
 <text x='70' y='46' font-family="'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size='15' fill='#333333' font-weight='bold' text-anchor='start'>DNA / pre-mRNA</text>

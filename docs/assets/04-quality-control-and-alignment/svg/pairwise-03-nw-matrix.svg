@@ -1,4 +1,4 @@
-<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 680 520' role='img' aria-labelledby='t d'>
+<svg xmlns='http://www.w3.org/2000/svg' width='680' height='520' viewBox='0 0 680 520' role='img' aria-labelledby='t d'>
 <title id='t'>Needleman-Wunsch 全局比对填表结果</title>
 <desc id='d'>数值在格左上角，右下角小箭头为取值来源（对角/上/左）；加粗路径为回溯，右下角最优得分 5。</desc>
 <text x='60' y='44' font-family="'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size='15' fill='#333333' font-weight='bold' text-anchor='start'>Needleman-Wunsch 全局比对</text>
@@ -25,13 +25,10 @@
 <line x1='304' y1='100' x2='304' y2='390' stroke='#e5e7eb' stroke-width='1'/>
 <line x1='362' y1='100' x2='362' y2='390' stroke='#e5e7eb' stroke-width='1'/>
 <line x1='420' y1='100' x2='420' y2='390' stroke='#e5e7eb' stroke-width='1'/>
-<text x='147' y='135' font-family="ui-monospace, 'SFMono-Regular', Menlo, Consolas, 'Liberation Mono', monospace" font-size='16' fill='#6b7280' font-weight='normal' text-anchor='start'>0</text>
 <text x='205' y='135' font-family="ui-monospace, 'SFMono-Regular', Menlo, Consolas, 'Liberation Mono', monospace" font-size='16' fill='#6b7280' font-weight='normal' text-anchor='start'>-5</text>
 <text x='263' y='135' font-family="ui-monospace, 'SFMono-Regular', Menlo, Consolas, 'Liberation Mono', monospace" font-size='16' fill='#6b7280' font-weight='normal' text-anchor='start'>-10</text>
 <text x='321' y='135' font-family="ui-monospace, 'SFMono-Regular', Menlo, Consolas, 'Liberation Mono', monospace" font-size='16' fill='#6b7280' font-weight='normal' text-anchor='start'>-15</text>
 <text x='379' y='135' font-family="ui-monospace, 'SFMono-Regular', Menlo, Consolas, 'Liberation Mono', monospace" font-size='16' fill='#6b7280' font-weight='normal' text-anchor='start'>-20</text>
-<text x='147' y='135' font-family="ui-monospace, 'SFMono-Regular', Menlo, Consolas, 'Liberation Mono', monospace" font-size='16' fill='#6b7280' font-weight='normal' text-anchor='start'>0</text>
-<text x='147' y='193' font-family="ui-monospace, 'SFMono-Regular', Menlo, Consolas, 'Liberation Mono', monospace" font-size='16' fill='#6b7280' font-weight='normal' text-anchor='start'>-5</text>
 <text x='147' y='251' font-family="ui-monospace, 'SFMono-Regular', Menlo, Consolas, 'Liberation Mono', monospace" font-size='16' fill='#6b7280' font-weight='normal' text-anchor='start'>-10</text>
 <text x='147' y='309' font-family="ui-monospace, 'SFMono-Regular', Menlo, Consolas, 'Liberation Mono', monospace" font-size='16' fill='#6b7280' font-weight='normal' text-anchor='start'>-15</text>
 <text x='147' y='367' font-family="ui-monospace, 'SFMono-Regular', Menlo, Consolas, 'Liberation Mono', monospace" font-size='16' fill='#6b7280' font-weight='normal' text-anchor='start'>-20</text>
