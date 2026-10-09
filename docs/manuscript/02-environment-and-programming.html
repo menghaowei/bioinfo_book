@@ -182,7 +182,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <details class="book-section"><summary><a class="book-nav-link book-section-link no-external" href="#sec-02-01" data-book-level="2" data-book-target="sec-02-01" id="book-nav-2-sec-02-01">2.1 电脑、服务器与软件环境</a></summary><ul>
 <li class="book-nav-leaf"><a class="book-nav-link book-section-link no-external" href="#src-0090-build-up-bioinfo-platform-1" data-book-level="3" data-book-target="src-0090-build-up-bioinfo-platform-1" id="book-nav-2-src-0090-build-up-bioinfo-platform-1">生物信息学平台的构建</a></li>
 <li class="book-nav-leaf"><a class="book-nav-link book-section-link no-external" href="#src-0090-build-up-bioinfo-platform-3" data-book-level="3" data-book-target="src-0090-build-up-bioinfo-platform-3" id="book-nav-2-src-0090-build-up-bioinfo-platform-3">Windows、Linux和macOS的选择</a></li>
-<li class="book-nav-leaf"><a class="book-nav-link book-section-link no-external" href="#src-0090-build-up-bioinfo-platform-147" data-book-level="3" data-book-target="src-0090-build-up-bioinfo-platform-147" id="book-nav-2-src-0090-build-up-bioinfo-platform-147">WSL</a></li>
+<li class="book-nav-leaf"><a class="book-nav-link book-section-link no-external" href="#src-0090-build-up-bioinfo-platform-147" data-book-level="3" data-book-target="src-0090-build-up-bioinfo-platform-147" id="book-nav-2-src-0090-build-up-bioinfo-platform-147">在 Windows 下使用 Linux 命令行</a></li>
 <li class="book-nav-leaf"><a class="book-nav-link book-section-link no-external" href="#topic-02-macos-setup" data-book-level="3" data-book-target="topic-02-macos-setup" id="book-nav-2-topic-02-macos-setup">mac系统的基础配置</a></li>
 </ul></details>
 </li>
@@ -192,24 +192,37 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li class="book-nav-leaf"><a class="book-nav-link book-section-link no-external" href="#topic-02-file-transfer" data-book-level="3" data-book-target="topic-02-file-transfer" id="book-nav-2-topic-02-file-transfer">文件的上传与下载</a></li>
 <li class="book-nav-leaf"><a class="book-nav-link book-section-link no-external" href="#src-0090-build-up-bioinfo-platform-13" data-book-level="3" data-book-target="src-0090-build-up-bioinfo-platform-13" id="book-nav-2-src-0090-build-up-bioinfo-platform-13">基本的linux操作</a></li>
 <li class="book-nav-leaf"><a class="book-nav-link book-section-link no-external" href="#sec-02-03" data-book-level="3" data-book-target="sec-02-03" id="book-nav-2-sec-02-03">Shell 脚本与批量处理</a></li>
-<li class="book-nav-leaf"><a class="book-nav-link book-section-link no-external" href="#src-0090-build-up-bioinfo-platform-209" data-book-level="3" data-book-target="src-0090-build-up-bioinfo-platform-209" id="book-nav-2-src-0090-build-up-bioinfo-platform-209">软件环境的配置</a></li>
 <li class="book-nav-leaf"><a class="book-nav-link book-section-link no-external" href="#topic-02-vscode-remote" data-book-level="3" data-book-target="topic-02-vscode-remote" id="book-nav-2-topic-02-vscode-remote">使用vscode连接</a></li>
 </ul></details>
 </li>
 <li>
-<details class="book-section"><summary><a class="book-nav-link book-section-link no-external" href="#sec-02-04" data-book-level="2" data-book-target="sec-02-04" id="book-nav-2-sec-02-04">2.3 R 数据处理与绘图基础</a></summary><ul>
+<details class="book-section"><summary><a class="book-nav-link book-section-link no-external" href="#sec-02-server-software" data-book-level="2" data-book-target="sec-02-server-software" id="book-nav-2-sec-02-server-software">2.3 在服务器安装软件</a></summary><ul>
+<li class="book-nav-leaf"><a class="book-nav-link book-section-link no-external" href="#src-0090-build-up-bioinfo-platform-25" data-book-level="3" data-book-target="src-0090-build-up-bioinfo-platform-25" id="book-nav-2-src-0090-build-up-bioinfo-platform-25">用 apt 安装软件</a></li>
+</ul></details>
+</li>
+<li>
+<details class="book-section"><summary><a class="book-nav-link book-section-link no-external" href="#sec-02-conda" data-book-level="2" data-book-target="sec-02-conda" id="book-nav-2-sec-02-conda">2.4 conda 与 Bioconda</a></summary><ul>
+<li class="book-nav-leaf"><a class="book-nav-link book-section-link no-external" href="#topic-02-conda-bioconda" data-book-level="3" data-book-target="topic-02-conda-bioconda" id="book-nav-2-topic-02-conda-bioconda">conda 与 Bioconda</a></li>
+<li class="book-nav-leaf"><a class="book-nav-link book-section-link no-external" href="#src-0090-build-up-bioinfo-platform-221" data-book-level="3" data-book-target="src-0090-build-up-bioinfo-platform-221" id="book-nav-2-src-0090-build-up-bioinfo-platform-221">Anaconda的安装</a></li>
+<li class="book-nav-leaf"><a class="book-nav-link book-section-link no-external" href="#src-0090-build-up-bioinfo-platform-229" data-book-level="3" data-book-target="src-0090-build-up-bioinfo-platform-229" id="book-nav-2-src-0090-build-up-bioinfo-platform-229">Anaconda镜像的设置</a></li>
+<li class="book-nav-leaf"><a class="book-nav-link book-section-link no-external" href="#src-0090-build-up-bioinfo-platform-237" data-book-level="3" data-book-target="src-0090-build-up-bioinfo-platform-237" id="book-nav-2-src-0090-build-up-bioinfo-platform-237">Anaconda环境的管理</a></li>
+<li class="book-nav-leaf"><a class="book-nav-link book-section-link no-external" href="#src-0090-build-up-bioinfo-platform-264" data-book-level="3" data-book-target="src-0090-build-up-bioinfo-platform-264" id="book-nav-2-src-0090-build-up-bioinfo-platform-264">Micromamba</a></li>
+</ul></details>
+</li>
+<li>
+<details class="book-section"><summary><a class="book-nav-link book-section-link no-external" href="#sec-02-04" data-book-level="2" data-book-target="sec-02-04" id="book-nav-2-sec-02-04">2.5 R 数据处理与绘图基础</a></summary><ul>
 <li class="book-nav-leaf"><a class="book-nav-link book-section-link no-external" href="#src-0090-build-up-bioinfo-platform-300" data-book-level="3" data-book-target="src-0090-build-up-bioinfo-platform-300" id="book-nav-2-src-0090-build-up-bioinfo-platform-300">R and Rstudio</a></li>
 </ul></details>
 </li>
 <li>
-<details class="book-section"><summary><a class="book-nav-link book-section-link no-external" href="#sec-02-05" data-book-level="2" data-book-target="sec-02-05" id="book-nav-2-sec-02-05">2.4 Python 与结构化配置的最低必要知识</a></summary><ul>
+<details class="book-section"><summary><a class="book-nav-link book-section-link no-external" href="#sec-02-05" data-book-level="2" data-book-target="sec-02-05" id="book-nav-2-sec-02-05">2.6 Python 与结构化配置的最低必要知识</a></summary><ul>
 <li class="book-nav-leaf"><a class="book-nav-link book-section-link no-external" href="#topic-02-python-basics" data-book-level="3" data-book-target="topic-02-python-basics" id="book-nav-2-topic-02-python-basics">Python 基础速览</a></li>
 <li class="book-nav-leaf"><a class="book-nav-link book-section-link no-external" href="#src-0090-build-up-bioinfo-platform-270" data-book-level="3" data-book-target="src-0090-build-up-bioinfo-platform-270" id="book-nav-2-src-0090-build-up-bioinfo-platform-270">Jupyter</a></li>
 <li class="book-nav-leaf"><a class="book-nav-link book-section-link no-external" href="#topic-02-structured-config" data-book-level="3" data-book-target="topic-02-structured-config" id="book-nav-2-topic-02-structured-config">结构化配置：YAML 与 JSON</a></li>
 </ul></details>
 </li>
 <li>
-<details class="book-section"><summary><a class="book-nav-link book-section-link no-external" href="#sec-02-ai-agents" data-book-level="2" data-book-target="sec-02-ai-agents" id="book-nav-2-sec-02-ai-agents">2.5 本地AI agent的配置与安装</a></summary><ul>
+<details class="book-section"><summary><a class="book-nav-link book-section-link no-external" href="#sec-02-ai-agents" data-book-level="2" data-book-target="sec-02-ai-agents" id="book-nav-2-sec-02-ai-agents">2.7 本地AI agent的配置与安装</a></summary><ul>
 <li class="book-nav-leaf"><a class="book-nav-link book-section-link no-external" href="#topic-02-coding-plan" data-book-level="3" data-book-target="topic-02-coding-plan" id="book-nav-2-topic-02-coding-plan">coding plan 和 API 设置</a></li>
 <li class="book-nav-leaf"><a class="book-nav-link book-section-link no-external" href="#topic-02-claude-code" data-book-level="3" data-book-target="topic-02-claude-code" id="book-nav-2-topic-02-claude-code">Claude Code</a></li>
 <li class="book-nav-leaf"><a class="book-nav-link book-section-link no-external" href="#topic-02-codex" data-book-level="3" data-book-target="topic-02-codex" id="book-nav-2-topic-02-codex">Codex</a></li>
@@ -217,7 +230,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </ul></details>
 </li>
 <li>
-<details class="book-section"><summary><a class="book-nav-link book-section-link no-external" href="#sec-02-06" data-book-level="2" data-book-target="sec-02-06" id="book-nav-2-sec-02-06">2.6 AI时代的版本管理</a></summary><ul>
+<details class="book-section"><summary><a class="book-nav-link book-section-link no-external" href="#sec-02-06" data-book-level="2" data-book-target="sec-02-06" id="book-nav-2-sec-02-06">2.8 AI时代的版本管理</a></summary><ul>
 <li class="book-nav-leaf"><a class="book-nav-link book-section-link no-external" href="#topic-02-project-structure" data-book-level="3" data-book-target="topic-02-project-structure" id="book-nav-2-topic-02-project-structure">项目目录的组织</a></li>
 <li class="book-nav-leaf"><a class="book-nav-link book-section-link no-external" href="#topic-02-git" data-book-level="3" data-book-target="topic-02-git" id="book-nav-2-topic-02-git">版本管理与 Git</a></li>
 <li class="book-nav-leaf"><a class="book-nav-link book-section-link no-external" href="#topic-02-troubleshooting" data-book-level="3" data-book-target="topic-02-troubleshooting" id="book-nav-2-topic-02-troubleshooting">排错的基本思路</a></li>
@@ -714,7 +727,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 <section id="chapter-summary-02" class="level2 unnumbered hero-book book-chapter-summary">
 <h2 class="unnumbered anchored" data-anchor-id="chapter-summary-02">本章提要</h2>
-<p>本章帮助你搭建趁手的本地工作环境，并把重计算放到远端服务器。本地的主要工作是写代码、用 R 绘图，以及运行 Claude Code、Codex、ZCode 等 AI agent，繁重的计算则交给服务器完成。我们先比较 Windows、Linux 和 macOS 作为本地主机的优劣，完成 WSL 与 macOS 的基础配置；再学习连接服务器、传输文件、基本 Linux 操作、Shell 批处理与软件环境配置；然后掌握 R 与 Python 的最低必要基础，安装并配置本地 AI agent；最后建立项目目录、版本管理与排错的习惯。阅读时可以先打通一条从本地到服务器的完整路线，再在后续章节的实战中反复强化。</p>
+<p>本章帮你把生信分析的工作台搭起来：本地负责写代码、绘图和运行 AI agent，重计算交给服务器。我们先比较 Windows、Linux 和 macOS 三种本地平台，完成 WSL 与 macOS 的基础配置；再打通与服务器的连接，学习文件传输、基本 Linux 命令与 Shell 脚本，并用 VS Code 远程开发；然后在服务器上用 <code>apt</code> 安装软件，用 <code>conda</code> 与 Bioconda 搭建生信环境；接着掌握 R 与 Python 的最低必要基础，读懂 YAML 与 JSON 配置；最后装好 Claude Code、Codex、ZCode 等 AI agent，并建立项目目录、版本管理与排错的基本习惯。</p>
 </section>
 <section id="sec-02-01" class="level2" data-number="2.1">
 <h2 data-number="2.1" class="anchored" data-anchor-id="sec-02-01"><span class="header-section-number">2.1</span> 电脑、服务器与软件环境</h2>
@@ -741,7 +754,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 </section>
 <section id="src-0090-build-up-bioinfo-platform-147" class="level3">
-<h3 class="anchored" data-anchor-id="src-0090-build-up-bioinfo-platform-147">WSL</h3>
+<h3 class="anchored" data-anchor-id="src-0090-build-up-bioinfo-platform-147">在 Windows 下使用 Linux 命令行</h3>
 <p>微软官方文档很好地解释了WSL（Windows Subsystem for Linux）是什么。</p>
 <blockquote class="blockquote">
 <p>适用于 Linux 的 Windows 子系统可让开发人员按原样运行 GNU/Linux 环境 - 包括大多数命令行工具、实用工具和应用程序 - 且不会产生传统虚拟机或双启动设置开销。</p>
@@ -806,7 +819,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <img src="../assets/02-computing-and-programming/012-ce36916b-bbee-4d15-8a3e-193a0e1ae26e.png" class="img-fluid figure-img">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-02-computing-and-programming-012-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-图&nbsp;2.3: 图题待补
+图&nbsp;2.3: Windows Terminal：可在同一窗口管理 PowerShell、命令提示符与 WSL 等多种会话
 </figcaption>
 </figure>
 </div>
@@ -819,68 +832,443 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 <section id="sec-02-02" class="level2" data-number="2.2">
 <h2 data-number="2.2" class="anchored" data-anchor-id="sec-02-02"><span class="header-section-number">2.2</span> 连接远端服务器</h2>
-<p>打通本地与服务器之间的完整链路：连接、传输文件、执行命令、安装软件。如今的服务器几乎全部运行 Linux，常见的有 Ubuntu Server LTS、Debian，以及接替 CentOS 的 Rocky Linux 和 AlmaLinux。</p>
+<p>打通本地与服务器之间的链路：连接、传输文件、执行命令，再用 VS Code 直接在远端目录里工作。如今的服务器几乎全部运行 Linux，常见的有 Ubuntu Server LTS、Debian，以及接替 CentOS 的 Rocky Linux 和 AlmaLinux。</p>
 <section id="src-0090-build-up-bioinfo-platform-197" class="level3">
 <h3 class="anchored" data-anchor-id="src-0090-build-up-bioinfo-platform-197">使用ssh连接</h3>
 <p>SSH命令是连接服务器很重要的工具。Linux和macOS都自带<code>ssh</code>命令；Windows长期以来不自带SSH命令，从Windows 10开始情况改善，较新的Windows 10和Windows 11已经预装OpenSSH客户端，在PowerShell中直接运行<code>ssh</code>就可以使用。OpenSSH服务器端则仍需要手动安装：在任务栏搜索框中输入“可选功能”，结果中会出现“添加可选功能”，点击即可进入。也可以通过“Windows设置→应用→可选功能”进入。</p>
-<div class="book-placeholder">
-<p>原稿图片缺失或外部地址不可用：<code>https://images-cdn.shimo.im/ZZob1QhLKmoyhnlk/Snipaste_2018_09_09_21_16_25.png!original</code>。原有图位保留。</p>
-</div>
 <div id="fig-02-computing-and-programming-013" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-02-computing-and-programming-013-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <img src="../assets/02-computing-and-programming/013-c575c9fa-1e74-4fc5-99e4-465792565047.png" class="img-fluid figure-img">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-02-computing-and-programming-013-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-图&nbsp;2.4: 图题待补
+图&nbsp;2.4: Windows“管理可选功能”页面：已安装功能列表与“添加功能”入口
 </figcaption>
 </figure>
 </div>
 <p>点击“添加功能”进入到添加功能的页面，选择需要的组件（例如“OpenSSH 服务器”；较早系统上未预装客户端时也可在此安装“OpenSSH 客户端”），点击“安装”按钮即可开始安装，不长的一段时间后就安装完毕了。</p>
-<div class="book-placeholder">
-<p>原稿图片缺失或外部地址不可用：<code>https://images-cdn.shimo.im/2PrwPwoL75oUjCsd/Snipaste_2018_09_09_21_20_52.png!original</code>。原有图位保留。</p>
-</div>
 <p>连接服务器的基本命令是 <code>ssh 用户名@服务器地址</code>，首次连接时系统会提示确认并保存主机指纹，之后输入密码即可登录。</p>
-<div class="book-placeholder">
-<p>本节内容待补充：连接示例、密钥登录与多服务器配置。</p>
-</div>
+<p>假设服务器地址是 192.168.1.100，你的用户名是 meng，连接时输入：</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5" data-book-role="code"><pre data-code-text="&quot;ssh meng@192.168.1.100&quot;" class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ssh</span> meng@192.168.1.100</span></code></pre></div><button title="复制到剪贴板" class="code-copy-button"><i class="bi"></i></button></div>
+<p>首次连接会提示确认主机指纹（fingerprint），输入 <code>yes</code> 回车后指纹会被保存，之后不会再询问。接着输入密码——屏幕上不显示任何字符是正常现象，输完直接回车。登录成功后，提示符会变成服务器上的样子，输入 <code>exit</code> 或按 <code>Ctrl+D</code> 即可退出返回本地。</p>
+<p>每次都输密码既麻烦也不够安全，更推荐密钥登录。密钥成对存在：私钥留在本地，公钥放到服务器。用下面的命令生成一对密钥：</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb6" data-book-role="code"><pre data-code-text="&quot;ssh-keygen -t ed25519&quot;" class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ssh-keygen</span> <span class="at">-t</span> ed25519</span></code></pre></div><button title="复制到剪贴板" class="code-copy-button"><i class="bi"></i></button></div>
+<p>一路回车即可，密钥会保存在 <code>~/.ssh/</code> 目录下：<code>id_ed25519</code> 是私钥，<code>id_ed25519.pub</code> 是公钥。生成时可以设置一个私钥口令（passphrase），多一层保护；留空则使用时不需要再输口令。然后把公钥传到服务器上：</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb7" data-book-role="code"><pre data-code-text="&quot;ssh-copy-id meng@192.168.1.100&quot;" class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="ex">ssh-copy-id</span> meng@192.168.1.100</span></code></pre></div><button title="复制到剪贴板" class="code-copy-button"><i class="bi"></i></button></div>
+<p>这一次仍需要输入密码。之后再用 <code>ssh</code> 登录，服务器会用公钥验证你的身份，不再询问密码。要注意，私钥等于你在这台服务器上的钥匙，不要通过聊天工具或网盘发送，也不要提交进代码仓库。</p>
+<p>如果经常连接多台服务器，可以为每台服务器起一个别名。编辑（没有就新建）本地家目录下的 <code>~/.ssh/config</code> 文件：</p>
+<pre data-code-text="&quot;Host lab\n    HostName 192.168.1.100\n    User meng\n    Port 22\n    IdentityFile ~/.ssh/id_ed25519\n\nHost compute\n    HostName 10.0.0.8\n    User wangmeng&quot;" class="text" data-book-role="data" data-code-title="SSH 配置"><code>Host lab
+    HostName 192.168.1.100
+    User meng
+    Port 22
+    IdentityFile ~/.ssh/id_ed25519
+
+Host compute
+    HostName 10.0.0.8
+    User wangmeng</code></pre>
+<p>保存后，<code>ssh lab</code> 就等于 <code>ssh meng@192.168.1.100</code>，<code>scp</code>、<code>rsync</code> 和后面 VS Code 的远程连接也都能直接使用这些别名。服务器端口不是默认的 22 时，用 <code>Port</code> 指定；<code>IdentityFile</code> 在你有多对密钥时尤其有用。</p>
 </section>
 <section id="topic-02-file-transfer" class="level3">
 <h3 class="anchored" data-anchor-id="topic-02-file-transfer">文件的上传与下载</h3>
 <p>分析数据经常需要在本地与服务器之间往来：把原始数据传上去，把结果图表取回来。常用方式有两类：图形界面的 sftp 软件（如 FileZilla）适合零散文件的可视化拖拽；命令行的 <code>scp</code> 与 <code>rsync</code> 适合批量和脚本化传输，其中 <code>rsync</code> 还支持增量同步，是大目录反复备份的首选。</p>
-<div class="book-placeholder">
-<p>本节内容待补充：FileZilla 配置示例与 scp、rsync 常用命令。</p>
+<p>FileZilla 是常用的图形界面 sftp 软件，官网 filezilla-project.org 提供各平台安装包。安装后在顶部依次填写主机（<code>sftp://192.168.1.100</code>）、用户名、密码和端口 22，点击“快速连接”。左侧是本地文件树，右侧是服务器文件树，双击进入目录，把文件在两侧之间拖拽即完成上传和下载。它适合传输零散文件和查看目录结构；批量的、要写进脚本的传输，还是命令行更可靠。</p>
+<p><code>scp</code> 的用法和 <code>cp</code> 类似，远处的那一份用“用户名@服务器:路径”表示：</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb9" data-book-role="code"><pre data-code-text="&quot;scp reads.fastq.gz meng@192.168.1.100:~/project/data/\nscp meng@192.168.1.100:~/project/results/volcano.pdf ./\nscp -r result_dir meng@192.168.1.100:~/project/results/&quot;" class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu">scp</span> reads.fastq.gz meng@192.168.1.100:~/project/data/</span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="fu">scp</span> meng@192.168.1.100:~/project/results/volcano.pdf ./</span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a><span class="fu">scp</span> <span class="at">-r</span> result_dir meng@192.168.1.100:~/project/results/</span></code></pre></div><button title="复制到剪贴板" class="code-copy-button"><i class="bi"></i></button></div>
+<p>第一行上传，第二行下载，第三行加 <code>-r</code> 递归传输整个目录。<code>rsync</code> 比 <code>scp</code> 更适合大目录和反复同步：它只传输有变化的部分，中断后重跑也不浪费。常用参数组合是 <code>-avP</code>：</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb10" data-book-role="code"><pre data-code-text="&quot;rsync -avP reads_dir/ meng@192.168.1.100:~/project/data/reads_dir/&quot;" class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="fu">rsync</span> <span class="at">-avP</span> reads_dir/ meng@192.168.1.100:~/project/data/reads_dir/</span></code></pre></div><button title="复制到剪贴板" class="code-copy-button"><i class="bi"></i></button></div>
+<p><code>-a</code> 保留权限和时间戳并递归处理目录，<code>-v</code> 显示过程，<code>-P</code> 显示进度并支持断点续传。这里有个容易踩的坑：</p>
+<div class="book-warning callout callout-style-default callout-warning callout-titled" title="注意｜路径末尾的斜杠">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">警告</span>注意｜路径末尾的斜杠
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p><code>rsync</code> 中，<code>reads_dir</code> 表示“这个目录本身”，<code>reads_dir/</code> 表示“目录里的内容”。源路径多一个斜杠，目标下的层级就会差一层。传完之后最好 <code>ls</code> 检查一下目标目录的结构是否符合预期，再删本地或旧的一份。</p>
+</div>
 </div>
 </section>
 <section id="src-0090-build-up-bioinfo-platform-13" class="level3">
 <h3 class="anchored" data-anchor-id="src-0090-build-up-bioinfo-platform-13">基本的linux操作</h3>
 <p><span id="src-0090-build-up-bioinfo-platform-15"></span></p>
 <p>登录服务器后，所有操作都在 Linux 命令行中完成。本节将围绕文件与文本的查找、查看、筛选和传递，介绍最常用的命令，以及路径、环境变量等基本概念。</p>
-<div class="book-placeholder">
-<p>本节内容待补充：将依据《Linux 十大常用命令》《Unix 十大实用命令》《Unix 十大高级命令》三份讲义重新编写。</p>
+<p>先熟悉命令行的样子。一行命令通常由三部分组成：命令名、选项和参数。例如 <code>ls -l ~/data</code> 中，<code>ls</code> 是命令，<code>-l</code> 是选项（列出详细信息），<code>~/data</code> 是参数（要列的目录）。Linux 严格区分大小写，命令一律小写。</p>
+<p>三个习惯能显著提高效率：按 <code>Tab</code> 键补全命令和路径，既快又不会拼错；按 <code>↑</code> 键翻出执行过的命令；<code>Ctrl+C</code> 中断当前正在运行的命令。用法记不清时，<code>man 命令名</code> 或 <code>命令 --help</code> 随时能查，例如 <code>man ls</code>。</p>
+<section id="topic-02-linux-files" class="level4">
+<h4 class="anchored" data-anchor-id="topic-02-linux-files">文件与目录</h4>
+<div id="tbl-02-environment-and-programming-03" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-tbl figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-02-environment-and-programming-03-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+表&nbsp;2.1: 文件与目录的常用命令
+</figcaption>
+<div aria-describedby="tbl-02-environment-and-programming-03-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div class="book-table-scroll" role="region" aria-label="表格，可横向滚动" tabindex="0"><table class="caption-top table">
+<thead>
+<tr class="header">
+<th style="text-align: left;">命令</th>
+<th style="text-align: left;">作用</th>
+<th>常用形式</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">pwd</td>
+<td style="text-align: left;">显示当前目录</td>
+<td>pwd</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">cd</td>
+<td style="text-align: left;">切换目录</td>
+<td>cd ~/data；cd .. 返回上级</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">ls</td>
+<td style="text-align: left;">列出目录内容</td>
+<td>ls -l 长格式；ls -a 含隐藏文件；ls -lh 大小易读</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">mkdir</td>
+<td style="text-align: left;">新建目录</td>
+<td>mkdir -p a/b/c 连建多级</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">rmdir</td>
+<td style="text-align: left;">删除空目录</td>
+<td>rmdir a</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">cp</td>
+<td style="text-align: left;">复制</td>
+<td>cp file.txt backup/；cp -r dir1 dir2 复制目录</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">mv</td>
+<td style="text-align: left;">移动或重命名</td>
+<td>mv old.txt new.txt</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">rm</td>
+<td style="text-align: left;">删除</td>
+<td>rm temp.txt；rm -r dir 删除目录</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">chmod</td>
+<td style="text-align: left;">修改权限</td>
+<td>chmod 755 run.sh</td>
+</tr>
+</tbody>
+</table></div>
 </div>
+</figure>
+</div>
+<p>路径的写法先约定好：<code>/</code> 开头是绝对路径，从根目录算起；不以 <code>/</code> 开头是相对路径，从当前目录算起。<code>~</code> 代表家目录，<code>.</code> 是当前目录，<code>..</code> 是上一级。文件名里的空格和中文在命令行中容易出问题，生信分析的文件名建议只用英文字母、数字、下划线和点。</p>
+<p>删除要格外小心：</p>
+<div class="book-warning callout callout-style-default callout-warning callout-titled" title="注意｜rm 没有回收站">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">警告</span>注意｜rm 没有回收站
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>命令行下的删除立即生效，没有回收站可以找回。<code>rm -r</code> 会连目录带内容一起删除，路径写错损失无法挽回。推荐两个习惯：删除前先用 <code>ls</code> 确认路径真实存在、指向预期的对象；拿不准时先用 <code>mv</code> 把待删内容移进一个 <code>trash/</code> 目录，确认无误后再统一清理。</p>
+</div>
+</div>
+<p>权限方面，Linux 给每个文件定义三类人（属主、属组、其他人），各有读 <code>r</code>、写 <code>w</code>、执行 <code>x</code> 三种权限。<code>chmod 755 run.sh</code> 用三位数字分别设置三类人的权限：7 = 4+2+1，即读写执行；5 = 4+1，即读和执行。脚本想用 <code>./run.sh</code> 直接运行，就需要有执行权限；更省事的做法是统一用 <code>bash run.sh</code> 执行，完全不用关心权限位。</p>
+</section>
+<section id="topic-02-linux-view" class="level4">
+<h4 class="anchored" data-anchor-id="topic-02-linux-view">查看文件内容</h4>
+<div id="tbl-02-environment-and-programming-04" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-tbl figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-02-environment-and-programming-04-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+表&nbsp;2.2: 查看与统计文件的常用命令
+</figcaption>
+<div aria-describedby="tbl-02-environment-and-programming-04-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div class="book-table-scroll" role="region" aria-label="表格，可横向滚动" tabindex="0"><table class="caption-top table">
+<thead>
+<tr class="header">
+<th style="text-align: left;">命令</th>
+<th style="text-align: left;">作用</th>
+<th>常用形式</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">cat</td>
+<td style="text-align: left;">一次性输出整个文件</td>
+<td>cat samples.tsv</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">less</td>
+<td style="text-align: left;">分页浏览大文件</td>
+<td>less run.log</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">head</td>
+<td style="text-align: left;">看文件开头</td>
+<td>head -n 20 counts.txt</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">tail</td>
+<td style="text-align: left;">看文件末尾</td>
+<td>tail -n 20 counts.txt</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">wc</td>
+<td style="text-align: left;">统计行数、词数、字节数</td>
+<td>wc -l counts.txt</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">diff</td>
+<td style="text-align: left;">比较两个文件的差异</td>
+<td>diff old.txt new.txt</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+</figure>
+</div>
+<p>生信数据文件常常大到不能直接打开。<code>cat</code> 适合小文件；大文件用 <code>less</code> 分页查看：空格键翻页，<code>b</code> 往回翻，<code>/关键词</code> 搜索，<code>q</code> 退出。<code>head</code> 和 <code>tail</code> 是确认文件内容的捷径——拿到新文件，先 <code>head</code> 看格式对不对；下载完大文件，<code>tail</code> 看结尾是否完整。<code>wc -l</code> 数行数，是检查“文件里到底有多少条记录”的最快方法，后面章节会反复用到。</p>
+</section>
+<section id="topic-02-linux-text" class="level4">
+<h4 class="anchored" data-anchor-id="topic-02-linux-text">文本的筛选与处理</h4>
+<p>这一组命令把文本当作流来加工，是命令行真正的核心。</p>
+<div id="tbl-02-environment-and-programming-05" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-tbl figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-02-environment-and-programming-05-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+表&nbsp;2.3: 筛选与处理文本的常用命令
+</figcaption>
+<div aria-describedby="tbl-02-environment-and-programming-05-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div class="book-table-scroll" role="region" aria-label="表格，可横向滚动" tabindex="0"><table class="caption-top table">
+<thead>
+<tr class="header">
+<th style="text-align: left;">命令</th>
+<th style="text-align: left;">作用</th>
+<th>常用形式</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">grep</td>
+<td style="text-align: left;">按模式筛选行</td>
+<td>grep SRR1 samples.tsv</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">cut</td>
+<td style="text-align: left;">按列截取字段</td>
+<td>cut -f 1,3 samples.tsv</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">sort</td>
+<td style="text-align: left;">排序</td>
+<td>sort -k2,2n counts.txt</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">uniq</td>
+<td style="text-align: left;">去除相邻的重复行</td>
+<td>sort names.txt | uniq -c</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">paste</td>
+<td style="text-align: left;">按列拼接</td>
+<td>paste names.txt values.txt</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">sed</td>
+<td style="text-align: left;">流编辑</td>
+<td>sed ‘s/,/g’ data.csv</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+</figure>
+</div>
+<p><code>grep</code> 负责找行：<code>grep control samples.tsv</code> 输出所有含 control 的行，<code>-v</code> 反选（排除匹配的行），<code>-i</code> 忽略大小写，<code>-n</code> 显示行号。<code>cut</code> 按列取字段，默认按制表符分隔（<code>-d</code> 可换分隔符），<code>-f 1,3</code> 取第 1、3 列。<code>sort</code> 默认按字典序，<code>-n</code> 按数值排，<code>-r</code> 逆序，<code>-k2,2n</code> 表示按第 2 列的数值排序。<code>uniq</code> 只合并相邻的重复行，所以总是跟在 <code>sort</code> 后面；<code>sort | uniq -c</code> 先排序再计数，是统计“每个值出现了多少次”的标准做法。<code>sed</code> 最常用的是替换：<code>sed 's/旧文本/新文本/g'</code>，结尾的 <code>g</code> 表示一行内全部替换。</p>
+<p>举个例子。samples.tsv 是一个样本表：每行一个样本，制表符分隔，共三列——样本名、分组、测序文件。统计对照组（control）有多少个样本、把所有样本名列出来，分别只需一条命令链：</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb11" data-book-role="code"><pre data-code-text="&quot;grep control samples.tsv | wc -l\ncut -f 1 samples.tsv | tail -n +2&quot;" class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="fu">grep</span> control samples.tsv <span class="kw">|</span> <span class="fu">wc</span> <span class="at">-l</span></span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="fu">cut</span> <span class="at">-f</span> 1 samples.tsv <span class="kw">|</span> <span class="fu">tail</span> <span class="at">-n</span> +2</span></code></pre></div><button title="复制到剪贴板" class="code-copy-button"><i class="bi"></i></button></div>
+<p>第二条里 <code>tail -n +2</code> 表示从第 2 行输出到结尾，正好用来去掉表头。</p>
+</section>
+<section id="topic-02-linux-pipe" class="level4">
+<h4 class="anchored" data-anchor-id="topic-02-linux-pipe">管道与重定向</h4>
+<div class="book-core callout callout-style-default callout-note callout-titled" title="核心知识｜管道：让每个程序只做一件事">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">注记</span>核心知识｜管道：让每个程序只做一件事
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>上面的例子里，竖线 <code>|</code> 把一个命令的输出直接送给下一个命令当输入，这就是管道（pipe）。Unix 的设计哲学是让每个程序把一件事做好，再用管道把它们串起来，组合出复杂的处理流程。重定向则把输出存进文件：<code>&gt;</code> 覆盖写入，<code>&gt;&gt;</code> 追加写入。</p>
+</div>
+</div>
+<p>把前面的命令串起来，完成一个小任务——统计样本表里各组的样本数，并保存成文件：</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb12" data-book-role="code"><pre data-code-text="&quot;cut -f 2 samples.tsv | tail -n +2 | sort | uniq -c &gt; group_count.txt&quot;" class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cut</span> <span class="at">-f</span> 2 samples.tsv <span class="kw">|</span> <span class="fu">tail</span> <span class="at">-n</span> +2 <span class="kw">|</span> <span class="fu">sort</span> <span class="kw">|</span> <span class="fu">uniq</span> <span class="at">-c</span> <span class="op">&gt;</span> group_count.txt</span></code></pre></div><button title="复制到剪贴板" class="code-copy-button"><i class="bi"></i></button></div>
+<p>这条命令链逐段是：取出第 2 列（分组），去掉表头，排序，计数，最后写入 <code>group_count.txt</code>。读命令链就从左到右一段一段看——这也是全书阅读分析命令的基本方法。</p>
+</section>
+<section id="topic-02-linux-archive" class="level4">
+<h4 class="anchored" data-anchor-id="topic-02-linux-archive">压缩、归档与查找</h4>
+<p>测序数据动辄几个 GB，传输和保存都离不开压缩。<code>tar</code> 把多个文件打成一个包，<code>gzip</code> 负责压缩，两者结合就是最常见的 <code>.tar.gz</code>：</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb13" data-book-role="code"><pre data-code-text="&quot;tar -czvf project.tar.gz project/\ntar -xzvf project.tar.gz\ngzip reads.fastq\ngunzip reads.fastq.gz&quot;" class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="fu">tar</span> <span class="at">-czvf</span> project.tar.gz project/</span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a><span class="fu">tar</span> <span class="at">-xzvf</span> project.tar.gz</span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a><span class="fu">gzip</span> reads.fastq</span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a><span class="fu">gunzip</span> reads.fastq.gz</span></code></pre></div><button title="复制到剪贴板" class="code-copy-button"><i class="bi"></i></button></div>
+<p><code>-c</code> 创建、<code>-x</code> 解开、<code>-z</code> 走 gzip、<code>-v</code> 显示过程、<code>-f</code> 指定文件名。测序数据更常见的 <code>.fastq.gz</code> 文件通常不必先解压，用 <code>zcat</code> 配合管道就能直接查看或送入下一步处理。</p>
+<p><code>find</code> 按条件递归查找文件：</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb14" data-book-role="code"><pre data-code-text="&quot;find . -name \&quot;*.fastq.gz\&quot; -type f&quot;" class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="fu">find</span> . <span class="at">-name</span> <span class="st">"*.fastq.gz"</span> <span class="at">-type</span> f</span></code></pre></div><button title="复制到剪贴板" class="code-copy-button"><i class="bi"></i></button></div>
+<p>从当前目录起找出所有 <code>fastq.gz</code> 文件，常与管道配合，把找到的文件交给下一步处理。<code>ln -s</code> 创建软链接（符号链接），给文件或目录起一个稳定的别名：</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb15" data-book-role="code"><pre data-code-text="&quot;ln -s /data/project/reads ~/reads&quot;" class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ln</span> <span class="at">-s</span> /data/project/reads ~/reads</span></code></pre></div><button title="复制到剪贴板" class="code-copy-button"><i class="bi"></i></button></div>
+<p>数据换目录时只需要重建链接，脚本里的路径不用改。</p>
+</section>
+<section id="topic-02-linux-process" class="level4">
+<h4 class="anchored" data-anchor-id="topic-02-linux-process">进程与会话</h4>
+<p>跑在服务器上的任务需要看得见、管得住。</p>
+<div id="tbl-02-environment-and-programming-06" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-tbl figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-02-environment-and-programming-06-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+表&nbsp;2.4: 进程与账户相关的常用命令
+</figcaption>
+<div aria-describedby="tbl-02-environment-and-programming-06-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div class="book-table-scroll" role="region" aria-label="表格，可横向滚动" tabindex="0"><table class="caption-top table">
+<thead>
+<tr class="header">
+<th style="text-align: left;">命令</th>
+<th style="text-align: left;">作用</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">ps aux</td>
+<td style="text-align: left;">查看所有进程</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">top</td>
+<td style="text-align: left;">动态查看 CPU、内存占用</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">w</td>
+<td style="text-align: left;">查看谁在登录、在做什么</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">kill PID</td>
+<td style="text-align: left;">结束指定进程</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">passwd</td>
+<td style="text-align: left;">修改自己的密码</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+</figure>
+</div>
+<p><code>ps aux</code> 列出全部进程；<code>top</code> 实时刷新资源占用，按 <code>q</code> 退出。卡住的任务先用这两条找到进程号（PID），再 <code>kill</code> 结束它。<code>w</code> 看当前有哪些人登录，<code>last</code> 看历史登录记录，服务器行为异常时它们是第一手线索。</p>
+<p>远程命令行还有个现实问题：本地断网或合上电脑，<code>ssh</code> 一断，正在跑的任务也跟着死掉。<code>tmux</code> 把会话保管在服务器上：</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb16" data-book-role="code"><pre data-code-text="&quot;tmux new -s mapping\ntmux detach\ntmux attach -t mapping&quot;" class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="ex">tmux</span> new <span class="at">-s</span> mapping</span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a><span class="ex">tmux</span> detach</span>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a><span class="ex">tmux</span> attach <span class="at">-t</span> mapping</span></code></pre></div><button title="复制到剪贴板" class="code-copy-button"><i class="bi"></i></button></div>
+<p>三条命令依次是：新建名为 mapping 的会话（脱离用 <code>Ctrl+B</code> 再按 <code>D</code>）、脱离会话、重新接回。脱离后任务继续在服务器上运行，下次登录 attach 回去就是原来的现场。跑比对、定量这类耗时任务前，先建 <code>tmux</code> 会话再启动，是服务器的标准工作习惯。</p>
+</section>
+<section id="topic-02-linux-env" class="level4">
+<h4 class="anchored" data-anchor-id="topic-02-linux-env">环境变量</h4>
+<p>环境变量是 shell 里带名字的全局值，习惯上全大写。最常用的一个叫 <code>PATH</code>：</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb17" data-book-role="code"><pre data-code-text="&quot;echo $PATH&quot;" class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="bu">echo</span> <span class="va">$PATH</span></span></code></pre></div><button title="复制到剪贴板" class="code-copy-button"><i class="bi"></i></button></div>
+<p><code>PATH</code> 是一串用冒号隔开的目录。你输入一个命令时，shell 就按顺序在这些目录里找同名程序——这就是为什么装好的软件有时会 <code>command not found</code>：它所在的目录不在 <code>PATH</code> 里。安装 Anaconda 时选择初始化（init），其实就是往 <code>~/.bashrc</code> 里写了一段把 conda 目录加入 <code>PATH</code> 的配置。</p>
+<p>自己也可以设置环境变量：<code>export EDITOR=vim</code> 只在当前会话有效；要长期生效，就把这行写进 <code>~/.bashrc</code>，再 <code>source ~/.bashrc</code> 重新加载。<code>~/.bashrc</code> 是每次启动 shell 都会执行的配置文件，软件安装器都往里追加内容——环境出问题时先读它，多一分把握。</p>
+</section>
 </section>
 <section id="sec-02-03" class="level3">
 <h3 class="anchored" data-anchor-id="sec-02-03">Shell 脚本与批量处理</h3>
 <p>将单条命令组织为可检查的批处理。</p>
-<div class="book-placeholder">
-<p>本节内容待补充。</p>
+<p>分析中大量重复的操作，不该一条条手敲。把命令按顺序写进一个文件，交给 <code>bash</code> 执行，就是 Shell 脚本。它最大的价值不是省事，而是把分析过程变成可以检查、可以重跑、可以交给别人复核的文字记录。</p>
+<div class="book-core callout callout-style-default callout-note callout-titled" title="核心知识｜脚本是分析过程的可核查记录">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
 </div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">注记</span>核心知识｜脚本是分析过程的可核查记录
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>命令行的历史留在终端里，脚本把每一步固化成文件。配合本章最后的版本管理，任何人——包括 AI agent 和几个月后的你——都能逐行检查分析做了什么、为什么这样做。这正是 AI 时代做分析需要的判断力基础。</p>
+</div>
+</div>
+<p>新建 <code>run_fastqc.sh</code>，写入下面的内容：</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb18" data-book-role="code"><pre data-code-text="&quot;#!/bin/bash\nset -e\n# 为 data 目录下的所有 fastq.gz 文件运行质控\nfor fq in data/*.fastq.gz; do\n    echo \&quot;正在处理 $fq\&quot;\n    fastqc \&quot;$fq\&quot; --outdir results/fastqc/\ndone\necho \&quot;全部完成\&quot;&quot;" class="sourceCode numberSource bash numberLines code-with-copy"><code class="sourceCode bash"><span id="cb18-1"><a href="#cb18-1"></a><span class="co">#!/bin/bash</span></span>
+<span id="cb18-2"><a href="#cb18-2"></a><span class="bu">set</span> <span class="at">-e</span></span>
+<span id="cb18-3"><a href="#cb18-3"></a><span class="co"># 为 data 目录下的所有 fastq.gz 文件运行质控</span></span>
+<span id="cb18-4"><a href="#cb18-4"></a><span class="cf">for</span> fq <span class="kw">in</span> data/<span class="pp">*</span>.fastq.gz<span class="kw">;</span> <span class="cf">do</span></span>
+<span id="cb18-5"><a href="#cb18-5"></a>    <span class="bu">echo</span> <span class="st">"正在处理 </span><span class="va">$fq</span><span class="st">"</span></span>
+<span id="cb18-6"><a href="#cb18-6"></a>    <span class="ex">fastqc</span> <span class="st">"</span><span class="va">$fq</span><span class="st">"</span> <span class="at">--outdir</span> results/fastqc/</span>
+<span id="cb18-7"><a href="#cb18-7"></a><span class="cf">done</span></span>
+<span id="cb18-8"><a href="#cb18-8"></a><span class="bu">echo</span> <span class="st">"全部完成"</span></span></code></pre></div><button title="复制到剪贴板" class="code-copy-button"><i class="bi"></i></button></div>
+<p>逐行看：第 1 行 <code>#!/bin/bash</code> 声明用 <code>bash</code> 解释执行；<code>#</code> 开头的是注释，写清楚脚本做什么；<code>set -e</code> 让任何一条命令出错就立即停止，避免错误被后面的步骤掩盖；<code>for</code> 循环把 <code>data/</code> 下每个 <code>fastq.gz</code> 文件依次赋给变量 <code>fq</code>，<code>$fq</code> 取出变量的值，拼接后缀时推荐写成 <code>${fq}</code>，不会有歧义；<code>echo</code> 输出进度，让你随时知道脚本跑到哪一步。</p>
+<p>执行脚本：</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb19" data-book-role="code"><pre data-code-text="&quot;bash run_fastqc.sh&quot;" class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="fu">bash</span> run_fastqc.sh</span></code></pre></div><button title="复制到剪贴板" class="code-copy-button"><i class="bi"></i></button></div>
+<p>也可以先 <code>chmod +x run_fastqc.sh</code> 加执行权限，再 <code>./run_fastqc.sh</code> 运行，效果相同。入门阶段统一用 <code>bash</code> 运行即可，少关心一件事。</p>
+<p>脚本还可以接收参数：<code>$1</code>、<code>$2</code> 依次是执行时跟在脚本名后的第一、第二个参数。例如把单个文件的质控写成 <code>check_one.sh</code>：</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb20" data-book-role="code"><pre data-code-text="&quot;fastqc \&quot;$1\&quot; --outdir results/fastqc/&quot;" class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="ex">fastqc</span> <span class="st">"</span><span class="va">$1</span><span class="st">"</span> <span class="at">--outdir</span> results/fastqc/</span></code></pre></div><button title="复制到剪贴板" class="code-copy-button"><i class="bi"></i></button></div>
+<p>用 <code>bash check_one.sh data/S1.fastq.gz</code> 就能质控任意指定的文件。同一段处理逻辑要在不同数据上反复使用时，参数化比复制整个脚本再改名干净得多。</p>
+<p>两个习惯值得从第一天养成：每个脚本开头写两三行注释，说明用途、输入和输出；先在小数据上跑通，确认无误再放大到全部样本。脚本是给别人看的，也是给几个月后的自己看的——AI agent 读它、改它，同样依赖这些注释和清晰的结构。</p>
 </section>
-<section id="src-0090-build-up-bioinfo-platform-209" class="level3">
-<h3 class="anchored" data-anchor-id="src-0090-build-up-bioinfo-platform-209">软件环境的配置</h3>
-<p>在服务器上安装软件有两层选择：系统包管理器适合快速安装常见工具，conda 则适合生信软件和多版本环境隔离。Red Hat 系发行版对应的包管理命令是 dnf，用法与 apt 相近，本书以 Ubuntu 为例。</p>
-<section id="src-0090-build-up-bioinfo-platform-25" class="level4">
-<h4 class="anchored" data-anchor-id="src-0090-build-up-bioinfo-platform-25">用 apt 安装软件</h4>
+<section id="topic-02-vscode-remote" class="level3">
+<h3 class="anchored" data-anchor-id="topic-02-vscode-remote">使用vscode连接</h3>
+<p>VS Code 的 Remote-SSH 扩展可以把远端服务器变成本地开发环境：在本地编辑器中直接打开服务器上的目录，文件树、终端和代码补全都在本地呈现，修改实时同步到服务器。对习惯图形界面的读者，这是比纯命令行更友好的工作方式。</p>
+<p>安装与连接的完整步骤如下。</p>
+<ol type="1">
+<li>从官网 code.visualstudio.com 下载并安装 VS Code，安装选项保持默认。</li>
+<li>打开 VS Code，进入扩展面板（左侧栏四个方块图标，快捷键 Ctrl+Shift+X），搜索 Remote - SSH，点击 Install 安装。</li>
+<li>按 <code>F1</code>（或 <code>Ctrl+Shift+P</code>）打开命令面板，输入 Remote-SSH，选择 <code>Remote-SSH: Connect to Host</code> → <code>Add New SSH Host</code>，输入例如 <code>meng@192.168.1.100</code>。</li>
+<li>再次执行 <code>Remote-SSH: Connect to Host</code>，选择刚添加的主机，会新开一个窗口，按提示输入密码（配置过密钥登录则直接连上）。</li>
+<li>连接后选择 File → Open Folder，打开服务器上的项目目录（例如 <code>~/project</code>），左侧文件树显示的就是服务器上的文件。</li>
+</ol>
+<p>连接成功后，窗口左下角会显示绿色的 SSH: 主机名。之后新建、编辑、保存文件都直接作用于服务器；按 <code>Ctrl+`</code> 打开的集成终端也是服务器上的 Shell，与 <code>ssh</code> 登录后的环境完全一致。编辑本地脚本再用 <code>scp</code> 传上去的往返流程，从此可以省去。</p>
+<p>上面第 3 步添加的主机实际写入了 <code>~/.ssh/config</code> 文件；反过来，<code>config</code> 里已有的 <code>Host</code> 别名（例如上一节的 <code>lab</code>）会直接出现在 <code>Connect to Host</code> 的候选列表里。装好密钥登录再使用 Remote-SSH，体验最顺。</p>
+</section>
+</section>
+<section id="sec-02-server-software" class="level2" data-number="2.3">
+<h2 data-number="2.3" class="anchored" data-anchor-id="sec-02-server-software"><span class="header-section-number">2.3</span> 在服务器安装软件</h2>
+<p><span id="src-0090-build-up-bioinfo-platform-209"></span></p>
+<p>软件安装是配置服务器的主要工作。Linux 各发行版都自带包管理器：Ubuntu、Debian 一系用 <code>apt</code>，Red Hat 一系（Rocky Linux、AlmaLinux 等）用 <code>dnf</code>，命令名不同、用法相近，都是“刷新索引、搜索、安装”三板斧。本书的服务器以 Ubuntu 为例，其他发行版对照使用即可。</p>
+<section id="src-0090-build-up-bioinfo-platform-25" class="level3">
+<h3 class="anchored" data-anchor-id="src-0090-build-up-bioinfo-platform-25">用 apt 安装软件</h3>
 <p>apt（Advanced Packaging Tool）是Debian系Linux发行版的默认包管理工具，用于对包括系统本身在内的升级、安装等管理操作。</p>
-<p>Ubuntu 的官方源中收录了不少常用生信软件，例如 <code>samtools</code>、<code>bwa</code>、<code>bedtools</code> 等，一条 <code>apt install</code> 命令即可完成安装，无需手动编译。不过官方源里的版本通常偏旧、更新较慢，而且需要管理员权限；遇到版本太旧或没有收录的软件，就轮到下文的 conda 出场。</p>
-<section id="topic-02-31" class="level5">
-<h5 class="anchored" data-anchor-id="topic-02-31">apt和apt-get命令</h5>
+<p>Ubuntu 的官方源中收录了不少常用生信软件，例如 <code>samtools</code>、<code>bwa</code>、<code>bedtools</code> 等，一条 <code>apt install</code> 命令即可完成安装，无需手动编译。不过官方源里的版本通常偏旧、更新较慢，而且需要管理员权限；遇到版本太旧或没有收录的软件，就轮到下一节的 conda 出场。</p>
+<div class="book-example callout callout-style-default callout-tip callout-titled" title="示例与练习｜用 apt 安装 R">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">提示</span>示例与练习｜用 apt 安装 R
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>以 R 语言为例，两条命令即可完成安装（需要管理员权限，命令前加 <code>sudo</code>）：</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb21" data-book-role="code"><pre data-code-text="&quot;sudo apt update\nsudo apt install r-base&quot;" class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sudo</span> apt update</span>
+<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a><span class="fu">sudo</span> apt install r-base</span></code></pre></div><button title="复制到剪贴板" class="code-copy-button"><i class="bi"></i></button></div>
+<p>第一条刷新软件源索引——<code>apt</code> 的惯例是安装前先 <code>update</code>，让它知道各软件的最新版本；第二条安装 R 本体。装完确认版本：</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb22" data-book-role="code"><pre data-code-text="&quot;R --version&quot;" class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="ex">R</span> <span class="at">--version</span></span></code></pre></div><button title="复制到剪贴板" class="code-copy-button"><i class="bi"></i></button></div>
+<p>看到版本号输出，安装就完成了。Ubuntu 源里同样收录了 <code>r-bioc-*</code> 系列的 Bioconductor 包，但版本随发行版固定；需要新版 R 或最新的 R 包时，再考虑下一节的 conda。</p>
+</div>
+</div>
+<section id="topic-02-31" class="level4">
+<h4 class="anchored" data-anchor-id="topic-02-31">apt和apt-get命令</h4>
 <p><code>apt</code>是2014年正式发布的新的apt包管理工具的命令，相较于<code>apt-get</code>系列命令它更为简洁易用。</p>
 <div id="tbl-02-environment-and-programming-01" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-tbl figure">
 <figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-02-environment-and-programming-01-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-表&nbsp;2.1: apt 取代的 apt-get 系列命令
+表&nbsp;2.5: apt 取代的 apt-get 系列命令
 </figcaption>
 <div aria-describedby="tbl-02-environment-and-programming-01-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <div class="book-table-scroll" role="region" aria-label="表格，可横向滚动" tabindex="0"><table class="caption-top table">
@@ -950,7 +1338,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div id="tbl-02-environment-and-programming-02" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-tbl figure">
 <figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-02-environment-and-programming-02-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-表&nbsp;2.2: 新的 apt 命令
+表&nbsp;2.6: 新的 apt 命令
 </figcaption>
 <div aria-describedby="tbl-02-environment-and-programming-02-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <div class="book-table-scroll" role="region" aria-label="表格，可横向滚动" tabindex="0"><table class="caption-top table">
@@ -975,8 +1363,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </figure>
 </div>
 </section>
-<section id="topic-02-56" class="level5">
-<h5 class="anchored" data-anchor-id="topic-02-56">apt镜像设置</h5>
+<section id="topic-02-56" class="level4">
+<h4 class="anchored" data-anchor-id="topic-02-56">apt镜像设置</h4>
 <p>apt默认的镜像在国内的访问速度是较慢的，所以设置一个国内的镜像是必要的。这里推荐北京外国语大学的开源软件站。其帮助信息完善，例如Ubuntu的<a href="https://mirrors.bfsu.edu.cn/help/ubuntu/">镜像设置帮助文档</a>。</p>
 <p>可以在文档中选择你具体使用的Ubuntu版本以获取对应的软件源地址。备份原先的软件源配置文件后即可更改配置文件。修改完成后执行<code>sudo apt update</code>命令刷新索引即可生效。</p>
 <div id="fig-02-computing-and-programming-001" class="quarto-float quarto-figure quarto-figure-center anchored">
@@ -985,14 +1373,18 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <img src="../assets/02-computing-and-programming/001-4bcc5c9c-49e7-465a-91f8-4e1ed8512e7c.png" class="img-fluid figure-img">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-02-computing-and-programming-001-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-图&nbsp;2.5: 图题待补
+图&nbsp;2.5: 北外镜像站的 Ubuntu 软件源帮助页面：选择系统版本后即可获得对应的 <code>sources.list</code> 配置
 </figcaption>
 </figure>
 </div>
 </section>
 </section>
-<section id="topic-02-conda-bioconda" class="level4">
-<h4 class="anchored" data-anchor-id="topic-02-conda-bioconda">conda 与 Bioconda</h4>
+</section>
+<section id="sec-02-conda" class="level2" data-number="2.4">
+<h2 data-number="2.4" class="anchored" data-anchor-id="sec-02-conda"><span class="header-section-number">2.4</span> conda 与 Bioconda</h2>
+<p>系统包管理器之外，生信分析还需要一个能装大量生信软件、能为不同项目隔离环境的工具，这就是 conda。</p>
+<section id="topic-02-conda-bioconda" class="level3">
+<h3 class="anchored" data-anchor-id="topic-02-conda-bioconda">conda 与 Bioconda</h3>
 <div class="book-core callout callout-style-default callout-note callout-titled" title="核心知识｜Anaconda、conda 与 Bioconda">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -1007,32 +1399,35 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 <p>在你已经添加了相应软件源的情况下，安装包只要用下面的命令即可(这里演示的是IPython的安装)。</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5" data-book-role="code"><pre data-code-text="&quot;conda install ipython&quot;" class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="ex">conda</span> install ipython</span></code></pre></div><button title="复制到剪贴板" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb23" data-book-role="code"><pre data-code-text="&quot;conda install ipython&quot;" class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="ex">conda</span> install ipython</span></code></pre></div><button title="复制到剪贴板" class="code-copy-button"><i class="bi"></i></button></div>
 <p>conda默认会从Anaconda公司的官方服务器下载模块，而且默认只有官方defaults源一个。其他常用源像conda-forge和Bioconda也需要用户自己添加。另外，官方defaults源对较大规模机构（200人以上）的商业使用有授权限制，社区目前的普遍做法是优先使用完全开放的conda-forge源。这个时候手动添加常用源的国内镜像就十分有必要。</p>
 </section>
-<section id="src-0090-build-up-bioinfo-platform-221" class="level4">
-<h4 class="anchored" data-anchor-id="src-0090-build-up-bioinfo-platform-221">Anaconda的安装</h4>
-<p>这些镜像网站本身也会提供Anaconda的安装包。直接从镜像站下载安装包就免去官网下载可能的卡顿。需要特别提到的是，镜像站除了提供标准版的Anaconda安装包外还会提供Miniconda的安装包。这是一个精简的版本，体积相比标准版要小不少，只包括Python和conda管理器，包需要自行通过<code>conda</code>和<code>pip</code>安装。在一些磁盘有限的情况下可以选择Miniconda。此外还有社区维护的Miniforge发行版：默认使用conda-forge源并自带mamba，安装后开箱即用，近年来越来越多人直接以它作为安装入口。</p>
+<section id="src-0090-build-up-bioinfo-platform-221" class="level3">
+<h3 class="anchored" data-anchor-id="src-0090-build-up-bioinfo-platform-221">Anaconda的安装</h3>
+<p>这些镜像网站本身也会提供Anaconda的安装包。直接从镜像站下载安装包就免去官网下载可能的卡顿。需要特别提到的是，镜像站除了提供标准版的Anaconda安装包外还会提供Miniconda的安装包。这是一个精简的版本，体积相比标准版要小不少，只包括Python和conda管理器，包需要自行通过<code>conda</code>和<code>pip</code>安装。在一些磁盘有限的情况下可以选择Miniconda。此外还有社区维护的Miniforge发行版：默认使用conda-forge源，安装后开箱即用，近年来越来越多人直接以它作为安装入口。</p>
 <p>Anaconda给Mac提供的是pkg和sh安装包，给Windows提供的是exe安装包，而给Linux只提供sh安装包。pkg和exe双击安装即可，而sh安装包需要通过命令行执行，即使通过图形界面启动sh安装包，很多设置也要在随之启动的终端下进行。</p>
 <p>在这里也要特别提醒的是pkg和exe安装过程中会有一步让你设置是否要将Anaconda的路径加入到环境变量中，建议勾上（安装器默认不勾选，官方更推荐从开始菜单中的Anaconda专用终端启动，两种方式都可用）。而sh安装的最后一步也会询问是否进行初始化（init），要记得输入<code>yes</code>。这些选上之后，只要重启终端环境变量即可生效，就可以正常使用conda管理和相关的包。</p>
 </section>
-<section id="src-0090-build-up-bioinfo-platform-229" class="level4">
-<h4 class="anchored" data-anchor-id="src-0090-build-up-bioinfo-platform-229">Anaconda镜像的设置</h4>
+<section id="src-0090-build-up-bioinfo-platform-229" class="level3">
+<h3 class="anchored" data-anchor-id="src-0090-build-up-bioinfo-platform-229">Anaconda镜像的设置</h3>
 <p>目前国内最完善的公开Anaconda镜像就是清华大学的<a href="https://mirrors.tuna.tsinghua.edu.cn/anaconda/">TUNA镜像</a>。不过国内部分地区访问清华大学镜像有时候不稳定，可以考虑使用北京外国语大学的镜像，其<a href="https://mirrors.bfsu.edu.cn/help/anaconda/">帮助页面</a>内容由运行维护该站的清华大学TUNA协会同步维护，与清华源基本保持一致，但访问的稳定性很多时候更为优秀。帮助信息提到的存放<code>.condarc</code>配置文件的用户目录，在Linux下使用<code>cd ~</code>命令进入；在Windows下使用<code>cd $env:USERPROFILE</code>命令进入，或者在资源管理器地址栏输入<code>%USERPROFILE%</code>后回车进入。</p>
 <p>我们依然推荐你通过上面的链接详细查阅他们的帮助信息，写入在<code>custom_channels</code>范围的镜像地址在使用时只有指定<code>-c</code>参数才会生效。例如如果按帮助页面的信息设置Anaconda配置文件，使用<code>conda install seqkit</code>命令会安装失败，需要使用<code>conda install -c bioconda seqkit</code>命令。</p>
-<div id="fig-02-computing-and-programming-014" class="quarto-float quarto-figure quarto-figure-center anchored">
-<figure class="quarto-float quarto-float-fig figure">
-<div aria-describedby="fig-02-computing-and-programming-014-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="../assets/02-computing-and-programming/014-b2a4b20d-cbc1-451d-aa93-760b5274fe37.png" class="img-fluid figure-img">
-</div>
-<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-02-computing-and-programming-014-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-图&nbsp;2.6: 图题待补
-</figcaption>
-</figure>
-</div>
+<p>按北外镜像帮助页面的推荐，在家目录下创建或编辑 <code>.condarc</code> 文件，写入下面的内容：</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb24" data-book-role="data" data-code-title="~/.condarc"><pre data-code-text="&quot;channels:\n  - defaults\nshow_channel_urls: true\ndefault_channels:\n  - https://mirrors.bfsu.edu.cn/anaconda/pkgs/main\n  - https://mirrors.bfsu.edu.cn/anaconda/pkgs/r\n  - https://mirrors.bfsu.edu.cn/anaconda/pkgs/msys2\ncustom_channels:\n  conda-forge: https://mirrors.bfsu.edu.cn/anaconda/cloud\n  pytorch: https://mirrors.bfsu.edu.cn/anaconda/cloud&quot;" class="sourceCode yaml code-with-copy"><code class="sourceCode yaml"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="fu">channels</span><span class="kw">:</span></span>
+<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="kw">-</span><span class="at"> defaults</span></span>
+<span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a><span class="fu">show_channel_urls</span><span class="kw">:</span><span class="at"> </span><span class="ch">true</span></span>
+<span id="cb24-4"><a href="#cb24-4" aria-hidden="true" tabindex="-1"></a><span class="fu">default_channels</span><span class="kw">:</span></span>
+<span id="cb24-5"><a href="#cb24-5" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="kw">-</span><span class="at"> https://mirrors.bfsu.edu.cn/anaconda/pkgs/main</span></span>
+<span id="cb24-6"><a href="#cb24-6" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="kw">-</span><span class="at"> https://mirrors.bfsu.edu.cn/anaconda/pkgs/r</span></span>
+<span id="cb24-7"><a href="#cb24-7" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="kw">-</span><span class="at"> https://mirrors.bfsu.edu.cn/anaconda/pkgs/msys2</span></span>
+<span id="cb24-8"><a href="#cb24-8" aria-hidden="true" tabindex="-1"></a><span class="fu">custom_channels</span><span class="kw">:</span></span>
+<span id="cb24-9"><a href="#cb24-9" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">conda-forge</span><span class="kw">:</span><span class="at"> https://mirrors.bfsu.edu.cn/anaconda/cloud</span></span>
+<span id="cb24-10"><a href="#cb24-10" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">pytorch</span><span class="kw">:</span><span class="at"> https://mirrors.bfsu.edu.cn/anaconda/cloud</span></span></code></pre></div><button title="复制到剪贴板" class="code-copy-button"><i class="bi"></i></button></div>
+<p><code>default_channels</code> 把 <code>defaults</code> 源的几个频道指到北外镜像，<code>custom_channels</code> 把 <code>conda-forge</code> 等频道指向镜像站的 <code>cloud</code> 目录。如果你只用 conda-forge，帮助页面还提供一个更精简的版本：<code>channels</code> 只留 <code>conda-forge</code> 并加一行 <code>nodefaults</code>，不再依赖 <code>defaults</code> 源。修改配置后执行一次 <code>conda clean -i</code> 清除缓存的源索引，新镜像即可生效。</p>
+<p>Bioconda 频道不在上面这份配置的 <code>channels</code> 列表里——这正是前面 <code>-c bioconda</code> 的由来。想让 bioconda 成为默认频道，可以在 <code>channels</code> 里按 <code>conda-forge</code>、<code>bioconda</code>、<code>defaults</code> 的顺序逐行加入（conda 从上往下按优先级查找），也可以始终用 <code>-c</code> 显式指定，效果相同。</p>
 </section>
-<section id="src-0090-build-up-bioinfo-platform-237" class="level4">
-<h4 class="anchored" data-anchor-id="src-0090-build-up-bioinfo-platform-237">Anaconda环境的管理</h4>
+<section id="src-0090-build-up-bioinfo-platform-237" class="level3">
+<h3 class="anchored" data-anchor-id="src-0090-build-up-bioinfo-platform-237">Anaconda环境的管理</h3>
 <div class="book-core callout callout-style-default callout-note callout-titled" title="核心知识｜为不同项目隔离环境">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -1046,39 +1441,35 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>为了防止不同的依赖之间相互冲突造成bug，除了最核心的常用组件，通常会为了每一类项目单独建立一个独立的环境。使得不同项目之间的模块可以版本不同。比如有时需要不同版本的Python或者R。</p>
 </div>
 </div>
-<section id="topic-02-329" class="level5">
-<h5 class="anchored" data-anchor-id="topic-02-329">创建环境</h5>
+<section id="topic-02-329" class="level4">
+<h4 class="anchored" data-anchor-id="topic-02-329">创建环境</h4>
 <p>你可以指定环境的名称，后面再指定环境中要安装的一个或几个包及其版本，也可以只有名称没有其他参数。这时新建的环境里就不会预装任何包</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb6" data-book-role="code"><pre data-code-text="&quot;conda create -n py3 python=3.12&quot;" class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="ex">conda</span> create <span class="at">-n</span> py3 python=3.12</span></code></pre></div><button title="复制到剪贴板" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb25" data-book-role="code"><pre data-code-text="&quot;conda create -n py3 python=3.12&quot;" class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="ex">conda</span> create <span class="at">-n</span> py3 python=3.12</span></code></pre></div><button title="复制到剪贴板" class="code-copy-button"><i class="bi"></i></button></div>
 <p>指定环境名称的创建方式会把环境相关文件放在Anaconda的安装目录下，但是有时候你需要将环境相关文件放在指定的路径。这个时候你就可以通过<code>-p</code>参数来指定conda环境的路径。比如下面就是一个指定环境目录为<code>/home/test_conda</code>并指定环境中的Python版本号为3.12的例子。</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb7" data-book-role="code"><pre data-code-text="&quot;conda create -p /home/test_conda python=3.12&quot;" class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="ex">conda</span> create <span class="at">-p</span> /home/test_conda python=3.12</span></code></pre></div><button title="复制到剪贴板" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb26" data-book-role="code"><pre data-code-text="&quot;conda create -p /home/test_conda python=3.12&quot;" class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="ex">conda</span> create <span class="at">-p</span> /home/test_conda python=3.12</span></code></pre></div><button title="复制到剪贴板" class="code-copy-button"><i class="bi"></i></button></div>
+<p>环境建好后用 <code>conda activate py3</code> 进入——装包、跑程序都在这个环境里进行；<code>conda deactivate</code> 退出，<code>conda env list</code> 随时查看已建了哪些环境。进入环境后，提示符前会多出 <code>(py3)</code>，看到它就知道自己身在哪个环境。</p>
 </section>
-<section id="topic-02-345" class="level5">
-<h5 class="anchored" data-anchor-id="topic-02-345">删除环境</h5>
+<section id="topic-02-345" class="level4">
+<h4 class="anchored" data-anchor-id="topic-02-345">删除环境</h4>
 <p>我们同样可以通过参数来指定特定名称或路径的环境。</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb8" data-book-role="code"><pre data-code-text="&quot;conda remove -n py3 --all\nconda remove -p /home/test_conda --all&quot;" class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="ex">conda</span> remove <span class="at">-n</span> py3 <span class="at">--all</span></span>
-<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="ex">conda</span> remove <span class="at">-p</span> /home/test_conda <span class="at">--all</span></span></code></pre></div><button title="复制到剪贴板" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb27" data-book-role="code"><pre data-code-text="&quot;conda remove -n py3 --all\nconda remove -p /home/test_conda --all&quot;" class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="ex">conda</span> remove <span class="at">-n</span> py3 <span class="at">--all</span></span>
+<span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a><span class="ex">conda</span> remove <span class="at">-p</span> /home/test_conda <span class="at">--all</span></span></code></pre></div><button title="复制到剪贴板" class="code-copy-button"><i class="bi"></i></button></div>
 </section>
 </section>
-<section id="src-0090-build-up-bioinfo-platform-264" class="level4">
-<h4 class="anchored" data-anchor-id="src-0090-build-up-bioinfo-platform-264">mamba</h4>
-<p>本书在这里还要特别提到一个C++实现的conda包管理器：mamba。早期conda最大的痛点是经典求解器计算依赖和扫描各个源的速度都较慢，已安装的包较多时安装过程会明显变慢。mamba通过C++实现加上计算依赖和扫描源时的多线程并行，把这一过程缩短了一个数量级。正因如此，conda官方从23.10版起把与mamba同源的libmamba作为默认求解器，现在直接使用conda通常已经足够快。如果你仍想要独立的mamba命令（例如使用自带mamba的Miniforge），只需把命令中的<code>conda</code>替换成<code>mamba</code>，用法完全一致。</p>
-<p>安装mamba也很方便，直接通过<code>conda install -c conda-forge mamba</code>命令即可。mamba团队近年还推出了面向项目的新工具pixi，有兴趣可以关注，但不是入门必需。</p>
-<div class="book-placeholder">
-<p>本节内容待补充。</p>
-</div>
+<section id="src-0090-build-up-bioinfo-platform-264" class="level3">
+<h3 class="anchored" data-anchor-id="src-0090-build-up-bioinfo-platform-264">Micromamba</h3>
+<p>早期 conda 最大的痛点是经典求解器计算依赖和扫描各个源的速度都较慢，已安装的包较多时安装过程会明显变慢。Micromamba 用 C++ 重写了这一过程，再加上多线程并行，速度提升了一个数量级；conda 官方从 23.10 版起也把同源的 libmamba 作为默认求解器，所以现在直接使用 <code>conda</code> 通常已经够快。</p>
+<p>Micromamba 的独特之处在于它是单个静态可执行文件：不依赖 Python、不依赖 conda，也不需要管理员权限。在服务器上没有装 Anaconda、或者没有 root 权限时，它是搭生信环境最省事的入口；容器和集群环境中也大量使用它。官方安装脚本一条命令即可完成（macOS 也可以 <code>brew install micromamba</code>）：</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb28" data-book-role="code"><pre data-code-text="&quot;\&quot;${SHELL}\&quot; &lt;(curl -L micro.mamba.pm)&quot;" class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="st">"</span><span class="va">${SHELL}</span><span class="st">"</span> <span class="op">&lt;(</span><span class="ex">curl</span> <span class="at">-L</span> micro.mamba.pm<span class="op">)</span></span></code></pre></div><button title="复制到剪贴板" class="code-copy-button"><i class="bi"></i></button></div>
+<p>脚本会把可执行文件安装到 <code>~/.local/bin</code>（确认它在 <code>PATH</code> 中即可），并自动配置好 shell 集成；重新打开终端就能使用 <code>micromamba</code> 命令，环境默认存放在 <code>~/micromamba</code>。也可以从项目的 <a href="https://github.com/mamba-org/micromamba-releases">releases 页面</a>直接下载单文件。</p>
+<p>它的用法与 <code>conda</code> 几乎一致，把命令名换掉即可；软件源同样读取 <code>~/.condarc</code>，上一节的镜像配置直接生效。例如创建一个装有 fastqc 和 seqkit 的环境并进入：</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb29" data-book-role="code"><pre data-code-text="&quot;micromamba create -n bio -c conda-forge -c bioconda fastqc seqkit\nmicromamba activate bio&quot;" class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="ex">micromamba</span> create <span class="at">-n</span> bio <span class="at">-c</span> conda-forge <span class="at">-c</span> bioconda fastqc seqkit</span>
+<span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a><span class="ex">micromamba</span> activate bio</span></code></pre></div><button title="复制到剪贴板" class="code-copy-button"><i class="bi"></i></button></div>
+<p>项目开源在 <a href="https://github.com/mamba-org/mamba">GitHub</a>，完整文档见 <a href="https://mamba.readthedocs.io/">mamba.readthedocs.io</a>。</p>
 </section>
 </section>
-<section id="topic-02-vscode-remote" class="level3">
-<h3 class="anchored" data-anchor-id="topic-02-vscode-remote">使用vscode连接</h3>
-<p>VS Code 的 Remote-SSH 扩展可以把远端服务器变成本地开发环境：在本地编辑器中直接打开服务器上的目录，文件树、终端和代码补全都在本地呈现，修改实时同步到服务器。对习惯图形界面的读者，这是比纯命令行更友好的工作方式。</p>
-<div class="book-placeholder">
-<p>本节内容待补充：Remote-SSH 的安装、配置与连接示例。</p>
-</div>
-</section>
-</section>
-<section id="sec-02-04" class="level2" data-number="2.3">
-<h2 data-number="2.3" class="anchored" data-anchor-id="sec-02-04"><span class="header-section-number">2.3</span> R 数据处理与绘图基础</h2>
+<section id="sec-02-04" class="level2" data-number="2.5">
+<h2 data-number="2.5" class="anchored" data-anchor-id="sec-02-04"><span class="header-section-number">2.5</span> R 数据处理与绘图基础</h2>
 <p>具备阅读差异分析代码和处理结果表的能力。</p>
 <section id="src-0090-build-up-bioinfo-platform-300" class="level3">
 <h3 class="anchored" data-anchor-id="src-0090-build-up-bioinfo-platform-300">R and Rstudio</h3>
@@ -1092,7 +1483,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <img src="../assets/02-computing-and-programming/015-68cfe7a0-c604-448b-ba4e-b5d4d7662919.png" class="img-fluid figure-img">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-02-computing-and-programming-015-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-图&nbsp;2.7: 图题待补
+图&nbsp;2.6: CRAN 的 R 下载页面：按操作系统选择安装入口
 </figcaption>
 </figure>
 </div>
@@ -1102,17 +1493,17 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <img src="../assets/02-computing-and-programming/016-5ec3d53f-9a6b-46f4-978c-25d005b35ea4.png" class="img-fluid figure-img">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-02-computing-and-programming-016-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-图&nbsp;2.8: 图题待补
+图&nbsp;2.7: “R for Windows”页面：<code>base</code> 子目录提供 R 的基础安装包
 </figcaption>
 </figure>
 </div>
-<div id="fig-02-computing-and-programming-017" class="quarto-float quarto-figure quarto-figure-center anchored">
+<div id="fig-02-computing-and-programming-019" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
-<div aria-describedby="fig-02-computing-and-programming-017-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="../assets/02-computing-and-programming/017-6da0a303-f5d0-4cc3-96a4-3601c649742e.png" class="img-fluid figure-img">
+<div aria-describedby="fig-02-computing-and-programming-019-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="../assets/02-computing-and-programming/019-e67610e2-b16a-4c9d-ae9d-e8bbd0698714.png" class="img-fluid figure-img">
 </div>
-<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-02-computing-and-programming-017-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-图&nbsp;2.9: 图题待补
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-02-computing-and-programming-019-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+图&nbsp;2.8: “R for macOS”页面：提供当前版本签名公证过的 .pkg 安装包
 </figcaption>
 </figure>
 </div>
@@ -1124,7 +1515,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <img src="../assets/02-computing-and-programming/018-9abb65cf-e93e-4722-a9f7-3c346e09c565.png" class="img-fluid figure-img">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-02-computing-and-programming-018-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-图&nbsp;2.10: 图题待补
+图&nbsp;2.9: 在 R 中用 <code>path.expand("~")</code> 获取用户主目录
 </figcaption>
 </figure>
 </div>
@@ -1134,13 +1525,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <h4 class="anchored" data-anchor-id="src-0090-build-up-bioinfo-platform-321">Rtools</h4>
 <p>Bioconductor和CRAN上提供的R包绝大部分都提供Windows平台下的二进制包，安装过程无需编译。但因为二进制包的更新一般晚于源码包的更新，且个别R包不提供二进制包，所以还是存在需要编译安装的情况。这个时候就需要R官方所提供的编译器集合Rtools。</p>
 <p>访问<a href="https://cran.r-project.org/bin/windows/Rtools/">Rtools页面</a>即可获得安装包。Rtools与R的版本配套更新，页面最上方始终提供当前R版本对应的安装包（写作本节时为Rtools45，配套R 4.5及更新版本），且只提供64位版本。如果你使用较老的R版本，可以访问<a href="https://cran.r-project.org/bin/windows/Rtools/history.html">历史版本页面</a>下载对应的Rtools。</p>
-<div id="fig-02-computing-and-programming-019" class="quarto-float quarto-figure quarto-figure-center anchored">
+<div id="fig-02-computing-and-programming-020" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
-<div aria-describedby="fig-02-computing-and-programming-019-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="../assets/02-computing-and-programming/019-e67610e2-b16a-4c9d-ae9d-e8bbd0698714.png" class="img-fluid figure-img">
+<div aria-describedby="fig-02-computing-and-programming-020-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="../assets/02-computing-and-programming/020-d3b3bee0-3edf-4c48-b876-19fce8883633.png" class="img-fluid figure-img">
 </div>
-<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-02-computing-and-programming-019-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-图&nbsp;2.11: 图题待补
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-02-computing-and-programming-020-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+图&nbsp;2.10: Rtools 官方页面：最上方提供当前 R 版本对应的安装包
 </figcaption>
 </figure>
 </div>
@@ -1151,41 +1542,101 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 # 分号后的内容表示之前已有的PATH环境变量内容，
 # 以免覆盖原有环境变量内容。</code></pre>
 <p>配置完成后保存文件，然后重启R的交互环境。可以在交互环境中使用语句<code>Sys.which("make")</code>验证Rtools是否可用，如果成功则会出现Rtools目录下<code>make.exe</code>的路径（R 4.2及更新版本自动发现Rtools时，同样可以用这个语句验证）。以后在出现源码包版本高于二进制包版本，或R包无二进制包版本的情况，R就会提示你是否进行编译安装。你可以使用语句<code>install.packages("Rcpp", type = "source")</code>源码编译安装<code>Rcpp</code>包测试一下。</p>
-<div id="fig-02-computing-and-programming-020" class="quarto-float quarto-figure quarto-figure-center anchored">
+<div id="fig-02-computing-and-programming-017" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
-<div aria-describedby="fig-02-computing-and-programming-020-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="../assets/02-computing-and-programming/020-d3b3bee0-3edf-4c48-b876-19fce8883633.png" class="img-fluid figure-img">
+<div aria-describedby="fig-02-computing-and-programming-017-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="../assets/02-computing-and-programming/017-6da0a303-f5d0-4cc3-96a4-3601c649742e.png" class="img-fluid figure-img">
 </div>
-<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-02-computing-and-programming-020-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-图&nbsp;2.12: 图题待补
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-02-computing-and-programming-017-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+图&nbsp;2.11: 在 R 中用 <code>Sys.which("make")</code> 验证 Rtools 已可用
 </figcaption>
 </figure>
 </div>
-<div class="book-placeholder">
-<p>本节内容待补充。</p>
-</div>
+</section>
+<section id="topic-02-rstudio" class="level4">
+<h4 class="anchored" data-anchor-id="topic-02-rstudio">RStudio</h4>
+<p>R 自带的交互界面只够验证安装，日常写代码推荐使用 RStudio——它是事实上的标准 R 开发环境，免费版对入门完全够用。桌面版从 <a href="https://posit.co/download/rstudio-desktop/">posit.co</a> 下载安装。它与 R 的关系如同编辑器与解释器：RStudio 只是个外壳，背后调用的还是你装好的 R。</p>
+<p>RStudio 界面分四块：左上是脚本编辑器，代码写成 <code>.R</code> 文件保存；左下是 R 控制台，单条命令在这里立即执行；右上显示环境与历史，能看到当前每个变量的值；右下是文件、绘图、帮助面板，画出的图就显示在这里。新手常分不清编辑器和控制台：推荐的工作方式是在编辑器里写代码，按 <code>Ctrl+Enter</code> 把当前行或选中部分送到控制台执行——代码始终留在文件里，而不是散落在会话历史中。</p>
+<p>服务器上还有 RStudio Server：R 和 RStudio 都装在服务器上，浏览器打开就能用，本地零安装。数据量大时，它比“下载结果再本地画图”省事得多，不少课题组的服务器预装了它。</p>
+<p>RStudio 的 Project 功能值得从第一天用起来：File → New Project 新建项目后，工作目录固定在项目文件夹，脚本、数据、图形都收在同一处。这与本章最后要讲的项目目录组织是同一件事——一个项目一个目录，从 R 这边先养成习惯。</p>
 </section>
 </section>
 </section>
-<section id="sec-02-05" class="level2" data-number="2.4">
-<h2 data-number="2.4" class="anchored" data-anchor-id="sec-02-05"><span class="header-section-number">2.4</span> Python 与结构化配置的最低必要知识</h2>
+<section id="sec-02-05" class="level2" data-number="2.6">
+<h2 data-number="2.6" class="anchored" data-anchor-id="sec-02-05"><span class="header-section-number">2.6</span> Python 与结构化配置的最低必要知识</h2>
 <p>能读懂基础脚本及后续 Snakemake 中的 Python 表达式。</p>
 <section id="topic-02-python-basics" class="level3">
 <h3 class="anchored" data-anchor-id="topic-02-python-basics">Python 基础速览</h3>
 <p>本节提供 Python 的入门参考：变量、循环、函数与模块的最小知识集合，足以读懂后续章节的示例代码和 Snakemake 工作流中的 Python 表达式。</p>
-<div class="book-placeholder">
-<p>本节内容待补充。</p>
-</div>
+<p>不需要专门安装：装好 Anaconda 后，终端输入 <code>python</code> 即进入交互环境，输入 <code>exit()</code> 退出。在交互环境里逐行试代码，是学语言最快的方式，下面所有例子都可以直接照抄运行。</p>
+<section id="topic-02-python-vars" class="level4">
+<h4 class="anchored" data-anchor-id="topic-02-python-vars">变量与数据类型</h4>
+<p>Python 里用 = 给变量赋值，常见类型有整数、浮点数、字符串和布尔值：</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb31" data-book-role="code"><pre data-code-text="&quot;n_samples = 6                # 整数\ndepth = 32.5                 # 浮点数\nsample_name = \&quot;SRR1234567\&quot;   # 字符串\nis_paired_end = True         # 布尔值&quot;" class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a>n_samples <span class="op">=</span> <span class="dv">6</span>                <span class="co"># 整数</span></span>
+<span id="cb31-2"><a href="#cb31-2" aria-hidden="true" tabindex="-1"></a>depth <span class="op">=</span> <span class="fl">32.5</span>                 <span class="co"># 浮点数</span></span>
+<span id="cb31-3"><a href="#cb31-3" aria-hidden="true" tabindex="-1"></a>sample_name <span class="op">=</span> <span class="st">"SRR1234567"</span>   <span class="co"># 字符串</span></span>
+<span id="cb31-4"><a href="#cb31-4" aria-hidden="true" tabindex="-1"></a>is_paired_end <span class="op">=</span> <span class="va">True</span>         <span class="co"># 布尔值</span></span></code></pre></div><button title="复制到剪贴板" class="code-copy-button"><i class="bi"></i></button></div>
+<p>字符串用单引号或双引号都行。拼接字符串最方便的是 f-string：在引号前加 <code>f</code>，变量放进花括号：</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb32" data-book-role="code"><pre data-code-text="&quot;report = f\&quot;样本 {sample_name} 共 {n_samples} 个，测序深度 {depth}X\&quot;\nprint(report)&quot;" class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a>report <span class="op">=</span> <span class="ss">f"样本 </span><span class="sc">{</span>sample_name<span class="sc">}</span><span class="ss"> 共 </span><span class="sc">{</span>n_samples<span class="sc">}</span><span class="ss"> 个，测序深度 </span><span class="sc">{</span>depth<span class="sc">}</span><span class="ss">X"</span></span>
+<span id="cb32-2"><a href="#cb32-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(report)</span></code></pre></div><button title="复制到剪贴板" class="code-copy-button"><i class="bi"></i></button></div>
+<p>处理文件名时常用的字符串方法：<code>sample_name.split("_")</code> 按下划线切成列表，<code>".".join(parts)</code> 用点连回字符串，<code>sample_name.replace("R1", "R2")</code> 替换子串，<code>sample_name.startswith("SRR")</code> 判断前缀。</p>
+</section>
+<section id="topic-02-python-containers" class="level4">
+<h4 class="anchored" data-anchor-id="topic-02-python-containers">列表与字典</h4>
+<p>列表（list）按顺序存一组值，用方括号，元素从 0 开始编号：</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb33" data-book-role="code"><pre data-code-text="&quot;samples = [\&quot;S1\&quot;, \&quot;S2\&quot;, \&quot;S3\&quot;]\nsamples.append(\&quot;S4\&quot;)     # 末尾追加\nprint(samples[0])        # 第 1 个元素：S1\nprint(samples[-1])       # 最后 1 个元素：S4\nprint(len(samples))      # 元素个数：4&quot;" class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a>samples <span class="op">=</span> [<span class="st">"S1"</span>, <span class="st">"S2"</span>, <span class="st">"S3"</span>]</span>
+<span id="cb33-2"><a href="#cb33-2" aria-hidden="true" tabindex="-1"></a>samples.append(<span class="st">"S4"</span>)     <span class="co"># 末尾追加</span></span>
+<span id="cb33-3"><a href="#cb33-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(samples[<span class="dv">0</span>])        <span class="co"># 第 1 个元素：S1</span></span>
+<span id="cb33-4"><a href="#cb33-4" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(samples[<span class="op">-</span><span class="dv">1</span>])       <span class="co"># 最后 1 个元素：S4</span></span>
+<span id="cb33-5"><a href="#cb33-5" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="bu">len</span>(samples))      <span class="co"># 元素个数：4</span></span></code></pre></div><button title="复制到剪贴板" class="code-copy-button"><i class="bi"></i></button></div>
+<p>字典（dict）存“键→值”的对应关系，用花括号，生信配置里到处都是它：</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb34" data-book-role="code"><pre data-code-text="&quot;groups = {\&quot;S1\&quot;: \&quot;control\&quot;, \&quot;S2\&quot;: \&quot;treatment\&quot;, \&quot;S3\&quot;: \&quot;control\&quot;}\nprint(groups[\&quot;S2\&quot;])          # treatment\ngroups[\&quot;S4\&quot;] = \&quot;treatment\&quot;   # 新增一项&quot;" class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a>groups <span class="op">=</span> {<span class="st">"S1"</span>: <span class="st">"control"</span>, <span class="st">"S2"</span>: <span class="st">"treatment"</span>, <span class="st">"S3"</span>: <span class="st">"control"</span>}</span>
+<span id="cb34-2"><a href="#cb34-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(groups[<span class="st">"S2"</span>])          <span class="co"># treatment</span></span>
+<span id="cb34-3"><a href="#cb34-3" aria-hidden="true" tabindex="-1"></a>groups[<span class="st">"S4"</span>] <span class="op">=</span> <span class="st">"treatment"</span>   <span class="co"># 新增一项</span></span></code></pre></div><button title="复制到剪贴板" class="code-copy-button"><i class="bi"></i></button></div>
+</section>
+<section id="topic-02-python-flow" class="level4">
+<h4 class="anchored" data-anchor-id="topic-02-python-flow">循环与分支</h4>
+<p><code>for</code> 遍历列表或字典，<code>if</code> 按条件分支。注意 Python 靠缩进表示代码块，冒号后换行缩进四个空格：</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb35" data-book-role="code"><pre data-code-text="&quot;for sample in samples:\n    if groups[sample] == \&quot;treatment\&quot;:\n        print(f\&quot;{sample} 是处理组\&quot;)\n    else:\n        print(f\&quot;{sample} 是对照组\&quot;)&quot;" class="sourceCode numberSource python numberLines code-with-copy"><code class="sourceCode python"><span id="cb35-1"><a href="#cb35-1"></a><span class="cf">for</span> sample <span class="kw">in</span> samples:</span>
+<span id="cb35-2"><a href="#cb35-2"></a>    <span class="cf">if</span> groups[sample] <span class="op">==</span> <span class="st">"treatment"</span>:</span>
+<span id="cb35-3"><a href="#cb35-3"></a>        <span class="bu">print</span>(<span class="ss">f"</span><span class="sc">{</span>sample<span class="sc">}</span><span class="ss"> 是处理组"</span>)</span>
+<span id="cb35-4"><a href="#cb35-4"></a>    <span class="cf">else</span>:</span>
+<span id="cb35-5"><a href="#cb35-5"></a>        <span class="bu">print</span>(<span class="ss">f"</span><span class="sc">{</span>sample<span class="sc">}</span><span class="ss"> 是对照组"</span>)</span></code></pre></div><button title="复制到剪贴板" class="code-copy-button"><i class="bi"></i></button></div>
+<p>配合 <code>range</code> 可以批量生成数字：<code>for i in range(1, 9)</code> 会依次取 1 到 8。</p>
+</section>
+<section id="topic-02-python-functions" class="level4">
+<h4 class="anchored" data-anchor-id="topic-02-python-functions">函数</h4>
+<p>函数把一段逻辑打包复用，<code>def</code> 定义，<code>return</code> 返回结果：</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb36" data-book-role="code"><pre data-code-text="&quot;def get_sample_id(filename):\n    \&quot;\&quot;\&quot;从文件名提取样本 ID，如 S1_L001_R1_001.fastq.gz → S1\&quot;\&quot;\&quot;\n    sample_id = filename.split(\&quot;_\&quot;)[0]\n    return sample_id\n\nprint(get_sample_id(\&quot;S1_L001_R1_001.fastq.gz\&quot;))&quot;" class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> get_sample_id(filename):</span>
+<span id="cb36-2"><a href="#cb36-2" aria-hidden="true" tabindex="-1"></a>    <span class="co">"""从文件名提取样本 ID，如 S1_L001_R1_001.fastq.gz → S1"""</span></span>
+<span id="cb36-3"><a href="#cb36-3" aria-hidden="true" tabindex="-1"></a>    sample_id <span class="op">=</span> filename.split(<span class="st">"_"</span>)[<span class="dv">0</span>]</span>
+<span id="cb36-4"><a href="#cb36-4" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> sample_id</span>
+<span id="cb36-5"><a href="#cb36-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb36-6"><a href="#cb36-6" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(get_sample_id(<span class="st">"S1_L001_R1_001.fastq.gz"</span>))</span></code></pre></div><button title="复制到剪贴板" class="code-copy-button"><i class="bi"></i></button></div>
+<p>函数名后的三引号字符串是文档说明，写清输入输出，别人和 AI agent 都能读懂。这与前面 Shell 脚本一节的思路一致——语言不同，把过程写成可复用、可检查的文字相同。</p>
+</section>
+<section id="topic-02-python-files" class="level4">
+<h4 class="anchored" data-anchor-id="topic-02-python-files">文件读写与模块</h4>
+<p>读文件用 <code>with open</code>，它保证文件用完自动关闭：</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb37" data-book-role="code"><pre data-code-text="&quot;with open(\&quot;samples.tsv\&quot;) as f:\n    header = f.readline().strip()\n    for line in f:\n        fields = line.strip().split(\&quot;\\t\&quot;)\n        print(fields[0], fields[1])&quot;" class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a><span class="cf">with</span> <span class="bu">open</span>(<span class="st">"samples.tsv"</span>) <span class="im">as</span> f:</span>
+<span id="cb37-2"><a href="#cb37-2" aria-hidden="true" tabindex="-1"></a>    header <span class="op">=</span> f.readline().strip()</span>
+<span id="cb37-3"><a href="#cb37-3" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> line <span class="kw">in</span> f:</span>
+<span id="cb37-4"><a href="#cb37-4" aria-hidden="true" tabindex="-1"></a>        fields <span class="op">=</span> line.strip().split(<span class="st">"</span><span class="ch">\t</span><span class="st">"</span>)</span>
+<span id="cb37-5"><a href="#cb37-5" aria-hidden="true" tabindex="-1"></a>        <span class="bu">print</span>(fields[<span class="dv">0</span>], fields[<span class="dv">1</span>])</span></code></pre></div><button title="复制到剪贴板" class="code-copy-button"><i class="bi"></i></button></div>
+<p>逐行读取，<code>strip()</code> 去掉行尾换行符，<code>split("\t")</code> 按制表符切列——这两步是处理表格文件的标准开场。写入文件加上模式参数：<code>with open("out.txt", "w") as f: f.write("...")</code>。</p>
+<p>Python 的功能大量以模块形式提供，import 导入使用。<code>os.path</code> 处理路径、<code>csv</code> 读写表格、<code>subprocess</code> 在脚本里调用外部命令，后续章节会陆续见到。</p>
+<p>本节不求覆盖 Python 全貌，目标是“读得懂”：看到一段脚本，能说出每个变量是什么、循环在遍历什么、结果写到哪里。写不出来的部分先照抄照跑，也可以让 AI agent 逐行解释——但读懂每一行的责任在你，这正是判断力的练习。</p>
+</section>
 </section>
 <section id="src-0090-build-up-bioinfo-platform-270" class="level3">
 <h3 class="anchored" data-anchor-id="src-0090-build-up-bioinfo-platform-270">Jupyter</h3>
 <p>Jupyter是一个非营利开源项目，2014年从IPython项目诞生。从诞生以来不断发展，基于网页支持跨几乎所有编程语言的交互式数据分析与科学计算。最早的项目是IPython Notebook，随着发展改名Jupyter Notebook。而现在Jupyter项目的核心是JupyterLab。如果你之前是Jupyter Notebook的用户，迁移到JupyterLab的学习成本很低。第一眼看上去最大的变化可能就是多标签和侧边栏。JupyterLab如今已经发展到4.X版本，经典的Jupyter Notebook仍在并行维护，扩展生态相当成熟。</p>
 <section id="src-0090-build-up-bioinfo-platform-274" class="level4">
 <h4 class="anchored" data-anchor-id="src-0090-build-up-bioinfo-platform-274">安装JupyterLab</h4>
-<p>安装JupyterLab非常简单，PyPI和Anaconda都有收录。这里再度建议大家使用C++实现的conda管理器mamba进行安装</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb10" data-book-role="code"><pre data-code-text="&quot;pip install jupyterlab # pypi安装\nconda install jupyterlab # anaconda安装\nmamba install jupyterlab # mamba安装&quot;" class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="ex">pip</span> install jupyterlab <span class="co"># pypi安装</span></span>
-<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="ex">conda</span> install jupyterlab <span class="co"># anaconda安装</span></span>
-<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a><span class="ex">mamba</span> install jupyterlab <span class="co"># mamba安装</span></span></code></pre></div><button title="复制到剪贴板" class="code-copy-button"><i class="bi"></i></button></div>
+<p>安装JupyterLab非常简单，PyPI和Anaconda都有收录。这里再度建议大家使用前面小节介绍的独立包管理器micromamba进行安装</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb38" data-book-role="code"><pre data-code-text="&quot;pip install jupyterlab # pypi安装\nconda install jupyterlab # anaconda安装\nmicromamba install jupyterlab # micromamba安装&quot;" class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a><span class="ex">pip</span> install jupyterlab <span class="co"># pypi安装</span></span>
+<span id="cb38-2"><a href="#cb38-2" aria-hidden="true" tabindex="-1"></a><span class="ex">conda</span> install jupyterlab <span class="co"># anaconda安装</span></span>
+<span id="cb38-3"><a href="#cb38-3" aria-hidden="true" tabindex="-1"></a><span class="ex">micromamba</span> install jupyterlab <span class="co"># micromamba安装</span></span></code></pre></div><button title="复制到剪贴板" class="code-copy-button"><i class="bi"></i></button></div>
 </section>
 <section id="src-0090-build-up-bioinfo-platform-284" class="level4">
 <h4 class="anchored" data-anchor-id="src-0090-build-up-bioinfo-platform-284">内核安装</h4>
@@ -1195,7 +1646,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <h4 class="anchored" data-anchor-id="src-0090-build-up-bioinfo-platform-288">本地和远程使用</h4>
 <p>JupyterLab的本地启动十分简单，启动一个终端（Windows下可以选择PowerShell，或者通过Windows Terminal使用某个终端），切换到你需要进行分析的目录。Jupyter只可以读取启动时的目录及其子目录下的文件。当进入到需要的目录时，在终端中使用<code>jupyter lab</code>命令就可以启动JupyterLab。默认浏览器这时会自动启动，并打开JupyterLab的页面。</p>
 <p>而远程使用服务器上的应用会复杂一些。需要先在本地的终端中使用<code>ssh</code>命令，把服务器上JupyterLab监听的端口映射到本地计算机。执行完下面的命令后，会登录远程服务器，再使用<code>jupyter lab</code>即可启动远程服务器上的JupyterLab。在本地浏览器中访问<code>127.0.0.1:1234</code>即可连接服务器的8888端口。（username是你在服务器上的用户名，serverip为服务器IP地址。1234为希望的本地端口，8888则为远程服务器的端口。）</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb11" data-book-role="code"><pre data-code-text="&quot;ssh username@serverip -L 127.0.0.1:1234:127.0.0.1:8888&quot;" class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ssh</span> username@serverip <span class="at">-L</span> 127.0.0.1:1234:127.0.0.1:8888</span></code></pre></div><button title="复制到剪贴板" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb39" data-book-role="code"><pre data-code-text="&quot;ssh username@serverip -L 127.0.0.1:1234:127.0.0.1:8888&quot;" class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ssh</span> username@serverip <span class="at">-L</span> 127.0.0.1:1234:127.0.0.1:8888</span></code></pre></div><button title="复制到剪贴板" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="book-warning callout callout-style-default callout-warning callout-titled" title="注意｜以实际启动端口为准">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -1214,60 +1665,150 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="topic-02-structured-config" class="level3">
 <h3 class="anchored" data-anchor-id="topic-02-structured-config">结构化配置：YAML 与 JSON</h3>
 <p>配置文件是分析流程的常见输入：样本表、软件参数、工作流规则经常以 YAML 或 JSON 等结构化格式描述。读懂它们，是修改他人流程、编写 Snakemake 规则的基础。</p>
-<div class="book-placeholder">
-<p>本节内容待补充：YAML 与 JSON 的语法要点与生信示例。</p>
+<p>YAML 用“缩进 + 冒号”表达结构，可读性最好，是 Snakemake 等各类流程配置文件的主流格式。一个生信项目常见的 <code>samples.yaml</code> 长这样：</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb40" data-book-role="data" data-code-title="samples.yaml"><pre data-code-text="&quot;project: rnaseq_demo\ngenome: hg38\nthreads: 8\nsamples:\n  S1:\n    condition: control\n    fastq: data/S1.fastq.gz\n  S2:\n    condition: treatment\n    fastq: data/S2.fastq.gz&quot;" class="sourceCode yaml code-with-copy"><code class="sourceCode yaml"><span id="cb40-1"><a href="#cb40-1" aria-hidden="true" tabindex="-1"></a><span class="fu">project</span><span class="kw">:</span><span class="at"> rnaseq_demo</span></span>
+<span id="cb40-2"><a href="#cb40-2" aria-hidden="true" tabindex="-1"></a><span class="fu">genome</span><span class="kw">:</span><span class="at"> hg38</span></span>
+<span id="cb40-3"><a href="#cb40-3" aria-hidden="true" tabindex="-1"></a><span class="fu">threads</span><span class="kw">:</span><span class="at"> </span><span class="dv">8</span></span>
+<span id="cb40-4"><a href="#cb40-4" aria-hidden="true" tabindex="-1"></a><span class="fu">samples</span><span class="kw">:</span></span>
+<span id="cb40-5"><a href="#cb40-5" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">S1</span><span class="kw">:</span></span>
+<span id="cb40-6"><a href="#cb40-6" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">condition</span><span class="kw">:</span><span class="at"> control</span></span>
+<span id="cb40-7"><a href="#cb40-7" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">fastq</span><span class="kw">:</span><span class="at"> data/S1.fastq.gz</span></span>
+<span id="cb40-8"><a href="#cb40-8" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">S2</span><span class="kw">:</span></span>
+<span id="cb40-9"><a href="#cb40-9" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">condition</span><span class="kw">:</span><span class="at"> treatment</span></span>
+<span id="cb40-10"><a href="#cb40-10" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">fastq</span><span class="kw">:</span><span class="at"> data/S2.fastq.gz</span></span></code></pre></div><button title="复制到剪贴板" class="code-copy-button"><i class="bi"></i></button></div>
+<p>顶层的 <code>project</code>、<code>genome</code>、<code>threads</code> 是键值对；<code>samples</code> 下面缩进一层，是嵌套的字典，每个样本又是一层。列表用短横线表示：</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb41" data-book-role="data" data-code-title="对比组合"><pre data-code-text="&quot;comparisons:\n  - treatment_vs_control\n  - knockout_vs_wt&quot;" class="sourceCode yaml code-with-copy"><code class="sourceCode yaml"><span id="cb41-1"><a href="#cb41-1" aria-hidden="true" tabindex="-1"></a><span class="fu">comparisons</span><span class="kw">:</span></span>
+<span id="cb41-2"><a href="#cb41-2" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="kw">-</span><span class="at"> treatment_vs_control</span></span>
+<span id="cb41-3"><a href="#cb41-3" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="kw">-</span><span class="at"> knockout_vs_wt</span></span></code></pre></div><button title="复制到剪贴板" class="code-copy-button"><i class="bi"></i></button></div>
+<p>YAML 的规则极少：冒号后要有一个空格；层级关系完全靠缩进表达，同层元素必须对齐；字符串一般不需要引号。</p>
+<div class="book-warning callout callout-style-default callout-warning callout-titled" title="注意｜缩进用空格，不要用 Tab">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
 </div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">警告</span>注意｜缩进用空格，不要用 Tab
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>YAML 只认空格缩进，编辑器插入 Tab 是配置报错的第一原因，报错信息里的 <code>found character that cannot start any token</code> 多半指它。让编辑器把 Tab 转为空格（VS Code 默认如此），这个坑就绕开了。</p>
+</div>
+</div>
+<p>JSON 表达同样的结构，规则是：花括号表对象，方括号表数组，键加双引号，元素间逗号分隔。上面两份 YAML 合成一份 JSON 是：</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb42" data-book-role="data" data-code-title="config.json"><pre data-code-text="&quot;{\n  \&quot;project\&quot;: \&quot;rnaseq_demo\&quot;,\n  \&quot;genome\&quot;: \&quot;hg38\&quot;,\n  \&quot;threads\&quot;: 8,\n  \&quot;samples\&quot;: {\n    \&quot;S1\&quot;: {\&quot;condition\&quot;: \&quot;control\&quot;, \&quot;fastq\&quot;: \&quot;data/S1.fastq.gz\&quot;},\n    \&quot;S2\&quot;: {\&quot;condition\&quot;: \&quot;treatment\&quot;, \&quot;fastq\&quot;: \&quot;data/S2.fastq.gz\&quot;}\n  },\n  \&quot;comparisons\&quot;: [\&quot;treatment_vs_control\&quot;, \&quot;knockout_vs_wt\&quot;]\n}&quot;" class="sourceCode json code-with-copy"><code class="sourceCode json"><span id="cb42-1"><a href="#cb42-1" aria-hidden="true" tabindex="-1"></a><span class="fu">{</span></span>
+<span id="cb42-2"><a href="#cb42-2" aria-hidden="true" tabindex="-1"></a>  <span class="dt">"project"</span><span class="fu">:</span> <span class="st">"rnaseq_demo"</span><span class="fu">,</span></span>
+<span id="cb42-3"><a href="#cb42-3" aria-hidden="true" tabindex="-1"></a>  <span class="dt">"genome"</span><span class="fu">:</span> <span class="st">"hg38"</span><span class="fu">,</span></span>
+<span id="cb42-4"><a href="#cb42-4" aria-hidden="true" tabindex="-1"></a>  <span class="dt">"threads"</span><span class="fu">:</span> <span class="dv">8</span><span class="fu">,</span></span>
+<span id="cb42-5"><a href="#cb42-5" aria-hidden="true" tabindex="-1"></a>  <span class="dt">"samples"</span><span class="fu">:</span> <span class="fu">{</span></span>
+<span id="cb42-6"><a href="#cb42-6" aria-hidden="true" tabindex="-1"></a>    <span class="dt">"S1"</span><span class="fu">:</span> <span class="fu">{</span><span class="dt">"condition"</span><span class="fu">:</span> <span class="st">"control"</span><span class="fu">,</span> <span class="dt">"fastq"</span><span class="fu">:</span> <span class="st">"data/S1.fastq.gz"</span><span class="fu">},</span></span>
+<span id="cb42-7"><a href="#cb42-7" aria-hidden="true" tabindex="-1"></a>    <span class="dt">"S2"</span><span class="fu">:</span> <span class="fu">{</span><span class="dt">"condition"</span><span class="fu">:</span> <span class="st">"treatment"</span><span class="fu">,</span> <span class="dt">"fastq"</span><span class="fu">:</span> <span class="st">"data/S2.fastq.gz"</span><span class="fu">}</span></span>
+<span id="cb42-8"><a href="#cb42-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">},</span></span>
+<span id="cb42-9"><a href="#cb42-9" aria-hidden="true" tabindex="-1"></a>  <span class="dt">"comparisons"</span><span class="fu">:</span> <span class="ot">[</span><span class="st">"treatment_vs_control"</span><span class="ot">,</span> <span class="st">"knockout_vs_wt"</span><span class="ot">]</span></span>
+<span id="cb42-10"><a href="#cb42-10" aria-hidden="true" tabindex="-1"></a><span class="fu">}</span></span></code></pre></div><button title="复制到剪贴板" class="code-copy-button"><i class="bi"></i></button></div>
+<p>JSON 没有 YAML 好读，但它是程序间交换数据的标准格式，网页、API 和各类软件的结果文件大量使用。生信实践中两者各就其位：人手写、人手改的配置用 YAML，程序输出和互相传递用 JSON。</p>
+<p>读取它们都有现成工具：Python 中 <code>import json</code> 与 <code>import yaml</code>（后者随 Anaconda 提供）之后，<code>json.load(open("config.json"))</code> 一行就能把文件读成字典，之后按上一节字典的方式取值。改配置文件改的是参数值，不碰代码——这正是配置文件存在的意义。</p>
 </section>
 </section>
-<section id="sec-02-ai-agents" class="level2" data-number="2.5">
-<h2 data-number="2.5" class="anchored" data-anchor-id="sec-02-ai-agents"><span class="header-section-number">2.5</span> 本地AI agent的配置与安装</h2>
+<section id="sec-02-ai-agents" class="level2" data-number="2.7">
+<h2 data-number="2.7" class="anchored" data-anchor-id="sec-02-ai-agents"><span class="header-section-number">2.7</span> 本地AI agent的配置与安装</h2>
 <p>在本地装好 AI agent，让它们参与代码编写与排错。</p>
 <p>Claude Code、Codex、ZCode 等命令行 AI agent 可以在终端里读写代码、执行命令、完成多步骤任务，是 AI 时代生信分析的重要本地工具。使用它们的前提是完成订阅（coding plan）与 API 设置，并清楚它们擅长什么、可能在什么地方出错——这与全书的判断力主题一致。</p>
 <section id="topic-02-coding-plan" class="level3">
 <h3 class="anchored" data-anchor-id="topic-02-coding-plan">coding plan 和 API 设置</h3>
-<div class="book-placeholder">
-<p>本节内容待补充。</p>
+<p>AI coding agent 的使用方式有两类，先分清楚：</p>
+<ul>
+<li>coding plan（订阅计划）：按月或按年订阅，如 Anthropic 的 Claude Pro/Max、OpenAI 的 ChatGPT Plus/Pro、智谱的 GLM Coding Plan。订阅后客户端内直接使用，按对话量计限额，成本可控，适合日常高频使用。</li>
+<li>API key（按量付费）：在平台申请一串密钥，程序调用时验证身份，按实际用量计费。偶尔调用很便宜，跑大批量任务时要留心费用。</li>
+</ul>
+<p>本书推荐入门读者从 coding plan 开始：费用固定，配置也最简单。各家 plan 支持的客户端不同——Claude Pro/Max 用于 Claude Code，ChatGPT Plus/Pro 用于 Codex，GLM Coding Plan 则可以同时驱动 Claude Code 和 ZCode（配置方法见下面两节）。</p>
+<p>API key 本质是账户的钥匙，保管规则只有一条：绝不泄露。不要把 key 写进脚本或配置文件再提交到 Git，不要贴进聊天群或论坛。正规服务不会向你索取 key，凡是索要的，一律当作骗局。</p>
+<div class="book-warning callout callout-style-default callout-warning callout-titled" title="注意｜环境变量是存放密钥的正确位置">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">警告</span>注意｜环境变量是存放密钥的正确位置
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>程序从环境变量读取密钥（如 <code>ANTHROPIC_API_KEY</code>）是通行做法：key 不出现在代码里，也就不会被提交进仓库。上一节环境变量的知识在这里直接用上。本地机器自用时，把 <code>export</code> 语句写进 <code>~/.bashrc</code>（或各家客户端自己的配置文件）即可。</p>
+</div>
 </div>
 </section>
 <section id="topic-02-claude-code" class="level3">
 <h3 class="anchored" data-anchor-id="topic-02-claude-code">Claude Code</h3>
-<div class="book-placeholder">
-<p>本节内容待补充。</p>
-</div>
+<p>Claude Code 是 Anthropic 推出的命令行 AI agent，能在终端里读写代码、执行命令、跨文件完成多步修改，是生信分析中最常被提到的 coding agent 之一。</p>
+<p>安装需要 Node.js 18 及以上版本（可用 <code>conda install -c conda-forge nodejs</code> 安装，或从官网下载），然后一条命令完成安装：</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb43" data-book-role="code"><pre data-code-text="&quot;npm install -g @anthropic-ai/claude-code&quot;" class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb43-1"><a href="#cb43-1" aria-hidden="true" tabindex="-1"></a><span class="ex">npm</span> install <span class="at">-g</span> @anthropic-ai/claude-code</span></code></pre></div><button title="复制到剪贴板" class="code-copy-button"><i class="bi"></i></button></div>
+<p>进入项目目录，输入 <code>claude</code> 即启动，首次按提示登录 Anthropic 账号（Claude Pro/Max 订阅即可使用）。</p>
+<p>国内读者也可以用 GLM Coding Plan 驱动 Claude Code：订阅后在智谱开放平台获取 API key，编辑（没有则新建）<code>~/.claude/settings.json</code>，写入：</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb44" data-book-role="data" data-code-title="~/.claude/settings.json"><pre data-code-text="&quot;{\n  \&quot;env\&quot;: {\n    \&quot;ANTHROPIC_AUTH_TOKEN\&quot;: \&quot;你的智谱 API Key\&quot;,\n    \&quot;ANTHROPIC_BASE_URL\&quot;: \&quot;https://open.bigmodel.cn/api/anthropic\&quot;\n  }\n}&quot;" class="sourceCode json code-with-copy"><code class="sourceCode json"><span id="cb44-1"><a href="#cb44-1" aria-hidden="true" tabindex="-1"></a><span class="fu">{</span></span>
+<span id="cb44-2"><a href="#cb44-2" aria-hidden="true" tabindex="-1"></a>  <span class="dt">"env"</span><span class="fu">:</span> <span class="fu">{</span></span>
+<span id="cb44-3"><a href="#cb44-3" aria-hidden="true" tabindex="-1"></a>    <span class="dt">"ANTHROPIC_AUTH_TOKEN"</span><span class="fu">:</span> <span class="st">"你的智谱 API Key"</span><span class="fu">,</span></span>
+<span id="cb44-4"><a href="#cb44-4" aria-hidden="true" tabindex="-1"></a>    <span class="dt">"ANTHROPIC_BASE_URL"</span><span class="fu">:</span> <span class="st">"https://open.bigmodel.cn/api/anthropic"</span></span>
+<span id="cb44-5"><a href="#cb44-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">}</span></span>
+<span id="cb44-6"><a href="#cb44-6" aria-hidden="true" tabindex="-1"></a><span class="fu">}</span></span></code></pre></div><button title="复制到剪贴板" class="code-copy-button"><i class="bi"></i></button></div>
+<p>保存后重新启动 <code>claude</code>，请求即走 GLM 通道。具体步骤以智谱官方文档为准：<a href="https://docs.bigmodel.cn/cn/guide/develop/claude">在 Claude Code 中使用 GLM Coding Plan</a>。</p>
 </section>
 <section id="topic-02-codex" class="level3">
 <h3 class="anchored" data-anchor-id="topic-02-codex">Codex</h3>
-<div class="book-placeholder">
-<p>本节内容待补充。</p>
-</div>
+<p>Codex CLI 是 OpenAI 的开源命令行 AI agent，定位与 Claude Code 相同。安装方式二选一：</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb45" data-book-role="code"><pre data-code-text="&quot;npm install -g @openai/codex\nbrew install codex&quot;" class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb45-1"><a href="#cb45-1" aria-hidden="true" tabindex="-1"></a><span class="ex">npm</span> install <span class="at">-g</span> @openai/codex</span>
+<span id="cb45-2"><a href="#cb45-2" aria-hidden="true" tabindex="-1"></a><span class="ex">brew</span> install codex</span></code></pre></div><button title="复制到剪贴板" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Codex 在 Git 仓库内工作效果最好：它能读提交历史、理解项目结构，改动前后可以用 <code>git diff</code> 清楚对照。所以在项目目录里 <code>git init</code> 之后再启动 <code>codex</code>，是推荐姿势。首次启动按提示登录 ChatGPT 账号（Plus/Pro 订阅），或配置 OpenAI API key。</p>
 </section>
 <section id="topic-02-zcode" class="level3">
 <h3 class="anchored" data-anchor-id="topic-02-zcode">ZCode</h3>
-<div class="book-placeholder">
-<p>本节内容待补充。</p>
-</div>
+<p>ZCode 是智谱推出的桌面版 AI coding 客户端，把 agent 对话、文件编辑和终端集成进图形界面，不习惯命令行的读者上手最容易。到官网 <a href="https://zcode.z.ai/">zcode.z.ai</a> 下载 macOS 或 Windows 客户端安装，启动后用 GLM Coding Plan 或 API key 登录即可使用。安装说明见<a href="https://zcode.z.ai/cn/docs/install">官方文档</a>，项目本身开源在 <a href="https://github.com/zai-org/ZCode">GitHub</a>。</p>
+<p>三款工具功能定位相近，选一到两款深入即可。真正重要的不是选哪个，而是后面各章反复强调的用法：让 agent 做事，同时检查它做的每一步——读它改的代码，看它跑的命令，验证它给的结果。</p>
 </section>
 </section>
-<section id="sec-02-06" class="level2" data-number="2.6">
-<h2 data-number="2.6" class="anchored" data-anchor-id="sec-02-06"><span class="header-section-number">2.6</span> AI时代的版本管理</h2>
+<section id="sec-02-06" class="level2" data-number="2.8">
+<h2 data-number="2.8" class="anchored" data-anchor-id="sec-02-06"><span class="header-section-number">2.8</span> AI时代的版本管理</h2>
 <p>形成可维护的工作习惯，遇到错误能够定位原因。</p>
 <section id="topic-02-project-structure" class="level3">
 <h3 class="anchored" data-anchor-id="topic-02-project-structure">项目目录的组织</h3>
-<div class="book-placeholder">
-<p>本节内容待补充。</p>
-</div>
+<p>生信项目最忌讳“文件摊一桌”。推荐从第一个项目起就固定目录骨架：</p>
+<pre data-code-text="&quot;rnaseq_project/\n├── data/\n│   ├── raw/          # 原始测序数据，只读不动\n│   └── clean/        # 过滤清洗后的数据\n├── scripts/          # 分析脚本\n├── results/          # 分析结果\n│   ├── tables/\n│   └── figures/\n├── samples.tsv       # 样本表：项目的事实清单\n└── README.md         # 项目说明&quot;" class="text" data-book-role="data" data-code-title="项目目录骨架"><code>rnaseq_project/
+├── data/
+│   ├── raw/          # 原始测序数据，只读不动
+│   └── clean/        # 过滤清洗后的数据
+├── scripts/          # 分析脚本
+├── results/          # 分析结果
+│   ├── tables/
+│   └── figures/
+├── samples.tsv       # 样本表：项目的事实清单
+└── README.md         # 项目说明</code></pre>
+<p>一条命令建好骨架：</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb47" data-book-role="code"><pre data-code-text="&quot;mkdir -p rnaseq_project/{data/{raw,clean},scripts,results/{tables,figures}}&quot;" class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb47-1"><a href="#cb47-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mkdir</span> <span class="at">-p</span> rnaseq_project/<span class="dt">{data/{raw</span><span class="op">,</span><span class="dt">clean}</span><span class="op">,</span><span class="dt">scripts</span><span class="op">,</span><span class="dt">results/{tables</span><span class="op">,</span><span class="dt">figures}}</span></span></code></pre></div><button title="复制到剪贴板" class="code-copy-button"><i class="bi"></i></button></div>
+<p>几条原则。原始数据进 <code>raw/</code> 后不再修改，所有处理都产生新文件写到下游目录，出错时才能随时回到起点。样本表 <code>samples.tsv</code> 一行一个样本，记录样本名、分组、文件路径；脚本都从它读信息，而不是把样本名硬写进代码——加样本改表不改脚本。<code>README.md</code> 哪怕只写三行：项目做什么、数据从哪来、按什么顺序跑。数据、脚本、结果分开存放，“哪个文件能不能重新生成”一目了然：<code>results</code> 里的都能由 <code>scripts</code> 加 <code>data</code> 再生，丢了不心疼。</p>
 </section>
 <section id="topic-02-git" class="level3">
 <h3 class="anchored" data-anchor-id="topic-02-git">版本管理与 Git</h3>
-<div class="book-placeholder">
-<p>本节内容待补充。</p>
-</div>
+<p>AI agent 会大量改你的代码，改坏了怎么办？答案是版本管理。Git 记录每次提交的完整快照，任何时候都能对照、回退，配合远程仓库还能异地备份。对“AI 改代码”的工作流，<code>git diff</code> 让每一次 AI 修改都清晰可见——这是人审查 AI 工作的基本工具，也是本节放在 AI agent 之后的原因。</p>
+<p>最小工作流只需四条命令：</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb48" data-book-role="code"><pre data-code-text="&quot;git init\ngit add scripts/ samples.tsv\ngit commit -m \&quot;添加样本表与质控脚本\&quot;\ngit log --oneline&quot;" class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb48-1"><a href="#cb48-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> init</span>
+<span id="cb48-2"><a href="#cb48-2" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> add scripts/ samples.tsv</span>
+<span id="cb48-3"><a href="#cb48-3" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> commit <span class="at">-m</span> <span class="st">"添加样本表与质控脚本"</span></span>
+<span id="cb48-4"><a href="#cb48-4" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> log <span class="at">--oneline</span></span></code></pre></div><button title="复制到剪贴板" class="code-copy-button"><i class="bi"></i></button></div>
+<p>依次是：在项目目录初始化仓库，把文件纳入跟踪，提交一版快照并附说明，查看提交历史。日常循环就是 <code>add</code>、<code>commit</code>、<code>diff</code>：改一批，提交一次。commit message 是写给未来的自己和协作者（以及 AI）的，“update”“fix”这类消息等于没写。</p>
+<p>生信仓库必须配一个 <code>.gitignore</code>，把大文件和生成物挡在仓库外：</p>
+<pre data-code-text="&quot;data/\nresults/\n*.fastq.gz\n*.bam&quot;" class="text" data-book-role="data" data-code-title=".gitignore"><code>data/
+results/
+*.fastq.gz
+*.bam</code></pre>
+<p>测序数据动辄数 GB，放进 Git 仓库会让它膨胀到无法使用；<code>results</code> 能由脚本再生，也不必跟踪。Git 管代码、脚本和配置，数据另用 <code>rsync</code> 或网盘备份，两者不要混。</p>
+<p>远程备份：在 GitHub（或单位 Git 服务）建一个私有仓库，按页面提示 <code>git remote add origin ...</code> 之后 <code>git push -u origin main</code>，以后每次提交随手 <code>push</code>。换了电脑或仓库丢失，整份 <code>clone</code> 回来——“代码永远有多份”是研究数据安全里成本最低的一条。</p>
 </section>
 <section id="topic-02-troubleshooting" class="level3">
 <h3 class="anchored" data-anchor-id="topic-02-troubleshooting">排错的基本思路</h3>
-<div class="book-placeholder">
-<p>本节内容待补充。</p>
-</div>
+<p>分析出错是常态，排错能力比不出错更值得练。一套固定的动作能解决大部分问题。</p>
+<p>第一，读报错。从输出里找 <code>error</code> 而不是 <code>warning</code>——<code>warning</code> 是提醒，<code>error</code> 才是失败原因。程序崩掉时，最后几行通常就是关键信息；找不到就把整段输出从头读，第一条 error 之后的内容往往是连锁反应，修好它，后面自然消失。把报错原文复制下来，不要凭印象转述。</p>
+<p>第二，最小复现。整个流程报错，就把出错那一步单独拿出来，用最小的输入跑一遍：全部样本失败，先拿一个样本试；脚本失败，先把循环里那一条命令手动敲一遍。问题缩到最小，原因往往自己浮出来。</p>
+<p>第三，查输入。很多“程序坏了”其实是数据不对：<code>head</code> 看文件开头格式，<code>wc -l</code> 数行数，和上一步的输出对一对。传输出错、表头变了、路径少了一层，都排在“软件有 bug”前面。</p>
+<p>第四，问对问题。向同事或 AI agent 求助时带上三样东西：完整报错原文、你执行的命令、期望结果与实际结果。AI agent 很擅长解释报错、给出排查步骤，但它也会自信地猜——每一条建议都要自己验证过再往前走。</p>
+<p>最后，把解决过程记下来，一行就够：“某报错，原因是 X，改法 Y”。同样的错第二次遇到时，你会感谢第一次的记录。</p>
 
 
 </section>
