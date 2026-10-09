@@ -1,0 +1,56 @@
+<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 760 320' role='img' aria-labelledby='t d'>
+<title id='t'>可变剪接示意图</title>
+<desc id='d'>同一个基因经不同的剪接方式，从一条 pre-mRNA 生成多种成熟 mRNA。</desc>
+<text x='70' y='46' font-family="'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size='15' fill='#333333' font-weight='bold' text-anchor='start'>DNA / pre-mRNA</text>
+<rect x='70' y='84' width='92' height='36' rx='3' fill='#e8f4f1' stroke='#186254' stroke-width='1.2'/>
+<text x='110' y='108' font-family="ui-monospace, 'SFMono-Regular', Menlo, Consolas, 'Liberation Mono', monospace" font-size='16' fill='#186254' font-weight='bold' text-anchor='start'>1</text>
+<line x1='162' y1='102' x2='208' y2='102' stroke='#9ca3af' stroke-width='1.6'/>
+<line x1='185.0' y1='90' x2='185.0' y2='114' stroke='#b45309' stroke-width='1.2' stroke-dasharray='3 3'/>
+<rect x='208' y='84' width='92' height='36' rx='3' fill='#e8f4f1' stroke='#186254' stroke-width='1.2'/>
+<text x='248' y='108' font-family="ui-monospace, 'SFMono-Regular', Menlo, Consolas, 'Liberation Mono', monospace" font-size='16' fill='#186254' font-weight='bold' text-anchor='start'>2</text>
+<line x1='300' y1='102' x2='346' y2='102' stroke='#9ca3af' stroke-width='1.6'/>
+<line x1='323.0' y1='90' x2='323.0' y2='114' stroke='#b45309' stroke-width='1.2' stroke-dasharray='3 3'/>
+<rect x='346' y='84' width='92' height='36' rx='3' fill='#e8f4f1' stroke='#186254' stroke-width='1.2'/>
+<text x='386' y='108' font-family="ui-monospace, 'SFMono-Regular', Menlo, Consolas, 'Liberation Mono', monospace" font-size='16' fill='#186254' font-weight='bold' text-anchor='start'>3</text>
+<line x1='438' y1='102' x2='484' y2='102' stroke='#9ca3af' stroke-width='1.6'/>
+<line x1='461.0' y1='90' x2='461.0' y2='114' stroke='#b45309' stroke-width='1.2' stroke-dasharray='3 3'/>
+<rect x='484' y='84' width='92' height='36' rx='3' fill='#e8f4f1' stroke='#186254' stroke-width='1.2'/>
+<text x='524' y='108' font-family="ui-monospace, 'SFMono-Regular', Menlo, Consolas, 'Liberation Mono', monospace" font-size='16' fill='#186254' font-weight='bold' text-anchor='start'>4</text>
+<text x='168' y='74' font-family="'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size='12' fill='#6b7280' font-weight='normal' text-anchor='start'>外显子（exon）</text>
+<text x='214' y='136' font-family="'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size='12' fill='#6b7280' font-weight='normal' text-anchor='start'>内含子（intron）</text>
+<text x='70' y='188' font-family="'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size='13' fill='#333333' font-weight='bold' text-anchor='start'>组成型</text>
+<rect x='210' y='168' width='92' height='26' rx='3' fill='#e8f4f1' stroke='#186254' stroke-width='1.2'/>
+<text x='250' y='187' font-family="ui-monospace, 'SFMono-Regular', Menlo, Consolas, 'Liberation Mono', monospace" font-size='16' fill='#186254' font-weight='normal' text-anchor='start'>1</text>
+<line x1='302' y1='181' x2='348' y2='181' stroke='#9ca3af' stroke-width='1.2'/>
+<rect x='348' y='168' width='92' height='26' rx='3' fill='#e8f4f1' stroke='#186254' stroke-width='1.2'/>
+<text x='388' y='187' font-family="ui-monospace, 'SFMono-Regular', Menlo, Consolas, 'Liberation Mono', monospace" font-size='16' fill='#186254' font-weight='normal' text-anchor='start'>2</text>
+<line x1='440' y1='181' x2='486' y2='181' stroke='#9ca3af' stroke-width='1.2'/>
+<rect x='486' y='168' width='92' height='26' rx='3' fill='#e8f4f1' stroke='#186254' stroke-width='1.2'/>
+<text x='526' y='187' font-family="ui-monospace, 'SFMono-Regular', Menlo, Consolas, 'Liberation Mono', monospace" font-size='16' fill='#186254' font-weight='normal' text-anchor='start'>3</text>
+<line x1='578' y1='181' x2='624' y2='181' stroke='#9ca3af' stroke-width='1.2'/>
+<rect x='624' y='168' width='92' height='26' rx='3' fill='#e8f4f1' stroke='#186254' stroke-width='1.2'/>
+<text x='664' y='187' font-family="ui-monospace, 'SFMono-Regular', Menlo, Consolas, 'Liberation Mono', monospace" font-size='16' fill='#186254' font-weight='normal' text-anchor='start'>4</text>
+<text x='70' y='234' font-family="'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size='13' fill='#333333' font-weight='bold' text-anchor='start'>外显子跳跃</text>
+<rect x='210' y='214' width='92' height='26' rx='3' fill='#e8f4f1' stroke='#186254' stroke-width='1.2'/>
+<text x='250' y='233' font-family="ui-monospace, 'SFMono-Regular', Menlo, Consolas, 'Liberation Mono', monospace" font-size='16' fill='#186254' font-weight='normal' text-anchor='start'>1</text>
+<line x1='302' y1='227' x2='348' y2='227' stroke='#9ca3af' stroke-width='1.2'/>
+<rect x='348' y='214' width='92' height='26' rx='3' fill='#e8f4f1' stroke='#186254' stroke-width='1.2'/>
+<text x='388' y='233' font-family="ui-monospace, 'SFMono-Regular', Menlo, Consolas, 'Liberation Mono', monospace" font-size='16' fill='#186254' font-weight='normal' text-anchor='start'>2</text>
+<line x1='440' y1='227' x2='486' y2='227' stroke='#9ca3af' stroke-width='1.2'/>
+<rect x='486' y='214' width='92' height='26' rx='3' fill='#e8f4f1' stroke='#186254' stroke-width='1.2'/>
+<text x='526' y='233' font-family="ui-monospace, 'SFMono-Regular', Menlo, Consolas, 'Liberation Mono', monospace" font-size='16' fill='#186254' font-weight='normal' text-anchor='start'>4</text>
+<text x='70' y='280' font-family="'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size='13' fill='#333333' font-weight='bold' text-anchor='start'>内含子保留</text>
+<rect x='210' y='260' width='92' height='26' rx='3' fill='#e8f4f1' stroke='#186254' stroke-width='1.2'/>
+<text x='250' y='279' font-family="ui-monospace, 'SFMono-Regular', Menlo, Consolas, 'Liberation Mono', monospace" font-size='16' fill='#186254' font-weight='normal' text-anchor='start'>1</text>
+<line x1='302' y1='273' x2='348' y2='273' stroke='#9ca3af' stroke-width='1.2'/>
+<rect x='348' y='260' width='92' height='26' rx='3' fill='#e8f4f1' stroke='#186254' stroke-width='1.2'/>
+<text x='388' y='279' font-family="ui-monospace, 'SFMono-Regular', Menlo, Consolas, 'Liberation Mono', monospace" font-size='16' fill='#186254' font-weight='normal' text-anchor='start'>2</text>
+<line x1='440' y1='273' x2='486' y2='273' stroke='#9ca3af' stroke-width='1.2'/>
+<rect x='486' y='260' width='92' height='26' rx='3' fill='#e8f4f1' stroke='#186254' stroke-width='1.2'/>
+<text x='526' y='279' font-family="ui-monospace, 'SFMono-Regular', Menlo, Consolas, 'Liberation Mono', monospace" font-size='16' fill='#186254' font-weight='normal' text-anchor='start'>3</text>
+<line x1='578' y1='273' x2='716' y2='273' stroke='#b45309' stroke-width='2.4'/>
+<text x='653' y='256' font-family="'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size='12' fill='#b45309' font-weight='normal' text-anchor='start'>保留的内含子</text>
+<rect x='716' y='260' width='92' height='26' rx='3' fill='#e8f4f1' stroke='#186254' stroke-width='1.2'/>
+<text x='756' y='279' font-family="ui-monospace, 'SFMono-Regular', Menlo, Consolas, 'Liberation Mono', monospace" font-size='16' fill='#186254' font-weight='normal' text-anchor='start'>4</text>
+<text x='70' y='306' font-family="'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size='12' fill='#6b7280' font-weight='normal' text-anchor='start'>同一个基因经可变剪接可以产生多种成熟 mRNA，进而在蛋白水平产生多样性。</text>
+</svg>

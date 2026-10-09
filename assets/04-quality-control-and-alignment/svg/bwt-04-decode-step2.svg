@@ -1,0 +1,41 @@
+<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 640 362' role='img' aria-labelledby='t d'>
+<title id='t'>BWT 解码第 2 步：LF 映射走一步，确定 G 前面的字符</title>
+<desc id='d'>L 列第 1 个 G 对应 F 列第 1 个 G（第 7 行）；第 7 行的 L 是 C，说明 G 前面是 C。当前还原结果为 GC。</desc>
+<text x='70' y='44' font-family="'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size='15' fill='#333333' font-weight='bold' text-anchor='start'>第 2 步：LF 映射走一步，确定 G 前面的字符</text>
+<text x='70' y='70' font-family="'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size='13' fill='#186254' font-weight='bold' text-anchor='start'>F 列</text>
+<text x='200' y='70' font-family="'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size='13' fill='#b45309' font-weight='bold' text-anchor='start'>L 列</text>
+<text x='44' y='100' font-family="ui-monospace, 'SFMono-Regular', Menlo, Consolas, 'Liberation Mono', monospace" font-size='13' fill='#6b7280' font-weight='normal' text-anchor='start'>1</text>
+<text x='94' y='100' font-family="ui-monospace, 'SFMono-Regular', Menlo, Consolas, 'Liberation Mono', monospace" font-size='16' fill='#333333' font-weight='normal' text-anchor='start'>$</text>
+<text x='220' y='100' font-family="ui-monospace, 'SFMono-Regular', Menlo, Consolas, 'Liberation Mono', monospace" font-size='16' fill='#333333' font-weight='normal' text-anchor='start'>G</text>
+<text x='44' y='124' font-family="ui-monospace, 'SFMono-Regular', Menlo, Consolas, 'Liberation Mono', monospace" font-size='13' fill='#6b7280' font-weight='normal' text-anchor='start'>2</text>
+<text x='94' y='124' font-family="ui-monospace, 'SFMono-Regular', Menlo, Consolas, 'Liberation Mono', monospace" font-size='16' fill='#333333' font-weight='normal' text-anchor='start'>A</text>
+<text x='220' y='124' font-family="ui-monospace, 'SFMono-Regular', Menlo, Consolas, 'Liberation Mono', monospace" font-size='16' fill='#333333' font-weight='normal' text-anchor='start'>C</text>
+<text x='44' y='148' font-family="ui-monospace, 'SFMono-Regular', Menlo, Consolas, 'Liberation Mono', monospace" font-size='13' fill='#6b7280' font-weight='normal' text-anchor='start'>3</text>
+<text x='94' y='148' font-family="ui-monospace, 'SFMono-Regular', Menlo, Consolas, 'Liberation Mono', monospace" font-size='16' fill='#333333' font-weight='normal' text-anchor='start'>A</text>
+<text x='220' y='148' font-family="ui-monospace, 'SFMono-Regular', Menlo, Consolas, 'Liberation Mono', monospace" font-size='16' fill='#333333' font-weight='normal' text-anchor='start'>$</text>
+<text x='44' y='172' font-family="ui-monospace, 'SFMono-Regular', Menlo, Consolas, 'Liberation Mono', monospace" font-size='13' fill='#6b7280' font-weight='normal' text-anchor='start'>4</text>
+<text x='94' y='172' font-family="ui-monospace, 'SFMono-Regular', Menlo, Consolas, 'Liberation Mono', monospace" font-size='16' fill='#333333' font-weight='normal' text-anchor='start'>A</text>
+<text x='220' y='172' font-family="ui-monospace, 'SFMono-Regular', Menlo, Consolas, 'Liberation Mono', monospace" font-size='16' fill='#333333' font-weight='normal' text-anchor='start'>A</text>
+<text x='44' y='196' font-family="ui-monospace, 'SFMono-Regular', Menlo, Consolas, 'Liberation Mono', monospace" font-size='13' fill='#6b7280' font-weight='normal' text-anchor='start'>5</text>
+<text x='94' y='196' font-family="ui-monospace, 'SFMono-Regular', Menlo, Consolas, 'Liberation Mono', monospace" font-size='16' fill='#333333' font-weight='normal' text-anchor='start'>C</text>
+<text x='220' y='196' font-family="ui-monospace, 'SFMono-Regular', Menlo, Consolas, 'Liberation Mono', monospace" font-size='16' fill='#333333' font-weight='normal' text-anchor='start'>A</text>
+<text x='44' y='220' font-family="ui-monospace, 'SFMono-Regular', Menlo, Consolas, 'Liberation Mono', monospace" font-size='13' fill='#6b7280' font-weight='normal' text-anchor='start'>6</text>
+<text x='94' y='220' font-family="ui-monospace, 'SFMono-Regular', Menlo, Consolas, 'Liberation Mono', monospace" font-size='16' fill='#333333' font-weight='normal' text-anchor='start'>C</text>
+<text x='220' y='220' font-family="ui-monospace, 'SFMono-Regular', Menlo, Consolas, 'Liberation Mono', monospace" font-size='16' fill='#333333' font-weight='normal' text-anchor='start'>A</text>
+<text x='44' y='244' font-family="ui-monospace, 'SFMono-Regular', Menlo, Consolas, 'Liberation Mono', monospace" font-size='13' fill='#6b7280' font-weight='normal' text-anchor='start'>7</text>
+<text x='94' y='244' font-family="ui-monospace, 'SFMono-Regular', Menlo, Consolas, 'Liberation Mono', monospace" font-size='16' fill='#333333' font-weight='normal' text-anchor='start'>G</text>
+<text x='220' y='244' font-family="ui-monospace, 'SFMono-Regular', Menlo, Consolas, 'Liberation Mono', monospace" font-size='16' fill='#333333' font-weight='normal' text-anchor='start'>C</text>
+<rect x='210' y='83' width='22' height='24' rx='3' fill='#fdf3e3' stroke='#b45309' stroke-width='1.4'/>
+<rect x='84' y='227' width='22' height='24' rx='3' fill='#e8f4f1' stroke='#186254' stroke-width='1.4'/>
+<rect x='210' y='227' width='22' height='24' rx='3' fill='#fdf3e3' stroke='#b45309' stroke-width='1.4'/>
+<line x1='232' y1='96' x2='114' y2='242' stroke='#186254' stroke-width='1.6'/>
+<line x1='114.0' y1='242.0' x2='122.1' y2='238.2' stroke='#186254' stroke-width='1.6'/>
+<line x1='114.0' y1='242.0' x2='116.0' y2='233.2' stroke='#186254' stroke-width='1.6'/>
+<line x1='106' y1='246' x2='206' y2='246' stroke='#186254' stroke-width='1.6'/>
+<line x1='206.0' y1='246.0' x2='197.9' y2='242.1' stroke='#186254' stroke-width='1.6'/>
+<line x1='206.0' y1='246.0' x2='197.9' y2='249.9' stroke='#186254' stroke-width='1.6'/>
+<text x='70' y='278' font-family="'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size='12' fill='#6b7280' font-weight='normal' text-anchor='start'>L 列第 1 个 G 对应 F 列第 1 个 G（第 7 行）；第 7 行的 L 是 C，说明 G 前面是 C。</text>
+<text x='70' y='306' font-family="'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size='13' fill='#333333' font-weight='normal' text-anchor='start'>当前还原结果（从后往前）：</text>
+<text x='280' y='306' font-family="ui-monospace, 'SFMono-Regular', Menlo, Consolas, 'Liberation Mono', monospace" font-size='16' fill='#186254' font-weight='bold' text-anchor='start'>G</text>
+<text x='292' y='306' font-family="ui-monospace, 'SFMono-Regular', Menlo, Consolas, 'Liberation Mono', monospace" font-size='16' fill='#186254' font-weight='bold' text-anchor='start'>C</text>
+</svg>
