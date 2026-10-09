@@ -11,10 +11,12 @@
     {
       "file": "manuscript/02-environment-and-programming.md",
       "title": "分析环境的搭建与必要的编程技术",
-      "planned_sections": 6,
+      "planned_sections": 8,
       "section_titles": [
         "电脑、服务器与软件环境",
         "连接远端服务器",
+        "在服务器安装软件",
+        "conda 与 Bioconda",
         "R 数据处理与绘图基础",
         "Python 与结构化配置的最低必要知识",
         "本地AI agent的配置与安装",
@@ -180,10 +182,7 @@
   "appendices": [
     "appendices/a-references-and-materials.md"
   ],
-  "known_missing_images": [
-    "https://images-cdn.shimo.im/ZZob1QhLKmoyhnlk/Snipaste_2018_09_09_21_16_25.png!original",
-    "https://images-cdn.shimo.im/2PrwPwoL75oUjCsd/Snipaste_2018_09_09_21_20_52.png!original"
-  ],
+  "known_missing_images": [],
   "required_anchors": {
     "manuscript/01-ai-era-introduction.md": [
       "src-0010-introduction-8"
@@ -557,7 +556,20 @@
       "topic-02-zcode",
       "topic-02-project-structure",
       "topic-02-git",
-      "topic-02-troubleshooting"
+      "topic-02-troubleshooting",
+      "topic-02-linux-files",
+      "topic-02-linux-view",
+      "topic-02-linux-text",
+      "topic-02-linux-pipe",
+      "topic-02-linux-archive",
+      "topic-02-linux-process",
+      "topic-02-linux-env",
+      "topic-02-rstudio",
+      "topic-02-python-vars",
+      "topic-02-python-containers",
+      "topic-02-python-flow",
+      "topic-02-python-functions",
+      "topic-02-python-files"
     ]
   },
   "integrated_questions": [
