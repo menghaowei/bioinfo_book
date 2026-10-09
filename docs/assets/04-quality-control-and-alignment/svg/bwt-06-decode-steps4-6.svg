@@ -1,0 +1,45 @@
+<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 760 330' role='img' aria-labelledby='t d'>
+<title id='t'>BWT 解码第 4—6 步与最终还原</title>
+<desc id='d'>按 LF 映射继续回溯得到 GCAA、GCAAC、GCAACA；逆序即原序列 ACAACG。</desc>
+<text x='70' y='44' font-family="'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size='15' fill='#333333' font-weight='bold' text-anchor='start'>第 4—6 步：继续 LF 映射，直到把序列补全</text>
+<text x='70' y='76' font-family="'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size='13' fill='#6b7280' font-weight='normal' text-anchor='start'>步骤</text>
+<text x='120' y='76' font-family="'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size='13' fill='#6b7280' font-weight='normal' text-anchor='start'>当前字符（L 列）</text>
+<text x='350' y='76' font-family="'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size='13' fill='#6b7280' font-weight='normal' text-anchor='start'>对应 F 列</text>
+<text x='480' y='76' font-family="'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size='13' fill='#6b7280' font-weight='normal' text-anchor='start'>新确定的字符</text>
+<text x='640' y='76' font-family="'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size='13' fill='#6b7280' font-weight='normal' text-anchor='start'>当前还原结果</text>
+<text x='70' y='110' font-family="ui-monospace, 'SFMono-Regular', Menlo, Consolas, 'Liberation Mono', monospace" font-size='16' fill='#333333' font-weight='normal' text-anchor='start'>4</text>
+<text x='120' y='110' font-family="'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size='13' fill='#333333' font-weight='normal' text-anchor='start'>第 6 行的 A（L 列第 3 个 A）</text>
+<text x='350' y='110' font-family="'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size='13' fill='#333333' font-weight='normal' text-anchor='start'>第 3 行的 A</text>
+<text x='480' y='110' font-family="'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size='13' fill='#333333' font-weight='normal' text-anchor='start'>第 3 行的 L：A</text>
+<text x='640' y='110' font-family="ui-monospace, 'SFMono-Regular', Menlo, Consolas, 'Liberation Mono', monospace" font-size='16' fill='#186254' font-weight='bold' text-anchor='start'>GCAA</text>
+<line x1='60' y1='122' x2='730' y2='122' stroke='#e5e7eb' stroke-width='1'/>
+<text x='70' y='154' font-family="ui-monospace, 'SFMono-Regular', Menlo, Consolas, 'Liberation Mono', monospace" font-size='16' fill='#333333' font-weight='normal' text-anchor='start'>5</text>
+<text x='120' y='154' font-family="'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size='13' fill='#333333' font-weight='normal' text-anchor='start'>第 3 行的 A（L 列第 1 个 A）</text>
+<text x='350' y='154' font-family="'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size='13' fill='#333333' font-weight='normal' text-anchor='start'>第 2 行的 A</text>
+<text x='480' y='154' font-family="'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size='13' fill='#333333' font-weight='normal' text-anchor='start'>第 2 行的 L：C</text>
+<text x='640' y='154' font-family="ui-monospace, 'SFMono-Regular', Menlo, Consolas, 'Liberation Mono', monospace" font-size='16' fill='#186254' font-weight='bold' text-anchor='start'>GCAAC</text>
+<line x1='60' y1='166' x2='730' y2='166' stroke='#e5e7eb' stroke-width='1'/>
+<text x='70' y='198' font-family="ui-monospace, 'SFMono-Regular', Menlo, Consolas, 'Liberation Mono', monospace" font-size='16' fill='#333333' font-weight='normal' text-anchor='start'>6</text>
+<text x='120' y='198' font-family="'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size='13' fill='#333333' font-weight='normal' text-anchor='start'>第 2 行的 C（L 列第 1 个 C）</text>
+<text x='350' y='198' font-family="'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size='13' fill='#333333' font-weight='normal' text-anchor='start'>第 5 行的 C</text>
+<text x='480' y='198' font-family="'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size='13' fill='#333333' font-weight='normal' text-anchor='start'>第 5 行的 L：A</text>
+<text x='640' y='198' font-family="ui-monospace, 'SFMono-Regular', Menlo, Consolas, 'Liberation Mono', monospace" font-size='16' fill='#186254' font-weight='bold' text-anchor='start'>GCAACA</text>
+<line x1='60' y1='210' x2='730' y2='210' stroke='#e5e7eb' stroke-width='1'/>
+<text x='70' y='250' font-family="ui-monospace, 'SFMono-Regular', Menlo, Consolas, 'Liberation Mono', monospace" font-size='16' fill='#333333' font-weight='normal' text-anchor='start'>G</text>
+<text x='82' y='250' font-family="ui-monospace, 'SFMono-Regular', Menlo, Consolas, 'Liberation Mono', monospace" font-size='16' fill='#333333' font-weight='normal' text-anchor='start'>C</text>
+<text x='94' y='250' font-family="ui-monospace, 'SFMono-Regular', Menlo, Consolas, 'Liberation Mono', monospace" font-size='16' fill='#333333' font-weight='normal' text-anchor='start'>A</text>
+<text x='106' y='250' font-family="ui-monospace, 'SFMono-Regular', Menlo, Consolas, 'Liberation Mono', monospace" font-size='16' fill='#333333' font-weight='normal' text-anchor='start'>A</text>
+<text x='118' y='250' font-family="ui-monospace, 'SFMono-Regular', Menlo, Consolas, 'Liberation Mono', monospace" font-size='16' fill='#333333' font-weight='normal' text-anchor='start'>C</text>
+<text x='130' y='250' font-family="ui-monospace, 'SFMono-Regular', Menlo, Consolas, 'Liberation Mono', monospace" font-size='16' fill='#333333' font-weight='normal' text-anchor='start'>A</text>
+<text x='160' y='250' font-family="'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size='13' fill='#6b7280' font-weight='normal' text-anchor='start'>逆序阅读</text>
+<line x1='230' y1='245' x2='280' y2='245' stroke='#186254' stroke-width='1.6'/>
+<line x1='280.0' y1='245.0' x2='271.9' y2='241.1' stroke='#186254' stroke-width='1.6'/>
+<line x1='280.0' y1='245.0' x2='271.9' y2='248.9' stroke='#186254' stroke-width='1.6'/>
+<text x='290' y='250' font-family="ui-monospace, 'SFMono-Regular', Menlo, Consolas, 'Liberation Mono', monospace" font-size='16' fill='#186254' font-weight='bold' text-anchor='start'>A</text>
+<text x='302' y='250' font-family="ui-monospace, 'SFMono-Regular', Menlo, Consolas, 'Liberation Mono', monospace" font-size='16' fill='#186254' font-weight='bold' text-anchor='start'>C</text>
+<text x='314' y='250' font-family="ui-monospace, 'SFMono-Regular', Menlo, Consolas, 'Liberation Mono', monospace" font-size='16' fill='#186254' font-weight='bold' text-anchor='start'>A</text>
+<text x='326' y='250' font-family="ui-monospace, 'SFMono-Regular', Menlo, Consolas, 'Liberation Mono', monospace" font-size='16' fill='#186254' font-weight='bold' text-anchor='start'>A</text>
+<text x='338' y='250' font-family="ui-monospace, 'SFMono-Regular', Menlo, Consolas, 'Liberation Mono', monospace" font-size='16' fill='#186254' font-weight='bold' text-anchor='start'>C</text>
+<text x='350' y='250' font-family="ui-monospace, 'SFMono-Regular', Menlo, Consolas, 'Liberation Mono', monospace" font-size='16' fill='#186254' font-weight='bold' text-anchor='start'>G</text>
+<text x='380' y='250' font-family="'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size='13' fill='#186254' font-weight='normal' text-anchor='start'>= 原序列，解码成功</text>
+</svg>
