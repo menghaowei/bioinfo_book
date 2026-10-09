@@ -111,12 +111,15 @@ for chapter in manifest['chapters']:
  if [(int(m[1]),int(m[2])) for m in matches]!=[(chapter_number,i) for i in range(1,n+1)]:
   errors.append(f'{p.name}: section numbering is not sequential')
  if not source.startswith('# '+chapter['title']+' {'):errors.append(f'{p.name}: chapter title differs from author outline')
- summary_blocks=re.findall(r'^## 本章提要 \{#chapter-summary-\d+ \.unnumbered\}\n\n(.*?)(?=\n## |\Z)',source,re.M|re.S)
+ summary_pattern=(r'::: \{\.hero-book \.book-chapter-summary\}\n\n'
+                  rf'## 本章提要 \{{#chapter-summary-{chapter_number:02d} \.unnumbered\}}\n\n'
+                  r'(.*?)\n\n:::\n(?=\n## )')
+ summary_blocks=re.findall(r'^'+summary_pattern,source,re.M|re.S)
  if chapter.get('summary'):
   summaries+=len(summary_blocks)
-  if len(summary_blocks)!=1:errors.append(f'{p.name}: expected one chapter summary')
+  if len(summary_blocks)!=1:errors.append(f'{p.name}: expected one dark chapter summary box ending before numbered sections')
   elif len(summary_blocks[0].strip())>1000 or '\n\n' in summary_blocks[0].strip():errors.append(f'{p.name}: chapter summary must be one paragraph of at most 1000 characters')
-  if not re.match(r'^# [^\n]+\n\n## 本章提要 ',source):errors.append(f'{p.name}: summary must precede numbered sections')
+  if not re.match(r'^# [^\n]+\n\n'+summary_pattern,source,re.S):errors.append(f'{p.name}: summary box must follow the chapter title and precede numbered sections')
  elif re.search(r'^## ',source,re.M):errors.append(f'{p.name}: foreword must not have second-level sections')
  if not (OUT/'manuscript'/p.with_suffix('.html').name).exists():errors.append(f'Missing chapter HTML: {p.stem}')
 
