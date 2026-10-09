@@ -4,189 +4,35 @@
 
 ## 本章提要 {#chapter-summary-02 .unnumbered}
 
-本章帮助你建立能够开展分析的工作环境，并掌握后续实践所需的编程基础。我们从电脑、服务器和软件环境开始，逐步学习命令行与文本操作、Shell 批处理、R 数据处理与绘图，以及 Python 和结构化配置。最后用项目目录、版本管理与排错把这些技能组织起来。阅读时可以先完成一条适合自己设备的环境搭建路线，再围绕小文件和样本表练习；遇到不理解的命令，可以借助 AI 解释，但要检查输入、输出和实际运行结果。
+本章帮助你搭建趁手的本地工作环境，并把重计算放到远端服务器。本地的主要工作是写代码、用 R 绘图，以及运行 Claude Code、Codex、ZCode 等 AI agent，繁重的计算则交给服务器完成。我们先比较 Windows、Linux 和 macOS 作为本地主机的优劣，完成 WSL 与 macOS 的基础配置；再学习连接服务器、传输文件、基本 Linux 操作、Shell 批处理与软件环境配置；然后掌握 R 与 Python 的最低必要基础，安装并配置本地 AI agent；最后建立项目目录、版本管理与排错的习惯。阅读时可以先打通一条从本地到服务器的完整路线，再在后续章节的实战中反复强化。
 
 :::
 
 ## 电脑、服务器与软件环境 {#sec-02-01}
 
-建立可用且相互隔离的分析环境。
+选择并配置适合分析的本地工作环境。
 
 ### 生物信息学平台的构建 {#src-0090-build-up-bioinfo-platform-1}
 
 []{#build_up_platform}
 
-
+生物信息学的分析平台由本地电脑和远端服务器两部分组成，两者分工不同。本地电脑主要承担三类工作：编辑代码，用 R 等工具绘制图形，以及运行 Claude Code、Codex、ZCode 这类 AI coding agent 辅助编程；而比对、定量这些吃算力的计算，几乎都在远端服务器上完成。因此，配置本地环境的关键不是性能，而是顺手：选择一个自己习惯的操作系统，把它配置成能写代码、能连服务器、能跑 AI agent 的工作台。本章就按这个思路展开：先选好并配置本地系统，再打通与服务器的连接和基本操作。
 
 ### Windows、Linux和macOS的选择 {#src-0090-build-up-bioinfo-platform-3}
 
-生信分析的平台主要分为个人电脑和服务器。服务器几乎全部使用Linux。过去国内服务器以CentOS和Ubuntu Server为主，前者更多；但CentOS 8和CentOS 7已分别于2021年底和2024年6月停止维护，现在常见的选择是Ubuntu Server LTS、Debian，以及接替CentOS的Rocky Linux和AlmaLinux。个人电脑则Windows、macOS和Linux均有，本书主要介绍Windows和Linux的使用，而macOS的使用和Linux较为接近，仅有较少的差别。
+选择本地主机系统时，评判标准与挑选服务器不同：本地不承担重计算，关键在于开发体验、与服务器环境的接近程度，以及个人的使用习惯。下面分平台简要分析。
 
-而个人电脑操作系统的选择，在Windows 10推出WSL（Windows Subsystem for Linux）前以Linux和macOS最为方便。因为大多数开源生信软件仅会提供Linux版的二进制包或者是源代码。而源码编译安装的测试一般只在Linux下进行，macOS因为与Linux较为接近而编译安装相对容易。Windows有着与Linux较大的差别，编译安装步骤常常存在很大的问题，无法简单使用软件开发者提供的编译流程。
+#### Windows {#topic-02-platform-windows}
 
-但是WSL的出现使得在Windows下也可以获得十分接近Linux命令行环境的操作和兼容性体验。大多数人不用特别选择个人电脑的操作系统，原来使用Windows的升级到较新的Windows 10或Windows 11即可（Windows 10已于2025年10月停止官方支持，新购置的电脑建议直接使用Windows 11）。
+Windows 生态最普及，但与 Linux 服务器差异较大：大多数开源生信软件只提供 Linux 版本的二进制包或源代码，在 Windows 上直接编译安装历来困难。WSL 的出现改变了这一点——在 Windows 上可以获得十分接近 Linux 命令行的操作和兼容性体验（见下一节）。对已经在使用 Windows 的读者，没有必要为了生信专门更换电脑，配置好 WSL 即可。
 
-WSL第一代使用了二进制翻译Linux API的方式建立了兼容层，兼容性已经较为优秀，但是在I/O密集型任务上存在效率问题，限制了生信分析的实际进行。WSL第二代则使用了轻量高效的虚拟机运行真正的Linux内核，具有高度的兼容性，可用于绝大多数生信分析的场景。操作系统不再成为限制生信分析的关键环节。需要注意，WSL2下的I/O性能与文件存放的位置有关：把数据放在Linux一侧的文件系统（例如WSL内的用户主目录，Windows通过`\\wsl$`路径访问）时读写接近原生速度；跨系统访问Windows盘符（如`/mnt/c`）则明显变慢，应避免把大量测序数据放在Windows目录下反复读写。
+#### Linux {#topic-02-platform-linux}
 
-#### APT {#src-0090-build-up-bioinfo-platform-25}
+在本地直接使用 Linux 桌面（如 Ubuntu）的最大好处，是与服务器环境完全一致：同样的命令行、同样的软件安装方式，写好的脚本几乎可以原样搬上服务器。代价是日常办公和商业软件生态较弱，遇到问题需要一定的排查意愿。适合愿意把电脑完全当作开发工具使用的读者。
 
-apt（Advanced Packaging Tool）是Debian系Linux发行版的默认包管理工具，用于对包括系统本身在内的升级、安装等管理操作。
+#### macOS {#topic-02-platform-macos}
 
-##### apt和apt-get命令 {#topic-02-31}
-
-`apt`是2014年正式发布的新的apt包管理工具的命令，相较于`apt-get`系列命令它更为简洁易用。
-
-| apt 命令 | 取代的命令 | 命令的功能 |
-|:----- |:----- | ----- |
-| apt install | apt-get install | 安装软件包 |
-| apt remove | apt-get remove | 移除软件包 |
-| apt purge | apt-get purge | 移除软件包及配置文件 |
-| apt update | apt-get update | 刷新存储库索引 |
-| apt upgrade | apt-get upgrade | 升级所有可升级的软件包 |
-| apt autoremove | apt-get autoremove | 自动删除不需要的包 |
-| apt full-upgrade | apt-get dist-upgrade | 在升级软件包时自动处理依赖关系 |
-| apt search | apt-cache search | 搜索应用程序 |
-| apt show | apt-cache show | 显示包的详细信息 |
-
-: apt 取代的 apt-get 系列命令 {#tbl-02-environment-and-programming-01}
-
-| 新的apt命令 | 命令的功能 |
-| ----- | ----- |
-| apt list | 列出包含条件的包（已安装，可升级等） |
-| apt edit-sources | 编辑源列表 |
-
-: 新的 apt 命令 {#tbl-02-environment-and-programming-02}
-
-##### apt镜像设置 {#topic-02-56}
-
-apt默认的镜像在国内的访问速度是较慢的，所以设置一个国内的镜像是必要的。这里推荐北京外国语大学的开源软件站。其帮助信息完善，例如Ubuntu的[镜像设置帮助文档](https://mirrors.bfsu.edu.cn/help/ubuntu/)。
-
-可以在文档中选择你具体使用的Ubuntu版本以获取对应的软件源地址。备份原先的软件源配置文件后即可更改配置文件。修改完成后执行`sudo apt update`命令刷新索引即可生效。
-
-
-
-![图题待补](../assets/02-computing-and-programming/001-4bcc5c9c-49e7-465a-91f8-4e1ed8512e7c.png){#fig-02-computing-and-programming-001}
-
-
-
-
-#### yum {#src-0090-build-up-bioinfo-platform-62}
-
-yum（Yellow dog Updater, Modified）是Red Hat系（Red Hat、CentOS、Fedora）发行版传统的默认包管理工具。RHEL 8及其后续版本（包括Rocky Linux、AlmaLinux和新版Fedora）已默认改用新一代的dnf，`yum`命令仍作为别名保留，本节讲解的用法在dnf下同样适用。
-
-| 命令 | 功能 |
-| ----- | ----- |
-| yum install | 安装软件包 |
-| yum update | 更新软件包 |
-| yum check-update | 检查是否有可用更新 |
-| yum remove | 删除指定的软件包 |
-| yum list | 显示软件包的信息 |
-| yum search | 查找软件包的信息 |
-| yum info | 显示指定软件包的信息 |
-| yum clean | 清理过期缓存 |
-
-: 常用 yum 命令 {#tbl-02-environment-and-programming-03}
-
-##### yum镜像 {#topic-02-86}
-
-我们依然十分推荐北外的相关镜像，访问[CentOS镜像帮助页面](https://mirrors.bfsu.edu.cn/help/centos/)，选择你的系统版本即可获得详细的镜像配置文件内容和详细的指引。Rocky Linux和AlmaLinux等接替发行版也有对应的帮助页面，入口相同。
-
-
-
-![图题待补](../assets/02-computing-and-programming/002-4023954c-93ad-4f0d-a221-b5b3762f5f14.png){#fig-02-computing-and-programming-002}
-
-
-
-
-### Windows命令行环境搭建 {#src-0090-build-up-bioinfo-platform-86}
-
-Windows和Linux、macOS在操作上有着较大区别，但是掌握特点后也可以很好地完成任务。
-
-#### 环境变量 {#src-0090-build-up-bioinfo-platform-90}
-
-环境变量是在操作系统中一个具有特定名字的对象，它包含了一个或者多个应用程序所将使用到的信息。比如日常我们最初接触的Path环境变量。当你在命令行输入程序名称而不包括完整路径时，系统除了在当前目录下查找还会在Path环境变量中的路径进行查找。还有一些软件会用环境变量存储少部分主要设置项的值，比如Julia语言的官方编译器以环境变量JULIA_NUM_THREADS来设置线程数。
-
-Windows的环境变量主要分为：系统、用户、进程（只在当前进程中生效）。设置位置包括系统的“高级设置”（具体内容存储于注册表中）和PowerShell的系统和用户配置文件。系统高级设置的环境变量可以被系统内运行的所有软件读取，而PowerShell配置文件的环境变量只在启动PowerShell时生效。
-
-#### Windows高级设置修改环境变量 {#src-0090-build-up-bioinfo-platform-96}
-
-首先，我再次推荐还在使用旧版系统的尽快升级（Windows 10已于2025年10月停止官方支持，新购置的电脑建议直接使用Windows 11）。如果你已经是Windows 10/11了，直接在任务栏搜索框中输入“高级设置”，搜索结果中就会有“查看系统高级设置”的结果，点击后就进入到系统高级设置了。如果你还在使用更旧的系统，那么右击“计算机”选择“属性”，弹出窗口内可以找到“高级设置”的入口。
-
-高级设置的窗口内就可以看到环境变量设置的入口。
-
-
-
-![图题待补](../assets/02-computing-and-programming/003-bfa4fe1a-87f9-49ef-993d-f475efb42382.png){#fig-02-computing-and-programming-003}
-
-
-
-在弹出窗口中就可以选择对应的用户或者系统环境变量进行新建、编辑或删除环境变量了。
-
-
-
-![图题待补](../assets/02-computing-and-programming/004-7dedbf76-f75e-42f6-b06d-b71ce194456f.png){#fig-02-computing-and-programming-004}
-
-
-
-
-##### 编辑环境变量 {#src-0090-build-up-bioinfo-platform-108}
-
-比如这里选择用户变量的Path然后选择“编辑”，就会弹出对应的编辑窗口。“新建”就是添加一个新的路径到Path环境变量中；“编辑”为修改当前Path环境变量下的某个路径；“浏览”则可以通过“浏览文件夹”窗口选择路径；“删除”则可以删除已有的；“上移”和“下移”调整具体路径的优先度，系统查找时按列表从上到下依次进行，也就是排在前方（上方）的路径优先度更高；“编辑文本”则是在一个输入框编辑，各个路径之间以英文分号分隔，一般情况并不适用，主要用在完全复制一个用户的单个环境变量的多个值时。
-
-
-
-![图题待补](../assets/02-computing-and-programming/005-67c80585-5b6e-4d27-8f15-feab73fdbbd0.png){#fig-02-computing-and-programming-005}
-
-
-
-
-##### 新建环境变量 {#src-0090-build-up-bioinfo-platform-114}
-
-在环境变量设置窗口对应区域点击“新建”按钮即可新建用户或系统环境变量。变量值可以有多个，每个变量值之间用英文分号分隔。两个“浏览”按钮分别使用浏览窗口选择目录或文件。
-
-
-
-![图题待补](../assets/02-computing-and-programming/006-d099007d-fed0-4bb2-b983-500d9c36af27.png){#fig-02-computing-and-programming-006}
-
-
-
-新建或编辑完环境变量并确认后，回到“环境变量”确认后就修改完成。重启相关读取环境变量的程序即可生效。如果仍未生效，则注销用户后重新登录即可。
-
-#### PowerShell配置文件设置环境变量 {#src-0090-build-up-bioinfo-platform-122}
-
-Windows中的PowerShell包括系统内置的Windows PowerShell（5.1）和可自行安装的PowerShell 7+（曾用名PowerShell Core，现官方名称就是PowerShell），个人推荐安装PowerShell 7+。
-
-
-
-![图题待补](../assets/02-computing-and-programming/007-1230650c-9088-4283-8dd8-81f43bf30c6a.png){#fig-02-computing-and-programming-007}
-
-
-
-不论你启动Windows PowerShell还是PowerShell Core（Windows PowerShell可以右击开始按钮的菜单启动，PowerShell Core安装后会在应用程序列表中出现），都可以用变量查看配置文件路径。`$profile.CurrentUserAllHosts`用于查看用户配置文件，只作用于当前用户。`$profile.AllUsersAllHosts`用于查看系统配置文件，作用于当前系统的所有用户。
-
-
-
-![图题待补](../assets/02-computing-and-programming/008-905328cc-a557-45a4-9792-eebf4e47f9d2.png){#fig-02-computing-and-programming-008}
-
-
-
-
-![图题待补](../assets/02-computing-and-programming/009-35fc36d7-1daa-4713-8c9d-94231f3a25da.png){#fig-02-computing-and-programming-009}
-
-
-
-当然在修改配置文件之前需要对PowerShell的执行策略进行更改，否则配置文件是无法被载入的。右击开始按钮在菜单中选择“Windows PowerShell (管理员)”，弹出窗口中执行`Set-ExecutionPolicy RemoteSigned`命令。
-
-查找到配置文件路径后就可以就通过编辑配置文件添加或修改环境变量。
-
-
-```{.powershell data-book-role="code"}
-$env:TEST="D:\"
-$env:TEST=$env:TEST+";E:\"
-$env:Path=$env:Path+";F:\"
-```
-
-上面是一个例子，第一行新建了一个名为TEST的环境变量，并设置其值为`D:\`，如果TEST环境变量已存在，则会覆盖原值。第二行在原值基础上添加一个值`E:\`。所以第三行我们也以类似的方法在现有的Path环境变量下添加一个值，以防覆盖原有的值。要注意PowerShell的双引号字符串中反斜杠不是转义字符，路径直接写`D:\`即可，不要再写成其他语言中转义形式的`D:\\`。修改完配置文件后只要重启PowerShell即可生效。
+macOS 基于 Unix，自带终端和一批常用命令行工具，与 Linux 服务器天然接近，编译安装开源软件通常也顺利；同时保留了完整的图形界面生态，作为本地主机兼顾开发与日常使用。需要注意的是，苹果芯片（Apple Silicon）的 CPU 架构与多数服务器（x86_64）不同，个别只提供 x86 版本的软件需要通过系统自带的兼容层运行。
 
 ### WSL {#src-0090-build-up-bioinfo-platform-147}
 
@@ -261,10 +107,15 @@ wsl --set-default-version 2
 
 ![图题待补](../assets/02-computing-and-programming/012-ce36916b-bbee-4d15-8a3e-193a0e1ae26e.png){#fig-02-computing-and-programming-012}
 
+### mac系统的基础配置 {#topic-02-macos-setup}
 
+macOS 的基础配置比 Windows 简单得多，基本不太需要专门折腾。系统自带的 Terminal 已经可以完成绝大多数工作，习惯图形界面的读者可以安装 iTerm2 等第三方终端，获得分页、分屏和搜索等增强功能。由于原生兼容 Unix，Linux 下的很多命令和工具在 macOS 上可以直接使用；需要安装命令行软件时，建议先安装 Homebrew 包管理器，再通过 `brew install` 安装。macOS 的劣势主要在少数商业软件和与服务器架构的差异上（见上一节），但作为本地主机，它是开箱即用程度最高的选择之一。
 
+## 连接远端服务器 {#sec-02-02}
 
-### OpenSSH for Windows {#src-0090-build-up-bioinfo-platform-197}
+打通本地与服务器之间的完整链路：连接、传输文件、执行命令、安装软件。如今的服务器几乎全部运行 Linux，常见的有 Ubuntu Server LTS、Debian，以及接替 CentOS 的 Rocky Linux 和 AlmaLinux。
+
+### 使用ssh连接 {#src-0090-build-up-bioinfo-platform-197}
 
 SSH命令是连接服务器很重要的工具。Linux和macOS都自带`ssh`命令；Windows长期以来不自带SSH命令，从Windows 10开始情况改善，较新的Windows 10和Windows 11已经预装OpenSSH客户端，在PowerShell中直接运行`ssh`就可以使用。OpenSSH服务器端则仍需要手动安装：在任务栏搜索框中输入“可选功能”，结果中会出现“添加可选功能”，点击即可进入。也可以通过“Windows设置→应用→可选功能”进入。
 
@@ -286,10 +137,84 @@ SSH命令是连接服务器很重要的工具。Linux和macOS都自带`ssh`命�
 原稿图片缺失或外部地址不可用：`https://images-cdn.shimo.im/2PrwPwoL75oUjCsd/Snipaste_2018_09_09_21_20_52.png!original`。原有图位保留。
 :::
 
+连接服务器的基本命令是 `ssh 用户名@服务器地址`，首次连接时系统会提示确认并保存主机指纹，之后输入密码即可登录。
+
+::: {.book-placeholder}
+本节内容待补充：连接示例、密钥登录与多服务器配置。
+:::
+
+### 文件的上传与下载 {#topic-02-file-transfer}
+
+分析数据经常需要在本地与服务器之间往来：把原始数据传上去，把结果图表取回来。常用方式有两类：图形界面的 sftp 软件（如 FileZilla）适合零散文件的可视化拖拽；命令行的 `scp` 与 `rsync` 适合批量和脚本化传输，其中 `rsync` 还支持增量同步，是大目录反复备份的首选。
+
+::: {.book-placeholder}
+本节内容待补充：FileZilla 配置示例与 scp、rsync 常用命令。
+:::
+
+### 基本的linux操作 {#src-0090-build-up-bioinfo-platform-13}
+
+[]{#src-0090-build-up-bioinfo-platform-15}
+
+登录服务器后，所有操作都在 Linux 命令行中完成。本节将围绕文件与文本的查找、查看、筛选和传递，介绍最常用的命令，以及路径、环境变量等基本概念。
+
+::: {.book-placeholder}
+本节内容待补充：将依据《Linux 十大常用命令》《Unix 十大实用命令》《Unix 十大高级命令》三份讲义重新编写。
+:::
+
+### Shell 脚本与批量处理 {#sec-02-03}
+
+将单条命令组织为可检查的批处理。
+
+::: {.book-placeholder}
+本节内容待补充。
+:::
+
+### 软件环境的配置 {#src-0090-build-up-bioinfo-platform-209}
+
+在服务器上安装软件有两层选择：系统包管理器适合快速安装常见工具，conda 则适合生信软件和多版本环境隔离。Red Hat 系发行版对应的包管理命令是 dnf，用法与 apt 相近，本书以 Ubuntu 为例。
+
+#### 用 apt 安装软件 {#src-0090-build-up-bioinfo-platform-25}
+
+apt（Advanced Packaging Tool）是Debian系Linux发行版的默认包管理工具，用于对包括系统本身在内的升级、安装等管理操作。
+
+Ubuntu 的官方源中收录了不少常用生信软件，例如 `samtools`、`bwa`、`bedtools` 等，一条 `apt install` 命令即可完成安装，无需手动编译。不过官方源里的版本通常偏旧、更新较慢，而且需要管理员权限；遇到版本太旧或没有收录的软件，就轮到下文的 conda 出场。
+
+##### apt和apt-get命令 {#topic-02-31}
+
+`apt`是2014年正式发布的新的apt包管理工具的命令，相较于`apt-get`系列命令它更为简洁易用。
+
+| apt 命令 | 取代的命令 | 命令的功能 |
+|:----- |:----- | ----- |
+| apt install | apt-get install | 安装软件包 |
+| apt remove | apt-get remove | 移除软件包 |
+| apt purge | apt-get purge | 移除软件包及配置文件 |
+| apt update | apt-get update | 刷新存储库索引 |
+| apt upgrade | apt-get upgrade | 升级所有可升级的软件包 |
+| apt autoremove | apt-get autoremove | 自动删除不需要的包 |
+| apt full-upgrade | apt-get dist-upgrade | 在升级软件包时自动处理依赖关系 |
+| apt search | apt-cache search | 搜索应用程序 |
+| apt show | apt-cache show | 显示包的详细信息 |
+
+: apt 取代的 apt-get 系列命令 {#tbl-02-environment-and-programming-01}
+
+| 新的apt命令 | 命令的功能 |
+| ----- | ----- |
+| apt list | 列出包含条件的包（已安装，可升级等） |
+| apt edit-sources | 编辑源列表 |
+
+: 新的 apt 命令 {#tbl-02-environment-and-programming-02}
+
+##### apt镜像设置 {#topic-02-56}
+
+apt默认的镜像在国内的访问速度是较慢的，所以设置一个国内的镜像是必要的。这里推荐北京外国语大学的开源软件站。其帮助信息完善，例如Ubuntu的[镜像设置帮助文档](https://mirrors.bfsu.edu.cn/help/ubuntu/)。
+
+可以在文档中选择你具体使用的Ubuntu版本以获取对应的软件源地址。备份原先的软件源配置文件后即可更改配置文件。修改完成后执行`sudo apt update`命令刷新索引即可生效。
 
 
-### Anaconda and bioconda {#src-0090-build-up-bioinfo-platform-209}
 
+![图题待补](../assets/02-computing-and-programming/001-4bcc5c9c-49e7-465a-91f8-4e1ed8512e7c.png){#fig-02-computing-and-programming-001}
+
+#### conda 与 Bioconda {#topic-02-conda-bioconda}
 
 ::::: {.callout-note .book-core title="核心知识｜Anaconda、conda 与 Bioconda"}
 
@@ -374,35 +299,12 @@ conda remove -p /home/test_conda --all
 本节内容待补充。
 :::
 
-## 命令行与文本文件操作 {#sec-02-02}
+### 使用vscode连接 {#topic-02-vscode-remote}
 
-能在终端找到、查看、筛选和传递数据。
-
-### Linux的一些基本概念 {#src-0090-build-up-bioinfo-platform-13}
-
-
-
-#### Linux的环境变量 {#src-0090-build-up-bioinfo-platform-15}
-
-Linux下可以通过修改`~/.bashrc`来设置用户环境变量，修改`/etc/bash.bashrc`（Debian/Ubuntu）或`/etc/bashrc`（Red Hat系）来设置系统全局的环境变量。绝大多数情况下修改用户环境变量即可：不需要管理员权限，也不会影响服务器上的其他用户。具体添加到`.bashrc`的内容可以参考下方的代码。第一行是在一个已有的环境变量中添加值（Linux中一个环境变量下的多个值以冒号分隔），第二行则是创建一个并赋值一个新的环境变量或是修改一个已有环境变量的值。
-
-
-```{.bash data-book-role="code"}
-export PATH="/export/apps/JAVA/jdk-21/bin:$PATH"
-export JULIA_PKG_SERVER="https://mirrors.bfsu.edu.cn/julia/static"
-```
-修改完`.bashrc`文件后如果想要马上生效而不是重新启动命令行，可以使用`source`执行对应文件。比如设置用户环境变量时使用`source ~/.bashrc`即可。
+VS Code 的 Remote-SSH 扩展可以把远端服务器变成本地开发环境：在本地编辑器中直接打开服务器上的目录，文件树、终端和代码补全都在本地呈现，修改实时同步到服务器。对习惯图形界面的读者，这是比纯命令行更友好的工作方式。
 
 ::: {.book-placeholder}
-本节内容待补充。
-:::
-
-## Shell 脚本与批量处理 {#sec-02-03}
-
-将单条命令组织为可检查的批处理。
-
-::: {.book-placeholder}
-本节内容待补充。
+本节内容待补充：Remote-SSH 的安装、配置与连接示例。
 :::
 
 ## R 数据处理与绘图基础 {#sec-02-04}
@@ -485,6 +387,14 @@ PATH="D:\Program Files\rtools40\usr\bin;${PATH}"
 
 能读懂基础脚本及后续 Snakemake 中的 Python 表达式。
 
+### Python 基础速览 {#topic-02-python-basics}
+
+本节提供 Python 的入门参考：变量、循环、函数与模块的最小知识集合，足以读懂后续章节的示例代码和 Snakemake 工作流中的 Python 表达式。
+
+::: {.book-placeholder}
+本节内容待补充。
+:::
+
 ### Jupyter {#src-0090-build-up-bioinfo-platform-270}
 
 Jupyter是一个非营利开源项目，2014年从IPython项目诞生。从诞生以来不断发展，基于网页支持跨几乎所有编程语言的交互式数据分析与科学计算。最早的项目是IPython Notebook，随着发展改名Jupyter Notebook。而现在Jupyter项目的核心是JupyterLab。如果你之前是Jupyter Notebook的用户，迁移到JupyterLab的学习成本很低。第一眼看上去最大的变化可能就是多标签和侧边栏。JupyterLab如今已经发展到4.X版本，经典的Jupyter Notebook仍在并行维护，扩展生态相当成熟。
@@ -522,127 +432,61 @@ ssh username@serverip -L 127.0.0.1:1234:127.0.0.1:8888
 
 :::::
 
+### 结构化配置：YAML 与 JSON {#topic-02-structured-config}
 
-### Julia {#src-0090-build-up-bioinfo-platform-346}
+配置文件是分析流程的常见输入：样本表、软件参数、工作流规则经常以 YAML 或 JSON 等结构化格式描述。读懂它们，是修改他人流程、编写 Snakemake 规则的基础。
 
-Julia是一门很新的语言，2018年8月8日才正式发布1.0版。算是迈入了相对成熟的阶段。它是一门动态类型语言，语法规则简单，类似Python；它编译运行，运行效率很高，类似C++/C；对正则支持良好，类似Perl……
+::: {.book-placeholder}
+本节内容待补充：YAML 与 JSON 的语法要点与生信示例。
+:::
 
-Julia对并行和分布式也支持良好，比如一个多线程的for循环只要像下面一样在原有的for循环代码上简单地加上`@threads`宏。
+## 本地AI agent的配置与安装 {#sec-02-ai-agents}
 
+在本地装好 AI agent，让它们参与代码编写与排错。
 
-```{.julia data-book-role="code"}
-Threads.@threads for i = 1:1000
-    ago_sdf = cm_df[i,:]
-end
-```
+Claude Code、Codex、ZCode 等命令行 AI agent 可以在终端里读写代码、执行命令、完成多步骤任务，是 AI 时代生信分析的重要本地工具。使用它们的前提是完成订阅（coding plan）与 API 设置，并清楚它们擅长什么、可能在什么地方出错——这与全书的判断力主题一致。
 
-当然，它也非尽善尽美，仍然存在不足：
-
-1. 生物信息学领域生态相对不足。虽然BioJulia项目已经初具规模，提供了不少高质量的Julia包，但是和有着长久积累的R和Python而言还差异巨大。
-2. 因为需要进行编译，所以运行前存在“预热”时间，并不适合本身运行时间就很短的任务，否则反而有可能导致效率下降。
-
-#### Julia基础环境搭建 {#src-0090-build-up-bioinfo-platform-363}
-
-
-
-##### Julia的安装 {#src-0090-build-up-bioinfo-platform-365}
-
-Julia语言的安装相对来说是很友好的：macOS下提供了二进制安装包，Linux下提供了解压后即可用的压缩包，Windows下则同时提供了两类安装包。下载的地址，国外的用户建议直接上[官网下载页](https://julialang.org/downloads/)，而国内用户我们依然建议使用已经推荐了很多次的[北外镜像](https://mirrors.bfsu.edu.cn/julia-releases/bin/)。
-
-使用二进制安装包或解压可用的安装包安装后，要记住把Julia可执行程序的所在目录添加到环境变量PATH中。比如现在我的Julia安装在`D:\Program Files\Julia-1.11`中，需要添加到环境变量PATH中的就是`D:\Program Files\Julia-1.11\bin`。具体的添加方法请查看本章前面的部分。
-
-##### Julia的REPL {#src-0090-build-up-bioinfo-platform-371}
-
-Julia带有一个交互式命令行环境REPL（read-eval-print loop），它内置于`julia`可执行文件中。其允许简单快捷地执行Julia语句，同时具有可搜索的历史记录、tab补全功能、help和shell模式以及一些实用的快捷键。只要不带参数地执行`julia`可执行文件（Julia可执行程序的所在目录添加到环境变量PATH中后，在终端中执行`julia`命令即可）或者双击执行`julia`可执行文件就可以启动REPL。
-
-Julian模式：REPL的默认操作模式，可以快捷执行Julia语句。
-
-pkg模式：包管理模式，在默认模式下光标位于行开头时输入]（英文右侧方括号）进入。
-
-shell模式：命令模式，在该模式下可使用系统命令。
-
-help模式：帮助模式，可以在该模式下查看各种帮助信息。例如可以在help模式下使用`if`命令查看if语句的帮助信息，使用`@time`查看`@time`宏的帮助信息。
-
-##### Julia的设置 {#src-0090-build-up-bioinfo-platform-383}
-
-Julia的各种自定义设置都是通过环境变量进行的。其有两类方式进行修改。一是通过更改系统或当前用户的环境变量进行，Julia的线程数环境变量`JULIA_NUM_THREADS`和Julia仓库路径环境变量`JULIA_DEPOT_PATH`等少数环境变量只能通过此种方式进行修改。二是通过修改Julia仓库路径下的`config`目录中的`startup.jl`文件内容设置其他大部分Julia设置环境变量。例如Julia包服务器地址环境变量`JULIA_PKG_SERVER`就可以通过在其中添加语句进行设置。例如可以在该文件中添加一行`ENV["JULIA_PKG_SERVER"] = "https://mirrors.bfsu.edu.cn/julia/static"`将包服务器设置为北外开源镜像站的地址。特别提醒，仓库路径也是存放二进制依赖、包原始文件、包预编译文件等属于当前用户的Julia环境数据。所以如果你想自定义存放这些文件的地方，就只能通过系统环境变量或者当前用户环境变量设置环境变量`JULIA_DEPOT_PATH`的值。如果不进行自定义设置，则仓库路径为当前用户的用户目录下的`.julia`目录。
-
-##### Julia包的管理 {#src-0090-build-up-bioinfo-platform-387}
-
-Julia使用REPL的pkg模式进行包管理。在pkg模式下，`add`命令安装包，`up`命令升级包，`rm`命令卸载包，`status`查看已安装包的状态。例如可以在pkg模式下用`add IJulia`命令安装IJulia包。
-
-##### 开发环境配置 {#src-0090-build-up-bioinfo-platform-391}
-
-Julia的开发环境主要有三种，JupyterLab、Visual Studio Code和基于Julia的Pluto。
-
-**JupyterLab的Julia环境配置**
-
-Julia本体安装完成后，再安装IJulia包，IJulia包安装好后，执行`build IJulia`命令进行初始化即可将Julia内核添加至JupyterLab。
-
-
-
-![图题待补](../assets/02-computing-and-programming/021-851ad659-2dd4-41f8-aa76-97f13e1a53c3.png){#fig-02-computing-and-programming-021}
-
-
-
-**Visual Studio Code的Julia环境配置**
-
-Visual Studio Code可以通过安装Julia扩展快捷地获得对Julia的支持。安装后还需要修改VS Code设置中的`julia.executablePath`设置项，设置`julia`可执行文件的完整路径。
-
-
-
-![图题待补](../assets/02-computing-and-programming/022-53848068-fc53-4edc-ba71-dbfb487ce804.png){#fig-02-computing-and-programming-022}
-
-
-
-
-![图题待补](../assets/02-computing-and-programming/023-c80e763e-4e12-4cf1-9723-491c00946aa5.png){#fig-02-computing-and-programming-023}
-
-
-
-**Pluto环境设置**
-
-Pluto是一个基于Julia的轻量、易用且具有反应式特性（当改变一个函数或变量时，Pluto会自动更新所有受影响的Cell。）的交互式notebook。安装Pluto只要通过pkg模式安装`Pluto`包即可。启动则在REPL默认模式下使用以下命令即可。
-
-
-```{.julia data-book-role="code"}
-import Pluto
-Pluto.run()
-```
-
-### Perl {#src-0090-build-up-bioinfo-platform-418}
-
-Perl作为在生信分析领域有着大量积累的脚本语言，你完全可以不用学习从头编写Perl脚本，但是很可能你会需要使用别人的Perl脚本，或者使用一些基于Perl的生信分析软件。所以掌握Perl环境的搭建就是很有必要的。
-
-感谢十分强大的Anaconda以及收录了大部分生信相关Perl模块的Bioconda和conda-forge软件源，对于我们来说搭建Perl环境是相对很简单的。首先你要确认你按照本书之前的部分为Anaconda添加了Bioconda和conda-forge源。那么就可以简单地在终端中使用`conda install -c conda-forge perl`命令安装Perl。当然如果你所使用的分析软件或者Perl脚本如果不依赖第三方模块，其实也可以直接使用Linux和macOS自带的Perl。
-
-安装Perl第三方模块会稍稍麻烦点，因为Bioconda和conda-forge收录的模块的名字形式稍稍和Perl官方源略有不同。你可以在[anaconda.org网站](https://anaconda.org/)进行搜索，比如查找bioperl模块可以搜索`bioperl`，就可以找到相应的模块名称和安装命令。
-
-
-
-![图题待补](../assets/02-computing-and-programming/024-8b0517b5-57cc-449a-886a-035b4b529dcc.png){#fig-02-computing-and-programming-024}
-
-
-
-
-![图题待补](../assets/02-computing-and-programming/025-4be6947e-fe2f-449e-9b47-8d2830221e1f.png){#fig-02-computing-and-programming-025}
-
-
-
+### coding plan 和 API 设置 {#topic-02-coding-plan}
 
 ::: {.book-placeholder}
 本节内容待补充。
 :::
 
-## 项目目录、版本管理与排错 {#sec-02-06}
+### Claude Code {#topic-02-claude-code}
+
+::: {.book-placeholder}
+本节内容待补充。
+:::
+
+### Codex {#topic-02-codex}
+
+::: {.book-placeholder}
+本节内容待补充。
+:::
+
+### ZCode {#topic-02-zcode}
+
+::: {.book-placeholder}
+本节内容待补充。
+:::
+
+## AI时代的版本管理 {#sec-02-06}
 
 形成可维护的工作习惯，遇到错误能够定位原因。
 
-### 其他内容 {#src-0090-build-up-bioinfo-platform-431}
+### 项目目录的组织 {#topic-02-project-structure}
 
 ::: {.book-placeholder}
 本节内容待补充。
 :::
+
+### 版本管理与 Git {#topic-02-git}
+
+::: {.book-placeholder}
+本节内容待补充。
+:::
+
+### 排错的基本思路 {#topic-02-troubleshooting}
 
 ::: {.book-placeholder}
 本节内容待补充。

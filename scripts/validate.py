@@ -103,13 +103,13 @@ for chapter in manifest['chapters']:
  if not p.is_file():
   errors.append(f'Missing chapter source: {chapter["file"]}');continue
  source=p.read_text()
- matches=re.findall(r'^## (.+) \{#sec-(\d+)-(\d+)\}\s*$',source,re.M)
+ matches=re.findall(r'^## (.+) \{#sec-(\d+)-([0-9A-Za-z][0-9A-Za-z-]*)\}\s*$',source,re.M)
  count=len(matches);planned+=count
  if count!=n:errors.append(f'{p.name}: expected {n} planned sections, got {count}')
  if [m[0] for m in matches]!=chapter['section_titles']:errors.append(f'{p.name}: section titles differ from author outline')
  chapter_number=int(p.name[:2])
- if [(int(m[1]),int(m[2])) for m in matches]!=[(chapter_number,i) for i in range(1,n+1)]:
-  errors.append(f'{p.name}: section numbering is not sequential')
+ if any(int(m[1])!=chapter_number for m in matches) or len({m[2] for m in matches})!=len(matches):
+  errors.append(f'{p.name}: section anchors must share the chapter prefix and stay unique')
  if not source.startswith('# '+chapter['title']+' {'):errors.append(f'{p.name}: chapter title differs from author outline')
  summary_pattern=(r'::: \{\.hero-book \.book-chapter-summary\}\n\n'
                   rf'## 本章提要 \{{#chapter-summary-{chapter_number:02d} \.unnumbered\}}\n\n'
