@@ -10,43 +10,41 @@ from common import (Svg, save, COLOR_TEXT, COLOR_MUTED, COLOR_PRIMARY,
 
 
 def fig_pipeline():
-    w, h = 760, 300
-    svg = Svg(w, h, "从 FASTQ 到 SAM 的技术路线",
-              "FASTQ 经质控得到 clean reads，借助参考基因组索引比对得到 SAM，"
-              "再转换为排序索引的 BAM 供检查与下游分析。")
-    boxes = [
-        (60, 100, "FASTQ", "原始测序数据", "data"),
-        (210, 100, "质控", "FastQC / cutadapt", "tool"),
-        (360, 100, "clean reads", "质控后的数据", "data"),
-        (510, 100, "比对", "bowtie2 / bwa + 索引", "tool"),
-        (640, 100, "SAM", "比对结果", "data"),
-        (60, 200, "BAM", "转换 + 排序 + 索引", "data"),
-        (210, 200, "检查", "qualimap / IGV", "tool"),
-        (360, 200, "下游分析", "表达量 / 变异 / 峰", "data"),
+    """竖版技术路线：自上而下流动，适配正文单栏与窄屏。"""
+    w, h = 560, 860
+    svg = Svg(w, h, "从 FASTQ 到 SAM/BAM 的技术路线（竖版）",
+              "FASTQ 经质控得到 clean reads，借助索引比对得到 SAM，"
+              "再转换为排序索引的 BAM，经检查后进入下游分析。")
+    cx = w // 2
+    svg.text(cx, 40, "从 FASTQ 到比对结果", mono=False, size=SIZE_TITLE,
+             weight="bold", anchor="middle")
+    nodes = [
+        ("FASTQ", "原始测序数据", "data"),
+        ("质控", "FastQC / cutadapt", "tool"),
+        ("clean reads", "质控后的数据", "data"),
+        ("比对", "bowtie2 / bwa + 索引", "tool"),
+        ("SAM", "比对结果", "data"),
+        ("BAM", "转换 + 排序 + 索引", "data"),
+        ("检查", "qualimap / IGV", "tool"),
+        ("下游分析", "表达量 / 变异 / 峰", "data"),
     ]
-    coords = {}
-    for x, y, name, sub, kind in boxes:
-        coords[name] = (x + 55, y + 22)
+    bw, bh, gap = 300, 52, 42
+    y = 66
+    centers = []
+    for name, sub, kind in nodes:
         fill = COLOR_FILL if kind == "data" else "none"
-        svg.rect(x, y, 110, 44, fill=fill,
-                 stroke=COLOR_PRIMARY if kind == "data" else COLOR_LINE)
-        svg.text(x + 55, y + 20, name, mono=(kind == "data"), anchor="middle",
+        stroke = COLOR_PRIMARY if kind == "data" else COLOR_LINE
+        svg.rect(cx - bw // 2, y, bw, bh, fill=fill, stroke=stroke)
+        svg.text(cx, y + 22, name, mono=(kind == "data"), anchor="middle",
                  weight="bold", fill=COLOR_PRIMARY if kind == "data" else COLOR_TEXT)
-        svg.text(x + 55, y + 36, sub, mono=False, size=SIZE_NOTE, anchor="middle",
+        svg.text(cx, y + 40, sub, mono=False, size=SIZE_NOTE, anchor="middle",
                  fill=COLOR_MUTED)
-    arrows = [("FASTQ", "质控"), ("质控", "clean reads"), ("clean reads", "比对"),
-              ("比对", "SAM"), ("SAM", "BAM"), ("BAM", "检查"), ("检查", "下游分析")]
-    for a, b in arrows:
-        x1, y1 = coords[a]
-        x2, y2 = coords[b]
-        if y1 == y2:
-            svg.arrow(x1 + 55, y1, x2 - 55, y2)
-        else:
-            x2j, y2j = coords[b]
-            if a == "SAM":
-                svg.arrow(x1 - 80, y1 + 22, x2 + 55, y2 - 22)
-            else:
-                svg.arrow(x1 + 55, y1, x2 - 55, y2)
+        centers.append((cx, y, y + bh))
+        y += bh + gap
+    for k in range(len(centers) - 1):
+        _, _, ybot = centers[k]
+        _, ytop, _ = centers[k + 1]
+        svg.arrow(cx, ybot + 4, cx, ytop - 4)
     save("fastq-to-sam-pipeline", svg)
 
 
@@ -156,9 +154,9 @@ REF = "AGCATGTTAGATAAGATAGCTGTGCTAGTAGGCAGTCAGCGCCAT"
 
 
 def fig_cigar():
-    x0, ruler_y = 60, 78
+    x0, ruler_y = 96, 78
     w = x0 + len(REF) * CHAR_W + 190
-    h = 430
+    h = 478
     svg = Svg(w, h, "reads 比对到参考序列的示意（CIGAR 操作符）",
               "依据 SAM 规范官方示例绘制：展示 M、I、D、N、S、H 等 CIGAR 操作符的含义。")
     svg.text(x0, 42, "reads 比对到参考序列（依据 SAM 规范官方示例重绘）", mono=False,

@@ -90,6 +90,8 @@ blockquote { border-left:3px solid #90b29c; color:#425b50; }
 .callout[class*="book-"] { border-left-width:4px !important; border-radius:7px; padding:.8rem 1rem; }
 .callout[class*="book-"] .callout-header { background:transparent !important; padding:.1rem 0 .6rem; font-weight:650; }
 .callout[class*="book-"] .callout-body { font-size:18px; line-height:1.75; }
+.callout-body { min-width:0; }
+.callout .callout-body pre, .callout .callout-body .code-viewport { max-width:100%; overflow-x:auto; }
 .callout[class*="book-"] .callout-body > :last-child { margin-bottom:0; }
 .book-equation { display:grid; grid-template-columns:minmax(0,1fr) auto; align-items:center; gap:16px; width:100%; margin:1.5rem 0; }
 .equation-scroll { display:block; min-width:0; overflow-x:auto; overflow-y:hidden; padding:.5rem 0; }

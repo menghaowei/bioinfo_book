@@ -367,7 +367,7 @@ chr1	hg19_ncbiRefSeq	exon	67091530	67091593	0.000000	+	.	gene_id "SGIP1"; transc
 2. [利用动态规划进行全局比对](https://www.bilibili.com/video/av10042290/?p=6)
 3. [从全局比对到局部比对](https://www.bilibili.com/video/av10042290/?p=7)
 
-我们用一个贯穿的小例子把两种算法都算一遍。假设打分规则如 @fig-a-questions-11-15-005 所示：match 得 5 分，mismatch 扣 4 分，空位罚分 $d=-5$（每个空位扣 5 分）；要比对的序列是 seq1 = AAGT 和 seq2 = AGCT，需要填写 @fig-a-questions-11-15-006 的动态规划表格。
+我们用一个贯穿的小例子把两种算法都算一遍。假设打分规则如 @fig-a-questions-11-15-005 所示：match 得 5 分，mismatch 扣 4 分，空位罚分 $d=-5$（每个空位扣 5 分）；要比对的序列是 seq1 = AAGT 和 seq2 = AGCT，需要填写 @fig-a-questions-11-15-006 的动态规划表格（以全局比对为例，第 0 行/第 0 列先填入空位累计罚分 0、-5、-10……；局部比对的初始化全为 0）。
 
 ![双序列比对示例使用的打分矩阵：match 得 5 分，mismatch 扣 4 分，空位罚分 d=-5](../assets/04-quality-control-and-alignment/svg/pairwise-01-scoring-matrix.svg){#fig-a-questions-11-15-005}
 
@@ -380,7 +380,7 @@ A A G - T        A A G - T
 - A G C T        A - G C T
 ```
 
-![Needleman-Wunsch 全局比对的填表过程，右下角得到最优得分 5，虚线为回溯路径](../assets/04-quality-control-and-alignment/svg/pairwise-03-nw-matrix.svg){#fig-a-questions-11-15-007}
+![Needleman-Wunsch 全局比对填表结果：每格小箭头标出取值来源（对角/上/左），加粗格为回溯路径，右下角最优得分 5](../assets/04-quality-control-and-alignment/svg/pairwise-03-nw-matrix.svg){#fig-a-questions-11-15-007}
 
 **Smith-Waterman（局部比对）**：与全局比对的差别有两点——第 0 行第 0 列全为 0；每个格子算完后如果为负就记 0。填表结果见 @fig-a-questions-11-15-009 ：矩阵最高分是 10，回溯**从得分最高的单元格开始、遇到 0 停止**（注意不是“从第一个非零的格子开始”，那是初学时常见的错误）。本例最高分 10 对应两个并列的最优局部比对：
 
@@ -389,7 +389,7 @@ A G              A G - T
 A G              A G C T
 ```
 
-![Smith-Waterman 局部比对的填表过程：矩阵中最高分为 10，从最高分回溯到 0 即为局部比对结果](../assets/04-quality-control-and-alignment/svg/pairwise-04-sw-matrix.svg){#fig-a-questions-11-15-009}
+![Smith-Waterman 局部比对填表结果：记 0 的格子无来源箭头，两个最高分 10（加框）分别回溯得到两个最优局部比对](../assets/04-quality-control-and-alignment/svg/pairwise-04-sw-matrix.svg){#fig-a-questions-11-15-009}
 
 ::::: {.callout-tip .book-example title="示例与练习｜亲手填出 NW 与 SW 两张表"}
 
@@ -585,13 +585,13 @@ DNA序列是由A,T,C,G四种碱基排序而成，我们可以按四进制给序�
 
 构建BWT的步骤大致如下：
 
-(1) 给定一个子序列，譬如：ACAACG，在其末尾加入一个只会出现在结尾的特殊符号$，然后写出它全部 7 个循环旋转（rotation），见 @fig-04-quality-control-and-alignment-005 。
+(1) 给定一个子序列，譬如：ACAACG，在其末尾加入一个只会出现在结尾的特殊符号 `$`，然后写出它全部 7 个循环旋转（rotation），见 @fig-04-quality-control-and-alignment-005 。每一行都是把原序列 ACAACG$ 循环左移一位得到，$ 只出现在结尾；高亮的第一行就是原序列本身。
 
-![对 ACAACG$ 写出全部循环旋转，每一行都是原序列的一个循环移位](../assets/04-quality-control-and-alignment/svg/bwt-01-rotations.svg){#fig-04-quality-control-and-alignment-005}
+![对 `ACAACG$` 写出全部循环旋转，每一行都是原序列的一个循环移位](../assets/04-quality-control-and-alignment/svg/bwt-01-rotations.svg){#fig-04-quality-control-and-alignment-005}
 
-(2) 将所有旋转按字符顺序（ASCII 顺序，$ 最小）排序，得到排序后的旋转矩阵，见 @fig-04-quality-control-and-alignment-006 。
+(2) 将所有旋转按字符顺序（ASCII 顺序，`$` 最小）排序，得到排序后的旋转矩阵，见 @fig-04-quality-control-and-alignment-006 。
 
-![把全部循环旋转按 $ < A < C < G 排序，得到排序后的旋转矩阵](../assets/04-quality-control-and-alignment/svg/bwt-02-sorted-matrix.svg){#fig-04-quality-control-and-alignment-006}
+![把全部循环旋转按 `$ < A < C < G` 排序，得到排序后的旋转矩阵](../assets/04-quality-control-and-alignment/svg/bwt-02-sorted-matrix.svg){#fig-04-quality-control-and-alignment-006}
 
 (3) 取排序矩阵每一行的最后一个字符，按行连成一个序列，即得到 BWT = `GC$AAAC`。矩阵第一列记为 F 列（排好序的），最后一列记为 L 列（就是 BWT 本身）。
 
@@ -604,7 +604,7 @@ DNA序列是由A,T,C,G四种碱基排序而成，我们可以按四进制给序�
 
 - 第 1 步（ @fig-04-quality-control-and-alignment-007 ）：确定原序列的最后一个字符是 G，目前的还原结果是 `G`。
 
-![BWT 解码第 1 步：从 $ 所在行确定原序列以 G 结尾，当前还原结果为 G](../assets/04-quality-control-and-alignment/svg/bwt-03-decode-step1.svg){#fig-04-quality-control-and-alignment-007}
+![BWT 解码第 1 步：从 `$` 所在行确定原序列以 G 结尾，当前还原结果为 G](../assets/04-quality-control-and-alignment/svg/bwt-03-decode-step1.svg){#fig-04-quality-control-and-alignment-007}
 
 - 第 2 步（ @fig-04-quality-control-and-alignment-008 ）：沿着 LF 映射走一步，G 的前一个字符是 C，目前的还原结果是 `GC`。
 
