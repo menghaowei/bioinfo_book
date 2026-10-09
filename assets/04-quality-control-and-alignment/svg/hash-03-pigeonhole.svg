@@ -1,4 +1,4 @@
-<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 730 240' role='img' aria-labelledby='t d'>
+<svg xmlns='http://www.w3.org/2000/svg' width='660' height='240' viewBox='0 0 660 240' role='img' aria-labelledby='t d'>
 <title id='t'>鸽洞原理示意</title>
 <desc id='d'>read 分成 4 段、第 2 段含 1 处错配（✗）：即使该段无法精确命中，其余 3 段（✓）仍能在哈希表中定位到参考基因组上。</desc>
 <text x='70' y='40' font-family="'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size='15' fill='#333333' font-weight='bold' text-anchor='start'>鸽洞原理：分段容错定位</text>
@@ -9,47 +9,47 @@
 <text x='110' y='97' font-family="ui-monospace, 'SFMono-Regular', Menlo, Consolas, 'Liberation Mono', monospace" font-size='16' fill='#333333' font-weight='normal' text-anchor='start'>C</text>
 <text x='122' y='97' font-family="ui-monospace, 'SFMono-Regular', Menlo, Consolas, 'Liberation Mono', monospace" font-size='16' fill='#333333' font-weight='normal' text-anchor='start'>G</text>
 <text x='134' y='97' font-family="ui-monospace, 'SFMono-Regular', Menlo, Consolas, 'Liberation Mono', monospace" font-size='16' fill='#333333' font-weight='normal' text-anchor='start'>T</text>
-<text x='158' y='97' font-family="ui-monospace, 'SFMono-Regular', Menlo, Consolas, 'Liberation Mono', monospace" font-size='13' fill='#186254' font-weight='bold' text-anchor='start'>✓</text>
-<rect x='154' y='76' width='80' height='30' rx='3' fill='#fdf3e3' stroke='#b45309' stroke-width='1.2'/>
-<text x='158' y='97' font-family="ui-monospace, 'SFMono-Regular', Menlo, Consolas, 'Liberation Mono', monospace" font-size='16' fill='#333333' font-weight='normal' text-anchor='start'>T</text>
-<text x='170' y='97' font-family="ui-monospace, 'SFMono-Regular', Menlo, Consolas, 'Liberation Mono', monospace" font-size='16' fill='#333333' font-weight='normal' text-anchor='start'>A</text>
-<text x='182' y='97' font-family="ui-monospace, 'SFMono-Regular', Menlo, Consolas, 'Liberation Mono', monospace" font-size='16' fill='#333333' font-weight='normal' text-anchor='start'>A</text>
-<text x='194' y='97' font-family="ui-monospace, 'SFMono-Regular', Menlo, Consolas, 'Liberation Mono', monospace" font-size='16' fill='#333333' font-weight='normal' text-anchor='start'>G</text>
-<text x='206' y='97' font-family="ui-monospace, 'SFMono-Regular', Menlo, Consolas, 'Liberation Mono', monospace" font-size='16' fill='#333333' font-weight='normal' text-anchor='start'>T</text>
-<text x='218' y='97' font-family="ui-monospace, 'SFMono-Regular', Menlo, Consolas, 'Liberation Mono', monospace" font-size='16' fill='#333333' font-weight='normal' text-anchor='start'>A</text>
-<text x='242' y='97' font-family="ui-monospace, 'SFMono-Regular', Menlo, Consolas, 'Liberation Mono', monospace" font-size='13' fill='#b45309' font-weight='bold' text-anchor='start'>✗</text>
-<rect x='238' y='76' width='80' height='30' rx='3' fill='#e8f4f1' stroke='#186254' stroke-width='1.2'/>
-<text x='242' y='97' font-family="ui-monospace, 'SFMono-Regular', Menlo, Consolas, 'Liberation Mono', monospace" font-size='16' fill='#333333' font-weight='normal' text-anchor='start'>C</text>
-<text x='254' y='97' font-family="ui-monospace, 'SFMono-Regular', Menlo, Consolas, 'Liberation Mono', monospace" font-size='16' fill='#333333' font-weight='normal' text-anchor='start'>G</text>
-<text x='266' y='97' font-family="ui-monospace, 'SFMono-Regular', Menlo, Consolas, 'Liberation Mono', monospace" font-size='16' fill='#333333' font-weight='normal' text-anchor='start'>T</text>
-<text x='278' y='97' font-family="ui-monospace, 'SFMono-Regular', Menlo, Consolas, 'Liberation Mono', monospace" font-size='16' fill='#333333' font-weight='normal' text-anchor='start'>A</text>
-<text x='290' y='97' font-family="ui-monospace, 'SFMono-Regular', Menlo, Consolas, 'Liberation Mono', monospace" font-size='16' fill='#333333' font-weight='normal' text-anchor='start'>C</text>
-<text x='302' y='97' font-family="ui-monospace, 'SFMono-Regular', Menlo, Consolas, 'Liberation Mono', monospace" font-size='16' fill='#333333' font-weight='normal' text-anchor='start'>G</text>
-<text x='326' y='97' font-family="ui-monospace, 'SFMono-Regular', Menlo, Consolas, 'Liberation Mono', monospace" font-size='13' fill='#186254' font-weight='bold' text-anchor='start'>✓</text>
-<rect x='322' y='76' width='80' height='30' rx='3' fill='#e8f4f1' stroke='#186254' stroke-width='1.2'/>
-<text x='326' y='97' font-family="ui-monospace, 'SFMono-Regular', Menlo, Consolas, 'Liberation Mono', monospace" font-size='16' fill='#333333' font-weight='normal' text-anchor='start'>G</text>
-<text x='338' y='97' font-family="ui-monospace, 'SFMono-Regular', Menlo, Consolas, 'Liberation Mono', monospace" font-size='16' fill='#333333' font-weight='normal' text-anchor='start'>T</text>
-<text x='350' y='97' font-family="ui-monospace, 'SFMono-Regular', Menlo, Consolas, 'Liberation Mono', monospace" font-size='16' fill='#333333' font-weight='normal' text-anchor='start'>A</text>
-<text x='362' y='97' font-family="ui-monospace, 'SFMono-Regular', Menlo, Consolas, 'Liberation Mono', monospace" font-size='16' fill='#333333' font-weight='normal' text-anchor='start'>C</text>
-<text x='374' y='97' font-family="ui-monospace, 'SFMono-Regular', Menlo, Consolas, 'Liberation Mono', monospace" font-size='16' fill='#333333' font-weight='normal' text-anchor='start'>G</text>
-<text x='386' y='97' font-family="ui-monospace, 'SFMono-Regular', Menlo, Consolas, 'Liberation Mono', monospace" font-size='16' fill='#333333' font-weight='normal' text-anchor='start'>T</text>
-<text x='410' y='97' font-family="ui-monospace, 'SFMono-Regular', Menlo, Consolas, 'Liberation Mono', monospace" font-size='13' fill='#186254' font-weight='bold' text-anchor='start'>✓</text>
-<line x1='70' y1='184' x2='406' y2='184' stroke='#186254' stroke-width='2'/>
-<text x='418' y='188' font-family="'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size='13' fill='#6b7280' font-weight='normal' text-anchor='start'>参考基因组</text>
+<text x='156' y='97' font-family="ui-monospace, 'SFMono-Regular', Menlo, Consolas, 'Liberation Mono', monospace" font-size='13' fill='#186254' font-weight='bold' text-anchor='start'>✓</text>
+<rect x='176' y='76' width='80' height='30' rx='3' fill='#fdf3e3' stroke='#b45309' stroke-width='1.2'/>
+<text x='180' y='97' font-family="ui-monospace, 'SFMono-Regular', Menlo, Consolas, 'Liberation Mono', monospace" font-size='16' fill='#333333' font-weight='normal' text-anchor='start'>T</text>
+<text x='192' y='97' font-family="ui-monospace, 'SFMono-Regular', Menlo, Consolas, 'Liberation Mono', monospace" font-size='16' fill='#333333' font-weight='normal' text-anchor='start'>A</text>
+<text x='204' y='97' font-family="ui-monospace, 'SFMono-Regular', Menlo, Consolas, 'Liberation Mono', monospace" font-size='16' fill='#333333' font-weight='normal' text-anchor='start'>A</text>
+<text x='216' y='97' font-family="ui-monospace, 'SFMono-Regular', Menlo, Consolas, 'Liberation Mono', monospace" font-size='16' fill='#333333' font-weight='normal' text-anchor='start'>G</text>
+<text x='228' y='97' font-family="ui-monospace, 'SFMono-Regular', Menlo, Consolas, 'Liberation Mono', monospace" font-size='16' fill='#333333' font-weight='normal' text-anchor='start'>T</text>
+<text x='240' y='97' font-family="ui-monospace, 'SFMono-Regular', Menlo, Consolas, 'Liberation Mono', monospace" font-size='16' fill='#333333' font-weight='normal' text-anchor='start'>A</text>
+<text x='262' y='97' font-family="ui-monospace, 'SFMono-Regular', Menlo, Consolas, 'Liberation Mono', monospace" font-size='13' fill='#b45309' font-weight='bold' text-anchor='start'>✗</text>
+<rect x='282' y='76' width='80' height='30' rx='3' fill='#e8f4f1' stroke='#186254' stroke-width='1.2'/>
+<text x='286' y='97' font-family="ui-monospace, 'SFMono-Regular', Menlo, Consolas, 'Liberation Mono', monospace" font-size='16' fill='#333333' font-weight='normal' text-anchor='start'>C</text>
+<text x='298' y='97' font-family="ui-monospace, 'SFMono-Regular', Menlo, Consolas, 'Liberation Mono', monospace" font-size='16' fill='#333333' font-weight='normal' text-anchor='start'>G</text>
+<text x='310' y='97' font-family="ui-monospace, 'SFMono-Regular', Menlo, Consolas, 'Liberation Mono', monospace" font-size='16' fill='#333333' font-weight='normal' text-anchor='start'>T</text>
+<text x='322' y='97' font-family="ui-monospace, 'SFMono-Regular', Menlo, Consolas, 'Liberation Mono', monospace" font-size='16' fill='#333333' font-weight='normal' text-anchor='start'>A</text>
+<text x='334' y='97' font-family="ui-monospace, 'SFMono-Regular', Menlo, Consolas, 'Liberation Mono', monospace" font-size='16' fill='#333333' font-weight='normal' text-anchor='start'>C</text>
+<text x='346' y='97' font-family="ui-monospace, 'SFMono-Regular', Menlo, Consolas, 'Liberation Mono', monospace" font-size='16' fill='#333333' font-weight='normal' text-anchor='start'>G</text>
+<text x='368' y='97' font-family="ui-monospace, 'SFMono-Regular', Menlo, Consolas, 'Liberation Mono', monospace" font-size='13' fill='#186254' font-weight='bold' text-anchor='start'>✓</text>
+<rect x='388' y='76' width='80' height='30' rx='3' fill='#e8f4f1' stroke='#186254' stroke-width='1.2'/>
+<text x='392' y='97' font-family="ui-monospace, 'SFMono-Regular', Menlo, Consolas, 'Liberation Mono', monospace" font-size='16' fill='#333333' font-weight='normal' text-anchor='start'>G</text>
+<text x='404' y='97' font-family="ui-monospace, 'SFMono-Regular', Menlo, Consolas, 'Liberation Mono', monospace" font-size='16' fill='#333333' font-weight='normal' text-anchor='start'>T</text>
+<text x='416' y='97' font-family="ui-monospace, 'SFMono-Regular', Menlo, Consolas, 'Liberation Mono', monospace" font-size='16' fill='#333333' font-weight='normal' text-anchor='start'>A</text>
+<text x='428' y='97' font-family="ui-monospace, 'SFMono-Regular', Menlo, Consolas, 'Liberation Mono', monospace" font-size='16' fill='#333333' font-weight='normal' text-anchor='start'>C</text>
+<text x='440' y='97' font-family="ui-monospace, 'SFMono-Regular', Menlo, Consolas, 'Liberation Mono', monospace" font-size='16' fill='#333333' font-weight='normal' text-anchor='start'>G</text>
+<text x='452' y='97' font-family="ui-monospace, 'SFMono-Regular', Menlo, Consolas, 'Liberation Mono', monospace" font-size='16' fill='#333333' font-weight='normal' text-anchor='start'>T</text>
+<text x='474' y='97' font-family="ui-monospace, 'SFMono-Regular', Menlo, Consolas, 'Liberation Mono', monospace" font-size='13' fill='#186254' font-weight='bold' text-anchor='start'>✓</text>
+<line x1='70' y1='184' x2='494' y2='184' stroke='#186254' stroke-width='2'/>
+<text x='506' y='188' font-family="'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size='13' fill='#6b7280' font-weight='normal' text-anchor='start'>参考基因组</text>
 <line x1='106' y1='114' x2='106' y2='176' stroke='#186254' stroke-width='1.6'/>
 <line x1='106.0' y1='176.0' x2='109.9' y2='167.9' stroke='#186254' stroke-width='1.6'/>
 <line x1='106.0' y1='176.0' x2='102.1' y2='167.9' stroke='#186254' stroke-width='1.6'/>
 <text x='100' y='208' font-family="ui-monospace, 'SFMono-Regular', Menlo, Consolas, 'Liberation Mono', monospace" font-size='13' fill='#186254' font-weight='normal' text-anchor='start'>✓ 命中</text>
-<line x1='190' y1='114' x2='190' y2='176' stroke='#b45309' stroke-width='1.6'/>
-<line x1='190.0' y1='176.0' x2='193.9' y2='167.9' stroke='#b45309' stroke-width='1.6'/>
-<line x1='190.0' y1='176.0' x2='186.1' y2='167.9' stroke='#b45309' stroke-width='1.6'/>
-<text x='184' y='208' font-family="ui-monospace, 'SFMono-Regular', Menlo, Consolas, 'Liberation Mono', monospace" font-size='13' fill='#b45309' font-weight='normal' text-anchor='start'>✗ 不命中</text>
-<line x1='274' y1='114' x2='274' y2='176' stroke='#186254' stroke-width='1.6'/>
-<line x1='274.0' y1='176.0' x2='277.9' y2='167.9' stroke='#186254' stroke-width='1.6'/>
-<line x1='274.0' y1='176.0' x2='270.1' y2='167.9' stroke='#186254' stroke-width='1.6'/>
-<text x='268' y='208' font-family="ui-monospace, 'SFMono-Regular', Menlo, Consolas, 'Liberation Mono', monospace" font-size='13' fill='#186254' font-weight='normal' text-anchor='start'>✓ 命中</text>
-<line x1='358' y1='114' x2='358' y2='176' stroke='#186254' stroke-width='1.6'/>
-<line x1='358.0' y1='176.0' x2='361.9' y2='167.9' stroke='#186254' stroke-width='1.6'/>
-<line x1='358.0' y1='176.0' x2='354.1' y2='167.9' stroke='#186254' stroke-width='1.6'/>
-<text x='352' y='208' font-family="ui-monospace, 'SFMono-Regular', Menlo, Consolas, 'Liberation Mono', monospace" font-size='13' fill='#186254' font-weight='normal' text-anchor='start'>✓ 命中</text>
+<line x1='212' y1='114' x2='212' y2='176' stroke='#b45309' stroke-width='1.6'/>
+<line x1='212.0' y1='176.0' x2='215.9' y2='167.9' stroke='#b45309' stroke-width='1.6'/>
+<line x1='212.0' y1='176.0' x2='208.1' y2='167.9' stroke='#b45309' stroke-width='1.6'/>
+<text x='206' y='208' font-family="ui-monospace, 'SFMono-Regular', Menlo, Consolas, 'Liberation Mono', monospace" font-size='13' fill='#b45309' font-weight='normal' text-anchor='start'>✗ 不命中</text>
+<line x1='318' y1='114' x2='318' y2='176' stroke='#186254' stroke-width='1.6'/>
+<line x1='318.0' y1='176.0' x2='321.9' y2='167.9' stroke='#186254' stroke-width='1.6'/>
+<line x1='318.0' y1='176.0' x2='314.1' y2='167.9' stroke='#186254' stroke-width='1.6'/>
+<text x='312' y='208' font-family="ui-monospace, 'SFMono-Regular', Menlo, Consolas, 'Liberation Mono', monospace" font-size='13' fill='#186254' font-weight='normal' text-anchor='start'>✓ 命中</text>
+<line x1='424' y1='114' x2='424' y2='176' stroke='#186254' stroke-width='1.6'/>
+<line x1='424.0' y1='176.0' x2='427.9' y2='167.9' stroke='#186254' stroke-width='1.6'/>
+<line x1='424.0' y1='176.0' x2='420.1' y2='167.9' stroke='#186254' stroke-width='1.6'/>
+<text x='418' y='208' font-family="ui-monospace, 'SFMono-Regular', Menlo, Consolas, 'Liberation Mono', monospace" font-size='13' fill='#186254' font-weight='normal' text-anchor='start'>✓ 命中</text>
 </svg>

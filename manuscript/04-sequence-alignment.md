@@ -10,7 +10,7 @@
 
 ## 概览 {#sec-04-01}
 
-经过上一章的质控，我们手上已经有了干净的测序数据（clean reads）。本章的核心任务用一句话概括：**把处理后的 clean reads 通过比对放回参考基因组，得到记录每条 read 位置与比对情况的 BAM 文件**。围绕这条主线，我们依次认识参考基因组与常用注释（比对的“地图”），学习序列比对的算法原理（双序列比对、BLAST、哈希表与 BWT），根据数据特点选择比对软件并实际操作，把结果保存成 SAM/BAM 文件，做排序、过滤与统计，用 IGV 目视检查，最后把公共数据库的数据下载下来作为练习输入。本章就沿着这条主线展开：先认识参考基因组与常用注释（它们是比对的“地图”），再学习序列比对的算法原理（双序列比对、BLAST、哈希表与 BWT），然后根据数据特点选择比对软件并实际操作，把结果保存成 SAM/BAM 文件，做排序、过滤与统计，用 IGV 目视检查，最后把公共数据库的数据下载下来作为练习输入。
+经过上一章的质控，我们手上已经有了干净的测序数据（clean reads）。本章的核心任务用一句话概括：**把处理后的 clean reads 通过比对放回参考基因组，得到记录每条 read 位置与比对情况的 BAM 文件**。围绕这条主线，我们依次认识参考基因组与常用注释（比对的“地图”），学习序列比对的算法原理（双序列比对、BLAST、哈希表与 BWT），根据数据特点选择比对软件并实际操作，把结果保存成 SAM/BAM 文件，做排序、过滤与统计，用 IGV 目视检查，最后把公共数据库的数据下载下来作为练习输入。
 
 ![从 FASTQ 出发到生成 SAM 的技术路线](../assets/04-quality-control-and-alignment/svg/fastq-to-sam-pipeline.svg){#fig-a-questions-16-20-001}
 
@@ -60,7 +60,7 @@
 
 常用的 mapping 软件各有自己的索引格式，但都遵循“建索引一次、比对多次”的套路：
 
-- 二代短读长：**BWA**[^alignment-bwa]、**Bowtie**[^alignment-bowtie]、**Bowtie2**、**HISAT2**（RNA-Seq 剪接比对，见 4.5）；
+- 二代短读长：**BWA**[^alignment-BWA]、**Bowtie**[^alignment-Bowtie]、**Bowtie2**、**HISAT2**（RNA-Seq 剪接比对，见 4.5）；
 - 三代长读长：早期常用 BLASR（用 `sawriter` 建库、`blasr` 比对），当前的事实标准是 **minimap2**，PacBio 官方流程中的 pbmm2 也是基于它实现的。
 
 软件会更新换代，但“为参考序列建索引、再把 reads 定位上去”的逻辑没有变。以 Bowtie2 为例，建立 index 的输入是参考基因组序列（FASTA 格式）和 1 个我们指定的 index 名称，输出是若干个以该名称为开头的 index 文件：
@@ -71,7 +71,7 @@ bowtie2-build hg19_only_chromosome.fa  hg19_only_chromosome
 
 其中 `bowtie2-build` 为建立 index 的命令；`hg19_only_chromosome.fa` 为参考基因组（FASTA 格式）；`hg19_only_chromosome` 是我们指定的 index 名称。执行完成后会生成以它为前缀的 6 个 `.bt2` 索引文件（形如 `hg19_only_chromosome.1.bt2` 到 `hg19_only_chromosome.rev.2.bt2`），调用 index 时使用的名字就是 `hg19_only_chromosome`。
 
-为什么 bowtie、bowtie2、bwa 的索引能做到又小又快？靠的正是 **BWT/FM 索引**——具体算法推导在本章 4.4.6 一节，这里先记住结论：有了索引，比对软件可以把序列定位问题的时间复杂度降到对数级别。
+为什么 Bowtie、Bowtie 2、BWA 的索引能做到又小又快？靠的正是 **BWT/FM 索引**——具体算法推导在本章 4.4.6 一节，这里先记住结论：有了索引，比对软件可以把序列定位问题的时间复杂度降到对数级别。
 
 ::::: {.callout-tip .book-example title="示例与练习｜为什么要建索引？参考转录组的 U 要不要换成 T？"}
 
@@ -87,7 +87,7 @@ bowtie2-build hg19_only_chromosome.fa  hg19_only_chromosome
 
 ::::: {.callout-tip .book-example title="示例与练习｜下载 chr1 并建立索引"}
 
-请在 Linux 环境下，下载 human genome 19 参考基因组的 1 号染色体序列，并使用 bowtie2 建立 index。
+请在 Linux 环境下，下载 human genome 19 参考基因组的 1 号染色体序列，并使用 Bowtie 2 建立 index。
 
 **参考解答**：
 
@@ -289,7 +289,7 @@ chr1    hg19_ncbiRefSeq exon    66999929        67000051        0.000000        
 在转录组分析中经常听到“用 XX 软件拼装转录本”，不是说有了参考转录组还要再拼一个，而是两种场景：
 
 1. **无参考基因组的物种**：需要先用 RNA-Seq 数据自己拼出参考转录组（包括注释信息），再做下游分析；
-2. **注释非常好的物种（如 human）**：不同细胞系的转录组存在结构变异和转录本差异（比如同一个基因在参考注释中从 chr1:1000~15000 转录，在某个细胞系中实际是 chr1:980~15050），有时需要根据已知注释和测序数据做修正，常用软件有 StringTie 等（cufflinks 是更早期的工具，现在已较少使用）。
+2. **注释非常好的物种（如 human）**：不同细胞系的转录组存在结构变异和转录本差异（比如同一个基因在参考注释中从 chr1:1000~15000 转录，在某个细胞系中实际是 chr1:980~15050），有时需要根据已知注释和测序数据做修正，常用软件有 StringTie 等（Cufflinks 是更早期的工具，现在已较少使用）。
 
 不过对于有参考转录组的物种，一般建议不要自己拼转录本、也不要做修正，意义不大——除非研究的体系非常特殊。
 
@@ -415,7 +415,13 @@ A G              A G C T
 
 []{#question-11-255}
 
-BLAST 为什么快？我们先算一笔账（ @fig-a-questions-11-15-010 ）。假设有 1 条 100bp 的序列 SeqA（不算长），想在核酸库中找相似序列：以 2017 年前后的 NCBI 非冗余核酸库（nt）为参照，当时库里有约 47,193,206 条序列、平均长度按 0.1Mbp 计，用精确的局部比对逐条比较至少需要 100bp × 0.1Mbp × 47,193,206 ≈ 4.7×10^14 次运算；按单核每秒约 3×10^9 次、20 个核心计算，大约需要 130 分钟——序列变成 1000bp 就是 1300 分钟。为找一个相似性花两个小时，显然不划算。
+BLAST 为什么快？我们先算一笔账（ @fig-a-questions-11-15-010 ）。假设有 1 条 100bp 的序列 SeqA（不算长），想在核酸库中找相似序列：以 2017 年前后的 NCBI 非冗余核酸库（nt）为参照，当时库里有约 47,193,206 条序列、平均长度按 0.1Mbp 计，用精确的局部比对逐条比较，运算量为
+
+$$
+100\,\mathrm{bp} \times 0.1\,\mathrm{Mbp} \times 47{,}193{,}206 \approx 4.7\times10^{14}
+$$ {#eq-blast-operation-count}
+
+按单核每秒约 $3\times10^{9}$ 次、20 个核心计算，大约需要 130 分钟（见 @eq-blast-operation-count ）——序列变成 1000bp 就是 1300 分钟。为找一个相似性花两个小时，显然不划算。
 
 ![用精确的局部比对在核酸库中检索一条序列的运算量估算](../assets/a-questions-11-15/010-14-1.jpg){#fig-a-questions-11-15-010}
 
@@ -550,7 +556,19 @@ DNA序列是由A,T,C,G四种碱基排序而成，我们可以按四进制给序�
 
 
 
-举个例子，如果某个子序列为ATGCT，其中我们设定A->0, T->1, C->2, G->3，并把序列末端的碱基当作最低位，则H(ATGCT) = 1 x 4^0 + 2 x 4^1 + 3 x 4^2 + 1 x 4^3 + 0 x 4^4 = 121，这样我们就得到了5-mer序列在哈希表中的关键码值。将上面的方法进一步推广，即可得到长度为n的序列的通用公式：H(X) = I(n) x 4^(n-1) + I(n-1) x 4^(n-2) + ... + I(1) x 4^0。
+举个例子，如果某个子序列为ATGCT，其中我们设定A->0, T->1, C->2, G->3，并把序列末端的碱基当作最低位，则
+
+$$
+H(\mathrm{ATGCT}) = 1\times4^0 + 2\times4^1 + 3\times4^2 + 1\times4^3 + 0\times4^4 = 121
+$$ {#eq-hash-key-example}
+
+这样我们就得到了 5-mer 序列在哈希表中的关键码值（ @eq-hash-key-example ）。将上面的方法进一步推广，对长度为 $n$ 的序列有通式
+
+$$
+H(X) = I(n)\times4^{\,n-1} + I(n-1)\times4^{\,n-2} + \cdots + I(1)\times4^0
+$$ {#eq-hash-key-function}
+
+其中 $I(j)$ 是第 $j$ 个碱基对应的编码值（见 @eq-hash-key-function ）。
   
 把参考基因组所有 k-mer 的位置都存进哈希表（ @fig-04-quality-control-and-alignment-003 以 k=5 为例），我们就相当于知道了所有 seed 序列的位置，在检索输入序列后，即可快速进行比对反馈，而后进行延伸就得到了序列所在位置。
 
@@ -579,7 +597,7 @@ DNA序列是由A,T,C,G四种碱基排序而成，我们可以按四进制给序�
 
 ### BWT 与 FM 索引 {#src-0040-mapping-and-BAM-operation-69}
 
-无论采用的是连续种子策略还是间隔种子策略，两者都存在共同的问题，即面对高重复序列的真核生物基因组时，比对效果会比较差，究其原因就是因为k-mer分割所导致的。为了解决这个问题，软件设计者们把目光投向了另一类索引结构：后缀树与后缀数组。后缀树把参考序列的所有后缀组织成一棵树，查询很快，但把所有后缀完整存下来非常吃内存；后缀数组省得多，但对人类基因组来说仍然不小。这一方向真正的突破在于：**不需要真的存下整棵树或整个数组，只需要存下参考序列的 BWT 字符串和少量辅助数组，就能模拟在后缀数组上的查找**，这就是 FM 索引（FM-index）。bowtie、bwa 这类软件正是靠它做到了既省内存又快速定位。
+无论采用的是连续种子策略还是间隔种子策略，两者都存在共同的问题，即面对高重复序列的真核生物基因组时，比对效果会比较差，究其原因就是因为k-mer分割所导致的。为了解决这个问题，软件设计者们把目光投向了另一类索引结构：后缀树与后缀数组。后缀树把参考序列的所有后缀组织成一棵树，查询很快，但把所有后缀完整存下来非常吃内存；后缀数组省得多，但对人类基因组来说仍然不小。这一方向真正的突破在于：**不需要真的存下整棵树或整个数组，只需要存下参考序列的 BWT 字符串和少量辅助数组，就能模拟在后缀数组上的查找**，这就是 FM 索引（FM-index）。Bowtie、BWA 这类软件正是靠它做到了既省内存又快速定位。
 
 所谓BWT (Burrows-Wheeler Transform)数据转换算法，原本是用于文本压缩的一种变换（压缩工具 bzip2 就使用了它），其大致原理是将原来的文本转换为一个相似的文本，转换后使得相同的字符位置连续或者相邻，再通过其他手段对文本进行压缩。
 
@@ -618,7 +636,7 @@ DNA序列是由A,T,C,G四种碱基排序而成，我们可以按四进制给序�
 
 ![BWT 解码后续步骤：依次得到 GCAA、GCAAC、GCAACA，逆序即原序列 ACAACG](../assets/04-quality-control-and-alignment/svg/bwt-06-decode-steps4-6.svg){#fig-04-quality-control-and-alignment-010}
 
-有了上面的推导再回头看 4.2.1 的建索引：**目前 bwa、bowtie、bowtie2 的核心用的都是 BWT/FM 索引**——把人类基因组的 BWT 字符串和少量辅助数组存下来，就能既省内存、又以对数级时间完成海量 reads 的定位，这正是它们能“秒级”完成上千万条 reads 比对的底层原因。
+有了上面的推导再回头看 4.2.1 的建索引：**目前 BWA、Bowtie、Bowtie 2 的核心用的都是 BWT/FM 索引**——把人类基因组的 BWT 字符串和少量辅助数组存下来，就能既省内存、又以对数级时间完成海量 reads 的定位，这正是它们能“秒级”完成上千万条 reads 比对的底层原因。
 
 
 
@@ -633,34 +651,34 @@ DNA序列是由A,T,C,G四种碱基排序而成，我们可以按四进制给序�
 
 ### 常用比对软件与选择 {#src-0040-mapping-and-BAM-operation-98}
 
-现在最为流行的二代测序比对软件基本都是基于 BWT/FM 索引的，例如最早的 bowtie 与 bwa；bowtie2 是它们的同族后继版本，支持空位与局部比对；在 RNA-Seq 方向，TopHat2（已停止维护）曾经流行，如今的主流是 HISAT2 与 STAR 等剪接比对软件。需要说明的是：TopHat2 内部调用 bowtie2 做比对，而 HISAT2 是独立的实现，使用的是层次化 FM 索引（图 FM 索引），并不是"基于 bowtie2 改进"而来。软件会更新换代，但底层索引思想都来自本章前面讲的 BWT。
+现在最为流行的二代测序比对软件基本都是基于 BWT/FM 索引的，例如最早的 Bowtie 与 BWA；Bowtie 2 是它们的同族后继版本，支持空位与局部比对；在 RNA-Seq 方向，TopHat2（已停止维护）曾经流行，如今的主流是 HISAT2 与 STAR 等剪接比对软件。需要说明的是：TopHat2 内部调用 Bowtie 2 做比对，而 HISAT2 是独立的实现，使用的是层次化 FM 索引（图 FM 索引），并不是"基于 Bowtie 2 改进"而来。软件会更新换代，但底层索引思想都来自本章前面讲的 BWT。
 
 面对一个具体项目，可以按数据类型先做一轮初筛（ @tbl-04-aligner-choices ；表中软件均收录于 bioconda，2026 年 10 月核对可安装）：
 
 | 数据类型 | 常用软件 | 选择理由 |
 | --- | --- | --- |
-| DNA 测序（WGS/WES/ChIP 等） | bwa mem、bowtie2 | 读长中等、需要唯一定位与空位支持 |
+| DNA 测序（WGS/WES/ChIP 等） | BWA-MEM、Bowtie 2 | 读长中等、需要唯一定位与空位支持 |
 | 剪接数据（mRNA 的 RNA-Seq） | HISAT2、STAR | reads 可能跨越内含子，需要剪接感知比对 |
-| small RNA（miRNA 等，18–30nt） | bowtie（v1） | 序列很短，不允许空位的严格全局比对更合适 |
+| small RNA（miRNA 等，18–30nt） | Bowtie（v1） | 序列很短，不允许空位的严格全局比对更合适 |
 | 长读长（PacBio/ONT） | minimap2（pbmm2 基于它） | 为长读段错误模式设计 |
 
 : 按数据类型初选比对软件 {#tbl-04-aligner-choices}
 
-本章仅对 bwa、bowtie 以及 bowtie2 做深入比较，方便读者在科研工作中选择。
+本章仅对 BWA、Bowtie 以及 Bowtie 2 做深入比较，方便读者在科研工作中选择。
 
-首先说一下bwa，其优势在于提供了更多的比对模式选择，可以根据基因组大小进行比对模式选择，也可以根据序列长短进行比对模式选择，同时mem模式对长序列提供了更好的支持，可以处理三代测序数据，更常见于重测序数据的处理。
+首先说一下BWA，其优势在于提供了更多的比对模式选择，可以根据基因组大小进行比对模式选择，也可以根据序列长短进行比对模式选择，同时mem模式对长序列提供了更好的支持，可以处理三代测序数据，更常见于重测序数据的处理。
 
-bowtie与bowtie2，其实bowtie2更像是对bowtie的一个升级。比起bowtie，bowtie2支持了gap，也支持了局部比对，在中长序列（50-1000bp）的处理上更具速度与准确性。但在面对small RNA等短序列的时候，不允许gap的bowtie更具优势，究其原因就是比对上更为严格，仅支持全局最优的序列作为比对成功序列。
+Bowtie与Bowtie 2，其实Bowtie 2更像是对Bowtie的一个升级。比起Bowtie，Bowtie 2支持了gap，也支持了局部比对，在中长序列（50-1000bp）的处理上更具速度与准确性。但在面对small RNA等短序列的时候，不允许gap的Bowtie更具优势，究其原因就是比对上更为严格，仅支持全局最优的序列作为比对成功序列。
 
-至于bwa与bowtie2在处理转录组数据时谁更具备优势，其实很难界定，更多是看个人的工具使用倾向。真正针对"reads 跨外显子"这一问题的，是表中的剪接比对软件；HISAT2 在 2019 年下半年的大版本更新后性能有明显提升，在许多研究中被越来越多地使用。
+至于BWA与Bowtie 2在处理转录组数据时谁更具备优势，其实很难界定，更多是看个人的工具使用倾向。真正针对"reads 跨外显子"这一问题的，是表中的剪接比对软件；HISAT2 在 2019 年下半年的大版本更新后性能有明显提升，在许多研究中被越来越多地使用。
 
-### bowtie2 实操 {#src-0040-mapping-and-BAM-operation-108}
+### Bowtie 2 实操 {#src-0040-mapping-and-BAM-operation-108}
 
-下面本书就以bowtie2的安装与使用为例，讲解在使用过程中应该注意的事项。
+下面本书就以Bowtie 2的安装与使用为例，讲解在使用过程中应该注意的事项。
 
-#### bowtie2 的安装 {#src-0040-mapping-and-BAM-operation-111}
+#### Bowtie 2 的安装 {#src-0040-mapping-and-BAM-operation-111}
 
-由于bowtie2有将安装包放进conda的channel--bioconda里面，故而最为方便的安装方式是直接使用conda进行安装。可以直接访问 bioconda 的软件页面（<https://anaconda.org/bioconda/bowtie2>，2026 年 10 月核对可访问），也可以按下图在 Anaconda 云端检索（以下截图摄于 2019 年前后，界面可能已有调整，操作逻辑一致：搜索软件名，进入软件页，复制安装命令）。
+由于Bowtie 2有将安装包放进conda的channel--bioconda里面，故而最为方便的安装方式是直接使用conda进行安装。可以直接访问 bioconda 的软件页面（<https://anaconda.org/bioconda/bowtie2>，2026 年 10 月核对可访问），也可以按下图在 Anaconda 云端检索（以下截图摄于 2019 年前后，界面可能已有调整，操作逻辑一致：搜索软件名，进入软件页，复制安装命令）。
 
 首先，如果我们在不知道具体哪个channel的情况下，可以在浏览器中输入“conda cloud”进行检索（以必应为例）
 
@@ -670,11 +688,11 @@ bowtie与bowtie2，其实bowtie2更像是对bowtie的一个升级。比起bowtie
 
 
 
-点进去即可搜索bowtie2
+点进去即可搜索Bowtie 2
 
 
 
-![在 Anaconda Cloud 中搜索 bowtie2（2019 年前后界面）](../assets/04-quality-control-and-alignment/012-illustration.png){#fig-04-quality-control-and-alignment-012}
+![在 Anaconda Cloud 中搜索 Bowtie 2（2019 年前后界面）](../assets/04-quality-control-and-alignment/012-illustration.png){#fig-04-quality-control-and-alignment-012}
 
 
 
@@ -682,7 +700,7 @@ bowtie与bowtie2，其实bowtie2更像是对bowtie的一个升级。比起bowtie
 
 
 
-![搜索结果中的 bowtie2 软件页面入口（2019 年前后界面）](../assets/04-quality-control-and-alignment/013-illustration.png){#fig-04-quality-control-and-alignment-013}
+![搜索结果中的 Bowtie 2 软件页面入口（2019 年前后界面）](../assets/04-quality-control-and-alignment/013-illustration.png){#fig-04-quality-control-and-alignment-013}
 
 
 
@@ -690,7 +708,7 @@ bowtie与bowtie2，其实bowtie2更像是对bowtie的一个升级。比起bowtie
 
 
 
-![bowtie2 软件页面上给出的 conda 安装命令（2019 年前后界面）](../assets/04-quality-control-and-alignment/014-illustration.png){#fig-04-quality-control-and-alignment-014}
+![Bowtie 2 软件页面上给出的 conda 安装命令（2019 年前后界面）](../assets/04-quality-control-and-alignment/014-illustration.png){#fig-04-quality-control-and-alignment-014}
 
 
 
@@ -702,25 +720,25 @@ conda install -c bioconda bowtie2
 
 
 
-![conda install 安装 bowtie2 的完成界面](../assets/04-quality-control-and-alignment/015-illustration.png){#fig-04-quality-control-and-alignment-015}
+![conda install 安装 Bowtie 2 的完成界面](../assets/04-quality-control-and-alignment/015-illustration.png){#fig-04-quality-control-and-alignment-015}
 
 
 
-按照完成后即可在命令行中敲出bowtie2，连按tab键补齐三下即可看到所有bowtie2开头的命令
+按照完成后即可在命令行中敲出Bowtie 2，连按tab键补齐三下即可看到所有Bowtie 2开头的命令
 
 
 
-![命令行中输入 bowtie2 后连按 Tab 补齐，可以看到 bowtie2 相关的全部命令](../assets/04-quality-control-and-alignment/016-illustration.png){#fig-04-quality-control-and-alignment-016}
+![命令行中输入 Bowtie 2 后连按 Tab 补齐，可以看到 Bowtie 2 相关的全部命令](../assets/04-quality-control-and-alignment/016-illustration.png){#fig-04-quality-control-and-alignment-016}
 
 
 
 这种按照方法较为简单，推荐刚入门的新手使用，而对于已经熟悉了的读者，则可以自行下载，并配置全局调用，此处简单介绍，各位以后想自己安装了就可以自行尝试
 
-首先在搜索引擎上搜索bowtie2
+首先在搜索引擎上搜索Bowtie 2
 
 
 
-![在搜索引擎中搜索 bowtie2，进入官方网站](../assets/04-quality-control-and-alignment/017-illustration.png){#fig-04-quality-control-and-alignment-017}
+![在搜索引擎中搜索 Bowtie 2，进入官方网站](../assets/04-quality-control-and-alignment/017-illustration.png){#fig-04-quality-control-and-alignment-017}
 
 
 
@@ -728,7 +746,7 @@ conda install -c bioconda bowtie2
 
 
 
-![bowtie2 官网列出了各版本修复的问题，右下角是 GitHub 源码地址](../assets/04-quality-control-and-alignment/018-illustration.png){#fig-04-quality-control-and-alignment-018}
+![Bowtie 2 官网列出了各版本修复的问题，右下角是 GitHub 源码地址](../assets/04-quality-control-and-alignment/018-illustration.png){#fig-04-quality-control-and-alignment-018}
 
 
 
@@ -747,7 +765,7 @@ git clone https://github.com/BenLangmead/bowtie2.git
 
 
 
-![git clone 下载 bowtie2 源码的过程](../assets/04-quality-control-and-alignment/020-illustration.png){#fig-04-quality-control-and-alignment-020}
+![git clone 下载 Bowtie 2 源码的过程](../assets/04-quality-control-and-alignment/020-illustration.png){#fig-04-quality-control-and-alignment-020}
 
 
 
@@ -779,13 +797,13 @@ source ~/.bashrc #更新当前环境
 
 考虑到阅读本书的多是刚入门的读者，不推荐一开始就自行下载、更新环境，能用conda解决就用conda解决，等熟悉了Linux的操作逻辑再自行翻阅尝试即可。
 
-#### bowtie2 的使用 {#src-0040-mapping-and-BAM-operation-188}
+#### Bowtie 2 的使用 {#src-0040-mapping-and-BAM-operation-188}
 
-作为一名生信从业的科研人员，我们面对不熟悉的软件，第一件事并不是火急火燎的去乱问别人，而是应该秉承着先检索前人使用经验与阅读说明书的原则去熟悉一个新软件，在GitHub的下载页面下面即有bowtie2的使用简要说明
+作为一名生信从业的科研人员，我们面对不熟悉的软件，第一件事并不是火急火燎的去乱问别人，而是应该秉承着先检索前人使用经验与阅读说明书的原则去熟悉一个新软件，在GitHub的下载页面下面即有Bowtie 2的使用简要说明
 
 
 
-![GitHub 下载页面下方带有 bowtie2 的使用简要说明](../assets/04-quality-control-and-alignment/021-illustration.png){#fig-04-quality-control-and-alignment-021}
+![GitHub 下载页面下方带有 Bowtie 2 的使用简要说明](../assets/04-quality-control-and-alignment/021-illustration.png){#fig-04-quality-control-and-alignment-021}
 
 
 
@@ -797,7 +815,7 @@ source ~/.bashrc #更新当前环境
 
 
 
-我们使用bowtie2做的第一件事就是对这个参考基因组构建一个索引，这一步的目的就是上文提到构建索引表，供后续比对检索回帖
+我们使用Bowtie 2做的第一件事就是对这个参考基因组构建一个索引，这一步的目的就是上文提到构建索引表，供后续比对检索回帖
 
 
 ```{.bash data-book-role="code"}
@@ -810,11 +828,11 @@ bowtie2-build chrX.fa chrX.fa
 
 
 
-![bowtie2-build 生成的六个 .bt2 索引文件](../assets/04-quality-control-and-alignment/023-illustration.png){#fig-04-quality-control-and-alignment-023}
+![Bowtie 2-build 生成的六个 .bt2 索引文件](../assets/04-quality-control-and-alignment/023-illustration.png){#fig-04-quality-control-and-alignment-023}
 
 
 
-接着就是拿我们在上一个步骤处理干净的clean data进行回帖操作，这一步可以理解为将所有短序列在参考基因组上找回他们对应的位置，下面我们对bowtie2的参数进行一个大概的认知。
+接着就是拿我们在上一个步骤处理干净的clean data进行回帖操作，这一步可以理解为将所有短序列在参考基因组上找回他们对应的位置，下面我们对Bowtie 2的参数进行一个大概的认知。
 
 
 ```{.text data-book-role="data" data-code-title="bowtie2 常用参数速查"}
@@ -862,7 +880,7 @@ bowtie2 -p 10 -x chrX.fa -1 ERR188245_chrX_1.fastq.gz -2 ERR188245_chrX_2.fastq.
 
 #### 比对结果检查 {#src-0040-mapping-and-BAM-operation-256}
 
-在比对完成之后，bowtie2会输出一段log文件，记录着比对情况，但那只是粗略的比对情况，简单的检查可以用；如果要查看每个染色体的比对情况，则推荐用qualimap2进行检查。该软件的安装使用conda即可（注意：qualimap bamqc 的输入是排序后的 BAM 文件，SAM 或未排序的 BAM 需要先转换排序，下一节会讲到）。
+在比对完成之后，Bowtie 2会输出一段log文件，记录着比对情况，但那只是粗略的比对情况，简单的检查可以用；如果要查看每个染色体的比对情况，则推荐用Qualimap 2进行检查。该软件的安装使用conda即可（注意：qualimap bamqc 的输入是排序后的 BAM 文件，SAM 或未排序的 BAM 需要先转换排序，下一节会讲到）。
 
 
 ```{.bash data-book-role="code"}
@@ -904,13 +922,13 @@ qualimap bamqc -bam ERR188245_chrX.sorted.bam -gff chrX.gff -outdir bamqc_result
 
 SAM 的全称是 Sequence Alignment Map，设计之初就是为了存储 mapping 结果。BAM 是 SAM 的二进制压缩版本：内容完全等价，体积小得多，排好序后还能随机访问。一个标准的 SAM 文件由两部分组成：第 1 部分是以 `@` 开头的头部；第 2 部分是紧跟在头部后面的比对结果。
 
-经过 bowtie2 比对之后，会生成一个后缀是 sam 的结果文件。下面我们使用 less 指令查看这个文件（ @fig-04-quality-control-and-alignment-024 ； @fig-a-questions-16-20-002 是另一份文件的完整视图）：
+经过 Bowtie 2 比对之后，会生成一个后缀是 sam 的结果文件。下面我们使用 less 指令查看这个文件（ @fig-04-quality-control-and-alignment-024 ； @fig-a-questions-16-20-002 是另一份文件的完整视图）：
 
 ```{.bash data-book-role="code"}
 less ERR188245.sam
 ```
 
-![用 less 查看 bowtie2 输出的 SAM 文件：@ 开头的头文件与比对结果行](../assets/04-quality-control-and-alignment/024-illustration.png){#fig-04-quality-control-and-alignment-024}
+![用 less 查看 Bowtie 2 输出的 SAM 文件：@ 开头的头文件与比对结果行](../assets/04-quality-control-and-alignment/024-illustration.png){#fig-04-quality-control-and-alignment-024}
 
 ![一份 SAM 文件的内容：上面几行是 @ 开头的头部，下面是比对结果](../assets/a-questions-16-20/002-17-1.jpg){#fig-a-questions-16-20-002}
 
@@ -1022,7 +1040,7 @@ CIGAR 用“数字+操作符”串描述一条 read 与参考的比对情况：`
 
 ![SAM 文件中的前 4 列内容（最前面的行号是截图时加上的，不包含在 SAM 文件中）](../assets/a-questions-16-20/004-17-3.jpg){#fig-a-questions-16-20-004}
 
-**参考解答**：可以手工分解，FLAG 是各二进制位之和：$\mathrm{FLAG}=1+2+16+64=83$。也可以用 Picard 的 [Explain SAM Flags 工具](https://broadinstitute.github.io/picard/explain-flags.html)（2026 年 10 月核对可访问），输入 83 即可得到分解（ @fig-a-questions-16-20-005 ）。FLAG=83 表示：
+**参考解答**：可以手工分解，FLAG 是各二进制位之和：$\mathrm{FLAG}=1+2+16+64=83$。也可以用 Picard 的 [Explain SAM Flags 工具](https://broadinstitute.github.io/Picard/explain-flags.html)（2026 年 10 月核对可访问），输入 83 即可得到分解（ @fig-a-questions-16-20-005 ）。FLAG=83 表示：
 
 1. 序列是双端测序的结果；
 2. 满足正确配对条件（proper pair）；
@@ -1087,7 +1105,7 @@ $$ {#eq-tlen-example}
 
 **参考解答**：都没有意义。FASTA 不包含测序质量信息：MAPQ 无法结合碱基质量计算，常用 255 占位；第 11 列本身是测序质量值，同样无从谈起。
 
-**问题 2**：不同的比对软件（比如 bwa 与 bowtie2）计算出来的 MAPQ 意义相同吗？
+**问题 2**：不同的比对软件（比如 BWA 与 Bowtie 2）计算出来的 MAPQ 意义相同吗？
 
 **参考解答**：不能直接比较。BWA 与 Bowtie2 的核心索引思想相同，但比对策略和评价体系不同。不能认为 BWA 的 MAPQ=42 就好于 Bowtie2 的 MAPQ=40，反之亦然。
 
@@ -1120,7 +1138,7 @@ $$ {#eq-tlen-example}
 
 []{#fig-a-questions-21-25-002}
 
-查询 TAG 含义一定要从所用比对软件的官方文档中查找：SAM 文件头部的 @PG 字段记录了产生文件的软件与命令行，用 `samtools view -H` 就能看到。比如下面这个 @PG 说明文件由 bowtie2 2.2.5 产生：
+查询 TAG 含义一定要从所用比对软件的官方文档中查找：SAM 文件头部的 @PG 字段记录了产生文件的软件与命令行，用 `samtools view -H` 就能看到。比如下面这个 @PG 说明文件由 Bowtie 2 2.2.5 产生：
 
 ```{.text data-book-role="data"}
 @PG	ID:bowtie2-5DEB9F7A	PN:bowtie2	VN:2.2.5	CL:"/home/biotools/bowtie2-2.2.5/bowtie2-align-s --wrapper basic-0 -p 4 --phred33 -x /lustre/user/reference/hg19/hg19_combine -S ./tmp.data/fastq/genome-sequence.sam -1 ./tmp.data/fastq/genome-sequence_L3_1_trim5.fastq -2 ./tmp.data/fastq/genome-sequence_L3_2_trim5_92.fastq"
@@ -1128,7 +1146,7 @@ $$ {#eq-tlen-example}
 
 ::::: {.callout-tip .book-example title="示例与练习｜逐项解读一条完整比对记录"}
 
-下面是一条 bowtie2 产生的真实比对记录（human 全基因组比对，@fig-a-questions-21-25-001 是它在文件中的样子）。请对照 [bowtie2 官方手册的 SAM output 一节](http://bowtie-bio.sourceforge.net/bowtie2/manual.shtml#sam-output)（2026 年 10 月核对可访问），解释每个字段与标签。
+下面是一条 Bowtie 2 产生的真实比对记录（human 全基因组比对，@fig-a-questions-21-25-001 是它在文件中的样子）。请对照 [Bowtie 2 官方手册的 SAM output 一节](http://Bowtie-bio.sourceforge.net/Bowtie 2/manual.shtml#sam-output)（2026 年 10 月核对可访问），解释每个字段与标签。
 
 ```{.text data-book-role="data"}
 ST-E00126:128:HJFLHCCXX:2:2107:22820:18520	99	chr1	11682	1	145M	=	11920	325	GGAGATTCTTATTAGTGATTTCGGCTGGTGCCTGGCCATGTGTATTTTTTTAAATTTCCACTGATGATTTTGCTGCATGGCCGGTGTTGAGAATGACTGCGCAAATTTGCCGGATTTCCTTTGCTGTTCCTGCATGTAGTTTAAA	KKKKAAKKAFFKKKKKKFKFKKKFKKKKKKKKKKFKFKKKKKKKKKKKKKKFKFFKKKKKKFAAKAKKKKKKKKKKKKFFKKKFFFKKFKFFKKKKKKKKFFFFFKKKKKKK7<FFKKKKKKAFK<F<<7<AA,,7AA<7F7AA<	MD:Z:21G6G116	XG:i:0	NM:i:2	XM:i:2	XN:i:0	XO:i:0	AS:i:-12	XS:i:-12	YS:i:-6	YT:Z:CP
@@ -1141,7 +1159,7 @@ ST-E00126:128:HJFLHCCXX:2:2107:22820:18520	99	chr1	11682	1	145M	=	11920	325	GGAG
 1. `ST-E00126:...:18520`：read 名称，通常含测序平台信息；
 2. `99`：FLAG（=1+2+32+64：双端、正确配对、mate 在负链、read1）；
 3. `chr1`、`11682`：比对到的染色体与位置；
-4. `1`：MAPQ；
+4. `1`：MAPQ，$\mathrm{MAPQ}=-10\log_{10}\Pr\{\text{mapping 出错}\}$；
 5. `145M`：CIGAR；
 6. `=`、`11920`：mate 比对到同一染色体及其位置；
 7. `325`：TLEN；
@@ -1152,7 +1170,7 @@ ST-E00126:128:HJFLHCCXX:2:2107:22820:18520	99	chr1	11682	1	145M	=	11920	325	GGAG
 12. `XM:i:2`：错配数目；
 13. `XN:i:0`：覆盖区内参考上不确定碱基（N）的数目；
 14. `XO:i:0`：gap 打开次数；
-15. `AS:i:-12`：本条比对得分（bowtie2 全局模式得分常为负，local 模式不小于 0）；
+15. `AS:i:-12`：本条比对得分（Bowtie 2 全局模式得分常为负，local 模式不小于 0）；
 16. `XS:i:-12`：除本条外最佳候选比对的得分（second-best，通常小于等于 AS；AS 与 XS 接近说明比对位置存在歧义）；
 17. `YS:i:-6`：配对 read 的比对得分；
 18. `YT:Z:CP`：配对类型：`UU` 未配对、`CP` concordant、`DP` discordant、`UP` 配对的另一条未比对上。
@@ -1183,7 +1201,7 @@ samtools view
 
 由于我们的sam文件是文本类的文件，这就导致比对所产生的结果文件动辄大几G，对我们硬盘的造成了很大存储压力，如果压缩则能够减小很多体积，而直接转成二进制文件则更为节约体积，故而就诞生了一种二进制格式bam来对比对结果进行存储，除了是二进制以外其存储的内容与sam文件无异。怎么区分这两个呢，我觉得用英文区分就很简单可以区分开，s是string的意思，字符，文本的意思，b是binary的意思，二进制的意思，一下子就知道两者的区别了。
 
-那么转成二进制文件之后，要怎么打开呢？很明显使用less这种打开文本文件的是不适合的了。这个时候就要提到bwa之父李恒大神为sam与bam开发的一个处理利器samtools。首先是国际惯例，安装
+那么转成二进制文件之后，要怎么打开呢？很明显使用less这种打开文本文件的是不适合的了。这个时候就要提到BWA之父李恒大神为sam与bam开发的一个处理利器samtools。首先是国际惯例，安装
 
 
 ```{.bash data-book-role="code"}
@@ -1217,7 +1235,7 @@ samtools view ERR188245_chrX.bam  | less -S
 
 #### BAM文件的排序 {#src-0040-mapping-and-BAM-operation-364}
 
-如果我们是做全基因组测序，那么在进行下游分析之前，需要对bam文件进行一个排序，这个功能可以用samtools，也可以用Picard或者gatk做到。
+如果我们是做全基因组测序，那么在进行下游分析之前，需要对bam文件进行一个排序，这个功能可以用samtools，也可以用Picard或者GATK做到。
 
 使用samtools对bam文件进行排序：
 
@@ -1231,7 +1249,7 @@ samtools sort -@ 20 -m 8G -O bam -o ERR188245_chrX.sorted.bam ERR188245_chrX.bam
 # 输入文件放在最后
 ```
 
-如果是picard的话，可以参考下面的命令：
+如果是Picard的话，可以参考下面的命令：
 
 ```{.bash data-book-role="code"}
 java -jar picard.jar SortSam I=ERR188245_chrX.bam  O=ERR188245_chrX.sorted.bam  SORT_ORDER=coordinate
@@ -1287,7 +1305,7 @@ samtools view -h -b -q 20 -F 260 ERR188245_chrX.sorted.bam > ERR188245_chrX.q1F4
 samtools flagstat ERR188245_chrX.sorted.bam
 ```
 
-结果文件统计bam文件中reads的比对情况，如多少reads比对上等信息，其中的结果比较丰富，但是需要再使用R或者Python编程进行生成图表。所以，当不追求速度的情况下还是建议用qualimap2软件。
+结果文件统计bam文件中reads的比对情况，如多少reads比对上等信息，其中的结果比较丰富，但是需要再使用R或者Python编程进行生成图表。所以，当不追求速度的情况下还是建议用Qualimap 2软件。
 
 顺带一提，SAM 不仅记录比对，还保留了 reads 的原始序列，所以也能反向提取 FASTQ：
 
@@ -1318,7 +1336,7 @@ samtools bam2fq filter_MAPQ20.bam > filter_MAPQ20.fastq
 
 **问题 1**：用 `samtools view` 查看 test.sam 的 header，记录各条染色体的长度；这个文件是用哪种 mapping 软件产生的？
 
-**参考解答**：查看 header 中的 @PG ID，显示使用的软件是 bowtie2；各条染色体的长度见 @fig-a-questions-21-25-003 。
+**参考解答**：查看 header 中的 @PG ID，显示使用的软件是 Bowtie 2；各条染色体的长度见 @fig-a-questions-21-25-003 。
 
 ![test.sam 文件 header 中各条染色体的长度](../assets/a-questions-21-25/003-22-1.jpg){#fig-a-questions-21-25-003}
 
@@ -1504,7 +1522,7 @@ print(duplication_num)
 
 这一步，我们经常叫`remove duplication`。所谓的duplication一般是指构建测序文库的过程中，会有PCR扩增的步骤，这个步骤往往会对片段进行多次扩增。如果有来源于同一个原始片段的测序结果比对到了基因组上，有可能会对我们的下游分析造成一些影响。所以，某些情况下需要对bam文件进行冗余的去除，这里的冗余一般习惯上称为`duplication`。
 
-去除duplication的常用工具是 GATK/Picard 的 MarkDuplicates（按坐标排序后运行）。早期常用 `samtools rmdup`，但它对双端数据表现不佳，已在 samtools 1.14 起被移除；新版 samtools 的替代流程是 `samtools collate` + `samtools fixmate` + `samtools markdup`，本书以 GATK 为例。
+去除duplication的常用工具是 GATK/Picard 的 MarkDuplicates（按坐标排序后运行）。早期常用 `samtools rmdup`，它对双端数据的处理有已知问题；官方目前保留它仅为向后兼容，明确推荐改用 `samtools collate` + `samtools fixmate` + `samtools markdup` 流程（依据 samtools 官方 NEWS，2026 年 10 月核对）。去重工具本书以 GATK 的 MarkDuplicates 为例。
 
 MarkDuplicates 最常见的用法是**只标记、不删除**：duplicate 会被打上 FLAG 1024，供后续步骤按需过滤（这是推荐做法，保留的信息最完整）：
 
@@ -1546,7 +1564,7 @@ java -jar picard.jar MarkDuplicates I=ERR188245_chrX.sorted.bam O=ERR188245_chrX
 
 - 对sam文件进行排序并生成bam文件，将sam文件中同一染色体对应的条目按照坐标顺序从小到大进行排序。
 - 排序本身用上一节讲过的 `samtools sort` 也可以完成，两种工具都会在头信息里写入 `SO:coordinate` 标签说明文件已按坐标排序；GATK 流程推荐统一用 Picard/GATK 的 SortSam，主要是为了与后续 GATK 工具链保持一致。
-- 工具文档：[Picard/GATK SortSam](https://broadinstitute.github.io/picard/command-line-overview.html#SortSam)（2026 年 10 月核对可访问；也可在 [gatk.broadinstitute.org](https://gatk.broadinstitute.org) 的 Tool Documentation 中查找同名工具）。
+- 工具文档：[Picard/GATK SortSam](https://broadinstitute.github.io/Picard/command-line-overview.html#SortSam)（2026 年 10 月核对可访问；也可在 [GATK.broadinstitute.org](https://GATK.broadinstitute.org) 的 Tool Documentation 中查找同名工具）。
 
 
 ```{.bash .numberLines data-book-role="code"}
@@ -1610,7 +1628,7 @@ samtools view -H /path/to/my.bam
 **2. 标记重复（Markduplicates）**
 
 - 标记文库中的重复。
-- 工具文档：[Picard/GATK MarkDuplicates](https://broadinstitute.github.io/picard/command-line-overview.html#MarkDuplicates)（2026 年 10 月核对可访问）。
+- 工具文档：[Picard/GATK MarkDuplicates](https://broadinstitute.github.io/Picard/command-line-overview.html#MarkDuplicates)（2026 年 10 月核对可访问）。
 
 
 ```{.bash data-book-role="code"}
@@ -1788,7 +1806,7 @@ $$ {#eq-04-quality-control-and-alignment-019}
 
 ### IGV 工具的介绍 {#src-0040-mapping-and-BAM-operation-467}
 
-samtools 的 flagstat 或 qualimap2 能告诉我们**总体**的比对情况，但有时候我们只想看染色体上某一段区域，或者想直观地看某个编码区的比对细节——这时就需要一个可视化的基因组浏览器：IGV（Integrative Genomics Viewer）。它把 BAM 里每条 read 的位置、正负链、错配、插入缺失都画在基因组坐标上，是检查比对问题、准备组会/论文配图的利器。
+samtools 的 flagstat 或 Qualimap 2 能告诉我们**总体**的比对情况，但有时候我们只想看染色体上某一段区域，或者想直观地看某个编码区的比对细节——这时就需要一个可视化的基因组浏览器：IGV（Integrative Genomics Viewer）。它把 BAM 里每条 read 的位置、正负链、错配、插入缺失都画在基因组坐标上，是检查比对问题、准备组会/论文配图的利器。
 
 ### IGV 的下载与安装 {#sec-04-08-download}
 
@@ -1844,9 +1862,9 @@ IGV 是可视化 BAM 文件的利器，用好它可以事半功倍地检查比�
 本节内容待补充。
 :::
 
-[^alignment-bwa]: Heng Li、Richard Durbin. [Fast and accurate short read alignment with Burrows-Wheeler transform](https://pubmed.ncbi.nlm.nih.gov/19451168/). Bioinformatics, 2009.
+[^alignment-BWA]: Heng Li、Richard Durbin. [Fast and accurate short read alignment with Burrows-Wheeler transform](https://pubmed.ncbi.nlm.nih.gov/19451168/). Bioinformatics, 2009.
 
-[^alignment-bowtie]: Ben Langmead、Cole Trapnell、Mihai Pop、Steven L Salzberg. [Ultrafast and memory-efficient alignment of short DNA sequences to the human genome](https://pubmed.ncbi.nlm.nih.gov/19261174/). Genome Biology, 2009.
+[^alignment-Bowtie]: Ben Langmead、Cole Trapnell、Mihai Pop、Steven L Salzberg. [Ultrafast and memory-efficient alignment of short DNA sequences to the human genome](https://pubmed.ncbi.nlm.nih.gov/19261174/). Genome Biology, 2009.
 
 [^ncbi-assembly-counts]: NCBI Insights（2021-04-30）：Assembly 数据库装配数突破 100 万（<https://ncbiinsights.ncbi.nlm.nih.gov/2021/04/30/assembly-surpasses-one-million/>）；NCBI 帮助文档记载原核基因组归档已超 200 万（<https://support.nlm.nih.gov/kbArticle/?pn=KA-03578>）。均于 2026 年 10 月核对可访问。
 

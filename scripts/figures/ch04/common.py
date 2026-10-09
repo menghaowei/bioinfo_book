@@ -85,8 +85,8 @@ class Svg:
         return x + len(s) * cw
 
     def render(self):
-        head = (f"<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 {self.w} {self.h}' "
-                f"role='img' aria-labelledby='t d'>\n"
+        head = (f"<svg xmlns='http://www.w3.org/2000/svg' width='{self.w}' height='{self.h}' "
+                f"viewBox='0 0 {self.w} {self.h}' role='img' aria-labelledby='t d'>\n"
                 f"<title id='t'>{escape(self.title)}</title>\n"
                 f"<desc id='d'>{escape(self.desc)}</desc>\n")
         return head + "\n".join(self.parts) + "\n</svg>\n"

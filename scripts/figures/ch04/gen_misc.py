@@ -11,20 +11,20 @@ from common import (Svg, save, COLOR_TEXT, COLOR_MUTED, COLOR_PRIMARY,
 
 def fig_pipeline():
     """竖版技术路线：主线是数据（格式变化），操作与工具标注在箭头旁。"""
-    w, h = 520, 620
+    w, h = 430, 600
     svg = Svg(w, h, "从 FASTQ 到排序索引 BAM 的技术路线（竖版）",
               "主线为数据：FASTQ 经质控得到 clean reads，比对得到 SAM，"
               "排序索引得到 BAM；每步操作与所用软件标注在箭头旁。")
-    cx = 190
+    cx = 150
     svg.text(cx, 36, "从测序数据到排序索引的 BAM", mono=False, size=SIZE_TITLE,
              weight="bold", anchor="middle")
     nodes = ["FASTQ", "clean reads", "SAM", "BAM（排序+索引）"]
     ops = [
         ("质控", "FastQC / cutadapt"),
-        ("回贴比对", "bowtie2 / bwa + 索引"),
+        ("回贴比对", "Bowtie 2 / BWA + 索引"),
         ("转换 · 排序 · 索引", "samtools"),
     ]
-    bw, bh, gap = 220, 40, 56
+    bw, bh, gap = 240, 40, 50
     y = 64
     box_tops = []
     for name in nodes:
@@ -37,16 +37,16 @@ def fig_pipeline():
         ytop, _ = box_tops[k + 1]
         ax = cx
         svg.arrow(ax, ybot + 4, ax, ytop - 4)
-        svg.text(ax + 18, ybot + 22, op, mono=False, size=SIZE_LABEL,
+        svg.text(ax + 14, ybot + 20, op, mono=False, size=SIZE_LABEL,
                  weight="bold", fill=COLOR_TEXT)
-        svg.text(ax + 18, ybot + 40, tool, mono=False, size=SIZE_NOTE, fill=COLOR_MUTED)
-    svg.text(cx, y + 6, "下游分析与检查：qualimap / IGV / 表达量 / 变异 ……", mono=False,
+        svg.text(ax + 14, ybot + 38, tool, mono=False, size=SIZE_NOTE, fill=COLOR_MUTED)
+    svg.text(cx, y - 2, "下游分析：qualimap / IGV / 表达量 / 变异", mono=False,
              size=SIZE_NOTE, fill=COLOR_MUTED, anchor="middle")
     save("fastq-to-sam-pipeline", svg)
 
 
 def fig_splicing():
-    w, h = 760, 320
+    w, h = 840, 320
     svg = Svg(w, h, "可变剪接示意图",
               "同一个基因经不同的剪接方式，从一条 pre-mRNA 生成多种成熟 mRNA。")
     ex_w, gap, ey = 92, 46, 84
@@ -247,7 +247,7 @@ def fig_cigar():
                 svg.rect(col(pos) - 3, y - 14, len(seq) * CHAR_W + 2, 20,
                          fill="none", stroke=COLOR_LINE, dash="4 3")
             elif kind == "H":
-                svg.rect(col(pos), y - 14, 6 * CHAR_W, 20, fill="none",
+                svg.rect(col(pos), y - 14, 8.4 * CHAR_W, 20, fill="none",
                          stroke=COLOR_WARN, dash="4 3")
                 svg.text(col(pos) + 4, y, "6bp 已剪除", size=SIZE_LABEL, fill=COLOR_WARN)
             elif kind == "I":
@@ -256,7 +256,7 @@ def fig_cigar():
                 ax = col(nxt[1]) - 14
                 svg.seq(ax - len(seq) * CHAR_W, y - 13, seq, size=SIZE_LABEL,
                         fill=COLOR_WARN)
-                svg.text(ax - 6, y + 2, "⌄", fill=COLOR_WARN)
+                svg.text(ax - 6, y + 10, "⌄", fill=COLOR_WARN)
             elif kind == "D":
                 svg.text(col(pos), y, seq, size=SIZE_LABEL, fill=COLOR_WARN, weight="bold")
             elif kind == "N":
