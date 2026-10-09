@@ -1638,7 +1638,7 @@ UCUCGUUUGAUCUCGGAAGCUAAGCAGGGUUGGGCCUGGUUAGUACUUGGAUGGGAAACUU</code></pre>
 <img src="../assets/04-quality-control-and-alignment/svg/hash-03-pigeonhole.svg" class="img-fluid figure-img">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-04-quality-control-and-alignment-004-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-图&nbsp;4.31: 鸽洞原理示意：把 read 分成 4 段，即使有 1 段因为错配无法命中，其余 3 段仍能定位到基因组上
+图&nbsp;4.31: 鸽洞原理示意：read（24 nt）分成 4 段、第 2 段含 1 处错配（✗），即使该段无法精确命中，其余 3 段（✓）仍能在哈希表中定位到参考基因组上
 </figcaption>
 </figure>
 </div>
@@ -2373,10 +2373,10 @@ UCUCGUUUGAUCUCGGAAGCUAAGCAGGGUUGGGCCUGGUUAGUACUUGGAUGGGAAACUU</code></pre>
 <div id="fig-a-questions-16-20-014" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-a-questions-16-20-014-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="../assets/a-questions-16-20/014-20-2.jpg" class="img-fluid figure-img">
+<img src="../assets/04-quality-control-and-alignment/svg/tlen-calculation.svg" class="img-fluid figure-img">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-a-questions-16-20-014-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-图&nbsp;4.58: TLEN 的计算过程示意
+图&nbsp;4.58: TLEN 的计算示意：上游 read 从 10946 起、长 145bp，下游 read 从 11123 起；覆盖跨度为 322，上游 read 的 TLEN 取 +322、下游取 −322
 </figcaption>
 </figure>
 </div>
@@ -2407,19 +2407,60 @@ UCUCGUUUGAUCUCGGAAGCUAAGCAGGGUUGGGCCUGGUUAGUACUUGGAUGGGAAACUU</code></pre>
 <p>11 列之后的内容称为可选字段（optional fields），不同比对软件会附加不同的标签。所有可选字段的格式必须是 <code>TAG:TYPE:VALUE</code>——比如 <code>MD:Z:145</code> 就是一个符合规范的值。三条规则：</p>
 <ol type="1">
 <li>所有的 TAG 都是 2 个字母，一般为大写，且在一行比对结果中只能出现 1 次；</li>
-<li>所有的 TYPE 都是单字母、大小写敏感，定义后面 VALUE 的类型（ <a href="#fig-a-questions-21-25-002" class="quarto-xref">图&nbsp;<span>4.59</span></a> 是官方文档的类型对照，最常用的是 i 带符号整数和 Z 可含空格的字符串）；</li>
+<li>所有的 TYPE 都是单字母、大小写敏感，定义后面 VALUE 的类型（对照见 <a href="#tbl-04-sam-type-codes" class="quarto-xref">表&nbsp;<span>4.6</span></a> ，最常用的是 i 带符号整数和 Z 可含空格的字符串）；</li>
 <li>VALUE 可长可短，但必须与 TYPE 对应。</li>
 </ol>
-<div id="fig-a-questions-21-25-002" class="quarto-float quarto-figure quarto-figure-center anchored">
-<figure class="quarto-float quarto-float-fig figure">
-<div aria-describedby="fig-a-questions-21-25-002-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="../assets/a-questions-21-25/002-21-2.jpg" class="img-fluid figure-img">
-</div>
-<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-a-questions-21-25-002-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-图&nbsp;4.59: TYPE 的字母与不同数据类型之间的对应关系
+<div id="tbl-04-sam-type-codes" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-tbl figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-04-sam-type-codes-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+表&nbsp;4.6: SAM 可选字段 TYPE 的取值（依据 SAM 规范）
 </figcaption>
+<div aria-describedby="tbl-04-sam-type-codes-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div class="book-table-scroll" role="region" aria-label="表格，可横向滚动" tabindex="0"><table class="caption-top table">
+<thead>
+<tr class="header">
+<th>字母</th>
+<th>类型</th>
+<th>说明与示例</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>A</td>
+<td>字符</td>
+<td>可打印 ASCII 字符，如 <code>A</code></td>
+</tr>
+<tr class="even">
+<td>i</td>
+<td>整数</td>
+<td>带符号整数（32 位），如 <code>NM:i:2</code> 里的 2</td>
+</tr>
+<tr class="odd">
+<td>f</td>
+<td>浮点数</td>
+<td>单精度浮点数</td>
+</tr>
+<tr class="even">
+<td>Z</td>
+<td>字符串</td>
+<td>可打印字符串，可以包含空格，如 <code>MD:Z:145</code> 里的 145</td>
+</tr>
+<tr class="odd">
+<td>H</td>
+<td>字节数组</td>
+<td>十六进制字节串，如 <code>1A2B</code></td>
+</tr>
+<tr class="even">
+<td>B</td>
+<td>数值数组</td>
+<td>逗号分隔的数值数组，首字母 c/C/s/S/i/I/f 指定元素类型</td>
+</tr>
+</tbody>
+</table></div>
+</div>
 </figure>
 </div>
+<p><span id="fig-a-questions-21-25-002"></span></p>
 <p>查询 TAG 含义一定要从所用比对软件的官方文档中查找：SAM 文件头部的 <span class="citation" data-cites="PG">@PG</span> 字段记录了产生文件的软件与命令行，用 <code>samtools view -H</code> 就能看到。比如下面这个 <span class="citation" data-cites="PG">@PG</span> 说明文件由 bowtie2 2.2.5 产生：</p>
 <pre data-code-text="&quot;@PG\tID:bowtie2-5DEB9F7A\tPN:bowtie2\tVN:2.2.5\tCL:\&quot;/home/biotools/bowtie2-2.2.5/bowtie2-align-s --wrapper basic-0 -p 4 --phred33 -x /lustre/user/reference/hg19/hg19_combine -S ./tmp.data/fastq/genome-sequence.sam -1 ./tmp.data/fastq/genome-sequence_L3_1_trim5.fastq -2 ./tmp.data/fastq/genome-sequence_L3_2_trim5_92.fastq\&quot;&quot;" class="text" data-book-role="data"><code>@PG ID:bowtie2-5DEB9F7A PN:bowtie2  VN:2.2.5    CL:"/home/biotools/bowtie2-2.2.5/bowtie2-align-s --wrapper basic-0 -p 4 --phred33 -x /lustre/user/reference/hg19/hg19_combine -S ./tmp.data/fastq/genome-sequence.sam -1 ./tmp.data/fastq/genome-sequence_L3_1_trim5.fastq -2 ./tmp.data/fastq/genome-sequence_L3_2_trim5_92.fastq"</code></pre>
 <div class="book-example callout callout-style-default callout-tip callout-titled" title="示例与练习｜逐项解读一条完整比对记录">
@@ -2432,7 +2473,7 @@ UCUCGUUUGAUCUCGGAAGCUAAGCAGGGUUGGGCCUGGUUAGUACUUGGAUGGGAAACUU</code></pre>
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>下面是一条 bowtie2 产生的真实比对记录（human 全基因组比对，<a href="#fig-a-questions-21-25-001" class="quarto-xref">图&nbsp;<span>4.60</span></a> 是它在文件中的样子）。请对照 <a href="http://bowtie-bio.sourceforge.net/bowtie2/manual.shtml#sam-output">bowtie2 官方手册的 SAM output 一节</a>（2026 年 10 月核对可访问），解释每个字段与标签。</p>
+<p>下面是一条 bowtie2 产生的真实比对记录（human 全基因组比对，<a href="#fig-a-questions-21-25-001" class="quarto-xref">图&nbsp;<span>4.59</span></a> 是它在文件中的样子）。请对照 <a href="http://bowtie-bio.sourceforge.net/bowtie2/manual.shtml#sam-output">bowtie2 官方手册的 SAM output 一节</a>（2026 年 10 月核对可访问），解释每个字段与标签。</p>
 <pre data-code-text="&quot;ST-E00126:128:HJFLHCCXX:2:2107:22820:18520\t99\tchr1\t11682\t1\t145M\t=\t11920\t325\tGGAGATTCTTATTAGTGATTTCGGCTGGTGCCTGGCCATGTGTATTTTTTTAAATTTCCACTGATGATTTTGCTGCATGGCCGGTGTTGAGAATGACTGCGCAAATTTGCCGGATTTCCTTTGCTGTTCCTGCATGTAGTTTAAA\tKKKKAAKKAFFKKKKKKFKFKKKFKKKKKKKKKKFKFKKKKKKKKKKKKKKFKFFKKKKKKFAAKAKKKKKKKKKKKKFFKKKFFFKKFKFFKKKKKKKKFFFFFKKKKKKK7&lt;FFKKKKKKAFK&lt;F&lt;&lt;7&lt;AA,,7AA&lt;7F7AA&lt;\tMD:Z:21G6G116\tXG:i:0\tNM:i:2\tXM:i:2\tXN:i:0\tXO:i:0\tAS:i:-12\tXS:i:-12\tYS:i:-6\tYT:Z:CP&quot;" class="text" data-book-role="data"><code>ST-E00126:128:HJFLHCCXX:2:2107:22820:18520  99  chr1    11682   1   145M    =   11920   325 GGAGATTCTTATTAGTGATTTCGGCTGGTGCCTGGCCATGTGTATTTTTTTAAATTTCCACTGATGATTTTGCTGCATGGCCGGTGTTGAGAATGACTGCGCAAATTTGCCGGATTTCCTTTGCTGTTCCTGCATGTAGTTTAAA   KKKKAAKKAFFKKKKKKFKFKKKFKKKKKKKKKKFKFKKKKKKKKKKKKKKFKFFKKKKKKFAAKAKKKKKKKKKKKKFFKKKFFFKKFKFFKKKKKKKKFFFFFKKKKKKK7&lt;FFKKKKKKAFK&lt;F&lt;&lt;7&lt;AA,,7AA&lt;7F7AA&lt;   MD:Z:21G6G116   XG:i:0  NM:i:2  XM:i:2  XN:i:0  XO:i:0  AS:i:-12    XS:i:-12    YS:i:-6 YT:Z:CP</code></pre>
 <div id="fig-a-questions-21-25-001" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
@@ -2440,7 +2481,7 @@ UCUCGUUUGAUCUCGGAAGCUAAGCAGGGUUGGGCCUGGUUAGUACUUGGAUGGGAAACUU</code></pre>
 <img src="../assets/a-questions-21-25/001-21-1.jpg" class="img-fluid figure-img">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-a-questions-21-25-001-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-图&nbsp;4.60: SAM 文件的 11 列以后的信息截图
+图&nbsp;4.59: SAM 文件的 11 列以后的信息截图
 </figcaption>
 </figure>
 </div>
@@ -2572,14 +2613,14 @@ UCUCGUUUGAUCUCGGAAGCUAAGCAGGGUUGGGCCUGGUUAGUACUUGGAUGGGAAACUU</code></pre>
 <p><span id="question-21-279"></span></p>
 <p>准备一个很小的测试文件 test.sam（约 4MB，可从<a href="https://pan.baidu.com/s/15gVVYPRu3VbF_uKbJUUGrA">百度网盘</a>下载，密码 2drn；分享链接若失效，可按 4.2.1 的方法自行比对生成小数据），然后用 samtools 完成下面的操作。</p>
 <p><strong>问题 1</strong>：用 <code>samtools view</code> 查看 test.sam 的 header，记录各条染色体的长度；这个文件是用哪种 mapping 软件产生的？</p>
-<p><strong>参考解答</strong>：查看 header 中的 <span class="citation" data-cites="PG">@PG</span> ID，显示使用的软件是 bowtie2；各条染色体的长度见 <a href="#fig-a-questions-21-25-003" class="quarto-xref">图&nbsp;<span>4.61</span></a> 。</p>
+<p><strong>参考解答</strong>：查看 header 中的 <span class="citation" data-cites="PG">@PG</span> ID，显示使用的软件是 bowtie2；各条染色体的长度见 <a href="#fig-a-questions-21-25-003" class="quarto-xref">图&nbsp;<span>4.60</span></a> 。</p>
 <div id="fig-a-questions-21-25-003" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-a-questions-21-25-003-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <img src="../assets/a-questions-21-25/003-22-1.jpg" class="img-fluid figure-img">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-a-questions-21-25-003-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-图&nbsp;4.61: test.sam 文件 header 中各条染色体的长度
+图&nbsp;4.60: test.sam 文件 header 中各条染色体的长度
 </figcaption>
 </figure>
 </div>
@@ -2600,18 +2641,18 @@ UCUCGUUUGAUCUCGGAAGCUAAGCAGGGUUGGGCCUGGUUAGUACUUGGAUGGGAAACUU</code></pre>
 <img src="../assets/a-questions-21-25/004-22-3.jpg" class="img-fluid figure-img">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-a-questions-21-25-004-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-图&nbsp;4.62: samtools tview 中 chr1:160000-160100 区域的比对情况
+图&nbsp;4.61: samtools tview 中 chr1:160000-160100 区域的比对情况
 </figcaption>
 </figure>
 </div>
-<p>小技巧：想查某个子命令的用法，直接在命令行敲 <code>samtools view</code> 回车就会打印说明（ <a href="#fig-a-questions-21-25-005" class="quarto-xref">图&nbsp;<span>4.63</span></a> ）；完整手册见 <a href="https://www.htslib.org/doc/samtools.html">samtools manual page</a>（2026 年 10 月核对可访问）。</p>
+<p>小技巧：想查某个子命令的用法，直接在命令行敲 <code>samtools view</code> 回车就会打印说明（ <a href="#fig-a-questions-21-25-005" class="quarto-xref">图&nbsp;<span>4.62</span></a> ）；完整手册见 <a href="https://www.htslib.org/doc/samtools.html">samtools manual page</a>（2026 年 10 月核对可访问）。</p>
 <div id="fig-a-questions-21-25-005" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-a-questions-21-25-005-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <img src="../assets/a-questions-21-25/005-22-1.jpg" class="img-fluid figure-img">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-a-questions-21-25-005-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-图&nbsp;4.63: samtools view 的说明文档
+图&nbsp;4.62: samtools view 的说明文档
 </figcaption>
 </figure>
 </div>
@@ -2663,7 +2704,7 @@ D \sim \text{Poisson}(\lambda), \quad \lambda=N\frac{S}{G}
 <img src="../assets/04-quality-control-and-alignment/038-snp-calling-estimate-depth-distribution.png" class="img-fluid figure-img">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-04-quality-control-and-alignment-038-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-图&nbsp;4.64: 测序深度取整数的概率质量分布（以均值 λ=40 的泊松分布为例）
+图&nbsp;4.63: 测序深度取整数的概率质量分布（以均值 λ=40 的泊松分布为例）
 </figcaption>
 </figure>
 </div>
@@ -2671,14 +2712,14 @@ D \sim \text{Poisson}(\lambda), \quad \lambda=N\frac{S}{G}
 <p><span id="eq-04-quality-control-and-alignment-004" class="book-equation"><span class="equation-scroll" tabindex="0" role="region" aria-label="公式 4.6"><span class="math display">\[
 P(D\ge d) = \sum_{i=d,...,\infty}P(D=i)
 \]</span></span><a class="equation-label" href="#eq-04-quality-control-and-alignment-004" aria-label="公式（4.6）">(4.6)</a></span></p>
-<p>不过实际的基因组测序深度分布与泊松分布并不完全一致：由于GC偏好性等因素的影响，“全基因组各区域来源等概率”的假设并不完全成立，实际分布相对于理论分布存在明显的过度离散（overdispersion，即 <span class="math inline">\(Var(D) &gt; E(D)\)</span>）。实测深度分布见 <a href="#fig-04-quality-control-and-alignment-039" class="quarto-xref">图&nbsp;<span>4.65</span></a> ：实测分布（柱）比同均值的泊松分布（线）更“胖”，说明有些区域深度远高于预期、有些远低于预期。以 Bentley 等人 2008 年的整基因组测序数据为例，实测方差约为同均值泊松分布的 2.26 倍<a href="#fn6" class="footnote-ref" id="fnref6" role="doc-noteref"><sup>6</sup></a>。</p>
+<p>不过实际的基因组测序深度分布与泊松分布并不完全一致：由于GC偏好性等因素的影响，“全基因组各区域来源等概率”的假设并不完全成立，实际分布相对于理论分布存在明显的过度离散（overdispersion，即 <span class="math inline">\(Var(D) &gt; E(D)\)</span>）。实测深度分布见 <a href="#fig-04-quality-control-and-alignment-039" class="quarto-xref">图&nbsp;<span>4.64</span></a> ：实测分布（柱）比同均值的泊松分布（线）更“胖”，说明有些区域深度远高于预期、有些远低于预期。以 Bentley 等人 2008 年的整基因组测序数据为例，实测方差约为同均值泊松分布的 2.26 倍<a href="#fn6" class="footnote-ref" id="fnref6" role="doc-noteref"><sup>6</sup></a>。</p>
 <div id="fig-04-quality-control-and-alignment-039" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-04-quality-control-and-alignment-039-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <img src="../assets/04-quality-control-and-alignment/039-snp-calling-possion-overdispersion.png" class="img-fluid figure-img">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-04-quality-control-and-alignment-039-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-图&nbsp;4.65: 实测测序深度分布与同均值泊松分布的对比：实测分布过度离散
+图&nbsp;4.64: 实测测序深度分布与同均值泊松分布的对比：实测分布过度离散
 </figcaption>
 </figure>
 </div>
@@ -2692,14 +2733,14 @@ P(D\ge d) = \sum_{i=d,...,\infty}P(D=i)
 <p>避免对所有实验套用同一去重复策略。</p>
 <section id="src-0070-WGS-50" class="level4">
 <h4 class="anchored" data-anchor-id="src-0070-WGS-50">duplicate 的来源</h4>
-<p>duplicate 主要来自建库与测序过程，常见来源有四种，图示见 <a href="#fig-04-quality-control-and-alignment-040" class="quarto-xref">图&nbsp;<span>4.66</span></a> 。</p>
+<p>duplicate 主要来自建库与测序过程，常见来源有四种，图示见 <a href="#fig-04-quality-control-and-alignment-040" class="quarto-xref">图&nbsp;<span>4.65</span></a> 。</p>
 <div id="fig-04-quality-control-and-alignment-040" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-04-quality-control-and-alignment-040-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <img src="../assets/04-quality-control-and-alignment/040-gatk4-pipeline-remove-duplicates-reason-of-duplicates.jpg" class="img-fluid figure-img">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-04-quality-control-and-alignment-040-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-图&nbsp;4.66: GATK 流程中总结的 duplicate 产生原因
+图&nbsp;4.65: GATK 流程中总结的 duplicate 产生原因
 </figcaption>
 </figure>
 </div>
@@ -2723,14 +2764,14 @@ P(D\ge d) = \sum_{i=d,...,\infty}P(D=i)
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>duplicate 的产生主要是因为 Illumina 建库过程中一般会使用 PCR 来扩增文库：如果 PCR 扩增轮数过大，同一个模板分子就会产生一模一样的若干条序列（来源见上一小节）。FastQC 的“Sequence Duplication Levels”模块（ <a href="#fig-a-questions-06-10-010" class="quarto-xref">图&nbsp;<span>4.67</span></a> ）就是用来刻画 duplicate 情况的。</p>
+<p>duplicate 的产生主要是因为 Illumina 建库过程中一般会使用 PCR 来扩增文库：如果 PCR 扩增轮数过大，同一个模板分子就会产生一模一样的若干条序列（来源见上一小节）。FastQC 的“Sequence Duplication Levels”模块（ <a href="#fig-a-questions-06-10-010" class="quarto-xref">图&nbsp;<span>4.66</span></a> ）就是用来刻画 duplicate 情况的。</p>
 <div id="fig-a-questions-06-10-010" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-a-questions-06-10-010-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <img src="../assets/a-questions-06-10/010-9-1.jpg" class="img-fluid figure-img">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-a-questions-06-10-010-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-图&nbsp;4.67: FastQC 的 Sequence Duplication Levels 模块结果图
+图&nbsp;4.66: FastQC 的 Sequence Duplication Levels 模块结果图
 </figcaption>
 </figure>
 </div>
@@ -2786,7 +2827,7 @@ print(duplication_num)</code></pre>
 <img src="../assets/04-quality-control-and-alignment/042-gatk4-pipeline-remove-duplicates-3.png" class="img-fluid figure-img">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-04-quality-control-and-alignment-042-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-图&nbsp;4.68: GATK4 pipeline remove duplicates 3
+图&nbsp;4.67: GATK4 pipeline remove duplicates 3
 </figcaption>
 </figure>
 </div>
@@ -2809,7 +2850,7 @@ print(duplication_num)</code></pre>
 <img src="../assets/04-quality-control-and-alignment/043-gatk4-pipeline-remove-duplicates-4.png" class="img-fluid figure-img">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-04-quality-control-and-alignment-043-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-图&nbsp;4.69: GATK4 pipeline remove duplicates 4
+图&nbsp;4.68: GATK4 pipeline remove duplicates 4
 </figcaption>
 </figure>
 </div>
@@ -2857,7 +2898,7 @@ print(duplication_num)</code></pre>
 <img src="../assets/04-quality-control-and-alignment/044-gatk4-pipeline-remove-duplicates-5.png" class="img-fluid figure-img">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-04-quality-control-and-alignment-044-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-图&nbsp;4.70: GATK4 pipeline remove duplicates 5
+图&nbsp;4.69: GATK4 pipeline remove duplicates 5
 </figcaption>
 </figure>
 </div>
@@ -2987,7 +3028,7 @@ d\approx 1-\frac{\lambda N}{M}
 <img src="../assets/04-quality-control-and-alignment/041-gatk4-pipeline-remove-duplicates-1.png" class="img-fluid figure-img">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-04-quality-control-and-alignment-041-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-图&nbsp;4.71: GATK 流程中关于去重复必要性的说明
+图&nbsp;4.70: GATK 流程中关于去重复必要性的说明
 </figcaption>
 </figure>
 </div>
@@ -3022,14 +3063,14 @@ d\approx 1-\frac{\lambda N}{M}
 </section>
 <section id="sec-04-08-download" class="level3">
 <h3 class="anchored" data-anchor-id="sec-04-08-download">IGV 的下载与安装</h3>
-<p>老规矩，先找到软件：在搜索引擎搜索 IGV，进入官网（ <a href="#fig-04-quality-control-and-alignment-025" class="quarto-xref">图&nbsp;<span>4.72</span></a> ；官网地址 <a href="https://igv.org" class="uri">https://igv.org</a>，2026 年 10 月核对可访问）。本次以<strong>桌面版</strong>为例（ <a href="#fig-04-quality-control-and-alignment-026" class="quarto-xref">图&nbsp;<span>4.73</span></a> ），按提示安装即可（ <a href="#fig-04-quality-control-and-alignment-027" class="quarto-xref">图&nbsp;<span>4.74</span></a> ；以下截图摄于 2019 年前后，官网界面可能已有调整，但下载桌面版安装包的逻辑不变）。</p>
+<p>老规矩，先找到软件：在搜索引擎搜索 IGV，进入官网（ <a href="#fig-04-quality-control-and-alignment-025" class="quarto-xref">图&nbsp;<span>4.71</span></a> ；官网地址 <a href="https://igv.org" class="uri">https://igv.org</a>，2026 年 10 月核对可访问）。本次以<strong>桌面版</strong>为例（ <a href="#fig-04-quality-control-and-alignment-026" class="quarto-xref">图&nbsp;<span>4.72</span></a> ），按提示安装即可（ <a href="#fig-04-quality-control-and-alignment-027" class="quarto-xref">图&nbsp;<span>4.73</span></a> ；以下截图摄于 2019 年前后，官网界面可能已有调整，但下载桌面版安装包的逻辑不变）。</p>
 <div id="fig-04-quality-control-and-alignment-025" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-04-quality-control-and-alignment-025-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <img src="../assets/04-quality-control-and-alignment/025-illustration.png" class="img-fluid figure-img">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-04-quality-control-and-alignment-025-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-图&nbsp;4.72: 在必应搜索 IGV，进入软件官网（2019 年前后界面）
+图&nbsp;4.71: 在必应搜索 IGV，进入软件官网（2019 年前后界面）
 </figcaption>
 </figure>
 </div>
@@ -3039,7 +3080,7 @@ d\approx 1-\frac{\lambda N}{M}
 <img src="../assets/04-quality-control-and-alignment/026-illustration.png" class="img-fluid figure-img">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-04-quality-control-and-alignment-026-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-图&nbsp;4.73: IGV 官网的下载入口，本例使用桌面版（2019 年前后界面）
+图&nbsp;4.72: IGV 官网的下载入口，本例使用桌面版（2019 年前后界面）
 </figcaption>
 </figure>
 </div>
@@ -3049,7 +3090,7 @@ d\approx 1-\frac{\lambda N}{M}
 <img src="../assets/04-quality-control-and-alignment/027-illustration.png" class="img-fluid figure-img">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-04-quality-control-and-alignment-027-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-图&nbsp;4.74: IGV 桌面版的安装界面（2019 年前后界面）
+图&nbsp;4.73: IGV 桌面版的安装界面（2019 年前后界面）
 </figcaption>
 </figure>
 </div>
@@ -3062,14 +3103,14 @@ d\approx 1-\frac{\lambda N}{M}
 <span id="cb48-3"><a href="#cb48-3" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb48-4"><a href="#cb48-4" aria-hidden="true" tabindex="-1"></a><span class="co">#排好序之后，对bam文件建立index</span></span>
 <span id="cb48-5"><a href="#cb48-5" aria-hidden="true" tabindex="-1"></a><span class="ex">samtools</span> index <span class="at">-@</span> 2 ERR188245_chrX.sorted.bam ERR188245_chrX.sorted.bai</span></code></pre></div><button title="复制到剪贴板" class="code-copy-button"><i class="bi"></i></button></div>
-<p>打开安装好的 IGV（ <a href="#fig-04-quality-control-and-alignment-028" class="quarto-xref">图&nbsp;<span>4.75</span></a> ），选择 File –&gt; Load from File 加载想要查看的 bam 文件（ <a href="#fig-04-quality-control-and-alignment-029" class="quarto-xref">图&nbsp;<span>4.76</span></a> ）。导入成功后选择染色体——我们的测序只测了 chrX，故而选择 chrX（ <a href="#fig-04-quality-control-and-alignment-030" class="quarto-xref">图&nbsp;<span>4.77</span></a> 、 <a href="#fig-04-quality-control-and-alignment-031" class="quarto-xref">图&nbsp;<span>4.78</span></a> ）。</p>
+<p>打开安装好的 IGV（ <a href="#fig-04-quality-control-and-alignment-028" class="quarto-xref">图&nbsp;<span>4.74</span></a> ），选择 File –&gt; Load from File 加载想要查看的 bam 文件（ <a href="#fig-04-quality-control-and-alignment-029" class="quarto-xref">图&nbsp;<span>4.75</span></a> ）。导入成功后选择染色体——我们的测序只测了 chrX，故而选择 chrX（ <a href="#fig-04-quality-control-and-alignment-030" class="quarto-xref">图&nbsp;<span>4.76</span></a> 、 <a href="#fig-04-quality-control-and-alignment-031" class="quarto-xref">图&nbsp;<span>4.77</span></a> ）。</p>
 <div id="fig-04-quality-control-and-alignment-028" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-04-quality-control-and-alignment-028-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <img src="../assets/04-quality-control-and-alignment/028-illustration.png" class="img-fluid figure-img">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-04-quality-control-and-alignment-028-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-图&nbsp;4.75: IGV 启动后的主界面
+图&nbsp;4.74: IGV 启动后的主界面
 </figcaption>
 </figure>
 </div>
@@ -3079,7 +3120,7 @@ d\approx 1-\frac{\lambda N}{M}
 <img src="../assets/04-quality-control-and-alignment/029-illustration.png" class="img-fluid figure-img">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-04-quality-control-and-alignment-029-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-图&nbsp;4.76: 通过 File –&gt; Load from File 导入排序并建立索引的 bam 文件
+图&nbsp;4.75: 通过 File –&gt; Load from File 导入排序并建立索引的 bam 文件
 </figcaption>
 </figure>
 </div>
@@ -3089,7 +3130,7 @@ d\approx 1-\frac{\lambda N}{M}
 <img src="../assets/04-quality-control-and-alignment/030-illustration.png" class="img-fluid figure-img">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-04-quality-control-and-alignment-030-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-图&nbsp;4.77: 选择要查看的染色体：本例数据只测了 chrX
+图&nbsp;4.76: 选择要查看的染色体：本例数据只测了 chrX
 </figcaption>
 </figure>
 </div>
@@ -3099,18 +3140,18 @@ d\approx 1-\frac{\lambda N}{M}
 <img src="../assets/04-quality-control-and-alignment/031-illustration.png" class="img-fluid figure-img">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-04-quality-control-and-alignment-031-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-图&nbsp;4.78: IGV 中 chrX 的整体比对视图
+图&nbsp;4.77: IGV 中 chrX 的整体比对视图
 </figcaption>
 </figure>
 </div>
-<p>不断双击想查看的位置，即可放大到 reads 级视图（ <a href="#fig-04-quality-control-and-alignment-032" class="quarto-xref">图&nbsp;<span>4.79</span></a> ）：每条 read 一行，与参考一致的碱基不显示颜色，错配会标出彩色字母，插入缺失也有对应标记。</p>
+<p>不断双击想查看的位置，即可放大到 reads 级视图（ <a href="#fig-04-quality-control-and-alignment-032" class="quarto-xref">图&nbsp;<span>4.78</span></a> ）：每条 read 一行，与参考一致的碱基不显示颜色，错配会标出彩色字母，插入缺失也有对应标记。</p>
 <div id="fig-04-quality-control-and-alignment-032" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-04-quality-control-and-alignment-032-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <img src="../assets/04-quality-control-and-alignment/032-illustration.png" class="img-fluid figure-img">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-04-quality-control-and-alignment-032-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-图&nbsp;4.79: 不断双击想查看的位置即可放大，reads 级视图可见每条序列与参考的匹配情况
+图&nbsp;4.78: 不断双击想查看的位置即可放大，reads 级视图可见每条序列与参考的匹配情况
 </figcaption>
 </figure>
 </div>

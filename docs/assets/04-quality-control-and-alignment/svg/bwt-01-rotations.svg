@@ -3,7 +3,7 @@
 <desc id='d'>对 ACAACG$ 写出 7 个循环旋转，高亮行为原序列本身。</desc>
 <text x='90' y='40' font-family="'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size='15' fill='#333333' font-weight='bold' text-anchor='start'>ACAACG$ 的 7 个循环旋转</text>
 <text x='56' y='82' font-family="ui-monospace, 'SFMono-Regular', Menlo, Consolas, 'Liberation Mono', monospace" font-size='13' fill='#6b7280' font-weight='normal' text-anchor='start'>1</text>
-<rect x='82' y='65' width='98' height='24' rx='3' fill='#e8f4f1' stroke='#186254' stroke-width='1.2'/>
+<rect x='80' y='65' width='102' height='24' rx='3' fill='#e8f4f1' stroke='#186254' stroke-width='1.2'/>
 <text x='90' y='82' font-family="ui-monospace, 'SFMono-Regular', Menlo, Consolas, 'Liberation Mono', monospace" font-size='16' fill='#333333' font-weight='normal' text-anchor='start'>A</text>
 <text x='102' y='82' font-family="ui-monospace, 'SFMono-Regular', Menlo, Consolas, 'Liberation Mono', monospace" font-size='16' fill='#333333' font-weight='normal' text-anchor='start'>C</text>
 <text x='114' y='82' font-family="ui-monospace, 'SFMono-Regular', Menlo, Consolas, 'Liberation Mono', monospace" font-size='16' fill='#333333' font-weight='normal' text-anchor='start'>A</text>

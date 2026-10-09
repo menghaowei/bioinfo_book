@@ -1,0 +1,22 @@
+<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 720 300' role='img' aria-labelledby='t d'>
+<title id='t'>TLEN 的计算示意</title>
+<desc id='d'>上游 read 从 10946 起、长 145bp，下游 read 从 11123 起；覆盖跨度 11123-10946+145=322，上游 read 的 TLEN=+322，下游 read 的 TLEN=-322。</desc>
+<text x='70' y='40' font-family="'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size='15' fill='#333333' font-weight='bold' text-anchor='start'>TLEN：一对 reads 的覆盖跨度</text>
+<line x1='56' y1='210' x2='654' y2='210' stroke='#186254' stroke-width='2'/>
+<line x1='70.0' y1='205' x2='70.0' y2='215' stroke='#186254' stroke-width='1.4'/>
+<text x='52.0' y='236' font-family="ui-monospace, 'SFMono-Regular', Menlo, Consolas, 'Liberation Mono', monospace" font-size='13' fill='#6b7280' font-weight='normal' text-anchor='start'>10946</text>
+<line x1='383.3229813664596' y1='205' x2='383.3229813664596' y2='215' stroke='#186254' stroke-width='1.4'/>
+<text x='365.3229813664596' y='236' font-family="ui-monospace, 'SFMono-Regular', Menlo, Consolas, 'Liberation Mono', monospace" font-size='13' fill='#6b7280' font-weight='normal' text-anchor='start'>11123</text>
+<line x1='640.0' y1='205' x2='640.0' y2='215' stroke='#186254' stroke-width='1.4'/>
+<text x='622.0' y='236' font-family="ui-monospace, 'SFMono-Regular', Menlo, Consolas, 'Liberation Mono', monospace" font-size='13' fill='#6b7280' font-weight='normal' text-anchor='start'>11268</text>
+<text x='60' y='258' font-family="'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size='12' fill='#6b7280' font-weight='normal' text-anchor='start'>基因组坐标（chr1）</text>
+<rect x='70.0' y='132' width='256.67701863354034' height='26' rx='3' fill='#e8f4f1' stroke='#186254' stroke-width='1.2'/>
+<text x='76.0' y='150' font-family="'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size='13' fill='#186254' font-weight='bold' text-anchor='start'>read1（上游，145bp）</text>
+<rect x='383.3229813664596' y='170' width='256.67701863354034' height='26' rx='3' fill='#e8f4f1' stroke='#186254' stroke-width='1.2'/>
+<text x='389.3229813664596' y='188' font-family="'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size='13' fill='#186254' font-weight='bold' text-anchor='start'>read2（下游，145bp）</text>
+<line x1='70.0' y1='92' x2='640.0' y2='92' stroke='#b45309' stroke-width='1.6'/>
+<line x1='70.0' y1='92' x2='70.0' y2='100' stroke='#b45309' stroke-width='1.6'/>
+<line x1='640.0' y1='92' x2='640.0' y2='100' stroke='#b45309' stroke-width='1.6'/>
+<text x='265.0' y='84' font-family="ui-monospace, 'SFMono-Regular', Menlo, Consolas, 'Liberation Mono', monospace" font-size='13' fill='#b45309' font-weight='bold' text-anchor='start'>span = 11123 − 10946 + 145 = 322</text>
+<text x='70' y='280' font-family="'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size='13' fill='#186254' font-weight='bold' text-anchor='start'>TLEN：read1 = +322（上游取正），read2 = −322（下游取负）</text>
+</svg>
