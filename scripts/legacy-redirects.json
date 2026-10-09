@@ -123,7 +123,7 @@
       "src-0020-introduction-of-NGS-81": "manuscript/03-sequencing-technologies.html#src-0020-introduction-of-NGS-81",
       "src-0050-RNA-seq-85": "manuscript/03-sequencing-technologies.html#src-0050-RNA-seq-85",
       "src-0050-RNA-seq-132": "manuscript/03-sequencing-technologies.html#src-0050-RNA-seq-132",
-      "fig-03-sequencing-and-data-formats-009": "manuscript/03-sequencing-technologies.html#fig-03-sequencing-and-data-formats-009",
+      "fig-03-sequencing-and-data-formats-009": "manuscript/03-sequencing-technologies.html#tbl-03-ascii-phred",
       "src-0050-RNA-seq-210": "manuscript/04-sequence-alignment.html#src-0050-RNA-seq-210",
       "src-0050-RNA-seq-218": "manuscript/04-sequence-alignment.html#src-0050-RNA-seq-218",
       "src-0050-RNA-seq-241": "manuscript/04-sequence-alignment.html#src-0050-RNA-seq-241"
@@ -603,7 +603,7 @@
       "question-01-128": "manuscript/03-sequencing-technologies.html#question-01-128",
       "question-01-133": "manuscript/03-sequencing-technologies.html#question-01-133",
       "question-01-135": "manuscript/03-sequencing-technologies.html#question-01-135",
-      "fig-a-questions-01-05-003": "manuscript/03-sequencing-technologies.html#fig-a-questions-01-05-003",
+      "fig-a-questions-01-05-003": "manuscript/03-sequencing-technologies.html#fig-03-nucleotide-reversible-terminator",
       "question-01-144": "manuscript/03-sequencing-technologies.html#question-01-144",
       "question-01-156": "manuscript/03-sequencing-technologies.html#question-01-156",
       "question-01-160": "manuscript/03-sequencing-technologies.html#question-01-160"
@@ -847,7 +847,7 @@
       "src-0020-introduction-of-NGS-81": "manuscript/03-sequencing-technologies.html#src-0020-introduction-of-NGS-81",
       "src-0050-RNA-seq-85": "manuscript/03-sequencing-technologies.html#src-0050-RNA-seq-85",
       "src-0050-RNA-seq-132": "manuscript/03-sequencing-technologies.html#src-0050-RNA-seq-132",
-      "fig-03-sequencing-and-data-formats-009": "manuscript/03-sequencing-technologies.html#fig-03-sequencing-and-data-formats-009",
+      "fig-03-sequencing-and-data-formats-009": "manuscript/03-sequencing-technologies.html#tbl-03-ascii-phred",
       "src-0050-RNA-seq-210": "manuscript/04-sequence-alignment.html#src-0050-RNA-seq-210",
       "src-0050-RNA-seq-218": "manuscript/04-sequence-alignment.html#src-0050-RNA-seq-218",
       "src-0050-RNA-seq-241": "manuscript/04-sequence-alignment.html#src-0050-RNA-seq-241"

@@ -25,17 +25,18 @@
     {
       "file": "manuscript/03-sequencing-technologies.md",
       "title": "测序技术",
-      "planned_sections": 9,
+      "planned_sections": 10,
       "section_titles": [
         "不同测序实验究竟测到了什么",
-        "以Illumina为代表的第二代测序技术",
-        "MGI测序技术",
-        "PacBio与Nanopore",
+        "从 Sanger 到高通量测序",
+        "Illumina 测序原理",
+        "MGI 测序技术",
+        "长读长测序：PacBio 与 Nanopore",
         "高通量文库构建",
-        "测序数据的储存",
-        "读懂测序质量报告 FastQC",
-        "去除测序接头",
-        "其他常见的数据清理操作"
+        "测序数据的存储：FASTA 与 FASTQ",
+        "质量评估：FastQC 与 MultiQC",
+        "数据清理：去接头与低质量序列",
+        "其他常用整理操作"
       ],
       "summary": true
     },
@@ -569,7 +570,7 @@
     {
       "question": 2,
       "source": "appendices/a-questions-01-05.md#question-01-77",
-      "target": "manuscript/03-sequencing-technologies.md#sec-03-02",
+      "target": "manuscript/03-sequencing-technologies.md#sec-03-sequencing-generations",
       "anchor": "question-01-77"
     },
     {
