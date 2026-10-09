@@ -568,7 +568,7 @@ DNA序列是由A,T,C,G四种碱基排序而成，我们可以按四进制给序�
 
 
 
-![鸽洞原理示意：把 read 分成 4 段，即使有 1 段因为错配无法命中，其余 3 段仍能定位到基因组上](../assets/04-quality-control-and-alignment/svg/hash-03-pigeonhole.svg){#fig-04-quality-control-and-alignment-004}
+![鸽洞原理示意：read（24 nt）分成 4 段、第 2 段含 1 处错配（✗），即使该段无法精确命中，其余 3 段（✓）仍能在哈希表中定位到参考基因组上](../assets/04-quality-control-and-alignment/svg/hash-03-pigeonhole.svg){#fig-04-quality-control-and-alignment-004}
 
 
 
@@ -1077,7 +1077,7 @@ $$ {#eq-tlen-example}
 
 计算过程见 @fig-a-questions-16-20-014 。
 
-![TLEN 的计算过程示意](../assets/a-questions-16-20/014-20-2.jpg){#fig-a-questions-16-20-014}
+![TLEN 的计算示意：上游 read 从 10946 起、长 145bp，下游 read 从 11123 起；覆盖跨度为 322，上游 read 的 TLEN 取 +322、下游取 −322](../assets/04-quality-control-and-alignment/svg/tlen-calculation.svg){#fig-a-questions-16-20-014}
 
 :::::
 
@@ -1104,10 +1104,21 @@ $$ {#eq-tlen-example}
 11 列之后的内容称为可选字段（optional fields），不同比对软件会附加不同的标签。所有可选字段的格式必须是 `TAG:TYPE:VALUE`——比如 `MD:Z:145` 就是一个符合规范的值。三条规则：
 
 1. 所有的 TAG 都是 2 个字母，一般为大写，且在一行比对结果中只能出现 1 次；
-2. 所有的 TYPE 都是单字母、大小写敏感，定义后面 VALUE 的类型（ @fig-a-questions-21-25-002 是官方文档的类型对照，最常用的是 i 带符号整数和 Z 可含空格的字符串）；
+2. 所有的 TYPE 都是单字母、大小写敏感，定义后面 VALUE 的类型（对照见 @tbl-04-sam-type-codes ，最常用的是 i 带符号整数和 Z 可含空格的字符串）；
 3. VALUE 可长可短，但必须与 TYPE 对应。
 
-![TYPE 的字母与不同数据类型之间的对应关系](../assets/a-questions-21-25/002-21-2.jpg){#fig-a-questions-21-25-002}
+| 字母 | 类型 | 说明与示例 |
+| --- | --- | --- |
+| A | 字符 | 可打印 ASCII 字符，如 `A` |
+| i | 整数 | 带符号整数（32 位），如 `NM:i:2` 里的 2 |
+| f | 浮点数 | 单精度浮点数 |
+| Z | 字符串 | 可打印字符串，可以包含空格，如 `MD:Z:145` 里的 145 |
+| H | 字节数组 | 十六进制字节串，如 `1A2B` |
+| B | 数值数组 | 逗号分隔的数值数组，首字母 c/C/s/S/i/I/f 指定元素类型 |
+
+: SAM 可选字段 TYPE 的取值（依据 SAM 规范） {#tbl-04-sam-type-codes}
+
+[]{#fig-a-questions-21-25-002}
 
 查询 TAG 含义一定要从所用比对软件的官方文档中查找：SAM 文件头部的 @PG 字段记录了产生文件的软件与命令行，用 `samtools view -H` 就能看到。比如下面这个 @PG 说明文件由 bowtie2 2.2.5 产生：
 

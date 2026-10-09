@@ -1,13 +1,12 @@
 """生成第4章算法示意图 SVG（BWT、哈希表、双序列比对）。
 
 运行：python3 scripts/figures/ch04/generate_all.py
-输出：assets/04-quality-control-and-alignment/svg/*.svg
-
-图只保留 illustration 功能：矩阵、字符、高亮与箭头；解释性文字一律放正文。
-DP 表为教科书标准画法：每格标注取值来源方向箭头（对角/上/左），回溯路径加粗。
+绘制铁律（视觉验收教训）：
+1. 高亮矩形一律先画、文字后画（SVG 后画者在上层）；
+2. 数值与箭头分居格子两角，物理隔离；
+3. 所有文字与相邻图形留至少 8px 间距。
 """
 
-import math
 from common import (Svg, save, COLOR_TEXT, COLOR_MUTED, COLOR_PRIMARY,
                     COLOR_FILL, COLOR_WARN, COLOR_WARN_FILL, COLOR_LINE,
                     SIZE_SEQ, SIZE_LABEL, SIZE_TITLE, SIZE_NOTE, CHAR_W, ROW_H)
@@ -38,7 +37,7 @@ def fig_bwt_rotations():
         y = y0 + i * ROW_H + 16
         svg.text(x0 - 34, y, str(i + 1), size=SIZE_LABEL, fill=COLOR_MUTED)
         if i == 0:
-            svg.rect(x0 - 8, y - 17, (len(r) - 1) * CHAR_W + 26, 24, fill=COLOR_FILL)
+            svg.rect(x0 - 10, y - 17, (len(r) - 1) * CHAR_W + 30, 24, fill=COLOR_FILL)
         svg.seq(x0, y, r)
     save("bwt-01-rotations", svg)
 
@@ -50,23 +49,30 @@ def fig_bwt_sorted():
     svg = Svg(w, h, "BWT 构建第 2 步：排序后的旋转矩阵",
               "全部循环旋转按 $<A<C<G 排序；F 列为第一列，L 列为最后一列（BWT）。")
     svg.text(x0, 40, "排序后的旋转矩阵（$ < A < C < G）", mono=False, size=SIZE_TITLE, weight="bold")
-    svg.text(x0 - 2, y0 - 12, "F", weight="bold", fill=COLOR_PRIMARY)
-    svg.text(x0 + (len(rows[0]) - 1) * CHAR_W + 2, y0 - 12, "L", weight="bold", fill=COLOR_WARN)
+    svg.text(x0 - 4, y0 - 12, "F", weight="bold", fill=COLOR_PRIMARY)
+    svg.text(x0 + (len(rows[0]) - 1) * CHAR_W + 4, y0 - 12, "L", weight="bold", fill=COLOR_WARN)
     for i, r in enumerate(rows):
         y = y0 + i * ROW_H + 16
         svg.text(x0 - 34, y, str(i + 1), size=SIZE_LABEL, fill=COLOR_MUTED)
+        # 先画高亮框，后画文字（文字永远在最上层）
+        svg.rect(x0 - 8, y - 16, 24, 22, fill=COLOR_FILL, sw=1.4)
+        lx = x0 + (len(r) - 1) * CHAR_W - 6
+        svg.rect(lx, y - 16, 24, 22, fill=COLOR_WARN_FILL, stroke=COLOR_WARN, sw=1.4)
         svg.seq(x0, y, r)
-        svg.rect(x0 - 6, y - 16, 20, 22, fill=COLOR_FILL, sw=1.4)
-        lx = x0 + (len(r) - 1) * CHAR_W - 4
-        svg.rect(lx, y - 16, 20, 22, fill=COLOR_WARN_FILL, stroke=COLOR_WARN, sw=1.4)
     save("bwt-02-sorted-matrix", svg)
 
 
-def _decode_columns(svg, x0, y0):
+def _decode_columns(svg, x0, y0, hl_f_rows, hl_l_rows):
+    """F/L 两列 + 行号；高亮框先画、字符后画。"""
     rows, f, l = bwt_matrix_rows()
-    fx, lx = x0 + 30, x0 + 230
-    svg.text(fx, y0 - 12, "F 列", mono=False, size=SIZE_LABEL, fill=COLOR_PRIMARY, weight="bold")
-    svg.text(lx, y0 - 12, "L 列", mono=False, size=SIZE_LABEL, fill=COLOR_WARN, weight="bold")
+    fx, lx = x0 + 30, x0 + 240
+    svg.text(fx, y0 - 14, "F 列", mono=False, size=SIZE_LABEL, fill=COLOR_PRIMARY, weight="bold")
+    svg.text(lx, y0 - 14, "L 列", mono=False, size=SIZE_LABEL, fill=COLOR_WARN, weight="bold")
+    for i in hl_f_rows:
+        svg.rect(fx - 8, y0 + i * ROW_H - 1, 24, 22, fill=COLOR_FILL, sw=1.4)
+    for i in hl_l_rows:
+        svg.rect(lx - 8, y0 + i * ROW_H - 1, 24, 22,
+                 fill=COLOR_WARN_FILL, stroke=COLOR_WARN, sw=1.4)
     for i, (fc, lc) in enumerate(zip(f, l)):
         y = y0 + i * ROW_H + 16
         svg.text(x0 - 20, y, str(i + 1), size=SIZE_LABEL, fill=COLOR_MUTED)
@@ -75,75 +81,52 @@ def _decode_columns(svg, x0, y0):
     return fx, lx
 
 
-def _hl_f(svg, fx, y0, i):
-    svg.rect(fx - 6, y0 + i * ROW_H + 0, 20, 22, fill=COLOR_FILL, sw=1.4)
-
-
-def _hl_l(svg, lx, y0, i):
-    svg.rect(lx - 6, y0 + i * ROW_H + 0, 20, 22,
-             fill=COLOR_WARN_FILL, stroke=COLOR_WARN, sw=1.4)
-
-
 def _cy(y0, i):
     return y0 + i * ROW_H + 10
 
 
 def fig_bwt_decode(step):
-    rows, f, l = bwt_matrix_rows()
     x0, y0 = 70, 92
-    w, h = 420, y0 + 7 * ROW_H + 24
+    w, h = 430, y0 + 7 * ROW_H + 24
     meta = {
-        1: ("第 1 步：原序列以 G 结尾", [(0, 0)]),
-        2: ("第 2 步：G 前面是 C", [(6, 0), (6, 6)]),
-        3: ("第 3 步：C 前面是 A", [(5, 5), (5, 6)]),
+        1: ("第 1 步：原序列以 G 结尾", [(0, 0)], []),
+        2: ("第 2 步：G 前面是 C", [(6, 0)], [0, 6]),
+        3: ("第 3 步：C 前面是 A", [(5, 5)], [5, 6]),
     }
-    title, pairs = meta[step]
+    title, arrows, hl_l = meta[step]
+    hl_f = sorted({fr for fr, lr in arrows})
     svg = Svg(w, h, f"BWT 解码{title}",
-              f"BWT解码第{step}步的LF映射：琥珀为L列来源格，绿色为F列命中格，箭头表示LF映射方向。")
+              f"BWT解码第{step}步的LF映射：琥珀为L列来源格，绿色为F列命中格。")
     svg.text(x0, 40, title, mono=False, size=SIZE_TITLE, weight="bold")
-    fx, lx = _decode_columns(svg, x0, y0)
-    seen_f, seen_l = set(), set()
-    for fr, lr in pairs:
-        if fr not in seen_f:
-            _hl_f(svg, fx, y0, fr); seen_f.add(fr)
-        if lr not in seen_l:
-            _hl_l(svg, lx, y0, lr); seen_l.add(lr)
-    for fr, lr in pairs:
-        svg.arrow(lx - 8, _cy(y0, lr), fx + 16, _cy(y0, fr), sw=1.8)
+    fx, lx = _decode_columns(svg, x0, y0, hl_f, hl_l)
+    for fr, lr in arrows:
+        svg.arrow(lx - 10, _cy(y0, lr), fx + 18, _cy(y0, fr), sw=1.8)
     save(f"bwt-0{step + 2}-decode-step{step}", svg)
 
 
 def fig_bwt_decode_rest():
-    rows, f, l = bwt_matrix_rows()
     x0, y0 = 70, 92
-    w, h = 460, y0 + 7 * ROW_H + 110
+    w, h = 470, y0 + 7 * ROW_H + 104
     svg = Svg(w, h, "BWT 解码第 4—6 步与逆序还原",
               "继续LF映射得到GCAA、GCAAC、GCAACA；逆序即原序列ACAACG。")
     svg.text(x0, 40, "第 4—6 步：继续 LF 映射", mono=False, size=SIZE_TITLE, weight="bold")
-    fx, lx = x0 + 30, x0 + 230
-    steps = [(5, 2), (2, 1), (1, 4)]
-    svg.text(fx, y0 - 12, "F 列", mono=False, size=SIZE_LABEL, fill=COLOR_PRIMARY, weight="bold")
-    svg.text(lx, y0 - 12, "L 列", mono=False, size=SIZE_LABEL, fill=COLOR_WARN, weight="bold")
-    for i, (fc, lc) in enumerate(zip(f, l)):
-        y = y0 + i * ROW_H + 16
-        svg.text(x0 - 20, y, str(i + 1), size=SIZE_LABEL, fill=COLOR_MUTED)
-        svg.text(fx, y, fc)
-        svg.text(lx, y, lc)
-    badges = ["4", "5", "6"]
-    for (lr, fr), bd in zip(steps, badges):
-        _hl_l(svg, lx, y0, lr)
-        _hl_f(svg, fx, y0, fr)
+    steps = [(5, 2), (2, 1), (1, 4)]  # (L行, F行)
+    hl_f = sorted({fr for _, fr in steps})
+    hl_l = sorted({lr for lr, _ in steps})
+    fx, lx = _decode_columns(svg, x0, y0, hl_f, hl_l)
+    for k, (lr, fr) in enumerate(steps):
+        svg.arrow(lx - 10, _cy(y0, lr), fx + 18, _cy(y0, fr), sw=1.8)
         mx = (fx + lx) / 2
         my = (_cy(y0, lr) + _cy(y0, fr)) / 2
-        svg.arrow(lx - 8, _cy(y0, lr), fx + 16, _cy(y0, fr), sw=1.8)
-        svg.rect(mx - 9, my - 12, 18, 18, fill="#ffffff", stroke=COLOR_PRIMARY, sw=1.2)
-        svg.text(mx, my + 1, bd, size=SIZE_LABEL, weight="bold", fill=COLOR_PRIMARY, anchor="middle")
-    y = y0 + 7 * ROW_H + 36
+        svg.rect(mx - 10, my - 13, 20, 20, fill="#ffffff", stroke=COLOR_PRIMARY, sw=1.2)
+        svg.text(mx, my + 1, str(k + 4), size=SIZE_LABEL, weight="bold",
+                 fill=COLOR_PRIMARY, anchor="middle")
+    y = y0 + 7 * ROW_H + 40
     svg.seq(x0 + 10, y, "GCAACA")
-    svg.arrow(x0 + 10 + 6 * CHAR_W + 8, y - 5, x0 + 10 + 6 * CHAR_W + 58, y - 5)
-    svg.text(x0 + 10 + 6 * CHAR_W + 33, y - 12, "逆序", mono=False, size=SIZE_NOTE,
+    svg.arrow(x0 + 10 + 6 * CHAR_W + 10, y - 5, x0 + 10 + 6 * CHAR_W + 62, y - 5)
+    svg.text(x0 + 10 + 6 * CHAR_W + 36, y - 13, "逆序", mono=False, size=SIZE_NOTE,
              fill=COLOR_MUTED, anchor="middle")
-    svg.seq(x0 + 10 + 6 * CHAR_W + 72, y, "ACAACG", weight="bold", fill=COLOR_PRIMARY)
+    svg.seq(x0 + 10 + 6 * CHAR_W + 76, y, "ACAACG", weight="bold", fill=COLOR_PRIMARY)
     save("bwt-06-decode-steps4-6", svg)
 
 
@@ -154,97 +137,98 @@ def fig_hash_encoding():
     digits = "01321"
     powers = ["4⁴", "4³", "4²", "4¹", "4⁰"]
     terms = ["0×256", "1×64", "3×16", "2×4", "1×1"]
-    x0, y0 = 90, 78
-    w, h = 640, 280
+    x0, y0 = 90, 86
+    w, h = 640, 290
     svg = Svg(w, h, "碱基的四进制编码",
               "把 A、T、G、C 分别编码为 0、1、3、2，按最左位权值最高计算，ATGCT 的关键码为 121。")
     svg.text(x0, 42, "把碱基编码成数字：A→0，T→1，G→3，C→2", mono=False,
              size=SIZE_TITLE, weight="bold")
     for i, ch in enumerate(seq):
         x = x0 + i * 100
-        svg.rect(x - 14, y0 - 24, 56, 52, fill=COLOR_FILL if i == 0 else "none")
+        svg.rect(x - 16, y0 - 26, 60, 54, fill=COLOR_FILL if i == 0 else "none")
         svg.text(x + 14, y0, ch, size=22, weight="bold", anchor="middle")
         svg.text(x + 14, y0 + 24, digits[i], fill=COLOR_PRIMARY, weight="bold", anchor="middle")
-        svg.text(x + 14, y0 + 48, powers[i], size=SIZE_LABEL, fill=COLOR_MUTED, anchor="middle")
-    svg.line(x0 - 20, y0 + 62, x0 + 5 * 100 - 30, y0 + 62, stroke=COLOR_LINE)
-    y = y0 + 100
-    svg.text(x0 - 20, y, "H(ATGCT) =", size=SIZE_LABEL)
-    cx = x0 + 90
+        svg.text(x + 14, y0 + 50, powers[i], size=SIZE_LABEL, fill=COLOR_MUTED, anchor="middle")
+    svg.line(x0 - 22, y0 + 66, x0 + 5 * 100 - 32, y0 + 66, stroke=COLOR_LINE)
+    y = y0 + 104
+    svg.text(x0 - 22, y, "H(ATGCT) =", size=SIZE_LABEL)
+    cx = x0 + 92
     for i, t in enumerate(terms):
-        svg.text(cx + i * 84, y, t + (" +" if i < 4 else ""), size=SIZE_LABEL)
-    svg.text(cx + 5 * 84 - 10, y, "=", size=SIZE_LABEL)
-    svg.text(cx + 5 * 84 + 14, y, "121", size=20, weight="bold", fill=COLOR_PRIMARY)
-    svg.text(x0 - 20, y + 30, "最左边的碱基权值最高（4⁴），最右边的碱基权值最低（4⁰）。",
+        svg.text(cx + i * 86, y, t + (" +" if i < 4 else ""), size=SIZE_LABEL)
+    svg.text(cx + 5 * 86 - 12, y, "=", size=SIZE_LABEL)
+    svg.text(cx + 5 * 86 + 12, y, "121", size=20, weight="bold", fill=COLOR_PRIMARY)
+    svg.text(x0 - 22, y + 32, "最左边的碱基权值最高（4⁴），最右边的碱基权值最低（4⁰）。",
              mono=False, size=SIZE_NOTE, fill=COLOR_MUTED)
     save("hash-01-base-encoding", svg)
 
 
 def fig_hash_kmer_table():
     ref = "ATGCGTAACT"
-    x0, y0 = 80, 84
-    w, h = 760, 340
+    x0, y0 = 80, 96
+    w, h = 780, 330
     svg = Svg(w, h, "k-mer 哈希表的构建（k=5）",
               "参考序列的全部 5-mer 作为关键码，哈希表记录每个 5-mer 出现的位置。")
-    svg.text(x0, 42, "把参考序列拆成 k-mer（k=5），建立哈希表", mono=False,
+    svg.text(x0, 42, "把参考序列拆成 k-mer（k=5）", mono=False,
              size=SIZE_TITLE, weight="bold")
-    svg.seq(x0, y0, ref)
+    # 位置刻度：与序列字符拉开 18px
     for i in range(len(ref)):
-        svg.text(x0 + i * CHAR_W - 2, y0 - 14, str(i + 1), size=10, fill=COLOR_MUTED)
-    svg.rect(x0 - 4, y0 - 16, 5 * CHAR_W + 8, 24, fill="none", stroke=COLOR_PRIMARY, sw=1.6)
-    svg.text(x0 + 5 * CHAR_W + 12, y0 + 2, "k-mer 1", size=SIZE_LABEL, fill=COLOR_PRIMARY)
-    svg.rect(x0 + CHAR_W - 4, y0 + 14, 5 * CHAR_W + 8, 24, fill="none", stroke=COLOR_WARN, sw=1.6)
-    svg.text(x0 + 6 * CHAR_W + 12, y0 + 32, "k-mer 2", size=SIZE_LABEL, fill=COLOR_WARN)
-    tx, ty = x0 + 330, y0 - 30
-    svg.rect(tx, ty, 300, 190, stroke=COLOR_LINE, rx=6)
-    svg.text(tx + 16, ty + 26, "哈希表", mono=False, size=SIZE_LABEL,
+        svg.text(x0 + i * CHAR_W - 2, y0 - 22, str(i + 1), size=10, fill=COLOR_MUTED)
+    # 序列
+    svg.seq(x0, y0, ref)
+    # k-mer 窗口：全部画在序列下方，两层错开，与字符留 14px 间距
+    svg.rect(x0 - 5, y0 + 14, 5 * CHAR_W + 10, 22, fill="none", stroke=COLOR_PRIMARY, sw=1.6)
+    svg.text(x0 + 5 * CHAR_W + 12, y0 + 30, "k-mer 1（ATGCG，位置 1）", size=SIZE_LABEL, fill=COLOR_PRIMARY)
+    svg.rect(x0 + CHAR_W - 5, y0 + 44, 5 * CHAR_W + 10, 22, fill="none", stroke=COLOR_WARN, sw=1.6)
+    svg.text(x0 + 6 * CHAR_W + 12, y0 + 60, "k-mer 2（TGCGT，位置 2）", size=SIZE_LABEL, fill=COLOR_WARN)
+    # 哈希表（右侧独立区域）
+    tx, ty = x0 + 360, y0 - 44
+    svg.rect(tx, ty, 310, 196, stroke=COLOR_LINE, rx=6)
+    svg.text(tx + 16, ty + 28, "哈希表", mono=False, size=SIZE_LABEL,
              weight="bold", fill=COLOR_PRIMARY)
-    svg.text(tx + 80, ty + 26, "关键码", mono=False, size=SIZE_NOTE, fill=COLOR_MUTED)
-    svg.text(tx + 190, ty + 26, "位置", mono=False, size=SIZE_NOTE, fill=COLOR_MUTED)
+    svg.text(tx + 84, ty + 28, "关键码", mono=False, size=SIZE_NOTE, fill=COLOR_MUTED)
+    svg.text(tx + 196, ty + 28, "位置", mono=False, size=SIZE_NOTE, fill=COLOR_MUTED)
     table = [("ATGCG", "1", COLOR_PRIMARY), ("TGCGT", "2", COLOR_WARN),
              ("GCGTA", "3", COLOR_TEXT), ("CGTAA", "4", COLOR_TEXT), ("…", "…", COLOR_MUTED)]
     for j, (kmer, pos, c) in enumerate(table):
-        y = ty + 54 + j * 26
+        y = ty + 58 + j * 26
         svg.seq(tx + 16, y, kmer, size=SIZE_LABEL, fill=c)
-        svg.text(tx + 130, y, "→", size=SIZE_LABEL, fill=COLOR_MUTED)
-        svg.seq(tx + 160, y, pos, size=SIZE_LABEL, fill=c)
-    svg.text(x0, ty + 216, "同一个 k-mer 可在基因组多个位置出现，哈希表记录全部位置。",
-             mono=False, size=SIZE_NOTE, fill=COLOR_MUTED)
+        svg.text(tx + 136, y, "→", size=SIZE_LABEL, fill=COLOR_MUTED)
+        svg.seq(tx + 168, y, pos, size=SIZE_LABEL, fill=c)
     save("hash-02-kmer-table", svg)
 
 
 def fig_hash_pigeonhole():
+    """图身零说明文字：说明全部放图题。"""
     read = "ATGCGT" + "TAAGTA" + "CGTACG" + "GTACGT"
     segs = [read[i:i + 6] for i in range(0, 24, 6)]
-    x0, y0 = 70, 70
-    w, h = 720, 330
-    svg = Svg(w, h, "鸽洞原理示意图",
-              "把 read 分成 4 段，允许 1 处错配时至少有 3 段能精确命中参考基因组。")
+    x0, y0 = 70, 76
+    w, h = 730, 240
+    svg = Svg(w, h, "鸽洞原理示意",
+              "read 分成 4 段、第 2 段含 1 处错配（✗）：即使该段无法精确命中，"
+              "其余 3 段（✓）仍能在哈希表中定位到参考基因组上。")
     svg.text(x0, 40, "鸽洞原理：分段容错定位", mono=False, size=SIZE_TITLE, weight="bold")
-    svg.text(x0, y0 - 6, "read（24 nt，第 2 段含 1 处错配）：", mono=False, size=SIZE_LABEL)
     seg_w = 6 * CHAR_W + 12
     for i, seg in enumerate(segs):
         sx = x0 + i * seg_w
         bad = (i == 1)
-        svg.rect(sx, y0 + 6, 6 * CHAR_W + 8, 28,
+        svg.rect(sx, y0, 6 * CHAR_W + 8, 30,
                  fill=COLOR_WARN_FILL if bad else COLOR_FILL,
                  stroke=COLOR_WARN if bad else COLOR_PRIMARY)
-        svg.seq(sx + 4, y0 + 26, seg)
-        if bad:
-            svg.text(sx + 4 + 2 * CHAR_W, y0 - 6, "✗ 错配", size=SIZE_LABEL, fill=COLOR_WARN)
-    gy = y0 + 150
-    svg.text(x0, gy - 12, "参考基因组", mono=False, size=SIZE_LABEL, fill=COLOR_MUTED)
+        svg.seq(sx + 4, y0 + 21, seg)
+        svg.text(sx + 6 * CHAR_W + 16, y0 + 21, "✗" if bad else "✓",
+                 size=SIZE_LABEL, weight="bold",
+                 fill=COLOR_WARN if bad else COLOR_PRIMARY)
+    gy = y0 + 108
     svg.line(x0, gy, x0 + 4 * seg_w, gy, stroke=COLOR_PRIMARY, sw=2)
+    svg.text(x0 + 4 * seg_w + 12, gy + 4, "参考基因组", mono=False,
+             size=SIZE_LABEL, fill=COLOR_MUTED)
     for i in range(4):
         sx = x0 + i * seg_w + 3 * CHAR_W
         bad = (i == 1)
-        svg.arrow(sx, y0 + 40, sx, gy - 8,
+        svg.arrow(sx, y0 + 38, sx, gy - 8,
                   stroke=COLOR_WARN if bad else COLOR_PRIMARY)
-        svg.text(sx - 6, gy + 22, "✗ 不命中" if bad else "✓ 命中",
+        svg.text(sx - 6, gy + 24, "✗ 不命中" if bad else "✓ 命中",
                  size=SIZE_LABEL, fill=COLOR_WARN if bad else COLOR_PRIMARY)
-    svg.text(x0, gy + 64, "允许 1 处错配时把 read 分成 4 段：即使有 1 段因错配查不到，",
-             mono=False, size=SIZE_NOTE, fill=COLOR_MUTED)
-    svg.text(x0, gy + 86, "其余 3 段仍能在哈希表中命中，read 的候选位置不会丢失。",
-             mono=False, size=SIZE_NOTE, fill=COLOR_MUTED)
     save("hash-03-pigeonhole", svg)
 
 
@@ -298,14 +282,14 @@ def _sources(mat, sw=False):
     return src
 
 
-def _dp_grid_frame(svg, x0, y0, cell=56, init=None):
+def _dp_grid_frame(svg, x0, y0, cell=58, init=None):
     svg.text(x0 + cell // 2 - 6, y0 - 12, "∅", fill=COLOR_MUTED)
     for j, b in enumerate(SEQ2):
         svg.text(x0 + (j + 1) * cell + cell // 2 - 6, y0 - 12, b, weight="bold", fill=COLOR_PRIMARY)
-    svg.text(x0 - 96, y0 + 12, "seq2 →", mono=False, size=SIZE_LABEL, fill=COLOR_MUTED)
+    svg.text(x0 - 98, y0 + 12, "seq2 →", mono=False, size=SIZE_LABEL, fill=COLOR_MUTED)
     for i, b in enumerate(SEQ1):
-        svg.text(x0 - 26, y0 + (i + 1) * cell + 20, b, weight="bold", fill=COLOR_PRIMARY)
-    svg.text(x0 - 28, y0 + 2 * cell + 4, "seq1", mono=False, size=SIZE_LABEL, fill=COLOR_MUTED)
+        svg.text(x0 - 26, y0 + (i + 1) * cell + 22, b, weight="bold", fill=COLOR_PRIMARY)
+    svg.text(x0 - 30, y0 + 2 * cell + 6, "seq1", mono=False, size=SIZE_LABEL, fill=COLOR_MUTED)
     for i in range(6):
         svg.line(x0, y0 + i * cell, x0 + 5 * cell, y0 + i * cell, stroke="#e5e7eb", sw=1)
     for j in range(6):
@@ -319,137 +303,152 @@ def _dp_grid_frame(svg, x0, y0, cell=56, init=None):
                      str(init[i][0]), fill=COLOR_MUTED)
 
 
-def _cell_center(x0, y0, cell, i, j):
-    return x0 + j * cell + cell // 2, y0 + i * cell + cell // 2
+def _cell_value_pos(x0, y0, cell, i, j):
+    """数值固定在格子左上角。"""
+    return x0 + j * cell + 9, y0 + i * cell + 21
 
 
 def _src_arrows(svg, x0, y0, cell, i, j, srcs, color=COLOR_MUTED):
-    cx, cy = _cell_center(x0, y0, cell, i, j)
-    r = cell * 0.30
+    """来源箭头收在格子右下角小区，与左上角数值物理隔离。"""
+    cx = x0 + j * cell + cell - 14
+    cy = y0 + i * cell + cell - 12
+    r = 11
     for d, (dx, dy) in {'d': (-1, -1), 'u': (0, -1), 'l': (-1, 0)}.items():
         if d in srcs:
-            x2 = cx + dx * r
-            y2 = cy + dy * r
-            svg.arrow(cx + dx * r * 0.25, cy + dy * r * 0.25, x2, y2,
-                      stroke=color, sw=1.6)
+            svg.arrow(cx + dx * r * 0.25, cy + dy * r * 0.25,
+                      cx + dx * r, cy + dy * r, stroke=color, sw=1.5)
 
 
 def fig_scoring_matrix():
     bases = "AGCT"
-    x0, y0, cell = 110, 96, 62
-    w, h = 600, 430
+    x0, y0, cell = 120, 100, 64
+    w, h = 620, 450
     svg = Svg(w, h, "双序列比对示例的打分矩阵",
               "match 得 5 分，mismatch 扣 4 分，空位罚分 d=-5。")
-    svg.text(x0 - 30, 42, "打分矩阵与空位罚分", mono=False, size=SIZE_TITLE, weight="bold")
+    svg.text(x0 - 30, 44, "打分矩阵与空位罚分", mono=False, size=SIZE_TITLE, weight="bold")
     for j, b in enumerate(bases):
         svg.text(x0 + (j + 1) * cell + cell // 2 - 6, y0 - 16, b, weight="bold", fill=COLOR_PRIMARY)
     for i, b in enumerate(bases):
-        svg.text(x0 - 26, y0 + (i + 1) * cell + 24, b, weight="bold", fill=COLOR_PRIMARY)
+        svg.text(x0 - 28, y0 + (i + 1) * cell + 26, b, weight="bold", fill=COLOR_PRIMARY)
     for i in range(4):
         for j in range(4):
             x = x0 + (j + 1) * cell + 8
-            y = y0 + (i + 1) * cell + 30
+            y = y0 + (i + 1) * cell + 32
             match = bases[i] == bases[j]
-            svg.rect(x, y - 22, cell - 12, cell - 12,
+            svg.rect(x, y - 24, cell - 14, cell - 14,
                      fill=COLOR_FILL if match else COLOR_WARN_FILL,
                      stroke=COLOR_PRIMARY if match else COLOR_WARN)
-            svg.text(x + (cell - 12) // 2 - 12, y + 4, "+5" if match else "-4",
+            svg.text(x + (cell - 14) // 2 - 13, y + 4, "+5" if match else "-4",
                      weight="bold", fill=COLOR_PRIMARY if match else COLOR_WARN)
-    ly = y0 + 4 * cell + 44
+    ly = y0 + 4 * cell + 46
     legend = [("match +5", COLOR_FILL, COLOR_PRIMARY),
               ("mismatch −4", COLOR_WARN_FILL, COLOR_WARN),
               ("空位罚分 d = −5", "none", COLOR_PRIMARY)]
     lx = x0 - 30
     for text, fill, stroke in legend:
-        svg.rect(lx, ly - 18, 168, 26, fill=fill, stroke=stroke, rx=4)
-        svg.text(lx + 14, ly, text, mono=False, size=SIZE_LABEL, fill=stroke, weight="bold")
-        lx += 184
-    svg.text(x0 - 30, ly + 34, "示例：A 对 A 得 +5；A 对 G 扣 4；每开一个空位扣 5 分。",
+        svg.rect(lx, ly - 19, 172, 27, fill=fill, stroke=stroke, rx=4)
+        svg.text(lx + 14, ly + 1, text, mono=False, size=SIZE_LABEL, fill=stroke, weight="bold")
+        lx += 188
+    svg.text(x0 - 30, ly + 36, "示例：A 对 A 得 +5；A 对 G 扣 4；每开一个空位扣 5 分。",
              mono=False, size=SIZE_NOTE, fill=COLOR_MUTED)
     save("pairwise-01-scoring-matrix", svg)
 
 
 def fig_empty_grid():
-    x0, y0, cell = 120, 92, 56
-    w, h = 520, 410
+    x0, y0, cell = 130, 100, 58
+    w, h = 540, 430
     nw = _nw_matrix()
     svg = Svg(w, h, "待填写的动态规划表格（第 0 行/列已初始化）",
               "行为 seq1=AAGT，列为 seq2=AGCT；以全局比对为例，第 0 行/第 0 列已填入空位累计罚分。")
-    svg.text(x0 - 60, 40, "动态规划表格（第 0 行/列已初始化）", mono=False,
+    svg.text(x0 - 60, 44, "动态规划表格（第 0 行/列已初始化）", mono=False,
              size=SIZE_TITLE, weight="bold")
     _dp_grid_frame(svg, x0, y0, cell, init=nw)
-    svg.text(x0 - 60, y0 + 5 * cell + 34, "灰色为初始化值（0、-5、-10…，空位累计罚分）；空格请按规则填写。",
+    svg.text(x0 - 60, y0 + 5 * cell + 36, "灰色为初始化值（0、-5、-10…，空位累计罚分）；空格请按规则填写。",
              mono=False, size=SIZE_NOTE, fill=COLOR_MUTED)
     save("pairwise-02-empty-grid", svg)
 
 
 def fig_nw_matrix():
-    x0, y0, cell = 120, 92, 56
-    w, h = 660, 490
+    x0, y0, cell = 130, 100, 58
+    w, h = 680, 520
     mat = _nw_matrix()
     srcs = _sources(mat)
     svg = Svg(w, h, "Needleman-Wunsch 全局比对填表结果",
-              "每格箭头标出取值来源（对角/上/左）；加粗路径为回溯，右下角最优得分 5。")
-    svg.text(x0 - 70, 40, "Needleman-Wunsch 全局比对", mono=False, size=SIZE_TITLE, weight="bold")
+              "数值在格左上角，右下角小箭头为取值来源（对角/上/左）；加粗路径为回溯，右下角最优得分 5。")
+    svg.text(x0 - 70, 44, "Needleman-Wunsch 全局比对", mono=False, size=SIZE_TITLE, weight="bold")
     _dp_grid_frame(svg, x0, y0, cell, init=mat)
     path = {(4, 4), (3, 3), (3, 2), (2, 1)}
     for i in range(1, 5):
         for j in range(1, 5):
-            cx, cy = _cell_center(x0, y0, cell, i, j)
             on_path = (i, j) in path
             if on_path:
                 svg.rect(x0 + j * cell + 2, y0 + i * cell + 2, cell - 4, cell - 4,
                          fill=COLOR_FILL, sw=0)
-            svg.text(cx - 22, cy - 6, str(mat[i][j]),
+    # 先铺所有底色，再统一写文字
+    for i in range(1, 5):
+        for j in range(1, 5):
+            on_path = (i, j) in path
+            tx, ty = _cell_value_pos(x0, y0, cell, i, j)
+            svg.text(tx, ty, str(mat[i][j]),
                      weight="bold" if on_path else "normal",
                      fill=COLOR_PRIMARY if on_path else COLOR_TEXT)
+    for i in range(1, 5):
+        for j in range(1, 5):
+            on_path = (i, j) in path
             _src_arrows(svg, x0, y0, cell, i, j, srcs[i][j],
                         color=COLOR_PRIMARY if on_path else COLOR_MUTED)
     svg.rect(x0 + 0 * cell + 2, y0 + 1 * cell + 2, cell - 4, cell - 4, fill=COLOR_FILL, sw=0)
-    svg.text(x0 + 0 * cell + cell // 2 - 12, y0 + 1 * cell + cell // 2 - 6, str(mat[1][0]),
-             weight="bold", fill=COLOR_PRIMARY)
-    fx, fy = x0 + 4 * cell + 2, y0 + 4 * cell + 2
-    svg.rect(fx, fy, cell - 4, cell - 4, fill="none", stroke=COLOR_PRIMARY, sw=2.2)
-    y = y0 + 5 * cell + 44
+    svg.text(x0 + 0 * cell + 9, y0 + 1 * cell + 21, str(mat[1][0]), weight="bold", fill=COLOR_PRIMARY)
+    svg.rect(x0 + 4 * cell + 2, y0 + 4 * cell + 2, cell - 4, cell - 4,
+             fill="none", stroke=COLOR_PRIMARY, sw=2.2)
+    y = y0 + 5 * cell + 48
     svg.text(x0 - 70, y, "最优比对（得分 5）：", mono=False, size=SIZE_LABEL)
     svg.seq(x0 + 120, y, "A A G - T", weight="bold", fill=COLOR_PRIMARY)
     svg.seq(x0 + 120, y + 26, "- A G C T", weight="bold", fill=COLOR_PRIMARY)
-    svg.text(x0 + 320, y + 13, "（回溯路径见加粗格与绿色箭头）", mono=False,
+    svg.text(x0 + 320, y + 13, "（加粗格与绿色箭头为回溯路径）", mono=False,
              size=SIZE_NOTE, fill=COLOR_MUTED)
     save("pairwise-03-nw-matrix", svg)
 
 
 def fig_sw_matrix():
-    x0, y0, cell = 120, 92, 56
-    w, h = 700, 530
+    x0, y0, cell = 130, 100, 58
+    w, h = 720, 560
     mat = _sw_matrix()
     srcs = _sources(mat, sw=True)
     svg = Svg(w, h, "Smith-Waterman 局部比对填表结果",
-              "负值记 0 的格子没有来源箭头；两个最高分 10 分别回溯得到两个最优局部比对。")
-    svg.text(x0 - 70, 40, "Smith-Waterman 局部比对", mono=False, size=SIZE_TITLE, weight="bold")
+              "数值在格左上角，右下角小箭头为取值来源；记 0 的格子无箭头；"
+              "两个最高分 10（加框）分别回溯得到两个最优局部比对。")
+    svg.text(x0 - 70, 44, "Smith-Waterman 局部比对", mono=False, size=SIZE_TITLE, weight="bold")
     _dp_grid_frame(svg, x0, y0, cell, init=[[0]*5 for _ in range(5)])
     path1 = {(3, 2), (2, 1)}
     path2 = {(4, 4), (3, 3), (3, 2), (2, 1)}
     for i in range(1, 5):
         for j in range(1, 5):
-            cx, cy = _cell_center(x0, y0, cell, i, j)
             in1 = (i, j) in path1
             in2 = (i, j) in path2
             if in1 or in2:
                 svg.rect(x0 + j * cell + 2, y0 + i * cell + 2, cell - 4, cell - 4,
                          fill=COLOR_FILL if in1 else COLOR_WARN_FILL, sw=0)
+    for i in range(1, 5):
+        for j in range(1, 5):
+            tx, ty = _cell_value_pos(x0, y0, cell, i, j)
             val = mat[i][j]
-            svg.text(cx - 22, cy - 6, str(val),
+            svg.text(tx, ty, str(val),
                      weight="bold" if val == 10 else "normal",
                      fill=COLOR_PRIMARY if val == 10 else COLOR_TEXT)
-            if val > 0:
-                _src_arrows(svg, x0, y0, cell, i, j, srcs[i][j],
-                            color=(COLOR_PRIMARY if in1 else (COLOR_WARN if in2 else COLOR_MUTED)))
+    for i in range(1, 5):
+        for j in range(1, 5):
+            if mat[i][j] == 0:
+                continue
+            in1 = (i, j) in path1
+            in2 = (i, j) in path2
+            _src_arrows(svg, x0, y0, cell, i, j, srcs[i][j],
+                        color=(COLOR_PRIMARY if in1 else (COLOR_WARN if in2 else COLOR_MUTED)))
     svg.rect(x0 + 0 * cell + 2, y0 + 1 * cell + 2, cell - 4, cell - 4, fill=COLOR_FILL, sw=0)
     for (i, j) in [(3, 2), (4, 4)]:
         svg.rect(x0 + j * cell + 2, y0 + i * cell + 2, cell - 4, cell - 4,
                  fill="none", stroke=COLOR_PRIMARY, sw=2.2)
-    y = y0 + 5 * cell + 44
+    y = y0 + 5 * cell + 48
     svg.text(x0 - 70, y, "两个并列最优（各 10 分）：", mono=False, size=SIZE_LABEL)
     svg.seq(x0 + 170, y, "A G", weight="bold", fill=COLOR_PRIMARY)
     svg.seq(x0 + 170, y + 24, "A G", weight="bold", fill=COLOR_PRIMARY)

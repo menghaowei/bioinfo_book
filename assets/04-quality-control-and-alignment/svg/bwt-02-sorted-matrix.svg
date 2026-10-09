@@ -2,9 +2,11 @@
 <title id='t'>BWT 构建第 2 步：排序后的旋转矩阵</title>
 <desc id='d'>全部循环旋转按 $&lt;A&lt;C&lt;G 排序；F 列为第一列，L 列为最后一列（BWT）。</desc>
 <text x='90' y='40' font-family="'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size='15' fill='#333333' font-weight='bold' text-anchor='start'>排序后的旋转矩阵（$ &lt; A &lt; C &lt; G）</text>
-<text x='88' y='80' font-family="ui-monospace, 'SFMono-Regular', Menlo, Consolas, 'Liberation Mono', monospace" font-size='16' fill='#186254' font-weight='bold' text-anchor='start'>F</text>
-<text x='164' y='80' font-family="ui-monospace, 'SFMono-Regular', Menlo, Consolas, 'Liberation Mono', monospace" font-size='16' fill='#b45309' font-weight='bold' text-anchor='start'>L</text>
+<text x='86' y='80' font-family="ui-monospace, 'SFMono-Regular', Menlo, Consolas, 'Liberation Mono', monospace" font-size='16' fill='#186254' font-weight='bold' text-anchor='start'>F</text>
+<text x='166' y='80' font-family="ui-monospace, 'SFMono-Regular', Menlo, Consolas, 'Liberation Mono', monospace" font-size='16' fill='#b45309' font-weight='bold' text-anchor='start'>L</text>
 <text x='56' y='108' font-family="ui-monospace, 'SFMono-Regular', Menlo, Consolas, 'Liberation Mono', monospace" font-size='13' fill='#6b7280' font-weight='normal' text-anchor='start'>1</text>
+<rect x='82' y='92' width='24' height='22' rx='3' fill='#e8f4f1' stroke='#186254' stroke-width='1.4'/>
+<rect x='156' y='92' width='24' height='22' rx='3' fill='#fdf3e3' stroke='#b45309' stroke-width='1.4'/>
 <text x='90' y='108' font-family="ui-monospace, 'SFMono-Regular', Menlo, Consolas, 'Liberation Mono', monospace" font-size='16' fill='#333333' font-weight='normal' text-anchor='start'>$</text>
 <text x='102' y='108' font-family="ui-monospace, 'SFMono-Regular', Menlo, Consolas, 'Liberation Mono', monospace" font-size='16' fill='#333333' font-weight='normal' text-anchor='start'>A</text>
 <text x='114' y='108' font-family="ui-monospace, 'SFMono-Regular', Menlo, Consolas, 'Liberation Mono', monospace" font-size='16' fill='#333333' font-weight='normal' text-anchor='start'>C</text>
@@ -12,9 +14,9 @@
 <text x='138' y='108' font-family="ui-monospace, 'SFMono-Regular', Menlo, Consolas, 'Liberation Mono', monospace" font-size='16' fill='#333333' font-weight='normal' text-anchor='start'>A</text>
 <text x='150' y='108' font-family="ui-monospace, 'SFMono-Regular', Menlo, Consolas, 'Liberation Mono', monospace" font-size='16' fill='#333333' font-weight='normal' text-anchor='start'>C</text>
 <text x='162' y='108' font-family="ui-monospace, 'SFMono-Regular', Menlo, Consolas, 'Liberation Mono', monospace" font-size='16' fill='#333333' font-weight='normal' text-anchor='start'>G</text>
-<rect x='84' y='92' width='20' height='22' rx='3' fill='#e8f4f1' stroke='#186254' stroke-width='1.4'/>
-<rect x='158' y='92' width='20' height='22' rx='3' fill='#fdf3e3' stroke='#b45309' stroke-width='1.4'/>
 <text x='56' y='132' font-family="ui-monospace, 'SFMono-Regular', Menlo, Consolas, 'Liberation Mono', monospace" font-size='13' fill='#6b7280' font-weight='normal' text-anchor='start'>2</text>
+<rect x='82' y='116' width='24' height='22' rx='3' fill='#e8f4f1' stroke='#186254' stroke-width='1.4'/>
+<rect x='156' y='116' width='24' height='22' rx='3' fill='#fdf3e3' stroke='#b45309' stroke-width='1.4'/>
 <text x='90' y='132' font-family="ui-monospace, 'SFMono-Regular', Menlo, Consolas, 'Liberation Mono', monospace" font-size='16' fill='#333333' font-weight='normal' text-anchor='start'>A</text>
 <text x='102' y='132' font-family="ui-monospace, 'SFMono-Regular', Menlo, Consolas, 'Liberation Mono', monospace" font-size='16' fill='#333333' font-weight='normal' text-anchor='start'>A</text>
 <text x='114' y='132' font-family="ui-monospace, 'SFMono-Regular', Menlo, Consolas, 'Liberation Mono', monospace" font-size='16' fill='#333333' font-weight='normal' text-anchor='start'>C</text>
@@ -22,9 +24,9 @@
 <text x='138' y='132' font-family="ui-monospace, 'SFMono-Regular', Menlo, Consolas, 'Liberation Mono', monospace" font-size='16' fill='#333333' font-weight='normal' text-anchor='start'>$</text>
 <text x='150' y='132' font-family="ui-monospace, 'SFMono-Regular', Menlo, Consolas, 'Liberation Mono', monospace" font-size='16' fill='#333333' font-weight='normal' text-anchor='start'>A</text>
 <text x='162' y='132' font-family="ui-monospace, 'SFMono-Regular', Menlo, Consolas, 'Liberation Mono', monospace" font-size='16' fill='#333333' font-weight='normal' text-anchor='start'>C</text>
-<rect x='84' y='116' width='20' height='22' rx='3' fill='#e8f4f1' stroke='#186254' stroke-width='1.4'/>
-<rect x='158' y='116' width='20' height='22' rx='3' fill='#fdf3e3' stroke='#b45309' stroke-width='1.4'/>
 <text x='56' y='156' font-family="ui-monospace, 'SFMono-Regular', Menlo, Consolas, 'Liberation Mono', monospace" font-size='13' fill='#6b7280' font-weight='normal' text-anchor='start'>3</text>
+<rect x='82' y='140' width='24' height='22' rx='3' fill='#e8f4f1' stroke='#186254' stroke-width='1.4'/>
+<rect x='156' y='140' width='24' height='22' rx='3' fill='#fdf3e3' stroke='#b45309' stroke-width='1.4'/>
 <text x='90' y='156' font-family="ui-monospace, 'SFMono-Regular', Menlo, Consolas, 'Liberation Mono', monospace" font-size='16' fill='#333333' font-weight='normal' text-anchor='start'>A</text>
 <text x='102' y='156' font-family="ui-monospace, 'SFMono-Regular', Menlo, Consolas, 'Liberation Mono', monospace" font-size='16' fill='#333333' font-weight='normal' text-anchor='start'>C</text>
 <text x='114' y='156' font-family="ui-monospace, 'SFMono-Regular', Menlo, Consolas, 'Liberation Mono', monospace" font-size='16' fill='#333333' font-weight='normal' text-anchor='start'>A</text>
@@ -32,9 +34,9 @@
 <text x='138' y='156' font-family="ui-monospace, 'SFMono-Regular', Menlo, Consolas, 'Liberation Mono', monospace" font-size='16' fill='#333333' font-weight='normal' text-anchor='start'>C</text>
 <text x='150' y='156' font-family="ui-monospace, 'SFMono-Regular', Menlo, Consolas, 'Liberation Mono', monospace" font-size='16' fill='#333333' font-weight='normal' text-anchor='start'>G</text>
 <text x='162' y='156' font-family="ui-monospace, 'SFMono-Regular', Menlo, Consolas, 'Liberation Mono', monospace" font-size='16' fill='#333333' font-weight='normal' text-anchor='start'>$</text>
-<rect x='84' y='140' width='20' height='22' rx='3' fill='#e8f4f1' stroke='#186254' stroke-width='1.4'/>
-<rect x='158' y='140' width='20' height='22' rx='3' fill='#fdf3e3' stroke='#b45309' stroke-width='1.4'/>
 <text x='56' y='180' font-family="ui-monospace, 'SFMono-Regular', Menlo, Consolas, 'Liberation Mono', monospace" font-size='13' fill='#6b7280' font-weight='normal' text-anchor='start'>4</text>
+<rect x='82' y='164' width='24' height='22' rx='3' fill='#e8f4f1' stroke='#186254' stroke-width='1.4'/>
+<rect x='156' y='164' width='24' height='22' rx='3' fill='#fdf3e3' stroke='#b45309' stroke-width='1.4'/>
 <text x='90' y='180' font-family="ui-monospace, 'SFMono-Regular', Menlo, Consolas, 'Liberation Mono', monospace" font-size='16' fill='#333333' font-weight='normal' text-anchor='start'>A</text>
 <text x='102' y='180' font-family="ui-monospace, 'SFMono-Regular', Menlo, Consolas, 'Liberation Mono', monospace" font-size='16' fill='#333333' font-weight='normal' text-anchor='start'>C</text>
 <text x='114' y='180' font-family="ui-monospace, 'SFMono-Regular', Menlo, Consolas, 'Liberation Mono', monospace" font-size='16' fill='#333333' font-weight='normal' text-anchor='start'>G</text>
@@ -42,9 +44,9 @@
 <text x='138' y='180' font-family="ui-monospace, 'SFMono-Regular', Menlo, Consolas, 'Liberation Mono', monospace" font-size='16' fill='#333333' font-weight='normal' text-anchor='start'>A</text>
 <text x='150' y='180' font-family="ui-monospace, 'SFMono-Regular', Menlo, Consolas, 'Liberation Mono', monospace" font-size='16' fill='#333333' font-weight='normal' text-anchor='start'>C</text>
 <text x='162' y='180' font-family="ui-monospace, 'SFMono-Regular', Menlo, Consolas, 'Liberation Mono', monospace" font-size='16' fill='#333333' font-weight='normal' text-anchor='start'>A</text>
-<rect x='84' y='164' width='20' height='22' rx='3' fill='#e8f4f1' stroke='#186254' stroke-width='1.4'/>
-<rect x='158' y='164' width='20' height='22' rx='3' fill='#fdf3e3' stroke='#b45309' stroke-width='1.4'/>
 <text x='56' y='204' font-family="ui-monospace, 'SFMono-Regular', Menlo, Consolas, 'Liberation Mono', monospace" font-size='13' fill='#6b7280' font-weight='normal' text-anchor='start'>5</text>
+<rect x='82' y='188' width='24' height='22' rx='3' fill='#e8f4f1' stroke='#186254' stroke-width='1.4'/>
+<rect x='156' y='188' width='24' height='22' rx='3' fill='#fdf3e3' stroke='#b45309' stroke-width='1.4'/>
 <text x='90' y='204' font-family="ui-monospace, 'SFMono-Regular', Menlo, Consolas, 'Liberation Mono', monospace" font-size='16' fill='#333333' font-weight='normal' text-anchor='start'>C</text>
 <text x='102' y='204' font-family="ui-monospace, 'SFMono-Regular', Menlo, Consolas, 'Liberation Mono', monospace" font-size='16' fill='#333333' font-weight='normal' text-anchor='start'>A</text>
 <text x='114' y='204' font-family="ui-monospace, 'SFMono-Regular', Menlo, Consolas, 'Liberation Mono', monospace" font-size='16' fill='#333333' font-weight='normal' text-anchor='start'>A</text>
@@ -52,9 +54,9 @@
 <text x='138' y='204' font-family="ui-monospace, 'SFMono-Regular', Menlo, Consolas, 'Liberation Mono', monospace" font-size='16' fill='#333333' font-weight='normal' text-anchor='start'>G</text>
 <text x='150' y='204' font-family="ui-monospace, 'SFMono-Regular', Menlo, Consolas, 'Liberation Mono', monospace" font-size='16' fill='#333333' font-weight='normal' text-anchor='start'>$</text>
 <text x='162' y='204' font-family="ui-monospace, 'SFMono-Regular', Menlo, Consolas, 'Liberation Mono', monospace" font-size='16' fill='#333333' font-weight='normal' text-anchor='start'>A</text>
-<rect x='84' y='188' width='20' height='22' rx='3' fill='#e8f4f1' stroke='#186254' stroke-width='1.4'/>
-<rect x='158' y='188' width='20' height='22' rx='3' fill='#fdf3e3' stroke='#b45309' stroke-width='1.4'/>
 <text x='56' y='228' font-family="ui-monospace, 'SFMono-Regular', Menlo, Consolas, 'Liberation Mono', monospace" font-size='13' fill='#6b7280' font-weight='normal' text-anchor='start'>6</text>
+<rect x='82' y='212' width='24' height='22' rx='3' fill='#e8f4f1' stroke='#186254' stroke-width='1.4'/>
+<rect x='156' y='212' width='24' height='22' rx='3' fill='#fdf3e3' stroke='#b45309' stroke-width='1.4'/>
 <text x='90' y='228' font-family="ui-monospace, 'SFMono-Regular', Menlo, Consolas, 'Liberation Mono', monospace" font-size='16' fill='#333333' font-weight='normal' text-anchor='start'>C</text>
 <text x='102' y='228' font-family="ui-monospace, 'SFMono-Regular', Menlo, Consolas, 'Liberation Mono', monospace" font-size='16' fill='#333333' font-weight='normal' text-anchor='start'>G</text>
 <text x='114' y='228' font-family="ui-monospace, 'SFMono-Regular', Menlo, Consolas, 'Liberation Mono', monospace" font-size='16' fill='#333333' font-weight='normal' text-anchor='start'>$</text>
@@ -62,9 +64,9 @@
 <text x='138' y='228' font-family="ui-monospace, 'SFMono-Regular', Menlo, Consolas, 'Liberation Mono', monospace" font-size='16' fill='#333333' font-weight='normal' text-anchor='start'>C</text>
 <text x='150' y='228' font-family="ui-monospace, 'SFMono-Regular', Menlo, Consolas, 'Liberation Mono', monospace" font-size='16' fill='#333333' font-weight='normal' text-anchor='start'>A</text>
 <text x='162' y='228' font-family="ui-monospace, 'SFMono-Regular', Menlo, Consolas, 'Liberation Mono', monospace" font-size='16' fill='#333333' font-weight='normal' text-anchor='start'>A</text>
-<rect x='84' y='212' width='20' height='22' rx='3' fill='#e8f4f1' stroke='#186254' stroke-width='1.4'/>
-<rect x='158' y='212' width='20' height='22' rx='3' fill='#fdf3e3' stroke='#b45309' stroke-width='1.4'/>
 <text x='56' y='252' font-family="ui-monospace, 'SFMono-Regular', Menlo, Consolas, 'Liberation Mono', monospace" font-size='13' fill='#6b7280' font-weight='normal' text-anchor='start'>7</text>
+<rect x='82' y='236' width='24' height='22' rx='3' fill='#e8f4f1' stroke='#186254' stroke-width='1.4'/>
+<rect x='156' y='236' width='24' height='22' rx='3' fill='#fdf3e3' stroke='#b45309' stroke-width='1.4'/>
 <text x='90' y='252' font-family="ui-monospace, 'SFMono-Regular', Menlo, Consolas, 'Liberation Mono', monospace" font-size='16' fill='#333333' font-weight='normal' text-anchor='start'>G</text>
 <text x='102' y='252' font-family="ui-monospace, 'SFMono-Regular', Menlo, Consolas, 'Liberation Mono', monospace" font-size='16' fill='#333333' font-weight='normal' text-anchor='start'>$</text>
 <text x='114' y='252' font-family="ui-monospace, 'SFMono-Regular', Menlo, Consolas, 'Liberation Mono', monospace" font-size='16' fill='#333333' font-weight='normal' text-anchor='start'>A</text>
@@ -72,6 +74,4 @@
 <text x='138' y='252' font-family="ui-monospace, 'SFMono-Regular', Menlo, Consolas, 'Liberation Mono', monospace" font-size='16' fill='#333333' font-weight='normal' text-anchor='start'>A</text>
 <text x='150' y='252' font-family="ui-monospace, 'SFMono-Regular', Menlo, Consolas, 'Liberation Mono', monospace" font-size='16' fill='#333333' font-weight='normal' text-anchor='start'>A</text>
 <text x='162' y='252' font-family="ui-monospace, 'SFMono-Regular', Menlo, Consolas, 'Liberation Mono', monospace" font-size='16' fill='#333333' font-weight='normal' text-anchor='start'>C</text>
-<rect x='84' y='236' width='20' height='22' rx='3' fill='#e8f4f1' stroke='#186254' stroke-width='1.4'/>
-<rect x='158' y='236' width='20' height='22' rx='3' fill='#fdf3e3' stroke='#b45309' stroke-width='1.4'/>
 </svg>
