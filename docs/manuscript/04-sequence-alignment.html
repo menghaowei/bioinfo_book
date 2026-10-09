@@ -1318,7 +1318,7 @@ chr1    hg19_ncbiRefSeq exon    67091530    67091593    0.000000    +   .   gene
 <li><a href="https://www.bilibili.com/video/av10042290/?p=6">利用动态规划进行全局比对</a></li>
 <li><a href="https://www.bilibili.com/video/av10042290/?p=7">从全局比对到局部比对</a></li>
 </ol>
-<p>我们用一个贯穿的小例子把两种算法都算一遍。假设打分规则如 <a href="#fig-a-questions-11-15-005" class="quarto-xref">图&nbsp;<span>4.15</span></a> 所示：match 得 5 分，mismatch 扣 4 分，空位罚分 <span class="math inline">\(d=-5\)</span>（每个空位扣 5 分）；要比对的序列是 seq1 = AAGT 和 seq2 = AGCT，需要填写 <a href="#fig-a-questions-11-15-006" class="quarto-xref">图&nbsp;<span>4.16</span></a> 的动态规划表格。</p>
+<p>我们用一个贯穿的小例子把两种算法都算一遍。假设打分规则如 <a href="#fig-a-questions-11-15-005" class="quarto-xref">图&nbsp;<span>4.15</span></a> 所示：match 得 5 分，mismatch 扣 4 分，空位罚分 <span class="math inline">\(d=-5\)</span>（每个空位扣 5 分）；要比对的序列是 seq1 = AAGT 和 seq2 = AGCT，需要填写 <a href="#fig-a-questions-11-15-006" class="quarto-xref">图&nbsp;<span>4.16</span></a> 的动态规划表格（以全局比对为例，第 0 行/第 0 列先填入空位累计罚分 0、-5、-10……；局部比对的初始化全为 0）。</p>
 <div id="fig-a-questions-11-15-005" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-a-questions-11-15-005-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
@@ -1348,7 +1348,7 @@ chr1    hg19_ncbiRefSeq exon    67091530    67091593    0.000000    +   .   gene
 <img src="../assets/04-quality-control-and-alignment/svg/pairwise-03-nw-matrix.svg" class="img-fluid figure-img">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-a-questions-11-15-007-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-图&nbsp;4.17: Needleman-Wunsch 全局比对的填表过程，右下角得到最优得分 5，虚线为回溯路径
+图&nbsp;4.17: Needleman-Wunsch 全局比对填表结果：每格小箭头标出取值来源（对角/上/左），加粗格为回溯路径，右下角最优得分 5
 </figcaption>
 </figure>
 </div>
@@ -1361,7 +1361,7 @@ A G              A G C T</code></pre>
 <img src="../assets/04-quality-control-and-alignment/svg/pairwise-04-sw-matrix.svg" class="img-fluid figure-img">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-a-questions-11-15-009-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-图&nbsp;4.18: Smith-Waterman 局部比对的填表过程：矩阵中最高分为 10，从最高分回溯到 0 即为局部比对结果
+图&nbsp;4.18: Smith-Waterman 局部比对填表结果：记 0 的格子无来源箭头，两个最高分 10（加框）分别回溯得到两个最优局部比对
 </figcaption>
 </figure>
 </div>
@@ -1654,7 +1654,7 @@ UCUCGUUUGAUCUCGGAAGCUAAGCAGGGUUGGGCCUGGUUAGUACUUGGAUGGGAAACUU</code></pre>
 <p>所谓BWT (Burrows-Wheeler Transform)数据转换算法，原本是用于文本压缩的一种变换（压缩工具 bzip2 就使用了它），其大致原理是将原来的文本转换为一个相似的文本，转换后使得相同的字符位置连续或者相邻，再通过其他手段对文本进行压缩。</p>
 <p>构建BWT的步骤大致如下：</p>
 <ol type="1">
-<li>给定一个子序列，譬如：ACAACG，在其末尾加入一个只会出现在结尾的特殊符号$，然后写出它全部 7 个循环旋转（rotation），见 <a href="#fig-04-quality-control-and-alignment-005" class="quarto-xref">图&nbsp;<span>4.32</span></a> 。</li>
+<li>给定一个子序列，譬如：ACAACG，在其末尾加入一个只会出现在结尾的特殊符号 <code>$</code>，然后写出它全部 7 个循环旋转（rotation），见 <a href="#fig-04-quality-control-and-alignment-005" class="quarto-xref">图&nbsp;<span>4.32</span></a> 。每一行都是把原序列 ACAACG$ 循环左移一位得到，$ 只出现在结尾；高亮的第一行就是原序列本身。</li>
 </ol>
 <div id="fig-04-quality-control-and-alignment-005" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
@@ -1662,12 +1662,12 @@ UCUCGUUUGAUCUCGGAAGCUAAGCAGGGUUGGGCCUGGUUAGUACUUGGAUGGGAAACUU</code></pre>
 <img src="../assets/04-quality-control-and-alignment/svg/bwt-01-rotations.svg" class="img-fluid figure-img">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-04-quality-control-and-alignment-005-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-图&nbsp;4.32: 对 ACAACG$ 写出全部循环旋转，每一行都是原序列的一个循环移位
+图&nbsp;4.32: 对 <code>ACAACG$</code> 写出全部循环旋转，每一行都是原序列的一个循环移位
 </figcaption>
 </figure>
 </div>
 <ol start="2" type="1">
-<li>将所有旋转按字符顺序（ASCII 顺序，$ 最小）排序，得到排序后的旋转矩阵，见 <a href="#fig-04-quality-control-and-alignment-006" class="quarto-xref">图&nbsp;<span>4.33</span></a> 。</li>
+<li>将所有旋转按字符顺序（ASCII 顺序，<code>$</code> 最小）排序，得到排序后的旋转矩阵，见 <a href="#fig-04-quality-control-and-alignment-006" class="quarto-xref">图&nbsp;<span>4.33</span></a> 。</li>
 </ol>
 <div id="fig-04-quality-control-and-alignment-006" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
@@ -1675,7 +1675,7 @@ UCUCGUUUGAUCUCGGAAGCUAAGCAGGGUUGGGCCUGGUUAGUACUUGGAUGGGAAACUU</code></pre>
 <img src="../assets/04-quality-control-and-alignment/svg/bwt-02-sorted-matrix.svg" class="img-fluid figure-img">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-04-quality-control-and-alignment-006-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-图&nbsp;4.33: 把全部循环旋转按 $ &lt; A &lt; C &lt; G 排序，得到排序后的旋转矩阵
+图&nbsp;4.33: 把全部循环旋转按 <code>$ &lt; A &lt; C &lt; G</code> 排序，得到排序后的旋转矩阵
 </figcaption>
 </figure>
 </div>
@@ -1697,7 +1697,7 @@ UCUCGUUUGAUCUCGGAAGCUAAGCAGGGUUGGGCCUGGUUAGUACUUGGAUGGGAAACUU</code></pre>
 <img src="../assets/04-quality-control-and-alignment/svg/bwt-03-decode-step1.svg" class="img-fluid figure-img">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-04-quality-control-and-alignment-007-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-图&nbsp;4.34: BWT 解码第 1 步：从 $ 所在行确定原序列以 G 结尾，当前还原结果为 G
+图&nbsp;4.34: BWT 解码第 1 步：从 <code>$</code> 所在行确定原序列以 G 结尾，当前还原结果为 G
 </figcaption>
 </figure>
 </div>
