@@ -56,11 +56,26 @@ Sanger 测序的读长可达 500—1000 bp，单条序列的准确率很高，�
 
 []{#question-01-132}
 
-分析数据前需要知道它出自什么仪器。本系列写作时期（约 2016—2018 年）Illumina 的主流机型及通量：HiSeq 2500（50—1000 Gb）、HiSeq 3000（125—750 Gb）、HiSeq 4000（125—1500 Gb）、HiSeq X Five（900—1800 Gb）和 HiSeq X Ten（900—1800 Gb）。
+分析数据前需要知道它出自什么仪器。Illumina 的机型差不多每三到五年更新一代，单次运行通量从 GA 时代的几十 Gb 增长到如今 NovaSeq X Plus 的 16 Tb——二十年提高了约三个数量级，而读长始终停留在几百 bp。下表按年代列出各时代的代表机型与规格页通量（均为 2×150 等最长读长下的上限口径，实际产出随试剂版本与样本质量浮动）。
 
-::: {.callout-warning .book-warning title="注意｜机型与通量随时间变化"}
+| 时代 | 代表机型 | 单次运行通量（规格口径） |
+| --- | --- | --- |
+| GA 时代（2006—2010） | Genome Analyzer IIx | ~85—95 Gb |
+| HiSeq 时代（2011—2017） | HiSeq 2000/2500 | 0.2—1 Tb |
+| | HiSeq 3000/4000 | 0.75—1.5 Tb |
+| | HiSeq X Five/X Ten | 1.6—1.8 Tb |
+| NovaSeq 时代（2017—2022） | NovaSeq 6000（双 S4 流动槽） | ~5—6 Tb |
+| | NextSeq 550、MiSeq | 15—120 Gb |
+| NovaSeq X 时代（2023 至今） | NovaSeq X / X Plus | ~8 Tb / 16 Tb |
+| | NextSeq 2000 | 最高 540 Gb |
 
-HiSeq 系列现已停产。如今 Illumina 的主力机型是 NovaSeq 6000 与 NovaSeq X/X Plus（单次运行可达 Tb 级），中小通量有 NextSeq 2000/550、MiSeq 等；华大智造 MGI 的 DNBSEQ 系列也广泛使用。不同型号的通量、读长和流动槽结构差异很大，分析具体数据前应以测序公司提供的实际参数为准。
+: Illumina 各时代代表机型与单次运行通量 {#tbl-03-illumina-throughput}
+
+**专利到期与国产测序仪。** Illumina 边合成边测序的核心化学专利（如可逆终止子专利 US 7,541,444 及其同族）在 2022—2024 年间陆续到期。此后国内出现了一批采用 SBS/可逆末端终止化学路线的测序仪企业：真迈生物（SURFSeq 系列，GenoLab M、FASTASeq 300 等机型）、赛陆医疗（Salus Pro，4—600 Gb/run，超高通量的 EVO 可达 1.8 Tb）和赛纳生物（荧光发生 SBS 加纠错编码）等。它们的共同点是数据格式与生信流程和 Illumina 高度兼容，但仪器、芯片与试剂均为自研，与 Illumina 设备互不通用；华大智造则走自有的 DNBSEQ 体系（见 3.4 节），不属于 SBS 兼容路线。这些机型多在 2024—2025 年取得医疗器械注册证并快速进入临床与科研市场。
+
+::: {.callout-warning .book-warning title="注意｜以实际参数为准"}
+
+上表数字是各时代规格页的宣传口径；同一机型换用不同试剂版本，通量区间也会变化。分析具体数据前，应以测序公司或平台提供的实际参数（读长、通量、Q30 比例）为准，不要凭印象套用其他机型的数字。
 
 :::
 
@@ -87,8 +102,6 @@ HiSeq 系列现已停产。如今 Illumina 的主力机型是 NovaSeq 6000 与 N
 ![流动槽、泳道与扫描区域示意（HiSeq 时代平台示例）](../assets/03-sequencing-and-data-formats/002-pic-02-flowcell.jpg){#fig-03-sequencing-and-data-formats-002}
 
 []{#question-01-118}
-
-![flowcell 与 lane 布局示例（引用自 [NextGen Sequencing Primer（41j.com）](http://41j.com/blog/2012/04/nextgen-sequencing-primer/)）](../assets/a-questions-01-05/002-flowcell.jpg){#fig-a-questions-01-05-002}
 
 ### 桥式 PCR 与簇生成 {#src-0020-introduction-of-NGS-36}
 
@@ -169,6 +182,8 @@ Illumina 单端读长通常不超过 300 bp，主要有两方面原因。
 
 测序采用 **cPAS**（联合探针锚定聚合测序）：每轮反应中加入带荧光的可逆终止 dNTP，在锚定探针和聚合酶的作用下延伸一个碱基并成像，随后清除荧光、解除终止进入下一轮。reads 输出同样是 FASTQ 格式，与 Illumina 数据的下游分析流程高度兼容。
 
+![DNBSEQ 的文库构建与测序流程：环化、滚环复制生成 DNA 纳米球、规则阵列上机与测序（图片来源：Huang J. et al. 2017, GigaScience 6(5), doi:10.1093/gigascience/gix024，CC BY 4.0）](../assets/03-sequencing-and-data-formats/011-dnbseq-workflow.jpg){#fig-03-dnbseq-workflow}
+
 常见机型覆盖不同通量：DNBSEQ-T7 与 T20×2 面向超大人群测序，MGISEQ-2000/DNBSEQ-G400 等常用于科研与临床。选型时同样应查对应型号的实际参数，而不是凭印象套用其他平台的数字。
 
 ## 长读长测序：PacBio 与 Nanopore {#sec-03-04}
@@ -179,13 +194,17 @@ Illumina 单端读长通常不超过 300 bp，主要有两方面原因。
 
 ### PacBio：SMRT 测序与 HiFi 读长 {#src-0020-introduction-of-NGS-78}
 
-PacBio 的 SMRT（Single Molecule Real-Time）测序把单个聚合酶固定在零模波导孔（ZMW）底部，四种带不同荧光染料的 dNTP（染料标记在磷酸链上，掺入后自动脱离，因此不需要可逆终止）逐个掺入，实时记录荧光脉冲序列。聚合酶可以连续合成，单条读长可达数十 kb。
+PacBio 的 SMRT（Single Molecule Real-Time）测序把单个聚合酶固定在零模波导孔（ZMW）底部，四种带不同荧光染料的 dNTP（染料标记在磷酸链上，掺入后自动脱离，因此不需要可逆终止）逐个掺入，实时记录荧光脉冲序列（ @fig-03-smrt-zmw ）。聚合酶可以连续合成，单条读长可达数十 kb。
+
+![零模波导孔（ZMW）的结构：底部固定的聚合酶与实时荧光检测（图片来源：Wang Y. et al. 2025, Biosensors 15(1):4, doi:10.3390/bios15010004，CC BY 4.0）](../assets/03-sequencing-and-data-formats/012-smrt-zmw.jpg){#fig-03-smrt-zmw}
 
 SMRT 的单遍错误率较高（约 10% 量级），但错误基本随机分布。HiFi 测序利用这一点：把同一分子环化后反复读取（至少 3 遍），对多次读取取一致序列，得到既长（15—25 kb）又准（Q30 以上）的 HiFi reads。PacBio 适合解决结构变异、高度重复或复杂区域，以及通过 Iso-Seq 获得全长转录本。
 
 ### Nanopore：纳米孔电流测序 {#src-0020-introduction-of-NGS-81}
 
-Oxford Nanopore 的原理完全不同：马达蛋白牵引单链 DNA（或 RNA）穿过嵌在膜上的纳米孔，不同碱基组合对孔道电流的阻滞不同，仪器连续记录电流变化，再由碱基识别算法（basecalling）把电信号翻译成序列。它不依赖合成反应，读长理论上只受样品 DNA 长度限制，可达数百 kb 至 Mb 级；设备从掌上 MinION 到高通量台式机都有，可以现场快速测序。
+Oxford Nanopore 的原理完全不同：马达蛋白牵引单链 DNA（或 RNA）穿过嵌在膜上的纳米孔，不同碱基组合对孔道电流的阻滞不同，仪器连续记录电流变化，再由碱基识别算法（basecalling）把电信号翻译成序列（ @fig-03-nanopore-principle ）。它不依赖合成反应，读长理论上只受样品 DNA 长度限制，可达数百 kb 至 Mb 级；设备从掌上 MinION 到高通量台式机都有，可以现场快速测序。
+
+![纳米孔测序原理：马达蛋白牵引 DNA 穿过膜上纳米孔并检测电流变化（研究用 MspA 孔示意；图片来源：Nova I.C. et al. 2017, PLoS ONE 12(7):e0181599，CC BY 4.0，经 Wikimedia Commons）](../assets/03-sequencing-and-data-formats/013-nanopore-principle.png){#fig-03-nanopore-principle}
 
 纳米孔的单遍错误率历史上约 5%—10%，且存在非随机的系统偏差；随着化学体系与识别算法改进（如 Q20 化学和新版 basecaller），精度持续提升。它还能对 RNA 直接测序（不经过逆转录），保留碱基修饰信息，这是其他平台做不到的。
 
@@ -467,8 +486,6 @@ FastQC 会对每一个输入文件生成一个 html 网页和一个 zip 压缩�
 
 []{#question-06-8}
 
-![FastQC 报告中重点关注的质控模块（另一示例，红框标出）](../assets/a-questions-06-10/006-8-0.jpg){#fig-a-questions-06-10-006}
-
 下面逐模块解读最常看的几张图。
 
 #### 逐碱基序列质量（Per base sequence quality） {#question-06-7}
@@ -659,27 +676,27 @@ cutadapt -q 10 -o output.fastq input.fastq
 
 cutadapt 不是“遇到第一个低质量碱基就停”，而是允许好碱基夹杂在坏区域中，找整体最优的切点。以一条 13bp、阈值 10 的 read 为例：
 
-```{.text data-book-role="data" data-code-title="算例｜序列与质量值"}
-A,T,G,C,C,G,T,A,C,C,G,G,T
-42, 42, 41, 41, 40, 26, 27, 8, 7, 11, 4, 2, 3
+```{.text data-book-role="data" data-code-title="算例｜序列与质量值（逐列对齐）"}
+ A   T   G   C   C   G   T   A   C   C   G   G   T
+42  42  41  41  40  26  27   8   7  11   4   2   3
 ```
 
 第一步，每个质量值减去阈值：
 
 ```{.text data-book-role="data" data-code-title="算例｜减去阈值 10"}
-32, 32, 31, 31, 30, 16, 17, -2, -3, 1, -6, -8, -7
+32  32  31  31  30  16  17  -2  -3   1  -6  -8  -7
 ```
 
 第二步，从 3′ 端向 5′ 端累加，得到每个位置到末尾的累加和：
 
-```{.text data-book-role="data" data-code-title="算例｜从 3′ 端累加的部分和"}
-164, 132, 100, 69, 38, 8, -8, -25, -23, -20, -21, -15, -7
+```{.text data-book-role="data" data-code-title="算例｜从 3′ 端累加的部分和（与上两行逐列对齐）"}
+164  132  100   69   38    8   -8  -25  -23  -20  -21  -15   -7
 ```
 
 cutadapt 的规则是取累加和最小值（−25）出现的位置——第 8 位——作为裁剪位点，保留其前面的碱基：
 
-```{.text data-book-role="data" data-code-title="算例｜裁剪结果"}
-A,T,G,C,C,G,T--cut here--A,C,C,G,G,T
+```{.text data-book-role="data" data-code-title="算例｜裁剪结果（第 7 位后切除）"}
+ A   T   G   C   C   G   T --cut here--  A   C   C   G   G   T
 ```
 
 这样处理的好处是可以容忍 3′ 端零星的质量回升，不会因为个别碱基质量突然变好而过早停止裁剪。
