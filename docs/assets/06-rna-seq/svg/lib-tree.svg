@@ -1,0 +1,38 @@
+<svg xmlns='http://www.w3.org/2000/svg' width='600' height='440' viewBox='0 0 600 440' role='img' aria-labelledby='t d'>
+<title id='t'>四种 RNA 测序建库策略</title>
+<desc id='d'>总 RNA 经四种处理进入测序文库：富集 poly(A)、去 rRNA、去线性（RNase R）与小 RNA 文库，每条路线标注各自能测到的 RNA 类型。</desc>
+<rect x='210' y='20' width='180' height='40' rx='6' fill='#e8f4f1' stroke='#186254' stroke-width='1.2'/>
+<text x='300.0' y='44.32' font-family="'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size='12' fill='#333333' font-weight='normal' text-anchor='middle'>总 RNA 提取</text>
+<line x1='300' y1='60' x2='300' y2='84' stroke='#9ca3af' stroke-width='1.6'/>
+<line x1='300' y1='84' x2='36' y2='84' stroke='#9ca3af' stroke-width='1.6'/>
+<line x1='36' y1='84' x2='36' y2='354' stroke='#9ca3af' stroke-width='1.6'/>
+<line x1='36' y1='132' x2='56' y2='132' stroke='#186254' stroke-width='1.2'/>
+<line x1='56.0' y1='132.0' x2='47.9' y2='128.1' stroke='#186254' stroke-width='1.2'/>
+<line x1='56.0' y1='132.0' x2='47.9' y2='135.9' stroke='#186254' stroke-width='1.2'/>
+<rect x='60' y='110' width='180' height='44' rx='6' fill='#e8f4f1' stroke='#186254' stroke-width='1.2'/>
+<text x='150.0' y='136.32' font-family="'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size='12' fill='#333333' font-weight='normal' text-anchor='middle'>富集 poly(A)</text>
+<text x='258' y='127' font-family="ui-monospace, 'SFMono-Regular', Menlo, Consolas, 'Liberation Mono', monospace" font-size='12' fill='#6b7280' font-weight='normal' text-anchor='start'>磁珠捕获带 poly(A) 尾的 RNA</text>
+<text x='258' y='146' font-family="ui-monospace, 'SFMono-Regular', Menlo, Consolas, 'Liberation Mono', monospace" font-size='12' fill='#186254' font-weight='normal' text-anchor='start'>测到：mRNA、含尾 lncRNA</text>
+<line x1='36' y1='206' x2='56' y2='206' stroke='#186254' stroke-width='1.2'/>
+<line x1='56.0' y1='206.0' x2='47.9' y2='202.1' stroke='#186254' stroke-width='1.2'/>
+<line x1='56.0' y1='206.0' x2='47.9' y2='209.9' stroke='#186254' stroke-width='1.2'/>
+<rect x='60' y='184' width='180' height='44' rx='6' fill='#e8f4f1' stroke='#186254' stroke-width='1.2'/>
+<text x='150.0' y='210.32' font-family="'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size='12' fill='#333333' font-weight='normal' text-anchor='middle'>去 rRNA</text>
+<text x='258' y='201' font-family="ui-monospace, 'SFMono-Regular', Menlo, Consolas, 'Liberation Mono', monospace" font-size='12' fill='#6b7280' font-weight='normal' text-anchor='start'>探针/酶去除 rRNA，其余保留</text>
+<text x='258' y='220' font-family="ui-monospace, 'SFMono-Regular', Menlo, Consolas, 'Liberation Mono', monospace" font-size='12' fill='#186254' font-weight='normal' text-anchor='start'>测到：mRNA、lncRNA、circRNA 等</text>
+<line x1='36' y1='280' x2='56' y2='280' stroke='#186254' stroke-width='1.2'/>
+<line x1='56.0' y1='280.0' x2='47.9' y2='276.1' stroke='#186254' stroke-width='1.2'/>
+<line x1='56.0' y1='280.0' x2='47.9' y2='283.9' stroke='#186254' stroke-width='1.2'/>
+<rect x='60' y='258' width='180' height='44' rx='6' fill='#e8f4f1' stroke='#186254' stroke-width='1.2'/>
+<text x='150.0' y='284.32' font-family="'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size='12' fill='#333333' font-weight='normal' text-anchor='middle'>去线性（RNase R）</text>
+<text x='258' y='275' font-family="ui-monospace, 'SFMono-Regular', Menlo, Consolas, 'Liberation Mono', monospace" font-size='12' fill='#6b7280' font-weight='normal' text-anchor='start'>降解线性 RNA，保留环形分子</text>
+<text x='258' y='294' font-family="ui-monospace, 'SFMono-Regular', Menlo, Consolas, 'Liberation Mono', monospace" font-size='12' fill='#b45309' font-weight='normal' text-anchor='start'>测到：circRNA（专项富集）</text>
+<line x1='36' y1='354' x2='56' y2='354' stroke='#186254' stroke-width='1.2'/>
+<line x1='56.0' y1='354.0' x2='47.9' y2='350.1' stroke='#186254' stroke-width='1.2'/>
+<line x1='56.0' y1='354.0' x2='47.9' y2='357.9' stroke='#186254' stroke-width='1.2'/>
+<rect x='60' y='332' width='180' height='44' rx='6' fill='#e8f4f1' stroke='#186254' stroke-width='1.2'/>
+<text x='150.0' y='358.32' font-family="'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size='12' fill='#333333' font-weight='normal' text-anchor='middle'>小 RNA 文库</text>
+<text x='258' y='349' font-family="ui-monospace, 'SFMono-Regular', Menlo, Consolas, 'Liberation Mono', monospace" font-size='12' fill='#6b7280' font-weight='normal' text-anchor='start'>按长度回收 18–30 nt 片段</text>
+<text x='258' y='368' font-family="ui-monospace, 'SFMono-Regular', Menlo, Consolas, 'Liberation Mono', monospace" font-size='12' fill='#b45309' font-weight='normal' text-anchor='start'>测到：miRNA 等小 RNA</text>
+<text x='300.0' y='428' font-family="ui-monospace, 'SFMono-Regular', Menlo, Consolas, 'Liberation Mono', monospace" font-size='13' fill='#333333' font-weight='bold' text-anchor='middle'>同一批总 RNA，四种文库决定“谁能进入测序”（重绘自原稿示意图）</text>
+</svg>

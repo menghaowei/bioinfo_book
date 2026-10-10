@@ -756,7 +756,7 @@ window.Quarto = {
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
 <h1 class="title"><span id="sec-ch05" class="quarto-section-identifier"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">RNA-seq：从表达定量到差异表达</span></span></h1>
-<p class="chapter-last-modified"><time datetime="2026-10-10T17:37:12+08:00" title="本章书稿最后修改时间（北京时间，UTC+08:00）">最后修改：2026-10-10 17:37（北京时间）</time></p>
+<p class="chapter-last-modified"><time datetime="2026-10-10T20:45:25+08:00" title="本章书稿最后修改时间（北京时间，UTC+08:00）">最后修改：2026-10-10 20:45（北京时间）</time></p>
 </div>
 
 
@@ -824,10 +824,10 @@ window.Quarto = {
 <div id="fig-06-rna-seq-001" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-06-rna-seq-001-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="../assets/06-rna-seq/001-rna-seq-all.jpg" class="img-fluid figure-img">
+<img src="../assets/06-rna-seq/svg/lib-tree.svg" class="img-fluid figure-img">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-06-rna-seq-001-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-图&nbsp;5.3: 从总 RNA 到测序文库：四种主要建库策略
+图&nbsp;5.3: 从总 RNA 到测序文库：四种主要建库策略（重绘自原稿示意图）
 </figcaption>
 </figure>
 </div>
@@ -1407,7 +1407,7 @@ window.Quarto = {
 <span id="cb6-22"><a href="#cb6-22"></a></span>
 <span id="cb6-23"><a href="#cb6-23"></a><span class="co"># genome——将索引命名为genome</span></span></code></pre></div><button title="复制到剪贴板" class="code-copy-button"><i class="bi"></i></button></div>
 <p>参数解释：</p>
-<div class="book-table-scroll" role="region" aria-label="表格，可横向滚动" tabindex="0"><table class="caption-top table">
+<div class="book-table-scroll" role="region" aria-label="表格，可横向滚动" tabindex="0"><table class="caption-top table"><colgroup><col style="width:22%;min-width:110px"><col style="width:78%"></colgroup>
 <colgroup>
 <col style="width: 50%">
 <col style="width: 50%">
@@ -1473,7 +1473,7 @@ window.Quarto = {
 <span id="cb8-13"><a href="#cb8-13"></a>-S ./bam/test_hisat2.sam <span class="op">&gt;</span> ./bam/test_hisat2.log <span class="dv">2</span><span class="op">&gt;&amp;</span><span class="dv">1</span> <span class="kw">&amp;</span></span></code></pre></div><button title="复制到剪贴板" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb9" data-book-role="code"><pre data-code-text="&quot;hisat2 -x genome -u 1000000 -p 24 -I 0 -X 500 --fr --min-intronlen 20 --max-intronlen 4000 -1 reads.1.fastq -2 read.2.fastq -U single.fastq -S result.sam&quot;" class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="ex">hisat2</span> <span class="at">-x</span> genome <span class="at">-u</span> 1000000 <span class="at">-p</span> 24 <span class="at">-I</span> 0 <span class="at">-X</span> 500 <span class="at">--fr</span> <span class="at">--min-intronlen</span> 20 <span class="at">--max-intronlen</span> 4000 <span class="at">-1</span> reads.1.fastq <span class="at">-2</span> read.2.fastq <span class="at">-U</span> single.fastq <span class="at">-S</span> result.sam</span></code></pre></div><button title="复制到剪贴板" class="code-copy-button"><i class="bi"></i></button></div>
 <p>参数：</p>
-<div class="book-table-scroll" role="region" aria-label="表格，可横向滚动" tabindex="0"><table class="caption-top table">
+<div class="book-table-scroll" role="region" aria-label="表格，可横向滚动" tabindex="0"><table class="caption-top table"><colgroup><col style="width:22%;min-width:110px"><col style="width:78%"></colgroup>
 <colgroup>
 <col style="width: 50%">
 <col style="width: 50%">
@@ -1578,7 +1578,7 @@ window.Quarto = {
 <span id="cb14-6"><a href="#cb14-6"></a></span>
 <span id="cb14-7"><a href="#cb14-7"></a><span class="ex">htseq-count</span> <span class="at">-f</span> sam <span class="at">-r</span> name <span class="at">-s</span> reverse <span class="at">-a</span> 10 <span class="at">-t</span> exon <span class="at">-i</span> gene_id <span class="at">-m</span> union hisat2.sam genome.gtf <span class="op">&gt;</span>count_out.gtf</span></code></pre></div><button title="复制到剪贴板" class="code-copy-button"><i class="bi"></i></button></div>
 <p>参数说明：</p>
-<div class="book-table-scroll" role="region" aria-label="表格，可横向滚动" tabindex="0"><table class="caption-top table">
+<div class="book-table-scroll" role="region" aria-label="表格，可横向滚动" tabindex="0"><table class="caption-top table"><colgroup><col style="width:22%;min-width:110px"><col style="width:78%"></colgroup>
 <colgroup>
 <col style="width: 50%">
 <col style="width: 50%">
@@ -1714,7 +1714,7 @@ window.Quarto = {
 <p>Cufflinks 的输入必须是排序后的 BAM/SAM；对剪接比对结果还要求记录带有 <code>XS</code> 标签（链方向）。用 HISAT2 比对非链特异性 RNA-seq 数据时，须加 <code>--dta-cufflinks</code> 参数，让跨内含子的比对带上 <code>XS</code> 标签，否则 cufflinks 无法正确处理。</p>
 <p>cufflinks的输出结果有genes.fpkm_tracking, isoforms.fpkm_tracking, transcripts.gtf。前两个时表达量FPKM结果文件，第三个是GTF文件，用于描述基因在染色体上的结构信息：序列名、来源、特征、起始坐标、终止坐标、得分、正负链、读码框、属性。不包含起始密码子和终止密码子，因此GTF不是标准的</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb22" data-book-role="code"><pre data-code-text="&quot;cufflinks -p 4 -b genome.fasta -u -o sample1 -L sample1 tophat.bam&quot;" class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="ex">cufflinks</span> <span class="at">-p</span> 4 <span class="at">-b</span> genome.fasta <span class="at">-u</span> <span class="at">-o</span> sample1 <span class="at">-L</span> sample1 tophat.bam</span></code></pre></div><button title="复制到剪贴板" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="book-table-scroll" role="region" aria-label="表格，可横向滚动" tabindex="0"><table class="caption-top table">
+<div class="book-table-scroll" role="region" aria-label="表格，可横向滚动" tabindex="0"><table class="caption-top table"><colgroup><col style="width:22%;min-width:110px"><col style="width:78%"></colgroup>
 <colgroup>
 <col style="width: 50%">
 <col style="width: 50%">
@@ -1746,7 +1746,7 @@ window.Quarto = {
 </table></div>
 <p>cufflinks 命令一次只能处理一个样本；对多个样本分别运行后，用 cuffmerge 把各样本的 transcripts.gtf 融合为一个更全面的转录本注释：</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb23" data-book-role="code"><pre data-code-text="&quot;cuffmerge -o ./merged_asm -p 4 -s genome.fasta assembly_GTF_list.txt&quot;" class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="ex">cuffmerge</span> <span class="at">-o</span> ./merged_asm <span class="at">-p</span> 4 <span class="at">-s</span> genome.fasta assembly_GTF_list.txt</span></code></pre></div><button title="复制到剪贴板" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="book-table-scroll" role="region" aria-label="表格，可横向滚动" tabindex="0"><table class="caption-top table">
+<div class="book-table-scroll" role="region" aria-label="表格，可横向滚动" tabindex="0"><table class="caption-top table"><colgroup><col style="width:22%;min-width:110px"><col style="width:78%"></colgroup>
 <thead>
 <tr class="header">
 <th>参数</th>
@@ -1770,7 +1770,7 @@ window.Quarto = {
 </table></div>
 <p><span id="src-0050-RNA-seq-752"></span> Cuffquant 是 Cufflinks 套件中的定量组件：读入一个 BAM 计算表达量，生成二进制中间文件；随后 Cuffnorm 对多个样本的结果做标准化，给出 count 或 FPKM 值——与 cuffdiff 类似但不做差异检验，结果可交给其他工具继续分析。 cuffquant 的定量计算比较消耗资源，基因组大的物种可先用它处理再进入差异分析：</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb24" data-book-role="code"><pre data-code-text="&quot;cuffquant -o sample1 -p 4 -b genome.fasta -u genome.gtf sample1.sam&quot;" class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="ex">cuffquant</span> <span class="at">-o</span> sample1 <span class="at">-p</span> 4 <span class="at">-b</span> genome.fasta <span class="at">-u</span> genome.gtf sample1.sam</span></code></pre></div><button title="复制到剪贴板" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="book-table-scroll" role="region" aria-label="表格，可横向滚动" tabindex="0"><table class="caption-top table">
+<div class="book-table-scroll" role="region" aria-label="表格，可横向滚动" tabindex="0"><table class="caption-top table"><colgroup><col style="width:22%;min-width:110px"><col style="width:78%"></colgroup>
 <colgroup>
 <col style="width: 50%">
 <col style="width: 50%">
@@ -2120,7 +2120,7 @@ window.Quarto = {
 <h3 class="anchored" data-anchor-id="src-0050-RNA-seq-770">用 cuffdiff 做差异分析</h3>
 <p><span id="src-0050-RNA-seq-768"></span> cuffdiff 用于检验两组样本间的表达差异；基因组较大时可先用 cuffquant 计算再进入差异检验。以下第一条命令为参数示例，第二条为工具官方教程的 chrX 测试数据示例：</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb29" data-book-role="code"><pre data-code-text="&quot;cuffdiff -L sample1,sample2 -p 4 -u -b genome.fasta genome.gtf sample1_rep1.sam,sample1_rep2.sam sample2_rep1.sam,sample2_rep2.sam&quot;" class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="ex">cuffdiff</span> <span class="at">-L</span> sample1,sample2 <span class="at">-p</span> 4 <span class="at">-u</span> <span class="at">-b</span> genome.fasta genome.gtf sample1_rep1.sam,sample1_rep2.sam sample2_rep1.sam,sample2_rep2.sam</span></code></pre></div><button title="复制到剪贴板" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="book-table-scroll" role="region" aria-label="表格，可横向滚动" tabindex="0"><table class="caption-top table">
+<div class="book-table-scroll" role="region" aria-label="表格，可横向滚动" tabindex="0"><table class="caption-top table"><colgroup><col style="width:22%;min-width:110px"><col style="width:78%"></colgroup>
 <colgroup>
 <col style="width: 50%">
 <col style="width: 50%">
@@ -2398,10 +2398,10 @@ window.Quarto = {
 <div id="fig-05-volcano-demo" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-05-volcano-demo-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="../assets/06-rna-seq/svg/volcano-demo.svg" class="img-fluid figure-img">
+<img src="../assets/06-rna-seq/svg/volcano-demo-r.svg" class="img-fluid figure-img">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-05-volcano-demo-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-图&nbsp;5.9: 火山图的读法（演示数据，示意图）
+图&nbsp;5.9: 火山图的读法（演示数据，R 真实绘制）
 </figcaption>
 </figure>
 </div>
@@ -2448,14 +2448,14 @@ window.Quarto = {
 </section>
 <section id="src-0050-RNA-seq-979" class="level4">
 <h4 class="anchored" data-anchor-id="src-0050-RNA-seq-979">聚类热图</h4>
-<p>聚类热图把显著基因按行标准化后着色，样本列经层次聚类排布——健康的重复会并排出现（<a href="#fig-05-heatmap-demo" class="quarto-xref">图&nbsp;<span>5.10</span></a>）。</p>
+<p>聚类热图把显著基因按行标准化后着色（红＝高、白＝中、蓝＝低），样本列经层次聚类排布——健康的重复会并排出现（<a href="#fig-05-heatmap-demo" class="quarto-xref">图&nbsp;<span>5.10</span></a>）。</p>
 <div id="fig-05-heatmap-demo" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-05-heatmap-demo-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="../assets/06-rna-seq/svg/heatmap-demo.svg" class="img-fluid figure-img">
+<img src="../assets/06-rna-seq/svg/heatmap-demo-r.svg" class="img-fluid figure-img">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-05-heatmap-demo-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-图&nbsp;5.10: 聚类热图的读法（演示数据，示意图）
+图&nbsp;5.10: 聚类热图的读法（演示数据，R 真实绘制；红＝高、白＝中、蓝＝低）
 </figcaption>
 </figure>
 </div>
@@ -2494,10 +2494,10 @@ hsa-miR-6090    5.80658 4.459086667
 <div id="fig-05-bubble-demo" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-05-bubble-demo-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="../assets/06-rna-seq/svg/bubble-demo.svg" class="img-fluid figure-img">
+<img src="../assets/06-rna-seq/svg/bubble-demo-r.svg" class="img-fluid figure-img">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-05-bubble-demo-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-图&nbsp;5.11: 富集分析气泡图的读法（演示数据，示意图）
+图&nbsp;5.11: 富集分析气泡图的读法（演示数据，R 真实绘制）
 </figcaption>
 </figure>
 </div>
@@ -2595,10 +2595,10 @@ hsa-miR-6090    5.80658 4.459086667
 <div id="fig-06-rna-seq-008" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-06-rna-seq-008-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="../assets/06-rna-seq/008-cerna.jpg" class="img-fluid figure-img">
+<img src="../assets/06-rna-seq/svg/cerna-concept.svg" class="img-fluid figure-img">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-06-rna-seq-008-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-图&nbsp;5.15: ceRNA 假说：多种 RNA 通过竞争结合 miRNA 相互影响
+图&nbsp;5.15: ceRNA 假说：多种 RNA 通过竞争结合 miRNA 相互影响（重绘自原稿示意图）
 </figcaption>
 </figure>
 </div>
@@ -2649,7 +2649,7 @@ hsa-miR-6090    5.80658 4.459086667
 
 </main> <!-- /main -->
 <div class="book-toolbar" role="navigation" aria-label="阅读工具">
-  <div class="book-brand"><span class="book-brand-name">AI时代生信入门</span><time class="book-last-modified" datetime="2026-10-10T17:37:12+08:00" title="最后修改时间（北京时间，UTC+08:00）">最后修改 2026-10-10 17:37</time></div>
+  <div class="book-brand"><span class="book-brand-name">AI时代生信入门</span><time class="book-last-modified" datetime="2026-10-10T20:45:25+08:00" title="最后修改时间（北京时间，UTC+08:00）">最后修改 2026-10-10 20:45</time></div>
   <button class="book-menu-button" type="button" aria-controls="quarto-sidebar" aria-expanded="false">目录</button>
   <button class="book-search-button" type="button">搜索</button>
 </div>
