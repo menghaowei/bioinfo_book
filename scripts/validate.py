@@ -8,6 +8,7 @@ from pathlib import Path
 from html.parser import HTMLParser
 from urllib.parse import urlsplit,unquote
 from navigation import BookPage, book_files
+from site_metadata import chapter_modified_markup
 import json,re,sys
 ROOT=Path(__file__).resolve().parents[1];OUT=ROOT/'docs'
 manifest=json.loads((ROOT/'scripts/validation-manifest.json').read_text())
@@ -103,6 +104,12 @@ for chapter in manifest['chapters']:
  if not p.is_file():
   errors.append(f'Missing chapter source: {chapter["file"]}');continue
  source=p.read_text()
+ html_file=OUT/Path(chapter['file']).with_suffix('.html')
+ if html_file.is_file():
+  html=html_file.read_text()
+  note=chapter_modified_markup(ROOT,chapter['file'])
+  if html.count('class="chapter-last-modified"')!=1 or not re.search(r'</h1>\s*'+re.escape(note),html):
+   errors.append(f'{chapter["file"]}: expected one Git-derived modification date immediately below the chapter title')
  matches=re.findall(r'^## (.+) \{#sec-(\d+)-([0-9A-Za-z][0-9A-Za-z-]*)\}\s*$',source,re.M)
  count=len(matches);planned+=count
  if count!=n:errors.append(f'{p.name}: expected {n} planned sections, got {count}')
