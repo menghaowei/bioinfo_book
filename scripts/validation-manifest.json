@@ -185,7 +185,8 @@
   "known_missing_images": [],
   "required_anchors": {
     "manuscript/01-ai-era-introduction.md": [
-      "src-0010-introduction-8"
+      "src-0010-introduction-8",
+      "intro-learning-advice"
     ],
     "manuscript/03-sequencing-technologies.md": [
       "src-0020-introduction-of-NGS-1",
