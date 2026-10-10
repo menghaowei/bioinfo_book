@@ -1,60 +1,63 @@
-<svg xmlns='http://www.w3.org/2000/svg' width='600' height='330' viewBox='0 0 600 330' role='img' aria-labelledby='t d'>
+<svg xmlns='http://www.w3.org/2000/svg' width='640' height='340' viewBox='0 0 640 340' role='img' aria-labelledby='t d'>
 <title id='t'>基因组与转录组的关系示意图</title>
 <desc id='d'>左侧一个基因组（基因结构示意），右侧三种细胞状态各自的转录本集合；同一套基因组在不同细胞状态转录出不同的 RNA 组合。</desc>
-<rect x='24' y='80' width='170' height='170' rx='8' fill='#e8f4f1' stroke='#186254' stroke-width='1.2'/>
-<text x='109.0' y='106' font-family="'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size='15' fill='#186254' font-weight='bold' text-anchor='middle'>基因组</text>
-<rect x='50' y='142' width='26' height='16' rx='2' fill='#186254' stroke='#186254' stroke-width='1.2'/>
-<rect x='94' y='142' width='34' height='16' rx='2' fill='#186254' stroke='#186254' stroke-width='1.2'/>
-<rect x='144' y='142' width='22' height='16' rx='2' fill='#186254' stroke='#186254' stroke-width='1.2'/>
-<line x1='76' y1='150' x2='94' y2='150' stroke='#9ca3af' stroke-width='1.2'/>
-<line x1='128' y1='150' x2='144' y2='150' stroke='#9ca3af' stroke-width='1.2'/>
-<text x='109.0' y='182' font-family="'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size='12' fill='#6b7280' font-weight='normal' text-anchor='middle'>外显子/内含子结构</text>
-<text x='109.0' y='212' font-family="'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size='12' fill='#333333' font-weight='normal' text-anchor='middle'>所有细胞同一套</text>
-<text x='109.0' y='230' font-family="'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size='12' fill='#333333' font-weight='normal' text-anchor='middle'>DNA 序列不变</text>
-<rect x='270' y='26' width='300' height='82' rx='8' fill='none' stroke='#186254' stroke-width='1.2'/>
-<text x='282' y='48' font-family="'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size='13' fill='#186254' font-weight='bold' text-anchor='start'>神经细胞：转录组 1</text>
-<rect x='282' y='66' width='54' height='20' rx='3' fill='#186254' stroke='#186254' stroke-width='1.2'/>
-<text x='309.0' y='80' font-family="'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size='12' fill='#ffffff' font-weight='normal' text-anchor='middle'>基因A</text>
-<rect x='338' y='66' width='54' height='20' rx='3' fill='none' stroke='#9ca3af' stroke-width='1.2' stroke-dasharray='3,3'/>
-<text x='365.0' y='80' font-family="'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size='12' fill='#6b7280' font-weight='normal' text-anchor='middle'>基因B</text>
-<rect x='394' y='66' width='54' height='20' rx='3' fill='#186254' stroke='#186254' stroke-width='1.2'/>
-<text x='421.0' y='80' font-family="'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size='12' fill='#ffffff' font-weight='normal' text-anchor='middle'>基因C</text>
-<rect x='450' y='66' width='54' height='20' rx='3' fill='#186254' stroke='#186254' stroke-width='1.2'/>
-<text x='477.0' y='80' font-family="'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size='12' fill='#ffffff' font-weight='normal' text-anchor='middle'>基因D</text>
-<rect x='506' y='66' width='54' height='20' rx='3' fill='none' stroke='#9ca3af' stroke-width='1.2' stroke-dasharray='3,3'/>
-<text x='533.0' y='80' font-family="'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size='12' fill='#6b7280' font-weight='normal' text-anchor='middle'>基因E</text>
-<line x1='200' y1='165.0' x2='260' y2='67.0' stroke='#186254' stroke-width='1.4'/>
-<line x1='260.0' y1='67.0' x2='252.4' y2='71.9' stroke='#186254' stroke-width='1.4'/>
-<line x1='260.0' y1='67.0' x2='259.1' y2='76.0' stroke='#186254' stroke-width='1.4'/>
-<rect x='270' y='124' width='300' height='82' rx='8' fill='none' stroke='#186254' stroke-width='1.2'/>
-<text x='282' y='146' font-family="'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size='13' fill='#186254' font-weight='bold' text-anchor='start'>免疫细胞：转录组 2</text>
-<rect x='282' y='164' width='54' height='20' rx='3' fill='none' stroke='#9ca3af' stroke-width='1.2' stroke-dasharray='3,3'/>
-<text x='309.0' y='178' font-family="'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size='12' fill='#6b7280' font-weight='normal' text-anchor='middle'>基因A</text>
-<rect x='338' y='164' width='54' height='20' rx='3' fill='#186254' stroke='#186254' stroke-width='1.2'/>
-<text x='365.0' y='178' font-family="'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size='12' fill='#ffffff' font-weight='normal' text-anchor='middle'>基因B</text>
-<rect x='394' y='164' width='54' height='20' rx='3' fill='#186254' stroke='#186254' stroke-width='1.2'/>
-<text x='421.0' y='178' font-family="'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size='12' fill='#ffffff' font-weight='normal' text-anchor='middle'>基因C</text>
-<rect x='450' y='164' width='54' height='20' rx='3' fill='none' stroke='#9ca3af' stroke-width='1.2' stroke-dasharray='3,3'/>
-<text x='477.0' y='178' font-family="'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size='12' fill='#6b7280' font-weight='normal' text-anchor='middle'>基因D</text>
-<rect x='506' y='164' width='54' height='20' rx='3' fill='#186254' stroke='#186254' stroke-width='1.2'/>
-<text x='533.0' y='178' font-family="'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size='12' fill='#ffffff' font-weight='normal' text-anchor='middle'>基因E</text>
-<line x1='200' y1='165.0' x2='260' y2='165.0' stroke='#186254' stroke-width='1.4'/>
-<line x1='260.0' y1='165.0' x2='251.9' y2='161.1' stroke='#186254' stroke-width='1.4'/>
-<line x1='260.0' y1='165.0' x2='251.9' y2='168.9' stroke='#186254' stroke-width='1.4'/>
-<rect x='270' y='222' width='300' height='82' rx='8' fill='none' stroke='#186254' stroke-width='1.2'/>
-<text x='282' y='244' font-family="'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size='13' fill='#186254' font-weight='bold' text-anchor='start'>应激状态：转录组 3</text>
-<rect x='282' y='262' width='54' height='20' rx='3' fill='#186254' stroke='#186254' stroke-width='1.2'/>
-<text x='309.0' y='276' font-family="'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size='12' fill='#ffffff' font-weight='normal' text-anchor='middle'>基因A</text>
-<rect x='338' y='262' width='54' height='20' rx='3' fill='#186254' stroke='#186254' stroke-width='1.2'/>
-<text x='365.0' y='276' font-family="'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size='12' fill='#ffffff' font-weight='normal' text-anchor='middle'>基因B</text>
-<rect x='394' y='262' width='54' height='20' rx='3' fill='none' stroke='#9ca3af' stroke-width='1.2' stroke-dasharray='3,3'/>
-<text x='421.0' y='276' font-family="'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size='12' fill='#6b7280' font-weight='normal' text-anchor='middle'>基因C</text>
-<rect x='450' y='262' width='54' height='20' rx='3' fill='#186254' stroke='#186254' stroke-width='1.2'/>
-<text x='477.0' y='276' font-family="'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size='12' fill='#ffffff' font-weight='normal' text-anchor='middle'>基因D</text>
-<rect x='506' y='262' width='54' height='20' rx='3' fill='#186254' stroke='#186254' stroke-width='1.2'/>
-<text x='533.0' y='276' font-family="'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size='12' fill='#ffffff' font-weight='normal' text-anchor='middle'>基因E</text>
-<line x1='200' y1='165.0' x2='260' y2='263.0' stroke='#186254' stroke-width='1.4'/>
-<line x1='260.0' y1='263.0' x2='259.1' y2='254.0' stroke='#186254' stroke-width='1.4'/>
-<line x1='260.0' y1='263.0' x2='252.4' y2='258.1' stroke='#186254' stroke-width='1.4'/>
-<text x='300.0' y='318' font-family="'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size='13' fill='#333333' font-weight='bold' text-anchor='middle'>同一套基因组 —— 转录（开启的基因集合不同）——&gt; 三个不同的转录组</text>
+<rect x='24' y='90' width='168' height='176' rx='12' fill='#f4faf8' stroke='#cfe3dd' stroke-width='1.2'/>
+<text x='108.0' y='118' font-family="ui-monospace, 'SFMono-Regular', Menlo, Consolas, 'Liberation Mono', monospace" font-size='15' fill='#186254' font-weight='bold' text-anchor='middle'>基因组</text>
+<rect x='48' y='156' width='28' height='18' rx='3' fill='#186254' stroke='#186254' stroke-width='1.2'/>
+<rect x='94' y='156' width='36' height='18' rx='3' fill='#186254' stroke='#186254' stroke-width='1.2'/>
+<rect x='146' y='156' width='24' height='18' rx='3' fill='#186254' stroke='#186254' stroke-width='1.2'/>
+<line x1='76' y1='165' x2='94' y2='165' stroke='#9ca3af' stroke-width='1.6'/>
+<line x1='130' y1='165' x2='146' y2='165' stroke='#9ca3af' stroke-width='1.6'/>
+<text x='108.0' y='198' font-family="ui-monospace, 'SFMono-Regular', Menlo, Consolas, 'Liberation Mono', monospace" font-size='12' fill='#6b7280' font-weight='normal' text-anchor='middle'>外显子／内含子结构</text>
+<text x='108.0' y='226' font-family="ui-monospace, 'SFMono-Regular', Menlo, Consolas, 'Liberation Mono', monospace" font-size='12' fill='#333333' font-weight='normal' text-anchor='middle'>所有细胞同一套</text>
+<text x='108.0' y='246' font-family="ui-monospace, 'SFMono-Regular', Menlo, Consolas, 'Liberation Mono', monospace" font-size='12' fill='#333333' font-weight='normal' text-anchor='middle'>DNA 序列不变</text>
+<rect x='306' y='22' width='300' height='84' rx='10' fill='#ffffff' stroke='#186254' stroke-width='1.2'/>
+<text x='320' y='46' font-family="ui-monospace, 'SFMono-Regular', Menlo, Consolas, 'Liberation Mono', monospace" font-size='13' fill='#186254' font-weight='bold' text-anchor='start'>神经细胞：转录组 1</text>
+<rect x='320' y='64' width='52' height='24' rx='4' fill='#186254' stroke='#186254' stroke-width='1.2'/>
+<text x='346.0' y='80' font-family="ui-monospace, 'SFMono-Regular', Menlo, Consolas, 'Liberation Mono', monospace" font-size='12' fill='#ffffff' font-weight='normal' text-anchor='middle'>A</text>
+<rect x='376' y='64' width='52' height='24' rx='4' fill='#f2f4f3' stroke='#c4cbd0' stroke-width='1.2'/>
+<text x='402.0' y='80' font-family="ui-monospace, 'SFMono-Regular', Menlo, Consolas, 'Liberation Mono', monospace" font-size='12' fill='#6b7280' font-weight='normal' text-anchor='middle'>B</text>
+<rect x='432' y='64' width='52' height='24' rx='4' fill='#186254' stroke='#186254' stroke-width='1.2'/>
+<text x='458.0' y='80' font-family="ui-monospace, 'SFMono-Regular', Menlo, Consolas, 'Liberation Mono', monospace" font-size='12' fill='#ffffff' font-weight='normal' text-anchor='middle'>C</text>
+<rect x='488' y='64' width='52' height='24' rx='4' fill='#186254' stroke='#186254' stroke-width='1.2'/>
+<text x='514.0' y='80' font-family="ui-monospace, 'SFMono-Regular', Menlo, Consolas, 'Liberation Mono', monospace" font-size='12' fill='#ffffff' font-weight='normal' text-anchor='middle'>D</text>
+<rect x='544' y='64' width='52' height='24' rx='4' fill='#f2f4f3' stroke='#c4cbd0' stroke-width='1.2'/>
+<text x='570.0' y='80' font-family="ui-monospace, 'SFMono-Regular', Menlo, Consolas, 'Liberation Mono', monospace" font-size='12' fill='#6b7280' font-weight='normal' text-anchor='middle'>E</text>
+<path d='M 200 178.0 C 236 178.0, 236 64.0, 296 64.0' fill='none' stroke='#9ca3af' stroke-width='1.6'/>
+<line x1='290' y1='64.0' x2='298' y2='64.0' stroke='#186254' stroke-width='1.6'/>
+<line x1='298.0' y1='64.0' x2='289.9' y2='60.1' stroke='#186254' stroke-width='1.6'/>
+<line x1='298.0' y1='64.0' x2='289.9' y2='67.9' stroke='#186254' stroke-width='1.6'/>
+<rect x='306' y='120' width='300' height='84' rx='10' fill='#ffffff' stroke='#186254' stroke-width='1.2'/>
+<text x='320' y='144' font-family="ui-monospace, 'SFMono-Regular', Menlo, Consolas, 'Liberation Mono', monospace" font-size='13' fill='#186254' font-weight='bold' text-anchor='start'>免疫细胞：转录组 2</text>
+<rect x='320' y='162' width='52' height='24' rx='4' fill='#f2f4f3' stroke='#c4cbd0' stroke-width='1.2'/>
+<text x='346.0' y='178' font-family="ui-monospace, 'SFMono-Regular', Menlo, Consolas, 'Liberation Mono', monospace" font-size='12' fill='#6b7280' font-weight='normal' text-anchor='middle'>A</text>
+<rect x='376' y='162' width='52' height='24' rx='4' fill='#186254' stroke='#186254' stroke-width='1.2'/>
+<text x='402.0' y='178' font-family="ui-monospace, 'SFMono-Regular', Menlo, Consolas, 'Liberation Mono', monospace" font-size='12' fill='#ffffff' font-weight='normal' text-anchor='middle'>B</text>
+<rect x='432' y='162' width='52' height='24' rx='4' fill='#186254' stroke='#186254' stroke-width='1.2'/>
+<text x='458.0' y='178' font-family="ui-monospace, 'SFMono-Regular', Menlo, Consolas, 'Liberation Mono', monospace" font-size='12' fill='#ffffff' font-weight='normal' text-anchor='middle'>C</text>
+<rect x='488' y='162' width='52' height='24' rx='4' fill='#f2f4f3' stroke='#c4cbd0' stroke-width='1.2'/>
+<text x='514.0' y='178' font-family="ui-monospace, 'SFMono-Regular', Menlo, Consolas, 'Liberation Mono', monospace" font-size='12' fill='#6b7280' font-weight='normal' text-anchor='middle'>D</text>
+<rect x='544' y='162' width='52' height='24' rx='4' fill='#186254' stroke='#186254' stroke-width='1.2'/>
+<text x='570.0' y='178' font-family="ui-monospace, 'SFMono-Regular', Menlo, Consolas, 'Liberation Mono', monospace" font-size='12' fill='#ffffff' font-weight='normal' text-anchor='middle'>E</text>
+<path d='M 200 178.0 C 236 178.0, 236 162.0, 296 162.0' fill='none' stroke='#9ca3af' stroke-width='1.6'/>
+<line x1='290' y1='162.0' x2='298' y2='162.0' stroke='#186254' stroke-width='1.6'/>
+<line x1='298.0' y1='162.0' x2='289.9' y2='158.1' stroke='#186254' stroke-width='1.6'/>
+<line x1='298.0' y1='162.0' x2='289.9' y2='165.9' stroke='#186254' stroke-width='1.6'/>
+<rect x='306' y='218' width='300' height='84' rx='10' fill='#ffffff' stroke='#186254' stroke-width='1.2'/>
+<text x='320' y='242' font-family="ui-monospace, 'SFMono-Regular', Menlo, Consolas, 'Liberation Mono', monospace" font-size='13' fill='#186254' font-weight='bold' text-anchor='start'>应激状态：转录组 3</text>
+<rect x='320' y='260' width='52' height='24' rx='4' fill='#186254' stroke='#186254' stroke-width='1.2'/>
+<text x='346.0' y='276' font-family="ui-monospace, 'SFMono-Regular', Menlo, Consolas, 'Liberation Mono', monospace" font-size='12' fill='#ffffff' font-weight='normal' text-anchor='middle'>A</text>
+<rect x='376' y='260' width='52' height='24' rx='4' fill='#186254' stroke='#186254' stroke-width='1.2'/>
+<text x='402.0' y='276' font-family="ui-monospace, 'SFMono-Regular', Menlo, Consolas, 'Liberation Mono', monospace" font-size='12' fill='#ffffff' font-weight='normal' text-anchor='middle'>B</text>
+<rect x='432' y='260' width='52' height='24' rx='4' fill='#f2f4f3' stroke='#c4cbd0' stroke-width='1.2'/>
+<text x='458.0' y='276' font-family="ui-monospace, 'SFMono-Regular', Menlo, Consolas, 'Liberation Mono', monospace" font-size='12' fill='#6b7280' font-weight='normal' text-anchor='middle'>C</text>
+<rect x='488' y='260' width='52' height='24' rx='4' fill='#186254' stroke='#186254' stroke-width='1.2'/>
+<text x='514.0' y='276' font-family="ui-monospace, 'SFMono-Regular', Menlo, Consolas, 'Liberation Mono', monospace" font-size='12' fill='#ffffff' font-weight='normal' text-anchor='middle'>D</text>
+<rect x='544' y='260' width='52' height='24' rx='4' fill='#186254' stroke='#186254' stroke-width='1.2'/>
+<text x='570.0' y='276' font-family="ui-monospace, 'SFMono-Regular', Menlo, Consolas, 'Liberation Mono', monospace" font-size='12' fill='#ffffff' font-weight='normal' text-anchor='middle'>E</text>
+<path d='M 200 178.0 C 236 178.0, 236 260.0, 296 260.0' fill='none' stroke='#9ca3af' stroke-width='1.6'/>
+<line x1='290' y1='260.0' x2='298' y2='260.0' stroke='#186254' stroke-width='1.6'/>
+<line x1='298.0' y1='260.0' x2='289.9' y2='256.1' stroke='#186254' stroke-width='1.6'/>
+<line x1='298.0' y1='260.0' x2='289.9' y2='263.9' stroke='#186254' stroke-width='1.6'/>
+<text x='320.0' y='330' font-family="ui-monospace, 'SFMono-Regular', Menlo, Consolas, 'Liberation Mono', monospace" font-size='13' fill='#333333' font-weight='bold' text-anchor='middle'>同一套基因组 —— 转录（开启的基因集合不同）→ 三个不同的转录组</text>
 </svg>

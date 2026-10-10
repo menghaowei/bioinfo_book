@@ -35,7 +35,7 @@ RNA可以分为能够编码蛋白基因的信使RNA（mRNA）[^rna-ref-2]和非�
 研究人员通常会对mRNA和一些调控非编码RNA感兴趣，针对不同类型的RNA，采取的测序手段也不同，主要表现为样本建库策略的不同。测序仪通常只能对DNA序列进行测序，测序之前对样品里的目标待测 RNA 进行处理的过程称为“文库的制备”，简称建库（@fig-06-rna-seq-001 ）。 
 	
 
-![从总 RNA 到测序文库：四种主要建库策略](../assets/06-rna-seq/001-rna-seq-all.jpg){#fig-06-rna-seq-001}
+![从总 RNA 到测序文库：四种主要建库策略（重绘自原稿示意图）](../assets/06-rna-seq/svg/lib-tree.svg){#fig-06-rna-seq-001}
 
 用富集polyA方式可以获得mRNA的表达信息、也可以获得部分lncRNA（含有polyA 的lncRNA）的表达信息；通过去rRNA方式建库可以检测到mRNA、全部lncRNA、circRNA的表达信息；去线性建库则是专门为了检测circRNA的表达；短片端建库能够获得以miRNA为主的小RNA表达信息。本节先讲最常用的两种——富集 poly(A) 与去 rRNA（@fig-05-lib-compare），小 RNA 与环状 RNA 文库放在下一小节。
 
@@ -1211,7 +1211,7 @@ barplot(erich.kegg.res)
 
 火山图横轴是 log2 倍数变化、纵轴是 -log10(p)，每个点是一个基因（@fig-05-volcano-demo）。
 
-![火山图的读法（演示数据，示意图）](../assets/06-rna-seq/svg/volcano-demo.svg){#fig-05-volcano-demo}
+![火山图的读法（演示数据，R 真实绘制）](../assets/06-rna-seq/svg/volcano-demo-r.svg){#fig-05-volcano-demo}
 
 用 ggplot2 绘制火山图：
 
@@ -1263,9 +1263,9 @@ log2	pvalue
 
 #### 聚类热图 {#src-0050-RNA-seq-979}
 
-聚类热图把显著基因按行标准化后着色，样本列经层次聚类排布——健康的重复会并排出现（@fig-05-heatmap-demo）。
+聚类热图把显著基因按行标准化后着色（红＝高、白＝中、蓝＝低），样本列经层次聚类排布——健康的重复会并排出现（@fig-05-heatmap-demo）。
 
-![聚类热图的读法（演示数据，示意图）](../assets/06-rna-seq/svg/heatmap-demo.svg){#fig-05-heatmap-demo}
+![聚类热图的读法（演示数据，R 真实绘制；红＝高、白＝中、蓝＝低）](../assets/06-rna-seq/svg/heatmap-demo-r.svg){#fig-05-heatmap-demo}
 
 用 gplots 的 `heatmap.2` 绘制聚类热图：
 
@@ -1307,7 +1307,7 @@ hsa-miR-6090	5.80658	4.459086667
 
 富集结果的气泡图（如 clusterProfiler 的 `dotplot`）把每个通路画成一个气泡：横轴是基因比例（显著基因中注释到该通路的占比），纵轴按富集程度排序的通路名，气泡大小代表显著基因个数，颜色代表 p 值（或 padj）。
 
-![富集分析气泡图的读法（演示数据，示意图）](../assets/06-rna-seq/svg/bubble-demo.svg){#fig-05-bubble-demo}
+![富集分析气泡图的读法（演示数据，R 真实绘制）](../assets/06-rna-seq/svg/bubble-demo-r.svg){#fig-05-bubble-demo}
 
 读图先看颜色最深、气泡最大的右上角条目：它们是基因比例高、p 值小、贡献基因多的通路，构成差异结果的主要生物学线索；再看顶部细小的条目，谨慎解读——基因数少的条目统计上不稳定。`enrichGO` 代码里的 `dotplot()` 调用即可生成此图。
 
@@ -1376,7 +1376,7 @@ ceRNA（competing endogenous RNA，内源竞争性 RNA）不是一类新的 RNA 
 
 :::::
 
-![ceRNA 假说：多种 RNA 通过竞争结合 miRNA 相互影响](../assets/06-rna-seq/008-cerna.jpg){#fig-06-rna-seq-008}
+![ceRNA 假说：多种 RNA 通过竞争结合 miRNA 相互影响（重绘自原稿示意图）](../assets/06-rna-seq/svg/cerna-concept.svg){#fig-06-rna-seq-008}
 
 1. miRNA 是内源竞争 RNA 争夺的目标。除 mRNA 与 circRNA 外，具有类 mRNA 结构的 lncRNA 也能通过 3′ 非翻译区与 miRNA 结合，作用方式类似 miRNA 与 mRNA。miRcode 曾提供全转录组水平的 lncRNA miRNA 结合位点预测，其网站现已下线，可经原始论文检索数据。
 2. lncRNA 与基因之间还存在 cis 调控与 trans 作用等关系；circRNA 除结合 miRNA 外，与宿主基因的表达也存在关联——它的序列本就来自宿主基因的外显子。

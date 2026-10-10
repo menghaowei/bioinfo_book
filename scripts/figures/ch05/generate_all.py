@@ -31,226 +31,216 @@ def box(s, x, y, w, h, label, *, fill="none", stroke=COLOR_PRIMARY, tsize=SIZE_N
 
 # ─────────────────────── 图A 基因组与转录组 ───────────────────────
 def fig_genome_transcriptome():
-    W, H = 600, 330
+    W, H = 640, 340
     s = Svg(W, H, "基因组与转录组的关系示意图",
             "左侧一个基因组（基因结构示意），右侧三种细胞状态各自的转录本集合；"
             "同一套基因组在不同细胞状态转录出不同的 RNA 组合。")
-    # 左：基因组（纵向居中）
-    gx, gy, gw, gh = 24, 80, 170, 170
-    s.rect(gx, gy, gw, gh, fill=COLOR_FILL, rx=8)
-    s.text(gx + gw / 2, gy + 26, "基因组", size=SIZE_TITLE, mono=False,
-           fill=COLOR_PRIMARY, anchor="middle", weight="bold")
-    ex = [(gx + 26, gy + 62, 26, 16), (gx + 70, gy + 62, 34, 16), (gx + 120, gy + 62, 22, 16)]
-    for (x, y, w, h) in ex:
-        s.rect(x, y, w, h, fill=COLOR_PRIMARY, rx=2)
-    s.line(ex[0][0] + ex[0][2], gy + 70, ex[1][0], gy + 70, stroke=COLOR_LINE)
-    s.line(ex[1][0] + ex[1][2], gy + 70, ex[2][0], gy + 70, stroke=COLOR_LINE)
-    s.text(gx + gw / 2, gy + 102, "外显子/内含子结构", size=SIZE_NOTE, mono=False,
-           fill=COLOR_MUTED, anchor="middle")
-    s.text(gx + gw / 2, gy + 132, "所有细胞同一套", size=SIZE_NOTE, mono=False,
-           fill=COLOR_TEXT, anchor="middle")
-    s.text(gx + gw / 2, gy + 150, "DNA 序列不变", size=SIZE_NOTE, mono=False,
-           fill=COLOR_TEXT, anchor="middle")
-    # 右：三种细胞状态（纵向堆叠，扇形箭头不穿框）
+    gx, gy, gw, gh = 24, 90, 168, 176
+    s.rect(gx, gy, gw, gh, fill="#f4faf8", stroke="#cfe3dd", rx=12)
+    s.text(gx + gw / 2, gy + 28, "基因组", size=SIZE_TITLE, fill=COLOR_PRIMARY, anchor="middle", weight="bold")
+    ex = [(gx + 24, gy + 66, 28, 18), (gx + 70, gy + 66, 36, 18), (gx + 122, gy + 66, 24, 18)]
+    for (xx, yy, ww, hh) in ex:
+        s.rect(xx, yy, ww, hh, fill=COLOR_PRIMARY, rx=3)
+    s.line(ex[0][0] + ex[0][2], gy + 75, ex[1][0], gy + 75, stroke=COLOR_LINE, sw=1.6)
+    s.line(ex[1][0] + ex[1][2], gy + 75, ex[2][0], gy + 75, stroke=COLOR_LINE, sw=1.6)
+    s.text(gx + gw / 2, gy + 108, "外显子／内含子结构", size=SIZE_NOTE, fill=COLOR_MUTED, anchor="middle")
+    s.text(gx + gw / 2, gy + 136, "所有细胞同一套", size=SIZE_NOTE, fill=COLOR_TEXT, anchor="middle")
+    s.text(gx + gw / 2, gy + 156, "DNA 序列不变", size=SIZE_NOTE, fill=COLOR_TEXT, anchor="middle")
     states = [("神经细胞：转录组 1", [1, 0, 1, 1, 0]),
               ("免疫细胞：转录组 2", [0, 1, 1, 0, 1]),
               ("应激状态：转录组 3", [1, 1, 0, 1, 1])]
-    bw, bh, gap = 300, 82, 16
-    bx = 270
+    bw2, bh2, gap2 = 300, 84, 14
+    bx = 306
+    genes = ["A", "B", "C", "D", "E"]
     for k, (name, on) in enumerate(states):
-        by = 26 + k * (bh + gap)
-        s.rect(bx, by, bw, bh, fill="none", stroke=COLOR_PRIMARY, rx=8)
-        s.text(bx + 12, by + 22, name, size=SIZE_LABEL, mono=False,
-               fill=COLOR_PRIMARY, anchor="start", weight="bold")
-        genes = ["基因A", "基因B", "基因C", "基因D", "基因E"]
-        cxp = bx + 12
+        by = 22 + k * (bh2 + gap2)
+        s.rect(bx, by, bw2, bh2, fill="#ffffff", stroke=COLOR_PRIMARY, rx=10)
+        s.text(bx + 14, by + 24, name, size=SIZE_LABEL, fill=COLOR_PRIMARY, anchor="start", weight="bold")
+        cwp = 52
+        xp = bx + 14
         for g, active in enumerate(on):
-            cw2 = 54
             if active:
-                s.rect(cxp, by + 40, cw2, 20, fill=COLOR_PRIMARY, rx=3)
-                s.text(cxp + cw2 / 2, by + 54, genes[g], size=SIZE_NOTE, mono=False,
-                       fill="#ffffff", anchor="middle")
+                s.rect(xp, by + 42, cwp, 24, fill=COLOR_PRIMARY, rx=4)
+                s.text(xp + cwp / 2, by + 58, genes[g], size=SIZE_NOTE, fill="#ffffff", anchor="middle")
             else:
-                s.rect(cxp, by + 40, cw2, 20, fill="none", stroke=COLOR_LINE, dash="3,3", rx=3)
-                s.text(cxp + cw2 / 2, by + 54, genes[g], size=SIZE_NOTE, mono=False,
-                       fill=COLOR_MUTED, anchor="middle")
-            cxp += cw2 + 2
-        # 扇形箭头：基因组右缘 → 框左缘（不进入任何框）
-        s.arrow(gx + gw + 6, gy + gh / 2, bx - 10, by + bh / 2, sw=1.4)
-    s.text(W / 2, H - 12, "同一套基因组 —— 转录（开启的基因集合不同）——> 三个不同的转录组",
-           size=SIZE_LABEL, mono=False, fill=COLOR_TEXT, anchor="middle", weight="bold")
+                s.rect(xp, by + 42, cwp, 24, fill="#f2f4f3", stroke="#c4cbd0", rx=4)
+                s.text(xp + cwp / 2, by + 58, genes[g], size=SIZE_NOTE, fill=COLOR_MUTED, anchor="middle")
+            xp += cwp + 4
+        s.add(f"<path d='M {gx+gw+8} {gy+gh/2} C {bx-70} {gy+gh/2}, {bx-70} {by+bh2/2}, {bx-10} {by+bh2/2}' fill='none' stroke='#9ca3af' stroke-width='1.6'/>")
+        s.arrow(bx - 16, by + bh2 / 2, bx - 8, by + bh2 / 2, sw=1.6)
+    s.text(W / 2, H - 10, "同一套基因组 —— 转录（开启的基因集合不同）→ 三个不同的转录组",
+           size=SIZE_LABEL, fill=COLOR_TEXT, anchor="middle", weight="bold")
     save("genome-transcriptome", s)
 
 
-# ─────────────────────── 图B RNA 类型全景 ───────────────────────
 def fig_rna_classes():
-    W, H = 700, 400
+    W, H = 720, 440
     s = Svg(W, H, "细胞总 RNA 的主要类型与占比示意图",
-            "上方占比条显示 rRNA 约 80–90%、tRNA 约 10–15%、其余（含 mRNA）约 3%；"
-            "下方六张卡片给出 mRNA、rRNA、tRNA、miRNA、lncRNA、circRNA 的名称与代表性结构。")
-    bx, by, bw, bh = 60, 34, 560, 24
-    segs = [(0.85, "#2f6e60"), (0.12, "#7ab5a8"), (0.03, COLOR_WARN)]
+            "上方占比条：rRNA 约 80–90%、tRNA 约 10–15%、其余（含 mRNA）约 3%；"
+            "下方六张卡片绘制 mRNA、rRNA、tRNA、miRNA、lncRNA、circRNA 的代表性结构。")
+    bx, by, bw, bh = 60, 40, 560, 26
     x = bx
-    for frac, color in segs:
-        w = bw * frac
-        s.rect(x, by, w, bh, fill=color, stroke="#ffffff", sw=1, rx=0)
-        x += w
-    # 标签：条下方排开，互不重叠
-    s.text(bx + bw * 0.425, by + bh + 20, "rRNA ≈ 80–90%", size=SIZE_NOTE, mono=False,
-           fill=COLOR_TEXT, anchor="middle")
-    s.text(bx + bw * 0.91, by + bh + 20, "tRNA ≈ 10–15%", size=SIZE_NOTE, mono=False,
-           fill=COLOR_TEXT, anchor="end")
-    s.text(bx + bw, by - 10, "其他 ≈ 3%（含 mRNA）", size=SIZE_NOTE, mono=False,
-           fill=COLOR_WARN, anchor="end")
-    s.text(bx, by - 10, "总 RNA 构成（数量级口径）", size=SIZE_LABEL, mono=False,
-           fill=COLOR_MUTED, anchor="start")
+    for frac, color in [(0.85, "#2f6e60"), (0.12, "#7ab5a8"), (0.03, "#b45309")]:
+        s.rect(x, by, bw * frac, bh, fill=color, stroke="#ffffff", sw=1.5)
+        x += bw * frac
+    s.text(bx + bw * 0.425, by + bh + 22, "rRNA ≈ 80–90%", size=SIZE_NOTE, fill=COLOR_TEXT, anchor="middle")
+    s.text(bx + bw * 0.91, by + bh + 22, "tRNA ≈ 10–15%", size=SIZE_NOTE, fill=COLOR_TEXT, anchor="end")
+    s.text(bx + bw, by - 10, "其他 ≈ 3%（含 mRNA）", size=SIZE_NOTE, fill="#b45309", anchor="end")
+    s.text(bx, by - 10, "总 RNA 构成（数量级口径）", size=SIZE_LABEL, fill=COLOR_MUTED, anchor="start")
+
     cards = [
-        ("mRNA", "5′ 帽—编码区—poly(A) 尾", "编码蛋白，仅占百分之几"),
-        ("rRNA", "核糖体的结构骨架", "占绝对大头，建库要处理"),
-        ("tRNA", "三叶草二级结构", "转运氨基酸，含量第二"),
-        ("miRNA", "发卡前体 → 22 nt 成熟体", "小 RNA 调控，需专门文库"),
-        ("lncRNA", "长非编码 RNA（>200 nt）", "调控多样，多无 poly(A) 尾"),
-        ("circRNA", "反向剪接成环、无游离末端", "去 rRNA/去线性可测到"),
+        ("mRNA", "5′ 帽—编码区—poly(A) 尾", "编码蛋白，仅占百分之几", "mrna"),
+        ("rRNA", "核糖体的结构骨架", "占绝对大头，建库要处理", "rrna"),
+        ("tRNA", "三叶草二级结构", "转运氨基酸，含量第二", "trna"),
+        ("miRNA", "发卡前体 → 22 nt 成熟体", "小 RNA 调控，需专门文库", "mirna"),
+        ("lncRNA", "长非编码 RNA（>200 nt）", "调控多样，多无 poly(A) 尾", "lncrna"),
+        ("circRNA", "反向剪接成环、无游离末端", "去 rRNA/去线性可测到", "circrna"),
     ]
-    cw, ch, gap = 200, 108, 12
-    for i, (name, struct, note) in enumerate(cards):
+    cw, ch, gap = 204, 132, 12
+    for i, (name, struct, note, kind) in enumerate(cards):
         cx = 60 + (i % 3) * (cw + gap)
-        cy = 96 + (i // 3) * (ch + gap)
-        s.rect(cx, cy, cw, ch, fill=COLOR_FILL, rx=8)
-        s.text(cx + 12, cy + 24, name, size=SIZE_LABEL, mono=False,
-               fill=COLOR_PRIMARY, anchor="start", weight="bold")
-        ix, iy = cx + cw - 64, cy + 14
-        if name == "mRNA":
-            s.rect(ix, iy + 8, 8, 8, fill=COLOR_PRIMARY, rx=2)
-            s.line(ix + 8, iy + 12, ix + 40, iy + 12, stroke=COLOR_PRIMARY, sw=2)
-            s.text(ix + 42, iy + 16, "AAA", size=9, mono=True, fill=COLOR_PRIMARY)
-        elif name == "rRNA":
-            s.rect(ix, iy + 2, 52, 20, fill="none", stroke=COLOR_PRIMARY, rx=10)
-            s.text(ix + 26, iy + 16, "核糖体", size=10, mono=False, fill=COLOR_PRIMARY, anchor="middle")
-        elif name == "tRNA":
-            for cxo, cyo in [(ix + 14, iy + 6), (ix + 6, iy + 16), (ix + 22, iy + 16)]:
-                s.add(f"<circle cx='{cxo}' cy='{cyo}' r='6' fill='none' stroke='{COLOR_PRIMARY}' stroke-width='1.6'/>")
-        elif name == "miRNA":
-            s.add(f"<path d='M {ix} {iy+18} q 8 -20 16 0 q 8 20 16 0' fill='none' stroke='{COLOR_PRIMARY}' stroke-width='1.8'/>")
-        elif name == "lncRNA":
-            s.line(ix, iy + 12, ix + 52, iy + 12, stroke=COLOR_PRIMARY, sw=2)
-            s.line(ix + 12, iy + 6, ix + 12, iy + 18, stroke=COLOR_PRIMARY, sw=1.4)
-        elif name == "circRNA":
-            s.add(f"<circle cx='{ix+24}' cy='{iy+12}' r='11' fill='none' stroke='{COLOR_PRIMARY}' stroke-width='2.2'/>")
-        s.text(cx + 12, cy + 56, struct, size=SIZE_NOTE, mono=False, fill=COLOR_TEXT, anchor="start")
-        s.text(cx + 12, cy + 80, note, size=SIZE_NOTE, mono=False, fill=COLOR_MUTED, anchor="start")
-    s.text(W / 2, H - 12, "建库策略的选择，本质上就是决定“总 RNA 里的哪些部分进入文库”",
-           size=SIZE_LABEL, mono=False, fill=COLOR_TEXT, anchor="middle", weight="bold")
+        cy = 108 + (i // 3) * (ch + gap)
+        s.rect(cx, cy, cw, ch, fill="#f4faf8", stroke="#cfe3dd", rx=10)
+        s.text(cx + 14, cy + 24, name, size=SIZE_LABEL, fill=COLOR_PRIMARY, anchor="start", weight="bold")
+        ix, iy = cx + cw - 78, cy + 12
+        P = COLOR_PRIMARY
+        if kind == "mrna":
+            s.add(f"<circle cx='{ix+8}' cy='{iy+22}' r='7' fill='{P}'/>")
+            s.rect(ix + 20, iy + 14, 40, 16, fill=P, rx=3)
+            s.line(ix + 60, iy + 22, ix + 66, iy + 22, stroke=P, sw=3)
+            for k in range(3):
+                s.text(ix + 68 + k * 11, iy + 26, "A", size=11, mono=True, fill="#b45309")
+        elif kind == "rrna":
+            s.add(f"<ellipse cx='{ix+22}' cy='{iy+16}' rx='20' ry='11' fill='none' stroke='{P}' stroke-width='2.2'/>")
+            s.add(f"<ellipse cx='{ix+34}' cy='{iy+30}' rx='20' ry='11' fill='none' stroke='{P}' stroke-width='2.2'/>")
+        elif kind == "trna":
+            s.add(f"<circle cx='{ix+16}' cy='{iy+12}' r='8' fill='none' stroke='{P}' stroke-width='2.2'/>")
+            s.add(f"<circle cx='{ix+8}' cy='{iy+26}' r='8' fill='none' stroke='{P}' stroke-width='2.2'/>")
+            s.add(f"<circle cx='{ix+24}' cy='{iy+26}' r='8' fill='none' stroke='{P}' stroke-width='2.2'/>")
+            s.line(ix + 16, iy + 20, ix + 16, iy + 32, stroke=P, sw=2.2)
+            s.text(ix + 13, iy + 42, "3′", size=9, mono=True, fill=P)
+        elif kind == "mirna":
+            s.add(f"<path d='M {ix} {iy+34} C {ix+10} {iy-4} {ix+24} {iy-4} {ix+34} {iy+34}' fill='none' stroke='#c9d6d1' stroke-width='2.4'/>")
+            s.add(f"<path d='M {ix+34} {iy+34} C {ix+44} {iy+62} {ix+58} {iy+62} {ix+68} {iy+34}' fill='none' stroke='{P}' stroke-width='2.6'/>")
+        elif kind == "lncrna":
+            s.rect(ix, iy + 20, 68, 12, fill="none", stroke=P, sw=2.2, rx=6)
+            s.add(f"<circle cx='{ix+18}' cy='{iy+10}' r='5' fill='#cfe3dd'/>")
+            s.add(f"<circle cx='{ix+46}' cy='{iy+10}' r='5' fill='#cfe3dd'/>")
+        elif kind == "circrna":
+            s.add(f"<circle cx='{ix+34}' cy='{iy+26}' r='16' fill='none' stroke='{P}' stroke-width='3'/>")
+            s.add(f"<circle cx='{ix+34}' cy='{iy+10}' r='4.5' fill='#b45309'/>")
+        s.text(cx + 14, cy + 62, struct, size=SIZE_NOTE, fill=COLOR_TEXT, anchor="start")
+        s.text(cx + 14, cy + 84, note, size=SIZE_NOTE, fill=COLOR_MUTED, anchor="start")
+    s.text(W / 2, H - 10, "建库策略的选择，本质上就是决定“总 RNA 里的哪些部分进入文库”",
+           size=SIZE_LABEL, fill=COLOR_TEXT, anchor="middle", weight="bold")
     save("rna-classes", s)
 
 
-# ─────────────────────── 图C 两种建库策略对比 ───────────────────────
 def fig_lib_compare():
     W, H = 700, 470
     s = Svg(W, H, "富集 poly(A) 与去 rRNA 两种建库策略的对比",
-            "顶部为 DNA 双链上一段基因与转录出的带 poly(A) 尾 mRNA；左右两条泳道分别是"
-            "富集 poly(A) 与去 rRNA 的建库流程及各自能测到的 RNA 类型。")
-    dx, dy = 200, 26
-    s.text(dx, dy + 4, "DNA（双链）", size=SIZE_LABEL, mono=False, fill=COLOR_MUTED)
-    s.line(dx + 96, dy - 10, dx + 96, dy + 22, stroke=COLOR_PRIMARY, sw=2)
-    s.line(dx + 104, dy - 10, dx + 104, dy + 22, stroke=COLOR_PRIMARY, sw=2)
+            "顶部为 DNA 双链上一段基因与转录出的带 poly(A) 尾 mRNA；下方两条泳道分别为"
+            "富集 poly(A) 与去 rRNA 的建库流程、各自能测到与测不到的 RNA 类型。")
+    dx, dy = 190, 30
+    s.text(dx, dy + 4, "DNA（双链）", size=SIZE_LABEL, fill=COLOR_MUTED)
+    for xx in (dx + 96, dx + 104):
+        s.line(xx, dy - 10, xx, dy + 22, stroke=COLOR_PRIMARY, sw=2.2)
     for xx in range(dx + 90, dx + 112, 6):
-        s.line(xx, dy - 10, xx + 4, dy + 22, stroke=COLOR_LINE, sw=0.8)
+        s.line(xx, dy - 10, xx + 4, dy + 22, stroke="#d5ddd9", sw=1)
     for (ox, ow) in [(150, 26), (196, 34), (246, 22)]:
-        s.rect(dx + ox, dy - 4, ow, 18, fill=COLOR_PRIMARY, rx=2)
-    s.arrow(dx + 300, dy + 5, dx + 336, dy + 5)
-    s.text(dx + 318, dy - 6, "转录", size=SIZE_NOTE, mono=False, fill=COLOR_MUTED, anchor="middle")
+        s.rect(dx + ox, dy - 4, ow, 18, fill=COLOR_PRIMARY, rx=3)
+    s.arrow(dx + 300, dy + 5, dx + 338, dy + 5)
+    s.text(dx + 319, dy - 6, "转录", size=SIZE_NOTE, fill=COLOR_MUTED, anchor="middle")
     my = dy + 5
-    s.text(dx + 388, my - 10, "RNA", size=SIZE_NOTE, mono=False, fill=COLOR_MUTED, anchor="middle")
-    exl3 = [(dx + 352, dx + 370), (dx + 382, dx + 406), (dx + 414, dx + 428)]
-    prev = dx + 348
-    for a0, b0 in exl3:
-        s.line(prev, my, a0, my, stroke=COLOR_PRIMARY, sw=2)
+    s.text(dx + 388, my - 12, "RNA", size=SIZE_NOTE, fill=COLOR_MUTED, anchor="middle")
+    exl = [(dx + 348, dx + 370), (dx + 380, dx + 406), (dx + 414, dx + 428)]
+    prev = dx + 346
+    for a0, b0 in exl:
+        s.line(prev, my, a0, my, stroke=COLOR_PRIMARY, sw=2.4)
         s.rect(a0, my - 5, b0 - a0, 10, fill=COLOR_PRIMARY, rx=2)
         prev = b0
-    s.line(prev, my, dx + 432, my, stroke=COLOR_PRIMARY, sw=2)
-    s.text(dx + 436, my + 4, "poly(A)", size=9, mono=False, fill=COLOR_WARN)
+    s.line(prev, my, dx + 434, my, stroke=COLOR_PRIMARY, sw=2.4)
+    for k in range(4):
+        s.text(dx + 438 + k * 10, my + 4, "A", size=10, mono=True, fill="#b45309")
     lanes = [
-        (36, "策略一：富集 poly(A)", COLOR_PRIMARY,
-         ["磁珠捕获 poly(A) RNA", "片段化", "反转录＋加接头", "PCR 扩增成文库"],
-         "测到：mRNA ＋ 含 poly(A) 尾的 lncRNA\n测不到：无尾 lncRNA、circRNA、rRNA"),
-        (252, "策略二：去 rRNA", COLOR_WARN,
-         ["探针/酶去除 rRNA", "其余 RNA 全保留", "反转录＋加接头", "PCR 扩增成文库"],
-         "测到：mRNA、lncRNA、circRNA 等\n代价：常有 5–20% read 来自残留 rRNA"),
+        (58, "富集 poly(A)", COLOR_PRIMARY, "#f4faf8",
+         ["磁珠捕获 poly(A) RNA", "片段化", "反转录＋加接头", "PCR 成文库"],
+         ["测到：mRNA ＋ 含 poly(A) 尾的 lncRNA", "测不到：无尾 lncRNA、circRNA、rRNA"]),
+        (266, "去 rRNA", "#b45309", "#fdf6ec",
+         ["探针/酶去除 rRNA", "其余 RNA 全保留", "反转录＋加接头", "PCR 成文库"],
+         ["测到：mRNA、lncRNA、circRNA 等", "代价：常有 5–20% read 来自残留 rRNA"]),
     ]
-    for ly, title, color, steps, outcome in lanes:
-        s.text(30, ly + 14, title, size=SIZE_TITLE, mono=False, fill=color,
-               anchor="start", weight="bold")
+    for ly, title, color, fill, steps, outcome in lanes:
+        s.text(28, ly + 13, title, size=SIZE_TITLE, fill=color, anchor="start", weight="bold")
         for i, step in enumerate(steps):
-            bx = 30 + i * 162
-            box(s, bx, ly + 26, 148, 44, step,
-                fill=COLOR_FILL if color == COLOR_PRIMARY else COLOR_WARN_FILL)
+            bx = 28 + i * 160
+            box(s, bx, ly + 24, 146, 42, step, fill=fill, stroke=color)
             if i < len(steps) - 1:
-                s.arrow(bx + 150, ly + 48, bx + 160, ly + 48, sw=1.4)
-        for k, ln in enumerate(outcome.split("\n")):
-            s.text(30, ly + 102 + k * 18, ln, size=SIZE_NOTE, mono=False, fill=COLOR_TEXT)
-    s.arrow(430, 46, 214, 49, stroke=COLOR_LINE, sw=1.2)
-    s.line(430, 46, 682, 46, stroke=COLOR_LINE, sw=1.2)
-    s.line(682, 46, 682, 258, stroke=COLOR_LINE, sw=1.2)
-    s.arrow(682, 258, 676, 264, stroke=COLOR_LINE, sw=1.2)
-    s.rect(30, 408, 640, 46, fill=COLOR_FILL, rx=6)
-    s.text(350, 428, "选择：研究蛋白编码基因、样本质量好 → 富集 poly(A)；", size=SIZE_LABEL,
-           mono=False, fill=COLOR_TEXT, anchor="middle")
-    s.text(350, 446, "要覆盖非编码 RNA / circRNA、或样本有降解 → 去 rRNA", size=SIZE_LABEL,
-           mono=False, fill=COLOR_TEXT, anchor="middle")
+                s.arrow(bx + 148, ly + 45, bx + 158, ly + 45, sw=1.4)
+        s.rect(28, ly + 84, 622, 52, fill="#ffffff", stroke="#cfe3dd", rx=8)
+        for k, ln in enumerate(outcome):
+            s.text(40, ly + 104 + k * 20, ln, size=SIZE_NOTE, fill=COLOR_TEXT)
+    s.add("<path d='M 430 48 C 430 48, 260 50, 100 80' fill='none' stroke='#9ca3af' stroke-width='1.4'/>")
+    s.arrow(100, 80, 96, 84, sw=1.4)
+    s.add("<path d='M 430 48 C 430 48, 640 120, 660 288' fill='none' stroke='#9ca3af' stroke-width='1.4'/>")
+    s.arrow(660, 288, 656, 292, sw=1.4)
+    s.text(W / 2, H - 10, "研究蛋白编码基因、样本好 → 富集 poly(A)；覆盖非编码 RNA／circRNA 或有降解 → 去 rRNA",
+           size=SIZE_LABEL, fill=COLOR_TEXT, anchor="middle", weight="bold")
     save("lib-compare", s)
 
 
-# ─────────────────────── 图D dUTP 链特异性建库 ───────────────────────
+
 def fig_stranded_lib():
-    W, H = 700, 300
+    W, H = 700, 310
     s = Svg(W, H, "dUTP 链特异性建库流程示意图",
             "第一链 cDNA 正常合成；第二链以 dUTP 替代 dTTP；接头连接后 USER 酶特异降解含 dUTP 的第二链，"
             "只保留与原始 RNA 互补的第一链进入 PCR，read 与转录本链的对应关系因此确定。")
-    y0 = 60
-    box(s, 24, y0, 100, 44, "RNA 转录本", fill=COLOR_FILL)
-    box(s, 158, y0, 126, 44, "第一链 cDNA\n合成（dTTP）", fill=COLOR_FILL)
-    box(s, 318, y0, 126, 44, "第二链 cDNA\n掺入 dUTP", fill=COLOR_WARN_FILL)
+    y0 = 56
+    P = COLOR_PRIMARY
+    A = "#b45309"
+    box(s, 22, y0, 104, 46, "RNA 转录本", fill="#f4faf8")
+    box(s, 158, y0, 128, 46, "第一链 cDNA\n合成（dTTP）", fill="#f4faf8")
+    box(s, 318, y0, 128, 46, "第二链 cDNA\n掺入 dUTP", fill="#fdf6ec", stroke=A)
     for i in range(5):
-        s.add(f"<circle cx='{334 + i * 22}' cy='{y0 + 40}' r='3' fill='{COLOR_WARN}'/>")
-    box(s, 474, y0, 124, 44, "USER 酶降解\n含 dUTP 第二链", fill="none", stroke=COLOR_WARN)
-    box(s, 632, y0, 48, 44, "PCR", fill=COLOR_FILL)
-    s.arrow(126, y0 + 22, 156, y0 + 22)
-    s.arrow(286, y0 + 22, 316, y0 + 22)
-    s.arrow(446, y0 + 22, 472, y0 + 22, stroke=COLOR_WARN)
-    s.arrow(600, y0 + 22, 630, y0 + 22)
-    s.text(656, y0 - 8, "仅第一链", size=SIZE_NOTE, mono=False, fill=COLOR_MUTED, anchor="middle")
-    s.text(221, y0 + 62, "与 RNA 互补、保留", size=SIZE_NOTE, mono=False, fill=COLOR_MUTED, anchor="middle")
-    s.line(508, y0 + 4, 544, y0 + 40, stroke=COLOR_WARN, sw=2.4)
-    s.line(544, y0 + 4, 508, y0 + 40, stroke=COLOR_WARN, sw=2.4)
-    y1 = 190
-    s.text(350, y1 - 34, "为什么能分清链：保留的第一链方向对应原始转录本，read 比对后唯一归属正链或负链",
-           size=SIZE_LABEL, mono=False, fill=COLOR_TEXT, anchor="middle")
-    gxx = 200
-    s.text(gxx - 122, y1 - 10, "基因组正链基因", size=SIZE_NOTE, mono=False, fill=COLOR_MUTED, anchor="start")
-    exl = [(gxx + ox, gxx + ox + 26) for ox in (-110, -60, 10, 70, 110)]
-    prev = gxx - 122
-    for a0, b0 in exl:
-        s.line(prev, y1, a0, y1, stroke=COLOR_PRIMARY, sw=2)
-        s.rect(a0, y1 - 6, 26, 12, fill=COLOR_PRIMARY, rx=2)
-        prev = b0
-    s.line(prev, y1, gxx + 130, y1, stroke=COLOR_PRIMARY, sw=2)
-    s.text(gxx + 150, y1 + 5, "read →", size=SIZE_NOTE, mono=False, fill=COLOR_PRIMARY)
-    s.text(gxx - 122, y1 + 46, "反义转录本", size=SIZE_NOTE, mono=False, fill=COLOR_MUTED, anchor="start")
-    exl2 = [(gxx + ox, gxx + ox + 22) for ox in (-90, -20, 50, 100)]
-    prev = gxx - 122
-    for a0, b0 in exl2:
-        s.line(prev, y1 + 56, a0, y1 + 56, stroke=COLOR_LINE, sw=1.6)
-        s.rect(a0, y1 + 50, 22, 12, fill=COLOR_WARN, rx=2)
-        prev = b0
-    s.line(prev, y1 + 56, gxx + 130, y1 + 56, stroke=COLOR_LINE, sw=1.6)
-    s.text(gxx + 150, y1 + 61, "read →", size=SIZE_NOTE, mono=False, fill=COLOR_WARN)
-    s.text(350, y1 + 96, "普通文库两条链的 read 混在一起；链特异性文库能把它们分开计数",
-           size=SIZE_NOTE, mono=False, fill=COLOR_MUTED, anchor="middle")
+        s.add(f"<circle cx='{334 + i * 22}' cy='{y0 + 42}' r='3.4' fill='{A}'/>")
+    box(s, 474, y0, 126, 46, "USER 酶降解\n含 dUTP 第二链", fill="none", stroke=A)
+    box(s, 632, y0, 48, 46, "PCR", fill="#f4faf8")
+    s.arrow(128, y0 + 23, 156, y0 + 23)
+    s.arrow(288, y0 + 23, 316, y0 + 23)
+    s.arrow(448, y0 + 23, 472, y0 + 23, stroke=A)
+    s.arrow(602, y0 + 23, 630, y0 + 23)
+    s.text(656, y0 - 10, "仅第一链", size=SIZE_NOTE, fill=COLOR_MUTED, anchor="middle")
+    s.text(222, y0 + 64, "与 RNA 互补、保留", size=SIZE_NOTE, fill=COLOR_MUTED, anchor="middle")
+    s.line(506, y0 + 2, 542, y0 + 44, stroke=A, sw=2.8)
+    s.line(542, y0 + 2, 506, y0 + 44, stroke=A, sw=2.8)
+    y1 = 196
+    s.text(350, y1 - 30, "为什么能分清链：保留的第一链方向对应原始转录本，read 比对后唯一归属正链或负链",
+           size=SIZE_LABEL, fill=COLOR_TEXT, anchor="middle")
+    gxx = 196
+    s.text(gxx - 118, y1 - 10, "基因组正链基因", size=SIZE_NOTE, fill=COLOR_MUTED, anchor="start")
+    exl = [(gxx - 110, 26), (gxx - 60, 26), (gxx + 10, 26), (gxx + 70, 26), (gxx + 110, 26)]
+    prev = gxx - 118
+    for a0, w0 in exl:
+        s.line(prev, y1, a0, y1, stroke=P, sw=2.4)
+        s.rect(a0, y1 - 6, w0, 12, fill=P, rx=2)
+        prev = a0 + w0
+    s.line(prev, y1, gxx + 150, y1, stroke=P, sw=2.4)
+    s.text(gxx + 162, y1 + 5, "read →", size=SIZE_NOTE, fill=P)
+    s.text(gxx - 118, y1 + 44, "反义转录本", size=SIZE_NOTE, fill=COLOR_MUTED, anchor="start")
+    exl2 = [(gxx - 90, 22), (gxx - 20, 22), (gxx + 50, 22), (gxx + 100, 22)]
+    prev = gxx - 118
+    for a0, w0 in exl2:
+        s.line(prev, y1 + 54, a0, y1 + 54, stroke="#c4cbd0", sw=2)
+        s.rect(a0, y1 + 48, w0, 12, fill=A, rx=2)
+        prev = a0 + w0
+    s.line(prev, y1 + 54, gxx + 150, y1 + 54, stroke="#c4cbd0", sw=2)
+    s.text(gxx + 162, y1 + 59, "read →", size=SIZE_NOTE, fill=A)
+    s.text(350, H - 8, "普通文库两条链的 read 混在一起；链特异性文库能把它们分开计数",
+           size=SIZE_NOTE, fill=COLOR_MUTED, anchor="middle")
     save("stranded-lib", s)
 
 
-# ─────────────────────── 图E 火山图演示 ───────────────────────
+
 def fig_volcano_demo():
     import random
     rng = random.Random(20261010)
@@ -552,6 +542,69 @@ def fig_workflow_circrna():
     save("circrna-workflow", s)
 
 
+
+
+# ─────────────────── 图L 建库策略树状图（重绘 001） ───────────────────
+def fig_lib_tree():
+    W, H = 600, 440
+    s = Svg(W, H, "四种 RNA 测序建库策略",
+            "总 RNA 经四种处理进入测序文库：富集 poly(A)、去 rRNA、去线性（RNase R）与小 RNA 文库，"
+            "每条路线标注各自能测到的 RNA 类型。")
+    box(s, 210, 20, 180, 40, "总 RNA 提取", fill=COLOR_FILL)
+    lanes = [
+        ("富集 poly(A)", "磁珠捕获带 poly(A) 尾的 RNA", "测到：mRNA、含尾 lncRNA", COLOR_PRIMARY),
+        ("去 rRNA", "探针/酶去除 rRNA，其余保留", "测到：mRNA、lncRNA、circRNA 等", COLOR_PRIMARY),
+        ("去线性（RNase R）", "降解线性 RNA，保留环形分子", "测到：circRNA（专项富集）", COLOR_WARN),
+        ("小 RNA 文库", "按长度回收 18–30 nt 片段", "测到：miRNA 等小 RNA", COLOR_WARN),
+    ]
+    y0 = 110
+    # 母线式布线：主干→左侧通道→各层横 stub 进框（先画线）
+    s.line(300, 60, 300, 84, stroke=COLOR_LINE, sw=1.6)
+    s.line(300, 84, 36, 84, stroke=COLOR_LINE, sw=1.6)
+    s.line(36, 84, 36, y0 + 3 * 74 + 22, stroke=COLOR_LINE, sw=1.6)
+    for k, (name, how, what, color) in enumerate(lanes):
+        ly = y0 + k * 74
+        bx, bw, bh = 60, 180, 44
+        s.arrow(36, ly + 22, 56, ly + 22, sw=1.2)
+        box(s, bx, ly, bw, bh, name, fill=COLOR_FILL)
+        s.text(258, ly + 17, how, size=SIZE_NOTE, fill=COLOR_MUTED)
+        s.text(258, ly + 36, what, size=SIZE_NOTE, fill=color)
+    s.text(W / 2, H - 12, "同一批总 RNA，四种文库决定“谁能进入测序”（重绘自原稿示意图）",
+           size=SIZE_LABEL, fill=COLOR_TEXT, anchor="middle", weight="bold")
+    save("lib-tree", s)
+
+
+# ─────────────────── 图M ceRNA 概念图（重绘 008） ───────────────────
+def fig_cerna_concept():
+    W, H = 560, 424
+    s = Svg(W, H, "ceRNA：多种 RNA 竞争结合 miRNA",
+            "mRNA、lncRNA、circRNA 都携带 miRNA 结合位点，像海绵一样竞争结合同一批 miRNA，"
+            "间接影响彼此的翻译抑制强度。")
+    cx, cy = 280, 200
+    nodes = [
+        (110, 60, "mRNA", "3′ UTR 结合位点", COLOR_PRIMARY),
+        (450, 60, "lncRNA", "部分含结合位点", COLOR_PRIMARY),
+        (450, 340, "circRNA", "环形骨架上多位点", COLOR_WARN),
+    ]
+    # 先画连线（铁律：线先字后）
+    for nx, ny, *_ in nodes:
+        s.line(nx, ny, cx, cy, stroke=COLOR_LINE, sw=1.4)
+    # 结合位点小刻度画在连线上
+    for t in (0.35, 0.55):
+        for nx, ny, *_ in nodes:
+            mx, my = nx + (cx - nx) * t, ny + (cy - ny) * t
+            s.rect(mx - 5, my - 5, 10, 10, fill=COLOR_FILL, stroke=COLOR_PRIMARY, rx=2)
+    # 中央 miRNA
+    s.add(f"<circle cx='{cx}' cy='{cy}' r='34' fill='{COLOR_FILL}' stroke='{COLOR_PRIMARY}' stroke-width='1.8'/>")
+    s.text(cx, cy + 5, "miRNA", size=SIZE_TITLE, mono=False, fill=COLOR_PRIMARY, anchor="middle", weight="bold")
+    for nx, ny, name, note, color in nodes:
+        box(s, nx - 62, ny - 22, 124, 44, name, fill="#ffffff", tcolor=color)
+        s.text(nx, ny + 40, note, size=SIZE_NOTE, fill=COLOR_MUTED, anchor="middle")
+    s.text(W / 2, H - 12, "结合位点越多、亲和力越强，“海绵”作用越强（重绘自原稿示意图）",
+           size=SIZE_LABEL, fill=COLOR_TEXT, anchor="middle", weight="bold")
+    save("cerna-concept", s)
+
+
 if __name__ == "__main__":
     fig_genome_transcriptome()
     fig_rna_classes()
@@ -564,3 +617,5 @@ if __name__ == "__main__":
     fig_workflow_lncrna()
     fig_workflow_smallrna()
     fig_workflow_circrna()
+    fig_lib_tree()
+    fig_cerna_concept()
