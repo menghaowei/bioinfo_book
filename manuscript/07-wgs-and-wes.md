@@ -639,6 +639,10 @@ chr21   9068512  .   C   T   214.64 PASS   DP=13;QD=16.51;SOR=1.609 GT:AD:DP:GQ:
 
 : VCF 数据列速查 {#tbl-07-vcf-columns}
 
+![一条 VCF 记录的逐列解剖](../assets/08-wgs-and-wes/vcf-record-anatomy.svg){#fig-07-vcf-anatomy}
+
+@fig-07-vcf-anatomy 把这条真实记录按列拆开标注，FORMAT 字段的展开见下文。
+
 FORMAT 中最常用的字段是判断一条记录可信度的直接证据：
 
 - **GT（genotype）**：等位基因型。`0/0` 纯合参考、`0/1` 杂合、`1/1` 纯合替代；`0|1` 竖线表示已定相（知道各来自哪条同源染色体）。GATK 用 `./.` 表示缺失。
