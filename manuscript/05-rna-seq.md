@@ -18,9 +18,9 @@
 []{#RNA_Seq}
 
 RNA测序（RNA sequencing，RNA-Seq）是一种非常成熟的研究转录组学的技术，是目前使用最广泛的高通量测序技术之一。一个细胞所蕴含的全部遗传物质（DNA）即基因组，根据中心法则[^rna-ref-1]，遗传信息由DNA通过转录作用流向RNA，这些RNA的总和被称为转录组 （transcriptome），研究转录组的方式方法及相关技术即转录组学（transcriptomics）。通过转录组测序可以解决多种生物学问题，例如寻找实验组和对照组的差异表达基因、目标研究对象在不同发育或者生物学过程中的基因表达时序性变化等。
-RNA可以分为能够编码蛋白基因的信使RNA（mRNA）[^rna-ref-2]和非蛋白编码RNA （non-coding RNA, ncRNA），例如人类基因组，含有约20000个蛋白编码基因和7000个非蛋白编码RNA基因。随着研究的深入，生命科学研究者对RNA的认识逐渐全面，陆续发现了生物体中多种类型的非编码RNA，有持家非编码RNA（house-keeping non-coding RNA）：在翻译过程中起转运作用的tRNA[^rna-ref-3]、核糖体的组成成分rRNA[^rna-ref-4] 、参与mRNA剪接的snRNA（small nuclear RNA）[^rna-ref-5]等；还有能够起到调控作用的非编码RNA：长非编码RNA（long non-coding RNA, lncRNA）、miRNA（microRNA）[^rna-ref-6]、小干扰RNA（small interfering RNA, siRNA）和环状RNA（circRNA）等。各类 RNA 在细胞总 RNA 中的占比与代表性结构见 @fig-05-rna-classes ：rRNA 与 tRNA 占了绝大头，编码蛋白的 mRNA 只占百分之几，测序建库的策略正是围绕“如何处理这些占比”设计的。
+RNA可以分为能够编码蛋白基因的信使RNA（mRNA）[^rna-ref-2]和非蛋白编码RNA （non-coding RNA, ncRNA），例如人类基因组，含有约20000个蛋白编码基因和7000个非蛋白编码RNA基因。随着研究的深入，生命科学研究者对RNA的认识逐渐全面，陆续发现了生物体中多种类型的非编码RNA，有持家非编码RNA（house-keeping non-coding RNA）：在翻译过程中起转运作用的tRNA[^rna-ref-3]、核糖体的组成成分rRNA[^rna-ref-4] 、参与mRNA剪接的snRNA（small nuclear RNA）[^rna-ref-5]等；还有能够起到调控作用的非编码RNA：长非编码RNA（long non-coding RNA, lncRNA）、miRNA（microRNA）[^rna-ref-6]、小干扰RNA（small interfering RNA, siRNA）和环状RNA（circRNA）等。RNA 家族的种类与分工见 @fig-05-rna-classes ：编码蛋白的 mRNA 之外，其余都是非编码 RNA，各自在中心法则的不同环节工作。
 
-![细胞总 RNA 的主要类型：占比与代表性结构（示意图，占比为典型培养细胞的数量级口径[^rna-ref-abundance]）](../assets/06-rna-seq/svg/rna-classes.svg){#fig-05-rna-classes}
+![RNA 的主要类型及其在中心法则中的位置（图片来自维基百科 Non-coding RNA 条目，作者 Ppgardne，GFDL 许可[^rna-ref-fig-license]）](../assets/06-rna-seq/cited/ncrnas-central-dogma.svg){#fig-05-rna-classes}
 
 ::::: {.callout-note .book-core title="核心知识｜转录组与基因组的关系"}
 
@@ -69,7 +69,7 @@ lncRNA 发挥多种调控功能，扮演信号分子、诱导因子、引导分�
 
 两种策略的选择可以一句话概括：研究蛋白编码基因、样本质量好，用富集 poly(A)；要覆盖非编码 RNA、circRNA 或样本有降解，用去 rRNA。
 
-![富集 poly(A) 与去 rRNA 两种建库策略的对比：从同一段基因的转录本出发得到不同文库（示意图）](../assets/06-rna-seq/svg/lib-compare.svg){#fig-05-lib-compare}
+![富集 poly(A)（mRNA 文库）与去 rRNA（total RNA 文库）两条建库路线（图片来自 Illumina 技术文档，仅作教学示意）](../assets/06-rna-seq/cited/illumina-workflows.jpg){#fig-05-lib-compare}
 
 ### 其他 RNA 文库 {#topic-05-other-rna-lib}
 
@@ -116,7 +116,7 @@ microRNA 广泛存在于动植物中，是一类长度为22nt左右的小非编�
 
 以上建库流程都没有保留“RNA 来自基因组哪条链”的信息：随机引物反转录出的 cDNA 双链，看不出原来那条 RNA 是正链基因还是反义转录本转录来的。链特异性建库（stranded library prep）在常规流程里加了一步标记，最常用的是 dUTP 法：合成第二链 cDNA 时用 dUTP 替代 dTTP，接头连接后再用专门识别含尿嘧啶 DNA 的酶（如 USER）把第二链降解掉，只留下与原始 RNA 互补的第一链进入 PCR（@fig-05-stranded-lib）[^rnaseq-stranded-dutp]。这样每条 read 相对原始转录本的方向是确定的，比对回基因组后能唯一归属到正链或负链。
 
-![dUTP 链特异性建库：第二链掺入 dUTP 并被降解，保留的第一链携带链方向信息（示意图）](../assets/06-rna-seq/svg/stranded-lib.svg){#fig-05-stranded-lib}
+![非链特异与 dUTP 链特异性建库流程对比：第二链掺入 dUTP 并被选择性降解，保留链方向信息（图片来自 GENEWIZ 技术博客，仅作教学示意）](../assets/06-rna-seq/cited/stranded-vs-unstranded.png){#fig-05-stranded-lib}
 
 为什么需要它？基因组上大量座位同时存在反义转录本，普通文库里正反两个方向的 read 混在一起，计数会互相污染；链特异性文库把 read 归属到正确的链，反义 lncRNA 的定量、重叠基因的分辨都依赖这一点。分析端的对应参数是 htseq-count 的 `-s` 与 featureCounts 的 `-s`（见 5.4 节）。
 
@@ -1434,6 +1434,8 @@ ceRNA（competing endogenous RNA，内源竞争性 RNA）不是一类新的 RNA 
 [^rnaseq-ciri]: Gao Y. 等. [CIRI: an efficient and unbiased algorithm for de novo circular RNA identification](https://pubmed.ncbi.nlm.nih.gov/25402085/). Genome Biology, 2015.
 
 [^rna-ref-abundance]: 总 RNA 构成取常用教学口径：rRNA 约 80%–90%、tRNA 约 10%–15%、mRNA 约 3%–7%（数量级因细胞类型与生长状态而异）。
+
+[^rna-ref-fig-license]: GFDL 许可原文见 [GNU Free Documentation License](https://commons.wikimedia.org/wiki/Commons:GNU_Free_Documentation_License)（2026 年 10 月核对）。本章引用的外部图片均在图注注明出处，仅作教学示意，版权归原作者所有。
 
 [^rnaseq-rsem]: Li B, Dewey CN. [RSEM: accurate transcript quantification from RNA-Seq data with or without a reference genome](https://pubmed.ncbi.nlm.nih.gov/21816040/). BMC Bioinformatics, 2011.
 
