@@ -1,6 +1,85 @@
 /* Reading controls only: examples are never executed. */
 document.addEventListener('DOMContentLoaded', () => {
   const body = document.body;
+  // Ordinary inline math must not become a scroll box: that replaces its
+  // text baseline with the box's bottom edge. Isolate only expressions wider
+  // than their containing text block, and restore inline layout when they fit.
+  const mathAttributes = ['tabindex', 'role', 'aria-label'];
+  const inlineMath = [...document.querySelectorAll('main .math.inline')].map(element => {
+    let container = element.parentElement;
+    while (container && ['inline', 'contents'].includes(getComputedStyle(container).display)) {
+      container = container.parentElement;
+    }
+    return {element, container, original:Object.fromEntries(mathAttributes.map(name => [name, element.getAttribute(name)]))};
+  });
+  let mathFrame = 0;
+  function layoutInlineMath() {
+    mathFrame = 0;
+    for (const item of inlineMath) {
+      const {element, container, original} = item;
+      const rendered = element.querySelector('mjx-container');
+      if (!rendered || !container?.getClientRects().length || !rendered.getClientRects().length) continue;
+      const style = getComputedStyle(container);
+      const available = container.clientWidth - parseFloat(style.paddingLeft) - parseFloat(style.paddingRight);
+      if (available <= 0) continue; // Recheck collapsed content when it becomes visible.
+      const oversized = rendered.getBoundingClientRect().width > available + 1;
+      if (oversized === element.classList.contains('book-math-scroll')) continue;
+      element.classList.toggle('book-math-scroll', oversized);
+      if (oversized) {
+        element.tabIndex = 0;
+        element.setAttribute('role', 'region');
+        element.setAttribute('aria-label', '长公式，可横向滚动');
+        // Keep an immediately following comma/period with the expression,
+        // instead of leaving punctuation alone on the next line.
+        const next = element.nextSibling;
+        const match = next?.nodeType === Node.TEXT_NODE && next.data.match(/^[ \t]*[，。；、：！？,.!?;:]+/);
+        if (match) {
+          const suffix = document.createTextNode(match[0]);
+          next.data = next.data.slice(match[0].length);
+          element.append(suffix);
+          item.punctuation = {next, suffix};
+        }
+      } else {
+        if (item.punctuation) {
+          const {next, suffix} = item.punctuation;
+          next.data = suffix.data + next.data;
+          suffix.remove();
+          item.punctuation = null;
+        }
+        for (const name of mathAttributes) {
+          if (original[name] === null) element.removeAttribute(name);
+          else element.setAttribute(name, original[name]);
+        }
+        element.scrollLeft = 0;
+      }
+    }
+  }
+  function scheduleInlineMath() {
+    if (!mathFrame) mathFrame = requestAnimationFrame(layoutInlineMath);
+  }
+  if (inlineMath.length) {
+    // MathJax loads additional font metrics while typesetting. Measure after
+    // both typesetting and fonts are ready, as well as after responsive changes.
+    const mathReady = () => Promise.resolve(window.MathJax?.startup?.promise)
+      .then(() => document.fonts?.ready).then(scheduleInlineMath);
+    mathReady();
+    window.addEventListener('load', mathReady, {once:true});
+    window.addEventListener('resize', scheduleInlineMath, {passive:true});
+    document.fonts?.addEventListener('loadingdone', scheduleInlineMath);
+    if (window.ResizeObserver) {
+      const widths = new WeakMap();
+      const observer = new ResizeObserver(entries => {
+        for (const entry of entries) {
+          const width = entry.contentRect.width;
+          if (width !== widths.get(entry.target)) {
+            widths.set(entry.target, width);
+            scheduleInlineMath();
+          }
+        }
+      });
+      new Set(inlineMath.map(item => item.container).filter(Boolean)).forEach(container => observer.observe(container));
+    }
+  }
   // Footnotes stay in the current document, including local previews whose
   // origin differs from the configured public site URL.
   document.querySelectorAll('main a.footnote-ref, main a.footnote-back').forEach(link => {
