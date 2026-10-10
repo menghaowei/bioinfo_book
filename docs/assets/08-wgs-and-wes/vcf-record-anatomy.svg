@@ -1,0 +1,90 @@
+<svg xmlns='http://www.w3.org/2000/svg' width='880' height='430' viewBox='0 0 880 430' role='img' aria-labelledby='t d'>
+<title id='t'>一条 VCF 记录的逐列解剖</title>
+<desc id='d'>上方是一条 VCF 数据行按列拆开；中部标注各列含义；下方展开 FORMAT 字段 GT:AD:DP:GQ:PL 的读法。</desc>
+<text x='24' y='32' font-family="ui-monospace, 'SFMono-Regular', Menlo, Consolas, 'Liberation Mono', monospace" font-size='15' fill='#186254' font-weight='bold' text-anchor='start'>VCF 一行 = 一个（样本×位点的）变异记录</text>
+<rect x='24' y='56' width='64' height='26' rx='3' fill='#f4faf8' stroke='#cfe3dd' stroke-width='1.2'/>
+<text x='56.0' y='73' font-family="'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size='12' fill='#186254' font-weight='bold' text-anchor='middle'>CHROM</text>
+<rect x='24' y='82' width='64' height='30' rx='3' fill='none' stroke='#186254' stroke-width='1.2'/>
+<text x='56.0' y='102' font-family="ui-monospace, 'SFMono-Regular', Menlo, Consolas, 'Liberation Mono', monospace" font-size='12' fill='#333333' font-weight='normal' text-anchor='middle'>chr21</text>
+<line x1='56.0' y1='114' x2='56.0' y2='128' stroke='#9ca3af' stroke-width='1.2'/>
+<text x='56.0' y='144' font-family="'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size='12' fill='#6b7280' font-weight='normal' text-anchor='middle'>染色体</text>
+<rect x='94' y='56' width='78' height='26' rx='3' fill='#f4faf8' stroke='#cfe3dd' stroke-width='1.2'/>
+<text x='133.0' y='73' font-family="'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size='12' fill='#186254' font-weight='bold' text-anchor='middle'>POS</text>
+<rect x='94' y='82' width='78' height='30' rx='3' fill='none' stroke='#186254' stroke-width='1.2'/>
+<text x='133.0' y='102' font-family="ui-monospace, 'SFMono-Regular', Menlo, Consolas, 'Liberation Mono', monospace" font-size='12' fill='#333333' font-weight='normal' text-anchor='middle'>9068512</text>
+<line x1='133.0' y1='114' x2='133.0' y2='128' stroke='#9ca3af' stroke-width='1.2'/>
+<text x='133.0' y='144' font-family="'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size='12' fill='#6b7280' font-weight='normal' text-anchor='middle'>位置（1 起算）</text>
+<rect x='178' y='56' width='40' height='26' rx='3' fill='#f4faf8' stroke='#cfe3dd' stroke-width='1.2'/>
+<text x='198.0' y='73' font-family="'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size='12' fill='#186254' font-weight='bold' text-anchor='middle'>ID</text>
+<rect x='178' y='82' width='40' height='30' rx='3' fill='none' stroke='#186254' stroke-width='1.2'/>
+<text x='198.0' y='102' font-family="ui-monospace, 'SFMono-Regular', Menlo, Consolas, 'Liberation Mono', monospace" font-size='12' fill='#333333' font-weight='normal' text-anchor='middle'>.</text>
+<line x1='198.0' y1='114' x2='198.0' y2='128' stroke='#9ca3af' stroke-width='1.2'/>
+<text x='198.0' y='144' font-family="'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size='12' fill='#6b7280' font-weight='normal' text-anchor='middle'>已知编号</text>
+<rect x='224' y='56' width='44' height='26' rx='3' fill='#f4faf8' stroke='#cfe3dd' stroke-width='1.2'/>
+<text x='246.0' y='73' font-family="'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size='12' fill='#186254' font-weight='bold' text-anchor='middle'>REF</text>
+<rect x='224' y='82' width='44' height='30' rx='3' fill='none' stroke='#186254' stroke-width='1.2'/>
+<text x='246.0' y='102' font-family="ui-monospace, 'SFMono-Regular', Menlo, Consolas, 'Liberation Mono', monospace" font-size='12' fill='#333333' font-weight='normal' text-anchor='middle'>C</text>
+<line x1='246.0' y1='114' x2='246.0' y2='128' stroke='#9ca3af' stroke-width='1.2'/>
+<text x='246.0' y='144' font-family="'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size='12' fill='#6b7280' font-weight='normal' text-anchor='middle'>参考等位</text>
+<rect x='274' y='56' width='44' height='26' rx='3' fill='#f4faf8' stroke='#cfe3dd' stroke-width='1.2'/>
+<text x='296.0' y='73' font-family="'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size='12' fill='#186254' font-weight='bold' text-anchor='middle'>ALT</text>
+<rect x='274' y='82' width='44' height='30' rx='3' fill='none' stroke='#186254' stroke-width='1.2'/>
+<text x='296.0' y='102' font-family="ui-monospace, 'SFMono-Regular', Menlo, Consolas, 'Liberation Mono', monospace" font-size='12' fill='#333333' font-weight='normal' text-anchor='middle'>T</text>
+<line x1='296.0' y1='114' x2='296.0' y2='128' stroke='#9ca3af' stroke-width='1.2'/>
+<text x='296.0' y='144' font-family="'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size='12' fill='#6b7280' font-weight='normal' text-anchor='middle'>替代等位</text>
+<rect x='324' y='56' width='64' height='26' rx='3' fill='#f4faf8' stroke='#cfe3dd' stroke-width='1.2'/>
+<text x='356.0' y='73' font-family="'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size='12' fill='#186254' font-weight='bold' text-anchor='middle'>QUAL</text>
+<rect x='324' y='82' width='64' height='30' rx='3' fill='none' stroke='#186254' stroke-width='1.2'/>
+<text x='356.0' y='102' font-family="ui-monospace, 'SFMono-Regular', Menlo, Consolas, 'Liberation Mono', monospace" font-size='12' fill='#333333' font-weight='normal' text-anchor='middle'>214.64</text>
+<line x1='356.0' y1='114' x2='356.0' y2='128' stroke='#9ca3af' stroke-width='1.2'/>
+<text x='356.0' y='144' font-family="'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size='12' fill='#6b7280' font-weight='normal' text-anchor='middle'>变异置信度</text>
+<rect x='394' y='56' width='56' height='26' rx='3' fill='#f4faf8' stroke='#cfe3dd' stroke-width='1.2'/>
+<text x='422.0' y='73' font-family="'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size='12' fill='#186254' font-weight='bold' text-anchor='middle'>FILTER</text>
+<rect x='394' y='82' width='56' height='30' rx='3' fill='none' stroke='#186254' stroke-width='1.2'/>
+<text x='422.0' y='102' font-family="ui-monospace, 'SFMono-Regular', Menlo, Consolas, 'Liberation Mono', monospace" font-size='12' fill='#333333' font-weight='normal' text-anchor='middle'>.</text>
+<line x1='422.0' y1='114' x2='422.0' y2='128' stroke='#9ca3af' stroke-width='1.2'/>
+<text x='422.0' y='144' font-family="'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size='12' fill='#6b7280' font-weight='normal' text-anchor='middle'>过滤结论</text>
+<rect x='456' y='90' width='210' height='26' rx='3' fill='#f4faf8' stroke='#cfe3dd' stroke-width='1.2'/>
+<text x='561' y='107' font-family="'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size='12' fill='#186254' font-weight='bold' text-anchor='middle'>INFO</text>
+<rect x='456' y='116' width='210' height='30' rx='3' fill='none' stroke='#186254' stroke-width='1.2'/>
+<text x='464' y='136' font-family="ui-monospace, 'SFMono-Regular', Menlo, Consolas, 'Liberation Mono', monospace" font-size='12' fill='#333333' font-weight='normal' text-anchor='start'>DP=13;QD=16.51;FS=2.276…</text>
+<text x='561' y='178' font-family="'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size='12' fill='#6b7280' font-weight='normal' text-anchor='middle'>位点级统计</text>
+<line x1='561' y1='148' x2='561' y2='162' stroke='#9ca3af' stroke-width='1.2'/>
+<rect x='672' y='90' width='240' height='26' rx='3' fill='#f4faf8' stroke='#cfe3dd' stroke-width='1.2'/>
+<text x='792' y='107' font-family="'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size='12' fill='#186254' font-weight='bold' text-anchor='middle'>FORMAT + 样本列</text>
+<rect x='672' y='116' width='240' height='30' rx='3' fill='none' stroke='#186254' stroke-width='1.2'/>
+<text x='792' y='136' font-family="ui-monospace, 'SFMono-Regular', Menlo, Consolas, 'Liberation Mono', monospace" font-size='12' fill='#333333' font-weight='normal' text-anchor='middle'>GT:AD:DP:GQ:PL   0/1:6,7:13:99:222,0,132</text>
+<line x1='792' y1='148' x2='792' y2='162' stroke='#9ca3af' stroke-width='1.2'/>
+<text x='792' y='178' font-family="'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size='12' fill='#6b7280' font-weight='normal' text-anchor='middle'>样本级基因型与证据</text>
+<rect x='24' y='208' width='160' height='118' rx='8' fill='#e8f4f1' stroke='#186254' stroke-width='1.2'/>
+<text x='36' y='232' font-family="ui-monospace, 'SFMono-Regular', Menlo, Consolas, 'Liberation Mono', monospace" font-size='15' fill='#186254' font-weight='bold' text-anchor='start'>GT</text>
+<text x='36' y='252' font-family="'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size='12' fill='#333333' font-weight='normal' text-anchor='start'>基因型</text>
+<text x='36' y='292' font-family="'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size='12' fill='#6b7280' font-weight='normal' text-anchor='start'>0/0 纯合参考</text>
+<text x='36' y='308' font-family="'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size='12' fill='#6b7280' font-weight='normal' text-anchor='start'>0/1 杂合</text>
+<text x='36' y='324' font-family="'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size='12' fill='#6b7280' font-weight='normal' text-anchor='start'>1/1 纯合替代</text>
+<rect x='198' y='208' width='160' height='118' rx='8' fill='#e8f4f1' stroke='#186254' stroke-width='1.2'/>
+<text x='210' y='232' font-family="ui-monospace, 'SFMono-Regular', Menlo, Consolas, 'Liberation Mono', monospace" font-size='15' fill='#186254' font-weight='bold' text-anchor='start'>AD</text>
+<text x='210' y='252' font-family="'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size='12' fill='#333333' font-weight='normal' text-anchor='start'>各等位基因</text>
+<text x='210' y='268' font-family="'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size='12' fill='#333333' font-weight='normal' text-anchor='start'>支持 reads 数</text>
+<text x='210' y='292' font-family="'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size='12' fill='#6b7280' font-weight='normal' text-anchor='start'>6,7 =</text>
+<text x='210' y='308' font-family="'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size='12' fill='#6b7280' font-weight='normal' text-anchor='start'>6 条支持 C</text>
+<text x='210' y='324' font-family="'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size='12' fill='#6b7280' font-weight='normal' text-anchor='start'>7 条支持 T</text>
+<rect x='372' y='208' width='160' height='118' rx='8' fill='#e8f4f1' stroke='#186254' stroke-width='1.2'/>
+<text x='384' y='232' font-family="ui-monospace, 'SFMono-Regular', Menlo, Consolas, 'Liberation Mono', monospace" font-size='15' fill='#186254' font-weight='bold' text-anchor='start'>DP</text>
+<text x='384' y='252' font-family="'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size='12' fill='#333333' font-weight='normal' text-anchor='start'>过滤后深度</text>
+<text x='384' y='292' font-family="'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size='12' fill='#6b7280' font-weight='normal' text-anchor='start'>13×</text>
+<rect x='546' y='208' width='160' height='118' rx='8' fill='#e8f4f1' stroke='#186254' stroke-width='1.2'/>
+<text x='558' y='232' font-family="ui-monospace, 'SFMono-Regular', Menlo, Consolas, 'Liberation Mono', monospace" font-size='15' fill='#186254' font-weight='bold' text-anchor='start'>GQ</text>
+<text x='558' y='252' font-family="'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size='12' fill='#333333' font-weight='normal' text-anchor='start'>基因型置信度</text>
+<text x='558' y='292' font-family="'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size='12' fill='#6b7280' font-weight='normal' text-anchor='start'>99≈上限</text>
+<text x='558' y='308' font-family="'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size='12' fill='#6b7280' font-weight='normal' text-anchor='start'>（Phred 缩放）</text>
+<rect x='720' y='208' width='160' height='118' rx='8' fill='#e8f4f1' stroke='#186254' stroke-width='1.2'/>
+<text x='732' y='232' font-family="ui-monospace, 'SFMono-Regular', Menlo, Consolas, 'Liberation Mono', monospace" font-size='15' fill='#186254' font-weight='bold' text-anchor='start'>PL</text>
+<text x='732' y='252' font-family="'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size='12' fill='#333333' font-weight='normal' text-anchor='start'>各基因型</text>
+<text x='732' y='268' font-family="'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size='12' fill='#333333' font-weight='normal' text-anchor='start'>相对似然</text>
+<text x='732' y='292' font-family="'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size='12' fill='#6b7280' font-weight='normal' text-anchor='start'>222,0,132</text>
+<text x='732' y='308' font-family="'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size='12' fill='#6b7280' font-weight='normal' text-anchor='start'>最小者最可能</text>
+<text x='732' y='324' font-family="'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size='12' fill='#6b7280' font-weight='normal' text-anchor='start'>（0/1 最优）</text>
+<text x='24' y='372' font-family="'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size='12' fill='#333333' font-weight='normal' text-anchor='start'>读记录顺序：先 GT 定基因型，再看 AD/DP 的证据量与比例，最后 QUAL/GQ/PL 看置信度。</text>
+<text x='24' y='394' font-family="'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size='12' fill='#b45309' font-weight='normal' text-anchor='start'>AD 的比例失衡（如 34,2 的“杂合”）是最需要在 IGV 复核的信号。</text>
+</svg>

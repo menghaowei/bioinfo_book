@@ -566,43 +566,57 @@ window.Quarto = {
 </li>
 <li>
 <details class="book-section"><summary><a class="book-nav-link book-section-link no-external" href="manuscript/07-wgs-and-wes.html#sec-07-01" data-book-level="2" id="book-nav-7-sec-07-01">7.1 分析任务、变异类型与应用边界</a></summary><ul>
-<li class="book-nav-leaf"><a class="book-nav-link book-section-link no-external" href="manuscript/07-wgs-and-wes.html#src-0070-WGS-1" data-book-level="3" id="book-nav-7-src-0070-WGS-1">全基因组测序与全外显子组测序</a></li>
-<li class="book-nav-leaf"><a class="book-nav-link book-section-link no-external" href="manuscript/07-wgs-and-wes.html#src-0070-WGS-3" data-book-level="3" id="book-nav-7-src-0070-WGS-3">全基因组测序(WGS)</a></li>
-<li class="book-nav-leaf"><a class="book-nav-link book-section-link no-external" href="manuscript/07-wgs-and-wes.html#src-0070-WGS-639" data-book-level="3" id="book-nav-7-src-0070-WGS-639">全外显子组测序（WES）</a></li>
+<li class="book-nav-leaf"><a class="book-nav-link book-section-link no-external" href="manuscript/07-wgs-and-wes.html#sec-07-01-variant-types" data-book-level="3" id="book-nav-7-sec-07-01-variant-types">变异类型与本章范围</a></li>
+<li class="book-nav-leaf"><a class="book-nav-link book-section-link no-external" href="manuscript/07-wgs-and-wes.html#sec-07-01-wgs-vs-wes" data-book-level="3" id="book-nav-7-sec-07-01-wgs-vs-wes">WGS 与 WES 的原理与取舍</a></li>
+<li class="book-nav-leaf"><a class="book-nav-link book-section-link no-external" href="manuscript/07-wgs-and-wes.html#sec-07-01-applications" data-book-level="3" id="book-nav-7-sec-07-01-applications">应用场景与检测边界</a></li>
 </ul></details>
 </li>
 <li>
 <details class="book-section"><summary><a class="book-nav-link book-section-link no-external" href="manuscript/07-wgs-and-wes.html#sec-07-02" data-book-level="2" id="book-nav-7-sec-07-02">7.2 示例数据、参考资源与覆盖设计</a></summary><ul>
-<li class="book-nav-leaf"><a class="book-nav-link book-section-link no-external" href="manuscript/07-wgs-and-wes.html#src-0070-WGS-679" data-book-level="3" id="book-nav-7-src-0070-WGS-679">全外显子组测序的覆盖度与测序深度</a></li>
+<li class="book-nav-leaf"><a class="book-nav-link book-section-link no-external" href="manuscript/07-wgs-and-wes.html#sec-07-02-example-data" data-book-level="3" id="book-nav-7-sec-07-02-example-data">本章示例数据</a></li>
+<li class="book-nav-leaf"><a class="book-nav-link book-section-link no-external" href="manuscript/07-wgs-and-wes.html#sec-07-02-reference-resources" data-book-level="3" id="book-nav-7-sec-07-02-reference-resources">参考基因组与变异资源</a></li>
+<li class="book-nav-leaf"><a class="book-nav-link book-section-link no-external" href="manuscript/07-wgs-and-wes.html#sec-07-02-coverage-bias" data-book-level="3" id="book-nav-7-sec-07-02-coverage-bias">覆盖度、测序深度与捕获偏差</a></li>
 </ul></details>
 </li>
 <li>
 <details class="book-section"><summary><a class="book-nav-link book-section-link no-external" href="manuscript/07-wgs-and-wes.html#sec-07-03" data-book-level="2" id="book-nav-7-sec-07-03">7.3 DNA比对与变异检测前处理</a></summary><ul>
-<li class="book-nav-leaf"><a class="book-nav-link book-section-link no-external" href="manuscript/07-wgs-and-wes.html#src-0070-WGS-287" data-book-level="3" id="book-nav-7-src-0070-WGS-287">碱基质量校正</a></li>
+<li class="book-nav-leaf"><a class="book-nav-link book-section-link no-external" href="manuscript/07-wgs-and-wes.html#sec-07-03-preprocessing-overview" data-book-level="3" id="book-nav-7-sec-07-03-preprocessing-overview">从 FASTQ 到分析就绪的 BAM</a></li>
+<li class="book-nav-leaf"><a class="book-nav-link book-section-link no-external" href="manuscript/07-wgs-and-wes.html#sec-07-03-bqsr" data-book-level="3" id="book-nav-7-sec-07-03-bqsr">碱基质量校正 BQSR</a></li>
 </ul></details>
 </li>
 <li>
 <details class="book-section"><summary><a class="book-nav-link book-section-link no-external" href="manuscript/07-wgs-and-wes.html#sec-07-04" data-book-level="2" id="book-nav-7-sec-07-04">7.4 基因型似然与局部单倍型重组装</a></summary><ul>
-<li class="book-nav-leaf"><a class="book-nav-link book-section-link no-external" href="manuscript/07-wgs-and-wes.html#src-0070-WGS-363" data-book-level="3" id="book-nav-7-src-0070-WGS-363">使用GATK鉴定SNV/SNP位点</a></li>
+<li class="book-nav-leaf"><a class="book-nav-link book-section-link no-external" href="manuscript/07-wgs-and-wes.html#sec-07-04-genotype-likelihood" data-book-level="3" id="book-nav-7-sec-07-04-genotype-likelihood">从碱基比例到基因型似然</a></li>
+<li class="book-nav-leaf"><a class="book-nav-link book-section-link no-external" href="manuscript/07-wgs-and-wes.html#sec-07-04-haplotypecaller" data-book-level="3" id="book-nav-7-sec-07-04-haplotypecaller">HaplotypeCaller 的局部单倍型重组装</a></li>
 </ul></details>
 </li>
 <li>
 <details class="book-section"><summary><a class="book-nav-link book-section-link no-external" href="manuscript/07-wgs-and-wes.html#sec-07-05" data-book-level="2" id="book-nav-7-sec-07-05">7.5 单样本调用、gVCF与联合分型</a></summary><ul>
-<li class="book-nav-leaf"><a class="book-nav-link book-section-link no-external" href="manuscript/07-wgs-and-wes.html#src-0070-WGS-701" data-book-level="3" id="book-nav-7-src-0070-WGS-701">全外显子组数据分析实战</a></li>
+<li class="book-nav-leaf"><a class="book-nav-link book-section-link no-external" href="manuscript/07-wgs-and-wes.html#sec-07-05-wes-pipeline" data-book-level="3" id="book-nav-7-sec-07-05-wes-pipeline">全外显子组分析实战：从质控到注释</a></li>
+<li class="book-nav-leaf"><a class="book-nav-link book-section-link no-external" href="manuscript/07-wgs-and-wes.html#sec-07-05-gvcf-jointgenotyping" data-book-level="3" id="book-nav-7-sec-07-05-gvcf-jointgenotyping">gVCF 与联合分型</a></li>
 </ul></details>
 </li>
 <li>
-<div class="book-nav-leaf"><a class="book-nav-link book-section-link no-external" href="manuscript/07-wgs-and-wes.html#sec-07-06" data-book-level="2" id="book-nav-7-sec-07-06">7.6 VCF解读、过滤与质量评估</a></div>
+<details class="book-section"><summary><a class="book-nav-link book-section-link no-external" href="manuscript/07-wgs-and-wes.html#sec-07-06" data-book-level="2" id="book-nav-7-sec-07-06">7.6 VCF解读、过滤与质量评估</a></summary><ul>
+<li class="book-nav-leaf"><a class="book-nav-link book-section-link no-external" href="manuscript/07-wgs-and-wes.html#sec-07-06-vcf-anatomy" data-book-level="3" id="book-nav-7-sec-07-06-vcf-anatomy">逐列读懂 VCF</a></li>
+<li class="book-nav-leaf"><a class="book-nav-link book-section-link no-external" href="manuscript/07-wgs-and-wes.html#sec-07-06-filtering" data-book-level="3" id="book-nav-7-sec-07-06-filtering">过滤：硬过滤与 VQSR</a></li>
+<li class="book-nav-leaf"><a class="book-nav-link book-section-link no-external" href="manuscript/07-wgs-and-wes.html#sec-07-06-quality-metrics" data-book-level="3" id="book-nav-7-sec-07-06-quality-metrics">质量评估</a></li>
+</ul></details>
 </li>
 <li>
 <details class="book-section"><summary><a class="book-nav-link book-section-link no-external" href="manuscript/07-wgs-and-wes.html#sec-07-07" data-book-level="2" id="book-nav-7-sec-07-07">7.7 变异注释与证据分层</a></summary><ul>
-<li class="book-nav-leaf"><a class="book-nav-link book-section-link no-external" href="manuscript/07-wgs-and-wes.html#src-0070-WGS-796" data-book-level="3" id="book-nav-7-src-0070-WGS-796">测序数据的下游分析方向</a></li>
-<li class="book-nav-leaf"><a class="book-nav-link book-section-link no-external" href="manuscript/07-wgs-and-wes.html#src-0070-WGS-840" data-book-level="3" id="book-nav-7-src-0070-WGS-840">通路分析</a></li>
-<li class="book-nav-leaf"><a class="book-nav-link book-section-link no-external" href="manuscript/07-wgs-and-wes.html#src-0070-WGS-850" data-book-level="3" id="book-nav-7-src-0070-WGS-850">样本数据库寻找数据集进行验证或辅助分析</a></li>
+<li class="book-nav-leaf"><a class="book-nav-link book-section-link no-external" href="manuscript/07-wgs-and-wes.html#sec-07-07-annotation-what" data-book-level="3" id="book-nav-7-sec-07-07-annotation-what">变异注释在做什么</a></li>
+<li class="book-nav-leaf"><a class="book-nav-link book-section-link no-external" href="manuscript/07-wgs-and-wes.html#sec-07-07-databases" data-book-level="3" id="book-nav-7-sec-07-07-databases">临床与疾病数据库</a></li>
+<li class="book-nav-leaf"><a class="book-nav-link book-section-link no-external" href="manuscript/07-wgs-and-wes.html#sec-07-07-use-cases" data-book-level="3" id="book-nav-7-sec-07-07-use-cases">数据库使用案例</a></li>
+<li class="book-nav-leaf"><a class="book-nav-link book-section-link no-external" href="manuscript/07-wgs-and-wes.html#sec-07-07-pathways-validation" data-book-level="3" id="book-nav-7-sec-07-07-pathways-validation">通路分析与公共数据验证</a></li>
 </ul></details>
 </li>
 <li>
-<div class="book-nav-leaf"><a class="book-nav-link book-section-link no-external" href="manuscript/07-wgs-and-wes.html#sec-07-08" data-book-level="2" id="book-nav-7-sec-07-08">7.8 IGV复核、基准评价与完整交付</a></div>
+<details class="book-section"><summary><a class="book-nav-link book-section-link no-external" href="manuscript/07-wgs-and-wes.html#sec-07-08" data-book-level="2" id="book-nav-7-sec-07-08">7.8 IGV复核、基准评价与完整交付</a></summary><ul>
+<li class="book-nav-leaf"><a class="book-nav-link book-section-link no-external" href="manuscript/07-wgs-and-wes.html#sec-07-08-igv-review" data-book-level="3" id="book-nav-7-sec-07-08-igv-review">用 IGV 复核候选变异</a></li>
+<li class="book-nav-leaf"><a class="book-nav-link book-section-link no-external" href="manuscript/07-wgs-and-wes.html#sec-07-08-benchmarking" data-book-level="3" id="book-nav-7-sec-07-08-benchmarking">基准评价</a></li>
+<li class="book-nav-leaf"><a class="book-nav-link book-section-link no-external" href="manuscript/07-wgs-and-wes.html#sec-07-08-deliverables" data-book-level="3" id="book-nav-7-sec-07-08-deliverables">完整交付与报告</a></li>
+</ul></details>
 </li>
 </ul></details>
 </li>
@@ -1063,7 +1077,7 @@ ACGTACGT</code></pre>
 
 </main> <!-- /main -->
 <div class="book-toolbar" role="navigation" aria-label="阅读工具">
-  <div class="book-brand"><span class="book-brand-name">AI时代生信入门</span><time class="book-last-modified" datetime="2026-10-10T21:10:42+08:00" title="最后修改时间（北京时间，UTC+08:00）">最后修改 2026-10-10 21:10</time></div>
+  <div class="book-brand"><span class="book-brand-name">AI时代生信入门</span><time class="book-last-modified" datetime="2026-10-11T02:33:21+08:00" title="最后修改时间（北京时间，UTC+08:00）">最后修改 2026-10-11 02:33</time></div>
   <button class="book-menu-button" type="button" aria-controls="quarto-sidebar" aria-expanded="false">目录</button>
   <button class="book-search-button" type="button">搜索</button>
 </div>

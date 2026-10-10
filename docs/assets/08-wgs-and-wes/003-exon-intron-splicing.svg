@@ -1,0 +1,76 @@
+<svg xmlns='http://www.w3.org/2000/svg' width='780' height='380' viewBox='0 0 780 380' role='img' aria-labelledby='t d'>
+<title id='t'>外显子、内含子与剪接的关系示意</title>
+<desc id='d'>上：DNA 上的基因结构，外显子为方块、内含子为折线段；中：转录得到的 pre-mRNA 仍含内含子；下：剪接移除内含子、外显子相连并加上 5' 帽与 poly(A) 尾，形成成熟 mRNA。</desc>
+<text x='24' y='34' font-family="ui-monospace, 'SFMono-Regular', Menlo, Consolas, 'Liberation Mono', monospace" font-size='15' fill='#186254' font-weight='bold' text-anchor='start'>DNA（基因结构）</text>
+<rect x='70' y='68' width='20' height='32' rx='3' fill='#186254' stroke='#186254' stroke-width='1.2'/>
+<text x='80.0' y='89' font-family="'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size='12' fill='#ffffff' font-weight='normal' text-anchor='middle'>E1</text>
+<rect x='150' y='68' width='42' height='32' rx='3' fill='#186254' stroke='#186254' stroke-width='1.2'/>
+<text x='171.0' y='89' font-family="'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size='12' fill='#ffffff' font-weight='normal' text-anchor='middle'>E2</text>
+<rect x='270' y='68' width='26' height='32' rx='3' fill='#186254' stroke='#186254' stroke-width='1.2'/>
+<text x='283.0' y='89' font-family="'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size='12' fill='#ffffff' font-weight='normal' text-anchor='middle'>E3</text>
+<rect x='350' y='68' width='34' height='32' rx='3' fill='#186254' stroke='#186254' stroke-width='1.2'/>
+<text x='367.0' y='89' font-family="'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size='12' fill='#ffffff' font-weight='normal' text-anchor='middle'>E4</text>
+<rect x='480' y='68' width='22' height='32' rx='3' fill='#186254' stroke='#186254' stroke-width='1.2'/>
+<text x='491.0' y='89' font-family="'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size='12' fill='#ffffff' font-weight='normal' text-anchor='middle'>E5</text>
+<rect x='560' y='68' width='30' height='32' rx='3' fill='#186254' stroke='#186254' stroke-width='1.2'/>
+<text x='575.0' y='89' font-family="'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size='12' fill='#ffffff' font-weight='normal' text-anchor='middle'>E6</text>
+<line x1='90' y1='84' x2='120.0' y2='68' stroke='#9ca3af' stroke-width='1.6'/>
+<line x1='120.0' y1='68' x2='150' y2='84' stroke='#9ca3af' stroke-width='1.6'/>
+<line x1='192' y1='84' x2='231.0' y2='68' stroke='#9ca3af' stroke-width='1.6'/>
+<line x1='231.0' y1='68' x2='270' y2='84' stroke='#9ca3af' stroke-width='1.6'/>
+<line x1='296' y1='84' x2='323.0' y2='68' stroke='#9ca3af' stroke-width='1.6'/>
+<line x1='323.0' y1='68' x2='350' y2='84' stroke='#9ca3af' stroke-width='1.6'/>
+<line x1='384' y1='84' x2='432.0' y2='68' stroke='#9ca3af' stroke-width='1.6'/>
+<line x1='432.0' y1='68' x2='480' y2='84' stroke='#9ca3af' stroke-width='1.6'/>
+<line x1='502' y1='84' x2='531.0' y2='68' stroke='#9ca3af' stroke-width='1.6'/>
+<line x1='531.0' y1='68' x2='560' y2='84' stroke='#9ca3af' stroke-width='1.6'/>
+<text x='700' y='89' font-family="'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size='12' fill='#6b7280' font-weight='normal' text-anchor='start'>← 基因方向</text>
+<line x1='390' y1='104' x2='390' y2='140' stroke='#186254' stroke-width='1.8'/>
+<line x1='390.0' y1='140.0' x2='393.9' y2='131.9' stroke='#186254' stroke-width='1.8'/>
+<line x1='390.0' y1='140.0' x2='386.1' y2='131.9' stroke='#186254' stroke-width='1.8'/>
+<text x='404' y='126' font-family="'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size='13' fill='#186254' font-weight='normal' text-anchor='start'>转录</text>
+<text x='24' y='152' font-family="ui-monospace, 'SFMono-Regular', Menlo, Consolas, 'Liberation Mono', monospace" font-size='15' fill='#186254' font-weight='bold' text-anchor='start'>pre-mRNA（初级转录本）</text>
+<rect x='70' y='160' width='20' height='26' rx='3' fill='#186254' stroke='#186254' stroke-width='1.2'/>
+<text x='80.0' y='177' font-family="'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size='12' fill='#ffffff' font-weight='normal' text-anchor='middle'>E1</text>
+<rect x='150' y='160' width='42' height='26' rx='3' fill='#186254' stroke='#186254' stroke-width='1.2'/>
+<text x='171.0' y='177' font-family="'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size='12' fill='#ffffff' font-weight='normal' text-anchor='middle'>E2</text>
+<rect x='270' y='160' width='26' height='26' rx='3' fill='#186254' stroke='#186254' stroke-width='1.2'/>
+<text x='283.0' y='177' font-family="'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size='12' fill='#ffffff' font-weight='normal' text-anchor='middle'>E3</text>
+<rect x='350' y='160' width='34' height='26' rx='3' fill='#186254' stroke='#186254' stroke-width='1.2'/>
+<text x='367.0' y='177' font-family="'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size='12' fill='#ffffff' font-weight='normal' text-anchor='middle'>E4</text>
+<rect x='480' y='160' width='22' height='26' rx='3' fill='#186254' stroke='#186254' stroke-width='1.2'/>
+<text x='491.0' y='177' font-family="'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size='12' fill='#ffffff' font-weight='normal' text-anchor='middle'>E5</text>
+<rect x='560' y='160' width='30' height='26' rx='3' fill='#186254' stroke='#186254' stroke-width='1.2'/>
+<text x='575.0' y='177' font-family="'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size='12' fill='#ffffff' font-weight='normal' text-anchor='middle'>E6</text>
+<line x1='90' y1='173' x2='150' y2='173' stroke='#9ca3af' stroke-width='1.6' stroke-dasharray='4,3'/>
+<text x='120.0' y='154' font-family="'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size='12' fill='#6b7280' font-weight='normal' text-anchor='middle'>内含子</text>
+<line x1='192' y1='173' x2='270' y2='173' stroke='#9ca3af' stroke-width='1.6' stroke-dasharray='4,3'/>
+<text x='231.0' y='154' font-family="'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size='12' fill='#6b7280' font-weight='normal' text-anchor='middle'>内含子</text>
+<line x1='296' y1='173' x2='350' y2='173' stroke='#9ca3af' stroke-width='1.6' stroke-dasharray='4,3'/>
+<text x='323.0' y='154' font-family="'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size='12' fill='#6b7280' font-weight='normal' text-anchor='middle'>内含子</text>
+<line x1='384' y1='173' x2='480' y2='173' stroke='#9ca3af' stroke-width='1.6' stroke-dasharray='4,3'/>
+<text x='432.0' y='154' font-family="'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size='12' fill='#6b7280' font-weight='normal' text-anchor='middle'>内含子</text>
+<line x1='502' y1='173' x2='560' y2='173' stroke='#9ca3af' stroke-width='1.6' stroke-dasharray='4,3'/>
+<text x='531.0' y='154' font-family="'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size='12' fill='#6b7280' font-weight='normal' text-anchor='middle'>内含子</text>
+<line x1='390' y1='208' x2='390' y2='244' stroke='#186254' stroke-width='1.8'/>
+<line x1='390.0' y1='244.0' x2='393.9' y2='235.9' stroke='#186254' stroke-width='1.8'/>
+<line x1='390.0' y1='244.0' x2='386.1' y2='235.9' stroke='#186254' stroke-width='1.8'/>
+<text x='404' y='230' font-family="'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size='13' fill='#186254' font-weight='normal' text-anchor='start'>剪接（移除内含子）</text>
+<text x='24' y='262' font-family="ui-monospace, 'SFMono-Regular', Menlo, Consolas, 'Liberation Mono', monospace" font-size='15' fill='#186254' font-weight='bold' text-anchor='start'>成熟 mRNA</text>
+<text x='70' y='286' font-family="'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size='12' fill='#b45309' font-weight='normal' text-anchor='start'>5'帽</text>
+<rect x='104' y='268' width='20' height='26' rx='3' fill='#186254' stroke='#186254' stroke-width='1.2'/>
+<text x='114.0' y='285' font-family="'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size='12' fill='#ffffff' font-weight='normal' text-anchor='middle'>E1</text>
+<rect x='128' y='268' width='42' height='26' rx='3' fill='#186254' stroke='#186254' stroke-width='1.2'/>
+<text x='149.0' y='285' font-family="'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size='12' fill='#ffffff' font-weight='normal' text-anchor='middle'>E2</text>
+<rect x='174' y='268' width='26' height='26' rx='3' fill='#186254' stroke='#186254' stroke-width='1.2'/>
+<text x='187.0' y='285' font-family="'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size='12' fill='#ffffff' font-weight='normal' text-anchor='middle'>E3</text>
+<rect x='204' y='268' width='34' height='26' rx='3' fill='#186254' stroke='#186254' stroke-width='1.2'/>
+<text x='221.0' y='285' font-family="'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size='12' fill='#ffffff' font-weight='normal' text-anchor='middle'>E4</text>
+<rect x='242' y='268' width='22' height='26' rx='3' fill='#186254' stroke='#186254' stroke-width='1.2'/>
+<text x='253.0' y='285' font-family="'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size='12' fill='#ffffff' font-weight='normal' text-anchor='middle'>E5</text>
+<rect x='268' y='268' width='30' height='26' rx='3' fill='#186254' stroke='#186254' stroke-width='1.2'/>
+<text x='283.0' y='285' font-family="'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size='12' fill='#ffffff' font-weight='normal' text-anchor='middle'>E6</text>
+<text x='310' y='286' font-family="'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size='12' fill='#6b7280' font-weight='normal' text-anchor='start'>poly(A) 尾 AAAAA…</text>
+<text x='24' y='348' font-family="'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size='12' fill='#333333' font-weight='normal' text-anchor='start'>外显子（exon）：出现在成熟 RNA 中；内含子（intron）：转录后被剪接移除。</text>
+<text x='24' y='370' font-family="'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size='12' fill='#333333' font-weight='normal' text-anchor='start'>全部外显子的集合即外显子组（exome），是 WES 捕获测序的目标区域。</text>
+</svg>

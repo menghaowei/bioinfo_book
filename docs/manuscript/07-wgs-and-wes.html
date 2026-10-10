@@ -566,43 +566,57 @@ window.Quarto = {
 </li>
 <li>
 <details class="book-section"><summary><a class="book-nav-link book-section-link no-external" href="#sec-07-01" data-book-level="2" data-book-target="sec-07-01" id="book-nav-7-sec-07-01">7.1 分析任务、变异类型与应用边界</a></summary><ul>
-<li class="book-nav-leaf"><a class="book-nav-link book-section-link no-external" href="#src-0070-WGS-1" data-book-level="3" data-book-target="src-0070-WGS-1" id="book-nav-7-src-0070-WGS-1">全基因组测序与全外显子组测序</a></li>
-<li class="book-nav-leaf"><a class="book-nav-link book-section-link no-external" href="#src-0070-WGS-3" data-book-level="3" data-book-target="src-0070-WGS-3" id="book-nav-7-src-0070-WGS-3">全基因组测序(WGS)</a></li>
-<li class="book-nav-leaf"><a class="book-nav-link book-section-link no-external" href="#src-0070-WGS-639" data-book-level="3" data-book-target="src-0070-WGS-639" id="book-nav-7-src-0070-WGS-639">全外显子组测序（WES）</a></li>
+<li class="book-nav-leaf"><a class="book-nav-link book-section-link no-external" href="#sec-07-01-variant-types" data-book-level="3" data-book-target="sec-07-01-variant-types" id="book-nav-7-sec-07-01-variant-types">变异类型与本章范围</a></li>
+<li class="book-nav-leaf"><a class="book-nav-link book-section-link no-external" href="#sec-07-01-wgs-vs-wes" data-book-level="3" data-book-target="sec-07-01-wgs-vs-wes" id="book-nav-7-sec-07-01-wgs-vs-wes">WGS 与 WES 的原理与取舍</a></li>
+<li class="book-nav-leaf"><a class="book-nav-link book-section-link no-external" href="#sec-07-01-applications" data-book-level="3" data-book-target="sec-07-01-applications" id="book-nav-7-sec-07-01-applications">应用场景与检测边界</a></li>
 </ul></details>
 </li>
 <li>
 <details class="book-section"><summary><a class="book-nav-link book-section-link no-external" href="#sec-07-02" data-book-level="2" data-book-target="sec-07-02" id="book-nav-7-sec-07-02">7.2 示例数据、参考资源与覆盖设计</a></summary><ul>
-<li class="book-nav-leaf"><a class="book-nav-link book-section-link no-external" href="#src-0070-WGS-679" data-book-level="3" data-book-target="src-0070-WGS-679" id="book-nav-7-src-0070-WGS-679">全外显子组测序的覆盖度与测序深度</a></li>
+<li class="book-nav-leaf"><a class="book-nav-link book-section-link no-external" href="#sec-07-02-example-data" data-book-level="3" data-book-target="sec-07-02-example-data" id="book-nav-7-sec-07-02-example-data">本章示例数据</a></li>
+<li class="book-nav-leaf"><a class="book-nav-link book-section-link no-external" href="#sec-07-02-reference-resources" data-book-level="3" data-book-target="sec-07-02-reference-resources" id="book-nav-7-sec-07-02-reference-resources">参考基因组与变异资源</a></li>
+<li class="book-nav-leaf"><a class="book-nav-link book-section-link no-external" href="#sec-07-02-coverage-bias" data-book-level="3" data-book-target="sec-07-02-coverage-bias" id="book-nav-7-sec-07-02-coverage-bias">覆盖度、测序深度与捕获偏差</a></li>
 </ul></details>
 </li>
 <li>
 <details class="book-section"><summary><a class="book-nav-link book-section-link no-external" href="#sec-07-03" data-book-level="2" data-book-target="sec-07-03" id="book-nav-7-sec-07-03">7.3 DNA比对与变异检测前处理</a></summary><ul>
-<li class="book-nav-leaf"><a class="book-nav-link book-section-link no-external" href="#src-0070-WGS-287" data-book-level="3" data-book-target="src-0070-WGS-287" id="book-nav-7-src-0070-WGS-287">碱基质量校正</a></li>
+<li class="book-nav-leaf"><a class="book-nav-link book-section-link no-external" href="#sec-07-03-preprocessing-overview" data-book-level="3" data-book-target="sec-07-03-preprocessing-overview" id="book-nav-7-sec-07-03-preprocessing-overview">从 FASTQ 到分析就绪的 BAM</a></li>
+<li class="book-nav-leaf"><a class="book-nav-link book-section-link no-external" href="#sec-07-03-bqsr" data-book-level="3" data-book-target="sec-07-03-bqsr" id="book-nav-7-sec-07-03-bqsr">碱基质量校正 BQSR</a></li>
 </ul></details>
 </li>
 <li>
 <details class="book-section"><summary><a class="book-nav-link book-section-link no-external" href="#sec-07-04" data-book-level="2" data-book-target="sec-07-04" id="book-nav-7-sec-07-04">7.4 基因型似然与局部单倍型重组装</a></summary><ul>
-<li class="book-nav-leaf"><a class="book-nav-link book-section-link no-external" href="#src-0070-WGS-363" data-book-level="3" data-book-target="src-0070-WGS-363" id="book-nav-7-src-0070-WGS-363">使用GATK鉴定SNV/SNP位点</a></li>
+<li class="book-nav-leaf"><a class="book-nav-link book-section-link no-external" href="#sec-07-04-genotype-likelihood" data-book-level="3" data-book-target="sec-07-04-genotype-likelihood" id="book-nav-7-sec-07-04-genotype-likelihood">从碱基比例到基因型似然</a></li>
+<li class="book-nav-leaf"><a class="book-nav-link book-section-link no-external" href="#sec-07-04-haplotypecaller" data-book-level="3" data-book-target="sec-07-04-haplotypecaller" id="book-nav-7-sec-07-04-haplotypecaller">HaplotypeCaller 的局部单倍型重组装</a></li>
 </ul></details>
 </li>
 <li>
 <details class="book-section"><summary><a class="book-nav-link book-section-link no-external" href="#sec-07-05" data-book-level="2" data-book-target="sec-07-05" id="book-nav-7-sec-07-05">7.5 单样本调用、gVCF与联合分型</a></summary><ul>
-<li class="book-nav-leaf"><a class="book-nav-link book-section-link no-external" href="#src-0070-WGS-701" data-book-level="3" data-book-target="src-0070-WGS-701" id="book-nav-7-src-0070-WGS-701">全外显子组数据分析实战</a></li>
+<li class="book-nav-leaf"><a class="book-nav-link book-section-link no-external" href="#sec-07-05-wes-pipeline" data-book-level="3" data-book-target="sec-07-05-wes-pipeline" id="book-nav-7-sec-07-05-wes-pipeline">全外显子组分析实战：从质控到注释</a></li>
+<li class="book-nav-leaf"><a class="book-nav-link book-section-link no-external" href="#sec-07-05-gvcf-jointgenotyping" data-book-level="3" data-book-target="sec-07-05-gvcf-jointgenotyping" id="book-nav-7-sec-07-05-gvcf-jointgenotyping">gVCF 与联合分型</a></li>
 </ul></details>
 </li>
 <li>
-<div class="book-nav-leaf"><a class="book-nav-link book-section-link no-external" href="#sec-07-06" data-book-level="2" data-book-target="sec-07-06" id="book-nav-7-sec-07-06">7.6 VCF解读、过滤与质量评估</a></div>
+<details class="book-section"><summary><a class="book-nav-link book-section-link no-external" href="#sec-07-06" data-book-level="2" data-book-target="sec-07-06" id="book-nav-7-sec-07-06">7.6 VCF解读、过滤与质量评估</a></summary><ul>
+<li class="book-nav-leaf"><a class="book-nav-link book-section-link no-external" href="#sec-07-06-vcf-anatomy" data-book-level="3" data-book-target="sec-07-06-vcf-anatomy" id="book-nav-7-sec-07-06-vcf-anatomy">逐列读懂 VCF</a></li>
+<li class="book-nav-leaf"><a class="book-nav-link book-section-link no-external" href="#sec-07-06-filtering" data-book-level="3" data-book-target="sec-07-06-filtering" id="book-nav-7-sec-07-06-filtering">过滤：硬过滤与 VQSR</a></li>
+<li class="book-nav-leaf"><a class="book-nav-link book-section-link no-external" href="#sec-07-06-quality-metrics" data-book-level="3" data-book-target="sec-07-06-quality-metrics" id="book-nav-7-sec-07-06-quality-metrics">质量评估</a></li>
+</ul></details>
 </li>
 <li>
 <details class="book-section"><summary><a class="book-nav-link book-section-link no-external" href="#sec-07-07" data-book-level="2" data-book-target="sec-07-07" id="book-nav-7-sec-07-07">7.7 变异注释与证据分层</a></summary><ul>
-<li class="book-nav-leaf"><a class="book-nav-link book-section-link no-external" href="#src-0070-WGS-796" data-book-level="3" data-book-target="src-0070-WGS-796" id="book-nav-7-src-0070-WGS-796">测序数据的下游分析方向</a></li>
-<li class="book-nav-leaf"><a class="book-nav-link book-section-link no-external" href="#src-0070-WGS-840" data-book-level="3" data-book-target="src-0070-WGS-840" id="book-nav-7-src-0070-WGS-840">通路分析</a></li>
-<li class="book-nav-leaf"><a class="book-nav-link book-section-link no-external" href="#src-0070-WGS-850" data-book-level="3" data-book-target="src-0070-WGS-850" id="book-nav-7-src-0070-WGS-850">样本数据库寻找数据集进行验证或辅助分析</a></li>
+<li class="book-nav-leaf"><a class="book-nav-link book-section-link no-external" href="#sec-07-07-annotation-what" data-book-level="3" data-book-target="sec-07-07-annotation-what" id="book-nav-7-sec-07-07-annotation-what">变异注释在做什么</a></li>
+<li class="book-nav-leaf"><a class="book-nav-link book-section-link no-external" href="#sec-07-07-databases" data-book-level="3" data-book-target="sec-07-07-databases" id="book-nav-7-sec-07-07-databases">临床与疾病数据库</a></li>
+<li class="book-nav-leaf"><a class="book-nav-link book-section-link no-external" href="#sec-07-07-use-cases" data-book-level="3" data-book-target="sec-07-07-use-cases" id="book-nav-7-sec-07-07-use-cases">数据库使用案例</a></li>
+<li class="book-nav-leaf"><a class="book-nav-link book-section-link no-external" href="#sec-07-07-pathways-validation" data-book-level="3" data-book-target="sec-07-07-pathways-validation" id="book-nav-7-sec-07-07-pathways-validation">通路分析与公共数据验证</a></li>
 </ul></details>
 </li>
 <li>
-<div class="book-nav-leaf"><a class="book-nav-link book-section-link no-external" href="#sec-07-08" data-book-level="2" data-book-target="sec-07-08" id="book-nav-7-sec-07-08">7.8 IGV复核、基准评价与完整交付</a></div>
+<details class="book-section"><summary><a class="book-nav-link book-section-link no-external" href="#sec-07-08" data-book-level="2" data-book-target="sec-07-08" id="book-nav-7-sec-07-08">7.8 IGV复核、基准评价与完整交付</a></summary><ul>
+<li class="book-nav-leaf"><a class="book-nav-link book-section-link no-external" href="#sec-07-08-igv-review" data-book-level="3" data-book-target="sec-07-08-igv-review" id="book-nav-7-sec-07-08-igv-review">用 IGV 复核候选变异</a></li>
+<li class="book-nav-leaf"><a class="book-nav-link book-section-link no-external" href="#sec-07-08-benchmarking" data-book-level="3" data-book-target="sec-07-08-benchmarking" id="book-nav-7-sec-07-08-benchmarking">基准评价</a></li>
+<li class="book-nav-leaf"><a class="book-nav-link book-section-link no-external" href="#sec-07-08-deliverables" data-book-level="3" data-book-target="sec-07-08-deliverables" id="book-nav-7-sec-07-08-deliverables">完整交付与报告</a></li>
+</ul></details>
 </li>
 </ul></details>
 </li>
@@ -785,7 +799,7 @@ window.Quarto = {
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
 <h1 class="title"><span id="sec-ch07" class="quarto-section-identifier"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">WGS与WES：从测序数据到可信的小变异</span></span></h1>
-<p class="chapter-last-modified"><time datetime="2026-10-09T12:27:54+08:00" title="本章书稿最后修改时间（北京时间，UTC+08:00）">最后修改：2026-10-09 12:27（北京时间）</time></p>
+<p class="chapter-last-modified"><time datetime="2026-10-11T02:33:21+08:00" title="本章书稿最后修改时间（北京时间，UTC+08:00）">最后修改：2026-10-11 02:33（北京时间）</time></p>
 </div>
 
 
@@ -809,209 +823,289 @@ window.Quarto = {
 <section id="sec-07-01" class="level2" data-number="7.1">
 <h2 data-number="7.1" class="anchored" data-anchor-id="sec-07-01"><span class="header-section-number">7.1</span> 分析任务、变异类型与应用边界</h2>
 <p>明确本章要检测什么，以及哪些任务需要不同流程。</p>
-<section id="src-0070-WGS-1" class="level3">
-<h3 class="anchored" data-anchor-id="src-0070-WGS-1">全基因组测序与全外显子组测序</h3>
-<p><span id="whole_genome_sequencing"></span></p>
+<p><span id="src-0070-WGS-1"></span> <span id="src-0070-WGS-3"></span> <span id="whole_genome_sequencing"></span></p>
+<section id="sec-07-01-variant-types" class="level3">
+<h3 class="anchored" data-anchor-id="sec-07-01-variant-types">变异类型与本章范围</h3>
+<p>开始分析之前，先要把”检测变异”这句话拆开：检测哪些变异、用来回答什么问题。不同类型的变异在数据中的形态差别很大，检测它们所需的证据和流程也不同。</p>
+<p>按变异涉及的范围，常见的分类从小到大有：</p>
+<ul>
+<li><strong>单核苷酸变异（SNV）</strong>：基因组某个位置上单个碱基与其他个体或参考基因组不同。当它在群体中达到一定频率时也称为 SNP（single nucleotide polymorphism）。SNV 是最容易检测的一类：一个位置、两种或多种碱基状态，比对结果直接可见。</li>
+<li><strong>插入缺失（indel）</strong>：相对于参考基因组插入或缺失了少量碱基（通常几个到几十个）。indel 比 SNV 难检测，因为一条带 indel 的 read 与参考比对时需要引入缺口，比对质量下降，缺失附近还常出现比对位置的整体偏移。</li>
+<li><strong>拷贝数变异（CNV）</strong>：大片段（通常大于 1 kb）的拷贝数增减。它的证据主要来自深度变化和读段两端间距，而不是逐碱基的差异，需要专门的检测工具。</li>
+<li><strong>结构变异（SV）</strong>：更大范围的结构重排，如倒位、易位、大片段插入缺失。短读长数据对 SV 的检测能力有限，常需要长读长测序辅助判断断点。</li>
+</ul>
+<p>另一组必须区分的概念是变异发生在哪种细胞里：</p>
+<ul>
+<li><strong>胚系变异（germline variant）</strong>：存在于受精卵、随后存在于个体几乎所有细胞中的变异，一半来自父亲、一半来自母亲。检测胚系变异时，个体的每个二倍体位点都有两个等位基因可供判断。</li>
+<li><strong>体细胞变异（somatic variant）</strong>：个体发育过程中部分细胞新获得的变异，典型场景是肿瘤组织相对于正常组织的突变。它的检测需要肿瘤—正常配对样本，从混合信号中区分真正的体细胞事件，流程与胚系明显不同。</li>
+</ul>
+<p><strong>本章讨论的是胚系 SNV 与 indel 的检测</strong>，这也是”小变异（small variant）“通常所指的范围。CNV 和 SV 的检测思路（深度、分裂 read、组装）本章只在边角提及；体细胞变异检测的核心（配对比较、等位基因频率过滤）也不在本章展开。给定一个任务，先判断它属于哪一类，再决定用哪套流程——这是避免”用错工具得出错误结论”的第一步。</p>
 </section>
-<section id="src-0070-WGS-3" class="level3">
-<h3 class="anchored" data-anchor-id="src-0070-WGS-3">全基因组测序(WGS)</h3>
-<section id="src-0070-WGS-5" class="level4">
-<h4 class="anchored" data-anchor-id="src-0070-WGS-5">实验设计</h4>
-<div class="book-placeholder">
-<p>本节内容待补充。</p>
-</div>
-</section>
-<section id="src-0070-WGS-7" class="level4">
-<h4 class="anchored" data-anchor-id="src-0070-WGS-7">样本量</h4>
-<div class="book-placeholder">
-<p>本节内容待补充。</p>
-</div>
-</section>
-</section>
-<section id="src-0070-WGS-639" class="level3">
-<h3 class="anchored" data-anchor-id="src-0070-WGS-639">全外显子组测序（WES）</h3>
-<p>在这一章节中，我们将会对全外显子组（Whole Exome Sequencing， WES）进行介绍，包括其与全基因组测序的异同、技术特点及下游分析方向等，同时也包括实战代码的讲解。</p>
-<section id="src-0070-WGS-643" class="level4">
-<h4 class="anchored" data-anchor-id="src-0070-WGS-643">简介</h4>
-<section id="topic-07-37" class="level5">
-<h5 class="anchored" data-anchor-id="topic-07-37">外显子</h5>
-<p>真核生物中编码蛋白质的基因由外显子（exon）和内含子（intron，非编码区域）组成，外显子又分为编码区域和UTR区域。转录过程中或转录后的RNA经过修饰剪切（splicing）作用，移除内含子、合并外显子，最终形成蛋白质。人类基因组中约1.1%为外显子，所有的外显子区域集合称为外显子组（exome）。80%的外显子序列长度少于200bp（Sakharkar，2004年）。研究发现，在外显子组中约85%的突变与疾病相关[1]。</p>
-<div id="fig-08-wgs-and-wes-003" class="quarto-float quarto-figure quarto-figure-center anchored">
-<figure class="quarto-float quarto-float-fig figure">
-<div aria-describedby="fig-08-wgs-and-wes-003-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="../assets/08-wgs-and-wes/003-pic1.png" class="img-fluid figure-img">
-</div>
-<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-08-wgs-and-wes-003-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-图&nbsp;7.1: 图题待补
-</figcaption>
-</figure>
-</div>
-<p>前面的章节已经详细介绍了全基因组测序方法（Whole Genome Sequencing，WGS）与各类高通量测序技术。与全基因组测序相比，全外显子组测序针对外显子区域进行定序测序，是一种成本效益更佳的方法。相比于花费大量的计算资源和时间去分析整个人类基因组的30亿个碱基，全外显子组测序仅需测序约6000万个碱基，时间成本与计算成本都大幅度降低，更适用于个人基因信息的快速检测与大规模群体样本的基因分析。</p>
+<section id="sec-07-01-wgs-vs-wes" class="level3">
+<h3 class="anchored" data-anchor-id="sec-07-01-wgs-vs-wes">WGS 与 WES 的原理与取舍</h3>
+<p><span id="src-0070-WGS-639"></span> <span id="src-0070-WGS-643"></span> <span id="topic-07-37"></span></p>
 <div id="fig-08-wgs-and-wes-004" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-08-wgs-and-wes-004-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <img src="../assets/08-wgs-and-wes/004-pic2.jpeg" class="img-fluid figure-img">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-08-wgs-and-wes-004-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-图&nbsp;7.2: 全基因组测序和全外显子组测序的覆盖范围对比
+图&nbsp;7.1: 全基因组测序和全外显子组测序的覆盖范围对比
 </figcaption>
 </figure>
 </div>
+<p><a href="#fig-08-wgs-and-wes-004" class="quarto-xref">图&nbsp;<span>7.1</span></a> 直观展示了两种策略的差别：全基因组测序（Whole Genome Sequencing，<strong>WGS</strong>）对约 30 亿碱基对的人类基因组均匀测序；全外显子组测序（Whole Exome Sequencing，<strong>WES</strong>）则先用探针捕获外显子区域，只对这部分约 30–60 Mb（约占基因组 1%–2%）富集测序。</p>
+<p>真核生物中编码蛋白质的基因由外显子（exon）和内含子（intron）组成；转录后内含子被剪接移除、外显子相连，形成成熟的 mRNA（这一过程在第 5 章转录组建库部分已经介绍）。所有外显子区域的集合称为外显子组（exome）。从检测能力看，外显子组虽小，位置却关键：蛋白质编码基因只占人类基因组约 1%，却集中了约 85% 对疾病性状有较大效应的已知突变<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a>。外显子长度普遍较短，约 80% 的人类外显子短于 200 bp，平均约 170 bp<a href="#fn2" class="footnote-ref" id="fnref2" role="doc-noteref"><sup>2</sup></a>。</p>
+<div id="fig-08-wgs-and-wes-003" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-08-wgs-and-wes-003-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="../assets/08-wgs-and-wes/003-exon-intron-splicing.svg" class="img-fluid figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-08-wgs-and-wes-003-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+图&nbsp;7.2: 外显子、内含子与剪接的关系示意
+</figcaption>
+</figure>
+</div>
+<p><a href="#fig-08-wgs-and-wes-003" class="quarto-xref">图&nbsp;<span>7.2</span></a> 回顾了外显子、内含子与剪接的关系，这是理解”WES 测的到底是什么区域”的基础。</p>
+<p>WGS 与 WES 各有所长，实际中应当结合研究课题和实验设计选择最合适的测序方案<a href="#fn3" class="footnote-ref" id="fnref3" role="doc-noteref"><sup>3</sup></a>。</p>
+<p><strong>WES 的优点：</strong></p>
+<ul>
+<li>深度高：外显子组的测序深度一般达到 50–100×，而 WGS 一般为 30× 左右——同样的测序量集中在了小得多的区域；</li>
+<li>单样本测序成本低，数据存储和计算资源需求都相应减小；</li>
+<li>编码区变异与表型的关联相对直接，结果可解释性强。</li>
+</ul>
+<p><strong>WES 的缺点与边界：</strong></p>
+<ul>
+<li>只能检测捕获区域内及其附近的变异（以 SNV 和 indel 为主），区域外的变异、CNV 和 SV 都在能力范围之外；</li>
+<li>捕获和扩增步骤对不同区域的效率不一致，测序深度不均匀（7.2.3 详细讨论）；</li>
+<li>实际产出的序列只有约 65%–75% 落在目标区域，其余为脱靶序列，需要靠提高整体深度弥补有效深度不足；</li>
+<li>阴性结果要谨慎解读（见下一小节）。</li>
+</ul>
+<p>WGS 不经过捕获，还可以构建 PCR-free 文库直接测序，因此覆盖更均匀、深度更稳定，能发现捕获设计之外的区域，SNV 检测灵敏度也不依赖捕获效率<a href="#fn4" class="footnote-ref" id="fnref4" role="doc-noteref"><sup>4</sup></a>。随着测序成本下降（见 <a href="#fig-08-wgs-and-wes-005" class="quarto-xref">图&nbsp;<span>7.3</span></a> ），WGS 在科研项目中的比重持续上升；但在需要高深度编码区检测、样本量大或预算有限的场景中，WES 仍然是常规选择。</p>
 <div id="fig-08-wgs-and-wes-005" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-08-wgs-and-wes-005-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <img src="../assets/08-wgs-and-wes/005-pic3.png" class="img-fluid figure-img">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-08-wgs-and-wes-005-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-图&nbsp;7.3: 不同测序方法的费用成本
+图&nbsp;7.3: 不同测序策略的每基因组成本随时间的变化（曲线中还包含多种组合测序策略，本章只讨论 WGS 与 WES 两类）
 </figcaption>
 </figure>
 </div>
-<p>但近年来随着高通量测序技术的发展，测序成本大幅降低，成本已经不是研究机构的主要考量因素，全基因组测序也越来越多出现在科研项目中。 已有研究表明，全基因组测序的产出结果覆盖率高、测序深度稳定，可获得更全面可靠的基因序列，且在单核苷酸突变（SNP）检测方面更为灵敏[4]。</p>
-<p>全基因组测序与全外显子组测序各有所长，实际中应当结合研究课题和实验设计选择最合适的测序方案[5]。人类全外显子占基因组不超过2%，却已经涵盖了近85%的已知疾病相关突变，全外显子测序是比全基因组测序更为经济高效的实验方法，适用于孟德尔疾病、肿瘤和复杂疾病等方向的研究。全外显子组测序目前广泛应用于医学临床研究和科研项目中，已经成为临床遗传疾病和罕见病的常规检测方法之一。如对超声异常或单基因遗传病疑似胎儿进行全显子组测序分析，可以快速预估生育风险，并通过早诊断和精准治疗来节省医疗费用[2]。而对于普通人群，分析个人基因组数据可以更科学地评估个体常见疾病风险和提供个人用药建议。</p>
-<p><strong>全外显子组测序的优点：</strong></p>
-<ul>
-<li>高深度(coverage)，全外显子组测序深度一般达到50~100X。全基因组测序深度一般为30X；</li>
-<li>测序成本低；</li>
-<li>资料存储空间需求小，仅~2%的基因组序列；</li>
-<li>计算机资源需求不高，分析计算周期短；</li>
-<li>分析出来的变异与表型直接关联，可解释性更强；</li>
-</ul>
-<p><strong>全外显子组测序的缺点：</strong></p>
-<ul>
-<li>只能检测外显子组区域的变异（SNP和Indel为主），无法检测外显子组区域以外的变异、拷贝数变异（copy number variation，CNV）和结构变异（structural variant，SV）；</li>
-<li>测序深度受多方因素影响，测序深度不一致；</li>
-<li>目前测序过程中定序长度一般大于200bp，而人类基因组大部分外显子的长度都小于200bp，造成浪费；</li>
-<li>全外显组测序的实际产出的序列只有65%-75%是处于外显子组区域，但可以通过整体提高测序深度的方法来减弱“部分区域测序深度偏低“和“有效序列占比不高“等问题带来的偏差。</li>
-</ul>
-<p>通过分析全外显子组测序结果可以得到突变位点信息，其中可能发现一些重要的致病突变，但也有相当多的一部分是未知意义的突变位点，其临床应用意义仍未探明。同时，虽然全外显子测序设计上涵盖近2万个基因（可以理解为外显子序列或转录本），但实际检测的结果全面与否，很大程度取决于前期样本提取实验中是否能尽可能地覆盖和捕获全部外显子组序列，因此对于全外显子的阴性检测结果，还需要进一步考虑是该基因无突变还是该基因未被检测。当然，突变位点注释和样本质量造成的局限性在全基因组测序中也无法避免，相信随着测序技术的不断优化迭代，越来越多数据库的更新迭代，这些问题会逐步得到解决。 在临床应用上，如果只需定向检测已知的致病位点，另一项更有针对性的靶向基因测序（targeted panel sequencing）方案或许是更好的选择。但全外显子组测序又有着更广泛的覆盖范围，能发现更多新的变异情况，因此，测序方案的选择需要根据患者实际需求而选择。</p>
-<div class="book-placeholder">
-<p>本节内容待补充。</p>
-</div>
+<p>在 WGS 与 WES 之外还有第三种常见选择：<strong>靶向 panel 测序（targeted panel sequencing）</strong>，只捕获数十到数百个特定基因或已知致病位点，深度可达数百至上千倍，适合定向检测已知变异、临床快速筛查等场景。它覆盖最窄、成本最低；WES 覆盖较宽、能发现新变异；WGS 覆盖最全。三者构成覆盖范围与成本的连续谱，没有绝对的优劣。</p>
 </section>
-</section>
+<section id="sec-07-01-applications" class="level3">
+<h3 class="anchored" data-anchor-id="sec-07-01-applications">应用场景与检测边界</h3>
+<p><span id="src-0070-WGS-5"></span> <span id="src-0070-WGS-7"></span></p>
+<p>WES/WGS 检测胚系小变异的典型场景包括：</p>
+<ul>
+<li><strong>罕见病与孟德尔疾病的诊断</strong>：对外显子组进行测序分析、寻找致病的罕见变异，是临床遗传病和罕见病的常规检测方法之一。对超声发现结构异常、疑似单基因病的胎儿，产前外显子组测序可以显著提高诊断率，帮助家庭在围产期做出更明确的决策<a href="#fn5" class="footnote-ref" id="fnref5" role="doc-noteref"><sup>5</sup></a>。WES 首次成功定位孟德尔疾病致病基因（Miller 综合征）正是这一应用路线的里程碑<a href="#fn6" class="footnote-ref" id="fnref6" role="doc-noteref"><sup>6</sup></a>。</li>
+<li><strong>肿瘤研究中的胚系分析</strong>：肿瘤患者的遗传风险评估（如 BRCA1/2 胚系突变）使用的是胚系检测流程；肿瘤组织相对正常组织的体细胞突变检测则是另一套流程，本章不展开。</li>
+<li><strong>个人基因组与健康风险</strong>：分析个人基因组数据，评估部分疾病的携带状态与用药参考。这类分析要特别注意区分”检测到的变异”与”能解释的变异”——绝大多数常见病风险并不能由外显子组的数据可靠预测。</li>
+</ul>
+<p>在这些场景中，最容易被忽视的判断是<strong>阴性结果的两种不同含义</strong>。WES 的检测设计覆盖近两万个基因的外显子区域，但实际检测是否全面，很大程度取决于捕获实验是否覆盖了全部目标区域、每个区域深度是否足够。因此对 WES 的阴性结果，需要进一步区分：是这个基因（的已捕获区域）确实没有检出变异，还是这个基因的某些区域根本未被有效测序。前者受限于检测方法的分辨率，后者则意味着结论只适用于”被覆盖到的部分”。同样，突变注释数据库的覆盖度、样本质量造成的偏差，在 WGS 中也无法完全避免——区分”没测到”与”测到了但没检出”，是解读阴性结果时的基本习惯。</p>
+<p>实验设计与样本量的考量属于立项阶段：群体关联研究需要按统计功效估算样本量；家系分析（如三口之家 trio）通过遗传共分离缩小候选变异范围，样本量小也能提供强证据；临床检测则遵循检测规范的覆盖要求。这些设计决定影响后续所有分析步骤的效力，应与测序策略一起在开始时确定。</p>
 </section>
 </section>
 <section id="sec-07-02" class="level2" data-number="7.2">
 <h2 data-number="7.2" class="anchored" data-anchor-id="sec-07-02"><span class="header-section-number">7.2</span> 示例数据、参考资源与覆盖设计</h2>
 <p>准备一套能支撑目标检测的匹配输入。</p>
-<section id="src-0070-WGS-679" class="level3">
-<h3 class="anchored" data-anchor-id="src-0070-WGS-679">全外显子组测序的覆盖度与测序深度</h3>
-<p>测序深度代表了参考基因组每个区域被短序列覆盖的次数，测序深度越高，测序结果的识别就越准确，后续的统计分析也越可靠。由于全外显子组样本在上机测序前必须经过捕获（capture）和扩增（PCR amplification）两个步骤，这两个步骤在不同的区域有效率差别，有些外显子区域捕获效率高，有些区域捕获效率低，因此会造成全外显组测序结果测序深度不一致的问题。影响测序深度的因素包括：</p>
+<section id="sec-07-02-example-data" class="level3">
+<h3 class="anchored" data-anchor-id="sec-07-02-example-data">本章示例数据</h3>
+<p>本章实战使用公共数据集中的一份人类 WES 数据：<strong>SRR8381428</strong>，来自 ENA/SRA 公共项目 PRJNA511646。它是国际标准参考样本 <strong>NA12878</strong>（CEPH/Utah 家系女性个体，HapMap 与 GIAB 项目的核心样本）的全外显子组测序：</p>
+<div id="tbl-07-example-data" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-tbl figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-07-example-data-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+表&nbsp;7.1: 本章示例数据 SRR8381428 的基本信息（据 ENA 元数据，2026-10 核查）
+</figcaption>
+<div aria-describedby="tbl-07-example-data-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div class="book-table-scroll" role="region" aria-label="表格，可横向滚动" tabindex="0"><table class="caption-top table">
+<thead>
+<tr class="header">
+<th style="text-align: left;">属性</th>
+<th style="text-align: left;">值</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">样本</td>
+<td style="text-align: left;">NA12878（Homo sapiens）</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">文库</td>
+<td style="text-align: left;">WXS（全外显子组），PCR 文库，双端</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">测序仪</td>
+<td style="text-align: left;">Illumina HiSeq 4000</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">读长</td>
+<td style="text-align: left;">2 × 150 bp</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">数据量</td>
+<td style="text-align: left;">约 41.9 Gb（约 1.42 亿对 reads）</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+</figure>
+</div>
+<p>选择这份数据有三个原因：它是真实的研究级 WES 数据；NA12878 是世界上被测序最充分的人类样本之一，GIAB（Genome in a Bottle）项目为它提供了高置信度真值集，本章 7.8 讨论如何评价检测流程准确性时可以直接对照；数据可从 ENA 以 HTTPS 直链下载并核对官方校验值。下载方式与第 5 章相同（<code>prefetch</code>/<code>fasterq-dump</code>，或 ENA 直链 <code>curl</code>/<code>wget</code>），工具安装不再重复。</p>
+<p>出于运行时间的考虑，本章的命令演示使用这份文件的<strong>教学子集</strong>（前 100 万对 reads）；你可以用相同命令处理完整数据，检查方法也一致。但要记住子集的局限：它只覆盖基因组的一部分区域，深度等指标不能外推到完整数据的水平。</p>
+</section>
+<section id="sec-07-02-reference-resources" class="level3">
+<h3 class="anchored" data-anchor-id="sec-07-02-reference-resources">参考基因组与变异资源</h3>
+<p>胚系变异检测需要两类配套资源，它们决定”比对到什么上”和”哪些位点已知存在变异”。</p>
+<p><strong>参考基因组。</strong> 本章沿用第 5 章使用的 Ensembl GRCh38（<code>Homo_sapiens.GRCh38.dna.primary_assembly.fa</code>）。下载后需要准备三样配套：</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1" data-book-role="code"><pre data-code-text="&quot;# 下载参考基因组（Ensembl，HTTPS 直链）\nwget -c -P ref/ https://ftp.ensembl.org/pub/release-116/fasta/homo_sapiens/dna/Homo_sapiens.GRCh38.dna.primary_assembly.fa.gz\ncd ref/ &amp;&amp; gunzip Homo_sapiens.GRCh38.dna.primary_assembly.fa.gz\nmv Homo_sapiens.GRCh38.dna.primary_assembly.fa GRCh38.fa\n\n# 三样配套：BWA 索引、fasta 索引、序列字典\n# bwa 索引默认以参考文件名为前缀，生成 GRCh38.fa.amb/.ann/.bwt/.pac/.sa 五个文件\nbwa index GRCh38.fa\nsamtools faidx GRCh38.fa\ngatk CreateSequenceDictionary -R GRCh38.fa -O GRCh38.dict&quot;" class="sourceCode numberSource bash numberLines code-with-copy"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1"></a><span class="co"># 下载参考基因组（Ensembl，HTTPS 直链）</span></span>
+<span id="cb1-2"><a href="#cb1-2"></a><span class="fu">wget</span> <span class="at">-c</span> <span class="at">-P</span> ref/ https://ftp.ensembl.org/pub/release-116/fasta/homo_sapiens/dna/Homo_sapiens.GRCh38.dna.primary_assembly.fa.gz</span>
+<span id="cb1-3"><a href="#cb1-3"></a><span class="bu">cd</span> ref/ <span class="kw">&amp;&amp;</span> <span class="fu">gunzip</span> Homo_sapiens.GRCh38.dna.primary_assembly.fa.gz</span>
+<span id="cb1-4"><a href="#cb1-4"></a><span class="fu">mv</span> Homo_sapiens.GRCh38.dna.primary_assembly.fa GRCh38.fa</span>
+<span id="cb1-5"><a href="#cb1-5"></a></span>
+<span id="cb1-6"><a href="#cb1-6"></a><span class="co"># 三样配套：BWA 索引、fasta 索引、序列字典</span></span>
+<span id="cb1-7"><a href="#cb1-7"></a><span class="co"># bwa 索引默认以参考文件名为前缀，生成 GRCh38.fa.amb/.ann/.bwt/.pac/.sa 五个文件</span></span>
+<span id="cb1-8"><a href="#cb1-8"></a><span class="ex">bwa</span> index GRCh38.fa</span>
+<span id="cb1-9"><a href="#cb1-9"></a><span class="ex">samtools</span> faidx GRCh38.fa</span>
+<span id="cb1-10"><a href="#cb1-10"></a><span class="ex">gatk</span> CreateSequenceDictionary <span class="at">-R</span> GRCh38.fa <span class="at">-O</span> GRCh38.dict</span></code></pre></div><button title="复制到剪贴板" class="code-copy-button"><i class="bi"></i></button></div>
+<p><code>bwa index</code> 供比对使用（第 4 章讲过 FM 索引的原理）；<code>.fai</code> 让工具能按名字和区间快速取序列；<code>.dict</code> 是 GATK 要求的序列字典。三者必须与参考版本一致——用一套版本的索引配另一版本的字典，是最常见的”看起来都对了但结果全错”的来源之一。</p>
+<p><strong>已知变异位点（known-sites）。</strong> BQSR 和候选过滤都需要”哪些位点在人群中已知存在变异”的清单，用来把真变异与测序错误区分开（原理见 7.3.2）。GATK 官方推荐的一组资源整合自 dbSNP、Mills indel、1000 Genomes 等人群项目；本章从 Ensembl 的 variation 数据库获取，它按染色体提供 dbSNP 整合的 VCF 及索引：</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2" data-book-role="code"><pre data-code-text="&quot;# 已知变异资源：Ensembl 按染色体提供的 VCF（dbSNP 整合，release-116）\nwget -c -P ref/known/ https://ftp.ensembl.org/pub/release-116/variation/vcf/homo_sapiens/homo_sapiens-chr21.vcf.gz\nwget -c -P ref/known/ https://ftp.ensembl.org/pub/release-116/variation/vcf/homo_sapiens/homo_sapiens-chr21.vcf.gz.csi\n\n# GATK 需要 .tbi 索引（Ensembl 提供的是 .csi），一条命令补上：\ngatk IndexFeatureFile -I ref/known/homo_sapiens-chr21.vcf.gz&quot;" class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 已知变异资源：Ensembl 按染色体提供的 VCF（dbSNP 整合，release-116）</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="fu">wget</span> <span class="at">-c</span> <span class="at">-P</span> ref/known/ https://ftp.ensembl.org/pub/release-116/variation/vcf/homo_sapiens/homo_sapiens-chr21.vcf.gz</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="fu">wget</span> <span class="at">-c</span> <span class="at">-P</span> ref/known/ https://ftp.ensembl.org/pub/release-116/variation/vcf/homo_sapiens/homo_sapiens-chr21.vcf.gz.csi</span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="co"># GATK 需要 .tbi 索引（Ensembl 提供的是 .csi），一条命令补上：</span></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a><span class="ex">gatk</span> IndexFeatureFile <span class="at">-I</span> ref/known/homo_sapiens-chr21.vcf.gz</span></code></pre></div><button title="复制到剪贴板" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="book-warning callout callout-style-default callout-warning callout-titled" title="注意｜参考与资源的命名系统要一致">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">警告</span>注意｜参考与资源的命名系统要一致
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>不同机构发布的 GRCh38 资源在染色体命名上不统一：Ensembl 用 <code>1</code>、<code>2</code>、<code>X</code>，Broad/GATK 官方包用 <code>chr1</code>、<code>chr2</code>、<code>chrX</code>。坐标本身一致，名字却不同。参考基因组、索引、known-sites VCF、注释数据库必须使用同一套命名，否则工具会报”找不到序列”，或者更隐蔽地静默丢失数据。混用不同来源的资源前，先用 <code>samtools faidx</code> 或 <code>bcftools view -h</code> 检查双方的序列名。</p>
+</div>
+</div>
+<p>如果你阅读的教程使用 GATK 官方资源包（<code>gs://broad-references/hg38-v0/</code> 下的 <code>dbsnp138.vcf</code>、<code>Mills_and_1000G_gold_standard.indels.hg38.vcf.gz</code> 等），注意该渠道目前需要 Google 云账号授权才能访问；本章改用公开直链的 Ensembl 资源，作用相同、版本更新。</p>
+</section>
+<section id="sec-07-02-coverage-bias" class="level3">
+<h3 class="anchored" data-anchor-id="sec-07-02-coverage-bias">覆盖度、测序深度与捕获偏差</h3>
+<p><span id="src-0070-WGS-679"></span></p>
+<p>第 4 章已经定义了测序深度（depth，每个位置被 reads 覆盖的次数）与覆盖度（coverage，被测到的区域比例）。WES 的特殊之处在于：深度不仅要整体够，还要<strong>在捕获区域内部足够均匀</strong>，因为判断每个外显子里有没有变异，依赖的是那个区域自己的深度。</p>
+<p>WES 样本在上机前要经过<strong>捕获（capture）</strong>和<strong>PCR 扩增</strong>两个步骤，不同区域的效率差别会直接转化为深度的不均匀：</p>
 <ul>
-<li>GC含量高的区域（如启动子或UTR）在捕获和扩增时会受到影响<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a>；</li>
-<li>低复杂度片段（如重复区域）和含有模糊碱基的区域捕获效率偏低；</li>
-<li>进行PCR扩增的合适为70bp-200bp，零碎或过长的序列片段会受到影响。；</li>
-<li>假基因的存在影响真实测序深度的计算；</li>
-<li>DNA的数量，如果DNA数量偏低，只能通多高次数PCR循环来达到后续测序所需的样本量，但这会导致大量PCR重复，影响后续数据分析的可信度；</li>
-<li>DNA的质量，如从石蜡包埋样本（FFPE）提取的DNA通常质量较差，某些区域的序列更易破碎，引入偏差；</li>
+<li>GC 含量高的区域在捕获、扩增和测序中都受影响<a href="#fn7" class="footnote-ref" id="fnref7" role="doc-noteref"><sup>7</sup></a>；</li>
+<li>低复杂度片段（如重复区域）和含模糊碱基的区域捕获效率偏低；</li>
+<li>文库片段长度偏离扩增的最佳范围（约 70–200 bp 之外）的片段回收差；</li>
+<li>假基因与真实基因高度相似，影响 reads 比对到正确位置的程度，进而影响该区域的深度计算；</li>
+<li>DNA 起始量低时需要更多 PCR 循环，引入大量重复，影响后续分析的可信度；</li>
+<li>DNA 质量差（如石蜡包埋 FFPE 样本提取的 DNA）导致某些区域片段化严重、偏差增大。</li>
 </ul>
-<p>全外显组测序的探针也略有不同，除了常见的的全外显组探针产品，也可自行设计和定制。研究人员结合现有的参考序列数据和突变信息，可以设计和增加感兴趣区域的探针，也可在特定区域增加探针密度来提高捕获效率。但探针的设计需要综合考虑中靶率（On-target rate）、覆盖度（coverage）、均一性（uniformity）和重复率（Dup rate）等指标。</p>
-<p>在不考虑测序成本的前提下，全基因组测序不需要经过捕获步骤，甚至可以不经过PCR扩增直接进行测序，其测序深度能更加稳定，序列分布更均匀，甚至能发现未曾被探针捕获的区域，覆盖的基因组区域更全【7】。</p>
 <div id="fig-08-wgs-and-wes-006" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-08-wgs-and-wes-006-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <img src="../assets/08-wgs-and-wes/006-pic5.png" class="img-fluid figure-img">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-08-wgs-and-wes-006-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-图&nbsp;7.4: 在不同参考序列中的覆盖率
+图&nbsp;7.4: WES 与 WGS 的深度随 GC 含量变化及不同区域类型的覆盖差异
 </figcaption>
 </figure>
 </div>
-<blockquote class="blockquote">
-<p>a)WES，WGS_wPCR（经过PCR）和WGS（未经PCR）的WGS所显示的每个GC%的参考基因组的编码外显子区域的平均读取深度，每个数值为五个样品的深度均值。 b)WES和WGS（未经PCR）在不同参考序列中的覆盖率 【6】</p>
-</blockquote>
-<div class="book-placeholder">
-<p>本节内容待补充。</p>
-</div>
+<p><a href="#fig-08-wgs-and-wes-006" class="quarto-xref">图&nbsp;<span>7.4</span></a> 用同一批样本比较了 WES、经 PCR 的 WGS 与 PCR-free WGS：面板 a 显示编码外显子的平均深度随 GC 含量明显波动，WES 的波动最剧烈；面板 b 显示 WES 的覆盖集中在捕获目标区域，而 WGS 在各类区域上覆盖更完整。这组对比也提醒我们：<strong>PCR-free 文库能显著减弱 GC 偏差</strong>，这是高质量 WGS 的优势之一<a href="#fn8" class="footnote-ref" id="fnref8" role="doc-noteref"><sup>8</sup></a>。</p>
+<p>捕获探针可以购买商品化产品，也可以自行设计：在感兴趣的区域增加探针、在难捕获区域提高探针密度。评估一个捕获设计的常用指标有：</p>
+<ul>
+<li><strong>中靶率（on-target rate）</strong>：落在目标区域内的序列占比；</li>
+<li><strong>覆盖度（coverage）</strong>：目标区域被测到的比例，如”98% 的目标区域达到 20× 以上”；</li>
+<li><strong>均一性（uniformity）</strong>：目标区域内部深度的均匀程度；</li>
+<li><strong>重复率（duplication rate）</strong>：来自同一原始片段的重复 reads 占比，高重复率意味着文库复杂度低或测序过饱和。</li>
+</ul>
+<p>这四个指标是判断”WES 数据质量好不好”的第一组证据，拿到下机数据后就应该结合 FastQC/MultiQC 报告（第 3 章）与比对后的深度统计（本章 7.3.1）一起检查。看到某个外显子深度骤降时，按上面的偏差来源逐项排查——GC、捕获效率、重复、假基因——而不是先怀疑”这里有变异”。</p>
 </section>
 </section>
 <section id="sec-07-03" class="level2" data-number="7.3">
 <h2 data-number="7.3" class="anchored" data-anchor-id="sec-07-03"><span class="header-section-number">7.3</span> DNA比对与变异检测前处理</h2>
 <p>理解哪些处理改善调用依据及其适用条件。</p>
-<section id="src-0070-WGS-287" class="level3">
-<h3 class="anchored" data-anchor-id="src-0070-WGS-287">碱基质量校正</h3>
-<section id="src-0070-WGS-289" class="level4">
-<h4 class="anchored" data-anchor-id="src-0070-WGS-289">质量校正原理</h4>
-<p>Phred碱基质量值是由测序仪内部自带的base-calling算法评估出来的，而这种base-calling算法由于受专利保护，掌握在测序仪生成商手中，研究人员并不能了解这个算法的细节，它对于人们来说就是一个黑盒子</p>
-<p>而测序仪的base-calling算法给出的质量评估并不十分准确，它带有一定程度的系统误差（非随机误差），使得实际测序质量值要么被低估，要么被高估</p>
-<p>BQSR试图利用机器学习的方法来对原始的测序质量值进行校正</p>
-<p>例如：</p>
-<blockquote class="blockquote">
-<p>对于一个给定的Run，我们发现，无论什么时候我在测序一个AA 的子序列时，改子序列后紧接着的一个任意碱基的测序错误率总是要比它的实际错误率高出1%，那么我就可以将这样的碱基找出来，将它的原始测序错误率减去1%来对它进行校正</p>
-</blockquote>
-<p>会影响测序质量评估准确性的因素有很多，主要包括序列组成、碱基在read中的位置、测序反应的cycle等等，它们以类似于叠加的形式协同产生影响，这些可能的影响因素被称作协变量 (covariable)</p>
-<div class="book-warning callout callout-style-default callout-warning callout-titled" title="注意｜BQSR 改变的是质量值">
+<section id="sec-07-03-preprocessing-overview" class="level3">
+<h3 class="anchored" data-anchor-id="sec-07-03-preprocessing-overview">从 FASTQ 到分析就绪的 BAM</h3>
+<p>变异检测的输入不是 FASTQ，而是一个经过整理的 BAM。从下机数据到”分析就绪”，中间每一步都在为 caller 整理证据：</p>
+<div id="fig-07-preprocessing-overview" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-07-preprocessing-overview-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="../assets/08-wgs-and-wes/preprocessing-overview.svg" class="img-fluid figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-07-preprocessing-overview-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+图&nbsp;7.5: DNA 小变异分析的前处理流程：每一步的输入、输出与目的
+</figcaption>
+</figure>
+</div>
+<p><a href="#fig-07-preprocessing-overview" class="quarto-xref">图&nbsp;<span>7.5</span></a> 概括了这条链。对照第 4 章你会发现，算法与工具都见过，本章要回答的是新问题：<strong>这些步骤为什么是变异检测的必要条件，而不是可选的整理</strong>。</p>
+<ul>
+<li><strong>原始质控与过滤</strong>（第 3 章的 FastQC/cutadapt 或 fastp）：去除接头和低质量碱基。低质量碱基携带失真的质量值，会干扰后面每一步的统计判断。</li>
+<li><strong>比对</strong>（<code>bwa mem</code>）：DNA 比对没有剪接位点问题，用第 4 章讲过的 BWT/FM 索引短读长比对器即可——RNA-seq 之所以需要 HISAT2/STAR 这类剪接感知比对器，是因为 reads 会横跨外显子连接。<code>@RG</code> 读组信息在这一步写入：后面 BQSR 按读组统计误差，缺了它 BQSR 无法工作。</li>
+<li><strong>排序</strong>（<code>samtools sort</code>）：把按 FASTQ 顺序排列的比对结果整理为按基因组位置排列。变异检测逐区间读取数据，位置排序是一切”按位置聚拢证据”步骤的前提。</li>
+<li><strong>标记重复（MarkDuplicates）</strong>：PCR 或测序过程中，同一 DNA 片段产生的多条 reads 不是独立证据。第 4 章讲过重复的识别方法（位置与方向相同）；对变异检测而言，不去重的后果是具体的：一个片段被扩增三次、恰好带一个测序错误，caller 会看到”三条一致支持错误碱基”的假证据，等位基因比例被扭曲。标记（而非删除）重复保留了信息，让后续统计把这类 reads 排除在外。</li>
+<li><strong>碱基质量校正（BQSR）</strong>：下一小节专门讨论。</li>
+</ul>
+<p>“分析就绪”没有单一判据，常见的检查包括：比对率、重复率、深度分布（平均深度、目标区域达到 20× 的比例）、<code>@RG</code> 完整性。这些指标异常时先解决数据问题，再进入变异检测——<strong>在坏数据上跑出的变异列表，错误没有简单的下游办法弥补</strong>。</p>
+</section>
+<section id="sec-07-03-bqsr" class="level3">
+<h3 class="anchored" data-anchor-id="sec-07-03-bqsr">碱基质量校正 BQSR</h3>
+<p><span id="src-0070-WGS-287"></span> <span id="src-0070-WGS-289"></span></p>
+<p><strong>为什么需要校正。</strong> Phred 碱基质量值由测序仪的 base-calling 算法给出。这套算法对研究者是黑盒：它给出的质量评估带有一定程度的系统性偏差（非随机误差），实际测序质量可能被低估或高估。质量值是变异检测公式中错误率的直接输入（7.4 会看到 <span class="math inline">\(\epsilon\)</span> 如何进入似然计算），系统性的偏差会原样传递到变异的置信度上。</p>
+<p>举一个形象化的例子：对于某一次测序（一个 run），如果无论何时测到 <code>AA</code> 这样的子序列时，紧随其后的那个碱基的测序错误率总比其实际错误率高出约 1%，那么就可以把这类碱基找出来，把它们的报告错误率整体下调来校正。</p>
+<p><strong>BQSR 的思路。</strong> BQSR（Base Quality Score Recalibration）用回归的框架重新校准质量值：把”测序仪声称的质量”与”实际观察到的错误率”对齐。它的前提假设是：影响质量评估的因素可以列举为几类<strong>协变量（covariate）</strong>——读组（read group）来源、碱基在 read 中所处的 cycle、该碱基上游若干碱基的序列背景（默认取上游 6 个碱基）、以及原始报告质量值本身。协变量组合相同的碱基归入同一组（bin），同一 bin 内的碱基被认为具有相同的真实错误率。</p>
+<p>那”实际观察到的错误率”从哪里来？BQSR 把比对结果与已知变异位点对照：<strong>先剔除 known-sites 清单上的人群变异位点</strong>，剩下的位置上，read 与参考基因组的每个 mismatch 都被假定为测序错误而非真实变异。于是每个 bin 的经验错误率可以直接数出来：</p>
+<p><span id="eq-08-wgs-and-wes-002" class="book-equation"><span class="equation-scroll" tabindex="0" role="region" aria-label="公式 7.1"><span class="math display">\[
+EQ = -10 \log_{10} \frac{\#\text{mismatch}}{\#\text{bases}}
+\]</span></span><a class="equation-label" href="#eq-08-wgs-and-wes-002" aria-label="公式（7.1）">(7.1)</a></span></p>
+<p>即 Phred 标准的质量定义——错误率的 −10·log₁₀ 缩放（与第 3 章碱基质量值的定义一致）。观察量少的 bin 会被平滑处理，避免”只看了 2 个碱基、恰有 1 个 mismatch”就给出极端估计。有了每个 bin 的经验质量，BQSR 训练出校正模型，<code>ApplyBQSR</code> 再把校正后的质量值写回 BAM。BQSR 本质上是这样一种回归模型：输入是碱基的协变量取值，输出是它的经验质量：</p>
+<p><span id="eq-08-wgs-and-wes-001" class="book-equation"><span class="equation-scroll" tabindex="0" role="region" aria-label="公式 7.2"><span class="math display">\[
+X_i=(RG_i,\ Cyc_i,\ Context_i,\ Q_i) \quad \to \quad y_i
+\]</span></span><a class="equation-label" href="#eq-08-wgs-and-wes-001" aria-label="公式（7.2）">(7.2)</a></span></p>
+<p>其中 <span class="math inline">\(i\)</span> 标记当前碱基，<span class="math inline">\(RG_i\)</span> 是所属读组，<span class="math inline">\(Cyc_i\)</span> 是所在 cycle，<span class="math inline">\(Context_i\)</span> 是序列背景，<span class="math inline">\(Q_i\)</span> 是原始报告质量值，<span class="math inline">\(y_i\)</span> 是按 <a href="#eq-08-wgs-and-wes-002" class="quarto-xref">公式&nbsp;<span>7.1</span></a> 数出的经验质量。</p>
+<div class="book-warning callout callout-style-default callout-warning callout-titled" title="注意｜BQSR 改变的是质量值，不是碱基">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-<span class="screen-reader-only">警告</span>注意｜BQSR 改变的是质量值
+<span class="screen-reader-only">警告</span>注意｜BQSR 改变的是质量值，不是碱基
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>注意：BQSR只校正碱基质量值而不改变碱基组成，特别是对于那些质量值偏低的碱基，我们只能说它被解析成当前碱基组成的准确性很低，但是我们又无法说明它实际更可能是哪种碱基，所以干脆不改</p>
+<p>BQSR 只校正质量值而不改变碱基组成。对一个质量值偏低的碱基，我们只能说”它被解析成当前碱基的可靠性存疑”，但无法说明它更可能是什么碱基，所以干脆不改碱基本身。另注意”mismatch 即错误”这一假设依赖 known-sites 的质量：已知位点清单覆盖不足时（如研究物种缺乏人群变异资源），真实变异会被误当成错误，校正反而引入偏差。</p>
 </div>
 </div>
-<p>那么，BQSR的工作原理是怎样的？</p>
-<p>BQSR本质上是一种回归模型</p>
-<p>前提假设：影响质量评估的因素只有reads group来源，测序的cycle和当前测序碱基的序列组成背景（这里将它上游的若干个连续位点的碱基组成看作它的背景，一般为2~6，BQSR中默认为6）</p>
-<p>则基于这个前提假设，我们可以得出以下结论：</p>
-<blockquote class="blockquote">
-<p>相同reads group来源，同处于一个cycle，且序列背景相同的碱基，它们具有相同的测序错误率，这样的碱基组成一个bin</p>
-</blockquote>
-<p>则可以建立这样的拟合模型：</p>
-<p><span id="eq-08-wgs-and-wes-001" class="book-equation"><span class="equation-scroll" tabindex="0" role="region" aria-label="公式 7.1"><span class="math display">\[
-X_i=(RG_i,Cyc_i,Context_i) \quad \begin{matrix} f \\ \to \end{matrix} \quad y_i
-\]</span></span><a class="equation-label" href="#eq-08-wgs-and-wes-001" aria-label="公式（7.1）">(7.1)</a></span></p>
-<p>其中，i表示当前碱基，<span class="math inline">\(RG_i\)</span>表示碱基所属的Reads Group来源，<span class="math inline">\(Cyc_i\)</span>表示该碱基所在的测序cycle，<span class="math inline">\(Context_i\)</span>表示该碱基的序列组成背景，<span class="math inline">\(y_i\)</span>表示该碱基的实际测序质量(emprical quality)</p>
-<p>这三个分量可以直接通过输入的BAM文件的记录获得，那如何获得实际的实际测序质量呢？</p>
-<p>可以通过BAM文件中的比对结果推出</p>
-<p>用给定的大型基因组测序计划得到的人群变异位点作为输入，将样本中潜在变异位点与人群注释位点overlap的部分过滤掉，则剩下的那些位点，我们假设它们都是“假”的变异位点，是测序错误导致的误检</p>
-<p>则实际测序质量为：</p>
-<p><span id="eq-08-wgs-and-wes-002" class="book-equation"><span class="equation-scroll" tabindex="0" role="region" aria-label="公式 7.2"><span class="math display">\[
-EQ=-10\log \frac{\#mismatch + 1}{\#bases + 2}
-\]</span></span><a class="equation-label" href="#eq-08-wgs-and-wes-002" aria-label="公式（7.2）">(7.2)</a></span></p>
-<p>注意：emprical quality是以bin为单位计算出来的</p>
-<p>这样，有了X和Y，就可以进行拟合模型的训练了，训练好的模型就可以用于碱基质量值的校正</p>
-<p>上述只是BQSR的基本逻辑框架，在实际的实现细节上会稍有一些差别</p>
-</section>
-<section id="src-0070-WGS-337" class="level4">
-<h4 class="anchored" data-anchor-id="src-0070-WGS-337">操作</h4>
-<p><strong>1. 建立较正模型</strong></p>
-<p>质量值校正，这一步需要用到variants的known-sites，所以需要先准备好已知的snp，indel的VCF文件：</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1" data-book-role="code"><pre data-code-text="&quot;# 下载known-site的VCF文件，到Ensembl上下载\nwget -c -P Ref/mouse/mm10/vcf ftp://ftp.ensembl.org/pub/release-93/variation/vcf/mus_musculus/mus_musculus.vcf.gz &gt;download.log &amp;\ncd Ref/mouse/mm10/vcf &amp;&amp; gunzip mus_musculus.vcf.gz &amp;&amp; mv mus_musculus.vcf dbsnp_150.mm10.vcf\n# 建好vcf文件的索引，需要用到GATK工具集中的IndexFeatureFile，该命令会在指定的vcf文件的相同路径下生成一个以\&quot;.idx\&quot;为后缀的文件\ngatk IndexFeatureFile -F dbsnp_150.mm10.vcf\n\n# 建立较正模型\ngatk BaseRecalibrator -R Ref/mouse/mm10/bwa/mm10.fa -I PharmacogenomicsDB/mouse/SAM/ERR118300.enriched.markdup.bam -O \\\nPharmacogenomicsDB/mouse/SAM/ERR118300.recal.table --known-sites Ref/mouse/mm10/vcf/dbsnp_150.mm10.vcf&quot;" class="sourceCode numberSource bash numberLines code-with-copy"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1"></a><span class="co"># 下载known-site的VCF文件，到Ensembl上下载</span></span>
-<span id="cb1-2"><a href="#cb1-2"></a><span class="fu">wget</span> <span class="at">-c</span> <span class="at">-P</span> Ref/mouse/mm10/vcf ftp://ftp.ensembl.org/pub/release-93/variation/vcf/mus_musculus/mus_musculus.vcf.gz <span class="op">&gt;</span>download.log <span class="kw">&amp;</span></span>
-<span id="cb1-3"><a href="#cb1-3"></a><span class="bu">cd</span> Ref/mouse/mm10/vcf <span class="kw">&amp;&amp;</span> <span class="fu">gunzip</span> mus_musculus.vcf.gz <span class="kw">&amp;&amp;</span> <span class="fu">mv</span> mus_musculus.vcf dbsnp_150.mm10.vcf</span>
-<span id="cb1-4"><a href="#cb1-4"></a><span class="co"># 建好vcf文件的索引，需要用到GATK工具集中的IndexFeatureFile，该命令会在指定的vcf文件的相同路径下生成一个以".idx"为后缀的文件</span></span>
-<span id="cb1-5"><a href="#cb1-5"></a><span class="ex">gatk</span> IndexFeatureFile <span class="at">-F</span> dbsnp_150.mm10.vcf</span>
-<span id="cb1-6"><a href="#cb1-6"></a></span>
-<span id="cb1-7"><a href="#cb1-7"></a><span class="co"># 建立较正模型</span></span>
-<span id="cb1-8"><a href="#cb1-8"></a><span class="ex">gatk</span> BaseRecalibrator <span class="at">-R</span> Ref/mouse/mm10/bwa/mm10.fa <span class="at">-I</span> PharmacogenomicsDB/mouse/SAM/ERR118300.enriched.markdup.bam <span class="at">-O</span> <span class="dt">\</span></span>
-<span id="cb1-9"><a href="#cb1-9"></a>PharmacogenomicsDB/mouse/SAM/ERR118300.recal.table <span class="at">--known-sites</span> Ref/mouse/mm10/vcf/dbsnp_150.mm10.vcf</span></code></pre></div><button title="复制到剪贴板" class="code-copy-button"><i class="bi"></i></button></div>
-<p><strong>2. 质量值校准</strong></p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2" data-book-role="code"><pre data-code-text="&quot;# 质量校正\ngatk ApplyBQSR -R Ref/mouse/mm10/bwa/mm10.fa -I PharmacogenomicsDB/mouse/SAM/ERR118300.enriched.markdup.bam -bqsr \\\nPharmacogenomicsDB/mouse/SAM/ERR118300.recal.table -O PharmacogenomicsDB/mouse/SAM/ERR118300.recal.bam&quot;" class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 质量校正</span></span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="ex">gatk</span> ApplyBQSR <span class="at">-R</span> Ref/mouse/mm10/bwa/mm10.fa <span class="at">-I</span> PharmacogenomicsDB/mouse/SAM/ERR118300.enriched.markdup.bam <span class="at">-bqsr</span> <span class="dt">\</span></span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>PharmacogenomicsDB/mouse/SAM/ERR118300.recal.table <span class="at">-O</span> PharmacogenomicsDB/mouse/SAM/ERR118300.recal.bam</span></code></pre></div><button title="复制到剪贴板" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="book-placeholder">
-<p>本节内容待补充。</p>
-</div>
-</section>
+<p><strong>操作。</strong> 在示例数据与 Ensembl 资源上的两步命令（沿用 7.2.2 准备的文件；完整脚本见 7.5.1）：</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3" data-book-role="code"><pre data-code-text="&quot;# 1. 建立校正模型：--known-sites 给出已知变异位点，输出校正表\ngatk BaseRecalibrator \\\n  -R ref/GRCh38.fa \\\n  -I BAM/NA12878.subset.sorted.markdup.bam \\\n  --known-sites ref/known/homo_sapiens-chr21.vcf.gz \\\n  -O BAM/NA12878.subset.recal.table\n\n# 2. 把校正结果写回 BAM\ngatk ApplyBQSR \\\n  -R ref/GRCh38.fa \\\n  -I BAM/NA12878.subset.sorted.markdup.bam \\\n  --bqsr-recal-file BAM/NA12878.subset.recal.table \\\n  -O BAM/NA12878.subset.sorted.markdup.recal.bam&quot;" class="sourceCode numberSource bash numberLines code-with-copy"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1"></a><span class="co"># 1. 建立校正模型：--known-sites 给出已知变异位点，输出校正表</span></span>
+<span id="cb3-2"><a href="#cb3-2"></a><span class="ex">gatk</span> BaseRecalibrator <span class="dt">\</span></span>
+<span id="cb3-3"><a href="#cb3-3"></a>  <span class="at">-R</span> ref/GRCh38.fa <span class="dt">\</span></span>
+<span id="cb3-4"><a href="#cb3-4"></a>  <span class="at">-I</span> BAM/NA12878.subset.sorted.markdup.bam <span class="dt">\</span></span>
+<span id="cb3-5"><a href="#cb3-5"></a>  <span class="at">--known-sites</span> ref/known/homo_sapiens-chr21.vcf.gz <span class="dt">\</span></span>
+<span id="cb3-6"><a href="#cb3-6"></a>  <span class="at">-O</span> BAM/NA12878.subset.recal.table</span>
+<span id="cb3-7"><a href="#cb3-7"></a></span>
+<span id="cb3-8"><a href="#cb3-8"></a><span class="co"># 2. 把校正结果写回 BAM</span></span>
+<span id="cb3-9"><a href="#cb3-9"></a><span class="ex">gatk</span> ApplyBQSR <span class="dt">\</span></span>
+<span id="cb3-10"><a href="#cb3-10"></a>  <span class="at">-R</span> ref/GRCh38.fa <span class="dt">\</span></span>
+<span id="cb3-11"><a href="#cb3-11"></a>  <span class="at">-I</span> BAM/NA12878.subset.sorted.markdup.bam <span class="dt">\</span></span>
+<span id="cb3-12"><a href="#cb3-12"></a>  <span class="at">--bqsr-recal-file</span> BAM/NA12878.subset.recal.table <span class="dt">\</span></span>
+<span id="cb3-13"><a href="#cb3-13"></a>  <span class="at">-O</span> BAM/NA12878.subset.sorted.markdup.recal.bam</span></code></pre></div><button title="复制到剪贴板" class="code-copy-button"><i class="bi"></i></button></div>
+<p><span id="src-0070-WGS-337"></span></p>
+<p><strong>什么时候不做 BQSR。</strong> 校正模型需要足够的数据支撑。单样本 WES 的数据量通常够用；但样本极小、数据量过低，或 known-sites 资源与研究物种、群体不匹配时，BQSR 的估计不可靠，宁可不校正并如实记录。GATK 的最佳实践对 WGS 大样本推荐 BQSR；对高质量的 PCR-free 数据，BQSR 带来的改变会小很多。判断标准回到本章主线：<strong>校正的输入证据是否充分，而不是”流程里有没有这一步”</strong>。</p>
 </section>
 </section>
 <section id="sec-07-04" class="level2" data-number="7.4">
 <h2 data-number="7.4" class="anchored" data-anchor-id="sec-07-04"><span class="header-section-number">7.4</span> 基因型似然与局部单倍型重组装</h2>
 <p>理解为什么一个非参考碱基不等于一个真实变异。</p>
-<section id="src-0070-WGS-363" class="level3">
-<h3 class="anchored" data-anchor-id="src-0070-WGS-363">使用GATK鉴定SNV/SNP位点</h3>
-<section id="src-0070-WGS-365" class="level4">
-<h4 class="anchored" data-anchor-id="src-0070-WGS-365">变异位点基因型推断的数学原理</h4>
-<section id="src-0070-WGS-367" class="level5">
-<h5 class="anchored" data-anchor-id="src-0070-WGS-367">单点基因型推断</h5>
-<p>问题描述</p>
-<blockquote class="blockquote">
-<p>某一区域的比对结果如下：</p>
+<p><span id="src-0070-WGS-363"></span> <span id="src-0070-WGS-365"></span></p>
+<section id="sec-07-04-genotype-likelihood" class="level3">
+<h3 class="anchored" data-anchor-id="sec-07-04-genotype-likelihood">从碱基比例到基因型似然</h3>
+<p><span id="src-0070-WGS-367"></span></p>
+<p>先从一个具体的比对场景开始。某一区域的比对结果如下：</p>
 <pre data-code-text="&quot;REFERENCE: atcatgacggcaGtagcatat\n--------------------------------\nREAD1:     atcatgacggcaGtagcatat\nREAD2:         tgacggcaGtagcatat\nREAD3:     atcatgacggcaAtagca\nREAD4:            cggcaGtagcatat\nREAD5:     atcatgacggcaGtagc&quot;" class="text" data-book-role="data"><code>REFERENCE: atcatgacggcaGtagcatat
 --------------------------------
 READ1:     atcatgacggcaGtagcatat
@@ -1019,50 +1113,32 @@ READ2:         tgacggcaGtagcatat
 READ3:     atcatgacggcaAtagca
 READ4:            cggcaGtagcatat
 READ5:     atcatgacggcaGtagc</code></pre>
-<p>该区域存在一个候选变异位点，且在上面的比对结果中用大写字母标出：该碱基位置共用5条reads成功比对上，其中有4条reads在该位置的碱基组成与参考基因组一致，为G，而只有一条read的碱基组成为A，与参考基因组不同，即G:A=4:1</p>
-<p>该个体该位点似乎是一个G/A杂合，因为按照最简单的杂合位点的定义标准，若一个位点中检出的碱基组成中，与参考不一致的碱基组成比例在20%~80%的范围内，就可是算作是一个杂合位点。显然，在本示例中，是满足这个条件的</p>
-<p>然后，仅依据碱基组成比例来作这个推断，显然是不够可靠的，因为支持其为G/A杂合的read只有一条，而该read可能来自：</p>
+<p>大写字母标出候选变异位点：共 5 条 reads 比对到该位置，其中 4 条与参考一致（G），1 条不同（A），即 G:A = 4:1。</p>
+<p>按最朴素的规则——与参考不一致的碱基比例在 20%–80% 之间就判为杂合——这个位点”显然”是 G/A 杂合。但支持 A 的 read 只有一条，而这一条 read 上的碱基可能来自：</p>
 <ul>
-<li>实际存在的变异</li>
-<li>建库过程中引入的错误（PCR）</li>
-<li>测序过程中错误的碱基检测（base calling）</li>
-<li>比对错误</li>
+<li>实际存在的变异；</li>
+<li>建库过程中引入的错误（PCR）；</li>
+<li>测序过程中的碱基识别错误（base calling）；</li>
+<li>比对错误（read 其实来自别的位置）。</li>
 </ul>
-<p>因此，为了得到更为可靠的变异检测结果，我们应该综合考虑更多的信息，在给出给出对于位点genotype推断时，同时给出该推断的置信度</p>
-<p>那么，如何实现呢？</p>
-</blockquote>
-<p>简单来说，就是基于各genotype(<span class="math inline">\(G_i\)</span>)的人群先验概率<span class="math inline">\(P(G_i)\)</span>以及特定样本对应位点的测序结果<span class="math inline">\(S\)</span>，推断其可能为各个<span class="math inline">\(G_i\)</span>的后验概率<span class="math inline">\(P(G | S)\)</span>，根据贝叶斯推断的方法，将后验概率最高的那种<span class="math inline">\(G_i\)</span>作为其最终推断出的genotype，即</p>
+<p>仅凭碱基比例作判断，无法区分这些来源。可靠的变异检测需要综合考虑更多信息，在给出基因型推断的同时给出该推断的<strong>置信度</strong>。</p>
+<p><strong>贝叶斯框架。</strong> 用 <span class="math inline">\(S\)</span> 表示该位点的测序数据，<span class="math inline">\(G_i\)</span> 表示候选基因型。基于各基因型的人群先验概率 <span class="math inline">\(P(G_i)\)</span> 与似然 <span class="math inline">\(P(S \mid G_i)\)</span>，用贝叶斯公式推断后验概率，取后验最高的基因型作为结果：</p>
 <p><span id="eq-08-wgs-and-wes-003" class="book-equation"><span class="equation-scroll" tabindex="0" role="region" aria-label="公式 7.3"><span class="math display">\[
-G=arg \max_{G_i} P(G_i|S)
+G = \arg\max_{G_i} P(G_i \mid S)
 \]</span></span><a class="equation-label" href="#eq-08-wgs-and-wes-003" aria-label="公式（7.3）">(7.3)</a></span></p>
-<p>而根据贝叶斯公式：</p>
 <p><span id="eq-08-wgs-and-wes-004" class="book-equation"><span class="equation-scroll" tabindex="0" role="region" aria-label="公式 7.4"><span class="math display">\[
 P(G_i|S)=\frac{P(S|G_i)\cdot P(G_i)}{P(S)}
 \]</span></span><a class="equation-label" href="#eq-08-wgs-and-wes-004" aria-label="公式（7.4）">(7.4)</a></span></p>
-<p>由于测序数据确定，<span class="math inline">\(P(S)\)</span>固定，可以省略，则<span class="math inline">\(P(G_i|S) \sim P(S|G_i)\cdot P(G_i)\)</span></p>
-<p>另外<span class="math inline">\(P(G_i)\)</span>是<span class="math inline">\(G_i\)</span>基因型的人群频率，已经给出，所以要想指定<span class="math inline">\(P(G_i|S)\)</span>，只需要额外算出<span class="math inline">\(P(S|G_i)\)</span>即可</p>
-<blockquote class="blockquote">
-<p>注：</p>
-<p>当只有少数样本时，可以从对应的大型人群重测序项目中获取基因型的人群频率，例如dbSNP</p>
-<p>当有多个样本构成一个人群时，可以从当前研究的人群测序数据中，根据allel频率推算出基因型频率（Hardy-Weinberg equilibrium (HWE)）。</p>
-<p>例如，对于某个以A/T形式存在的位点，A的频率为1%（<span class="math inline">\(p=0.01, q=1-p=0.99\)</span>），则 | AA(<span class="math inline">\(p^2\)</span>) | AT(<span class="math inline">\(2pq\)</span>) | TT(<span class="math inline">\(q^2\)</span>) | |:— |:—|:—| |0.0001|0.0198|0.9801|</p>
-</blockquote>
-<p>我们假设各个read相互独立，则<span class="math inline">\(P(S|G_i)\)</span>就是各个read的<span class="math inline">\(P(S_i | G_i)\)</span>的乘积，即</p>
+<p>对确定的测序数据，<span class="math inline">\(P(S)\)</span> 是与 <span class="math inline">\(G_i\)</span> 无关的常数，可以省略，于是 <span class="math inline">\(P(G_i \mid S) \propto P(S \mid G_i) \cdot P(G_i)\)</span>。<span class="math inline">\(P(G_i)\)</span> 是基因型的人群频率，来源有两种：</p>
+<ul>
+<li>样本少时，从大型人群重测序项目获取等位基因频率再推算基因型频率（如 dbSNP 及其频率注释）；</li>
+<li>有自己的研究人群时，可从当前数据的等位基因频率按哈迪–温伯格平衡（Hardy-Weinberg equilibrium，HWE）推算。例如某位点以 A/T 两种形式存在，A 的频率为 1%（<span class="math inline">\(p = 0.01\)</span>，<span class="math inline">\(q = 0.99\)</span>），则三种基因型的期望频率为 AA <span class="math inline">\(p^2 = 0.0001\)</span>、AT <span class="math inline">\(2pq = 0.0198\)</span>、TT <span class="math inline">\(q^2 = 0.9801\)</span>。</li>
+</ul>
+<p>于是问题集中到似然 <span class="math inline">\(P(S \mid G_i)\)</span> 怎么算。假设各条 read 相互独立，似然可以写成各 read 似然的乘积：</p>
 <p><span id="eq-08-wgs-and-wes-005" class="book-equation"><span class="equation-scroll" tabindex="0" role="region" aria-label="公式 7.5"><span class="math display">\[
 P(S|G_i)=\prod_i P(S_i | G_i)
 \]</span></span><a class="equation-label" href="#eq-08-wgs-and-wes-005" aria-label="公式（7.5）">(7.5)</a></span></p>
-<p>则，下面只要分别算出各个<span class="math inline">\(P(S_i | G_i)\)</span>，最后就能得到<span class="math inline">\(P(G_i|S)\)</span></p>
-<p>那么，怎么算这个<span class="math inline">\(P(S_i | G_i)\)</span>呢？</p>
-<p>我们令</p>
-<p><span id="eq-08-wgs-and-wes-006" class="book-equation"><span class="equation-scroll" tabindex="0" role="region" aria-label="公式 7.6"><span class="math display">\[
-G_i = \left\{
-   \begin{array}{ll}
-    G_0 &amp; \textrm{基因型的两个allel与参考基因组都不同} \\
-    G_1 &amp; \textrm{基因型的两个allel中有一个与参考基因组都相同}\\
-    G_2 &amp; \textrm{基因型的两个allel均与参考基因组相同}
-  \end{array}
-  \right.
-\]</span></span><a class="equation-label" href="#eq-08-wgs-and-wes-006" aria-label="公式（7.6）">(7.6)</a></span></p>
+<p><strong>单条 read 的似然。</strong> 记二倍体个体在该位点的基因型为 <span class="math inline">\(g\)</span>，表示其所含参考等位基因的个数：<span class="math inline">\(g = 0\)</span>（两个等位基因都不是参考）、<span class="math inline">\(g = 1\)</span>（杂合）、<span class="math inline">\(g = 2\)</span>（两个都是参考）。用指示变量 <span class="math inline">\(I_i\)</span> 标记一条 read 在该位点的观察结果：read 碱基与参考一致时 <span class="math inline">\(I_i = 1\)</span>，不一致时 <span class="math inline">\(I_i = 0\)</span>。</p>
 <div class="book-warning callout callout-style-default callout-warning callout-titled" title="注意｜简化错误模型的适用范围">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -1073,149 +1149,105 @@ G_i = \left\{
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>这里采用二等位、对称翻转错误的简化教学模型；实际四碱基测序错误模型不能直接套用这些式子。</p>
+<p>下面采用”二等位、对称错误”的简化教学模型：假设位点只有参考与非参考两种状态，且测序错误把任一真实碱基读成另一特定碱基的概率都是 <span class="math inline">\(\epsilon\)</span>。实际工具使用四碱基完整错误模型，每条 read 用自己的质量值 <span class="math inline">\(Q\)</span> 换算错误率 <span class="math inline">\(\epsilon = 10^{-Q/10}\)</span>；本节的式子不能直接套用到真实数据计算，但推理结构与工具一致。</p>
 </div>
 </div>
-<p>则</p>
-<p><span id="eq-08-wgs-and-wes-007" class="book-equation"><span class="equation-scroll" tabindex="0" role="region" aria-label="公式 7.7"><span class="math display">\[
-\left\{
-  \begin{array}{ll}
-  P(S_i | G_0) = (1-\epsilon_i)^{1-I_i}\cdot\epsilon_i^{I_i} \\
-  P(S_i | G_1) = \frac{1}{2}(1-\epsilon_i) + \frac{1}{2}\epsilon_i=\frac{1}{2} \\
-  P(S_i | G_2) = (1-\epsilon_i)^{I_i} \cdot \epsilon_i^{1-I_i}
-  \end{array}
-\right.
-\]</span></span><a class="equation-label" href="#eq-08-wgs-and-wes-007" aria-label="公式（7.7）">(7.7)</a></span></p>
-<p>其中，<span class="math inline">\(I_i\)</span>表示该read当前位点碱基组成是否与参考位点一致，若一致<span class="math inline">\(I_i=1\)</span>，否则<span class="math inline">\(I_i=0\)</span></p>
-<blockquote class="blockquote">
-<p>对上面的<span class="math inline">\(P(S_i | G_i)\)</span>的公式，作一个简单的说明：</p>
-<p>以上的3个式子来源于下面的同一形式</p>
-</blockquote>
-<p><span id="eq-08-wgs-and-wes-008" class="book-equation"><span class="equation-scroll" tabindex="0" role="region" aria-label="公式 7.8"><span class="math display">\[
-P(S_i | G_i)=P(I_i=1)^{I_i}\cdot P(I_i=0)^{1-I_i}
-\]</span></span><a class="equation-label" href="#eq-08-wgs-and-wes-008" aria-label="公式（7.8）">(7.8)</a></span></p>
-<blockquote class="blockquote">
-<p>而不同genotype下，<span class="math inline">\(P(I_i=1)\)</span>或<span class="math inline">\(P(I_i=0)\)</span>因为表示测对和测错对应的事件不同，而得到最终不同的公式</p>
-</blockquote>
-<p>上面是将三种可能基因型的<span class="math inline">\(P(S_i | G_i)\)</span>分别表示出来，为了将它们合并在一个公式中得到更为简洁的表达方式，可采用下面的形式：</p>
+<p>下节推导只用这几个符号：</p>
 <div id="tbl-07-wgs-and-wes-01" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-tbl figure">
 <figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-07-wgs-and-wes-01-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-表&nbsp;7.1: 符号说明
+表&nbsp;7.2: 本节推导使用的符号
 </figcaption>
 <div aria-describedby="tbl-07-wgs-and-wes-01-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <div class="book-table-scroll" role="region" aria-label="表格，可横向滚动" tabindex="0"><table class="caption-top table">
-<colgroup>
-<col style="width: 50%">
-<col style="width: 50%">
-</colgroup>
 <thead>
 <tr class="header">
-<th style="text-align: left;">Symbol</th>
-<th style="text-align: left;">Description</th>
+<th style="text-align: left;">符号</th>
+<th style="text-align: left;">含义</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
-<td style="text-align: left;"><span class="math inline">\(n\)</span></td>
-<td style="text-align: left;">Number of samples</td>
+<td style="text-align: left;"><span class="math inline">\(g\)</span></td>
+<td style="text-align: left;">基因型：所含参考等位基因个数（0、1、2）</td>
 </tr>
 <tr class="even">
-<td style="text-align: left;"><span class="math inline">\(m_i\)</span></td>
-<td style="text-align: left;">Ploidy of the <span class="math inline">\(i\)</span>-th sample (<span class="math inline">\(1≤i≤n\)</span>)，即i样本的倍型</td>
+<td style="text-align: left;"><span class="math inline">\(I_i\)</span></td>
+<td style="text-align: left;">第 <span class="math inline">\(i\)</span> 条 read 的观察指示：与参考一致为 1，否则为 0</td>
 </tr>
 <tr class="odd">
-<td style="text-align: left;"><span class="math inline">\(M\)</span></td>
-<td style="text-align: left;">Total number of chromosomes in samples: <span class="math inline">\(M=\sum_i m_i\)</span></td>
+<td style="text-align: left;"><span class="math inline">\(\epsilon_i\)</span></td>
+<td style="text-align: left;">第 <span class="math inline">\(i\)</span> 条 read 在该位点的测序错误率（由其质量值换算）</td>
 </tr>
 <tr class="even">
-<td style="text-align: left;"><span class="math inline">\(d_i\)</span></td>
-<td style="text-align: left;">Sequencing data (bases and qualities) for the <span class="math inline">\(i\)</span>-th sample</td>
+<td style="text-align: left;"><span class="math inline">\(k\)</span>、<span class="math inline">\(l\)</span></td>
+<td style="text-align: left;">比对到该位点的 reads 总数、其中与参考一致的条数</td>
 </tr>
 <tr class="odd">
-<td style="text-align: left;"><span class="math inline">\(g_i\)</span></td>
-<td style="text-align: left;">Genotype (the number of reference alleles) of the <span class="math inline">\(i\)</span>-th sample ( <span class="math inline">\(0≤g_i≤m_i\)</span> )</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;"><span class="math inline">\(\phi_k\)</span></td>
-<td style="text-align: left;">Probability of observing k reference alleles ( <span class="math inline">\(\sum_{k=o}^M \phi_k=1\)</span> )</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;"><span class="math inline">\(Pr\{A\}\)</span></td>
-<td style="text-align: left;">Probability of an event A</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;"><span class="math inline">\(L_i(\theta)\)</span></td>
-<td style="text-align: left;">Likelihood function for the <span class="math inline">\(i\)</span>-th sample: <span class="math inline">\(L_i(\theta)=Pr\{d_i \mid \theta\}\)</span></td>
+<td style="text-align: left;"><span class="math inline">\(S_i\)</span>、<span class="math inline">\(d\)</span></td>
+<td style="text-align: left;">第 <span class="math inline">\(i\)</span> 条 read 的观察数据；全部 reads 的观察数据</td>
 </tr>
 </tbody>
 </table></div>
 </div>
 </figure>
 </div>
-<p>前提假设：</p>
-<blockquote class="blockquote">
-<ul>
-<li>不同位点间相互独立；</li>
-<li>对于同一个位点，不同reads的测序错误或mapping误差相互独立；</li>
-<li>只考虑二等位情况；</li>
-</ul>
-</blockquote>
-<p>估计某个样本出现特定基因型g的概率：<span class="math inline">\(L(g)=?\)</span></p>
+<p>给定基因型 <span class="math inline">\(g\)</span>，一条 read 的观察似然为：</p>
+<p><span id="eq-08-wgs-and-wes-006" class="book-equation"><span class="equation-scroll" tabindex="0" role="region" aria-label="公式 7.6"><span class="math display">\[
+P(S_i \mid g) = \left[\frac{g}{2}(1-\epsilon_i) + \frac{2-g}{2}\epsilon_i\right]^{I_i} \cdot \left[\frac{2-g}{2}(1-\epsilon_i) + \frac{g}{2}\epsilon_i\right]^{1-I_i}
+\]</span></span><a class="equation-label" href="#eq-08-wgs-and-wes-006" aria-label="公式（7.6）">(7.6)</a></span></p>
+<p>这个式子拆开看并不难。方括号里每一项都是两种情形的全概率：read 随机来自父方或母方的染色体各占 <span class="math inline">\(\frac{1}{2}\)</span>，因此观察到与参考一致的碱基的概率是 <span class="math inline">\(\frac{g}{2}(1-\epsilon_i) + \frac{2-g}{2}\epsilon_i\)</span>——基因型以 <span class="math inline">\(g/2\)</span> 的概率提供参考等位基因（读对的概率 <span class="math inline">\(1-\epsilon_i\)</span>），以 <span class="math inline">\((2-g)/2\)</span> 的概率提供非参考等位基因（被读成参考的概率 <span class="math inline">\(\epsilon_i\)</span>）。三种基因型分别代入：</p>
+<p><span id="eq-08-wgs-and-wes-007" class="book-equation"><span class="equation-scroll" tabindex="0" role="region" aria-label="公式 7.7"><span class="math display">\[
+\left\{
+  \begin{array}{ll}
+  P(S_i \mid g{=}0) = (1-\epsilon_i)^{1-I_i}\cdot\epsilon_i^{I_i} \\[4pt]
+  P(S_i \mid g{=}1) = \dfrac{1}{2}(1-\epsilon_i) + \dfrac{1}{2}\epsilon_i = \dfrac{1}{2} \\[4pt]
+  P(S_i \mid g{=}2) = (1-\epsilon_i)^{I_i} \cdot \epsilon_i^{1-I_i}
+  \end{array}
+\right.
+\]</span></span><a class="equation-label" href="#eq-08-wgs-and-wes-007" aria-label="公式（7.7）">(7.7)</a></span></p>
+<p>杂合（<span class="math inline">\(g{=}1\)</span>）时无论读到什么碱基，似然都是 <span class="math inline">\(\frac{1}{2}\)</span>；纯合时似然取决于观察方向与错误方向的匹配。三个式子都来自同一形式<a href="#fn9" class="footnote-ref" id="fnref9" role="doc-noteref"><sup>9</sup></a>：</p>
+<p><span id="eq-08-wgs-and-wes-008" class="book-equation"><span class="equation-scroll" tabindex="0" role="region" aria-label="公式 7.8"><span class="math display">\[
+P(S_i \mid g)=P(I_i=1)^{I_i}\cdot P(I_i=0)^{1-I_i}
+\]</span></span><a class="equation-label" href="#eq-08-wgs-and-wes-008" aria-label="公式（7.8）">(7.8)</a></span></p>
 <div id="fig-08-wgs-and-wes-001" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-08-wgs-and-wes-001-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <img src="../assets/08-wgs-and-wes/001-snp-calling-mathmatical-theory.png" class="img-fluid figure-img">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-08-wgs-and-wes-001-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-图&nbsp;7.5: snp calling mathmatical theory
+图&nbsp;7.6: 一个候选位点的 reads 支持计数示意
 </figcaption>
 </figure>
 </div>
-<p>对于某一个样本的某一个位点，有<span class="math inline">\(k\)</span>条 reads 比对上，其中有<span class="math inline">\(l\)</span>条 (<span class="math inline">\(0 \le l\le k\)</span>) 序列在该位点的碱基组成与 reference 一致，剩余 <span class="math inline">\(k-l\)</span> 条与 reference 不同，其中第 <span class="math inline">\(j\)</span> 条上该碱基的测序错误率为 <span class="math inline">\(\epsilon_j\)</span>，则该样本的基因型与ref一致的有 <span class="math inline">\(g \in [0,m]\)</span> 种（由于这里只考虑人的，则m取值为2，其中g=0表示该样本的基因型与ref一致的allel数为0，即与ref完全不同，例如在该位点可能的二等位为A/C，ref为A，则g=0说明该样本的genotype为C/C，同理，g=1或g=2分别表示该样本的基因型与ref一致的allel数为1或2，在上面举的例子中该样本的基因型就应该为A/C或A/A）的概率为</p>
+<p>把单条 read 的似然推广到整个位点：如 <a href="#fig-08-wgs-and-wes-001" class="quarto-xref">图&nbsp;<span>7.6</span></a> 所示，<span class="math inline">\(k\)</span> 条 reads 比对到该位点，其中 <span class="math inline">\(l\)</span> 条与参考一致、<span class="math inline">\(k - l\)</span> 条不一致，第 <span class="math inline">\(j\)</span> 条 read 的测序错误率为 <span class="math inline">\(\epsilon_j\)</span>（由它自己的质量值给出）。将各基因型代入 <a href="#eq-08-wgs-and-wes-006" class="quarto-xref">公式&nbsp;<span>7.6</span></a> 并对全部 reads 连乘：</p>
 <p><span id="eq-08-wgs-and-wes-009" class="book-equation"><span class="equation-scroll" tabindex="0" role="region" aria-label="公式 7.9"><span class="math display">\[
 \begin{aligned}
-    &amp;\quad L(g) \\
-    &amp;= Pr(d \mid g) \\
-    &amp;= \prod_{i=1}^l Pr_i(A)\prod_{j=l+1}^k Pr_j(\overline A)  \\
-    &amp;= \prod_{i=1}^l [Pr_i(B , A)+Pr_i(\overline B , A)]\prod_{j=l+1}^k [Pr_j(B , \overline A)+Pr_j(\overline B , \overline A)] \\
-    &amp;= \prod_{i=1}^l [Pr_i(B,C) + Pr_i(\overline B,\overline C)] \prod_{j=l+1}^k [Pr_j(B,\overline C) + Pr_j(\overline B,C)] \\
-    \end{aligned}
+L(g) = P(d \mid g)
+&amp;= \prod_{i=1}^l \left[\frac{g}{2}(1-\epsilon_i) + \frac{2-g}{2}\epsilon_i \right] \prod_{j=l+1}^k \left[\frac{2-g}{2}(1-\epsilon_j) + \frac{g}{2}\epsilon_j \right]
+\end{aligned}
 \]</span></span><a class="equation-label" href="#eq-08-wgs-and-wes-009" aria-label="公式（7.9）">(7.9)</a></span></p>
-<blockquote class="blockquote">
-<p>其中，<span class="math inline">\(m\)</span> 是该物种的倍性，普通人是二倍体，因此一般 <span class="math inline">\(m=2\)</span></p>
-<p>事件<span class="math inline">\(A=\{测序碱基与\text{ref}一致\}\)</span>，则<span class="math inline">\(\overline A=\{测序碱基与\text{ref}不一致\}\)</span></p>
-<p>事件<span class="math inline">\(B=\{该碱基的测序是正确的\}\)</span>，则<span class="math inline">\(\overline B=\{该碱基的测序是错误的\}\)</span></p>
-<p>事件<span class="math inline">\(C=\{实际碱基与\text{ref}一致\}\)</span>，则<span class="math inline">\(\overline C=\{实际碱基与\text{ref}不一致\}\)</span></p>
-</blockquote>
-<p><a href="#eq-08-wgs-and-wes-009" class="quarto-xref">公式&nbsp;<span>7.9</span></a> 中，倒数第二行到最后一行的推导 涉及到最基本的逻辑常识，这里就不再赘述了</p>
-<p>由于测序错误与基因组的组成无关，即<span class="math inline">\(B \bot C\)</span>，因此上面的公式可以向下继续推导：</p>
-<p><span id="eq-08-wgs-and-wes-010" class="book-equation"><span class="equation-scroll" tabindex="0" role="region" aria-label="公式 7.10"><span class="math display">\[
+<p><a href="#eq-08-wgs-and-wes-009" class="quarto-xref">公式&nbsp;<span>7.9</span></a> 中的方括号来自全概率分解：记 <span class="math inline">\(B\)</span> 为”该碱基测序正确”、<span class="math inline">\(C\)</span> 为”该碱基实际与参考一致”，则”观察到与参考一致”要么 <span class="math inline">\(B,\,C\)</span> 同时发生（是参考且读对），要么 <span class="math inline">\(\overline{B},\,\overline{C}\)</span> 同时发生（非参考且读错）。测序错误与真实碱基组成无关（<span class="math inline">\(B \perp C\)</span>），于是每一项都能写成乘积之和的形式；而”实际与参考一致”的概率由基因型给出——二倍体有 2 个等位基因、其中 <span class="math inline">\(g\)</span> 个是参考，随机抽出一条 read 的等位基因为参考的概率是：</p>
+<p><span id="eq-08-wgs-and-wes-011" class="book-equation"><span class="equation-scroll" tabindex="0" role="region" aria-label="公式 7.10"><span class="math display">\[
 \begin{aligned}
-    &amp;=  \prod_{i=1}^l [Pr_i(C)Pr_i(B) + Pr_i(\overline C)Pr_i(\overline B)] \prod_{j=l+1}^k [Pr_j(\overline C)Pr_j(B) + Pr_j(C)Pr_j(\overline B)] \\
-    &amp;= \prod_{i=1}^l \left[ \frac{g}{m}(1-\epsilon_i) + \frac{m-g}{m}\epsilon_i \right] \prod_{j=l+1}^k \left[  \frac{m-g}{m}(1-\epsilon_j) +  \frac{g}{m}\epsilon_j\right] \\
-    &amp;= \frac{1}{m^k}\prod_{i=1}^l [g(1-\epsilon_i) + (m-g)\epsilon_i] \prod_{j=l+1}^k [(m-g)(1-\epsilon_j) + g\epsilon_j]
-    \end{aligned}
-\]</span></span><a class="equation-label" href="#eq-08-wgs-and-wes-010" aria-label="公式（7.10）">(7.10)</a></span></p>
-<p><a href="#eq-08-wgs-and-wes-010" class="quarto-xref">公式&nbsp;<span>7.10</span></a> 中，第一行到第二行的推导 利用了：</p>
-<p><span id="eq-08-wgs-and-wes-011" class="book-equation"><span class="equation-scroll" tabindex="0" role="region" aria-label="公式 7.11"><span class="math display">\[
+&amp;Pr(B)=1-\epsilon, \quad Pr(\overline B)=\epsilon \\
+&amp;Pr(C)=\frac{g}{2}, \quad Pr(\overline C)=\frac{2-g}{2}
+\end{aligned}
+\]</span></span><a class="equation-label" href="#eq-08-wgs-and-wes-011" aria-label="公式（7.10）">(7.10)</a></span></p>
+<p>把这组概率代回分解式，就得到 <a href="#eq-08-wgs-and-wes-009" class="quarto-xref">公式&nbsp;<span>7.9</span></a> 的最终形式：</p>
+<p><span id="eq-08-wgs-and-wes-010" class="book-equation"><span class="equation-scroll" tabindex="0" role="region" aria-label="公式 7.11"><span class="math display">\[
 \begin{aligned}
-    &amp;Pr(B)=1-\epsilon, \quad Pr(\overline B)=\epsilon \\
-    &amp;Pr(C)=\frac gm , \quad Pr(\overline C)=\frac{m-g}{m}
-    \end{aligned}
-\]</span></span><a class="equation-label" href="#eq-08-wgs-and-wes-011" aria-label="公式（7.11）">(7.11)</a></span></p>
-<p><a href="#eq-08-wgs-and-wes-011" class="quarto-xref">公式&nbsp;<span>7.11</span></a> 中的第一行很好理解，在这里就不作更多的解释</p>
-<p>对 <a href="#eq-08-wgs-and-wes-011" class="quarto-xref">公式&nbsp;<span>7.11</span></a> 中的第二行，下面作一下简单的解释：</p>
-<blockquote class="blockquote">
-<p>由于上面的前提假设中就已经提到，只考虑双等位情况，ref allele即是双等位中的一种，则对于一个m倍体的个体，它该等位基因座上有m个等位基因，其中与ref allele一致的有g个，则剩下m-g个基因座上的allele与ref allele不一致</p>
-<p>则，随机从这m个基因座中抽一个，其基因型与ref一致的概率为<span class="math inline">\(Pr(C)=g/m\)</span>，与ref不一致的概率为<span class="math inline">\(Pr(\overline C)=1-g/m=(m-g)/m\)</span></p>
-</blockquote>
+\prod_{i=1}^l \left[\frac{g}{2}(1-\epsilon_i) + \frac{2-g}{2}\epsilon_i \right]
+= \frac{1}{2^k}\prod_{i=1}^l \left[g(1-\epsilon_i) + (2-g)\epsilon_i \right]
+\end{aligned}
+\]</span></span><a class="equation-label" href="#eq-08-wgs-and-wes-010" aria-label="公式（7.11）">(7.11)</a></span></p>
+<p>即把 <span class="math inline">\(\frac{g}{2}\)</span> 与 <span class="math inline">\(\frac{2-g}{2}\)</span> 的公共因子 <span class="math inline">\(\frac{1}{2}\)</span> 提出、连乘成 <span class="math inline">\(\frac{1}{2^k}\)</span> 的整理。</p>
+<p>回到开头的例子：G:A = 4:1、各 read 质量值 Q30 左右（<span class="math inline">\(\epsilon \approx 0.001\)</span>）时，<span class="math inline">\(g{=}2\)</span>（纯合参考）下观察到那条不一致 read 的似然约为 <span class="math inline">\(\epsilon\)</span>；<span class="math inline">\(g{=}1\)</span>（杂合）下每条 read 的似然约 <span class="math inline">\(\frac{1}{2}\)</span>，五条连乘约 <span class="math inline">\(0.03\)</span>；再结合人群先验中”绝大多数位点纯合”的事实，纯合参考的后验通常仍然更高——这正是”不能只看碱基比例”的定量版本。当支持 A 的 read 增加到几十条、质量值又高时，天平才会倒向杂合。<strong>先验、似然、错误率三者共同决定结论，缺一不可。</strong></p>
+<p><span id="src-0070-WGS-537"></span></p>
 </section>
-<section id="src-0070-WGS-537" class="level5">
-<h5 class="anchored" data-anchor-id="src-0070-WGS-537">单体型推断</h5>
-<p>GATK进行SNP calling的核心算法为HaplotypeCaller，这个也是GATK中最核心的算法，理解了这个算法基本上就明白了GATK变异检测的原理</p>
-<p>HaplotypeCaller它本质上是对贝叶斯原理的应用，只是相于同类算法它有点不同之处</p>
-<p>算法思想概述：</p>
+<section id="sec-07-04-haplotypecaller" class="level3">
+<h3 class="anchored" data-anchor-id="sec-07-04-haplotypecaller">HaplotypeCaller 的局部单倍型重组装</h3>
+<p>上节把”一个位点”的推断讲清楚了，但真实的 caller 并不是逐位点独立调用的。GATK 的 HaplotypeCaller 是目前胚系 SNV/indel 检测最常用的算法之一，理解了它，基本就理解了现代变异检测的原理——它的核心思想是：<strong>先把候选区域的所有证据放在一起重组装，再逐位点判断基因型</strong>。</p>
 <div class="book-core callout callout-style-default callout-note callout-titled" title="核心知识｜HaplotypeCaller 与联合分型">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -1226,32 +1258,27 @@ P(S_i | G_i)=P(I_i=1)^{I_i}\cdot P(I_i=0)^{1-I_i}
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>HaplotypeCaller 在候选变异区域进行局部重组装，生成候选单倍型，并评估 reads 对这些单倍型的支持。这里的单倍型是一个区域内的序列组合，并不等于“单倍体个体”。在常用的 GATK 胚系多样本流程中，每个样本先独立生成 gVCF，随后进行联合分型；不能把这两个阶段理解为先把整个人群的 reads 混在一起运行 HaplotypeCaller。</p>
+<p>HaplotypeCaller 在候选变异区域进行局部重组装，生成候选单倍型，并评估 reads 对这些单倍型的支持。这里的单倍型（haplotype）是一个区域内的序列组合，并不等于”单倍体个体”。在常用的 GATK 胚系多样本流程中，每个样本先独立生成 gVCF，随后进行联合分型（见 7.5.2）；不能把这两个阶段理解为先把整个人群的 reads 混在一起运行 HaplotypeCaller。</p>
 </div>
 </div>
-<p>下面进行详细地说明：</p>
-<p>在HaplotypeCaller中变异检测过程被分为以下四个大的步骤</p>
+<p>HaplotypeCaller 把变异检测分为四个大的步骤：</p>
 <div id="fig-08-wgs-and-wes-002" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-08-wgs-and-wes-002-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <img src="../assets/08-wgs-and-wes/002-algorithms-bioinf-variants-calling-algorithmn-gatk-1.png" class="img-fluid figure-img">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-08-wgs-and-wes-002-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-图&nbsp;7.6: Algorithms Bioinf variants calling algorithmn GATK 1
+图&nbsp;7.7: HaplotypeCaller 的四个核心步骤
 </figcaption>
 </figure>
 </div>
-<p><strong>1. 确定候选变异区域（ActiveRegion）</strong></p>
-<p>通过read在参考基因组上的比对情况，筛选出潜在的变异区域，这些区域在GATK中被称为ActiveRegion</p>
-<p><strong>2. 通过对候选变异区域进行重新组装来确定单倍型</strong></p>
-<p>对于每个ActiveRegion，GATK会利用<strong>比对到该区域上的所有read</strong>（在这里讨论的按样本生成 gVCF 流程中，使用当前样本的 reads）构建一个类似于de Bruijn的图对ActiveRegion进行局部重新组装，构建出该区域中可能的单倍型序列。然后，使用Smith-Waterman算法将每个单倍型序列和参考基因组进行重新比对，重新检测出潜在的变异位点</p>
-<p><strong>3. 依据所给定的read比对数据计算各个单倍型的似然值</strong></p>
-<p>在步骤2的基础上，我们就得到了在ActiveRegion中所有可能的单倍型序列，接下来需要评估现有数据中对这些单倍型的支持情况</p>
-<p>GATK使用PairHMM算法把原本比对于该区域中的每一条read依次和这些单倍型序列进行两两比对，这样我们就可以得出一个read-单倍型序列成对的似然值矩阵，例如以单倍型为列，以read为行，将矩阵记作<span class="math inline">\((a_{i,j})\)</span></p>
+<p><strong>1. 确定候选变异区域（ActiveRegion）。</strong> 通过 reads 在参考基因组上的比对情况，筛出潜在变异区域。这一步只划定范围，不做判断。</p>
+<p><strong>2. 对候选区域进行局部重组装，确定单倍型。</strong> 对每个 ActiveRegion，利用<strong>比对到该区域上的所有 reads</strong> 构建一个类似于 de Bruijn 图的组装图，对区域做局部重新组装，枚举该区域中可能的单倍型序列；再用 Smith-Waterman 算法（第 4 章讲过的局部比对）把每条单倍型与参考重新比对，重新检出潜在变异位点。相比”直接看比对结果”，重组装能纠正比对阶段留下的偏移——对 indel 尤其有利：一条跨越 indel 的 read 在逐碱基比对中位置可能整体错位，重组装后它与哪条单倍型更匹配就一目了然。</p>
+<p><strong>3. 计算各单倍型的似然值。</strong> 对每个 ActiveRegion，用 PairHMM 算法把区域内每条 read 与每条候选单倍型两两比对，得到 read–单倍型似然矩阵 <span class="math inline">\((a_{ij})\)</span>，其中 <span class="math inline">\(a_{ij} = P(r_i \mid H_j)\)</span>：</p>
 <p><span id="eq-08-wgs-and-wes-012" class="book-equation"><span class="equation-scroll" tabindex="0" role="region" aria-label="公式 7.12"><span class="math display">\[
 \begin{array}{l|c|c|c|c}
 \hline
-0 &amp; H_1 &amp; H_2 &amp; .. &amp; H_m \\
+&amp; H_1 &amp; H_2 &amp; .. &amp; H_m \\
 \hline
 r_1 &amp; a_{11} &amp; a_{12} &amp; .. &amp; a_{1m} \\
 r_2 &amp; a_{21} &amp; a_{22} &amp; .. &amp; a_{2m} \\
@@ -1260,7 +1287,6 @@ r_n &amp; a_{n1} &amp; a_{n2} &amp; .. &amp; a_{nm} \\
 \hline
 \end{array}
 \]</span></span><a class="equation-label" href="#eq-08-wgs-and-wes-012" aria-label="公式（7.12）">(7.12)</a></span></p>
-<p>则矩阵中的某一个元素<span class="math inline">\(a_{ij}\)</span>表示在read i支持单体型为<span class="math inline">\(H_j\)</span>的似然，即<span class="math inline">\(P(r_i\mid H_j)=a_{ij}\)</span></p>
 <div class="book-warning callout callout-style-default callout-warning callout-titled" title="注意｜似然不等于概率">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -1271,24 +1297,18 @@ r_n &amp; a_{n1} &amp; a_{n2} &amp; .. &amp; a_{nm} \\
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>这个矩阵描述每条 read 在每个候选单倍型条件下的似然。软件随后把单倍型层面的证据映射到候选等位基因，并计算基因型似然。不能把跨 reads 的似然直接相加，写成单倍型的概率；下面在条件独立假设下使用似然乘积进行教学推导。具体聚合规则应以所使用的 GATK 版本实现为准。</p>
+<p>这个矩阵描述每条 read 在每个候选单倍型条件下的似然。软件随后把单倍型层面的证据映射到候选等位基因，并计算基因型似然。不能把跨 reads 的似然直接相加当成单倍型的概率；下面在条件独立假设下使用似然乘积进行教学推导，具体聚合规则以所使用的 GATK 版本实现为准。</p>
 </div>
 </div>
-<p>（* 在该步骤中，Pair-HMM这实际上是GATK中最为耗费计算资源的那部分了，GATK的加速也是常常以此为突破口——比如GPU加速或者把Pair-HMM模块烧录到FPGA芯片中，也有人从算法本身出发发表了关于如何更快计算Pair-HMM的文章：<code>https://journals.sagepub.com/doi/pdf/10.1177/1176934318760543</code> ）</p>
-<p>（4）计算每一个样本在最佳单倍型组合下的基因型（Genotype）</p>
-<p>在完成了步骤3之后，我们就知道了<strong>每一条read在每个候选变体位点上支持每一种等位基因（Allele）的概率</strong>了。那么，最后要做的就是通过这些似然值，计算出候选变异位点上最可能的样本基因型，也就是Genotype——这也是发现真正变异的过程。这就需要应用贝叶斯原理来完成这个计算了——GATK这也是到这一步才使用了该原理，通过计算就可以得到每一种Genotype的可能性，最后选择后验概率最高的那一个Genotype作为结果输出至VCF中</p>
-<p>后面的分析中，对于每一个变异位点假设只有二等位形式——注意：这和一个ActiveRegion中存在多种单体型不矛盾，若一个ActiveRegion在群体中存在n个变异位点，在只考虑二等位形式的前提下，该区域具有的单体型总共有<span class="math inline">\(2^n\)</span>种</p>
-<p>下面来推导某个样本中的某一个变异位点最可能的SNP形式</p>
-<p>该样本在该位点的genotype为G的后验概率为：</p>
+<p>PairHMM 是整个流程中计算量最大的部分，GATK 的性能优化常常以此为突破口——GPU 加速、把 Pair-HMM 模块烧录到 FPGA 芯片，也有从算法出发的加速工作<a href="#fn10" class="footnote-ref" id="fnref10" role="doc-noteref"><sup>10</sup></a>。</p>
+<p><strong>4. 计算候选位点的基因型后验。</strong> 在步骤 3 的基础上，我们已经知道每条 read 对每种单倍型的支持程度。最后一步回到贝叶斯框架，计算候选位点上每种基因型的后验概率，选择最高的作为结果输出到 VCF。样本基因型 <span class="math inline">\(G\)</span> 的后验为：</p>
 <p><span id="eq-08-wgs-and-wes-013" class="book-equation"><span class="equation-scroll" tabindex="0" role="region" aria-label="公式 7.13"><span class="math display">\[
 P(G \mid D) = \frac{P(G)P(D \mid G)}{\sum_i P(G_i)P(D \mid G_i)}
 \]</span></span><a class="equation-label" href="#eq-08-wgs-and-wes-013" aria-label="公式（7.13）">(7.13)</a></span></p>
-<!-- Original equation tag: 1 -->
-<p>由于分母部分对于任何形式genotype都一样，即它是个定值，所以可以忽略，因此上面的公式可以简化成：</p>
+<p>分母对所有基因型取相同的值，可以省略：</p>
 <p><span id="eq-08-wgs-and-wes-014" class="book-equation"><span class="equation-scroll" tabindex="0" role="region" aria-label="公式 7.14"><span class="math display">\[
 P(G \mid D) \propto P(G)P(D \mid G)
 \]</span></span><a class="equation-label" href="#eq-08-wgs-and-wes-014" aria-label="公式（7.14）">(7.14)</a></span></p>
-<!-- Original equation tag: 2 -->
 <div class="book-warning callout callout-style-default callout-warning callout-titled" title="注意｜基因型先验与等位基因频率">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -1299,216 +1319,422 @@ P(G \mid D) \propto P(G)P(D \mid G)
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>其中，<span class="math inline">\(P(G)\)</span> 是基因型 <span class="math inline">\(G\)</span> 的先验概率，不能与单个等位基因的频率混为一谈。工具对先验的处理取决于模型和参数，不能假定 GATK 默认给所有基因型相同先验。</p>
+<p>其中 <span class="math inline">\(P(G)\)</span> 是基因型 <span class="math inline">\(G\)</span> 的先验概率，不能与单个等位基因的频率混为一谈。工具对先验的处理取决于模型和参数，不能假定 GATK 默认给所有基因型相同先验。</p>
 </div>
 </div>
-<p><span class="math inline">\(P(D \mid G)\)</span>表示在已知样本genotype为G的前提下，对样本进行测序得到的测序数据为D（仅考虑该ActiveRegion范围内的）的条件概率，我们假设每条reads之间是相互独立的，所以</p>
+<p><span class="math inline">\(P(D \mid G)\)</span> 表示在基因型为 <span class="math inline">\(G\)</span> 的前提下，观察到测序数据 <span class="math inline">\(D\)</span>（仅考虑该 ActiveRegion 范围）的条件概率。假设各条 read 相互独立：</p>
 <p><span id="eq-08-wgs-and-wes-015" class="book-equation"><span class="equation-scroll" tabindex="0" role="region" aria-label="公式 7.15"><span class="math display">\[
 P(D \mid G)=\prod_j P(D_j \mid G)
 \]</span></span><a class="equation-label" href="#eq-08-wgs-and-wes-015" aria-label="公式（7.15）">(7.15)</a></span></p>
-<!-- Original equation tag: 3 -->
-<p>其中，<span class="math inline">\(D_j\)</span>表示该样本测序数据D中的第j条read</p>
-<p>由于我们正常人都是二倍体，则对于某一条reads，它既可能来自于同源染色体1，记作<span class="math inline">\(H_1\)</span>，也可能开自于同源染色体2，记作<span class="math inline">\(H_2\)</span>，所以</p>
+<p>其中 <span class="math inline">\(D_j\)</span> 是该样本测序数据中的第 <span class="math inline">\(j\)</span> 条 read。二倍体的每条 read 要么来自同源染色体 <span class="math inline">\(H_1\)</span>、要么来自 <span class="math inline">\(H_2\)</span>，用全概率展开：</p>
 <p><span id="eq-08-wgs-and-wes-016" class="book-equation"><span class="equation-scroll" tabindex="0" role="region" aria-label="公式 7.16"><span class="math display">\[
-\begin{aligned}
-&amp;\quad P(D_j \mid G) \\
-&amp;= P(D_j,H_1 \mid G) + P(D_j,H_2 \mid G) \\
-&amp;= P(H_1 \mid G)P(D_j \mid H_1) + P(H_2 \mid G)P(D_j \mid H_2)
-\end{aligned}
+P(D_j \mid G) = P(H_1 \mid G)P(D_j \mid H_1) + P(H_2 \mid G)P(D_j \mid H_2)
 \]</span></span><a class="equation-label" href="#eq-08-wgs-and-wes-016" aria-label="公式（7.16）">(7.16)</a></span></p>
-<!-- Original equation tag: 4 -->
-<p>由于理论上一条read来源于<span class="math inline">\(H_1\)</span>还是<span class="math inline">\(H_2\)</span>的概率是均等的，都为1/2，即<span class="math inline">\(P(H_1 \mid G)=P(H_2 \mid G)=1/2\)</span>，所以</p>
+<p>一条 read 来源于两条同源染色体的概率均等，<span class="math inline">\(P(H_1 \mid G)=P(H_2 \mid G)=\frac{1}{2}\)</span>：</p>
 <p><span id="eq-08-wgs-and-wes-017" class="book-equation"><span class="equation-scroll" tabindex="0" role="region" aria-label="公式 7.17"><span class="math display">\[
 P(D_j \mid G)=\frac{P(D_j \mid H_1)}{2} + \frac{P(D_j \mid H_2)}{2}
 \]</span></span><a class="equation-label" href="#eq-08-wgs-and-wes-017" aria-label="公式（7.17）">(7.17)</a></span></p>
-<!-- Original equation tag: 5 -->
-<p>因此 <a href="#eq-08-wgs-and-wes-015" class="quarto-xref">公式&nbsp;<span>7.15</span></a> 可以改写成</p>
+<p>这里把 <span class="math inline">\(H_1\)</span>、<span class="math inline">\(H_2\)</span> 理解为它们各自对应的单倍型，则 <span class="math inline">\(P(D_j \mid H_n)\)</span> 是在特定单倍型下产生 read <span class="math inline">\(D_j\)</span> 的条件概率——正是步骤 3 中 PairHMM 算出的矩阵元素。代回 <a href="#eq-08-wgs-and-wes-015" class="quarto-xref">公式&nbsp;<span>7.15</span></a>：</p>
 <p><span id="eq-08-wgs-and-wes-018" class="book-equation"><span class="equation-scroll" tabindex="0" role="region" aria-label="公式 7.18"><span class="math display">\[
 P(D \mid G)=\prod_j \left( \frac{P(D_j \mid H_1)}{2} + \frac{P(D_j \mid H_2)}{2}\right)
 \]</span></span><a class="equation-label" href="#eq-08-wgs-and-wes-018" aria-label="公式（7.18）">(7.18)</a></span></p>
-<!-- Original equation tag: 6 -->
-<p>现在如果想算出<span class="math inline">\(P(G \mid D)\)</span>，就差<span class="math inline">\(P(D_j \mid H_n)\)</span>了，那么，如何算<span class="math inline">\(P(D_j \mid H_n)\)</span>呢？</p>
-<p>上面已经提到，<span class="math inline">\(P(D_j \mid H_n)\)</span>表示的是由同源染色体<span class="math inline">\(H_n\)</span>产生read <span class="math inline">\(D_j\)</span>的条件概率，而每条同源染色体有它各自的单体型，所以这里可以把<span class="math inline">\(H_n\)</span>理解为它对应的单体型，则<span class="math inline">\(P(D_j \mid H_n)\)</span>可以理解为在特定单体型<span class="math inline">\(H_n\)</span>的前提下，产生read <span class="math inline">\(D_j\)</span>的条件概率</p>
-<div class="book-placeholder">
-<p>本节内容待补充。</p>
-</div>
-</section>
-</section>
+<p>到这里，整条推理链闭合了：reads 对单倍型的似然（PairHMM）→ read 对基因型的似然（两条同源染色体各半）→ 基因型的后验（贝叶斯）。VCF 里每条记录的基因型与置信度，就是这条链的输出。</p>
+<p>最后说明”二等位”假设与多单倍型的关系。后面的分析中对每个变异位点只考虑二等位形式——若一个区域在群体中存在 <span class="math inline">\(n\)</span> 个变异位点，在只考虑二等位的前提下，该区域理论上共有 <span class="math inline">\(2^n\)</span> 种单倍型，但具体到要判断的某个位点，我们只区分参考与非参考两种状态。这是简化，也是主流工具的默认工作方式；更复杂的情形（多等位基因、复合杂合）需要额外的分析步骤。</p>
 </section>
 </section>
 <section id="sec-07-05" class="level2" data-number="7.5">
 <h2 data-number="7.5" class="anchored" data-anchor-id="sec-07-05"><span class="header-section-number">7.5</span> 单样本调用、gVCF与联合分型</h2>
 <p>理解单样本检测和多样本分型之间的关系。</p>
-<section id="src-0070-WGS-701" class="level3">
-<h3 class="anchored" data-anchor-id="src-0070-WGS-701">全外显子组数据分析实战</h3>
-<p>全外显子组测序实验的整体工作流程如下:</p>
-<ol type="1">
-<li>样品制备，核酸分离提纯；</li>
-<li>DNA片段化；</li>
-<li>DNA文库构建；</li>
-<li>使用探针靶向捕获外显子序列；</li>
-<li>PCR扩增；</li>
-<li>qPCR进行质量控制（若需）；</li>
-<li>测序；</li>
-<li>分析数据，突变检测；</li>
-</ol>
-<p>好的样本制备实验能保证后续数据分析的准确度，两部分的工作相辅相成。本节我们将进入下机数据分析的实战环节，只要针对双端测序样本的外显子组下机数据分析，如果是单端测序，可以自行调整Trimmomatic和bwa代码变为单端测序模式，其余步骤不变。</p>
-<p>所需软件： - fastqc - multiqc - bwa - samtools - gatk （此处用gatk 4.1版本） - Annovar</p>
-<p>运行代码如下：</p>
-<p>基本的处理思路是，下机序列经过数据质控后，比对到参考序列上找到最有可能的原位置，结合现有的常见突变位点信息进行筛选，过滤得到样本个体的突变位点信息，并存储在VCF（Variant Call Format）文件中。 利用ANNOVAR软件，同样地结合前人总结的突变信息（humandb/目录下）来注释和解析检测到的个体突变位点，并探索突变与个人生理状态和疾病发展的可能联系。</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4" data-book-role="code"><pre data-code-text="&quot;thread=1\nref=ref/references_hg38_v0_GRCh38.primary_assembly.genome.fa\ndata=data/\nsample=WXS_example\ngatk_db=ref/gatk/\nannovar=/home/huaping/software/annovar/annovar/\n###############\n# fastq QC\n################\n\n#fastq-dump SRR8381428 --split-3\n#fastqc -o fastqc/ ${data}/${sample}*.fq.gz\n#bash check_phred.sh ${data}/${sample}_1.fq.gz\n\n##Running Trimmomatic\n##Paired End Mode:\n##trimmomatic PE [-threads &lt;threads] [-phred33 | -phred64] [-trimlog &lt;logFile&gt;] &lt;input 1&gt; &lt;input 2&gt; &lt;paired output 1&gt; &lt;unpaired output 1&gt; &lt;paired output 2&gt; &lt;unpaired output 2&gt; &lt;option 1&gt;...\ntime trimmomatic PE -phred33 ${data}/${sample}_1.fq.gz ${data}/${sample}_2.fq.gz ${data}/${sample}_1.clean.fq.gz ${data}/${sample}_1.clean.unpaired.fq.gz ${data}/${sample}_2.clean.fq.gz ${data}/${sample}_2.clean.unpaired.fq.gz MINLEN:20 LEADING:20 TRAILING:20 &amp;&amp; echo \&quot;trim done\t$(date \&quot;+%Y-%m-%d %H:%M:%S\&quot;)\&quot;\n\nmkdir -p fastqc/\nfastqc -o fastqc/ ${data}/${sample}*clean.fq.gz &amp;&amp;\nmultiqc fastqc/${sample}*.zip -o fastqc &amp;&amp;  echo \&quot;QC done\t$(date \&quot;+%Y-%m-%d %H:%M:%S\&quot;)\&quot;\n\n##gatk annotation files download\n\n##################\n##alignment\n##################\nmkdir -p BAM/\n#bwa index -a bwtsw ${ref} &amp;&amp;\nbwa mem -M -Y -R &#x27;@RG\\tID:sample_1\\tSM:sample\\tLB:WES\\tPL:Illumina&#x27; ${ref} ${data}/${sample}_1.clean.fq.gz ${data}/${sample}_2.clean.fq.gz | samtools view -Sb - &gt; BAM/${sample}.bam &amp;&amp; echo \&quot;alignment done\t$(date \&quot;+%Y-%m-%d %H:%M:%S\&quot;)\&quot;\n\n#################\n#sam file preprocessing - sort and markduplicate\n#################\nsamtools sort -o BAM/${sample}.sorted.bam BAM/${sample}.bam &amp;&amp;\npicard MarkDuplicates -Xmx64g I=BAM/${sample}.sorted.bam O=BAM/${sample}.sorted.markdup.bam M=BAM/${sample}.sorted.markdup.txt &amp;&amp;\npicard BuildBamIndex -Xmx64g I=BAM/${sample}.sorted.markdup.bam &amp;&amp; echo \&quot;markduplicate done\t$(date \&quot;+%Y-%m-%d %H:%M:%S\&quot;)\&quot;\n\n#samtools faidx ${ref} &amp;&amp;\n#picard CreateSequenceDictionary R=${ref} O=${ref/\\.fa/}.dict &amp;&amp;\n\n##########################\n#BQSR\n##########################\ngatk BaseRecalibrator -R ${ref} -I BAM/${sample}.sorted.markdup.bam \\\n\t--known-sites ${gatk_db}resources_broad_hg38_v0_Mills_and_1000G_gold_standard.indels.hg38.vcf.gz \\\n\t--known-sites ${gatk_db}resources_broad_hg38_v0_Homo_sapiens_assembly38.known_indels.vcf.gz \\\n\t--known-sites ${gatk_db}resources_broad_hg38_v0_hapmap_3.3.hg38.vcf.gz \\\n\t--known-sites ${gatk_db}resources_broad_hg38_v0_Homo_sapiens_assembly38.dbsnp138.vcf \\\n\t-O BAM/${sample}.BQSR.table\ngatk ApplyBQSR -R ${ref} -I BAM/${sample}.sorted.markdup.bam -bqsr BAM/${sample}.BQSR.table -O BAM/${sample}.sorted.markdup.BQSR.bam &amp;&amp; echo \&quot;BQSR done     $(date \&quot;+%Y-%m-%d %H:%M:%S\&quot;)\&quot;\n\n###########################\n##Variant calling - haplotypecaller\n##########################\nmkdir -p VCF/\ngatk HaplotypeCaller -R ${ref} -I BAM/${sample}.sorted.markdup.BQSR.bam -O VCF/${sample}.vcf &amp;&amp; echo \&quot;variant calling done\t$(date \&quot;+%Y-%m-%d %H:%M:%S\&quot;)\&quot;\n\n\n###########################\n#Annotation -ANNOVAR\n###########################\n${annovar}table_annovar.pl VCF/${sample}.vcf ${annovar}humandb/ -buildver hg38 -out VCF/${sample} -remove -protocol refGene,cytoBand,exac03,avsnp147,dbnsfp30a -operation gx,r,f,f,f -nastring . -vcfinput -polish &amp;&amp; echo \&quot;annotation done \t$(date \&quot;+%Y-%m-%d %H:%M:%S\&quot;)\&quot;&quot;" class="sourceCode numberSource bash numberLines code-with-copy"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1"></a><span class="va">thread</span><span class="op">=</span>1</span>
-<span id="cb4-2"><a href="#cb4-2"></a><span class="va">ref</span><span class="op">=</span>ref/references_hg38_v0_GRCh38.primary_assembly.genome.fa</span>
-<span id="cb4-3"><a href="#cb4-3"></a><span class="va">data</span><span class="op">=</span>data/</span>
-<span id="cb4-4"><a href="#cb4-4"></a><span class="va">sample</span><span class="op">=</span>WXS_example</span>
-<span id="cb4-5"><a href="#cb4-5"></a><span class="va">gatk_db</span><span class="op">=</span>ref/gatk/</span>
-<span id="cb4-6"><a href="#cb4-6"></a><span class="va">annovar</span><span class="op">=</span>/home/huaping/software/annovar/annovar/</span>
-<span id="cb4-7"><a href="#cb4-7"></a><span class="co">###############</span></span>
-<span id="cb4-8"><a href="#cb4-8"></a><span class="co"># fastq QC</span></span>
-<span id="cb4-9"><a href="#cb4-9"></a><span class="co">################</span></span>
-<span id="cb4-10"><a href="#cb4-10"></a></span>
-<span id="cb4-11"><a href="#cb4-11"></a><span class="co">#fastq-dump SRR8381428 --split-3</span></span>
-<span id="cb4-12"><a href="#cb4-12"></a><span class="co">#fastqc -o fastqc/ ${data}/${sample}*.fq.gz</span></span>
-<span id="cb4-13"><a href="#cb4-13"></a><span class="co">#bash check_phred.sh ${data}/${sample}_1.fq.gz</span></span>
-<span id="cb4-14"><a href="#cb4-14"></a></span>
-<span id="cb4-15"><a href="#cb4-15"></a><span class="co">##Running Trimmomatic</span></span>
-<span id="cb4-16"><a href="#cb4-16"></a><span class="co">##Paired End Mode:</span></span>
-<span id="cb4-17"><a href="#cb4-17"></a><span class="co">##trimmomatic PE [-threads &lt;threads] [-phred33 | -phred64] [-trimlog &lt;logFile&gt;] &lt;input 1&gt; &lt;input 2&gt; &lt;paired output 1&gt; &lt;unpaired output 1&gt; &lt;paired output 2&gt; &lt;unpaired output 2&gt; &lt;option 1&gt;...</span></span>
-<span id="cb4-18"><a href="#cb4-18"></a><span class="bu">time</span> trimmomatic PE <span class="at">-phred33</span> <span class="va">${data}</span>/<span class="va">${sample}</span>_1.fq.gz <span class="va">${data}</span>/<span class="va">${sample}</span>_2.fq.gz <span class="va">${data}</span>/<span class="va">${sample}</span>_1.clean.fq.gz <span class="va">${data}</span>/<span class="va">${sample}</span>_1.clean.unpaired.fq.gz <span class="va">${data}</span>/<span class="va">${sample}</span>_2.clean.fq.gz <span class="va">${data}</span>/<span class="va">${sample}</span>_2.clean.unpaired.fq.gz MINLEN:20 LEADING:20 TRAILING:20 <span class="kw">&amp;&amp;</span> <span class="bu">echo</span> <span class="st">"trim done  </span><span class="va">$(</span><span class="fu">date</span> <span class="st">"+%Y-%m-%d %H:%M:%S"</span><span class="va">)</span><span class="st">"</span></span>
-<span id="cb4-19"><a href="#cb4-19"></a></span>
-<span id="cb4-20"><a href="#cb4-20"></a><span class="fu">mkdir</span> <span class="at">-p</span> fastqc/</span>
-<span id="cb4-21"><a href="#cb4-21"></a><span class="ex">fastqc</span> <span class="at">-o</span> fastqc/ <span class="va">${data}</span>/<span class="va">${sample}</span><span class="pp">*</span>clean.fq.gz <span class="kw">&amp;&amp;</span></span>
-<span id="cb4-22"><a href="#cb4-22"></a><span class="ex">multiqc</span> fastqc/<span class="va">${sample}</span><span class="pp">*</span>.zip <span class="at">-o</span> fastqc <span class="kw">&amp;&amp;</span>  <span class="bu">echo</span> <span class="st">"QC done   </span><span class="va">$(</span><span class="fu">date</span> <span class="st">"+%Y-%m-%d %H:%M:%S"</span><span class="va">)</span><span class="st">"</span></span>
-<span id="cb4-23"><a href="#cb4-23"></a></span>
-<span id="cb4-24"><a href="#cb4-24"></a><span class="co">##gatk annotation files download</span></span>
-<span id="cb4-25"><a href="#cb4-25"></a></span>
-<span id="cb4-26"><a href="#cb4-26"></a><span class="co">##################</span></span>
-<span id="cb4-27"><a href="#cb4-27"></a><span class="co">##alignment</span></span>
-<span id="cb4-28"><a href="#cb4-28"></a><span class="co">##################</span></span>
-<span id="cb4-29"><a href="#cb4-29"></a><span class="fu">mkdir</span> <span class="at">-p</span> BAM/</span>
-<span id="cb4-30"><a href="#cb4-30"></a><span class="co">#bwa index -a bwtsw ${ref} &amp;&amp;</span></span>
-<span id="cb4-31"><a href="#cb4-31"></a><span class="ex">bwa</span> mem <span class="at">-M</span> <span class="at">-Y</span> <span class="at">-R</span> <span class="st">'@RG\tID:sample_1\tSM:sample\tLB:WES\tPL:Illumina'</span> <span class="va">${ref}</span> <span class="va">${data}</span>/<span class="va">${sample}</span>_1.clean.fq.gz <span class="va">${data}</span>/<span class="va">${sample}</span>_2.clean.fq.gz <span class="kw">|</span> <span class="ex">samtools</span> view <span class="at">-Sb</span> <span class="at">-</span> <span class="op">&gt;</span> BAM/<span class="va">${sample}</span>.bam <span class="kw">&amp;&amp;</span> <span class="bu">echo</span> <span class="st">"alignment done    </span><span class="va">$(</span><span class="fu">date</span> <span class="st">"+%Y-%m-%d %H:%M:%S"</span><span class="va">)</span><span class="st">"</span></span>
-<span id="cb4-32"><a href="#cb4-32"></a></span>
-<span id="cb4-33"><a href="#cb4-33"></a><span class="co">#################</span></span>
-<span id="cb4-34"><a href="#cb4-34"></a><span class="co">#sam file preprocessing - sort and markduplicate</span></span>
-<span id="cb4-35"><a href="#cb4-35"></a><span class="co">#################</span></span>
-<span id="cb4-36"><a href="#cb4-36"></a><span class="ex">samtools</span> sort <span class="at">-o</span> BAM/<span class="va">${sample}</span>.sorted.bam BAM/<span class="va">${sample}</span>.bam <span class="kw">&amp;&amp;</span></span>
-<span id="cb4-37"><a href="#cb4-37"></a><span class="ex">picard</span> MarkDuplicates <span class="at">-Xmx64g</span> I=BAM/<span class="va">${sample}</span>.sorted.bam O=BAM/<span class="va">${sample}</span>.sorted.markdup.bam M=BAM/<span class="va">${sample}</span>.sorted.markdup.txt <span class="kw">&amp;&amp;</span></span>
-<span id="cb4-38"><a href="#cb4-38"></a><span class="ex">picard</span> BuildBamIndex <span class="at">-Xmx64g</span> I=BAM/<span class="va">${sample}</span>.sorted.markdup.bam <span class="kw">&amp;&amp;</span> <span class="bu">echo</span> <span class="st">"markduplicate done </span><span class="va">$(</span><span class="fu">date</span> <span class="st">"+%Y-%m-%d %H:%M:%S"</span><span class="va">)</span><span class="st">"</span></span>
-<span id="cb4-39"><a href="#cb4-39"></a></span>
-<span id="cb4-40"><a href="#cb4-40"></a><span class="co">#samtools faidx ${ref} &amp;&amp;</span></span>
-<span id="cb4-41"><a href="#cb4-41"></a><span class="co">#picard CreateSequenceDictionary R=${ref} O=${ref/\.fa/}.dict &amp;&amp;</span></span>
-<span id="cb4-42"><a href="#cb4-42"></a></span>
-<span id="cb4-43"><a href="#cb4-43"></a><span class="co">##########################</span></span>
-<span id="cb4-44"><a href="#cb4-44"></a><span class="co">#BQSR</span></span>
-<span id="cb4-45"><a href="#cb4-45"></a><span class="co">##########################</span></span>
-<span id="cb4-46"><a href="#cb4-46"></a><span class="ex">gatk</span> BaseRecalibrator <span class="at">-R</span> <span class="va">${ref}</span> <span class="at">-I</span> BAM/<span class="va">${sample}</span>.sorted.markdup.bam <span class="dt">\</span></span>
-<span id="cb4-47"><a href="#cb4-47"></a>    <span class="at">--known-sites</span> <span class="va">${gatk_db}</span>resources_broad_hg38_v0_Mills_and_1000G_gold_standard.indels.hg38.vcf.gz <span class="dt">\</span></span>
-<span id="cb4-48"><a href="#cb4-48"></a>    <span class="at">--known-sites</span> <span class="va">${gatk_db}</span>resources_broad_hg38_v0_Homo_sapiens_assembly38.known_indels.vcf.gz <span class="dt">\</span></span>
-<span id="cb4-49"><a href="#cb4-49"></a>    <span class="at">--known-sites</span> <span class="va">${gatk_db}</span>resources_broad_hg38_v0_hapmap_3.3.hg38.vcf.gz <span class="dt">\</span></span>
-<span id="cb4-50"><a href="#cb4-50"></a>    <span class="at">--known-sites</span> <span class="va">${gatk_db}</span>resources_broad_hg38_v0_Homo_sapiens_assembly38.dbsnp138.vcf <span class="dt">\</span></span>
-<span id="cb4-51"><a href="#cb4-51"></a>    <span class="at">-O</span> BAM/<span class="va">${sample}</span>.BQSR.table</span>
-<span id="cb4-52"><a href="#cb4-52"></a><span class="ex">gatk</span> ApplyBQSR <span class="at">-R</span> <span class="va">${ref}</span> <span class="at">-I</span> BAM/<span class="va">${sample}</span>.sorted.markdup.bam <span class="at">-bqsr</span> BAM/<span class="va">${sample}</span>.BQSR.table <span class="at">-O</span> BAM/<span class="va">${sample}</span>.sorted.markdup.BQSR.bam <span class="kw">&amp;&amp;</span> <span class="bu">echo</span> <span class="st">"BQSR done     </span><span class="va">$(</span><span class="fu">date</span> <span class="st">"+%Y-%m-%d %H:%M:%S"</span><span class="va">)</span><span class="st">"</span></span>
-<span id="cb4-53"><a href="#cb4-53"></a></span>
-<span id="cb4-54"><a href="#cb4-54"></a><span class="co">###########################</span></span>
-<span id="cb4-55"><a href="#cb4-55"></a><span class="co">##Variant calling - haplotypecaller</span></span>
-<span id="cb4-56"><a href="#cb4-56"></a><span class="co">##########################</span></span>
-<span id="cb4-57"><a href="#cb4-57"></a><span class="fu">mkdir</span> <span class="at">-p</span> VCF/</span>
-<span id="cb4-58"><a href="#cb4-58"></a><span class="ex">gatk</span> HaplotypeCaller <span class="at">-R</span> <span class="va">${ref}</span> <span class="at">-I</span> BAM/<span class="va">${sample}</span>.sorted.markdup.BQSR.bam <span class="at">-O</span> VCF/<span class="va">${sample}</span>.vcf <span class="kw">&amp;&amp;</span> <span class="bu">echo</span> <span class="st">"variant calling done  </span><span class="va">$(</span><span class="fu">date</span> <span class="st">"+%Y-%m-%d %H:%M:%S"</span><span class="va">)</span><span class="st">"</span></span>
-<span id="cb4-59"><a href="#cb4-59"></a></span>
-<span id="cb4-60"><a href="#cb4-60"></a></span>
-<span id="cb4-61"><a href="#cb4-61"></a><span class="co">###########################</span></span>
-<span id="cb4-62"><a href="#cb4-62"></a><span class="co">#Annotation -ANNOVAR</span></span>
-<span id="cb4-63"><a href="#cb4-63"></a><span class="co">###########################</span></span>
-<span id="cb4-64"><a href="#cb4-64"></a><span class="va">${annovar}</span><span class="ex">table_annovar.pl</span> VCF/<span class="va">${sample}</span>.vcf <span class="va">${annovar}</span>humandb/ <span class="at">-buildver</span> hg38 <span class="at">-out</span> VCF/<span class="va">${sample}</span> <span class="at">-remove</span> <span class="at">-protocol</span> refGene,cytoBand,exac03,avsnp147,dbnsfp30a <span class="at">-operation</span> gx,r,f,f,f <span class="at">-nastring</span> . <span class="at">-vcfinput</span> <span class="at">-polish</span> <span class="kw">&amp;&amp;</span> <span class="bu">echo</span> <span class="st">"annotation done     </span><span class="va">$(</span><span class="fu">date</span> <span class="st">"+%Y-%m-%d %H:%M:%S"</span><span class="va">)</span><span class="st">"</span></span></code></pre></div><button title="复制到剪贴板" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="book-placeholder">
-<p>本节内容待补充。</p>
-</div>
+<p><span id="src-0070-WGS-701"></span></p>
+<section id="sec-07-05-wes-pipeline" class="level3">
+<h3 class="anchored" data-anchor-id="sec-07-05-wes-pipeline">全外显子组分析实战：从质控到注释</h3>
+<p>现在把 7.2–7.4 的准备串成一条完整的分析链。整体思路：下机序列经质控、比对到参考基因组、前处理得到”分析就绪”的 BAM，HaplotypeCaller 从中检出候选变异并给出基因型与置信度，存入 VCF；最后用 ANNOVAR 结合人群与功能数据库注释变异，得到可以开始生物学解读的结果。</p>
+<p>本章示例所用软件（安装方式见第 2、3 章）：<code>fastp</code>、<code>FastQC</code>、<code>MultiQC</code>、<code>bwa</code>、<code>samtools</code>、GATK 4（本文示例为 4.6.2.0）与 ANNOVAR。注意 GATK 4.6 需要 Java 17 运行时：用 conda/micromamba 安装后，如果 <code>gatk</code> 报 <code>UnsupportedClassVersionError</code>，说明它找到的是系统里更旧的 Java，需要安装 openjdk 17 并通过 <code>JAVA_HOME</code> 指给 GATK。质控工具用 fastp（第 5、6 章同款）；如果你熟悉 Trimmomatic，本章流程同样适用，只需把过滤参数对应替换，其余步骤不变。</p>
+<p><strong>第一步：原始数据质控。</strong> 先对原始 FASTQ 跑 FastQC/MultiQC 了解数据状态，再过滤：</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5" data-book-role="code"><pre data-code-text="&quot;sample=NA12878\ndata=data/\nmkdir -p fastqc fastp BAM VCF\n\n# 原始数据整体质量（第 3 章已讲如何读报告）\nfastqc -o fastqc/ ${data}${sample}_1.fastq.gz ${data}${sample}_2.fastq.gz\nmultiqc fastqc/ -o fastqc/\n\n# 过滤：自动检测双端接头， sliding window 修剪低质量末端\nfastp \\\n  -i ${data}${sample}_1.fastq.gz -I ${data}${sample}_2.fastq.gz \\\n  -o ${data}${sample}_1.clean.fq.gz -O ${data}${sample}_2.clean.fq.gz \\\n  --detect_adapter_for_pe --cut_front --cut_tail --cut_mean_quality 20 \\\n  -h fastp/${sample}.html -j fastp/${sample}.json&quot;" class="sourceCode numberSource bash numberLines code-with-copy"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1"></a><span class="va">sample</span><span class="op">=</span>NA12878</span>
+<span id="cb5-2"><a href="#cb5-2"></a><span class="va">data</span><span class="op">=</span>data/</span>
+<span id="cb5-3"><a href="#cb5-3"></a><span class="fu">mkdir</span> <span class="at">-p</span> fastqc fastp BAM VCF</span>
+<span id="cb5-4"><a href="#cb5-4"></a></span>
+<span id="cb5-5"><a href="#cb5-5"></a><span class="co"># 原始数据整体质量（第 3 章已讲如何读报告）</span></span>
+<span id="cb5-6"><a href="#cb5-6"></a><span class="ex">fastqc</span> <span class="at">-o</span> fastqc/ <span class="va">${data}${sample}</span>_1.fastq.gz <span class="va">${data}${sample}</span>_2.fastq.gz</span>
+<span id="cb5-7"><a href="#cb5-7"></a><span class="ex">multiqc</span> fastqc/ <span class="at">-o</span> fastqc/</span>
+<span id="cb5-8"><a href="#cb5-8"></a></span>
+<span id="cb5-9"><a href="#cb5-9"></a><span class="co"># 过滤：自动检测双端接头， sliding window 修剪低质量末端</span></span>
+<span id="cb5-10"><a href="#cb5-10"></a><span class="ex">fastp</span> <span class="dt">\</span></span>
+<span id="cb5-11"><a href="#cb5-11"></a>  <span class="at">-i</span> <span class="va">${data}${sample}</span>_1.fastq.gz <span class="at">-I</span> <span class="va">${data}${sample}</span>_2.fastq.gz <span class="dt">\</span></span>
+<span id="cb5-12"><a href="#cb5-12"></a>  <span class="at">-o</span> <span class="va">${data}${sample}</span>_1.clean.fq.gz <span class="at">-O</span> <span class="va">${data}${sample}</span>_2.clean.fq.gz <span class="dt">\</span></span>
+<span id="cb5-13"><a href="#cb5-13"></a>  <span class="at">--detect_adapter_for_pe</span> <span class="at">--cut_front</span> <span class="at">--cut_tail</span> <span class="at">--cut_mean_quality</span> 20 <span class="dt">\</span></span>
+<span id="cb5-14"><a href="#cb5-14"></a>  <span class="at">-h</span> fastp/<span class="va">${sample}</span>.html <span class="at">-j</span> fastp/<span class="va">${sample}</span>.json</span></code></pre></div><button title="复制到剪贴板" class="code-copy-button"><i class="bi"></i></button></div>
+<p>过滤后查看 fastp 报告中的保留率与 Q30 比例：保留率过低说明原始数据质量差，需要先回到数据本身找原因，而不是继续硬跑。本章教学子集上的实际结果：</p>
+<pre data-code-text="&quot;fastp: reads 2000000 -&gt; 1999982 (100.0%), q30rate 0.9609 -&gt; 0.9628&quot;" class="text" data-book-role="output"><code>fastp: reads 2000000 -&gt; 1999982 (100.0%), q30rate 0.9609 -&gt; 0.9628</code></pre>
+<p>200 万条 reads 过滤后保留 99.99%、Q30 比例 96.3%，说明这份子集的原始质量很好。</p>
+<p><strong>第二步：比对与排序。</strong> 比对时通过 <code>-R</code> 写入读组信息——<code>SM</code> 必须是真实样本名，<code>ID</code> 在同一样本内唯一，<code>LB</code> 标记文库名，<code>PL</code> 标记平台。这些字段不是注释：BQSR 按读组分别建模，<code>SM</code> 写错会直接影响后续统计：</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb7" data-book-role="code"><pre data-code-text="&quot;# 比对并直接按坐标排序（管道省去中间 SAM 文件）\nbwa mem -t 8 \\\n  -R &#x27;@RG\\tID:NA12878_WES\\tSM:NA12878\\tLB:NA12878_lib1\\tPL:ILLUMINA&#x27; \\\n  ref/GRCh38.fa \\\n  ${data}${sample}_1.clean.fq.gz ${data}${sample}_2.clean.fq.gz \\\n  | samtools sort -@ 4 -o BAM/${sample}.sorted.bam -\n\n# 比对质量速查：比对率、重复概况、深度分布\nsamtools flagstat BAM/${sample}.sorted.bam\nsamtools coverage BAM/${sample}.sorted.bam&quot;" class="sourceCode numberSource bash numberLines code-with-copy"><code class="sourceCode bash"><span id="cb7-1"><a href="#cb7-1"></a><span class="co"># 比对并直接按坐标排序（管道省去中间 SAM 文件）</span></span>
+<span id="cb7-2"><a href="#cb7-2"></a><span class="ex">bwa</span> mem <span class="at">-t</span> 8 <span class="dt">\</span></span>
+<span id="cb7-3"><a href="#cb7-3"></a>  <span class="at">-R</span> <span class="st">'@RG\tID:NA12878_WES\tSM:NA12878\tLB:NA12878_lib1\tPL:ILLUMINA'</span> <span class="dt">\</span></span>
+<span id="cb7-4"><a href="#cb7-4"></a>  ref/GRCh38.fa <span class="dt">\</span></span>
+<span id="cb7-5"><a href="#cb7-5"></a>  <span class="va">${data}${sample}</span>_1.clean.fq.gz <span class="va">${data}${sample}</span>_2.clean.fq.gz <span class="dt">\</span></span>
+<span id="cb7-6"><a href="#cb7-6"></a>  <span class="kw">|</span> <span class="ex">samtools</span> sort <span class="at">-@</span> 4 <span class="at">-o</span> BAM/<span class="va">${sample}</span>.sorted.bam <span class="at">-</span></span>
+<span id="cb7-7"><a href="#cb7-7"></a></span>
+<span id="cb7-8"><a href="#cb7-8"></a><span class="co"># 比对质量速查：比对率、重复概况、深度分布</span></span>
+<span id="cb7-9"><a href="#cb7-9"></a><span class="ex">samtools</span> flagstat BAM/<span class="va">${sample}</span>.sorted.bam</span>
+<span id="cb7-10"><a href="#cb7-10"></a><span class="ex">samtools</span> coverage BAM/<span class="va">${sample}</span>.sorted.bam</span></code></pre></div><button title="复制到剪贴板" class="code-copy-button"><i class="bi"></i></button></div>
+<p>本章子集的 <code>flagstat</code> 摘要（节选）：</p>
+<pre data-code-text="&quot;2001141 + 0 mapped (99.43% : N/A)\n1965286 + 0 properly paired (98.27% : N/A)\n1167 + 0 singletons (0.06% : N/A)&quot;" class="text" data-book-role="output"><code>2001141 + 0 mapped (99.43% : N/A)
+1965286 + 0 properly paired (98.27% : N/A)
+1167 + 0 singletons (0.06% : N/A)</code></pre>
+<p><strong>第三步：标记重复。</strong> GATK 的 <code>MarkDuplicates</code> 按比对位置与方向识别同一来源的片段，在 FLAG 中标记而不是删除：</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb9" data-book-role="code"><pre data-code-text="&quot;gatk MarkDuplicates \\\n  -I BAM/${sample}.sorted.bam \\\n  -O BAM/${sample}.sorted.markdup.bam \\\n  -M BAM/${sample}.markdup_metrics.txt \\\n  --CREATE_INDEX true&quot;" class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="ex">gatk</span> MarkDuplicates <span class="dt">\</span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">-I</span> BAM/<span class="va">${sample}</span>.sorted.bam <span class="dt">\</span></span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">-O</span> BAM/<span class="va">${sample}</span>.sorted.markdup.bam <span class="dt">\</span></span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">-M</span> BAM/<span class="va">${sample}</span>.markdup_metrics.txt <span class="dt">\</span></span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">--CREATE_INDEX</span> true</span></code></pre></div><button title="复制到剪贴板" class="code-copy-button"><i class="bi"></i></button></div>
+<p><code>markdup_metrics.txt</code> 中的重复率是 7.2.3 那组捕获指标之一：WES 高深度文库重复率偏高常见，但异常升高要怀疑 PCR 过度扩增或起始量不足。本章子集实测重复率 5.36%（53,294/993,663 读对），文库复杂度估计约 893 万——对 WES 文库属于正常偏好。</p>
+<pre data-code-text="&quot;NA12878_lib1  READ_PAIRS_EXAMINED=993663  READ_PAIR_DUPLICATES=53294\n              PERCENT_DUPLICATION=0.053637  ESTIMATED_LIBRARY_SIZE=8929119&quot;" class="text" data-book-role="output"><code>NA12878_lib1  READ_PAIRS_EXAMINED=993663  READ_PAIR_DUPLICATES=53294
+              PERCENT_DUPLICATION=0.053637  ESTIMATED_LIBRARY_SIZE=8929119</code></pre>
+<p><strong>第四步：BQSR。</strong> 按 7.3.2 的两步执行，输入 <code>BAM/${sample}.sorted.markdup.bam</code> 与 7.2.2 的 known-sites，输出 <code>${sample}.sorted.markdup.recal.bam</code>。</p>
+<p><strong>第五步：变异检测。</strong></p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb11" data-book-role="code"><pre data-code-text="&quot;gatk HaplotypeCaller \\\n  -R ref/GRCh38.fa \\\n  -I BAM/${sample}.sorted.markdup.recal.bam \\\n  -O VCF/${sample}.raw.vcf.gz&quot;" class="sourceCode numberSource bash numberLines code-with-copy"><code class="sourceCode bash"><span id="cb11-1"><a href="#cb11-1"></a><span class="ex">gatk</span> HaplotypeCaller <span class="dt">\</span></span>
+<span id="cb11-2"><a href="#cb11-2"></a>  <span class="at">-R</span> ref/GRCh38.fa <span class="dt">\</span></span>
+<span id="cb11-3"><a href="#cb11-3"></a>  <span class="at">-I</span> BAM/<span class="va">${sample}</span>.sorted.markdup.recal.bam <span class="dt">\</span></span>
+<span id="cb11-4"><a href="#cb11-4"></a>  <span class="at">-O</span> VCF/<span class="va">${sample}</span>.raw.vcf.gz</span></code></pre></div><button title="复制到剪贴板" class="code-copy-button"><i class="bi"></i></button></div>
+<p>这一步输出的 VCF 还没有经过过滤，是”候选 + 置信度”的原始集合；如何读、如何过滤，是 7.6 的主题。</p>
+<p><strong>第六步：变异注释（ANNOVAR）。</strong> ANNOVAR 是一款广泛使用的注释工具，学术用途免费，需在官网注册获取下载链接；解压后先为 hg38 下载数据库：</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb12" data-book-role="code"><pre data-code-text="&quot;# 注册下载并解压后，进入 annovar/ 目录；为 hg38 下载数据库（体积较大，按需选择协议）\nannotate_variation.pl -buildver hg38 -downdb refGene humandb/\nannotate_variation.pl -buildver hg38 -downdb avsnp151 humandb/\nannotate_variation.pl -buildver hg38 -downdb gnomad_exome humandb/&quot;" class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 注册下载并解压后，进入 annovar/ 目录；为 hg38 下载数据库（体积较大，按需选择协议）</span></span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a><span class="ex">annotate_variation.pl</span> <span class="at">-buildver</span> hg38 <span class="at">-downdb</span> refGene humandb/</span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a><span class="ex">annotate_variation.pl</span> <span class="at">-buildver</span> hg38 <span class="at">-downdb</span> avsnp151 humandb/</span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a><span class="ex">annotate_variation.pl</span> <span class="at">-buildver</span> hg38 <span class="at">-downdb</span> gnomad_exome humandb/</span></code></pre></div><button title="复制到剪贴板" class="code-copy-button"><i class="bi"></i></button></div>
+<p>数据库协议随时间更新（本节命令以 2026-10 官方可用版本为准，使用前查看 ANNOVAR 网站的最新列表），注释时按顺序组合：</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb13" data-book-role="code"><pre data-code-text="&quot;table_annovar.pl VCF/${sample}.filtered.vcf.gz annovar/humandb/ \\\n  -buildver hg38 -out VCF/${sample}.annovar \\\n  -remove \\\n  -protocol refGene,gnomad_exome,avsnp151 \\\n  -operation gx,f,f \\\n  -nastring . -vcfinput -polish&quot;" class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="ex">table_annovar.pl</span> VCF/<span class="va">${sample}</span>.filtered.vcf.gz annovar/humandb/ <span class="dt">\</span></span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">-buildver</span> hg38 <span class="at">-out</span> VCF/<span class="va">${sample}</span>.annovar <span class="dt">\</span></span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">-remove</span> <span class="dt">\</span></span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">-protocol</span> refGene,gnomad_exome,avsnp151 <span class="dt">\</span></span>
+<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">-operation</span> gx,f,f <span class="dt">\</span></span>
+<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">-nastring</span> . <span class="at">-vcfinput</span> <span class="at">-polish</span></span></code></pre></div><button title="复制到剪贴板" class="code-copy-button"><i class="bi"></i></button></div>
+<p><code>-operation</code> 里每个协议对应一种操作类型（<code>gx</code> 基因区注释、<code>f</code> 逐变异过滤式注释），顺序与 <code>-protocol</code> 一一对应。输出中的 <code>Gene.refGene</code>、<code>ExonicFunc.refGene</code>、<code>gnomad_exome</code> 频率等列，就是 7.7 解读与查库的起点。</p>
+</section>
+<section id="sec-07-05-gvcf-jointgenotyping" class="level3">
+<h3 class="anchored" data-anchor-id="sec-07-05-gvcf-jointgenotyping">gVCF 与联合分型</h3>
+<p>上面的流程是<strong>单样本</strong>调用。当研究包含多个样本（家系、群体），逐样本独立调用再合并 VCF 是错误做法：每个样本独立判断”这个位点有没有变异”，低深度位点上单样本证据不足，样本间的信息无法互相支持。GATK 的答案是 <strong>gVCF + 联合分型</strong>：</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb14" data-book-role="code"><pre data-code-text="&quot;# 1. 每个样本运行 HaplotypeCaller 时加 -ERC GVCF：输出不但记录检出变异的位点，\n#    也记录未检出变异位点的置信区间与深度证据\ngatk HaplotypeCaller -ERC GVCF \\\n  -R ref/GRCh38.fa \\\n  -I BAM/sampleA.sorted.markdup.recal.bam \\\n  -O VCF/sampleA.g.vcf.gz\n\n# 2. 把多个样本的 gVCF 导入 GenomicsDB 数据库（示例为两个样本、限定 21 号染色体）\ngatk GenomicsDBImport \\\n  --genomicsdb-workspace-path VCF/cohort_db \\\n  -L 21 \\\n  -V VCF/sampleA.g.vcf.gz -V VCF/sampleB.g.vcf.gz\n\n# 3. 对数据库做联合分型，输出整个队列的 VCF\ngatk GenotypeGVCFs \\\n  -R ref/GRCh38.fa \\\n  -V gendb://VCF/cohort_db \\\n  -O VCF/cohort.joint.vcf.gz&quot;" class="sourceCode numberSource bash numberLines code-with-copy"><code class="sourceCode bash"><span id="cb14-1"><a href="#cb14-1"></a><span class="co"># 1. 每个样本运行 HaplotypeCaller 时加 -ERC GVCF：输出不但记录检出变异的位点，</span></span>
+<span id="cb14-2"><a href="#cb14-2"></a><span class="co">#    也记录未检出变异位点的置信区间与深度证据</span></span>
+<span id="cb14-3"><a href="#cb14-3"></a><span class="ex">gatk</span> HaplotypeCaller <span class="at">-ERC</span> GVCF <span class="dt">\</span></span>
+<span id="cb14-4"><a href="#cb14-4"></a>  <span class="at">-R</span> ref/GRCh38.fa <span class="dt">\</span></span>
+<span id="cb14-5"><a href="#cb14-5"></a>  <span class="at">-I</span> BAM/sampleA.sorted.markdup.recal.bam <span class="dt">\</span></span>
+<span id="cb14-6"><a href="#cb14-6"></a>  <span class="at">-O</span> VCF/sampleA.g.vcf.gz</span>
+<span id="cb14-7"><a href="#cb14-7"></a></span>
+<span id="cb14-8"><a href="#cb14-8"></a><span class="co"># 2. 把多个样本的 gVCF 导入 GenomicsDB 数据库（示例为两个样本、限定 21 号染色体）</span></span>
+<span id="cb14-9"><a href="#cb14-9"></a><span class="ex">gatk</span> GenomicsDBImport <span class="dt">\</span></span>
+<span id="cb14-10"><a href="#cb14-10"></a>  <span class="at">--genomicsdb-workspace-path</span> VCF/cohort_db <span class="dt">\</span></span>
+<span id="cb14-11"><a href="#cb14-11"></a>  <span class="at">-L</span> 21 <span class="dt">\</span></span>
+<span id="cb14-12"><a href="#cb14-12"></a>  <span class="at">-V</span> VCF/sampleA.g.vcf.gz <span class="at">-V</span> VCF/sampleB.g.vcf.gz</span>
+<span id="cb14-13"><a href="#cb14-13"></a></span>
+<span id="cb14-14"><a href="#cb14-14"></a><span class="co"># 3. 对数据库做联合分型，输出整个队列的 VCF</span></span>
+<span id="cb14-15"><a href="#cb14-15"></a><span class="ex">gatk</span> GenotypeGVCFs <span class="dt">\</span></span>
+<span id="cb14-16"><a href="#cb14-16"></a>  <span class="at">-R</span> ref/GRCh38.fa <span class="dt">\</span></span>
+<span id="cb14-17"><a href="#cb14-17"></a>  <span class="at">-V</span> gendb://VCF/cohort_db <span class="dt">\</span></span>
+<span id="cb14-18"><a href="#cb14-18"></a>  <span class="at">-O</span> VCF/cohort.joint.vcf.gz</span></code></pre></div><button title="复制到剪贴板" class="code-copy-button"><i class="bi"></i></button></div>
+<p>联合分型把所有样本在同一批次一起判断基因型：一个位点在某样本中深度不足时，其他样本的群体证据能帮助约束先验；罕见变异在单样本中似然不够强的，在多个样本一致出现时后验会被推向显著。这个设计还有工程上的好处——<strong>增量扩展</strong>：队列加入新样本时，只需对新样本跑 <code>HaplotypeCaller -ERC GVCF</code>，再重建数据库与联合分型，旧样本不必重跑比对与调用。代价是 gVCF 比 VCF 大得多（包含全部位点的证据），存储规划要预留空间。</p>
+<p>什么时候可以不用联合分型？单样本检测（如个人基因组）、或只关心一个样本中高置信度的常见变异时，直接单样本调用的结果已经可用；对小队列（两三个样本）且不计划扩样，联合分型的收益有限。样本量、检测目标与计算资源一起决定流程的选择。</p>
 </section>
 </section>
 <section id="sec-07-06" class="level2" data-number="7.6">
 <h2 data-number="7.6" class="anchored" data-anchor-id="sec-07-06"><span class="header-section-number">7.6</span> VCF解读、过滤与质量评估</h2>
 <p>能区分候选位点与支持充分的结果。</p>
-<div class="book-placeholder">
-<p>本节内容待补充。</p>
+<section id="sec-07-06-vcf-anatomy" class="level3">
+<h3 class="anchored" data-anchor-id="sec-07-06-vcf-anatomy">逐列读懂 VCF</h3>
+<p>第 4 章逐列读过 SAM/BAM；VCF（Variant Call Format）是变异结果的对应格式。先看一条真实记录——本章示例数据 7.5 全链跑出的一个 PASS 杂合变异（列宽截取节选，INFO 只保留部分标签）：</p>
+<pre data-code-text="&quot;#CHROM  POS      ID  REF ALT QUAL   FILTER INFO                    FORMAT             NA12878\nchr21   9068512  .   C   T   214.64 PASS   DP=13;QD=16.51;SOR=1.609 GT:AD:DP:GQ:PL    0/1:6,7:13:99:222,0,132&quot;" class="text" data-book-role="data"><code>#CHROM  POS      ID  REF ALT QUAL   FILTER INFO                    FORMAT             NA12878
+chr21   9068512  .   C   T   214.64 PASS   DP=13;QD=16.51;SOR=1.609 GT:AD:DP:GQ:PL    0/1:6,7:13:99:222,0,132</code></pre>
+<p>各列含义如下：</p>
+<div id="tbl-07-vcf-columns" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-tbl figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-07-vcf-columns-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+表&nbsp;7.3: VCF 数据列速查
+</figcaption>
+<div aria-describedby="tbl-07-vcf-columns-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div class="book-table-scroll" role="region" aria-label="表格，可横向滚动" tabindex="0"><table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;">列</th>
+<th style="text-align: left;">名称</th>
+<th style="text-align: left;">含义与读法</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">1</td>
+<td style="text-align: left;">CHROM</td>
+<td style="text-align: left;">染色体（命名系统与参考一致，见 7.2.2 的提醒）</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">2</td>
+<td style="text-align: left;">POS</td>
+<td style="text-align: left;">变异起始位置（1 起算；indel 的定位规则见 VCF 规范）</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">3</td>
+<td style="text-align: left;">ID</td>
+<td style="text-align: left;">已知变异编号（如 dbSNP 的 <code>rs</code> 号；<code>.</code> 表示未知）</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">4</td>
+<td style="text-align: left;">REF</td>
+<td style="text-align: left;">参考基因组上该位置的碱基（或序列）</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">5</td>
+<td style="text-align: left;">ALT</td>
+<td style="text-align: left;">检出的替代等位基因；<code>.</code> 表示未检出变异的 gVCF 区块</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">6</td>
+<td style="text-align: left;">QUAL</td>
+<td style="text-align: left;">该位点”存在变异”的对数概率（类似比对 MAPQ 的角色，不是碱基质量）</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">7</td>
+<td style="text-align: left;">FILTER</td>
+<td style="text-align: left;">过滤结论：<code>.</code> 未评估；<code>PASS</code> 通过；否则为命中的过滤器名称</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">8</td>
+<td style="text-align: left;">INFO</td>
+<td style="text-align: left;">位点级统计（DP 总深度、QD 质量深度比、FS 链偏置等）</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">9</td>
+<td style="text-align: left;">FORMAT</td>
+<td style="text-align: left;">后续样本列的字段说明</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">10+</td>
+<td style="text-align: left;">样本</td>
+<td style="text-align: left;">每个 sample 一列，按 FORMAT 顺序给出该样本的基因型与证据</td>
+</tr>
+</tbody>
+</table></div>
 </div>
+</figure>
+</div>
+<p>FORMAT 中最常用的字段是判断一条记录可信度的直接证据：</p>
+<ul>
+<li><strong>GT（genotype）</strong>：等位基因型。<code>0/0</code> 纯合参考、<code>0/1</code> 杂合、<code>1/1</code> 纯合替代；<code>0|1</code> 竖线表示已定相（知道各来自哪条同源染色体）。GATK 用 <code>./.</code> 表示缺失。</li>
+<li><strong>AD（allelic depth）</strong>：各等位基因的支持 reads 数（如 <code>6,7</code>：6 条支持参考 C、7 条支持替代 T）。这是”碱基比例”的原始形式——7.4 开头那个 G:A = 4:1 的例子，就是 AD 的直接读法。</li>
+<li><strong>DP（depth）</strong>：该样本在该位点的过滤后深度。</li>
+<li><strong>GQ（genotype quality）</strong>：基因型判断的置信度（Phred 缩放；99 常表示已到上限）。</li>
+<li><strong>PL（normalized likelihoods）</strong>：各基因型似然的相对对数值（最小者归零），是 7.4 推导的 <span class="math inline">\(P(S \mid G)\)</span> 的身影。</li>
+</ul>
+<p>读记录的顺序建议：先 GT 确定基因型判断，再 AD/DP 看证据量与比例是否支持这个判断，最后 QUAL/GQ/PL 看置信度。例如一条 <code>0/1</code> 记录若 AD 为 <code>34,2</code>，等位基因比例明显失衡，即使 GQ 高也值得在 IGV 里复核——杂合位点上两条同源染色体各自被随机抽中，观察比例应接近 1:1（7.4.2 的 <span class="math inline">\(\frac{1}{2}\)</span> 混合），严重偏离提示重复区域错配、污染或假基因问题。</p>
+</section>
+<section id="sec-07-06-filtering" class="level3">
+<h3 class="anchored" data-anchor-id="sec-07-06-filtering">过滤：硬过滤与 VQSR</h3>
+<p>caller 输出的每条记录都是”候选”，FILTER 列的任务是把证据不足的标出来。两条路线：</p>
+<p><strong>硬过滤（hard filtering）</strong>：直接用 INFO 中的统计量设阈值。适合单样本或小队列（没有足够样本训练模型）。常用过滤器与 GATK 文档建议的起点：</p>
+<div id="tbl-07-hardfilters" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-tbl figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-07-hardfilters-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+表&nbsp;7.4: 常用硬过滤参数（起点值，据 GATK 文档；实际阈值应结合自己数据的分布调整）
+</figcaption>
+<div aria-describedby="tbl-07-hardfilters-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div class="book-table-scroll" role="region" aria-label="表格，可横向滚动" tabindex="0"><table class="caption-top table">
+<colgroup>
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;">过滤器</th>
+<th style="text-align: left;">表达式示例</th>
+<th style="text-align: left;">检出的问题</th>
+<th style="text-align: left;">适用说明</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;"><code>LowQD</code></td>
+<td style="text-align: left;"><code>QD &lt; 2.0</code></td>
+<td style="text-align: left;">变异证据深度比低（堆得很深但支持的少）</td>
+<td style="text-align: left;">QD=QUAL/DP，对高深度区域尤其有效</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><code>LowQUAL</code></td>
+<td style="text-align: left;"><code>QUAL &lt; 30.0</code></td>
+<td style="text-align: left;">总体置信度低</td>
+<td style="text-align: left;">indel 建议更严（如 <code>&lt; 50</code>）</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><code>HighSOR</code></td>
+<td style="text-align: left;"><code>SOR &gt; 3.0</code></td>
+<td style="text-align: left;">链偏置（变异只出现在一条测序链上）</td>
+<td style="text-align: left;">真变异应两条链都有支持</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><code>HighFS</code></td>
+<td style="text-align: left;"><code>FS &gt; 60.0</code></td>
+<td style="text-align: left;">Fisher 精确检验的链偏置（另一口径）</td>
+<td style="text-align: left;">indel 建议 <code>&gt; 200</code></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><code>LowMQ</code></td>
+<td style="text-align: left;"><code>MQ &lt; 40.0</code></td>
+<td style="text-align: left;">比对质量低（多在重复/假基因区）</td>
+<td style="text-align: left;">对 SNV 有效</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><code>LowMQRankSum</code></td>
+<td style="text-align: left;"><code>MQRankSum &lt; -12.5</code></td>
+<td style="text-align: left;">替代等位基因的比对质量系统性更低</td>
+<td style="text-align: left;">仅杂合位点有值</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><code>LowReadPosRankSum</code></td>
+<td style="text-align: left;"><code>ReadPosRankSum &lt; -8.0</code></td>
+<td style="text-align: left;">变异只出现在 read 末端</td>
+<td style="text-align: left;">末端错误集中的信号</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+</figure>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb16" data-book-role="code"><pre data-code-text="&quot;gatk VariantFiltration \\\n  -R ref/GRCh38.fa \\\n  -V VCF/${sample}.raw.vcf.gz \\\n  --filter-expression \&quot;QD &lt; 2.0\&quot; --filter-name \&quot;LowQD\&quot; \\\n  --filter-expression \&quot;QUAL &lt; 30.0\&quot; --filter-name \&quot;LowQUAL\&quot; \\\n  --filter-expression \&quot;SOR &gt; 3.0\&quot; --filter-name \&quot;HighSOR\&quot; \\\n  --filter-expression \&quot;FS &gt; 60.0\&quot; --filter-name \&quot;HighFS\&quot; \\\n  --filter-expression \&quot;MQ &lt; 40.0\&quot; --filter-name \&quot;LowMQ\&quot; \\\n  --filter-expression \&quot;MQRankSum &lt; -12.5\&quot; --filter-name \&quot;LowMQRankSum\&quot; \\\n  --filter-expression \&quot;ReadPosRankSum &lt; -8.0\&quot; --filter-name \&quot;LowReadPosRankSum\&quot; \\\n  -O VCF/${sample}.filtered.vcf.gz&quot;" class="sourceCode numberSource bash numberLines code-with-copy"><code class="sourceCode bash"><span id="cb16-1"><a href="#cb16-1"></a><span class="ex">gatk</span> VariantFiltration <span class="dt">\</span></span>
+<span id="cb16-2"><a href="#cb16-2"></a>  <span class="at">-R</span> ref/GRCh38.fa <span class="dt">\</span></span>
+<span id="cb16-3"><a href="#cb16-3"></a>  <span class="at">-V</span> VCF/<span class="va">${sample}</span>.raw.vcf.gz <span class="dt">\</span></span>
+<span id="cb16-4"><a href="#cb16-4"></a>  <span class="at">--filter-expression</span> <span class="st">"QD &lt; 2.0"</span> <span class="at">--filter-name</span> <span class="st">"LowQD"</span> <span class="dt">\</span></span>
+<span id="cb16-5"><a href="#cb16-5"></a>  <span class="at">--filter-expression</span> <span class="st">"QUAL &lt; 30.0"</span> <span class="at">--filter-name</span> <span class="st">"LowQUAL"</span> <span class="dt">\</span></span>
+<span id="cb16-6"><a href="#cb16-6"></a>  <span class="at">--filter-expression</span> <span class="st">"SOR &gt; 3.0"</span> <span class="at">--filter-name</span> <span class="st">"HighSOR"</span> <span class="dt">\</span></span>
+<span id="cb16-7"><a href="#cb16-7"></a>  <span class="at">--filter-expression</span> <span class="st">"FS &gt; 60.0"</span> <span class="at">--filter-name</span> <span class="st">"HighFS"</span> <span class="dt">\</span></span>
+<span id="cb16-8"><a href="#cb16-8"></a>  <span class="at">--filter-expression</span> <span class="st">"MQ &lt; 40.0"</span> <span class="at">--filter-name</span> <span class="st">"LowMQ"</span> <span class="dt">\</span></span>
+<span id="cb16-9"><a href="#cb16-9"></a>  <span class="at">--filter-expression</span> <span class="st">"MQRankSum &lt; -12.5"</span> <span class="at">--filter-name</span> <span class="st">"LowMQRankSum"</span> <span class="dt">\</span></span>
+<span id="cb16-10"><a href="#cb16-10"></a>  <span class="at">--filter-expression</span> <span class="st">"ReadPosRankSum &lt; -8.0"</span> <span class="at">--filter-name</span> <span class="st">"LowReadPosRankSum"</span> <span class="dt">\</span></span>
+<span id="cb16-11"><a href="#cb16-11"></a>  <span class="at">-O</span> VCF/<span class="va">${sample}</span>.filtered.vcf.gz</span></code></pre></div><button title="复制到剪贴板" class="code-copy-button"><i class="bi"></i></button></div>
+<p>注意 <code>VariantFiltration</code> <strong>不删除任何记录</strong>，只把 FILTER 列从 <code>.</code> 改写为命中的过滤器名；下游分析用 <code>bcftools view -f PASS</code> 之类取出通过过滤的部分。本章子集（chr21 区间）的实测结果：</p>
+<pre data-code-text="&quot;   620 PASS            # 通过全部过滤器\n    13 LowMQ           # MQ &lt; 40：比对质量低，多在重复/假基因区\n    10 HighSOR         # SOR &gt; 3.0：链偏置\n# 合计 643 条原始记录，23 条被标记（同一条可命中多个过滤器则显示首个）&quot;" class="text" data-book-role="output"><code>   620 PASS            # 通过全部过滤器
+    13 LowMQ           # MQ &lt; 40：比对质量低，多在重复/假基因区
+    10 HighSOR         # SOR &gt; 3.0：链偏置
+# 合计 643 条原始记录，23 条被标记（同一条可命中多个过滤器则显示首个）</code></pre>
+<p>阈值表是起点不是标准答案——它们来自 GATK 对大量数据的经验总结，你的数据分布不同时（如 FFPE 样本、超深度 panel），应先看统计量分布再定阈值，并把最终采用的阈值记录进交付文档（7.8.3）。</p>
+<p><strong>VQSR（Variant Quality Score Recalibration）</strong>：用大量变异的统计量训练机器学习模型，给每条记录打分再分级。它需要成千上万的变异做训练数据，因此只适合大样本 WGS；单样本 WES 的变异数量不够训练，这就是为什么本章实战用硬过滤。两条路线的判断标准仍是同一句话：<strong>模型需要的输入证据是否充分</strong>。</p>
+</section>
+<section id="sec-07-06-quality-metrics" class="level3">
+<h3 class="anchored" data-anchor-id="sec-07-06-quality-metrics">质量评估</h3>
+<p>过滤前后各有多少变异、被什么过滤器拦下，是必须对账的数字：</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb18" data-book-role="code"><pre data-code-text="&quot;# 各过滤器拦下的记录数\nbcftools query -f &#x27;%FILTER\\n&#x27; VCF/${sample}.filtered.vcf.gz | sort | uniq -c\n\n# 只保留通过过滤的记录\nbcftools view -f PASS VCF/${sample}.filtered.vcf.gz -Oz -o VCF/${sample}.pass.vcf.gz&quot;" class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 各过滤器拦下的记录数</span></span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a><span class="ex">bcftools</span> query <span class="at">-f</span> <span class="st">'%FILTER\n'</span> VCF/<span class="va">${sample}</span>.filtered.vcf.gz <span class="kw">|</span> <span class="fu">sort</span> <span class="kw">|</span> <span class="fu">uniq</span> <span class="at">-c</span></span>
+<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a><span class="co"># 只保留通过过滤的记录</span></span>
+<span id="cb18-5"><a href="#cb18-5" aria-hidden="true" tabindex="-1"></a><span class="ex">bcftools</span> view <span class="at">-f</span> PASS VCF/<span class="va">${sample}</span>.filtered.vcf.gz <span class="at">-Oz</span> <span class="at">-o</span> VCF/<span class="va">${sample}</span>.pass.vcf.gz</span></code></pre></div><button title="复制到剪贴板" class="code-copy-button"><i class="bi"></i></button></div>
+<p>除了流水账，还有一组<strong>全局指标</strong>可以从整体上检查结果是否”像真的”：</p>
+<ul>
+<li><strong>Ti/Tv 比</strong>：转换（transition，嘌呤↔︎嘌呤或嘧啶↔︎嘧啶）与颠换（transversion）的数量比。真胚系变异因突变机制的生化偏好，全基因组约 2.0–2.1、外显子约 3.0–3.3；假变异（错误）没有这种偏好，混入越多 Ti/Tv 越低。<strong>它检查的是整体，不指向任何具体位点。</strong></li>
+<li><strong>het/hom 比</strong>：杂合与纯合比例。远离群体预期提示污染、性别弄错或过滤过度。</li>
+<li><strong>indel/SNV 比</strong>：插入缺失与 SNV 数量比例，异常偏大常与比对错误有关。</li>
+</ul>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb19" data-book-role="code"><pre data-code-text="&quot;# Ti/Tv、het/hom 等全局统计\nbcftools stats VCF/${sample}.pass.vcf.gz | grep -E &#x27;^TSTV|^SN|^IDD&#x27;&quot;" class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Ti/Tv、het/hom 等全局统计</span></span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a><span class="ex">bcftools</span> stats VCF/<span class="va">${sample}</span>.pass.vcf.gz <span class="kw">|</span> <span class="fu">grep</span> <span class="at">-E</span> <span class="st">'^TSTV|^SN|^IDD'</span></span></code></pre></div><button title="复制到剪贴板" class="code-copy-button"><i class="bi"></i></button></div>
+<p>本章子集的实测输出（<code>TSTV</code> 行依次为：转换数、颠换数、比值）：</p>
+<pre data-code-text="&quot;TSTV  0  413  157  2.63  413  157  2.63\nSN    0  number of records:  620\nSN    0  number of SNPs:      570&quot;" class="text" data-book-role="output"><code>TSTV  0  413  157  2.63  413  157  2.63
+SN    0  number of records:  620
+SN    0  number of SNPs:      570</code></pre>
+<p>Ti/Tv = 2.63 落在合理区间（外显子胚系约 3.0 上下的口径、小子集区域性波动较大）；要强调的是这个数字来自<strong>教学子集的 chr21 区间</strong>，只能说明”结果量级正常”，不能外推为全基因组的检测质量。</p>
+<p>指标异常时的处理顺序：先检查数据与流程（比对率、重复率、BQSR 是否正常），再看过滤阈值是否合理，最后才考虑生物学解释。把”结果指标异常”直接归结为”样本特殊”，是最常见也最危险的跳步。</p>
+</section>
 </section>
 <section id="sec-07-07" class="level2" data-number="7.7">
 <h2 data-number="7.7" class="anchored" data-anchor-id="sec-07-07"><span class="header-section-number">7.7</span> 变异注释与证据分层</h2>
 <p>区分检测结果、功能预测、数据库记录和实际证据。</p>
-<section id="src-0070-WGS-796" class="level3">
-<h3 class="anchored" data-anchor-id="src-0070-WGS-796">测序数据的下游分析方向</h3>
-<p>经过上述的流程处理，带有注释结果的突变位点将存储在VCF文件中，具体格式介绍见前面章节。除了对突变位点进行注释外，还可以进一步有选择性地对突变位点/基因进行功能性分析和关联分析。在此简单介绍一下可行的研究方向和思路和可能会用到的数据库，数据库包括现有的文献数据库（如NCBI Pubmed）和生物数据库：</p>
-<ul>
-<li>从位点/基因层面出发进行功能分析；</li>
-<li>从基因层面出发进行通路分析，发掘与目标基因相关的代谢通路及其相互关系；</li>
-<li>从样本层面出发，比较公开数据库中同类型人群的基因特征进行结果验证。同理，也可结合非公开的临床样本进行验证分析和实验分析；</li>
-</ul>
-<section id="src-0070-WGS-804" class="level4">
-<h4 class="anchored" data-anchor-id="src-0070-WGS-804">突变位点相关数据库查询</h4>
-<p><strong>OMIM</strong>（Online Mendelian Inheritance in Man）https://omim.org/ 是比较全面、权威的人类孟德尔遗传数据库，主要关注表型（孟德尔遗传病为主）和基因型之间的关系。自1960年代初开始建立，并在1987年启动在线网站，实现免费公开查询。目前，OMIM数据库保持每日更新，存储记录了超过15,000个基因的信息（截至2020年9月）。OMIM数据库界面简洁清晰、内容全面、操作简便，是遗传学、基因组学和医学领域等领域的重要数据库。</p>
-<p><strong>COSMIC</strong> （Catalogue Of Somatic Mutations In Cancer，癌症体细胞突变数据库）https://cancer.sanger.ac.uk/cosmic 主要记录与癌症相关的体细胞突变（somatic mutation）信息，可供学术研究人员免费使用。数据库自2004年建立开始快速发展，目前储存了超过1000个全基因组序列信息，1.6万例样本信息和超过250万个突变位点（截至2020年9月）。COSMIC数据库主要来自科学文献中收集已被报道的癌症基因突变位点（Tier1: 具有与癌症相关的活动记录和突变证据，突变以促进致癌转化的方式改变基因产物的活性。），或者是来自大人群癌症研究的结果位点（Tier2：在癌症样本中检测到了大量该基因的突变但与癌症的相关意义未明确）。体细胞突变是指并非由遗传得到、个体在受精卵发育后发生的突变，通常情况下体细胞突变不会造成自身后代的遗传改变。体细胞突变不一定引起表型变化，但也可能引起多种疾病，包括癌症。</p>
-<p><strong>ClinVar</strong> https://www.ncbi.nlm.nih.gov/clinvar/ 是NCBI主办的，与疾病相关的人类基因组变异数据库。它整合了dbSNP、dbVar、Pubmed、OMIM等多个数据库的遗传变异和临床表型信息。同时，每个研究机构都可以向其提交数据，并由专家团队对信息进行审核评级。按提交的注释信息和证据的可靠性，每个突变位点从高到低被评为4个星级，研究人员在查询相关位点时，可以结合注释信息、证据和专家评级综合考虑。Clinvar数据库体系依照疾病类别分成不同的数据库，并由熟悉该领域的专家团队来管理和审核，不断更新优化，形成一个标准的、可信的遗传变异-临床相关的数据库。</p>
-<p><strong>BRCA Exchange</strong> https://brcaexchange.org/ 整合了Clinvar和LOVD等数据库，专门针对乳腺癌易感基因BRCA1 和BRCA2（Breast cancer susceptibility gene 1/2）进行突变位点注释和记录，目前（截至2020年9月）有超过4万条位点记录。BRCA基因是目前研究比较深入的肿瘤易感基因，早期研究发现，女性BRCA突变携带者患乳腺癌和卵巢癌的风险大幅度提升。近年研究发现，结肠癌、胰腺癌、皮肤癌和男性前列腺癌等疾病的发生也与BRCA基因相关。基因序列中不同位置的突变会造成带来不同的影响和风险，BRCA基因无热点突变或热点区域，即基因上存在上万种突变的可能性，因此针对突变位点的注释数据库就变得非常重要，只有了解了该突变位点的风险，才能采取更有针对性预防或治疗措施。</p>
+<p><span id="src-0070-WGS-796"></span></p>
+<section id="sec-07-07-annotation-what" class="level3">
+<h3 class="anchored" data-anchor-id="sec-07-07-annotation-what">变异注释在做什么</h3>
+<p>检测告诉我们”哪里变了”，注释回答”这个变化可能意味着什么”。7.5.1 末尾 ANNOVAR 的输出就是注释的产物：把变异坐标放到基因模型上，得到所在基因（<code>Gene.refGene</code>）、区域（<code>Func.refGene</code>：外显子/内含子/剪接区等）、编码后果（<code>ExonicFunc.refGene</code>：同义/错义/移码等），再挂上人群频率（<code>gnomad_exome</code>）与已知编号（<code>avsnp151</code>）。</p>
+<p>使用注释结果前要注意两点。其一，<strong>注释依赖转录本选择</strong>：同一个基因有多个转录本时，变异可能在一个转录本的外显子、另一个转录本的内含子；不同工具默认的转录本集合不同，结论可能不同，比较多个来源的结果时要先对齐转录本。其二，<code>ExonicFunc</code> 这类功能描述是对编码后果的<strong>分类</strong>，不是致病性判断——“nonsynonymous”只说明氨基酸改变了，是否有害需要下面的证据分层来判断。</p>
+</section>
+<section id="sec-07-07-databases" class="level3">
+<h3 class="anchored" data-anchor-id="sec-07-07-databases">临床与疾病数据库</h3>
+<p><span id="src-0070-WGS-804"></span></p>
+<p>注释之后，把变异放到已有知识里查证。四个常用数据库各司其职：</p>
+<p><strong>OMIM</strong>（Online Mendelian Inheritance in Man，https://omim.org/ ）是人类孟德尔遗传的综合数据库，系统整理基因—表型关系，条目由专业团队持续维护，是查询”这个基因与哪些遗传病有关”的首选。基因页面给出功能概述、表型关联、相关文献与外部数据库入口。</p>
+<p><strong>ClinVar</strong>（https://www.ncbi.nlm.nih.gov/clinvar/ ）是 NCBI 维护的变异—临床意义数据库：研究机构提交变异的解释，连同支持证据汇总公开。每条记录的<strong>复审状态（review status）用 0–4 星共五个等级</strong>表达证据强度：0 星（未提供断言标准）、1 星（单一提交者提供标准）、2 星（多个提交者结论一致）、3 星（专家小组复审）、4 星（专业执业指南复审）。同样标注”致病”的记录，1 星与 4 星的证据分量完全不同——查库时先看星级的含义，再采信结论。</p>
+<p><strong>COSMIC</strong>（Catalogue Of Somatic Mutations In Cancer，https://cancer.sanger.ac.uk/cosmic ）主要记录癌症相关的<strong>体细胞</strong>突变。它对基因的收录分两个层级：Tier 1 有明确的癌症相关活动记录与突变证据，Tier 2 在癌症样本中大量检出但与癌症的因果意义尚未明确。本章处理的是胚系变异，COSMIC 的用途是交叉参考：一个胚系检出的基因若同时是 COSMIC 癌基因，其体细胞突变谱可以为功能解读提供线索。数据库持续更新（2026-10 核查时最新版本为 v104），引用具体数字时应以官网当前发布为准。</p>
+<p><strong>BRCA Exchange</strong>（https://brcaexchange.org/ ）整合 ClinVar、LOVD 等来源，专门收录乳腺癌易感基因 BRCA1/BRCA2 的变异注释。BRCA 基因研究深入、变异众多、没有集中热点，逐位点权威注释的需求正是这类”专基因数据库”存在的理由；它的分类体系来自 ENIGMA 专家组的统一标准（相当于 ClinVar 的 3 星以上口径）。</p>
+<div class="book-core callout callout-style-default callout-note callout-titled" title="核心知识｜证据分层：从检测到结论">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">注记</span>核心知识｜证据分层：从检测到结论
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>把”一个变异”变成”一个临床结论”，中间隔着几层强度不同的证据，不能跨层直通：</p>
+<ol type="1">
+<li><strong>检测结果</strong>：caller 说这个位点基因型可信（QUAL/GQ/AD 支持）——这是本章前半的产出；</li>
+<li><strong>功能注释</strong>：变异改变了编码序列的哪部分（注释工具给出）——只是”可能影响功能”的分类；</li>
+<li><strong>数据库收录</strong>：ClinVar/OMIM 等记录过这个变异或基因——收录不等于致病，要看复审等级与提交证据；</li>
+<li><strong>致病性判定</strong>：按 ACMG/AMP 等指南把人群频率、功能预测、家系共分离、表型匹配等多条证据线组合评级（致病/可能致病/意义未明 VUS/可能良性/良性）。</li>
+</ol>
+<p>只有第 4 层是结论，而它依赖前面每一层。意义未明（VUS）在罕见病分析中大量出现，把 VUS 当致病报告是临床解读的经典错误。</p>
+</div>
+</div>
 <div id="fig-08-wgs-and-wes-007" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-08-wgs-and-wes-007-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <img src="../assets/08-wgs-and-wes/007-pic10.png" class="img-fluid figure-img">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-08-wgs-and-wes-007-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-图&nbsp;7.7: BRCA Exchange 数据库中现存超过4万条突变位点记录
+图&nbsp;7.8: BRCA Exchange 数据库中收录的变异记录
 </figcaption>
 </figure>
 </div>
+<p><a href="#fig-08-wgs-and-wes-007" class="quarto-xref">图&nbsp;<span>7.8</span></a> 是 BRCA Exchange 的变异浏览页面（截图取自 2020 年前后的网站版本），每条记录给出变异坐标、临床分类与证据来源。</p>
 </section>
-<section id="src-0070-WGS-816" class="level4">
-<h4 class="anchored" data-anchor-id="src-0070-WGS-816">数据库使用案例</h4>
-<p>以实战代码中找到的一个突变为例，利用OMIM 和 COMICS数据库进行进一步查找。</p>
-<section id="topic-07-774" class="level5">
-<h5 class="anchored" data-anchor-id="topic-07-774">根据结果VCF注释查找感兴趣的突变位点</h5>
-<p>VCF文件中会突变所在位置（Func.refGene）、涉及的突变基因（Gene.refGene）以及功能变化（ExonicFunc.refGene），假如说从风险度比较高的突变开始查起，4号染色体的第81046034碱基从C变成了T，基因型GT=1/1，且被标注了“Func.refGene=exonic; Gene.refGene=BMP3; ExonicFunc.refGene=nonsynonymous_SNV“，即认为在BMP3基因的编码区上有非同义突变，由此可以去数据库中搜索基因BMP3的信息，查看突变是否与样本表征有相关关系。OMIM数据库中记录了基因功能、生化特征、基因关系图、相关文献等信息。右侧菜菜单栏还可以点击进入外部数据库，查看该基因的DNA 、蛋白质、临床资源、动物模型、细胞通路等信息。</p>
-<div id="fig-08-wgs-and-wes-006-repeat-2" class="quarto-float quarto-figure quarto-figure-center anchored">
-<figure class="quarto-float quarto-float-fig figure">
-<div aria-describedby="fig-08-wgs-and-wes-006-repeat-2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="../assets/08-wgs-and-wes/006-pic5.png" class="img-fluid figure-img">
-</div>
-<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-08-wgs-and-wes-006-repeat-2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-图&nbsp;7.8: 在OMIM数据中查找基因与表型的关系
-</figcaption>
-</figure>
-</div>
-</section>
-<section id="topic-07-783" class="level5">
-<h5 class="anchored" data-anchor-id="topic-07-783">根据感兴趣的基因查找相应突变位点</h5>
-<p>以癌症研究为例，关键任务是找到疾病相关的突变基因。前期大量的科研人员已经发现和总结了一些与癌症相关的基因。 COSMIC数据库中的CGC（Cancer Gene Census，https://cancer.sanger.ac.uk/census )是整理好的癌症相关基因目录，可供查询和下载。在数据库中查找目标疾病的相关基因目录，并在结果VCF文件中看是否有相关基因突变位点。</p>
+<section id="sec-07-07-use-cases" class="level3">
+<h3 class="anchored" data-anchor-id="sec-07-07-use-cases">数据库使用案例</h3>
+<p><span id="src-0070-WGS-816"></span> <span id="topic-07-774"></span> <span id="topic-07-783"></span></p>
+<p>用两个从本章示例数据出发的例子演示查证动作。</p>
+<p><strong>按结果找基因：从 VCF 注释到 OMIM。</strong> 假设从注释结果中挑出一个值得追的变异：4 号染色体第 81046034 位 C→T，GT=1/1，注释为 <code>Func.refGene=exonic; Gene.refGene=BMP3; ExonicFunc.refGene=nonsynonymous_SNV</code>——BMP3 基因编码区的一个纯合错义变异。下一步到 OMIM 检索 <code>BMP3</code>：基因页给出已知功能、相关表型与文献；如果该基因有明确的孟德尔表型且与你的样本表型相符，再回到变异本身查 ClinVar 的收录与星级、gnomAD 的人群频率（纯合罕见 + 表型相符 + 功能已知，才构成较强的候选）。OMIM 界面左侧还链接外部数据库，可继续查蛋白质、动物模型与细胞通路信息。</p>
+<p><strong>按基因找变异：从 COSMIC 到 VCF。</strong> 反过来，研究癌症相关基因时，先从 COSMIC 的 Cancer Gene Census（CGC，https://cancer.sanger.ac.uk/census ）拿癌症基因目录，再在自己的 VCF 里检索这些基因：</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb21" data-book-role="code"><pre data-code-text="&quot;# 在注释结果中查找 MSH6 基因的记录（第 1 列不是注释头的行）\ngrep -v \&quot;^#\&quot; VCF/NA12878.annovar.hg38_multianno.txt | grep \&quot;MSH6\&quot;&quot;" class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 在注释结果中查找 MSH6 基因的记录（第 1 列不是注释头的行）</span></span>
+<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a><span class="fu">grep</span> <span class="at">-v</span> <span class="st">"^#"</span> VCF/NA12878.annovar.hg38_multianno.txt <span class="kw">|</span> <span class="fu">grep</span> <span class="st">"MSH6"</span></span></code></pre></div><button title="复制到剪贴板" class="code-copy-button"><i class="bi"></i></button></div>
+<p>以结直肠癌（colorectal cancer）为例，在 CGC 检索 <code>colorectal</code> 能得到相关基因列表；关注其中的 MSH6（DNA 错配修复基因），在 VCF 注释结果里检索到若干变异后，逐条按 7.7.2 的分层去查证——而不是”检出到癌基因 = 与癌症有关”。</p>
 <div id="fig-08-wgs-and-wes-008" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-08-wgs-and-wes-008-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <img src="../assets/08-wgs-and-wes/008-pic6.png" class="img-fluid figure-img">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-08-wgs-and-wes-008-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-图&nbsp;7.9: 在COSMIC中查找与特定疾病相关的基因
+图&nbsp;7.9: 在 COSMIC Cancer Gene Census 中按疾病检索癌症相关基因
 </figcaption>
 </figure>
 </div>
-<p>以结直肠癌（colorectal cancer）为例，从CGC中查找关键词“colorectal”得到723条记录。关注其中的MSH6基因，在VCF中查找相应基因可用代码 $grep -v “#” <vcf文件> |grep “MSH6” 共得到25条记录，意味着样本在MSH6基因上有25个突变位点，接下来就在一一查看突变信息和对表型的可能影响即可。</vcf文件></p>
+<p><a href="#fig-08-wgs-and-wes-008" class="quarto-xref">图&nbsp;<span>7.9</span></a> 与 <a href="#fig-08-wgs-and-wes-009" class="quarto-xref">图&nbsp;<span>7.10</span></a> 是以上操作在 COSMIC 中的对应界面（截图取自 2020 年前后的网站版本，以现行网站布局为准）：在 CGC 页面按关键词过滤基因目录，进入基因页面后可以看到该基因在癌症中的突变概览、分布与文献。</p>
 <div id="fig-08-wgs-and-wes-009" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-08-wgs-and-wes-009-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <img src="../assets/08-wgs-and-wes/009-pic7.png" class="img-fluid figure-img">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-08-wgs-and-wes-009-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-图&nbsp;7.10: 在COSMIC中查找与特定疾病相关的基因
+图&nbsp;7.10: 在 COSMIC 中检索特定疾病的癌症基因结果
 </figcaption>
 </figure>
 </div>
-<p>在COSMIC数据库中直接查找基因可以获得更多的信息，还有编码蛋白质的3D模型。COSMIC-3D （https://cancer.sanger.ac.uk/cosmic3d/） 是交互式的网页，可以通过鼠标翻转和缩放蛋白质的三维结构，网页下方记录了错义突变的位置，点击措意突变的位置可以查看对应的小分子，估计结合位点，网页信息可以跳转蛋白质数据库PDB（Protein Data Bank）继续详细查看。</p>
+<p>在 COSMIC 的基因页面还能进一步查看编码蛋白质的三维结构：COSMIC-3D（https://cancer.sanger.ac.uk/cosmic3d/ ）提供交互式页面，可以旋转缩放蛋白结构、查看错义突变在结构上的位置分布，并跳转到 PDB 查看原始结构数据——把”突变列表”变成”突变在蛋白上的分布”，是评估功能影响的一个视角（当然，仍属第 2 层证据，不是致病结论）。</p>
 <div id="fig-08-wgs-and-wes-010" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-08-wgs-and-wes-010-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <img src="../assets/08-wgs-and-wes/010-pic8.png" class="img-fluid figure-img">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-08-wgs-and-wes-010-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-图&nbsp;7.11: 在COSMIC数据库中查找基因
+图&nbsp;7.11: 在 COSMIC 数据库中查看基因的突变概览
 </figcaption>
 </figure>
 </div>
@@ -1518,76 +1744,118 @@ P(D \mid G)=\prod_j \left( \frac{P(D_j \mid H_1)}{2} + \frac{P(D_j \mid H_2)}{2}
 <img src="../assets/08-wgs-and-wes/011-pic9.png" class="img-fluid figure-img">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-08-wgs-and-wes-011-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-图&nbsp;7.12: 查看突变位点对蛋白质结构的影响
+图&nbsp;7.12: 用 COSMIC-3D 查看突变位点在蛋白质结构上的分布
 </figcaption>
 </figure>
 </div>
 </section>
-</section>
-</section>
-<section id="src-0070-WGS-840" class="level3">
-<h3 class="anchored" data-anchor-id="src-0070-WGS-840">通路分析</h3>
-<p><strong>KEGG</strong>（Kyoto Encyclopedia of Genes and Genomes，京都基因与基因组百科全书） https://www.genome.jp/kegg/pathway.html 数据库把基因与细胞、物种进行关联，KEGG PATHWAY子数据库通过清晰明了的图表来表述基因和代谢物所参与的代谢通路，同时更全面地展现通路内部变化以及代谢通路之间的关系。数据库中将生物代谢通路划分为 6 类：细胞过程（Cellular Processes）、环境信息处理（Environmental Information Processing）、遗传信息处理（Genetic Information Processing）、人类疾病（Human Diseases）、新陈代谢（Metabolism）、生物体系统（Organismal Systems），在此基础上还继续按具体生命活动细分子通路，记录包含其通路代谢图和具体注释等信息。</p>
+<section id="sec-07-07-pathways-validation" class="level3">
+<h3 class="anchored" data-anchor-id="sec-07-07-pathways-validation">通路分析与公共数据验证</h3>
+<p><span id="src-0070-WGS-840"></span> <span id="src-0070-WGS-850"></span></p>
+<p>拿到一组候选基因后，还有两类常见后续，这里作为方向概览，不展开操作：</p>
+<p><strong>通路与功能富集。</strong> 第 5 章用 clusterProfiler 做过 GO/KEGG 富集分析，同样的方法适用于变异候选基因列表。KEGG PATHWAY（https://www.genome.jp/kegg/pathway.html ）把基因按代谢与信号通路组织，六大类（细胞过程、环境信息处理、遗传信息处理、人类疾病、新陈代谢、生物体系统）逐级细分；Metascape（https://metascape.org/ ）则一站整合 GO、KEGG、蛋白互作等多类资源，适合对基因列表做快速注释与富集，每月更新其整合的数据库。</p>
 <div id="fig-08-wgs-and-wes-012" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-08-wgs-and-wes-012-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <img src="../assets/08-wgs-and-wes/012-pic11.png" class="img-fluid figure-img">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-08-wgs-and-wes-012-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-图&nbsp;7.13: 以MSH6为例在KEGG数据库中搜索相关通路
+图&nbsp;7.13: 以 MSH6 为例在 KEGG 数据库中搜索相关通路
 </figcaption>
 </figure>
 </div>
-<p><strong>Metascape</strong> https://metascape.org/gp/index.html#/main/ 是2015年12月首次发布，整合了GO、KEGG、UniProt和DrugBank等多个权威的数据资源，且每月更新其相关的40多个数据库，保证查询结果的时效性，是目前较为常用的通路富集和生物过程注释数据库。除了记录模式生物的通路信息，数据库还包含了蛋白质相互作用通路，可进行基因相关的蛋白质网络分析和药物分析。</p>
 <div id="fig-08-wgs-and-wes-013" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-08-wgs-and-wes-013-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <img src="../assets/08-wgs-and-wes/013-pic12.png" class="img-fluid figure-img">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-08-wgs-and-wes-013-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-图&nbsp;7.14: Metascape数据库可以同时查看多个基因的相关通路
+图&nbsp;7.14: Metascape 可以同时分析多个基因的注释与富集
 </figcaption>
 </figure>
 </div>
-</section>
-<section id="src-0070-WGS-850" class="level3">
-<h3 class="anchored" data-anchor-id="src-0070-WGS-850">样本数据库寻找数据集进行验证或辅助分析</h3>
-<p><strong>TCGA</strong>（The Cancer Genome Atlas）https://portal.gdc.cancer.gov/ 是美国国家癌症研究所(National Cancer Institute)和美国人类基因组研究所(National Human Genome Research Institute)共同监管的一个基于肿瘤病人样本的数据库项目，旨在借助高通量测序技术对癌症基因组进行读取和分析，帮助人类理解癌症，提高对癌症的预防、诊治能力。TCGA数据库包含丰富且规范的样本多组学数据和临床数据，包括mRNA表达、miRNA表达数据、拷贝数变异、DNA甲基化、突变位点等，研究人员还可通过申请获准下载原始下机数据，是癌症研究中非常重要的数据库。</p>
+<p><strong>公共数据交叉验证。</strong> TCGA（The Cancer Genome Atlas，入口为 NCI 的 GDC Data Portal：https://portal.gdc.cancer.gov/ ）存储大量肿瘤样本的多组学数据（表达、突变、拷贝数、甲基化与临床信息），适合把自己的结果放到同类样本中对比；CCLE（Cancer Cell Line Encyclopedia，https://sites.broadinstitute.org/ccle ）提供上千种癌症细胞系的基因组与药理数据，是体外模型选择的常用参考。使用这类资源时先明确自己的问题属于哪一层——例如胚系分析的结果不能直接与 TCGA 的体细胞突变谱比较口径，队列与过滤标准不同时的”验证”只是参考。</p>
 <div id="fig-08-wgs-and-wes-014" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-08-wgs-and-wes-014-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <img src="../assets/08-wgs-and-wes/014-pic13.png" class="img-fluid figure-img">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-08-wgs-and-wes-014-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-图&nbsp;7.15: TCGA数据库
+图&nbsp;7.15: TCGA 数据通过 GDC Data Portal 访问
 </figcaption>
 </figure>
-</div>
-<p><strong>CCLE</strong>（Cancer Cell Line Encyclopedia，癌症细胞系的百科全书）https://portals.broadinstitute.org/ccle 目前存储了1457种（截至2020年9月）癌症细胞系的免费公开基因组数据，旨在对大量癌症模型进行详细的遗传学和药理学表征分析，开发基因与药物效用相关的综合分析流程，同时在体外运用细胞系模拟癌症患者分层样本进行更多的肿瘤药理研究实验。</p>
-<div class="book-placeholder">
-<p>本节内容待补充。</p>
 </div>
 </section>
 </section>
 <section id="sec-07-08" class="level2" data-number="7.8">
 <h2 data-number="7.8" class="anchored" data-anchor-id="sec-07-08"><span class="header-section-number">7.8</span> IGV复核、基准评价与完整交付</h2>
 <p>评估分析流程的准确性并报告其检测边界。</p>
-<div class="book-placeholder">
-<p>本节内容待补充。</p>
+<section id="sec-07-08-igv-review" class="level3">
+<h3 class="anchored" data-anchor-id="sec-07-08-igv-review">用 IGV 复核候选变异</h3>
+<p>第 4 章已经装好 IGV、载入过 BAM。变异分析的复核动作是：同时载入参考基因组、BAM（<code>.recal.bam</code> 及其索引）与 VCF，跳到候选变异位置，亲眼看证据。重点看什么：</p>
+<div id="fig-07-igv-review" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-07-igv-review-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="../assets/08-wgs-and-wes/igv-na12878-review.svg" class="img-fluid figure-img">
 </div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-07-igv-review-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+图&nbsp;7.16: 候选杂合变异的 reads 复核视图（据本章实测数据绘制，IGV 风格）
+</figcaption>
+</figure>
+</div>
+<ul>
+<li><strong>reads 数量与颜色</strong>：支持参考与替代等位基因的 reads 各多少条（对照 VCF 的 AD），有没有明显聚集在一条链上（对照 SOR/FS 过滤器在防的问题）；</li>
+<li><strong>碱基质量</strong>：替代等位基因的碱基质量值是否整体偏低（IGV 里低质量碱基显示为暗淡颜色）；</li>
+<li><strong>比对质量与灰条</strong>：reads 上灰色小条标记比对质量低的区域，变异恰好落在一片灰条里时要怀疑比对错误；</li>
+<li><strong>read 位置</strong>：变异是否集中在 read 末端（ReadPosRankSum 在防的问题）；</li>
+<li><strong>周边环境</strong>：是否落在重复区域、假基因附近，或 SNP 密集得异常的区域。</li>
+</ul>
+<p><a href="#fig-07-igv-review" class="quarto-xref">图&nbsp;<span>7.16</span></a> 是本章示例数据中一个候选杂合变异（chr21:9068512 C&gt;T，即 7.6.1 的那条记录）的复核视图，按实测 BAM 的 27 条 reads 绘制。养成”下结论前看一眼”的习惯，比任何自动化过滤器都更能建立对结果的判断力——过滤器的阈值是别人的经验，IGV 里的证据是你自己的。</p>
+</section>
+<section id="sec-07-08-benchmarking" class="level3">
+<h3 class="anchored" data-anchor-id="sec-07-08-benchmarking">基准评价</h3>
+<p>单个样本分析的质量可以逐位点复核，流程整体的可信度需要<strong>基准（benchmark）</strong>：用一份”答案已知”的数据跑你的流程，看能对多少。GIAB（Genome in a Bottle，NIST 主导）为 NA12878 等样本发布了高置信度真值集——由多种平台、多个中心的数据交叉验证得到的高置信变异集合。本章示例数据正是 NA12878，这使得流程评价可以直接落地：</p>
+<ul>
+<li>把你的 PASS 变异集与 GIAB 高置信集比较，得到<strong>灵敏度</strong>（真值里你检出了多少）与<strong>精确度</strong>（你检出的里多少在真值中）；</li>
+<li>常用工具如 <code>hap.py</code>/<code>vcfeval</code> 处理区间与表示差异，避免把”同一变异不同写法”误判为错误；</li>
+<li>高置信集只覆盖其定义的<strong>高置信区域</strong>；比较结果只代表”在这类区域上的表现”，外推到全基因组要谨慎。</li>
+</ul>
+<p>没有真值集的物种或样本，就用 7.6.3 的全局指标（Ti/Tv、het/hom、过滤比例）做自检——证据弱一档，但总比只看”跑完没报错”强。</p>
+</section>
+<section id="sec-07-08-deliverables" class="level3">
+<h3 class="anchored" data-anchor-id="sec-07-08-deliverables">完整交付与报告</h3>
+<p>分析的终点不是 VCF 文件，而是一份<strong>可追溯</strong>的结果说明。一个胚系小变异分析的完整交付应包括：</p>
+<ul>
+<li><strong>数据来源</strong>：样本编号、测序数据 accession（如 SRR8381428）、参考基因组与注释版本、known-sites 资源版本；</li>
+<li><strong>软件与参数</strong>：每个工具的名称、版本、关键参数（过滤阈值尤其要写明依据）；</li>
+<li><strong>过程指标</strong>：质控保留率、比对率、重复率、深度统计、过滤前后变异数、全局质量指标（Ti/Tv 等）；</li>
+<li><strong>结果与边界</strong>：最终变异列表及其注释、检索过的数据库与版本、未覆盖区域或深度不足区域的说明、结论适用的范围（哪些变异类型、哪些区域、什么置信水平）；</li>
+<li><strong>复核证据</strong>：关键变异的 IGV 截图或等价的记录。</li>
+</ul>
+<p>这份清单也是与 AI 协作的核对表：让 AI 复核你的分析或给出方案时，要求它先复述这些要素——数据从哪来、用什么版本、检查过什么指标、结论边界在哪。答不上来的环节，就是需要你自己回到数据去验证的环节。至此，从”一叠 FASTQ”到”能对结论负责的小变异分析”，本章走完了全链；判断力不在于记住每个命令，而在于每个环节都能回答”为什么这样做、怎么检查、还能相信到什么程度”。</p>
 
 
+</section>
 </section>
 <section id="footnotes" class="footnotes footnotes-end-of-document" role="doc-endnotes">
 <hr>
 <ol>
-<li id="fn1"><p>G、C碱基之间由3个氢键连接，稳定性较强，不易被打断，所以使得GC含量高的区域通常片段偏大。同时PCR时不易解旋，就算分开后，单股的GC含量高的序列也容易自身粘合形成二级结构。同时，PCR聚合酶可能对GC含量高的片段有偏好性[6]，影响PCR的效果。<a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn1"><p>Choi M, Scholl UI, Ji W, et al.&nbsp;Genetic diagnosis by whole exome capture and massively parallel DNA sequencing. PNAS 106(45):19096–19101 (2009). doi:10.1073/pnas.0910672106。<a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn2"><p>Sakharkar MK, et al.&nbsp;Distributions of Exons and Introns in the Human Genome. In Silico Biology 4:387–393 (2004)。<a href="#fnref2" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn3"><p>Goodwin S, McPherson JD, McCombie WR. Coming of age: ten years of next-generation sequencing technologies. Nature Reviews Genetics 17:333–351 (2016)。<a href="#fnref3" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn4"><p>Meynert AM, Ansari M, FitzPatrick DR, Taylor MS. Variant detection sensitivity and biases in whole genome and exome sequencing. BMC Bioinformatics 15:247 (2014). doi:10.1186/1471-2105-15-247。<a href="#fnref4" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn5"><p>Lord J, et al.&nbsp;Prenatal exome sequencing analysis in fetal structural anomalies detected by ultrasonography (SHAPE study). New England Journal of Medicine 380:2468–2475 (2019)。<a href="#fnref5" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn6"><p>Ng SB, et al.&nbsp;Exome sequencing identifies the cause of a mendelian disorder. Nature Genetics 42(1):30–35 (2010). doi:10.1038/ng.499。<a href="#fnref6" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn7"><p>G、C 碱基之间由 3 个氢键连接，双链更稳定、不易被打断，GC 含量高的区域通常片段偏大；PCR 变性时不易解开，解开后单链也容易自身粘合形成二级结构，聚合酶对高 GC 片段的扩增效率因此下降，高 GC 外显子的测序深度系统性偏低[^meynert-2014]。<a href="#fnref7" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn8"><p>Meynert AM, Ansari M, FitzPatrick DR, Taylor MS. Variant detection sensitivity and biases in whole genome and exome sequencing. BMC Bioinformatics 15:247 (2014). doi:10.1186/1471-2105-15-247。<a href="#fnref8" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn9"><p>统一的形式是 <span class="math inline">\(P(S_i \mid g)=P(I_i{=}1)^{I_i}\cdot P(I_i{=}0)^{1-I_i}\)</span>：指数充当”开关”，留下实际发生的那个事件的概率。不同基因型下”观察到参考碱基”的概率不同，最终公式因此不同。<a href="#fnref9" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn10"><p>Ren S, et al.&nbsp;Efficient Acceleration of the Pair-HMMs Forward Algorithm for GATK HaplotypeCaller on GPU. Cancer Informatics 16:1176934318760543 (2018)。<a href="#fnref10" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
 </ol>
 </section>
 
 </main> <!-- /main -->
 <div class="book-toolbar" role="navigation" aria-label="阅读工具">
-  <div class="book-brand"><span class="book-brand-name">AI时代生信入门</span><time class="book-last-modified" datetime="2026-10-10T21:10:42+08:00" title="最后修改时间（北京时间，UTC+08:00）">最后修改 2026-10-10 21:10</time></div>
+  <div class="book-brand"><span class="book-brand-name">AI时代生信入门</span><time class="book-last-modified" datetime="2026-10-11T02:33:21+08:00" title="最后修改时间（北京时间，UTC+08:00）">最后修改 2026-10-11 02:33</time></div>
   <button class="book-menu-button" type="button" aria-controls="quarto-sidebar" aria-expanded="false">目录</button>
   <button class="book-search-button" type="button">搜索</button>
 </div>
