@@ -1,0 +1,80 @@
+<svg xmlns='http://www.w3.org/2000/svg' width='980' height='700' viewBox='0 0 980 700'>
+<title>ChIP-seq 与 ATAC-seq 分析流程总览</title>
+<desc>两类区域信号数据共用质控与比对主干，在找峰前各有专属处理，最后汇入统一的计数、差异分析与解释框架。</desc>
+<text x='490' y='32' font-family="'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size='15' fill='#333333' font-weight='bold' text-anchor='middle'>区域信号分析：从 FASTQ 到结论</text>
+<rect x='330.0' y='56.0' width='320' height='44' rx='6' fill='none' stroke='#186254' stroke-width='1.2'/>
+<text x='490' y='75' font-family="'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size='13' fill='#333333' font-weight='bold' text-anchor='middle'>原始数据 FASTQ</text>
+<text x='490' y='93' font-family="'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size='12' fill='#6b7280' font-weight='normal' text-anchor='middle'>公共数据下载 + md5 校验</text>
+<line x1='490' y1='100' x2='490' y2='128' stroke='#186254' stroke-width='1.6'/>
+<line x1='490.0' y1='128.0' x2='493.5' y2='120.8' stroke='#186254' stroke-width='1.6'/>
+<line x1='490.0' y1='128.0' x2='486.5' y2='120.8' stroke='#186254' stroke-width='1.6'/>
+<rect x='330.0' y='128.0' width='320' height='44' rx='6' fill='none' stroke='#186254' stroke-width='1.2'/>
+<text x='490' y='147' font-family="'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size='13' fill='#333333' font-weight='bold' text-anchor='middle'>质控与修剪</text>
+<text x='490' y='165' font-family="'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size='12' fill='#6b7280' font-weight='normal' text-anchor='middle'>FastQC / fastp</text>
+<line x1='490' y1='172' x2='490' y2='200' stroke='#186254' stroke-width='1.6'/>
+<line x1='490.0' y1='200.0' x2='493.5' y2='192.8' stroke='#186254' stroke-width='1.6'/>
+<line x1='490.0' y1='200.0' x2='486.5' y2='192.8' stroke='#186254' stroke-width='1.6'/>
+<rect x='330.0' y='200.0' width='320' height='44' rx='6' fill='none' stroke='#186254' stroke-width='1.2'/>
+<text x='490' y='219' font-family="'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size='13' fill='#333333' font-weight='bold' text-anchor='middle'>比对到参考基因组</text>
+<text x='490' y='237' font-family="'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size='12' fill='#6b7280' font-weight='normal' text-anchor='middle'>bowtie2（ATAC 加 -X 2000）</text>
+<line x1='490' y1='244' x2='490' y2='268' stroke='#186254' stroke-width='1.6'/>
+<line x1='490' y1='268' x2='240' y2='268' stroke='#186254' stroke-width='1.6'/>
+<line x1='490' y1='268' x2='740' y2='268' stroke='#186254' stroke-width='1.6'/>
+<line x1='240' y1='268' x2='240' y2='292' stroke='#186254' stroke-width='1.6'/>
+<line x1='240.0' y1='292.0' x2='243.5' y2='284.8' stroke='#186254' stroke-width='1.6'/>
+<line x1='240.0' y1='292.0' x2='236.5' y2='284.8' stroke='#186254' stroke-width='1.6'/>
+<line x1='740' y1='268' x2='740' y2='292' stroke='#186254' stroke-width='1.6'/>
+<line x1='740.0' y1='292.0' x2='743.5' y2='284.8' stroke='#186254' stroke-width='1.6'/>
+<line x1='740.0' y1='292.0' x2='736.5' y2='284.8' stroke='#186254' stroke-width='1.6'/>
+<text x='240' y='262' font-family="'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size='13' fill='#186254' font-weight='bold' text-anchor='middle'>ChIP-seq 主线（NRF1）</text>
+<text x='740' y='262' font-family="'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size='13' fill='#186254' font-weight='bold' text-anchor='middle'>ATAC-seq 主线（Irf8）</text>
+<rect x='90.0' y='290.0' width='300' height='52' rx='6' fill='none' stroke='#186254' stroke-width='1.2'/>
+<text x='240' y='313' font-family="'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size='13' fill='#333333' font-weight='bold' text-anchor='middle'>比对过滤</text>
+<text x='240' y='331' font-family="'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size='12' fill='#6b7280' font-weight='normal' text-anchor='middle'>samtools MAPQ≥30；峰前无重复去除</text>
+<line x1='240' y1='342' x2='240' y2='366' stroke='#186254' stroke-width='1.6'/>
+<line x1='240.0' y1='366.0' x2='243.5' y2='358.8' stroke='#186254' stroke-width='1.6'/>
+<line x1='240.0' y1='366.0' x2='236.5' y2='358.8' stroke='#186254' stroke-width='1.6'/>
+<rect x='90.0' y='362.0' width='300' height='52' rx='6' fill='none' stroke='#186254' stroke-width='1.2'/>
+<text x='240' y='385' font-family="'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size='13' fill='#333333' font-weight='bold' text-anchor='middle'>peak calling（对 input）</text>
+<text x='240' y='403' font-family="'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size='12' fill='#6b7280' font-weight='normal' text-anchor='middle'>MACS3：NRF1 窄峰 / H3K27ac 宽峰</text>
+<line x1='240' y1='414' x2='240' y2='438' stroke='#186254' stroke-width='1.6'/>
+<line x1='240.0' y1='438.0' x2='243.5' y2='430.8' stroke='#186254' stroke-width='1.6'/>
+<line x1='240.0' y1='438.0' x2='236.5' y2='430.8' stroke='#186254' stroke-width='1.6'/>
+<rect x='90.0' y='434.0' width='300' height='52' rx='6' fill='none' stroke='#186254' stroke-width='1.2'/>
+<text x='240' y='457' font-family="'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size='13' fill='#333333' font-weight='bold' text-anchor='middle'>重复一致性检验</text>
+<text x='240' y='475' font-family="'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size='12' fill='#6b7280' font-weight='normal' text-anchor='middle'>IDR（两个生物学重复）</text>
+<rect x='590.0' y='290.0' width='300' height='52' rx='6' fill='none' stroke='#186254' stroke-width='1.2'/>
+<text x='740' y='313' font-family="'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size='13' fill='#333333' font-weight='bold' text-anchor='middle'>比对过滤 + 去 chrM + 去重</text>
+<text x='740' y='331' font-family="'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size='12' fill='#6b7280' font-weight='normal' text-anchor='middle'>samtools markdup</text>
+<line x1='740' y1='342' x2='740' y2='366' stroke='#186254' stroke-width='1.6'/>
+<line x1='740.0' y1='366.0' x2='743.5' y2='358.8' stroke='#186254' stroke-width='1.6'/>
+<line x1='740.0' y1='366.0' x2='736.5' y2='358.8' stroke='#186254' stroke-width='1.6'/>
+<rect x='590.0' y='362.0' width='300' height='52' rx='6' fill='none' stroke='#186254' stroke-width='1.2'/>
+<text x='740' y='385' font-family="'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size='13' fill='#333333' font-weight='bold' text-anchor='middle'>Tn5 偏移校正</text>
+<text x='740' y='403' font-family="'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size='12' fill='#6b7280' font-weight='normal' text-anchor='middle'>alignmentSieve --ATACshift</text>
+<line x1='740' y1='414' x2='740' y2='438' stroke='#186254' stroke-width='1.6'/>
+<line x1='740.0' y1='438.0' x2='743.5' y2='430.8' stroke='#186254' stroke-width='1.6'/>
+<line x1='740.0' y1='438.0' x2='736.5' y2='430.8' stroke='#186254' stroke-width='1.6'/>
+<rect x='590.0' y='434.0' width='300' height='52' rx='6' fill='none' stroke='#186254' stroke-width='1.2'/>
+<text x='740' y='457' font-family="'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size='13' fill='#333333' font-weight='bold' text-anchor='middle'>peak calling（无对照）+ 质控</text>
+<text x='740' y='475' font-family="'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size='12' fill='#6b7280' font-weight='normal' text-anchor='middle'>MACS3 BAMPE；ataqv 指标</text>
+<line x1='240' y1='486' x2='240' y2='510' stroke='#186254' stroke-width='1.6'/>
+<line x1='740' y1='486' x2='740' y2='510' stroke='#186254' stroke-width='1.6'/>
+<line x1='240' y1='510' x2='740' y2='510' stroke='#186254' stroke-width='1.6'/>
+<line x1='490' y1='510' x2='490' y2='534' stroke='#186254' stroke-width='1.6'/>
+<line x1='490.0' y1='534.0' x2='493.5' y2='526.8' stroke='#186254' stroke-width='1.6'/>
+<line x1='490.0' y1='534.0' x2='486.5' y2='526.8' stroke='#186254' stroke-width='1.6'/>
+<rect x='290.0' y='538.0' width='400' height='44' rx='6' fill='none' stroke='#186254' stroke-width='1.2'/>
+<text x='490' y='557' font-family="'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size='13' fill='#333333' font-weight='bold' text-anchor='middle'>统一峰集合 + reads 计数</text>
+<text x='490' y='575' font-family="'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size='12' fill='#6b7280' font-weight='normal' text-anchor='middle'>bedtools 合并；计数矩阵</text>
+<line x1='490' y1='582' x2='490' y2='606' stroke='#186254' stroke-width='1.6'/>
+<line x1='490.0' y1='606.0' x2='493.5' y2='598.8' stroke='#186254' stroke-width='1.6'/>
+<line x1='490.0' y1='606.0' x2='486.5' y2='598.8' stroke='#186254' stroke-width='1.6'/>
+<rect x='290.0' y='606.0' width='400' height='44' rx='6' fill='none' stroke='#186254' stroke-width='1.2'/>
+<text x='490' y='625' font-family="'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size='13' fill='#333333' font-weight='bold' text-anchor='middle'>差异分析（DiffBind/DESeq2）</text>
+<text x='490' y='643' font-family="'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size='12' fill='#6b7280' font-weight='normal' text-anchor='middle'>差异结合 / 差异可及性</text>
+<line x1='490' y1='650' x2='490' y2='672' stroke='#186254' stroke-width='1.6'/>
+<line x1='490.0' y1='672.0' x2='493.5' y2='664.8' stroke='#186254' stroke-width='1.6'/>
+<line x1='490.0' y1='672.0' x2='486.5' y2='664.8' stroke='#186254' stroke-width='1.6'/>
+<text x='490' y='692' font-family="'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size='13' fill='#186254' font-weight='bold' text-anchor='middle'>注释 · motif · 可视化 · 联合分析（6.8 节）</text>
+</svg>

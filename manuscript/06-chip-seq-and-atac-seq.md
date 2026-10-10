@@ -33,9 +33,9 @@ ChIP-seq 实验主要包括以下步骤（测序技术的背景见 [第 3 章](0
 3. **免疫沉淀**：用特异性抗体沉淀目标蛋白-DNA 复合物，解交联后纯化 DNA。这一步的特异性完全取决于抗体（见 [6.2 节](#sec-06-02)关于抗体质量的讨论）。
 4. **文库构建与测序**：末端修复、连接接头、PCR 扩增后上机。PCR 扩增是偏差的来源之一，循环数应尽量低。
 
-![ChIP-seq 实验流程示意](../assets/07-chip-seq-and-atac-seq/001-2009-naturerevgenetics-chip-seq-pipeline.png){#fig-07-chip-seq-and-atac-seq-001}
+![ChIP-seq 实验流程示意](../assets/07-chip-seq-and-atac-seq/001-2009-naturerevgenetics-chip-seq-pipeline.png){#fig-07-chip-seq-and-atac-seq-001 width=72%}
 
-@fig-07-chip-seq-and-atac-seq-001 概括了从样本到测序数据的路径。图中没有画出、但对分析同样关键的是**对照**：没有对照的"富集"无从谈起，这是下一节的主题。
+@fig-07-chip-seq-and-atac-seq-001 概括了从样本到测序数据的路径（图源：Park PJ. *Nature Reviews Genetics* 10:669–680（2009）[^ch06-park2009]）。图中没有画出、但对分析同样关键的是**对照**：没有对照的"富集"无从谈起，这是下一节的主题。
 
 ### CUT&RUN 与 CUT&Tag：不需要交联的替代方案 {#topic-06-cut-run-tag}
 
@@ -69,6 +69,10 @@ ChIP-seq 需要交联和大量细胞，这两点在实践中都常成为瓶颈�
 - **需要的细胞量少**（数百到五万个），实验流程最简单。
 
 早期的开放染色质测定靠 DNase-seq 和 MNase-seq，ATAC-seq 因其简便和低细胞量需求成为现在的主流；三者测的都是"可接触性"，数据形态与分析方法相通。
+
+![ATAC-seq 原理示意](../assets/07-chip-seq-and-atac-seq/017-atac-principle.svg){#fig-06-atac-principle}
+
+@fig-06-atac-principle 概括了从开放染色质到测序文库的转换，以及片段长度与核小体组织的对应关系——这个对应关系正是 6.5 节质控指标的来源。
 
 ### 三类信号放在一起看 {#topic-06-three-signals}
 
@@ -238,9 +242,9 @@ ChIP-seq 的计算分析可以概括成下面的流程（图见下）：
 6. **重复一致性检验**：IDR（见 [6.6 节](#sec-06-06)）；
 7. **差异分析与下游解释**：统一峰集合、计数、注释与 motif（见 [6.7 节](#sec-06-07)与 [6.8 节](#sec-06-08)）。
 
-![ChIP-seq 数据分析流程总览](../assets/07-chip-seq-and-atac-seq/003-chip-workflow-june2017-step4.png){#fig-07-chip-seq-and-atac-seq-003}
+![ChIP-seq 与 ATAC-seq 的分析流程总览](../assets/07-chip-seq-and-atac-seq/015-analysis-overview-dual-case.svg){#fig-07-chip-seq-and-atac-seq-003}
 
-其中第 1—3 步对所有高通量测序数据都是共通的，本章只讲与 ChIP-seq/ATAC-seq 相关的判断点；第 5 步起才是区域信号分析特有的内容。
+如 @fig-07-chip-seq-and-atac-seq-003 所示，两条主线共用质控与比对，在专属处理环节分叉后汇入同一套统计框架；其中第 1—3 步对所有高通量测序数据都是共通的，本章只讲与 ChIP-seq/ATAC-seq 相关的判断点；第 5 步起才是区域信号分析特有的内容。
 
 ### 准备分析环境 {#topic-06-environment}
 
@@ -380,7 +384,7 @@ SRR2500885 (input):          98.69% overall alignment rate
 拿到 BAM 后，先做三件事再进入找峰环节：
 
 1. **看比对率**：`grep "overall alignment rate" *.bt2.log`。通常应 >70%；低于 50% 要停下来查原因（污染、参考基因组选错、读取质量）——6.5 节的 ATAC 案例里就有这样一个真实样本。
-2. **看唯一比对比例**：ChIP 样本因富集而略低于 input 是正常现象（富集reads聚集在特定位置，重复比对增加）；过低提示文库复杂度问题。
+2. **看唯一比对比例**：ChIP 样本因富集而略低于 input 是正常现象（被富集的 reads 聚集在特定位置，重复比对随之增加）；过低提示文库复杂度问题。
 3. **看冗余率**：MACS 运行日志会报告（见下节），过高说明 PCR 过度扩增或起始量不足。
 
 []{#src-0060-ChIP-seq-622}
@@ -397,7 +401,7 @@ peak calling 的目标，是在全基因组上找出 ChIP 信号相对背景显�
 - **组蛋白修饰：多数宽而平（broad）**。修饰覆盖整个核小体甚至跨越多个核小体，信号表现为成百上千 bp 的宽区域。
 - **RNA 聚合酶 II：混合形态（mixed）**。启动子处的暂停信号是窄峰，基因内部的延伸信号是宽峰。
 
-![不同类型蛋白的 ChIP-seq 信号形态](../assets/07-chip-seq-and-atac-seq/013-chip-diff-type-signal.png){#fig-07-chip-seq-and-atac-seq-013}
+![不同类型蛋白的 ChIP-seq 信号形态](../assets/07-chip-seq-and-atac-seq/016-signal-types.svg){#fig-07-chip-seq-and-atac-seq-013}
 
 @fig-07-chip-seq-and-atac-seq-013 从上到下展示了三类信号：最上层是真实的结合设计，中间是正负链 reads 的分布（注意窄峰信号的双峰结构），最下层是片段密度与最终被识别的峰区域。
 
@@ -616,7 +620,11 @@ done
 
 ATAC-seq 的插入片段长度分布本身就是实验质量的"心电图"。本书实测（SRR5852294，去重后）的分布特征：在约 100 bp 以下有一个显著的**无核小体区（NFR）**峰，约 200 bp 处有**单核小体**峰，再往上以约 200 bp 为周期出现多核小体峰，强度递减。这种周期性锯齿说明 Tn5 确实在核小体之间的开放区域切割——**没有 NFR 峰、没有周期性，文库很可能失败了**。
 
-提取片段长度并数频次（画图见 6.8 节的 deepTools 与 R）：
+本书实测的分布如 @fig-06-fragment-dist ：
+
+![ATAC-seq 实测片段长度分布](../assets/07-chip-seq-and-atac-seq/018-fragment-dist-real.png){#fig-06-fragment-dist}
+
+提取片段长度并数频次的命令：
 
 ```{.bash .numberLines data-book-role="code"}
 samtools view SRR5852294.final.bam | awk '$9>0{print $9}' \
@@ -657,7 +665,7 @@ SRR5852296: TSS 富集度 3.3, FRiP 14.2%, 高质量常染色体比对  7,293,15
 SRR5852297: TSS 富集度 3.5, FRiP 32.6%, 高质量常染色体比对 15,182,560
 ```
 
-::::: {.callout-warning .book-warning title="注意｜如何解读"不达标"的指标"}
+::::: {.callout-warning .book-warning title="注意｜如何解读“不达标”的指标"}
 
 这套数据集的 TSS 富集度只有 3.0–3.5，远低于 ENCODE 的"理想"线。这是**真实情况**而非操作失误：2017 年的 LT-HSC 原代细胞数据，加上 TSS 注释文件的选择都会影响绝对值。正确的反应是：（1）确认不是命名不匹配或流程错误；（2）横向比较同一研究内的样本（本组内四个样本一致地低，说明是数据集特性）；（3）在报告里如实写出并说明口径。质控指标是判断的工具，不是自动判死刑的开关。
 
@@ -937,6 +945,8 @@ plotProfile -m matrix.gz -out profile.png --dpi 200
 [^ch06-idr-paper]: Li Q, Brown JB, Huang H, Bickel PJ. Measuring reproducibility of high-throughput experiments. *Annals of Applied Statistics* 5:1752–1779（2011）。[论文页](https://projecteuclid.org/journals/annals-of-applied-statistics/volume-5/issue-3/Measuring-reproducibility-of-high-throughput-experiments/10.1214/11-AOAS466.full)。
 
 [^ch06-macs-paper]: Zhang Y, et al. Model-based analysis of ChIP-Seq (MACS). *Genome Biology* 9:R137（2008）。[论文页](https://link.springer.com/article/10.1186/gb-2008-9-9-r137)。
+
+[^ch06-park2009]: Park PJ. ChIP-seq: advantages and challenges of a maturing technology. *Nature Reviews Genetics* 10:669–680（2009）。[PMC 全文](https://pmc.ncbi.nlm.nih.gov/articles/PMC3191340/)。
 
 [^ch06-diffbind-paper]: Ross-Innes CS, et al. Differential oestrogen receptor binding is associated with clinical outcome in breast cancer. *Nature* 481:389–393（2012）（DiffBind 的示例分析）。[论文页](https://www.nature.com/articles/nature10730)。
 
