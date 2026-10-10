@@ -92,8 +92,11 @@ blockquote { border-left:3px solid #90b29c; color:#425b50; }
 .callout[class*="book-"] .callout-header { background:transparent !important; padding:.1rem 0 .6rem; font-weight:650; }
 .callout[class*="book-"] .callout-body { font-size:18px; line-height:1.75; }
 .callout-body { min-width:0; }
-mjx-container[jax="CHTML"]:not([display="true"]) { max-width:100%; overflow-x:auto; overflow-y:hidden; }
-span.math.inline { display:inline-block; max-width:100%; overflow-x:auto; overflow-y:hidden; vertical-align:baseline; }
+/* Preserve MathJax's natural baseline. Only genuinely oversized expressions scroll. */
+span.math.inline { display:inline; vertical-align:baseline; }
+span.math.inline mjx-container[jax="CHTML"] { max-width:none; overflow:visible; }
+span.math.inline.book-math-scroll { display:block; max-width:100%; overflow-x:auto; overflow-y:hidden; white-space:nowrap; margin:.35em 0; padding:.5em 0; scrollbar-width:thin; }
+span.math.inline.book-math-scroll:focus-visible { outline:2px solid #317baf; outline-offset:2px; }
 .callout .callout-body pre, .callout .callout-body .code-viewport { max-width:100%; overflow-x:auto; }
 .callout[class*="book-"] .callout-body > :last-child { margin-bottom:0; }
 .book-equation { display:grid; grid-template-columns:minmax(0,1fr) auto; align-items:center; gap:16px; width:100%; margin:1.5rem 0; }
