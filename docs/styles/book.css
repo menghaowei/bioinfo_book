@@ -57,6 +57,7 @@ main.content { font-size:18px; }
 main.content p, main.content li { overflow-wrap:anywhere; }
 main.content :not(pre) > code:not(.sourceCode) { white-space:normal; overflow-wrap:anywhere; }
 .quarto-title-block .title { font-size:clamp(1.8rem,2.6vw,2.4rem); line-height:1.4; }
+.quarto-title-block .chapter-last-modified { margin:.5rem 0 0; font-size:13px; line-height:1.6; font-weight:400; color:#52675f; }
 main h2 { margin-top:2.8rem; padding-bottom:.5rem; line-height:1.5; }
 main h3 { margin-top:2rem; line-height:1.5; }
 main.content section.level3 > h3 { border-left:4px solid var(--book-green); padding-left:.65rem; }
