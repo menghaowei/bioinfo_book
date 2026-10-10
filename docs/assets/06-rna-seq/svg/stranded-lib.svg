@@ -1,0 +1,64 @@
+<svg xmlns='http://www.w3.org/2000/svg' width='700' height='300' viewBox='0 0 700 300' role='img' aria-labelledby='t d'>
+<title id='t'>dUTP 链特异性建库流程示意图</title>
+<desc id='d'>第一链 cDNA 正常合成；第二链以 dUTP 替代 dTTP；接头连接后 USER 酶特异降解含 dUTP 的第二链，只保留与原始 RNA 互补的第一链进入 PCR，read 与转录本链的对应关系因此确定。</desc>
+<rect x='24' y='60' width='100' height='44' rx='6' fill='#e8f4f1' stroke='#186254' stroke-width='1.2'/>
+<text x='74.0' y='86.32' font-family="'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size='12' fill='#333333' font-weight='normal' text-anchor='middle'>RNA 转录本</text>
+<rect x='158' y='60' width='126' height='44' rx='6' fill='#e8f4f1' stroke='#186254' stroke-width='1.2'/>
+<text x='221.0' y='77.32' font-family="'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size='12' fill='#333333' font-weight='normal' text-anchor='middle'>第一链 cDNA</text>
+<text x='221.0' y='95.32' font-family="'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size='12' fill='#333333' font-weight='normal' text-anchor='middle'>合成（dTTP）</text>
+<rect x='318' y='60' width='126' height='44' rx='6' fill='#fdf3e3' stroke='#186254' stroke-width='1.2'/>
+<text x='381.0' y='77.32' font-family="'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size='12' fill='#333333' font-weight='normal' text-anchor='middle'>第二链 cDNA</text>
+<text x='381.0' y='95.32' font-family="'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size='12' fill='#333333' font-weight='normal' text-anchor='middle'>掺入 dUTP</text>
+<circle cx='334' cy='100' r='3' fill='#b45309'/>
+<circle cx='356' cy='100' r='3' fill='#b45309'/>
+<circle cx='378' cy='100' r='3' fill='#b45309'/>
+<circle cx='400' cy='100' r='3' fill='#b45309'/>
+<circle cx='422' cy='100' r='3' fill='#b45309'/>
+<rect x='474' y='60' width='124' height='44' rx='6' fill='none' stroke='#b45309' stroke-width='1.2'/>
+<text x='536.0' y='77.32' font-family="'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size='12' fill='#333333' font-weight='normal' text-anchor='middle'>USER 酶降解</text>
+<text x='536.0' y='95.32' font-family="'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size='12' fill='#333333' font-weight='normal' text-anchor='middle'>含 dUTP 第二链</text>
+<rect x='632' y='60' width='48' height='44' rx='6' fill='#e8f4f1' stroke='#186254' stroke-width='1.2'/>
+<text x='656.0' y='86.32' font-family="'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size='12' fill='#333333' font-weight='normal' text-anchor='middle'>PCR</text>
+<line x1='126' y1='82' x2='156' y2='82' stroke='#186254' stroke-width='1.6'/>
+<line x1='156.0' y1='82.0' x2='147.9' y2='78.1' stroke='#186254' stroke-width='1.6'/>
+<line x1='156.0' y1='82.0' x2='147.9' y2='85.9' stroke='#186254' stroke-width='1.6'/>
+<line x1='286' y1='82' x2='316' y2='82' stroke='#186254' stroke-width='1.6'/>
+<line x1='316.0' y1='82.0' x2='307.9' y2='78.1' stroke='#186254' stroke-width='1.6'/>
+<line x1='316.0' y1='82.0' x2='307.9' y2='85.9' stroke='#186254' stroke-width='1.6'/>
+<line x1='446' y1='82' x2='472' y2='82' stroke='#b45309' stroke-width='1.6'/>
+<line x1='472.0' y1='82.0' x2='463.9' y2='78.1' stroke='#b45309' stroke-width='1.6'/>
+<line x1='472.0' y1='82.0' x2='463.9' y2='85.9' stroke='#b45309' stroke-width='1.6'/>
+<line x1='600' y1='82' x2='630' y2='82' stroke='#186254' stroke-width='1.6'/>
+<line x1='630.0' y1='82.0' x2='621.9' y2='78.1' stroke='#186254' stroke-width='1.6'/>
+<line x1='630.0' y1='82.0' x2='621.9' y2='85.9' stroke='#186254' stroke-width='1.6'/>
+<text x='656' y='52' font-family="'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size='12' fill='#6b7280' font-weight='normal' text-anchor='middle'>仅第一链</text>
+<text x='221' y='122' font-family="'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size='12' fill='#6b7280' font-weight='normal' text-anchor='middle'>与 RNA 互补、保留</text>
+<line x1='508' y1='64' x2='544' y2='100' stroke='#b45309' stroke-width='2.4'/>
+<line x1='544' y1='64' x2='508' y2='100' stroke='#b45309' stroke-width='2.4'/>
+<text x='350' y='156' font-family="'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size='13' fill='#333333' font-weight='normal' text-anchor='middle'>为什么能分清链：保留的第一链方向对应原始转录本，read 比对后唯一归属正链或负链</text>
+<text x='78' y='180' font-family="'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size='12' fill='#6b7280' font-weight='normal' text-anchor='start'>基因组正链基因</text>
+<line x1='78' y1='190' x2='90' y2='190' stroke='#186254' stroke-width='2'/>
+<rect x='90' y='184' width='26' height='12' rx='2' fill='#186254' stroke='#186254' stroke-width='1.2'/>
+<line x1='116' y1='190' x2='140' y2='190' stroke='#186254' stroke-width='2'/>
+<rect x='140' y='184' width='26' height='12' rx='2' fill='#186254' stroke='#186254' stroke-width='1.2'/>
+<line x1='166' y1='190' x2='210' y2='190' stroke='#186254' stroke-width='2'/>
+<rect x='210' y='184' width='26' height='12' rx='2' fill='#186254' stroke='#186254' stroke-width='1.2'/>
+<line x1='236' y1='190' x2='270' y2='190' stroke='#186254' stroke-width='2'/>
+<rect x='270' y='184' width='26' height='12' rx='2' fill='#186254' stroke='#186254' stroke-width='1.2'/>
+<line x1='296' y1='190' x2='310' y2='190' stroke='#186254' stroke-width='2'/>
+<rect x='310' y='184' width='26' height='12' rx='2' fill='#186254' stroke='#186254' stroke-width='1.2'/>
+<line x1='336' y1='190' x2='330' y2='190' stroke='#186254' stroke-width='2'/>
+<text x='350' y='195' font-family="'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size='12' fill='#186254' font-weight='normal' text-anchor='start'>read →</text>
+<text x='78' y='236' font-family="'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size='12' fill='#6b7280' font-weight='normal' text-anchor='start'>反义转录本</text>
+<line x1='78' y1='246' x2='110' y2='246' stroke='#9ca3af' stroke-width='1.6'/>
+<rect x='110' y='240' width='22' height='12' rx='2' fill='#b45309' stroke='#186254' stroke-width='1.2'/>
+<line x1='132' y1='246' x2='180' y2='246' stroke='#9ca3af' stroke-width='1.6'/>
+<rect x='180' y='240' width='22' height='12' rx='2' fill='#b45309' stroke='#186254' stroke-width='1.2'/>
+<line x1='202' y1='246' x2='250' y2='246' stroke='#9ca3af' stroke-width='1.6'/>
+<rect x='250' y='240' width='22' height='12' rx='2' fill='#b45309' stroke='#186254' stroke-width='1.2'/>
+<line x1='272' y1='246' x2='300' y2='246' stroke='#9ca3af' stroke-width='1.6'/>
+<rect x='300' y='240' width='22' height='12' rx='2' fill='#b45309' stroke='#186254' stroke-width='1.2'/>
+<line x1='322' y1='246' x2='330' y2='246' stroke='#9ca3af' stroke-width='1.6'/>
+<text x='350' y='251' font-family="'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size='12' fill='#b45309' font-weight='normal' text-anchor='start'>read →</text>
+<text x='350' y='286' font-family="'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size='12' fill='#6b7280' font-weight='normal' text-anchor='middle'>普通文库两条链的 read 混在一起；链特异性文库能把它们分开计数</text>
+</svg>

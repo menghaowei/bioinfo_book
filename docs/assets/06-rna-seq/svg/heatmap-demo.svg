@@ -1,0 +1,95 @@
+<svg xmlns='http://www.w3.org/2000/svg' width='470' height='452' viewBox='0 0 470 452' role='img' aria-labelledby='t d'>
+<title id='t'>聚类热图读法演示</title>
+<desc id='d'>模拟的显著基因×样本计数矩阵（按行标准化）：对照两列与敲降两列各自聚类并排，颜色表示该基因在该样本中的相对高低。</desc>
+<line x1='127.0' y1='52' x2='149.0' y2='52' stroke='#186254' stroke-width='1.4'/>
+<line x1='127.0' y1='52' x2='127.0' y2='64' stroke='#186254' stroke-width='1.4'/>
+<line x1='149.0' y1='52' x2='149.0' y2='64' stroke='#186254' stroke-width='1.4'/>
+<line x1='171.0' y1='52' x2='193.0' y2='52' stroke='#b45309' stroke-width='1.4'/>
+<line x1='171.0' y1='52' x2='171.0' y2='64' stroke='#b45309' stroke-width='1.4'/>
+<line x1='193.0' y1='52' x2='193.0' y2='64' stroke='#b45309' stroke-width='1.4'/>
+<text x='138.0' y='44' font-family="ui-monospace, 'SFMono-Regular', Menlo, Consolas, 'Liberation Mono', monospace" font-size='12' fill='#186254' font-weight='normal' text-anchor='middle'>对照</text>
+<text x='182.0' y='44' font-family="ui-monospace, 'SFMono-Regular', Menlo, Consolas, 'Liberation Mono', monospace" font-size='12' fill='#b45309' font-weight='normal' text-anchor='middle'>敲降</text>
+<rect x='116' y='78' width='21' height='21' fill='#be8c48'/>
+<rect x='138' y='78' width='21' height='21' fill='#c38145'/>
+<rect x='160' y='78' width='21' height='21' fill='#b4aa50'/>
+<rect x='182' y='78' width='21' height='21' fill='#b4a84f'/>
+<rect x='116' y='100' width='21' height='21' fill='#c28346'/>
+<rect x='138' y='100' width='21' height='21' fill='#c37f45'/>
+<rect x='160' y='100' width='21' height='21' fill='#d25a3c'/>
+<rect x='182' y='100' width='21' height='21' fill='#d05e3d'/>
+<rect x='116' y='122' width='21' height='21' fill='#c18546'/>
+<rect x='138' y='122' width='21' height='21' fill='#bf8b48'/>
+<rect x='160' y='122' width='21' height='21' fill='#c97041'/>
+<rect x='182' y='122' width='21' height='21' fill='#d25a3c'/>
+<rect x='116' y='144' width='21' height='21' fill='#c87442'/>
+<rect x='138' y='144' width='21' height='21' fill='#c87442'/>
+<rect x='160' y='144' width='21' height='21' fill='#cc683f'/>
+<rect x='182' y='144' width='21' height='21' fill='#d25a3c'/>
+<rect x='116' y='166' width='21' height='21' fill='#c47d44'/>
+<rect x='138' y='166' width='21' height='21' fill='#c47e45'/>
+<rect x='160' y='166' width='21' height='21' fill='#d25a3c'/>
+<rect x='182' y='166' width='21' height='21' fill='#d05d3c'/>
+<rect x='116' y='188' width='21' height='21' fill='#b6a44e'/>
+<rect x='138' y='188' width='21' height='21' fill='#ba984b'/>
+<rect x='160' y='188' width='21' height='21' fill='#cb6b40'/>
+<rect x='182' y='188' width='21' height='21' fill='#d25a3c'/>
+<rect x='116' y='210' width='21' height='21' fill='#cb6a40'/>
+<rect x='138' y='210' width='21' height='21' fill='#cb6b40'/>
+<rect x='160' y='210' width='21' height='21' fill='#bb944a'/>
+<rect x='182' y='210' width='21' height='21' fill='#b4aa50'/>
+<rect x='116' y='232' width='21' height='21' fill='#d25a3c'/>
+<rect x='138' y='232' width='21' height='21' fill='#cb6b40'/>
+<rect x='160' y='232' width='21' height='21' fill='#bc934a'/>
+<rect x='182' y='232' width='21' height='21' fill='#be8d48'/>
+<rect x='116' y='254' width='21' height='21' fill='#c28246'/>
+<rect x='138' y='254' width='21' height='21' fill='#c38045'/>
+<rect x='160' y='254' width='21' height='21' fill='#cc673f'/>
+<rect x='182' y='254' width='21' height='21' fill='#d25a3c'/>
+<rect x='116' y='276' width='21' height='21' fill='#cc673f'/>
+<rect x='138' y='276' width='21' height='21' fill='#cc683f'/>
+<rect x='160' y='276' width='21' height='21' fill='#b4aa50'/>
+<rect x='182' y='276' width='21' height='21' fill='#b5a54e'/>
+<rect x='116' y='298' width='21' height='21' fill='#b99a4c'/>
+<rect x='138' y='298' width='21' height='21' fill='#b6a44e'/>
+<rect x='160' y='298' width='21' height='21' fill='#b4aa50'/>
+<rect x='182' y='298' width='21' height='21' fill='#bf8b48'/>
+<rect x='116' y='320' width='21' height='21' fill='#d25a3c'/>
+<rect x='138' y='320' width='21' height='21' fill='#c08947'/>
+<rect x='160' y='320' width='21' height='21' fill='#c97041'/>
+<rect x='182' y='320' width='21' height='21' fill='#cf613d'/>
+<rect x='116' y='342' width='21' height='21' fill='#bb954a'/>
+<rect x='138' y='342' width='21' height='21' fill='#c67843'/>
+<rect x='160' y='342' width='21' height='21' fill='#b4aa50'/>
+<rect x='182' y='342' width='21' height='21' fill='#bb954a'/>
+<rect x='116' y='364' width='21' height='21' fill='#d25a3c'/>
+<rect x='138' y='364' width='21' height='21' fill='#c67743'/>
+<rect x='160' y='364' width='21' height='21' fill='#c97141'/>
+<rect x='182' y='364' width='21' height='21' fill='#d05e3d'/>
+<text x='127.0' y='404' font-family="ui-monospace, 'SFMono-Regular', Menlo, Consolas, 'Liberation Mono', monospace" font-size='12' fill='#333333' font-weight='normal' text-anchor='middle'>对照1</text>
+<text x='171.0' y='404' font-family="ui-monospace, 'SFMono-Regular', Menlo, Consolas, 'Liberation Mono', monospace" font-size='12' fill='#333333' font-weight='normal' text-anchor='middle'>敲降1</text>
+<text x='149.0' y='424' font-family="ui-monospace, 'SFMono-Regular', Menlo, Consolas, 'Liberation Mono', monospace" font-size='12' fill='#333333' font-weight='normal' text-anchor='middle'>对照2</text>
+<text x='193.0' y='424' font-family="ui-monospace, 'SFMono-Regular', Menlo, Consolas, 'Liberation Mono', monospace" font-size='12' fill='#333333' font-weight='normal' text-anchor='middle'>敲降2</text>
+<text x='106' y='93.0' font-family="ui-monospace, 'SFMono-Regular', Menlo, Consolas, 'Liberation Mono', monospace" font-size='12' fill='#6b7280' font-weight='normal' text-anchor='end'>基因1</text>
+<text x='106' y='137.0' font-family="ui-monospace, 'SFMono-Regular', Menlo, Consolas, 'Liberation Mono', monospace" font-size='12' fill='#6b7280' font-weight='normal' text-anchor='end'>基因3</text>
+<text x='106' y='181.0' font-family="ui-monospace, 'SFMono-Regular', Menlo, Consolas, 'Liberation Mono', monospace" font-size='12' fill='#6b7280' font-weight='normal' text-anchor='end'>基因5</text>
+<text x='106' y='225.0' font-family="ui-monospace, 'SFMono-Regular', Menlo, Consolas, 'Liberation Mono', monospace" font-size='12' fill='#6b7280' font-weight='normal' text-anchor='end'>基因7</text>
+<text x='106' y='269.0' font-family="ui-monospace, 'SFMono-Regular', Menlo, Consolas, 'Liberation Mono', monospace" font-size='12' fill='#6b7280' font-weight='normal' text-anchor='end'>基因9</text>
+<text x='106' y='313.0' font-family="ui-monospace, 'SFMono-Regular', Menlo, Consolas, 'Liberation Mono', monospace" font-size='12' fill='#6b7280' font-weight='normal' text-anchor='end'>基因11</text>
+<text x='106' y='357.0' font-family="ui-monospace, 'SFMono-Regular', Menlo, Consolas, 'Liberation Mono', monospace" font-size='12' fill='#6b7280' font-weight='normal' text-anchor='end'>基因13</text>
+<rect x='234' y='78' width='14' height='12' fill='#d25a3c'/>
+<rect x='234' y='90' width='14' height='12' fill='#ce623e'/>
+<rect x='234' y='102' width='14' height='12' fill='#cb6b40'/>
+<rect x='234' y='114' width='14' height='12' fill='#c87442'/>
+<rect x='234' y='126' width='14' height='12' fill='#c47d44'/>
+<rect x='234' y='138' width='14' height='12' fill='#c18647'/>
+<rect x='234' y='150' width='14' height='12' fill='#be8f49'/>
+<rect x='234' y='162' width='14' height='12' fill='#ba984b'/>
+<rect x='234' y='174' width='14' height='12' fill='#b7a14d'/>
+<rect x='234' y='186' width='14' height='12' fill='#b4aa50'/>
+<text x='241' y='70' font-family="ui-monospace, 'SFMono-Regular', Menlo, Consolas, 'Liberation Mono', monospace" font-size='12' fill='#6b7280' font-weight='normal' text-anchor='middle'>低—高</text>
+<text x='242' y='228' font-family="ui-monospace, 'SFMono-Regular', Menlo, Consolas, 'Liberation Mono', monospace" font-size='12' fill='#333333' font-weight='normal' text-anchor='start'>要点：</text>
+<text x='242' y='248' font-family="ui-monospace, 'SFMono-Regular', Menlo, Consolas, 'Liberation Mono', monospace" font-size='12' fill='#6b7280' font-weight='normal' text-anchor='start'>1. 重复样本并排＝聚类正确</text>
+<text x='242' y='266' font-family="ui-monospace, 'SFMono-Regular', Menlo, Consolas, 'Liberation Mono', monospace" font-size='12' fill='#6b7280' font-weight='normal' text-anchor='start'>2. 组间分块＝差异真实</text>
+<text x='242' y='284' font-family="ui-monospace, 'SFMono-Regular', Menlo, Consolas, 'Liberation Mono', monospace" font-size='12' fill='#6b7280' font-weight='normal' text-anchor='start'>3. 行＝基因，按行标准化</text>
+<text x='235.0' y='444' font-family="ui-monospace, 'SFMono-Regular', Menlo, Consolas, 'Liberation Mono', monospace" font-size='12' fill='#333333' font-weight='normal' text-anchor='middle'>颜色深浅＝该基因在各样本中的相对表达（按行标准化）</text>
+</svg>

@@ -1,0 +1,60 @@
+<svg xmlns='http://www.w3.org/2000/svg' width='600' height='330' viewBox='0 0 600 330' role='img' aria-labelledby='t d'>
+<title id='t'>基因组与转录组的关系示意图</title>
+<desc id='d'>左侧一个基因组（基因结构示意），右侧三种细胞状态各自的转录本集合；同一套基因组在不同细胞状态转录出不同的 RNA 组合。</desc>
+<rect x='24' y='80' width='170' height='170' rx='8' fill='#e8f4f1' stroke='#186254' stroke-width='1.2'/>
+<text x='109.0' y='106' font-family="'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size='15' fill='#186254' font-weight='bold' text-anchor='middle'>基因组</text>
+<rect x='50' y='142' width='26' height='16' rx='2' fill='#186254' stroke='#186254' stroke-width='1.2'/>
+<rect x='94' y='142' width='34' height='16' rx='2' fill='#186254' stroke='#186254' stroke-width='1.2'/>
+<rect x='144' y='142' width='22' height='16' rx='2' fill='#186254' stroke='#186254' stroke-width='1.2'/>
+<line x1='76' y1='150' x2='94' y2='150' stroke='#9ca3af' stroke-width='1.2'/>
+<line x1='128' y1='150' x2='144' y2='150' stroke='#9ca3af' stroke-width='1.2'/>
+<text x='109.0' y='182' font-family="'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size='12' fill='#6b7280' font-weight='normal' text-anchor='middle'>外显子/内含子结构</text>
+<text x='109.0' y='212' font-family="'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size='12' fill='#333333' font-weight='normal' text-anchor='middle'>所有细胞同一套</text>
+<text x='109.0' y='230' font-family="'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size='12' fill='#333333' font-weight='normal' text-anchor='middle'>DNA 序列不变</text>
+<rect x='270' y='26' width='300' height='82' rx='8' fill='none' stroke='#186254' stroke-width='1.2'/>
+<text x='282' y='48' font-family="'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size='13' fill='#186254' font-weight='bold' text-anchor='start'>神经细胞：转录组 1</text>
+<rect x='282' y='66' width='54' height='20' rx='3' fill='#186254' stroke='#186254' stroke-width='1.2'/>
+<text x='309.0' y='80' font-family="'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size='12' fill='#ffffff' font-weight='normal' text-anchor='middle'>基因A</text>
+<rect x='338' y='66' width='54' height='20' rx='3' fill='none' stroke='#9ca3af' stroke-width='1.2' stroke-dasharray='3,3'/>
+<text x='365.0' y='80' font-family="'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size='12' fill='#6b7280' font-weight='normal' text-anchor='middle'>基因B</text>
+<rect x='394' y='66' width='54' height='20' rx='3' fill='#186254' stroke='#186254' stroke-width='1.2'/>
+<text x='421.0' y='80' font-family="'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size='12' fill='#ffffff' font-weight='normal' text-anchor='middle'>基因C</text>
+<rect x='450' y='66' width='54' height='20' rx='3' fill='#186254' stroke='#186254' stroke-width='1.2'/>
+<text x='477.0' y='80' font-family="'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size='12' fill='#ffffff' font-weight='normal' text-anchor='middle'>基因D</text>
+<rect x='506' y='66' width='54' height='20' rx='3' fill='none' stroke='#9ca3af' stroke-width='1.2' stroke-dasharray='3,3'/>
+<text x='533.0' y='80' font-family="'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size='12' fill='#6b7280' font-weight='normal' text-anchor='middle'>基因E</text>
+<line x1='200' y1='165.0' x2='260' y2='67.0' stroke='#186254' stroke-width='1.4'/>
+<line x1='260.0' y1='67.0' x2='252.4' y2='71.9' stroke='#186254' stroke-width='1.4'/>
+<line x1='260.0' y1='67.0' x2='259.1' y2='76.0' stroke='#186254' stroke-width='1.4'/>
+<rect x='270' y='124' width='300' height='82' rx='8' fill='none' stroke='#186254' stroke-width='1.2'/>
+<text x='282' y='146' font-family="'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size='13' fill='#186254' font-weight='bold' text-anchor='start'>免疫细胞：转录组 2</text>
+<rect x='282' y='164' width='54' height='20' rx='3' fill='none' stroke='#9ca3af' stroke-width='1.2' stroke-dasharray='3,3'/>
+<text x='309.0' y='178' font-family="'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size='12' fill='#6b7280' font-weight='normal' text-anchor='middle'>基因A</text>
+<rect x='338' y='164' width='54' height='20' rx='3' fill='#186254' stroke='#186254' stroke-width='1.2'/>
+<text x='365.0' y='178' font-family="'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size='12' fill='#ffffff' font-weight='normal' text-anchor='middle'>基因B</text>
+<rect x='394' y='164' width='54' height='20' rx='3' fill='#186254' stroke='#186254' stroke-width='1.2'/>
+<text x='421.0' y='178' font-family="'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size='12' fill='#ffffff' font-weight='normal' text-anchor='middle'>基因C</text>
+<rect x='450' y='164' width='54' height='20' rx='3' fill='none' stroke='#9ca3af' stroke-width='1.2' stroke-dasharray='3,3'/>
+<text x='477.0' y='178' font-family="'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size='12' fill='#6b7280' font-weight='normal' text-anchor='middle'>基因D</text>
+<rect x='506' y='164' width='54' height='20' rx='3' fill='#186254' stroke='#186254' stroke-width='1.2'/>
+<text x='533.0' y='178' font-family="'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size='12' fill='#ffffff' font-weight='normal' text-anchor='middle'>基因E</text>
+<line x1='200' y1='165.0' x2='260' y2='165.0' stroke='#186254' stroke-width='1.4'/>
+<line x1='260.0' y1='165.0' x2='251.9' y2='161.1' stroke='#186254' stroke-width='1.4'/>
+<line x1='260.0' y1='165.0' x2='251.9' y2='168.9' stroke='#186254' stroke-width='1.4'/>
+<rect x='270' y='222' width='300' height='82' rx='8' fill='none' stroke='#186254' stroke-width='1.2'/>
+<text x='282' y='244' font-family="'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size='13' fill='#186254' font-weight='bold' text-anchor='start'>应激状态：转录组 3</text>
+<rect x='282' y='262' width='54' height='20' rx='3' fill='#186254' stroke='#186254' stroke-width='1.2'/>
+<text x='309.0' y='276' font-family="'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size='12' fill='#ffffff' font-weight='normal' text-anchor='middle'>基因A</text>
+<rect x='338' y='262' width='54' height='20' rx='3' fill='#186254' stroke='#186254' stroke-width='1.2'/>
+<text x='365.0' y='276' font-family="'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size='12' fill='#ffffff' font-weight='normal' text-anchor='middle'>基因B</text>
+<rect x='394' y='262' width='54' height='20' rx='3' fill='none' stroke='#9ca3af' stroke-width='1.2' stroke-dasharray='3,3'/>
+<text x='421.0' y='276' font-family="'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size='12' fill='#6b7280' font-weight='normal' text-anchor='middle'>基因C</text>
+<rect x='450' y='262' width='54' height='20' rx='3' fill='#186254' stroke='#186254' stroke-width='1.2'/>
+<text x='477.0' y='276' font-family="'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size='12' fill='#ffffff' font-weight='normal' text-anchor='middle'>基因D</text>
+<rect x='506' y='262' width='54' height='20' rx='3' fill='#186254' stroke='#186254' stroke-width='1.2'/>
+<text x='533.0' y='276' font-family="'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size='12' fill='#ffffff' font-weight='normal' text-anchor='middle'>基因E</text>
+<line x1='200' y1='165.0' x2='260' y2='263.0' stroke='#186254' stroke-width='1.4'/>
+<line x1='260.0' y1='263.0' x2='259.1' y2='254.0' stroke='#186254' stroke-width='1.4'/>
+<line x1='260.0' y1='263.0' x2='252.4' y2='258.1' stroke='#186254' stroke-width='1.4'/>
+<text x='300.0' y='318' font-family="'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size='13' fill='#333333' font-weight='bold' text-anchor='middle'>同一套基因组 —— 转录（开启的基因集合不同）——&gt; 三个不同的转录组</text>
+</svg>

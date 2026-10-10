@@ -1,0 +1,57 @@
+<svg xmlns='http://www.w3.org/2000/svg' width='470' height='616' viewBox='0 0 470 616' role='img' aria-labelledby='t d'>
+<title id='t'>circRNA 测序分析流程</title>
+<desc id='d'>主线：质控、基因组比对、识别反向剪接位点、比对 circBase 已知 circRNA；支线：软件预测新 circRNA；合并后差异分析、宿主基因注释与特征分析。</desc>
+<rect x='24' y='24' width='196' height='46' rx='6' fill='none' stroke='#186254' stroke-width='1.2'/>
+<text x='122.0' y='51.32' font-family="'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size='12' fill='#333333' font-weight='normal' text-anchor='middle'>FASTQ 原始数据</text>
+<line x1='122.0' y1='72' x2='122.0' y2='92' stroke='#186254' stroke-width='1.4'/>
+<line x1='122.0' y1='92.0' x2='125.9' y2='83.9' stroke='#186254' stroke-width='1.4'/>
+<line x1='122.0' y1='92.0' x2='118.1' y2='83.9' stroke='#186254' stroke-width='1.4'/>
+<rect x='24' y='96' width='196' height='46' rx='6' fill='none' stroke='#186254' stroke-width='1.2'/>
+<text x='122.0' y='123.32' font-family="'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size='12' fill='#333333' font-weight='normal' text-anchor='middle'>质量控制</text>
+<line x1='122.0' y1='144' x2='122.0' y2='164' stroke='#186254' stroke-width='1.4'/>
+<line x1='122.0' y1='164.0' x2='125.9' y2='155.9' stroke='#186254' stroke-width='1.4'/>
+<line x1='122.0' y1='164.0' x2='118.1' y2='155.9' stroke='#186254' stroke-width='1.4'/>
+<rect x='24' y='168' width='196' height='46' rx='6' fill='none' stroke='#186254' stroke-width='1.2'/>
+<text x='122.0' y='195.32' font-family="'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size='12' fill='#333333' font-weight='normal' text-anchor='middle'>基因组比对</text>
+<line x1='122.0' y1='216' x2='122.0' y2='236' stroke='#186254' stroke-width='1.4'/>
+<line x1='122.0' y1='236.0' x2='125.9' y2='227.9' stroke='#186254' stroke-width='1.4'/>
+<line x1='122.0' y1='236.0' x2='118.1' y2='227.9' stroke='#186254' stroke-width='1.4'/>
+<rect x='24' y='240' width='196' height='46' rx='6' fill='none' stroke='#186254' stroke-width='1.2'/>
+<text x='122.0' y='267.32' font-family="'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size='12' fill='#333333' font-weight='normal' text-anchor='middle'>识别反向剪接位点</text>
+<line x1='122.0' y1='288' x2='122.0' y2='308' stroke='#186254' stroke-width='1.4'/>
+<line x1='122.0' y1='308.0' x2='125.9' y2='299.9' stroke='#186254' stroke-width='1.4'/>
+<line x1='122.0' y1='308.0' x2='118.1' y2='299.9' stroke='#186254' stroke-width='1.4'/>
+<rect x='24' y='312' width='196' height='46' rx='6' fill='none' stroke='#186254' stroke-width='1.2'/>
+<text x='122.0' y='339.32' font-family="'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size='12' fill='#333333' font-weight='normal' text-anchor='middle'>已知 circRNA（circBase）</text>
+<line x1='122.0' y1='360' x2='122.0' y2='380' stroke='#186254' stroke-width='1.4'/>
+<line x1='122.0' y1='380.0' x2='125.9' y2='371.9' stroke='#186254' stroke-width='1.4'/>
+<line x1='122.0' y1='380.0' x2='118.1' y2='371.9' stroke='#186254' stroke-width='1.4'/>
+<rect x='24' y='384' width='196' height='46' rx='6' fill='none' stroke='#186254' stroke-width='1.2'/>
+<text x='122.0' y='411.32' font-family="'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size='12' fill='#333333' font-weight='normal' text-anchor='middle'>总 circRNA</text>
+<line x1='122.0' y1='432' x2='122.0' y2='452' stroke='#186254' stroke-width='1.4'/>
+<line x1='122.0' y1='452.0' x2='125.9' y2='443.9' stroke='#186254' stroke-width='1.4'/>
+<line x1='122.0' y1='452.0' x2='118.1' y2='443.9' stroke='#186254' stroke-width='1.4'/>
+<rect x='24' y='456' width='196' height='46' rx='6' fill='none' stroke='#186254' stroke-width='1.2'/>
+<text x='122.0' y='483.32' font-family="'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size='12' fill='#333333' font-weight='normal' text-anchor='middle'>差异表达分析</text>
+<line x1='122.0' y1='504' x2='122.0' y2='524' stroke='#186254' stroke-width='1.4'/>
+<line x1='122.0' y1='524.0' x2='125.9' y2='515.9' stroke='#186254' stroke-width='1.4'/>
+<line x1='122.0' y1='524.0' x2='118.1' y2='515.9' stroke='#186254' stroke-width='1.4'/>
+<rect x='24' y='528' width='196' height='46' rx='6' fill='none' stroke='#186254' stroke-width='1.2'/>
+<text x='122.0' y='555.32' font-family="'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size='12' fill='#333333' font-weight='normal' text-anchor='middle'>宿主基因注释／特征分析</text>
+<line x1='220' y1='263.0' x2='264' y2='263.0' stroke='#186254' stroke-width='1.2'/>
+<line x1='264.0' y1='263.0' x2='255.9' y2='259.1' stroke='#186254' stroke-width='1.2'/>
+<line x1='264.0' y1='263.0' x2='255.9' y2='266.9' stroke='#186254' stroke-width='1.2'/>
+<rect x='272' y='240.0' width='172' height='46' rx='6' fill='none' stroke='#186254' stroke-width='1.2' stroke-dasharray='4,3'/>
+<text x='358.0' y='258.32' font-family="'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size='12' fill='#333333' font-weight='normal' text-anchor='middle'>软件预测</text>
+<text x='358.0' y='276.32' font-family="'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size='12' fill='#333333' font-weight='normal' text-anchor='middle'>（find_circ／CIRI）</text>
+<line x1='358.0' y1='288.0' x2='358.0' y2='308.0' stroke='#186254' stroke-width='1.2'/>
+<line x1='358.0' y1='308.0' x2='361.9' y2='299.9' stroke='#186254' stroke-width='1.2'/>
+<line x1='358.0' y1='308.0' x2='354.1' y2='299.9' stroke='#186254' stroke-width='1.2'/>
+<rect x='272' y='312.0' width='172' height='46' rx='6' fill='none' stroke='#186254' stroke-width='1.2' stroke-dasharray='4,3'/>
+<text x='358.0' y='339.32' font-family="'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size='12' fill='#333333' font-weight='normal' text-anchor='middle'>新 circRNA</text>
+<line x1='358.0' y1='358.0' x2='358.0' y2='407.0' stroke='#186254' stroke-width='1.4'/>
+<line x1='358.0' y1='407.0' x2='228' y2='407.0' stroke='#186254' stroke-width='1.4'/>
+<line x1='228.0' y1='407.0' x2='236.1' y2='410.9' stroke='#186254' stroke-width='1.4'/>
+<line x1='228.0' y1='407.0' x2='236.1' y2='403.1' stroke='#186254' stroke-width='1.4'/>
+<text x='235.0' y='604' font-family="ui-monospace, 'SFMono-Regular', Menlo, Consolas, 'Liberation Mono', monospace" font-size='12' fill='#6b7280' font-weight='normal' text-anchor='middle'>连接点 read 是鉴定的特征信号（见 5.7 节；重绘自原稿示意图）</text>
+</svg>
