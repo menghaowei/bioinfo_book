@@ -799,7 +799,7 @@ window.Quarto = {
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
 <h1 class="title"><span id="sec-ch07" class="quarto-section-identifier"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">WGS与WES：从测序数据到可信的小变异</span></span></h1>
-<p class="chapter-last-modified"><time datetime="2026-10-11T02:33:21+08:00" title="本章书稿最后修改时间（北京时间，UTC+08:00）">最后修改：2026-10-11 02:33（北京时间）</time></p>
+<p class="chapter-last-modified"><time datetime="2026-10-11T02:35:38+08:00" title="本章书稿最后修改时间（北京时间，UTC+08:00）">最后修改：2026-10-11 02:35（北京时间）</time></p>
 </div>
 
 
@@ -1522,6 +1522,17 @@ chr21   9068512  .   C   T   214.64 PASS   DP=13;QD=16.51;SOR=1.609 GT:AD:DP:GQ:
 </div>
 </figure>
 </div>
+<div id="fig-07-vcf-anatomy" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-07-vcf-anatomy-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="../assets/08-wgs-and-wes/vcf-record-anatomy.svg" class="img-fluid figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-07-vcf-anatomy-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+图&nbsp;7.8: 一条 VCF 记录的逐列解剖
+</figcaption>
+</figure>
+</div>
+<p><a href="#fig-07-vcf-anatomy" class="quarto-xref">图&nbsp;<span>7.8</span></a> 把这条真实记录按列拆开标注，FORMAT 字段的展开见下文。</p>
 <p>FORMAT 中最常用的字段是判断一条记录可信度的直接证据：</p>
 <ul>
 <li><strong>GT（genotype）</strong>：等位基因型。<code>0/0</code> 纯合参考、<code>0/1</code> 杂合、<code>1/1</code> 纯合替代；<code>0|1</code> 竖线表示已定相（知道各来自哪条同源染色体）。GATK 用 <code>./.</code> 表示缺失。</li>
@@ -1691,11 +1702,11 @@ SN    0  number of SNPs:      570</code></pre>
 <img src="../assets/08-wgs-and-wes/007-pic10.png" class="img-fluid figure-img">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-08-wgs-and-wes-007-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-图&nbsp;7.8: BRCA Exchange 数据库中收录的变异记录
+图&nbsp;7.9: BRCA Exchange 数据库中收录的变异记录
 </figcaption>
 </figure>
 </div>
-<p><a href="#fig-08-wgs-and-wes-007" class="quarto-xref">图&nbsp;<span>7.8</span></a> 是 BRCA Exchange 的变异浏览页面（截图取自 2020 年前后的网站版本），每条记录给出变异坐标、临床分类与证据来源。</p>
+<p><a href="#fig-08-wgs-and-wes-007" class="quarto-xref">图&nbsp;<span>7.9</span></a> 是 BRCA Exchange 的变异浏览页面（截图取自 2020 年前后的网站版本），每条记录给出变异坐标、临床分类与证据来源。</p>
 </section>
 <section id="sec-07-07-use-cases" class="level3">
 <h3 class="anchored" data-anchor-id="sec-07-07-use-cases">数据库使用案例</h3>
@@ -1712,18 +1723,18 @@ SN    0  number of SNPs:      570</code></pre>
 <img src="../assets/08-wgs-and-wes/008-pic6.png" class="img-fluid figure-img">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-08-wgs-and-wes-008-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-图&nbsp;7.9: 在 COSMIC Cancer Gene Census 中按疾病检索癌症相关基因
+图&nbsp;7.10: 在 COSMIC Cancer Gene Census 中按疾病检索癌症相关基因
 </figcaption>
 </figure>
 </div>
-<p><a href="#fig-08-wgs-and-wes-008" class="quarto-xref">图&nbsp;<span>7.9</span></a> 与 <a href="#fig-08-wgs-and-wes-009" class="quarto-xref">图&nbsp;<span>7.10</span></a> 是以上操作在 COSMIC 中的对应界面（截图取自 2020 年前后的网站版本，以现行网站布局为准）：在 CGC 页面按关键词过滤基因目录，进入基因页面后可以看到该基因在癌症中的突变概览、分布与文献。</p>
+<p><a href="#fig-08-wgs-and-wes-008" class="quarto-xref">图&nbsp;<span>7.10</span></a> 与 <a href="#fig-08-wgs-and-wes-009" class="quarto-xref">图&nbsp;<span>7.11</span></a> 是以上操作在 COSMIC 中的对应界面（截图取自 2020 年前后的网站版本，以现行网站布局为准）：在 CGC 页面按关键词过滤基因目录，进入基因页面后可以看到该基因在癌症中的突变概览、分布与文献。</p>
 <div id="fig-08-wgs-and-wes-009" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-08-wgs-and-wes-009-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <img src="../assets/08-wgs-and-wes/009-pic7.png" class="img-fluid figure-img">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-08-wgs-and-wes-009-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-图&nbsp;7.10: 在 COSMIC 中检索特定疾病的癌症基因结果
+图&nbsp;7.11: 在 COSMIC 中检索特定疾病的癌症基因结果
 </figcaption>
 </figure>
 </div>
@@ -1734,7 +1745,7 @@ SN    0  number of SNPs:      570</code></pre>
 <img src="../assets/08-wgs-and-wes/010-pic8.png" class="img-fluid figure-img">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-08-wgs-and-wes-010-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-图&nbsp;7.11: 在 COSMIC 数据库中查看基因的突变概览
+图&nbsp;7.12: 在 COSMIC 数据库中查看基因的突变概览
 </figcaption>
 </figure>
 </div>
@@ -1744,7 +1755,7 @@ SN    0  number of SNPs:      570</code></pre>
 <img src="../assets/08-wgs-and-wes/011-pic9.png" class="img-fluid figure-img">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-08-wgs-and-wes-011-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-图&nbsp;7.12: 用 COSMIC-3D 查看突变位点在蛋白质结构上的分布
+图&nbsp;7.13: 用 COSMIC-3D 查看突变位点在蛋白质结构上的分布
 </figcaption>
 </figure>
 </div>
@@ -1760,7 +1771,7 @@ SN    0  number of SNPs:      570</code></pre>
 <img src="../assets/08-wgs-and-wes/012-pic11.png" class="img-fluid figure-img">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-08-wgs-and-wes-012-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-图&nbsp;7.13: 以 MSH6 为例在 KEGG 数据库中搜索相关通路
+图&nbsp;7.14: 以 MSH6 为例在 KEGG 数据库中搜索相关通路
 </figcaption>
 </figure>
 </div>
@@ -1770,7 +1781,7 @@ SN    0  number of SNPs:      570</code></pre>
 <img src="../assets/08-wgs-and-wes/013-pic12.png" class="img-fluid figure-img">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-08-wgs-and-wes-013-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-图&nbsp;7.14: Metascape 可以同时分析多个基因的注释与富集
+图&nbsp;7.15: Metascape 可以同时分析多个基因的注释与富集
 </figcaption>
 </figure>
 </div>
@@ -1781,7 +1792,7 @@ SN    0  number of SNPs:      570</code></pre>
 <img src="../assets/08-wgs-and-wes/014-pic13.png" class="img-fluid figure-img">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-08-wgs-and-wes-014-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-图&nbsp;7.15: TCGA 数据通过 GDC Data Portal 访问
+图&nbsp;7.16: TCGA 数据通过 GDC Data Portal 访问
 </figcaption>
 </figure>
 </div>
@@ -1799,7 +1810,7 @@ SN    0  number of SNPs:      570</code></pre>
 <img src="../assets/08-wgs-and-wes/igv-na12878-review.svg" class="img-fluid figure-img">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-07-igv-review-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-图&nbsp;7.16: 候选杂合变异的 reads 复核视图（据本章实测数据绘制，IGV 风格）
+图&nbsp;7.17: 候选杂合变异的 reads 复核视图（据本章实测数据绘制，IGV 风格）
 </figcaption>
 </figure>
 </div>
@@ -1810,7 +1821,7 @@ SN    0  number of SNPs:      570</code></pre>
 <li><strong>read 位置</strong>：变异是否集中在 read 末端（ReadPosRankSum 在防的问题）；</li>
 <li><strong>周边环境</strong>：是否落在重复区域、假基因附近，或 SNP 密集得异常的区域。</li>
 </ul>
-<p><a href="#fig-07-igv-review" class="quarto-xref">图&nbsp;<span>7.16</span></a> 是本章示例数据中一个候选杂合变异（chr21:9068512 C&gt;T，即 7.6.1 的那条记录）的复核视图，按实测 BAM 的 27 条 reads 绘制。养成”下结论前看一眼”的习惯，比任何自动化过滤器都更能建立对结果的判断力——过滤器的阈值是别人的经验，IGV 里的证据是你自己的。</p>
+<p><a href="#fig-07-igv-review" class="quarto-xref">图&nbsp;<span>7.17</span></a> 是本章示例数据中一个候选杂合变异（chr21:9068512 C&gt;T，即 7.6.1 的那条记录）的复核视图，按实测 BAM 的 27 条 reads 绘制。养成”下结论前看一眼”的习惯，比任何自动化过滤器都更能建立对结果的判断力——过滤器的阈值是别人的经验，IGV 里的证据是你自己的。</p>
 </section>
 <section id="sec-07-08-benchmarking" class="level3">
 <h3 class="anchored" data-anchor-id="sec-07-08-benchmarking">基准评价</h3>
@@ -1855,7 +1866,7 @@ SN    0  number of SNPs:      570</code></pre>
 
 </main> <!-- /main -->
 <div class="book-toolbar" role="navigation" aria-label="阅读工具">
-  <div class="book-brand"><span class="book-brand-name">AI时代生信入门</span><time class="book-last-modified" datetime="2026-10-11T02:33:21+08:00" title="最后修改时间（北京时间，UTC+08:00）">最后修改 2026-10-11 02:33</time></div>
+  <div class="book-brand"><span class="book-brand-name">AI时代生信入门</span><time class="book-last-modified" datetime="2026-10-11T02:35:38+08:00" title="最后修改时间（北京时间，UTC+08:00）">最后修改 2026-10-11 02:35</time></div>
   <button class="book-menu-button" type="button" aria-controls="quarto-sidebar" aria-expanded="false">目录</button>
   <button class="book-search-button" type="button">搜索</button>
 </div>
