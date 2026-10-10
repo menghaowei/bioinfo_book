@@ -65,16 +65,15 @@
     {
       "file": "manuscript/05-rna-seq.md",
       "title": "RNA-seq：从表达定量到差异表达",
-      "planned_sections": 8,
+      "planned_sections": 7,
       "section_titles": [
-        "研究问题、建库策略与分析对象",
-        "建立贯穿全章的示例项目",
-        "RNA-seq质控与剪接感知比对",
-        "从reads到基因和转录本定量",
-        "counts、TPM与样本探索",
-        "差异表达模型与结果解释",
-        "功能富集与结果展示",
-        "完整交付、错误案例与拓展入口"
+        "转录组的研究问题、分析对象与建库策略",
+        "本章示例数据下载与说明",
+        "RNA-seq 数据的质控与比对",
+        "从比对到转录本定量",
+        "基因的差异表达分析",
+        "功能富集分析与结果展示",
+        "其它 RNA 测序的分析"
       ],
       "summary": true
     },
@@ -401,7 +400,20 @@
       "question-21-286",
       "question-21-292",
       "question-21-307",
-      "question-21-314"
+      "question-21-314",
+      "topic-05-lib-strategies",
+      "topic-05-other-rna-lib",
+      "topic-05-stranded-lib",
+      "topic-05-sample-design",
+      "topic-05-reference-files",
+      "topic-05-rna-vs-dna-align",
+      "topic-05-rsem",
+      "topic-05-quant-choice",
+      "topic-05-sample-qc",
+      "topic-05-transcript-de",
+      "topic-05-de-reading",
+      "topic-05-clusterprofiler",
+      "topic-05-bubble-plot"
     ],
     "manuscript/09-single-cell-and-spatial-omics.md": [
       "src-0050-RNA-seq-56",

@@ -1,0 +1,60 @@
+<svg xmlns='http://www.w3.org/2000/svg' width='440' height='560' viewBox='0 0 440 560' role='img' aria-labelledby='t d'>
+<title id='t'>lncRNA 测序分析流程</title>
+<desc id='d'>左侧主线：质控、比对、从注释取已知 lncRNA；右侧支线：组装转录本并过滤编码潜力得到新 lncRNA；两者合并为总 lncRNA 后定量、差异分析并做功能注释。</desc>
+<rect x='24' y='24' width='172' height='38' rx='6' fill='none' stroke='#186254' stroke-width='1.2'/>
+<text x='110.0' y='47.32' font-family="'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size='12' fill='#333333' font-weight='normal' text-anchor='middle'>FASTQ 原始数据</text>
+<line x1='110.0' y1='64' x2='110.0' y2='84' stroke='#186254' stroke-width='1.4'/>
+<line x1='110.0' y1='84.0' x2='113.9' y2='75.9' stroke='#186254' stroke-width='1.4'/>
+<line x1='110.0' y1='84.0' x2='106.1' y2='75.9' stroke='#186254' stroke-width='1.4'/>
+<rect x='24' y='88' width='172' height='38' rx='6' fill='none' stroke='#186254' stroke-width='1.2'/>
+<text x='110.0' y='111.32' font-family="'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size='12' fill='#333333' font-weight='normal' text-anchor='middle'>质量控制</text>
+<line x1='110.0' y1='128' x2='110.0' y2='148' stroke='#186254' stroke-width='1.4'/>
+<line x1='110.0' y1='148.0' x2='113.9' y2='139.9' stroke='#186254' stroke-width='1.4'/>
+<line x1='110.0' y1='148.0' x2='106.1' y2='139.9' stroke='#186254' stroke-width='1.4'/>
+<rect x='24' y='152' width='172' height='38' rx='6' fill='none' stroke='#186254' stroke-width='1.2'/>
+<text x='110.0' y='175.32' font-family="'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size='12' fill='#333333' font-weight='normal' text-anchor='middle'>基因组比对</text>
+<line x1='110.0' y1='192' x2='110.0' y2='212' stroke='#186254' stroke-width='1.4'/>
+<line x1='110.0' y1='212.0' x2='113.9' y2='203.9' stroke='#186254' stroke-width='1.4'/>
+<line x1='110.0' y1='212.0' x2='106.1' y2='203.9' stroke='#186254' stroke-width='1.4'/>
+<rect x='24' y='216' width='172' height='38' rx='6' fill='none' stroke='#186254' stroke-width='1.2'/>
+<text x='110.0' y='239.32' font-family="'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size='12' fill='#333333' font-weight='normal' text-anchor='middle'>已知 lncRNA（注释）</text>
+<line x1='110.0' y1='256' x2='110.0' y2='276' stroke='#186254' stroke-width='1.4'/>
+<line x1='110.0' y1='276.0' x2='113.9' y2='267.9' stroke='#186254' stroke-width='1.4'/>
+<line x1='110.0' y1='276.0' x2='106.1' y2='267.9' stroke='#186254' stroke-width='1.4'/>
+<rect x='24' y='280' width='172' height='38' rx='6' fill='none' stroke='#186254' stroke-width='1.2'/>
+<text x='110.0' y='303.32' font-family="'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size='12' fill='#333333' font-weight='normal' text-anchor='middle'>总 lncRNA</text>
+<line x1='110.0' y1='320' x2='110.0' y2='340' stroke='#186254' stroke-width='1.4'/>
+<line x1='110.0' y1='340.0' x2='113.9' y2='331.9' stroke='#186254' stroke-width='1.4'/>
+<line x1='110.0' y1='340.0' x2='106.1' y2='331.9' stroke='#186254' stroke-width='1.4'/>
+<rect x='24' y='344' width='172' height='38' rx='6' fill='none' stroke='#186254' stroke-width='1.2'/>
+<text x='110.0' y='367.32' font-family="'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size='12' fill='#333333' font-weight='normal' text-anchor='middle'>表达定量</text>
+<line x1='110.0' y1='384' x2='110.0' y2='404' stroke='#186254' stroke-width='1.4'/>
+<line x1='110.0' y1='404.0' x2='113.9' y2='395.9' stroke='#186254' stroke-width='1.4'/>
+<line x1='110.0' y1='404.0' x2='106.1' y2='395.9' stroke='#186254' stroke-width='1.4'/>
+<rect x='24' y='408' width='172' height='38' rx='6' fill='none' stroke='#186254' stroke-width='1.2'/>
+<text x='110.0' y='431.32' font-family="'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size='12' fill='#333333' font-weight='normal' text-anchor='middle'>差异表达分析</text>
+<line x1='110.0' y1='448' x2='110.0' y2='468' stroke='#186254' stroke-width='1.4'/>
+<line x1='110.0' y1='468.0' x2='113.9' y2='459.9' stroke='#186254' stroke-width='1.4'/>
+<line x1='110.0' y1='468.0' x2='106.1' y2='459.9' stroke='#186254' stroke-width='1.4'/>
+<rect x='24' y='472' width='172' height='38' rx='6' fill='none' stroke='#186254' stroke-width='1.2'/>
+<text x='110.0' y='495.32' font-family="'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size='12' fill='#333333' font-weight='normal' text-anchor='middle'>功能注释（直接／靶基因）</text>
+<line x1='196' y1='171.0' x2='244' y2='171.0' stroke='#186254' stroke-width='1.2'/>
+<line x1='244.0' y1='171.0' x2='235.9' y2='167.1' stroke='#186254' stroke-width='1.2'/>
+<line x1='244.0' y1='171.0' x2='235.9' y2='174.9' stroke='#186254' stroke-width='1.2'/>
+<rect x='252' y='152.0' width='150' height='38' rx='6' fill='none' stroke='#186254' stroke-width='1.2' stroke-dasharray='4,3'/>
+<text x='327.0' y='175.32' font-family="'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size='12' fill='#333333' font-weight='normal' text-anchor='middle'>转录本组装（可选）</text>
+<line x1='327.0' y1='192.0' x2='327.0' y2='212.0' stroke='#186254' stroke-width='1.2'/>
+<line x1='327.0' y1='212.0' x2='330.9' y2='203.9' stroke='#186254' stroke-width='1.2'/>
+<line x1='327.0' y1='212.0' x2='323.1' y2='203.9' stroke='#186254' stroke-width='1.2'/>
+<rect x='252' y='216.0' width='150' height='38' rx='6' fill='none' stroke='#186254' stroke-width='1.2' stroke-dasharray='4,3'/>
+<text x='327.0' y='239.32' font-family="'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size='12' fill='#333333' font-weight='normal' text-anchor='middle'>编码潜力过滤</text>
+<line x1='327.0' y1='256.0' x2='327.0' y2='276.0' stroke='#186254' stroke-width='1.2'/>
+<line x1='327.0' y1='276.0' x2='330.9' y2='267.9' stroke='#186254' stroke-width='1.2'/>
+<line x1='327.0' y1='276.0' x2='323.1' y2='267.9' stroke='#186254' stroke-width='1.2'/>
+<rect x='252' y='280.0' width='150' height='38' rx='6' fill='none' stroke='#186254' stroke-width='1.2' stroke-dasharray='4,3'/>
+<text x='327.0' y='303.32' font-family="'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size='12' fill='#333333' font-weight='normal' text-anchor='middle'>新 lncRNA</text>
+<line x1='252' y1='299.0' x2='204' y2='299.0' stroke='#186254' stroke-width='1.4'/>
+<line x1='204.0' y1='299.0' x2='212.1' y2='302.9' stroke='#186254' stroke-width='1.4'/>
+<line x1='204.0' y1='299.0' x2='212.1' y2='295.1' stroke='#186254' stroke-width='1.4'/>
+<text x='220.0' y='548' font-family="ui-monospace, 'SFMono-Regular', Menlo, Consolas, 'Liberation Mono', monospace" font-size='12' fill='#6b7280' font-weight='normal' text-anchor='middle'>两条来源汇入“总 lncRNA”（重绘自原稿示意图）</text>
+</svg>

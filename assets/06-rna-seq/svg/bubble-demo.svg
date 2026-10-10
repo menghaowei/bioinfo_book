@@ -1,0 +1,43 @@
+<svg xmlns='http://www.w3.org/2000/svg' width='520' height='380' viewBox='0 0 520 380' role='img' aria-labelledby='t d'>
+<title id='t'>富集分析气泡图读法演示</title>
+<desc id='d'>模拟的 GO/KEGG 富集结果：横轴为基因比例，气泡大小为显著基因数，颜色深浅为 p 值；右上角大气泡是最值得关注的通路。</desc>
+<rect x='130' y='30' width='300' height='264' rx='4' fill='#ffffff' stroke='#9ca3af' stroke-width='1.2'/>
+<line x1='213.33333333333334' y1='30' x2='213.33333333333334' y2='294' stroke='#eef1ee' stroke-width='1.2'/>
+<text x='213.33333333333334' y='310' font-family="ui-monospace, 'SFMono-Regular', Menlo, Consolas, 'Liberation Mono', monospace" font-size='12' fill='#6b7280' font-weight='normal' text-anchor='middle'>0.1</text>
+<line x1='296.6666666666667' y1='30' x2='296.6666666666667' y2='294' stroke='#eef1ee' stroke-width='1.2'/>
+<text x='296.6666666666667' y='310' font-family="ui-monospace, 'SFMono-Regular', Menlo, Consolas, 'Liberation Mono', monospace" font-size='12' fill='#6b7280' font-weight='normal' text-anchor='middle'>0.2</text>
+<line x1='380.0' y1='30' x2='380.0' y2='294' stroke='#eef1ee' stroke-width='1.2'/>
+<text x='380.0' y='310' font-family="ui-monospace, 'SFMono-Regular', Menlo, Consolas, 'Liberation Mono', monospace" font-size='12' fill='#6b7280' font-weight='normal' text-anchor='middle'>0.3</text>
+<circle cx='388.3' cy='48.0' r='32.0' fill='#428b48' stroke='#186254' stroke-opacity='0.45' stroke-width='1'/>
+<text x='118' y='52.0' font-family="ui-monospace, 'SFMono-Regular', Menlo, Consolas, 'Liberation Mono', monospace" font-size='12' fill='#333333' font-weight='normal' text-anchor='end'>细胞周期</text>
+<circle cx='346.7' cy='82.3' r='26.2' fill='#4f9356' stroke='#186254' stroke-opacity='0.45' stroke-width='1'/>
+<text x='118' y='86.28571428571428' font-family="ui-monospace, 'SFMono-Regular', Menlo, Consolas, 'Liberation Mono', monospace" font-size='12' fill='#333333' font-weight='normal' text-anchor='end'>DNA 复制</text>
+<circle cx='313.3' cy='116.6' r='20.7' fill='#5e9c66' stroke='#186254' stroke-opacity='0.45' stroke-width='1'/>
+<text x='118' y='120.57142857142857' font-family="ui-monospace, 'SFMono-Regular', Menlo, Consolas, 'Liberation Mono', monospace" font-size='12' fill='#333333' font-weight='normal' text-anchor='end'>染色体分离</text>
+<circle cx='280.0' cy='150.9' r='17.3' fill='#6da576' stroke='#186254' stroke-opacity='0.45' stroke-width='1'/>
+<text x='118' y='154.85714285714286' font-family="ui-monospace, 'SFMono-Regular', Menlo, Consolas, 'Liberation Mono', monospace" font-size='12' fill='#333333' font-weight='normal' text-anchor='end'>DNA 修复</text>
+<circle cx='246.7' cy='185.1' r='12.3' fill='#7daf87' stroke='#186254' stroke-opacity='0.45' stroke-width='1'/>
+<text x='118' y='189.14285714285714' font-family="ui-monospace, 'SFMono-Regular', Menlo, Consolas, 'Liberation Mono', monospace" font-size='12' fill='#333333' font-weight='normal' text-anchor='end'>程序性细胞死亡</text>
+<circle cx='221.7' cy='219.4' r='11.0' fill='#8ab795' stroke='#186254' stroke-opacity='0.45' stroke-width='1'/>
+<text x='118' y='223.42857142857142' font-family="ui-monospace, 'SFMono-Regular', Menlo, Consolas, 'Liberation Mono', monospace" font-size='12' fill='#333333' font-weight='normal' text-anchor='end'>RNA 剪接</text>
+<circle cx='205.0' cy='253.7' r='8.5' fill='#99c0a5' stroke='#186254' stroke-opacity='0.45' stroke-width='1'/>
+<text x='118' y='257.7142857142857' font-family="ui-monospace, 'SFMono-Regular', Menlo, Consolas, 'Liberation Mono', monospace" font-size='12' fill='#333333' font-weight='normal' text-anchor='end'>蛋白质折叠</text>
+<circle cx='180.0' cy='288.0' r='6.8' fill='#a3c6b0' stroke='#186254' stroke-opacity='0.45' stroke-width='1'/>
+<text x='118' y='292.0' font-family="ui-monospace, 'SFMono-Regular', Menlo, Consolas, 'Liberation Mono', monospace" font-size='12' fill='#333333' font-weight='normal' text-anchor='end'>信号转导</text>
+<text x='280.0' y='330' font-family="ui-monospace, 'SFMono-Regular', Menlo, Consolas, 'Liberation Mono', monospace" font-size='13' fill='#333333' font-weight='normal' text-anchor='middle'>基因比例（显著基因中注释到该通路的占比）</text>
+<text x='454' y='40' font-family="ui-monospace, 'SFMono-Regular', Menlo, Consolas, 'Liberation Mono', monospace" font-size='12' fill='#6b7280' font-weight='normal' text-anchor='start'>基因数</text>
+<circle cx='466' cy='74' r='9.8' fill='#e5ece9' stroke='#9ca3af'/>
+<text x='490' y='74' font-family="ui-monospace, 'SFMono-Regular', Menlo, Consolas, 'Liberation Mono', monospace" font-size='12' fill='#333333' font-weight='normal' text-anchor='start'>15</text>
+<circle cx='466' cy='118' r='20.3' fill='#e5ece9' stroke='#9ca3af'/>
+<text x='490' y='118' font-family="ui-monospace, 'SFMono-Regular', Menlo, Consolas, 'Liberation Mono', monospace" font-size='12' fill='#333333' font-weight='normal' text-anchor='start'>40</text>
+<circle cx='466' cy='162' r='32.9' fill='#e5ece9' stroke='#9ca3af'/>
+<text x='490' y='162' font-family="ui-monospace, 'SFMono-Regular', Menlo, Consolas, 'Liberation Mono', monospace" font-size='12' fill='#333333' font-weight='normal' text-anchor='start'>70</text>
+<text x='454' y='220' font-family="ui-monospace, 'SFMono-Regular', Menlo, Consolas, 'Liberation Mono', monospace" font-size='12' fill='#6b7280' font-weight='normal' text-anchor='start'>p 值</text>
+<circle cx='466' cy='240' r='7' fill='#a8c9b5' stroke='#9ca3af'/>
+<text x='482' y='244' font-family="ui-monospace, 'SFMono-Regular', Menlo, Consolas, 'Liberation Mono', monospace" font-size='12' fill='#333333' font-weight='normal' text-anchor='start'>1e-01</text>
+<circle cx='466' cy='266' r='7' fill='#7daf87' stroke='#9ca3af'/>
+<text x='482' y='270' font-family="ui-monospace, 'SFMono-Regular', Menlo, Consolas, 'Liberation Mono', monospace" font-size='12' fill='#333333' font-weight='normal' text-anchor='start'>1e-03</text>
+<circle cx='466' cy='292' r='7' fill='#519458' stroke='#9ca3af'/>
+<text x='482' y='296' font-family="ui-monospace, 'SFMono-Regular', Menlo, Consolas, 'Liberation Mono', monospace" font-size='12' fill='#333333' font-weight='normal' text-anchor='start'>1e-05</text>
+<text x='260.0' y='368' font-family="ui-monospace, 'SFMono-Regular', Menlo, Consolas, 'Liberation Mono', monospace" font-size='12' fill='#333333' font-weight='normal' text-anchor='middle'>读图：右上角大而深的气泡＝基因比例高、p 值小、贡献基因多</text>
+</svg>
