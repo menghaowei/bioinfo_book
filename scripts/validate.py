@@ -120,7 +120,7 @@ for chapter in manifest['chapters']:
   if len(summary_blocks)!=1:errors.append(f'{p.name}: expected one dark chapter summary box ending before numbered sections')
   elif len(summary_blocks[0].strip())>1000 or '\n\n' in summary_blocks[0].strip():errors.append(f'{p.name}: chapter summary must be one paragraph of at most 1000 characters')
   if not re.match(r'^# [^\n]+\n\n'+summary_pattern,source,re.S):errors.append(f'{p.name}: summary box must follow the chapter title and precede numbered sections')
- elif re.search(r'^## ',source,re.M):errors.append(f'{p.name}: foreword must not have second-level sections')
+ elif re.search(r'^## 本章提要(?:\s|$)|\.book-chapter-summary\b',source,re.M):errors.append(f'{p.name}: no chapter summary is planned for this chapter')
  if not (OUT/'manuscript'/p.with_suffix('.html').name).exists():errors.append(f'Missing chapter HTML: {p.stem}')
 
 for target,anchors in manifest['required_anchors'].items():

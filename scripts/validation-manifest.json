@@ -4,8 +4,11 @@
     {
       "file": "manuscript/01-ai-era-introduction.md",
       "title": "AI时代，如何开始学习生物信息学",
-      "planned_sections": 0,
-      "section_titles": [],
+      "planned_sections": 2,
+      "section_titles": [
+        "AI时代的生物信息学入门",
+        "给初学者的入门建议"
+      ],
       "summary": false
     },
     {
@@ -186,7 +189,10 @@
   "required_anchors": {
     "manuscript/01-ai-era-introduction.md": [
       "src-0010-introduction-8",
-      "intro-learning-advice"
+      "intro-learning-advice",
+      "intro",
+      "sec-01-01",
+      "sec-01-02"
     ],
     "manuscript/03-sequencing-technologies.md": [
       "src-0020-introduction-of-NGS-1",

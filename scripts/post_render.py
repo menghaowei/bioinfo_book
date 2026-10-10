@@ -4,14 +4,17 @@ from pathlib import Path
 from html import escape
 from table_layout import wrap_tables
 from navigation import build_navigation
+from site_metadata import last_modified_markup
 import json,os,shutil,subprocess,datetime,re
 ROOT=Path(__file__).resolve().parents[1];OUT=ROOT/'docs'
 manifest=json.loads((ROOT/'scripts/validation-manifest.json').read_text())
+modified_markup=last_modified_markup(ROOT)
 if not (ROOT/'vendor/mathjax/tex-chtml.js').is_file():
  raise SystemExit('Missing vendored MathJax: restore vendor/mathjax from the repository.')
 shutil.copytree(ROOT/'vendor/mathjax',OUT/'vendor/mathjax',dirs_exist_ok=True)
 for p in OUT.rglob('*.html'):
  s=p.read_text()
+ s=re.sub(r'<time class="book-last-modified"[^>]*>.*?</time>',modified_markup,s,flags=re.S)
  rel=os.path.relpath(OUT/'vendor/mathjax/tex-chtml.js',p.parent).replace(os.sep,'/')
  s=re.sub(r'src="[^"]*(?:vendor/mathjax/tex-chtml\.js|mathjax@[^"/]+/es5/tex-mml-chtml\.js)"',f'src="{rel}"',s)
  # Quarto expands tabs before highlighting. Retain source text for faithful copying,
