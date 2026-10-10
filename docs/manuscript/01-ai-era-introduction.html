@@ -135,7 +135,15 @@ ul.task-list li input[type="checkbox"] {
 </ul></details>
 </li>
 <li>
-<div class="book-nav-leaf book-chapter-empty"><a class="book-nav-link book-chapter-link no-external" href="01-ai-era-introduction.html" aria-current="page">1 AI时代，如何开始学习生物信息学</a></div>
+<details class="book-chapter" data-book-page="manuscript/01-ai-era-introduction.html" open data-current-chapter="true">
+<summary><a class="book-nav-link book-chapter-link no-external" href="01-ai-era-introduction.html" aria-current="page">1 AI时代，如何开始学习生物信息学</a></summary><ul class="book-sections">
+<li>
+<div class="book-nav-leaf"><a class="book-nav-link book-section-link no-external" href="#sec-01-01" data-book-level="2" data-book-target="sec-01-01" id="book-nav-1-sec-01-01">1.1 AI时代的生物信息学入门</a></div>
+</li>
+<li>
+<div class="book-nav-leaf"><a class="book-nav-link book-section-link no-external" href="#sec-01-02" data-book-level="2" data-book-target="sec-01-02" id="book-nav-1-sec-01-02">1.2 给初学者的入门建议</a></div>
+</li>
+</ul></details>
 </li>
 <li>
 <details class="book-chapter" data-book-page="manuscript/02-environment-and-programming.html">
@@ -690,6 +698,8 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
+<section id="sec-01-01" class="level2" data-number="1.1">
+<h2 data-number="1.1" class="anchored" data-anchor-id="sec-01-01"><span class="header-section-number">1.1</span> AI时代的生物信息学入门</h2>
 <p><span id="src-0010-introduction-8"></span></p>
 <p>这本书写给希望开始学习生物信息分析的读者。在 AI 可以帮助我们解释概念、阅读代码和排查问题的今天，理解数据从哪里来、分析为什么这样做，以及结果能够支持什么结论，仍然是独立分析的基础。你可以从测序技术和基本操作开始，逐步进入不同类型的数据分析，在需要时回看统计学章节，并通过工作流与综合实践整理自己的学习成果。</p>
 <p><span id="intro"></span></p>
@@ -707,8 +717,10 @@ ul.task-list li input[type="checkbox"] {
 <p>在分析数据的过程中，使用R语言或者Python语言对原始的生物信息数据进行清洗，加工，分析，展示已经成为主流。不但使用便捷，而且两种编程语言都是开源语言没有版权和商业的限制，更重要的是使用人数众多，常见的问题都能过通过Google搜索到解决方案。</p>
 <p>但是在生物信息学蓬勃发展的今天，国内鲜有一本能够将编程技术与实际生物信息学分析结合起来的参考书目，这给众多想要入门生物信息学的同学，老师及需要数据分析的临床医生带来了非常大的挑战。入门门槛较高，学习曲线比较陡峭是妨碍大家学习生信的主要问题，因此本书尝试用贴近真实数据分析的视角，为大家讲解我们认为最重要的生信相关知识点，并给出完整的测试数据及代码，方便大家进行学习。</p>
 <p>我们不期能够大而全地介绍每一个生物信息学细节，而希望为大家提供一份较为通俗易懂的入门手册，在阅读和实践的过程中逐渐感受到生物信息学数据的处理方式，领会数据处理的原理。同时，针对生物信息学中涉及到的R语言，统计学及相关生物背景知识我也会给出相应的学习建议，方便大家更加深入地学习。</p>
-<div id="intro-learning-advice" class="book-prose">
-<p><strong>给初学者的入门建议</strong></p>
+<p><span id="intro-learning-advice"></span></p>
+</section>
+<section id="sec-01-02" class="level2" data-number="1.2">
+<h2 data-number="1.2" class="anchored" data-anchor-id="sec-01-02"><span class="header-section-number">1.2</span> 给初学者的入门建议</h2>
 <p>知道这本书准备讲什么之后，我们还需要回答一个更具体的问题：应该怎样开始学习？我曾在个人网站上分享过一些生物信息学入门建议<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a>。结合本书的内容和 AI 时代的学习方式，这里把其中最值得先想清楚、先动手做的事情整理出来。</p>
 <p><strong>先明确目标：你希望学到什么程度？</strong></p>
 <p>学习生物信息学可以有不同的目标。我倾向于把能力的成长分成四个层次，帮助大家判断自己眼下最需要练习什么。</p>
@@ -752,12 +764,12 @@ ul.task-list li input[type="checkbox"] {
 <p>如果使用了 AI，补充记录它帮助完成了哪些部分，以及你如何核对这些建议。把数据位置、代码、参数和说明保存在同一个项目中，让未来的自己能够重新运行并理解这次分析。</p>
 </div>
 </div>
-</div>
 <p>总之，学习的路上，有万千条的路径，我们的目的是为你提供一条参考的可能。尽信书不如无书，领会精神，体会数据处理的方法论，远比会敲几行代码更重要，也对以后的发展更有帮助。</p>
 <p>种一棵树，最好的时间是十年前，其次，便是现在！</p>
 <p>希望在前进的路上，我们能够共勉！</p>
 
 
+</section>
 <section id="footnotes" class="footnotes footnotes-end-of-document" role="doc-endnotes">
 <hr>
 <ol>
@@ -767,7 +779,7 @@ ul.task-list li input[type="checkbox"] {
 
 </main> <!-- /main -->
 <div class="book-toolbar" role="navigation" aria-label="阅读工具">
-  <span class="book-brand">AI时代生信入门</span>
+  <div class="book-brand"><span class="book-brand-name">AI时代生信入门</span><time class="book-last-modified" datetime="2026-10-10T14:43:44+08:00" title="最后修改时间（北京时间，UTC+08:00）">最后修改 2026-10-10 14:43</time></div>
   <button class="book-menu-button" type="button" aria-controls="quarto-sidebar" aria-expanded="false">目录</button>
   <button class="book-search-button" type="button">搜索</button>
 </div>

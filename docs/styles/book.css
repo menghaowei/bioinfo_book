@@ -3,9 +3,10 @@ html { scroll-padding-top:80px; }
 body:not(.license-page) { padding-top:var(--book-toolbar) !important; overflow-x:clip; }
 #quarto-header, #quarto-sidebar-glass { display:none !important; }
 .book-toolbar { position:fixed; inset:0 0 auto; height:var(--book-toolbar); display:flex; gap:.8rem; align-items:center; padding:0 1.25rem; background:var(--book-paper); border-bottom:1px solid var(--book-line); z-index:1030; }
-.book-brand { font-weight:650; color:var(--book-green); margin-right:auto; text-decoration:none; white-space:nowrap; }
+.book-brand { display:flex; flex-wrap:wrap; align-items:baseline; gap:0 .65rem; min-width:0; line-height:1.25; font-weight:650; color:var(--book-green); margin-right:auto; text-decoration:none; white-space:nowrap; }
+.book-last-modified { font-size:12px; font-weight:400; color:#52675f; white-space:nowrap; }
 .book-toolbar button, .drawer-close, .code-toolbar button { border:1px solid #b9cabe; border-radius:5px; padding:.3rem .7rem; background:#fff; color:#244e43; font:inherit; cursor:pointer; }
-.book-toolbar button { font-size:.85rem; }
+.book-toolbar button { flex-shrink:0; white-space:nowrap; font-size:.85rem; }
 button:focus-visible, a:focus-visible { outline:3px solid #317baf; outline-offset:3px; }
 #quarto-content { display:grid !important; grid-template-columns:360px minmax(0,860px) !important; grid-template-rows:auto auto !important; column-gap:32px; width:100%; max-width:1300px; margin:0 auto !important; padding:32px 24px 0; }
 #quarto-content > main.content { grid-column:2 !important; grid-row:1 !important; margin:0 !important; padding:0 0 3rem; width:100%; min-width:0; max-width:860px; }
