@@ -461,41 +461,70 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
 <li>
 <details class="book-section"><summary><a class="book-nav-link book-section-link no-external" href="06-chip-seq-and-atac-seq.html#sec-06-01" data-book-level="2" id="book-nav-6-sec-06-01">6.1 蛋白结合、组蛋白修饰与染色质可及性</a></summary><ul>
-<li class="book-nav-leaf"><a class="book-nav-link book-section-link no-external" href="06-chip-seq-and-atac-seq.html#src-0060-ChIP-seq-20" data-book-level="3" id="book-nav-6-src-0060-ChIP-seq-20">ChIP-Seq和ATAC-Seq数据分析</a></li>
-<li class="book-nav-leaf"><a class="book-nav-link book-section-link no-external" href="06-chip-seq-and-atac-seq.html#src-0060-ChIP-seq-22" data-book-level="3" id="book-nav-6-src-0060-ChIP-seq-22">ChIP-seq 简介</a></li>
+<li class="book-nav-leaf"><a class="book-nav-link book-section-link no-external" href="06-chip-seq-and-atac-seq.html#topic-06-chip-principle" data-book-level="3" id="book-nav-6-topic-06-chip-principle">ChIP-seq：用抗体富集蛋白结合的 DNA</a></li>
+<li class="book-nav-leaf"><a class="book-nav-link book-section-link no-external" href="06-chip-seq-and-atac-seq.html#topic-06-cut-run-tag" data-book-level="3" id="book-nav-6-topic-06-cut-run-tag">CUT&amp;RUN 与 CUT&amp;Tag：不需要交联的替代方案</a></li>
+<li class="book-nav-leaf"><a class="book-nav-link book-section-link no-external" href="06-chip-seq-and-atac-seq.html#topic-06-atac-principle" data-book-level="3" id="book-nav-6-topic-06-atac-principle">ATAC-seq：用转座酶读出开放的染色质</a></li>
+<li class="book-nav-leaf"><a class="book-nav-link book-section-link no-external" href="06-chip-seq-and-atac-seq.html#topic-06-three-signals" data-book-level="3" id="book-nav-6-topic-06-three-signals">三类信号放在一起看</a></li>
 </ul></details>
 </li>
 <li>
 <details class="book-section"><summary><a class="book-nav-link book-section-link no-external" href="06-chip-seq-and-atac-seq.html#sec-06-02" data-book-level="2" id="book-nav-6-sec-06-02">6.2 实验对照、重复与主案例设计</a></summary><ul>
-<li class="book-nav-leaf"><a class="book-nav-link book-section-link no-external" href="06-chip-seq-and-atac-seq.html#src-0060-ChIP-seq-52" data-book-level="3" id="book-nav-6-src-0060-ChIP-seq-52">ChIP-seq 实验设计</a></li>
+<li class="book-nav-leaf"><a class="book-nav-link book-section-link no-external" href="06-chip-seq-and-atac-seq.html#topic-06-controls" data-book-level="3" id="book-nav-6-topic-06-controls">对照设计：input、IgG 与组蛋白泛抗体</a></li>
+<li class="book-nav-leaf"><a class="book-nav-link book-section-link no-external" href="06-chip-seq-and-atac-seq.html#topic-06-antibody" data-book-level="3" id="book-nav-6-topic-06-antibody">抗体质量：实验成败的第一道关</a></li>
+<li class="book-nav-leaf"><a class="book-nav-link book-section-link no-external" href="06-chip-seq-and-atac-seq.html#topic-06-depth-reps" data-book-level="3" id="book-nav-6-topic-06-depth-reps">测序深度、文库与重复设置</a></li>
+<li class="book-nav-leaf"><a class="book-nav-link book-section-link no-external" href="06-chip-seq-and-atac-seq.html#topic-06-nrf1-case" data-book-level="3" id="book-nav-6-topic-06-nrf1-case">主案例：NRF1 与 DNA 甲基化的竞争</a></li>
+<li class="book-nav-leaf"><a class="book-nav-link book-section-link no-external" href="06-chip-seq-and-atac-seq.html#topic-06-download" data-book-level="3" id="book-nav-6-topic-06-download">下载原始数据</a></li>
 </ul></details>
 </li>
 <li>
-<details class="book-section"><summary><a class="book-nav-link book-section-link no-external" href="06-chip-seq-and-atac-seq.html#sec-06-03" data-book-level="2" id="book-nav-6-sec-06-03">6.3 ChIP-seq预处理与质量评估</a></summary><ul>
-<li class="book-nav-leaf"><a class="book-nav-link book-section-link no-external" href="06-chip-seq-and-atac-seq.html#src-0060-ChIP-seq-82" data-book-level="3" id="book-nav-6-src-0060-ChIP-seq-82">ChIP-seq 数据分析流程</a></li>
+<details class="book-section"><summary><a class="book-nav-link book-section-link no-external" href="06-chip-seq-and-atac-seq.html#sec-06-03" data-book-level="2" id="book-nav-6-sec-06-03">6.3 ChIP-seq 预处理与质量评估</a></summary><ul>
+<li class="book-nav-leaf"><a class="book-nav-link book-section-link no-external" href="06-chip-seq-and-atac-seq.html#topic-06-overview" data-book-level="3" id="book-nav-6-topic-06-overview">分析流程总览</a></li>
+<li class="book-nav-leaf"><a class="book-nav-link book-section-link no-external" href="06-chip-seq-and-atac-seq.html#topic-06-environment" data-book-level="3" id="book-nav-6-topic-06-environment">准备分析环境</a></li>
+<li class="book-nav-leaf"><a class="book-nav-link book-section-link no-external" href="06-chip-seq-and-atac-seq.html#topic-06-qc" data-book-level="3" id="book-nav-6-topic-06-qc">原始数据质控：FastQC 与 MultiQC</a></li>
+<li class="book-nav-leaf"><a class="book-nav-link book-section-link no-external" href="06-chip-seq-and-atac-seq.html#topic-06-align" data-book-level="3" id="book-nav-6-topic-06-align">比对与比对结果检查</a></li>
 </ul></details>
 </li>
 <li>
-<details class="book-section"><summary><a class="book-nav-link book-section-link no-external" href="06-chip-seq-and-atac-seq.html#sec-06-04" data-book-level="2" id="book-nav-6-sec-06-04">6.4 Peak calling原理与参数</a></summary><ul>
-<li class="book-nav-leaf"><a class="book-nav-link book-section-link no-external" href="06-chip-seq-and-atac-seq.html#src-0060-ChIP-seq-630" data-book-level="3" id="book-nav-6-src-0060-ChIP-seq-630">寻找富集的区域</a></li>
+<details class="book-section"><summary><a class="book-nav-link book-section-link no-external" href="06-chip-seq-and-atac-seq.html#sec-06-04" data-book-level="2" id="book-nav-6-sec-06-04">6.4 Peak calling 原理与参数</a></summary><ul>
+<li class="book-nav-leaf"><a class="book-nav-link book-section-link no-external" href="06-chip-seq-and-atac-seq.html#topic-06-signal-types" data-book-level="3" id="book-nav-6-topic-06-signal-types">信号类型决定找峰策略</a></li>
+<li class="book-nav-leaf"><a class="book-nav-link book-section-link no-external" href="06-chip-seq-and-atac-seq.html#topic-06-calling-logic" data-book-level="3" id="book-nav-6-topic-06-calling-logic">Peak calling 的一般逻辑</a></li>
+<li class="book-nav-leaf"><a class="book-nav-link book-section-link no-external" href="06-chip-seq-and-atac-seq.html#topic-06-macs3" data-book-level="3" id="book-nav-6-topic-06-macs3">MACS3 实操：NRF1 窄峰与 H3K27ac 宽峰</a></li>
+<li class="book-nav-leaf"><a class="book-nav-link book-section-link no-external" href="06-chip-seq-and-atac-seq.html#topic-06-peak-qc" data-book-level="3" id="book-nav-6-topic-06-peak-qc">峰的过滤与质量评估</a></li>
 </ul></details>
 </li>
 <li>
-<div class="book-nav-leaf"><a class="book-nav-link book-section-link no-external" href="06-chip-seq-and-atac-seq.html#sec-06-05" data-book-level="2" id="book-nav-6-sec-06-05">6.5 ATAC-seq专属处理与质控</a></div>
+<details class="book-section"><summary><a class="book-nav-link book-section-link no-external" href="06-chip-seq-and-atac-seq.html#sec-06-05" data-book-level="2" id="book-nav-6-sec-06-05">6.5 ATAC-seq 专属处理与质控</a></summary><ul>
+<li class="book-nav-leaf"><a class="book-nav-link book-section-link no-external" href="06-chip-seq-and-atac-seq.html#topic-06-atac-diff" data-book-level="3" id="book-nav-6-topic-06-atac-diff">与 ChIP-seq 流程的同与不同</a></li>
+<li class="book-nav-leaf"><a class="book-nav-link book-section-link no-external" href="06-chip-seq-and-atac-seq.html#topic-06-atac-data" data-book-level="3" id="book-nav-6-topic-06-atac-data">示例数据：Irf8 敲除小鼠的造血干细胞</a></li>
+<li class="book-nav-leaf"><a class="book-nav-link book-section-link no-external" href="06-chip-seq-and-atac-seq.html#topic-06-atac-align" data-book-level="3" id="book-nav-6-topic-06-atac-align">从 FASTQ 到过滤后的 BAM</a></li>
+<li class="book-nav-leaf"><a class="book-nav-link book-section-link no-external" href="06-chip-seq-and-atac-seq.html#topic-06-tn5-shift" data-book-level="3" id="book-nav-6-topic-06-tn5-shift">Tn5 偏置与偏移校正</a></li>
+<li class="book-nav-leaf"><a class="book-nav-link book-section-link no-external" href="06-chip-seq-and-atac-seq.html#topic-06-frag-dist" data-book-level="3" id="book-nav-6-topic-06-frag-dist">片段大小分布：核小体信号</a></li>
+<li class="book-nav-leaf"><a class="book-nav-link book-section-link no-external" href="06-chip-seq-and-atac-seq.html#topic-06-atac-qc" data-book-level="3" id="book-nav-6-topic-06-atac-qc">质控指标：TSS 富集度、FRiP 与线粒体比例</a></li>
+</ul></details>
 </li>
 <li>
-<details class="book-section"><summary><a class="book-nav-link book-section-link no-external" href="06-chip-seq-and-atac-seq.html#sec-06-06" data-book-level="2" id="book-nav-6-sec-06-06">6.6 重复一致性与统一peak集合</a></summary><ul>
-<li class="book-nav-leaf"><a class="book-nav-link book-section-link no-external" href="06-chip-seq-and-atac-seq.html#src-0060-ChIP-seq-732" data-book-level="3" id="book-nav-6-src-0060-ChIP-seq-732">ChIP-Seq数据的比较分析</a></li>
+<details class="book-section"><summary><a class="book-nav-link book-section-link no-external" href="06-chip-seq-and-atac-seq.html#sec-06-06" data-book-level="2" id="book-nav-6-sec-06-06">6.6 重复一致性与统一 peak 集合</a></summary><ul>
+<li class="book-nav-leaf"><a class="book-nav-link book-section-link no-external" href="06-chip-seq-and-atac-seq.html#topic-06-venn-trap" data-book-level="3" id="book-nav-6-topic-06-venn-trap">为什么峰的交集会骗人</a></li>
+<li class="book-nav-leaf"><a class="book-nav-link book-section-link no-external" href="06-chip-seq-and-atac-seq.html#topic-06-idr" data-book-level="3" id="book-nav-6-topic-06-idr">IDR：用重复定义可信峰</a></li>
+<li class="book-nav-leaf"><a class="book-nav-link book-section-link no-external" href="06-chip-seq-and-atac-seq.html#topic-06-idr-practice" data-book-level="3" id="book-nav-6-topic-06-idr-practice">IDR 实操</a></li>
+<li class="book-nav-leaf"><a class="book-nav-link book-section-link no-external" href="06-chip-seq-and-atac-seq.html#topic-06-consensus-counts" data-book-level="3" id="book-nav-6-topic-06-consensus-counts">统一峰集合与 reads 计数</a></li>
 </ul></details>
 </li>
 <li>
 <details class="book-section"><summary><a class="book-nav-link book-section-link no-external" href="06-chip-seq-and-atac-seq.html#sec-06-07" data-book-level="2" id="book-nav-6-sec-06-07">6.7 差异结合与差异可及性分析</a></summary><ul>
-<li class="book-nav-leaf"><a class="book-nav-link book-section-link no-external" href="06-chip-seq-and-atac-seq.html#src-0060-ChIP-seq-797" data-book-level="3" id="book-nav-6-src-0060-ChIP-seq-797">差异结合分析</a></li>
+<li class="book-nav-leaf"><a class="book-nav-link book-section-link no-external" href="06-chip-seq-and-atac-seq.html#topic-06-diff-idea" data-book-level="3" id="book-nav-6-topic-06-diff-idea">从峰到计数矩阵</a></li>
+<li class="book-nav-leaf"><a class="book-nav-link book-section-link no-external" href="06-chip-seq-and-atac-seq.html#topic-06-diffbind" data-book-level="3" id="book-nav-6-topic-06-diffbind">DiffBind 实操</a></li>
+<li class="book-nav-leaf"><a class="book-nav-link book-section-link no-external" href="06-chip-seq-and-atac-seq.html#topic-06-diff-interpret" data-book-level="3" id="book-nav-6-topic-06-diff-interpret">解读结果与它的边界</a></li>
 </ul></details>
 </li>
 <li>
 <details class="book-section"><summary><a class="book-nav-link book-section-link no-external" href="06-chip-seq-and-atac-seq.html#sec-06-08" data-book-level="2" id="book-nav-6-sec-06-08">6.8 注释、motif、可视化与解释边界</a></summary><ul>
-<li class="book-nav-leaf"><a class="book-nav-link book-section-link no-external" href="06-chip-seq-and-atac-seq.html#src-0060-ChIP-seq-820" data-book-level="3" id="book-nav-6-src-0060-ChIP-seq-820">下游分析</a></li>
+<li class="book-nav-leaf"><a class="book-nav-link book-section-link no-external" href="06-chip-seq-and-atac-seq.html#topic-06-annotation" data-book-level="3" id="book-nav-6-topic-06-annotation">峰落在基因组的哪里：注释与 TSS 距离</a></li>
+<li class="book-nav-leaf"><a class="book-nav-link book-section-link no-external" href="06-chip-seq-and-atac-seq.html#topic-06-target-genes" data-book-level="3" id="book-nav-6-topic-06-target-genes">峰与靶基因：便利与陷阱</a></li>
+<li class="book-nav-leaf"><a class="book-nav-link book-section-link no-external" href="06-chip-seq-and-atac-seq.html#topic-06-enrichment" data-book-level="3" id="book-nav-6-topic-06-enrichment">功能富集：GO、KEGG 与背景集</a></li>
+<li class="book-nav-leaf"><a class="book-nav-link book-section-link no-external" href="06-chip-seq-and-atac-seq.html#topic-06-motif" data-book-level="3" id="book-nav-6-topic-06-motif">Motif 分析：从头发现与已知扫描</a></li>
+<li class="book-nav-leaf"><a class="book-nav-link book-section-link no-external" href="06-chip-seq-and-atac-seq.html#topic-06-heatmap" data-book-level="3" id="book-nav-6-topic-06-heatmap">可视化：信号热图与轨道图</a></li>
+<li class="book-nav-leaf"><a class="book-nav-link book-section-link no-external" href="06-chip-seq-and-atac-seq.html#topic-06-integration" data-book-level="3" id="book-nav-6-topic-06-integration">与其他数据联合分析</a></li>
 </ul></details>
 </li>
 </ul></details>
@@ -1835,7 +1864,7 @@ results/
 
 </main> <!-- /main -->
 <div class="book-toolbar" role="navigation" aria-label="阅读工具">
-  <div class="book-brand"><span class="book-brand-name">AI时代生信入门</span><time class="book-last-modified" datetime="2026-10-10T20:45:25+08:00" title="最后修改时间（北京时间，UTC+08:00）">最后修改 2026-10-10 20:45</time></div>
+  <div class="book-brand"><span class="book-brand-name">AI时代生信入门</span><time class="book-last-modified" datetime="2026-10-10T21:06:55+08:00" title="最后修改时间（北京时间，UTC+08:00）">最后修改 2026-10-10 21:06</time></div>
   <button class="book-menu-button" type="button" aria-controls="quarto-sidebar" aria-expanded="false">目录</button>
   <button class="book-search-button" type="button">搜索</button>
 </div>
