@@ -91,17 +91,17 @@ def gen_timeline():
 def gen_three_stages():
     W, H = 900, 540
     parts = []
-    # 三层嵌套；每层文字区必须完整落在下一内层框顶边之上
+    # 三层嵌套；名称两行（英文在上、中文在下），每层文字区完整落在下一内层框顶边之上
     rings = [
-        dict(rect=(30, 26, 840, 488), name="Harness 工程",
+        dict(rect=(30, 26, 840, 488), name_en="Harness Engineering", name_zh="Harness 工程",
              subtitle="给模型装上手脚：工具、规则与循环",
              items="工具调用 · AGENTS.md 项目规则 · 审批与沙箱",
              example=None),
-        dict(rect=(110, 126, 680, 336), name="上下文工程",
+        dict(rect=(110, 140, 680, 336), name_en="Context Engineering", name_zh="上下文工程",
              subtitle="把材料喂进去：模型只知道窗口里的信息",
              items="报错原文 · 版本与环境 · 文件与数据说明 · 按需选材",
              example="示例：贴上完整报错、命令与版本，而不是“好像有格式错误”"),
-        dict(rect=(190, 254, 500, 176), name="提示词工程",
+        dict(rect=(190, 290, 500, 150), name_en="Prompt Engineering", name_zh="提示词工程",
              subtitle="把任务讲清楚",
              items="角色与目标 · 示例 · 分步骤 · 输出格式与约束",
              example="示例：请逐列解释这份 DESeq2 结果表"),
@@ -113,20 +113,21 @@ def gen_three_stages():
         parts.append('<rect x="%d" y="%d" width="%d" height="%d" rx="14" '
                      'fill="%s" stroke="%s" stroke-width="2.4"/>'
                      % (x, y, w, h, fill, COLOR_PRIMARY))
-        parts.append(text_el(x + 22, y + 32, ring["name"], 16, COLOR_PRIMARY, weight="bold"))
-        parts.append(text_el(x + 22, y + 56, ring["subtitle"], 13, COLOR_TEXT))
-        parts.append(text_el(x + 22, y + 78, ring["items"], 12, COLOR_MUTED))
+        parts.append(text_el(x + 22, y + 32, ring["name_en"], 16, COLOR_PRIMARY, weight="bold"))
+        parts.append(text_el(x + 22, y + 54, ring["name_zh"], 14, COLOR_TEXT, weight="bold"))
+        parts.append(text_el(x + 22, y + 76, ring["subtitle"], 13, COLOR_TEXT))
+        parts.append(text_el(x + 22, y + 98, ring["items"], 12, COLOR_MUTED))
         if ring["example"]:
-            parts.append(text_el(x + 22, y + 106, ring["example"], 12.5, COLOR_TEXT, font=MONO))
+            parts.append(text_el(x + 22, y + 126, ring["example"], 12.5, COLOR_TEXT, font=MONO))
     # agent 循环：属于最外层（Harness），放在内层框下方、外层框内部
-    parts.append(text_el(450, 486, "循环：计划 → 行动 → 观察结果 → 修正，直到任务完成", 13,
+    parts.append(text_el(450, 494, "循环：计划 → 行动 → 观察结果 → 修正，直到任务完成", 13,
                          COLOR_TEXT, anchor="middle", font=MONO))
     body = "\n".join(parts)
     return svg_doc(W, H,
                    "用好大语言模型的三个阶段",
                    "三层嵌套：提示词工程（最内，把任务讲清楚）包含于上下文工程"
                    "（把对的材料喂进上下文窗口），再包含于 Harness 工程（为模型配置工具、"
-                   "规则与循环）。外层阶段包含内层阶段。",
+                   "规则与循环）。每层名称英文在上、中文在下；外层阶段包含内层阶段。",
                    body)
 
 
