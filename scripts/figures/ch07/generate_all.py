@@ -92,35 +92,34 @@ def fig_exon_intron_splicing():
     save("003-exon-intron-splicing", s)
 
 
-# ───────────────── 图B 前处理流程总览（竖版） ─────────────────
+# ───────────────── 图B 前处理流程总览（竖版紧凑） ─────────────────
 def fig_preprocessing_overview():
-    W, H = 640, 1210
+    W, H = 760, 620
     s = Svg(W, H, "DNA 小变异分析的前处理流程",
             "从 FASTQ 到分析就绪 BAM 的六个步骤（竖版），每步给出输出与目的；"
             "右侧标注各步的检查点。BQSR 之后进入变异检测。")
     steps = [
-        ("① 原始质控与过滤", "FASTQ", "去接头、去低质量末端\nfastp / cutadapt", "保留率、Q30 比例（FastQC/MultiQC）"),
-        ("② 比对", "SAM/BAM", "reads 定位到参考基因组\nbwa mem（写入 @RG）", "比对率、@RG 是否完整"),
-        ("③ 排序", "BAM（按坐标）", "按基因组位置排列\nsamtools sort", "索引可用、坐标有序"),
-        ("④ 标记重复", "BAM（带 FLAG 标记）", "PCR 重复不算独立证据\nMarkDuplicates", "重复率是否异常升高"),
-        ("⑤ 碱基质量校正", "recal BAM", "校准质量值系统偏差\nBaseRecalibrator + ApplyBQSR", "recal table 是否收敛"),
-        ("⑥ 分析就绪，进入变异检测", "BAM + 质控指标", "比对率、重复率、深度分布\n全部达标后调用", "深度是否覆盖目标区域"),
+        ("① 原始质控与过滤", "FASTQ", "去接头、去低质量末端（fastp / cutadapt）", "保留率、Q30 比例"),
+        ("② 比对", "SAM/BAM", "reads 定位到参考基因组（bwa mem，写入 @RG）", "比对率、@RG 完整"),
+        ("③ 排序", "BAM（按坐标）", "按基因组位置排列（samtools sort）", "索引可用、坐标有序"),
+        ("④ 标记重复", "BAM（带 FLAG 标记）", "PCR 重复不算独立证据（MarkDuplicates）", "重复率是否异常"),
+        ("⑤ 碱基质量校正", "recal BAM", "校准质量值系统偏差（BaseRecalibrator + ApplyBQSR）", "recal table 收敛"),
+        ("⑥ 分析就绪，进入变异检测", "BAM + 质控指标", "比对率、重复率、深度分布达标后调用", "深度覆盖目标区域"),
     ]
-    bw, bh = 470, 66
-    x, y0, gap = 60, 66, 118
+    bw, bh = 340, 50
+    x, y0, pitch = 30, 78, 88
     for i, (title, out, why, check) in enumerate(steps):
-        y = y0 + i * (bh + gap)
+        y = y0 + i * pitch
         fill = COLOR_FILL if i == 5 else "none"
         box(s, x, y, bw, bh, title, fill=fill, tsize=SIZE_LABEL, weight="bold")
-        s.text(x + bw + 16, y + 20, out, size=SIZE_NOTE, fill=COLOR_PRIMARY,
-               mono=False, weight="bold")
-        s.text(x + bw + 16, y + 40, why.split("\n")[0], size=SIZE_NOTE, fill=COLOR_MUTED, mono=False)
-        s.text(x + bw + 16, y + 56, why.split("\n")[1], size=SIZE_NOTE, fill=COLOR_MUTED, mono=False)
-        s.text(x + 10, y + bh + 16, "检查：" + check, size=SIZE_NOTE, fill=COLOR_WARN, mono=False)
+        rx = x + bw + 16
+        s.text(rx, y + 16, out, size=SIZE_NOTE, fill=COLOR_PRIMARY, mono=False, weight="bold")
+        s.text(rx, y + 32, why, size=SIZE_NOTE, fill=COLOR_MUTED, mono=False)
+        s.text(rx, y + 46, "检查：" + check, size=SIZE_NOTE, fill=COLOR_WARN, mono=False)
         if i < 5:
-            ya = y + bh + 26
-            s.arrow(x + bw / 2, ya, x + bw / 2, ya + gap - 44, sw=2.0)
-    s.text(60, 36, "每一步都在为变异检测整理证据：跳过或做错，错误会直接进入候选变异列表",
+            ya = y + bh + 4
+            s.arrow(x + bw / 2, ya, x + bw / 2, ya + pitch - bh - 12, sw=2.0)
+    s.text(30, 40, "每一步都在为变异检测整理证据：跳过或做错，错误会直接进入候选变异列表",
            size=SIZE_TITLE, fill=COLOR_PRIMARY, weight="bold")
     save("preprocessing-overview", s)
 
@@ -216,21 +215,19 @@ def fig_vcf_record_anatomy():
 
 
 
-# ───────────────── 图D reads 支持计数示意（IGV 风格） ─────────────────
+# ───────────────── 图D reads 支持计数示意（IGV 风格，画全深度） ─────────────────
 def fig_reads_support_counts():
-    """候选位点 k 条 reads、l 条与参考一致（正文例子 G:A = 4:1）。
-
-    IGV 风格：reads 为带方向箭头的灰条，与参考一致的碱基以深灰字母标出，
-    错配以 IGV 配色字母（A 红）标出；参考行候选位点高亮并加星标。
-    """
-    W, H = 900, 470
+    """候选位点 k=30 条 reads（WES 常见深度的量级）、l=24 条与参考一致（G:A 仍为 4:1）。"""
+    W = 960
+    K, L = 30, 24
+    H = 200 + K * 17 + 90
     s = Svg(W, H, "一个候选位点的 reads 支持计数示意",
-            "k=5 条 reads 比对到候选位点，l=4 条为参考碱基 G（深灰），"
-            "k-l=1 条为错配碱基 A（红色）；reads 方向交替（箭头示 3' 端）。")
+            f"k={K} 条 reads 比对到候选位点，l={L} 条为参考碱基 G（深灰），"
+            f"k-l={K-L} 条为错配碱基 A（红色），G:A = 4:1；reads 方向交替（箭头示 3' 端）。")
     SEQ = "atcatgacggcaGtagcatat"
-    VI = 12                      # 候选碱基在 SEQ 中的下标（G）
-    BP = 34                      # 每碱基像素
-    X0 = 60
+    VI = 12
+    BP = 36
+    X0 = 66
     BASE_COLOR = {'A': '#C0392B', 'C': '#2471A3', 'G': '#1E8449', 'T': '#B7950B'}
 
     # 参考行
@@ -243,61 +240,60 @@ def fig_reads_support_counts():
         s.text(x + BP / 2, y_ref, ch.upper() if big else ch, size=15 if big else 13,
                fill=COLOR_PRIMARY if big else COLOR_TEXT, anchor='middle',
                weight='bold' if big else 'normal')
-    s.text(8, y_ref, "REF", size=SIZE_NOTE, mono=False, fill=COLOR_MUTED)
+    s.text(10, y_ref, "REF", size=SIZE_NOTE, mono=False, fill=COLOR_MUTED)
     s.text(X0 + VI * BP + BP / 2, y_ref - 30, "★ 候选位点", size=SIZE_NOTE,
            mono=False, fill=COLOR_PRIMARY, anchor='middle', weight='bold')
 
-    # reads：4 条 G（一致）、1 条 A（错配），方向交替
-    reads = [
-        ("r1", 0, True, 1), ("r2", 3, False, 0), ("r3", 0, True, 2),
-        ("r4", 5, False, 0), ("r5", 2, True, 0),
-    ]
-    # (名称, 起始偏移, 方向(True=正向→), 该 read 的错配碱基序号(在read内), None 表示一致 G)
-    y0, rh, rgap = 150, 26, 42
-    for idx, (name, off, fwd, mismatch) in enumerate([
-        ("r1", 0, True, None), ("r2", 3, False, None), ("r3", 0, True, None),
-        ("r4", 4, False, "A"), ("r5", 1, True, None),
-    ]):
-        y = y0 + idx * rgap
-        rlen = 17                        # read 长 17bp
+    # reads：L 条 G（一致）、K-L 条 A（错配，交错分布）；高度减半、行距紧凑
+    rh, pitch = 13, 17
+    y0 = y_ref + 34
+    import random
+    rng = random.Random(42)
+    a_positions = {1, 4, 9, 14, 19, 26}          # 哪几条 read 是错配 A
+    assert len(a_positions) == K - L
+    for idx in range(K):
+        y = y0 + idx * pitch
+        off = rng.randint(0, 3)
+        rlen = 16 + rng.randint(0, 2)
+        fwd = (idx % 2 == 0)
         rx = X0 + off * BP
         rw = rlen * BP
-        # 灰条
-        s.rect(rx, y, rw, rh, fill='#e5e7eb', stroke='#d1d5db', sw=0.8, rx=3)
-        # 方向箭头（3' 端）：正向右端、反向左端
-        import math
+        s.rect(rx, y, rw, rh, fill='#e5e7eb', stroke='#d1d5db', sw=0.6, rx=2)
         ax = rx + rw + 2 if fwd else rx - 2
         ay = y + rh / 2
         d = 1 if fwd else -1
-        s.add(f"<path d='M {ax:.1f} {ay-6:.1f} L {ax+10*d:.1f} {ay:.1f} L {ax:.1f} {ay+6:.1f} Z' "
+        s.add(f"<path d='M {ax:.1f} {ay-4:.1f} L {ax+7*d:.1f} {ay:.1f} L {ax:.1f} {ay+4:.1f} Z' "
               f"fill='#9ca3af'/>")
-        # 候选位点碱基：一致 G 深灰、错配 A 红
-        vx = X0 + VI * BP
-        base = mismatch if mismatch else SEQ[VI].upper()
-        color = BASE_COLOR[base] if mismatch else '#4b5563'
-        s.text(vx + BP / 2, y + rh / 2 + 5, base, size=15, fill=color,
-               anchor='middle', weight='bold')
-        s.text(8, y + rh / 2 + 4, name, size=SIZE_NOTE, mono=False, fill=COLOR_MUTED)
+        # 候选位点碱基（仅当 read 覆盖候选位点）
+        if off <= VI < off + rlen:
+            vx = X0 + VI * BP
+            if idx in a_positions:
+                s.text(vx + BP / 2, y + rh - 1.5, "A", size=11, fill=BASE_COLOR['A'],
+                       anchor='middle', weight='bold')
+            else:
+                s.text(vx + BP / 2, y + rh - 1.5, "G", size=11, fill='#4b5563',
+                       anchor='middle', weight='bold')
 
     # 候选位点贯穿竖线
-    s.line(X0 + VI * BP + BP / 2, y_ref + 14, X0 + VI * BP + BP / 2, y0 + 4 * rgap + rh + 8,
+    s.line(X0 + VI * BP + BP / 2, y_ref + 14, X0 + VI * BP + BP / 2, y0 + (K - 1) * pitch + rh + 6,
            stroke=COLOR_PRIMARY, sw=1.1, dash='5,4')
 
-    # 统计框
-    bx, by = 620, 150
-    s.rect(bx, by, 236, 96, fill=COLOR_FILL, stroke=COLOR_PRIMARY, rx=8)
-    s.text(bx + 16, by + 28, "计数（对应正文记号）", size=SIZE_NOTE, mono=False,
+    # 统计框（右侧）
+    bx, by = 660, 120
+    s.rect(bx, by, 272, 108, fill=COLOR_FILL, stroke=COLOR_PRIMARY, rx=8)
+    s.text(bx + 16, by + 24, "计数（对应正文记号）", size=SIZE_NOTE, mono=False,
            fill=COLOR_PRIMARY, weight='bold')
-    s.text(bx + 16, by + 52, "k = 5 条 reads 比对到该位点", size=SIZE_NOTE, mono=False)
-    s.text(bx + 16, by + 72, "l = 4 条与参考一致（G）", size=SIZE_NOTE, mono=False)
-    s.text(bx + 16, by + 90, "k - l = 1 条错配（A），G:A = 4:1", size=SIZE_NOTE, mono=False)
+    s.text(bx + 16, by + 46, f"k = {K} 条 reads 比对到该位点", size=SIZE_NOTE, mono=False)
+    s.text(bx + 16, by + 64, f"l = {L} 条与参考一致（G）", size=SIZE_NOTE, mono=False)
+    s.text(bx + 16, by + 82, f"k - l = {K-L} 条错配（A），G:A = 4:1", size=SIZE_NOTE, mono=False)
+    s.text(bx + 16, by + 100, "（比例与正文推导所用例子一致）", size=SIZE_NOTE, mono=False, fill=COLOR_MUTED)
 
     # 图例
-    ly = 396
-    s.rect(X0, ly - 12, 16, 12, fill='#e5e7eb', stroke='#d1d5db', sw=0.8, rx=2)
+    ly = H - 52
+    s.rect(X0, ly - 12, 16, 12, fill='#e5e7eb', stroke='#d1d5db', sw=0.6, rx=2)
     s.text(X0 + 24, ly - 2, "read（箭头示 3′ 端方向）", size=SIZE_NOTE, mono=False, fill=COLOR_MUTED)
-    s.text(X0 + 240, ly - 2, "深灰字母＝与参考一致　彩色字母＝错配（IGV 配色）", size=SIZE_NOTE, mono=False, fill=COLOR_MUTED)
-    s.text(X0, ly + 22, "仅凭 G:A = 4:1 的比例不足以判定杂合——还需要质量值、链方向与先验（见下文）。",
+    s.text(X0 + 250, ly - 2, "深灰字母＝与参考一致　彩色字母＝错配（IGV 配色）", size=SIZE_NOTE, mono=False, fill=COLOR_MUTED)
+    s.text(X0, ly + 20, "仅凭 G:A = 4:1 的比例不足以判定杂合——还需要质量值、链方向与先验（见下文）。",
            size=SIZE_NOTE, mono=False, fill=COLOR_TEXT)
     save("001-reads-support-counts", s)
 
