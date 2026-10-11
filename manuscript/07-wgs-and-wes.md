@@ -42,9 +42,9 @@
 
 真核生物中编码蛋白质的基因由外显子（exon）和内含子（intron）组成；转录后内含子被剪接移除、外显子相连，形成成熟的 mRNA（这一过程在第 5 章转录组建库部分已经介绍）。所有外显子区域的集合称为外显子组（exome）。从检测能力看，外显子组虽小，位置却关键：蛋白质编码基因只占人类基因组约 1%，却集中了约 85% 对疾病性状有较大效应的已知突变[^choi-2009]。外显子长度普遍较短，约 80% 的人类外显子短于 200 bp，平均约 170 bp[^sakharkar-2004]。
 
-![外显子、内含子与剪接的关系示意](../assets/08-wgs-and-wes/003-exon-intron-splicing.svg){#fig-08-wgs-and-wes-003}
+![外显子与内含子：同一个基因经可变剪接产生成熟 mRNA（图片来自维基百科 Alternative splicing 条目，同第 5 章图 5.7）](../assets/08-wgs-and-wes/003-alternative-splicing.jpg){#fig-08-wgs-and-wes-003}
 
-@fig-08-wgs-and-wes-003 回顾了外显子、内含子与剪接的关系，这是理解"WES 测的到底是什么区域"的基础。
+@fig-08-wgs-and-wes-003 回顾了外显子、内含子与剪接的关系：内含子在剪接中被移除、外显子相连形成成熟 mRNA，而且外显子的取舍可以不同（可变剪接）。这是理解"WES 测的到底是什么区域"的基础——WES 的目标外显子，正是各转录本外显子集合的并集。
 
 WGS 与 WES 各有所长，实际中应当结合研究课题和实验设计选择最合适的测序方案[^goodwin-2016]。
 
@@ -343,7 +343,7 @@ $$
 P(S_i \mid g)=P(I_i=1)^{I_i}\cdot P(I_i=0)^{1-I_i}
 $$ {#eq-08-wgs-and-wes-008}
 
-![一个候选位点的 reads 支持计数示意](../assets/08-wgs-and-wes/001-snp-calling-mathmatical-theory.png){#fig-08-wgs-and-wes-001}
+![一个候选位点的 reads 支持计数示意（IGV 风格，G:A = 4:1）](../assets/08-wgs-and-wes/001-reads-support-counts.svg){#fig-08-wgs-and-wes-001}
 
 把单条 read 的似然推广到整个位点：如 @fig-08-wgs-and-wes-001 所示，$k$ 条 reads 比对到该位点，其中 $l$ 条与参考一致、$k - l$ 条不一致，第 $j$ 条 read 的测序错误率为 $\epsilon_j$（由它自己的质量值给出）。将各基因型代入 @eq-08-wgs-and-wes-006 并对全部 reads 连乘：
 

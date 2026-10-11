@@ -1,0 +1,58 @@
+<svg xmlns='http://www.w3.org/2000/svg' width='900' height='470' viewBox='0 0 900 470' role='img' aria-labelledby='t d'>
+<title id='t'>一个候选位点的 reads 支持计数示意</title>
+<desc id='d'>k=5 条 reads 比对到候选位点，l=4 条为参考碱基 G（深灰），k-l=1 条为错配碱基 A（红色）；reads 方向交替（箭头示 3' 端）。</desc>
+<text x='77.0' y='96' font-family="ui-monospace, 'SFMono-Regular', Menlo, Consolas, 'Liberation Mono', monospace" font-size='13' fill='#333333' font-weight='normal' text-anchor='middle'>a</text>
+<text x='111.0' y='96' font-family="ui-monospace, 'SFMono-Regular', Menlo, Consolas, 'Liberation Mono', monospace" font-size='13' fill='#333333' font-weight='normal' text-anchor='middle'>t</text>
+<text x='145.0' y='96' font-family="ui-monospace, 'SFMono-Regular', Menlo, Consolas, 'Liberation Mono', monospace" font-size='13' fill='#333333' font-weight='normal' text-anchor='middle'>c</text>
+<text x='179.0' y='96' font-family="ui-monospace, 'SFMono-Regular', Menlo, Consolas, 'Liberation Mono', monospace" font-size='13' fill='#333333' font-weight='normal' text-anchor='middle'>a</text>
+<text x='213.0' y='96' font-family="ui-monospace, 'SFMono-Regular', Menlo, Consolas, 'Liberation Mono', monospace" font-size='13' fill='#333333' font-weight='normal' text-anchor='middle'>t</text>
+<text x='247.0' y='96' font-family="ui-monospace, 'SFMono-Regular', Menlo, Consolas, 'Liberation Mono', monospace" font-size='13' fill='#333333' font-weight='normal' text-anchor='middle'>g</text>
+<text x='281.0' y='96' font-family="ui-monospace, 'SFMono-Regular', Menlo, Consolas, 'Liberation Mono', monospace" font-size='13' fill='#333333' font-weight='normal' text-anchor='middle'>a</text>
+<text x='315.0' y='96' font-family="ui-monospace, 'SFMono-Regular', Menlo, Consolas, 'Liberation Mono', monospace" font-size='13' fill='#333333' font-weight='normal' text-anchor='middle'>c</text>
+<text x='349.0' y='96' font-family="ui-monospace, 'SFMono-Regular', Menlo, Consolas, 'Liberation Mono', monospace" font-size='13' fill='#333333' font-weight='normal' text-anchor='middle'>g</text>
+<text x='383.0' y='96' font-family="ui-monospace, 'SFMono-Regular', Menlo, Consolas, 'Liberation Mono', monospace" font-size='13' fill='#333333' font-weight='normal' text-anchor='middle'>g</text>
+<text x='417.0' y='96' font-family="ui-monospace, 'SFMono-Regular', Menlo, Consolas, 'Liberation Mono', monospace" font-size='13' fill='#333333' font-weight='normal' text-anchor='middle'>c</text>
+<text x='451.0' y='96' font-family="ui-monospace, 'SFMono-Regular', Menlo, Consolas, 'Liberation Mono', monospace" font-size='13' fill='#333333' font-weight='normal' text-anchor='middle'>a</text>
+<rect x='464' y='76' width='42' height='30' rx='2' fill='#e8f4f1' stroke='#186254' stroke-width='1.6'/>
+<text x='485.0' y='96' font-family="ui-monospace, 'SFMono-Regular', Menlo, Consolas, 'Liberation Mono', monospace" font-size='15' fill='#186254' font-weight='bold' text-anchor='middle'>G</text>
+<text x='519.0' y='96' font-family="ui-monospace, 'SFMono-Regular', Menlo, Consolas, 'Liberation Mono', monospace" font-size='13' fill='#333333' font-weight='normal' text-anchor='middle'>t</text>
+<text x='553.0' y='96' font-family="ui-monospace, 'SFMono-Regular', Menlo, Consolas, 'Liberation Mono', monospace" font-size='13' fill='#333333' font-weight='normal' text-anchor='middle'>a</text>
+<text x='587.0' y='96' font-family="ui-monospace, 'SFMono-Regular', Menlo, Consolas, 'Liberation Mono', monospace" font-size='13' fill='#333333' font-weight='normal' text-anchor='middle'>g</text>
+<text x='621.0' y='96' font-family="ui-monospace, 'SFMono-Regular', Menlo, Consolas, 'Liberation Mono', monospace" font-size='13' fill='#333333' font-weight='normal' text-anchor='middle'>c</text>
+<text x='655.0' y='96' font-family="ui-monospace, 'SFMono-Regular', Menlo, Consolas, 'Liberation Mono', monospace" font-size='13' fill='#333333' font-weight='normal' text-anchor='middle'>a</text>
+<text x='689.0' y='96' font-family="ui-monospace, 'SFMono-Regular', Menlo, Consolas, 'Liberation Mono', monospace" font-size='13' fill='#333333' font-weight='normal' text-anchor='middle'>t</text>
+<text x='723.0' y='96' font-family="ui-monospace, 'SFMono-Regular', Menlo, Consolas, 'Liberation Mono', monospace" font-size='13' fill='#333333' font-weight='normal' text-anchor='middle'>a</text>
+<text x='757.0' y='96' font-family="ui-monospace, 'SFMono-Regular', Menlo, Consolas, 'Liberation Mono', monospace" font-size='13' fill='#333333' font-weight='normal' text-anchor='middle'>t</text>
+<text x='8' y='96' font-family="'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size='12' fill='#6b7280' font-weight='normal' text-anchor='start'>REF</text>
+<text x='485.0' y='66' font-family="'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size='12' fill='#186254' font-weight='bold' text-anchor='middle'>★ 候选位点</text>
+<rect x='60' y='150' width='578' height='26' rx='3' fill='#e5e7eb' stroke='#d1d5db' stroke-width='0.8'/>
+<path d='M 640.0 157.0 L 650.0 163.0 L 640.0 169.0 Z' fill='#9ca3af'/>
+<text x='485.0' y='168.0' font-family="ui-monospace, 'SFMono-Regular', Menlo, Consolas, 'Liberation Mono', monospace" font-size='15' fill='#4b5563' font-weight='bold' text-anchor='middle'>G</text>
+<text x='8' y='167.0' font-family="'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size='12' fill='#6b7280' font-weight='normal' text-anchor='start'>r1</text>
+<rect x='162' y='192' width='578' height='26' rx='3' fill='#e5e7eb' stroke='#d1d5db' stroke-width='0.8'/>
+<path d='M 160.0 199.0 L 150.0 205.0 L 160.0 211.0 Z' fill='#9ca3af'/>
+<text x='485.0' y='210.0' font-family="ui-monospace, 'SFMono-Regular', Menlo, Consolas, 'Liberation Mono', monospace" font-size='15' fill='#4b5563' font-weight='bold' text-anchor='middle'>G</text>
+<text x='8' y='209.0' font-family="'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size='12' fill='#6b7280' font-weight='normal' text-anchor='start'>r2</text>
+<rect x='60' y='234' width='578' height='26' rx='3' fill='#e5e7eb' stroke='#d1d5db' stroke-width='0.8'/>
+<path d='M 640.0 241.0 L 650.0 247.0 L 640.0 253.0 Z' fill='#9ca3af'/>
+<text x='485.0' y='252.0' font-family="ui-monospace, 'SFMono-Regular', Menlo, Consolas, 'Liberation Mono', monospace" font-size='15' fill='#4b5563' font-weight='bold' text-anchor='middle'>G</text>
+<text x='8' y='251.0' font-family="'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size='12' fill='#6b7280' font-weight='normal' text-anchor='start'>r3</text>
+<rect x='196' y='276' width='578' height='26' rx='3' fill='#e5e7eb' stroke='#d1d5db' stroke-width='0.8'/>
+<path d='M 194.0 283.0 L 184.0 289.0 L 194.0 295.0 Z' fill='#9ca3af'/>
+<text x='485.0' y='294.0' font-family="ui-monospace, 'SFMono-Regular', Menlo, Consolas, 'Liberation Mono', monospace" font-size='15' fill='#C0392B' font-weight='bold' text-anchor='middle'>A</text>
+<text x='8' y='293.0' font-family="'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size='12' fill='#6b7280' font-weight='normal' text-anchor='start'>r4</text>
+<rect x='94' y='318' width='578' height='26' rx='3' fill='#e5e7eb' stroke='#d1d5db' stroke-width='0.8'/>
+<path d='M 674.0 325.0 L 684.0 331.0 L 674.0 337.0 Z' fill='#9ca3af'/>
+<text x='485.0' y='336.0' font-family="ui-monospace, 'SFMono-Regular', Menlo, Consolas, 'Liberation Mono', monospace" font-size='15' fill='#4b5563' font-weight='bold' text-anchor='middle'>G</text>
+<text x='8' y='335.0' font-family="'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size='12' fill='#6b7280' font-weight='normal' text-anchor='start'>r5</text>
+<line x1='485.0' y1='110' x2='485.0' y2='352' stroke='#186254' stroke-width='1.1' stroke-dasharray='5,4'/>
+<rect x='620' y='150' width='236' height='96' rx='8' fill='#e8f4f1' stroke='#186254' stroke-width='1.2'/>
+<text x='636' y='178' font-family="'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size='12' fill='#186254' font-weight='bold' text-anchor='start'>计数（对应正文记号）</text>
+<text x='636' y='202' font-family="'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size='12' fill='#333333' font-weight='normal' text-anchor='start'>k = 5 条 reads 比对到该位点</text>
+<text x='636' y='222' font-family="'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size='12' fill='#333333' font-weight='normal' text-anchor='start'>l = 4 条与参考一致（G）</text>
+<text x='636' y='240' font-family="'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size='12' fill='#333333' font-weight='normal' text-anchor='start'>k - l = 1 条错配（A），G:A = 4:1</text>
+<rect x='60' y='384' width='16' height='12' rx='2' fill='#e5e7eb' stroke='#d1d5db' stroke-width='0.8'/>
+<text x='84' y='394' font-family="'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size='12' fill='#6b7280' font-weight='normal' text-anchor='start'>read（箭头示 3′ 端方向）</text>
+<text x='300' y='394' font-family="'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size='12' fill='#6b7280' font-weight='normal' text-anchor='start'>深灰字母＝与参考一致　彩色字母＝错配（IGV 配色）</text>
+<text x='60' y='418' font-family="'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size='12' fill='#333333' font-weight='normal' text-anchor='start'>仅凭 G:A = 4:1 的比例不足以判定杂合——还需要质量值、链方向与先验（见下文）。</text>
+</svg>

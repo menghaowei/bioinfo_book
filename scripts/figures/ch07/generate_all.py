@@ -92,58 +92,35 @@ def fig_exon_intron_splicing():
     save("003-exon-intron-splicing", s)
 
 
-# ───────────────── 图B 前处理流程总览 ─────────────────
+# ───────────────── 图B 前处理流程总览（竖版） ─────────────────
 def fig_preprocessing_overview():
-    W, H = 880, 460
+    W, H = 640, 1210
     s = Svg(W, H, "DNA 小变异分析的前处理流程",
-            "从 FASTQ 到分析就绪 BAM 的六个步骤，每步给出输出与目的；"
-            "下方标注各步的检查点。BQSR 之后进入变异检测。")
+            "从 FASTQ 到分析就绪 BAM 的六个步骤（竖版），每步给出输出与目的；"
+            "右侧标注各步的检查点。BQSR 之后进入变异检测。")
     steps = [
-        ("① 原始质控\n与过滤", "FASTQ", "去接头、去低质量末端\nfastp / cutadapt"),
-        ("② 比对", "SAM/BAM", "reads 定位到参考基因组\nbwa mem（写入 @RG）"),
-        ("③ 排序", "BAM（按坐标）", "按基因组位置排列\nsamtools sort"),
-        ("④ 标记重复", "BAM（带 FLAG 标记）", "PCR 重复不算独立证据\nMarkDuplicates"),
-        ("⑤ 碱基质量校正", "recal BAM", "校准质量值系统偏差\nBaseRecalibrator + ApplyBQSR"),
-        ("⑥ 分析就绪\n进入变异检测", "BAM + 质控指标", "比对率、重复率、深度分布\n全部达标后调用"),
+        ("① 原始质控与过滤", "FASTQ", "去接头、去低质量末端\nfastp / cutadapt", "保留率、Q30 比例（FastQC/MultiQC）"),
+        ("② 比对", "SAM/BAM", "reads 定位到参考基因组\nbwa mem（写入 @RG）", "比对率、@RG 是否完整"),
+        ("③ 排序", "BAM（按坐标）", "按基因组位置排列\nsamtools sort", "索引可用、坐标有序"),
+        ("④ 标记重复", "BAM（带 FLAG 标记）", "PCR 重复不算独立证据\nMarkDuplicates", "重复率是否异常升高"),
+        ("⑤ 碱基质量校正", "recal BAM", "校准质量值系统偏差\nBaseRecalibrator + ApplyBQSR", "recal table 是否收敛"),
+        ("⑥ 分析就绪，进入变异检测", "BAM + 质控指标", "比对率、重复率、深度分布\n全部达标后调用", "深度是否覆盖目标区域"),
     ]
-    bw, bh = 256, 92
-    gap = 40
-    x0, y1, y2 = 24, 64, 248
-    checks = [
-        "检查：保留率、Q30 比例（FastQC/MultiQC）",
-        "检查：比对率、@RG 是否完整",
-        "检查：索引可用、坐标有序",
-        "检查：重复率是否异常升高",
-        "检查：recal table 是否收敛",
-        "检查：深度是否覆盖目标区域",
-    ]
-    for i, (title, out, why) in enumerate(steps):
-        if i < 3:
-            x, y = x0 + i * (bw + gap), y1
-        else:
-            x, y = x0 + (2 - (i - 3)) * (bw + gap), y2  # 蛇形回折
+    bw, bh = 470, 66
+    x, y0, gap = 60, 66, 118
+    for i, (title, out, why, check) in enumerate(steps):
+        y = y0 + i * (bh + gap)
         fill = COLOR_FILL if i == 5 else "none"
         box(s, x, y, bw, bh, title, fill=fill, tsize=SIZE_LABEL, weight="bold")
-        s.text(x + bw / 2, y + bh + 20, out, size=SIZE_NOTE, fill=COLOR_PRIMARY,
-               mono=False, anchor="middle", weight="bold")
-        s.text(x + bw / 2, y + bh + 40, why.split("\n")[0], size=SIZE_NOTE,
-               fill=COLOR_MUTED, mono=False, anchor="middle")
-        s.text(x + bw / 2, y + bh + 58, why.split("\n")[1], size=SIZE_NOTE,
-               fill=COLOR_MUTED, mono=False, anchor="middle")
-        s.text(x + bw / 2, y + bh + 84, checks[i], size=SIZE_NOTE,
-               fill=COLOR_WARN, mono=False, anchor="middle")
-    # 箭头（行内右向）
-    for i in (0, 1):
-        x1, x2 = x0 + (i + 1) * bw + i * gap, x0 + (i + 1) * (bw + gap) + 4
-        s.arrow(x1 + 4, y1 + bh / 2, x2 - 8, y1 + bh / 2, sw=2.0)
-    # ③→④ 下折箭头
-    xa = x0 + 2 * (bw + gap) + bw / 2
-    s.arrow(xa, y1 + bh + 88, xa, y2 - 6, sw=2.0)
-    # 第二行左向箭头
-    for i in (5, 4):
-        x2, x1 = x0 + (2 - (i - 3)) * (bw + gap), x0 + (3 - (i - 3)) * (bw + gap) - gap + bw
-        s.arrow(x1 + 2, y2 + bh / 2, x2 - 8 + gap - gap, y2 + bh / 2, sw=2.0)
-    s.text(24, 32, "每一步都在为变异检测整理证据：跳过或做错，错误会直接进入候选变异列表",
+        s.text(x + bw + 16, y + 20, out, size=SIZE_NOTE, fill=COLOR_PRIMARY,
+               mono=False, weight="bold")
+        s.text(x + bw + 16, y + 40, why.split("\n")[0], size=SIZE_NOTE, fill=COLOR_MUTED, mono=False)
+        s.text(x + bw + 16, y + 56, why.split("\n")[1], size=SIZE_NOTE, fill=COLOR_MUTED, mono=False)
+        s.text(x + 10, y + bh + 16, "检查：" + check, size=SIZE_NOTE, fill=COLOR_WARN, mono=False)
+        if i < 5:
+            ya = y + bh + 26
+            s.arrow(x + bw / 2, ya, x + bw / 2, ya + gap - 44, sw=2.0)
+    s.text(60, 36, "每一步都在为变异检测整理证据：跳过或做错，错误会直接进入候选变异列表",
            size=SIZE_TITLE, fill=COLOR_PRIMARY, weight="bold")
     save("preprocessing-overview", s)
 
@@ -237,7 +214,95 @@ def fig_vcf_record_anatomy():
     save("vcf-record-anatomy", s)
 
 
+
+
+# ───────────────── 图D reads 支持计数示意（IGV 风格） ─────────────────
+def fig_reads_support_counts():
+    """候选位点 k 条 reads、l 条与参考一致（正文例子 G:A = 4:1）。
+
+    IGV 风格：reads 为带方向箭头的灰条，与参考一致的碱基以深灰字母标出，
+    错配以 IGV 配色字母（A 红）标出；参考行候选位点高亮并加星标。
+    """
+    W, H = 900, 470
+    s = Svg(W, H, "一个候选位点的 reads 支持计数示意",
+            "k=5 条 reads 比对到候选位点，l=4 条为参考碱基 G（深灰），"
+            "k-l=1 条为错配碱基 A（红色）；reads 方向交替（箭头示 3' 端）。")
+    SEQ = "atcatgacggcaGtagcatat"
+    VI = 12                      # 候选碱基在 SEQ 中的下标（G）
+    BP = 34                      # 每碱基像素
+    X0 = 60
+    BASE_COLOR = {'A': '#C0392B', 'C': '#2471A3', 'G': '#1E8449', 'T': '#B7950B'}
+
+    # 参考行
+    y_ref = 96
+    for i, ch in enumerate(SEQ):
+        x = X0 + i * BP
+        big = (i == VI)
+        if big:
+            s.rect(x - 4, y_ref - 20, BP + 8, 30, fill=COLOR_FILL, stroke=COLOR_PRIMARY, sw=1.6, rx=2)
+        s.text(x + BP / 2, y_ref, ch.upper() if big else ch, size=15 if big else 13,
+               fill=COLOR_PRIMARY if big else COLOR_TEXT, anchor='middle',
+               weight='bold' if big else 'normal')
+    s.text(8, y_ref, "REF", size=SIZE_NOTE, mono=False, fill=COLOR_MUTED)
+    s.text(X0 + VI * BP + BP / 2, y_ref - 30, "★ 候选位点", size=SIZE_NOTE,
+           mono=False, fill=COLOR_PRIMARY, anchor='middle', weight='bold')
+
+    # reads：4 条 G（一致）、1 条 A（错配），方向交替
+    reads = [
+        ("r1", 0, True, 1), ("r2", 3, False, 0), ("r3", 0, True, 2),
+        ("r4", 5, False, 0), ("r5", 2, True, 0),
+    ]
+    # (名称, 起始偏移, 方向(True=正向→), 该 read 的错配碱基序号(在read内), None 表示一致 G)
+    y0, rh, rgap = 150, 26, 42
+    for idx, (name, off, fwd, mismatch) in enumerate([
+        ("r1", 0, True, None), ("r2", 3, False, None), ("r3", 0, True, None),
+        ("r4", 4, False, "A"), ("r5", 1, True, None),
+    ]):
+        y = y0 + idx * rgap
+        rlen = 17                        # read 长 17bp
+        rx = X0 + off * BP
+        rw = rlen * BP
+        # 灰条
+        s.rect(rx, y, rw, rh, fill='#e5e7eb', stroke='#d1d5db', sw=0.8, rx=3)
+        # 方向箭头（3' 端）：正向右端、反向左端
+        import math
+        ax = rx + rw + 2 if fwd else rx - 2
+        ay = y + rh / 2
+        d = 1 if fwd else -1
+        s.add(f"<path d='M {ax:.1f} {ay-6:.1f} L {ax+10*d:.1f} {ay:.1f} L {ax:.1f} {ay+6:.1f} Z' "
+              f"fill='#9ca3af'/>")
+        # 候选位点碱基：一致 G 深灰、错配 A 红
+        vx = X0 + VI * BP
+        base = mismatch if mismatch else SEQ[VI].upper()
+        color = BASE_COLOR[base] if mismatch else '#4b5563'
+        s.text(vx + BP / 2, y + rh / 2 + 5, base, size=15, fill=color,
+               anchor='middle', weight='bold')
+        s.text(8, y + rh / 2 + 4, name, size=SIZE_NOTE, mono=False, fill=COLOR_MUTED)
+
+    # 候选位点贯穿竖线
+    s.line(X0 + VI * BP + BP / 2, y_ref + 14, X0 + VI * BP + BP / 2, y0 + 4 * rgap + rh + 8,
+           stroke=COLOR_PRIMARY, sw=1.1, dash='5,4')
+
+    # 统计框
+    bx, by = 620, 150
+    s.rect(bx, by, 236, 96, fill=COLOR_FILL, stroke=COLOR_PRIMARY, rx=8)
+    s.text(bx + 16, by + 28, "计数（对应正文记号）", size=SIZE_NOTE, mono=False,
+           fill=COLOR_PRIMARY, weight='bold')
+    s.text(bx + 16, by + 52, "k = 5 条 reads 比对到该位点", size=SIZE_NOTE, mono=False)
+    s.text(bx + 16, by + 72, "l = 4 条与参考一致（G）", size=SIZE_NOTE, mono=False)
+    s.text(bx + 16, by + 90, "k - l = 1 条错配（A），G:A = 4:1", size=SIZE_NOTE, mono=False)
+
+    # 图例
+    ly = 396
+    s.rect(X0, ly - 12, 16, 12, fill='#e5e7eb', stroke='#d1d5db', sw=0.8, rx=2)
+    s.text(X0 + 24, ly - 2, "read（箭头示 3′ 端方向）", size=SIZE_NOTE, mono=False, fill=COLOR_MUTED)
+    s.text(X0 + 240, ly - 2, "深灰字母＝与参考一致　彩色字母＝错配（IGV 配色）", size=SIZE_NOTE, mono=False, fill=COLOR_MUTED)
+    s.text(X0, ly + 22, "仅凭 G:A = 4:1 的比例不足以判定杂合——还需要质量值、链方向与先验（见下文）。",
+           size=SIZE_NOTE, mono=False, fill=COLOR_TEXT)
+    save("001-reads-support-counts", s)
+
+
 if __name__ == "__main__":
-    fig_exon_intron_splicing()
     fig_preprocessing_overview()
     fig_vcf_record_anatomy()
+    fig_reads_support_counts()
