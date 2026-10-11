@@ -1376,7 +1376,7 @@ ceRNA（competing endogenous RNA，内源竞争性 RNA）不是一类新的 RNA 
 
 :::::
 
-![ceRNA 假说：多种 RNA 通过竞争结合 miRNA 相互影响（重绘自原稿示意图）](../assets/06-rna-seq/svg/cerna-concept.svg){#fig-06-rna-seq-008}
+![ceRNA 假说的机制：mRNA、lncRNA 与 circRNA 都带有 miRNA 应答元件（MRE），像海绵一样竞争结合同一批 miRNA；某个转录本把 miRNA"吸附"走之后，miRNA 对其他靶 mRNA 的降解与翻译抑制随之减弱（图片来自 Aria H 等 2024 年 Heliyon 综述图 1，CC BY 4.0，仅作教学示意[^cerna-fig-license]）](../assets/06-rna-seq/cited/cerna-mechanism.jpg){#fig-06-rna-seq-008}
 
 1. miRNA 是内源竞争 RNA 争夺的目标。除 mRNA 与 circRNA 外，具有类 mRNA 结构的 lncRNA 也能通过 3′ 非翻译区与 miRNA 结合，作用方式类似 miRNA 与 mRNA。miRcode 曾提供全转录组水平的 lncRNA miRNA 结合位点预测，其网站现已下线，可经原始论文检索数据。
 2. lncRNA 与基因之间还存在 cis 调控与 trans 作用等关系；circRNA 除结合 miRNA 外，与宿主基因的表达也存在关联——它的序列本就来自宿主基因的外显子。
@@ -1436,6 +1436,8 @@ ceRNA（competing endogenous RNA，内源竞争性 RNA）不是一类新的 RNA 
 [^rna-ref-abundance]: 总 RNA 构成取常用教学口径：rRNA 约 80%–90%、tRNA 约 10%–15%、mRNA 约 3%–7%（数量级因细胞类型与生长状态而异）。
 
 [^rna-ref-fig-license]: GFDL 许可原文见 [GNU Free Documentation License](https://commons.wikimedia.org/wiki/Commons:GNU_Free_Documentation_License)（2026 年 10 月核对）。本章引用的外部图片均在图注注明出处，仅作教学示意，版权归原作者所有。
+
+[^cerna-fig-license]: Aria H, Azizi M, Nazem S, et al. [Competing endogenous RNAs regulatory crosstalk networks: The messages from the RNA world to signaling pathways directing cancer stem cell development](https://doi.org/10.1016/j.heliyon.2024.e35208). *Heliyon*, 2024（图 1，CC BY 4.0 许可，2026 年 10 月核对）。
 
 [^rnaseq-rsem]: Li B, Dewey CN. [RSEM: accurate transcript quantification from RNA-Seq data with or without a reference genome](https://pubmed.ncbi.nlm.nih.gov/21816040/). BMC Bioinformatics, 2011.
 

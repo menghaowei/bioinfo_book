@@ -31,47 +31,90 @@ def box(s, x, y, w, h, label, *, fill="none", stroke=COLOR_PRIMARY, tsize=SIZE_N
 
 # ─────────────────────── 图A 基因组与转录组 ───────────────────────
 def fig_genome_transcriptome():
-    W, H = 640, 340
+    import math
+    W, H = 780, 452
     s = Svg(W, H, "基因组与转录组的关系示意图",
-            "左侧一个基因组（基因结构示意），右侧三种细胞状态各自的转录本集合；"
-            "同一套基因组在不同细胞状态转录出不同的 RNA 组合。")
-    gx, gy, gw, gh = 24, 90, 168, 176
-    s.rect(gx, gy, gw, gh, fill="#f4faf8", stroke="#cfe3dd", rx=12)
-    s.text(gx + gw / 2, gy + 28, "基因组", size=SIZE_TITLE, fill=COLOR_PRIMARY, anchor="middle", weight="bold")
-    ex = [(gx + 24, gy + 66, 28, 18), (gx + 70, gy + 66, 36, 18), (gx + 122, gy + 66, 24, 18)]
-    for (xx, yy, ww, hh) in ex:
-        s.rect(xx, yy, ww, hh, fill=COLOR_PRIMARY, rx=3)
-    s.line(ex[0][0] + ex[0][2], gy + 75, ex[1][0], gy + 75, stroke=COLOR_LINE, sw=1.6)
-    s.line(ex[1][0] + ex[1][2], gy + 75, ex[2][0], gy + 75, stroke=COLOR_LINE, sw=1.6)
-    s.text(gx + gw / 2, gy + 108, "外显子／内含子结构", size=SIZE_NOTE, fill=COLOR_MUTED, anchor="middle")
-    s.text(gx + gw / 2, gy + 136, "所有细胞同一套", size=SIZE_NOTE, fill=COLOR_TEXT, anchor="middle")
-    s.text(gx + gw / 2, gy + 156, "DNA 序列不变", size=SIZE_NOTE, fill=COLOR_TEXT, anchor="middle")
-    states = [("神经细胞：转录组 1", [1, 0, 1, 1, 0]),
-              ("免疫细胞：转录组 2", [0, 1, 1, 0, 1]),
-              ("应激状态：转录组 3", [1, 1, 0, 1, 1])]
-    bw2, bh2, gap2 = 300, 84, 14
-    bx = 306
-    genes = ["A", "B", "C", "D", "E"]
-    for k, (name, on) in enumerate(states):
-        by = 22 + k * (bh2 + gap2)
-        s.rect(bx, by, bw2, bh2, fill="#ffffff", stroke=COLOR_PRIMARY, rx=10)
-        s.text(bx + 14, by + 24, name, size=SIZE_LABEL, fill=COLOR_PRIMARY, anchor="start", weight="bold")
-        cwp = 52
-        xp = bx + 14
-        for g, active in enumerate(on):
-            if active:
-                s.rect(xp, by + 42, cwp, 24, fill=COLOR_PRIMARY, rx=4)
-                s.text(xp + cwp / 2, by + 58, genes[g], size=SIZE_NOTE, fill="#ffffff", anchor="middle")
-            else:
-                s.rect(xp, by + 42, cwp, 24, fill="#f2f4f3", stroke="#c4cbd0", rx=4)
-                s.text(xp + cwp / 2, by + 58, genes[g], size=SIZE_NOTE, fill=COLOR_MUTED, anchor="middle")
-            xp += cwp + 4
-        s.add(f"<path d='M {gx+gw+8} {gy+gh/2} C {bx-70} {gy+gh/2}, {bx-70} {by+bh2/2}, {bx-10} {by+bh2/2}' fill='none' stroke='#9ca3af' stroke-width='1.6'/>")
-        s.arrow(bx - 16, by + bh2 / 2, bx - 8, by + bh2 / 2, sw=1.6)
-    s.text(W / 2, H - 10, "同一套基因组 —— 转录（开启的基因集合不同）→ 三个不同的转录组",
+            "左侧一条 DNA 双螺旋代表所有细胞共有的同一套基因组；"
+            "右侧三个不同状态的细胞各自开启不同的基因，转录出不同的 RNA 组合。")
+    GENE_COLORS = {"A": "#186254", "B": "#b45309", "C": "#2563eb", "D": "#c2410c", "E": "#7c3aed"}
+
+    # —— 左侧：DNA 双螺旋 ——
+    hx, top, bot, amp, period = 96, 92, 300, 22, 58
+
+    def strand(phase):
+        pts, y = [], top
+        while y <= bot:
+            pts.append((hx + amp * math.sin(2 * math.pi * (y - top) / period + phase), y))
+            y += 4
+        return pts
+
+    sa, sb = strand(0.0), strand(math.pi)
+    for i in range(0, len(sa), 4):  # 碱基对横档压在双链下面
+        if abs(sa[i][0] - sb[i][0]) > 14:
+            s.line(sa[i][0], sa[i][1], sb[i][0], sb[i][1], stroke="#c4d7d1", sw=1.4)
+    for pts, col in ((sa, "#186254"), (sb, "#5e9a8f")):
+        d = "M " + " L ".join(f"{x:.1f} {y:.1f}" for x, y in pts)
+        s.add(f"<path d='{d}' fill='none' stroke='{col}' stroke-width='3' "
+              f"stroke-linecap='round' stroke-linejoin='round'/>")
+    s.text(hx, top - 26, "基因组", size=SIZE_TITLE, fill=COLOR_PRIMARY, anchor="middle", weight="bold")
+    s.text(hx, bot + 30, "所有细胞同一套 DNA", size=SIZE_NOTE, fill=COLOR_MUTED, anchor="middle")
+    s.text(hx, bot + 50, "序列完全相同", size=SIZE_NOTE, fill=COLOR_MUTED, anchor="middle")
+
+    # —— 中间：转录 ——
+    s.rect(238, 182, 56, 26, fill="#f4faf8", stroke=COLOR_PRIMARY, rx=13)
+    s.text(266, 200, "转录", size=SIZE_LABEL, fill=COLOR_PRIMARY, anchor="middle", weight="bold")
+
+    # —— 右侧：三个有机形态的细胞 ——
+    def blob(cx, cy, rx, ry, seed):
+        k = [0.97, 1.05, 0.99, 1.06, 0.98, 1.04, 1.0, 1.03]
+        k = k[seed % 8:] + k[:seed % 8]
+        pts = [(cx + rx * k[i] * math.cos(math.pi / 4 * i),
+                cy + ry * k[i] * math.sin(math.pi / 4 * i)) for i in range(8)]
+        mid = lambda p, q: ((p[0] + q[0]) / 2, (p[1] + q[1]) / 2)
+        m0 = mid(pts[-1], pts[0])
+        d = f"M {m0[0]:.1f} {m0[1]:.1f} "
+        for i in range(8):
+            p, nm = pts[i], mid(pts[i], pts[(i + 1) % 8])
+            d += f"Q {p[0]:.1f} {p[1]:.1f} {nm[0]:.1f} {nm[1]:.1f} "
+        return d + "Z"
+
+    def squiggle(x, y, length, color, amp=4.5, wl=16, sw=2.6):
+        d = f"M {x:.1f} {y:.1f} "
+        for i in range(int(length // wl)):
+            d += f"q {wl/2} {-amp} {wl} 0 " if i % 2 == 0 else f"q {wl/2} {amp} {wl} 0 "
+        s.add(f"<path d='{d}' fill='none' stroke='{color}' stroke-width='{sw}' stroke-linecap='round'/>")
+
+    cells = [
+        ("神经细胞 · 转录组 1", ["A", "C", "E"], "#f6fbf9", "#cfe3dd", 0),
+        ("免疫细胞 · 转录组 2", ["B", "C", "D"], "#f7f9fc", "#c9dbe8", 3),
+        ("应激状态 · 转录组 3", ["A", "D", "E"], "#fdf9f2", "#e6d5b8", 6),
+    ]
+    for k, (name, genes, fill, stroke, seed) in enumerate(cells):
+        cy = 100 + k * 115
+        s.add(f"<path d='{blob(520, cy, 150, 48, seed)}' fill='{fill}' stroke='{stroke}' stroke-width='1.6'/>")
+        # 细胞核与核仁
+        s.add(f"<circle cx='412' cy='{cy+6}' r='17' fill='#ffffff' stroke='#9db8b0' stroke-width='1.4' opacity='0.95'/>")
+        s.add(f"<circle cx='416' cy='{cy+3}' r='4' fill='#c9d6d1'/>")
+        s.text(528, cy - 18, name, size=SIZE_LABEL, fill=COLOR_PRIMARY, anchor="middle", weight="bold")
+        for j, g in enumerate(genes):  # 每个细胞内正在转录的 RNA
+            squiggle(455, cy + 4 + j * 16, 150, GENE_COLORS[g])
+            s.text(612, cy + 8 + j * 16, g, size=12, fill=GENE_COLORS[g], weight="bold")
+        # 转录箭头
+        ang = math.atan2(cy - 195, 354 - 298)
+        s.add(f"<path d='M 298 195 C 322 195, 330 {cy}, 350 {cy}' fill='none' "
+              f"stroke='#7b8794' stroke-width='2'/>")
+        for da in (0.5, -0.5):
+            bx, by = 350 - 9 * math.cos(ang + da), cy - 9 * math.sin(ang + da)
+            s.line(bx, by, 350, cy, stroke="#7b8794", sw=2)
+
+    # —— 底部：基因图例与结论 ——
+    for i, g in enumerate("ABCDE"):
+        x0 = 128 + i * 105
+        squiggle(x0, 400, 30, GENE_COLORS[g], amp=3.5, wl=15, sw=2.2)
+        s.text(x0 + 38, 404, f"基因 {g}", size=12, fill=COLOR_MUTED)
+    s.text(W / 2, 442, "同一套基因组，因开启的基因集合不同，转录出不同的 RNA —— 这就是转录组差异的来源",
            size=SIZE_LABEL, fill=COLOR_TEXT, anchor="middle", weight="bold")
     save("genome-transcriptome", s)
-
 
 def fig_rna_classes():
     W, H = 720, 440
@@ -575,35 +618,6 @@ def fig_lib_tree():
 
 
 # ─────────────────── 图M ceRNA 概念图（重绘 008） ───────────────────
-def fig_cerna_concept():
-    W, H = 560, 424
-    s = Svg(W, H, "ceRNA：多种 RNA 竞争结合 miRNA",
-            "mRNA、lncRNA、circRNA 都携带 miRNA 结合位点，像海绵一样竞争结合同一批 miRNA，"
-            "间接影响彼此的翻译抑制强度。")
-    cx, cy = 280, 200
-    nodes = [
-        (110, 60, "mRNA", "3′ UTR 结合位点", COLOR_PRIMARY),
-        (450, 60, "lncRNA", "部分含结合位点", COLOR_PRIMARY),
-        (450, 340, "circRNA", "环形骨架上多位点", COLOR_WARN),
-    ]
-    # 先画连线（铁律：线先字后）
-    for nx, ny, *_ in nodes:
-        s.line(nx, ny, cx, cy, stroke=COLOR_LINE, sw=1.4)
-    # 结合位点小刻度画在连线上
-    for t in (0.35, 0.55):
-        for nx, ny, *_ in nodes:
-            mx, my = nx + (cx - nx) * t, ny + (cy - ny) * t
-            s.rect(mx - 5, my - 5, 10, 10, fill=COLOR_FILL, stroke=COLOR_PRIMARY, rx=2)
-    # 中央 miRNA
-    s.add(f"<circle cx='{cx}' cy='{cy}' r='34' fill='{COLOR_FILL}' stroke='{COLOR_PRIMARY}' stroke-width='1.8'/>")
-    s.text(cx, cy + 5, "miRNA", size=SIZE_TITLE, mono=False, fill=COLOR_PRIMARY, anchor="middle", weight="bold")
-    for nx, ny, name, note, color in nodes:
-        box(s, nx - 62, ny - 22, 124, 44, name, fill="#ffffff", tcolor=color)
-        s.text(nx, ny + 40, note, size=SIZE_NOTE, fill=COLOR_MUTED, anchor="middle")
-    s.text(W / 2, H - 12, "结合位点越多、亲和力越强，“海绵”作用越强（重绘自原稿示意图）",
-           size=SIZE_LABEL, fill=COLOR_TEXT, anchor="middle", weight="bold")
-    save("cerna-concept", s)
-
 
 if __name__ == "__main__":
     fig_genome_transcriptome()
@@ -618,4 +632,3 @@ if __name__ == "__main__":
     fig_workflow_smallrna()
     fig_workflow_circrna()
     fig_lib_tree()
-    fig_cerna_concept()
