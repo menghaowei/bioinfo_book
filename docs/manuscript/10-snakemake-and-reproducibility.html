@@ -20,6 +20,41 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
 </style>
 
 
@@ -615,25 +650,28 @@ ul.task-list li input[type="checkbox"] {
 <div class="book-nav-leaf"><a class="book-nav-link book-section-link no-external" href="#chapter-summary-10" data-book-level="2" data-book-target="chapter-summary-10" id="book-nav-10-chapter-summary-10">本章提要</a></div>
 </li>
 <li>
-<div class="book-nav-leaf"><a class="book-nav-link book-section-link no-external" href="#sec-10-01" data-book-level="2" data-book-target="sec-10-01" id="book-nav-10-sec-10-01">10.1 从命令脚本到依赖图</a></div>
+<details class="book-section"><summary><a class="book-nav-link book-section-link no-external" href="#sec-10-01" data-book-level="2" data-book-target="sec-10-01" id="book-nav-10-sec-10-01">10.1 Snakemake 的安装与基本语法</a></summary><ul>
+<li class="book-nav-leaf"><a class="book-nav-link book-section-link no-external" href="#topic-10-why-workflow" data-book-level="3" data-book-target="topic-10-why-workflow" id="book-nav-10-topic-10-why-workflow">为什么需要工作流管理器</a></li>
+<li class="book-nav-leaf"><a class="book-nav-link book-section-link no-external" href="#topic-10-install" data-book-level="3" data-book-target="topic-10-install" id="book-nav-10-topic-10-install">安装 Snakemake</a></li>
+<li class="book-nav-leaf"><a class="book-nav-link book-section-link no-external" href="#topic-10-first-snakefile" data-book-level="3" data-book-target="topic-10-first-snakefile" id="book-nav-10-topic-10-first-snakefile">第一个可运行的 Snakefile</a></li>
+<li class="book-nav-leaf"><a class="book-nav-link book-section-link no-external" href="#topic-10-wildcards" data-book-level="3" data-book-target="topic-10-wildcards" id="book-nav-10-topic-10-wildcards">通配符与多样本扩展</a></li>
+<li class="book-nav-leaf"><a class="book-nav-link book-section-link no-external" href="#topic-10-config" data-book-level="3" data-book-target="topic-10-config" id="book-nav-10-topic-10-config">样本表与配置文件</a></li>
+<li class="book-nav-leaf"><a class="book-nav-link book-section-link no-external" href="#topic-10-operations" data-book-level="3" data-book-target="topic-10-operations" id="book-nav-10-topic-10-operations">运行、日志与失败恢复</a></li>
+</ul></details>
 </li>
 <li>
-<div class="book-nav-leaf"><a class="book-nav-link book-section-link no-external" href="#sec-10-02" data-book-level="2" data-book-target="sec-10-02" id="book-nav-10-sec-10-02">10.2 第一个可运行的Snakefile</a></div>
+<details class="book-section"><summary><a class="book-nav-link book-section-link no-external" href="#sec-10-02" data-book-level="2" data-book-target="sec-10-02" id="book-nav-10-sec-10-02">10.2 RNA-seq 的 Snakemake 流程</a></summary><ul>
+<li class="book-nav-leaf"><a class="book-nav-link book-section-link no-external" href="#topic-10-rnaseq-structure" data-book-level="3" data-book-target="topic-10-rnaseq-structure" id="book-nav-10-topic-10-rnaseq-structure">项目结构与样本表</a></li>
+<li class="book-nav-leaf"><a class="book-nav-link book-section-link no-external" href="#topic-10-rnaseq-snakefile" data-book-level="3" data-book-target="topic-10-rnaseq-snakefile" id="book-nav-10-topic-10-rnaseq-snakefile">完整的 Snakefile</a></li>
+<li class="book-nav-leaf"><a class="book-nav-link book-section-link no-external" href="#topic-10-rnaseq-run" data-book-level="3" data-book-target="topic-10-rnaseq-run" id="book-nav-10-topic-10-rnaseq-run">运行流程与检查结果</a></li>
+</ul></details>
 </li>
 <li>
-<div class="book-nav-leaf"><a class="book-nav-link book-section-link no-external" href="#sec-10-03" data-book-level="2" data-book-target="sec-10-03" id="book-nav-10-sec-10-03">10.3 样本表、配置与多样本扩展</a></div>
-</li>
-<li>
-<div class="book-nav-leaf"><a class="book-nav-link book-section-link no-external" href="#sec-10-04" data-book-level="2" data-book-target="sec-10-04" id="book-nav-10-sec-10-04">10.4 环境与参考资源的版本管理</a></div>
-</li>
-<li>
-<div class="book-nav-leaf"><a class="book-nav-link book-section-link no-external" href="#sec-10-05" data-book-level="2" data-book-target="sec-10-05" id="book-nav-10-sec-10-05">10.5 资源、日志、失败恢复与增量运行</a></div>
-</li>
-<li>
-<div class="book-nav-leaf"><a class="book-nav-link book-section-link no-external" href="#sec-10-06" data-book-level="2" data-book-target="sec-10-06" id="book-nav-10-sec-10-06">10.6 流程验证与自动报告</a></div>
-</li>
-<li>
-<div class="book-nav-leaf"><a class="book-nav-link book-section-link no-external" href="#sec-10-07" data-book-level="2" data-book-target="sec-10-07" id="book-nav-10-sec-10-07">10.7 完整项目与跨任务迁移</a></div>
+<details class="book-section"><summary><a class="book-nav-link book-section-link no-external" href="#sec-10-03" data-book-level="2" data-book-target="sec-10-03" id="book-nav-10-sec-10-03">10.3 ATAC-seq 的 Snakemake 流程</a></summary><ul>
+<li class="book-nav-leaf"><a class="book-nav-link book-section-link no-external" href="#topic-10-atac-structure" data-book-level="3" data-book-target="topic-10-atac-structure" id="book-nav-10-topic-10-atac-structure">项目结构与样本表</a></li>
+<li class="book-nav-leaf"><a class="book-nav-link book-section-link no-external" href="#topic-10-atac-snakefile" data-book-level="3" data-book-target="topic-10-atac-snakefile" id="book-nav-10-topic-10-atac-snakefile">完整的 Snakefile</a></li>
+<li class="book-nav-leaf"><a class="book-nav-link book-section-link no-external" href="#topic-10-atac-compare" data-book-level="3" data-book-target="topic-10-atac-compare" id="book-nav-10-topic-10-atac-compare">运行、检查与迁移</a></li>
+</ul></details>
 </li>
 </ul></details>
 </li>
@@ -735,7 +773,7 @@ ul.task-list li input[type="checkbox"] {
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
 <h1 class="title"><span id="sec-ch10" class="quarto-section-identifier"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Snakemake与可复现分析工作流</span></span></h1>
-<p class="chapter-last-modified"><time datetime="2026-10-09T12:27:54+08:00" title="本章书稿最后修改时间（北京时间，UTC+08:00）">最后修改：2026-10-09 12:27（北京时间）</time></p>
+<p class="chapter-last-modified"><time datetime="2026-10-11T11:37:05+08:00" title="本章书稿最后修改时间（北京时间，UTC+08:00）">最后修改：2026-10-11 11:37（北京时间）</time></p>
 </div>
 
 
@@ -754,63 +792,720 @@ ul.task-list li input[type="checkbox"] {
 
 <section id="chapter-summary-10" class="level2 unnumbered hero-book book-chapter-summary">
 <h2 class="unnumbered anchored" data-anchor-id="chapter-summary-10">本章提要</h2>
-<p>本章把已经理解的分析步骤组织为 Snakemake 工作流。先从输入输出的依赖关系出发，编写第一个 Snakefile，再用样本表与配置扩展到多样本，记录软件环境和参考资源，学习资源分配、日志、失败恢复与增量运行。最后通过流程验证和自动报告形成完整项目，并练习向其他任务迁移。主案例与第 5 章 RNA-seq 衔接，让你在熟悉的分析问题上学习工作流组织方式。</p>
+<p>本章把前面各章用过的分析命令组织成可复现的工作流。我们先理解为什么需要工作流管理器——以文件依赖而不是脚本顺序来组织计算——然后安装 Snakemake，掌握规则、输入输出、通配符、样本表与配置文件这些核心语法，并学会用试运行、日志和重跑机制管理一次真实的分析。随后把第 5 章的 RNA-seq 流程（FastQC、cutadapt、HISAT2、featureCounts）和第 6 章的 ATAC-seq 流程（fastp、Bowtie 2、去线粒体与去重、Tn5 偏移校正、MACS3 找峰）分别写成完整的 Snakemake 工作流，给出可以直接使用的 Snakefile、样本表、配置文件与环境定义。完成本章后，你可以把任何一章的单条命令升级为只重算必要步骤、能中断恢复、别人可以重跑的工作流。</p>
 </section>
 <section id="sec-10-01" class="level2" data-number="10.1">
-<h2 data-number="10.1" class="anchored" data-anchor-id="sec-10-01"><span class="header-section-number">10.1</span> 从命令脚本到依赖图</h2>
-<p>理解工作流为什么以文件依赖组织计算。</p>
-<div class="book-placeholder">
-<p>本节内容待补充。</p>
+<h2 data-number="10.1" class="anchored" data-anchor-id="sec-10-01"><span class="header-section-number">10.1</span> Snakemake 的安装与基本语法</h2>
+<p>先理解工作流管理器解决什么问题，再掌握构成最小流程的核心语法。</p>
+<section id="topic-10-why-workflow" class="level3">
+<h3 class="anchored" data-anchor-id="topic-10-why-workflow">为什么需要工作流管理器</h3>
+<p>回想第 6 章处理四个 ATAC-seq 样本的方式：把同一串命令写进 <code>for</code> 循环，一个样本接一个样本地跑。这在样本少、步骤短时够用，但真实项目里会遇到三个问题：</p>
+<ul>
+<li><strong>中途失败要付出整条代价。</strong> 循环跑到第三个样本的比对步骤失败了，前两个样本已经完成的结果还在，但你只能注释掉前两行重跑，或者手工记录”跑到哪里了”。步骤越多、样本越多，这个账越难记。</li>
+<li><strong>改一个参数，下游要重算什么全靠记忆。</strong> 换了一版基因注释，哪些结果文件受了影响？哪些需要重跑、哪些可以复用？人脑记依赖关系，迟早出错。</li>
+<li><strong>复现依赖命令历史。</strong> 一个月后（或者一个同学）想重跑你的分析，只有一长串终端历史可翻，顺序、参数、软件版本都没有被显式记录。</li>
+</ul>
+<p><strong>Snakemake</strong> 用另一种思路组织计算：把每一步分析看成一个”规则”（rule），规则声明自己的输入文件、输出文件和执行命令；所有规则通过文件名连接起来，构成一张<strong>有向无环图</strong>（DAG）。运行时，Snakemake 从你想要的最终文件出发，沿依赖关系反推哪些规则需要执行——输出已经存在且仍然有效的步骤直接跳过，缺失或过期的才重算<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a>。</p>
+<div class="book-core callout callout-style-default callout-note callout-titled" title="核心知识｜以文件依赖组织计算">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
 </div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">注记</span>核心知识｜以文件依赖组织计算
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>工作流管理器的基本单位不是”命令”，而是<strong>规则</strong>：输入文件 → 规则 → 输出文件。规则之间不直接调用，而是通过输入输出文件名建立依赖，整体构成有向无环图。这带来三个直接后果：只需要声明”要哪个文件”，Snakemake 自己算出执行路径；任何一步失败，重跑时只补缺失的部分；上游文件或规则变化后，下游受影响的结果会被自动识别并重算。</p>
+</div>
+</div>
+<p>同类工具还有 <strong>Nextflow</strong>、<strong>WDL</strong> 和图形界面的 <strong>Galaxy</strong>，思想都是”以依赖关系组织计算”。本书选择 Snakemake，因为它用 Python 语法描述流程、在生物信息社区使用广泛、与 conda 环境结合紧密；学会其中一种之后，理解另一种并不难——需要迁移的是”哪些东西必须显式声明”这个判断，而不是某个软件的操作细节。</p>
+</section>
+<section id="topic-10-install" class="level3">
+<h3 class="anchored" data-anchor-id="topic-10-install">安装 Snakemake</h3>
+<p>Snakemake 是一个 Python 程序，需要 Python 3.11 或更高版本（2026 年 10 月核对）。沿用<a href="../manuscript/02-environment-and-programming.html#sec-02-02">第 2 章</a>安装的 conda/mamba 体系，用 micromamba 建一个独立环境（conda 用户把命令换成 <code>conda create</code> 即可，参数相同）：</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1" data-book-role="code"><pre data-code-text="&quot;# 从 conda-forge 与 bioconda 渠道安装完整的 Snakemake\nmicromamba create -n snakemake -c conda-forge -c bioconda snakemake\n\nmicromamba activate snakemake\n\n# 确认安装：打印版本号（9.x，2026 年 10 月核对）\nsnakemake --version&quot;" class="sourceCode numberSource bash numberLines code-with-copy"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1"></a><span class="co"># 从 conda-forge 与 bioconda 渠道安装完整的 Snakemake</span></span>
+<span id="cb1-2"><a href="#cb1-2"></a><span class="ex">micromamba</span> create <span class="at">-n</span> snakemake <span class="at">-c</span> conda-forge <span class="at">-c</span> bioconda snakemake</span>
+<span id="cb1-3"><a href="#cb1-3"></a></span>
+<span id="cb1-4"><a href="#cb1-4"></a><span class="ex">micromamba</span> activate snakemake</span>
+<span id="cb1-5"><a href="#cb1-5"></a></span>
+<span id="cb1-6"><a href="#cb1-6"></a><span class="co"># 确认安装：打印版本号（9.x，2026 年 10 月核对）</span></span>
+<span id="cb1-7"><a href="#cb1-7"></a><span class="ex">snakemake</span> <span class="at">--version</span></span></code></pre></div><button title="复制到剪贴板" class="code-copy-button"><i class="bi"></i></button></div>
+<p>没有 conda 时也可以用 pip 在虚拟环境里安装（<code>python3 -m venv</code> 建环境、<code>pip install snakemake</code>），官方安装说明见 <a href="https://snakemake.readthedocs.io">Snakemake 文档</a>。Windows 不是原生支持的平台，官方建议在 WSL 里按 Linux 方式安装。</p>
+<div class="book-warning callout callout-style-default callout-warning callout-titled" title="注意｜用 --use-conda 前先确认 conda 命令可用">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">警告</span>注意｜用 –use-conda 前先确认 conda 命令可用
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Snakemake 的每规则独立环境功能（<code>--use-conda</code>，见本节末尾）要求 <code>conda</code> 命令与 Snakemake 安装在同一个环境或基础环境中——micromamba 默认不提供 <code>conda</code> 命令。本章两条实战流程采用更简单的方式：每个流程用一个环境文件装齐全部工具，不依赖 <code>--use-conda</code>；需要每规则环境时，在安装 Snakemake 的环境里再装上 <code>conda</code> 包即可。</p>
+</div>
+</div>
+</section>
+<section id="topic-10-first-snakefile" class="level3">
+<h3 class="anchored" data-anchor-id="topic-10-first-snakefile">第一个可运行的 Snakefile</h3>
+<p>新建一个练习目录 <code>ch10-demo</code>，手工准备一份输入数据，然后写出第一个流程文件。Snakemake 默认在当前目录寻找名为 <code>Snakefile</code> 的文件：</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2" data-book-role="data" data-code-title="目录与输入文件 data/A.txt"><pre data-code-text="&quot;ch10-demo/\n├── data/\n│   └── A.txt        # 内容两行：apple banana cherry / banana apple\n└── Snakefile        # 下面创建&quot;" class="sourceCode numberSource text numberLines code-with-copy"><code class="sourceCode"><span id="cb2-1"><a href="#cb2-1"></a>ch10-demo/</span>
+<span id="cb2-2"><a href="#cb2-2"></a>├── data/</span>
+<span id="cb2-3"><a href="#cb2-3"></a>│   └── A.txt        # 内容两行：apple banana cherry / banana apple</span>
+<span id="cb2-4"><a href="#cb2-4"></a>└── Snakefile        # 下面创建</span></code></pre></div><button title="复制到剪贴板" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Snakefile 就是一段 Python，核心是 <code>rule</code> 块。我们写一条规则：统计 <code>A.txt</code> 的词数，结果存到 <code>results/A.count</code>：</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3" data-book-role="code" data-code-title="Snakefile（ch10-demo）"><pre data-code-text="&quot;rule wordcount:\n    input:\n        \&quot;data/A.txt\&quot;\n    output:\n        \&quot;results/A.count\&quot;\n    shell:\n        \&quot;wc -w {input} &gt; {output}\&quot;&quot;" class="sourceCode numberSource python numberLines code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1"></a>rule wordcount:</span>
+<span id="cb3-2"><a href="#cb3-2"></a>    <span class="bu">input</span>:</span>
+<span id="cb3-3"><a href="#cb3-3"></a>        <span class="co">"data/A.txt"</span></span>
+<span id="cb3-4"><a href="#cb3-4"></a>    output:</span>
+<span id="cb3-5"><a href="#cb3-5"></a>        <span class="co">"results/A.count"</span></span>
+<span id="cb3-6"><a href="#cb3-6"></a>    shell:</span>
+<span id="cb3-7"><a href="#cb3-7"></a>        <span class="co">"wc -w {input} &gt; {output}"</span></span></code></pre></div><button title="复制到剪贴板" class="code-copy-button"><i class="bi"></i></button></div>
+<p>一条规则由四个基本部分组成：<code>input</code> 声明依赖哪些文件；<code>output</code> 声明这条规则负责生成哪些文件；<code>shell</code> 是实际执行的命令；<code>rule</code> 后面的 <code>wordcount</code> 是规则名。命令里的 <code>{input}</code> 和 <code>{output}</code> 是占位符，运行前会被替换成上面声明的实际文件名——所以这条规则执行的命令是 <code>wc -w data/A.txt &gt; results/A.count</code>。</p>
+<p>不写任何脚本去调用它，直接在 <code>ch10-demo</code> 目录里运行 Snakemake，并告诉它最多可以用几个 CPU 核心：</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4" data-book-role="code"><pre data-code-text="&quot;# 先用 -n 试运行：只打印将要做什么，不实际执行\nsnakemake -n -c 1\n\n# 确认无误后真正运行\nsnakemake -c 1\n\n# 查看结果\ncat results/A.count&quot;" class="sourceCode numberSource bash numberLines code-with-copy"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1"></a><span class="co"># 先用 -n 试运行：只打印将要做什么，不实际执行</span></span>
+<span id="cb4-2"><a href="#cb4-2"></a><span class="ex">snakemake</span> <span class="at">-n</span> <span class="at">-c</span> 1</span>
+<span id="cb4-3"><a href="#cb4-3"></a></span>
+<span id="cb4-4"><a href="#cb4-4"></a><span class="co"># 确认无误后真正运行</span></span>
+<span id="cb4-5"><a href="#cb4-5"></a><span class="ex">snakemake</span> <span class="at">-c</span> 1</span>
+<span id="cb4-6"><a href="#cb4-6"></a></span>
+<span id="cb4-7"><a href="#cb4-7"></a><span class="co"># 查看结果</span></span>
+<span id="cb4-8"><a href="#cb4-8"></a><span class="fu">cat</span> results/A.count</span></code></pre></div><button title="复制到剪贴板" class="code-copy-button"><i class="bi"></i></button></div>
+<p>试运行（<code>-n</code>，即 <code>--dry-run</code>）会列出将要执行的任务和理由；这个习惯值得保持——改完流程先 <code>-n</code> 看一眼依赖判断是否如你所料，再真正运行。真跑的输出中每个任务完成后会打印进度（如 <code>1 of 1 steps (100%) done</code>），<code>results/A.count</code> 里是词数 <code>5</code>。<code>results/</code> 目录不需要事先创建，Snakemake 会自动为输出文件建立缺失的目录。</p>
+<p>现在再跑一次同样的命令：</p>
+<pre data-code-text="&quot;Building DAG of jobs...\nNothing to be done (all requested files are present and up to date).&quot;" class="text" data-book-role="output"><code>Building DAG of jobs...
+Nothing to be done (all requested files are present and up to date).</code></pre>
+<p>这就是工作流和脚本的本质区别：<strong>输出已存在且仍然有效时，什么都不做</strong>。把 <code>data/A.txt</code> 的内容改掉再运行，Snakemake 会重新执行这一条规则；只 <code>touch</code> 一下文件（修改时间变了、内容没变）则不会重跑——Snakemake 在 <code>.snakemake/</code> 目录里记录了每次运行的元数据，判断”变没变”比的不是单纯的时间戳（细节见本节 <a href="#tbl-10-rerun-triggers" class="quarto-xref">表&nbsp;<span>10.1</span></a> ）。</p>
+<p>还有一个问题：Snakemake 怎么知道要生成 <code>results/A.count</code>？答案是<strong>默认目标 = Snakefile 里的第一条规则</strong>。因此惯例是把第一条规则写成 <code>all</code>，它不执行任何命令，只列出整个流程的最终交付文件：</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb6" data-book-role="code" data-code-title="把 all 规则放在最前"><pre data-code-text="&quot;rule all:\n    input:\n        \&quot;results/A.count\&quot;\n\nrule wordcount:\n    input:\n        \&quot;data/A.txt\&quot;\n    output:\n        \&quot;results/A.count\&quot;\n    shell:\n        \&quot;wc -w {input} &gt; {output}\&quot;&quot;" class="sourceCode numberSource python numberLines code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1"></a>rule <span class="bu">all</span>:</span>
+<span id="cb6-2"><a href="#cb6-2"></a>    <span class="bu">input</span>:</span>
+<span id="cb6-3"><a href="#cb6-3"></a>        <span class="co">"results/A.count"</span></span>
+<span id="cb6-4"><a href="#cb6-4"></a></span>
+<span id="cb6-5"><a href="#cb6-5"></a>rule wordcount:</span>
+<span id="cb6-6"><a href="#cb6-6"></a>    <span class="bu">input</span>:</span>
+<span id="cb6-7"><a href="#cb6-7"></a>        <span class="co">"data/A.txt"</span></span>
+<span id="cb6-8"><a href="#cb6-8"></a>    output:</span>
+<span id="cb6-9"><a href="#cb6-9"></a>        <span class="co">"results/A.count"</span></span>
+<span id="cb6-10"><a href="#cb6-10"></a>    shell:</span>
+<span id="cb6-11"><a href="#cb6-11"></a>        <span class="co">"wc -w {input} &gt; {output}"</span></span></code></pre></div><button title="复制到剪贴板" class="code-copy-button"><i class="bi"></i></button></div>
+<p>以后无论流程长到多少条规则，<code>snakemake -c 1</code> 永远从 <code>all</code> 列出的最终文件出发倒推依赖；也可以在命令行直接指定任何中间文件作为目标（如 <code>snakemake -c 1 results/A.count</code>），只重算到达它的那部分。</p>
+</section>
+<section id="topic-10-wildcards" class="level3">
+<h3 class="anchored" data-anchor-id="topic-10-wildcards">通配符与多样本扩展</h3>
+<p>真实项目不会只有一个样本。再准备 <code>data/B.txt</code> 和 <code>data/C.txt</code> 两份输入，然后把路径里代表样本的部分换成<strong>通配符</strong> <code>{sample}</code>：</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb7" data-book-role="code" data-code-title="用通配符写一条适用于所有样本的规则"><pre data-code-text="&quot;SAMPLES = [\&quot;A\&quot;, \&quot;B\&quot;, \&quot;C\&quot;]\n\nrule all:\n    input:\n        expand(\&quot;results/{sample}.count\&quot;, sample=SAMPLES)\n\nrule wordcount:\n    input:\n        \&quot;data/{sample}.txt\&quot;\n    output:\n        \&quot;results/{sample}.count\&quot;\n    shell:\n        \&quot;wc -w {input} &gt; {output}\&quot;&quot;" class="sourceCode numberSource python numberLines code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1"></a>SAMPLES <span class="op">=</span> [<span class="st">"A"</span>, <span class="st">"B"</span>, <span class="st">"C"</span>]</span>
+<span id="cb7-2"><a href="#cb7-2"></a></span>
+<span id="cb7-3"><a href="#cb7-3"></a>rule <span class="bu">all</span>:</span>
+<span id="cb7-4"><a href="#cb7-4"></a>    <span class="bu">input</span>:</span>
+<span id="cb7-5"><a href="#cb7-5"></a>        expand(<span class="st">"results/</span><span class="sc">{sample}</span><span class="st">.count"</span>, sample<span class="op">=</span>SAMPLES)</span>
+<span id="cb7-6"><a href="#cb7-6"></a></span>
+<span id="cb7-7"><a href="#cb7-7"></a>rule wordcount:</span>
+<span id="cb7-8"><a href="#cb7-8"></a>    <span class="bu">input</span>:</span>
+<span id="cb7-9"><a href="#cb7-9"></a>        <span class="co">"data/{sample}.txt"</span></span>
+<span id="cb7-10"><a href="#cb7-10"></a>    output:</span>
+<span id="cb7-11"><a href="#cb7-11"></a>        <span class="co">"results/{sample}.count"</span></span>
+<span id="cb7-12"><a href="#cb7-12"></a>    shell:</span>
+<span id="cb7-13"><a href="#cb7-13"></a>        <span class="co">"wc -w {input} &gt; {output}"</span></span></code></pre></div><button title="复制到剪贴板" class="code-copy-button"><i class="bi"></i></button></div>
+<p>两处新写法：<code>output</code> 里的 <code>{sample}</code> 是通配符占位，<code>input</code> 里同名占位与之对应——要生成 <code>results/A.count</code>，就取 <code>sample=A</code>，输入随之解析为 <code>data/A.txt</code>。<code>expand("results/{sample}.count", sample=SAMPLES)</code> 则把模板展开成具体文件列表：<code>results/A.count</code>、<code>results/B.count</code>、<code>results/C.count</code>。</p>
+<p>运行 <code>snakemake -n -c 2</code>，会看到 4 个任务：三个样本各自的 <code>wordcount</code>，加上 <code>all</code>。真跑一遍，然后删掉中间一个输出再运行——Snakemake 只补算被删的那一个任务，其余两个样本的结果原封不动：</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb8" data-book-role="code"><pre data-code-text="&quot;rm results/B.count\nsnakemake -c 2    # 只重跑 B 的 wordcount（以及 all）&quot;" class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="fu">rm</span> results/B.count</span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="ex">snakemake</span> <span class="at">-c</span> 2    <span class="co"># 只重跑 B 的 wordcount（以及 all）</span></span></code></pre></div><button title="复制到剪贴板" class="code-copy-button"><i class="bi"></i></button></div>
+<p>这正是”中途失败不付整条代价”的来源：四个样本的比对跑到第三个断了，重跑时前两个直接跳过。注意通配符的取值是从<strong>输出</strong>路径推断的，所以一条规则的输出里必须真的含有 <code>{sample}</code> 这样的占位符；输入里可以引用同名占位符，但不能凭空引入输出里没有的通配符。</p>
+</section>
+<section id="topic-10-config" class="level3">
+<h3 class="anchored" data-anchor-id="topic-10-config">样本表与配置文件</h3>
+<p><code>SAMPLES = ["A", "B", "C"]</code> 写在 Snakefile 里仍有个隐患：每加一个样本都要改代码，而<strong>规则代码的变化本身会触发下游重算</strong>（见 <a href="#tbl-10-rerun-triggers" class="quarto-xref">表&nbsp;<span>10.1</span></a> ）。更好的做法是把”数据是什么”与”怎么算”分开：样本清单放进<strong>样本表</strong>，路径和参数放进<strong>配置文件</strong>。</p>
+<pre data-code-text="&quot;sample\tgroup\nA\tcontrol\nB\tcontrol\nC\ttreated&quot;" class="text" data-book-role="data" data-code-title="样本表 samples.tsv"><code>sample  group
+A   control
+B   control
+C   treated</code></pre>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb10" data-book-role="data" data-code-title="配置文件 config.yaml"><pre data-code-text="&quot;samples: \&quot;samples.tsv\&quot;&quot;" class="sourceCode yaml code-with-copy"><code class="sourceCode yaml"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="fu">samples</span><span class="kw">:</span><span class="at"> </span><span class="st">"samples.tsv"</span></span></code></pre></div><button title="复制到剪贴板" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Snakefile 开头读入这两者（<code>pandas</code> 需要在环境里可用）：</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb11" data-book-role="code" data-code-title="从样本表与配置读取样本"><pre data-code-text="&quot;import pandas as pd\n\nconfigfile: \&quot;config.yaml\&quot;\n\nsamples = pd.read_csv(config[\&quot;samples\&quot;], sep=\&quot;\\t\&quot;, dtype=str)\nSAMPLES = samples[\&quot;sample\&quot;].tolist()\n\nrule all:\n    input:\n        expand(\&quot;results/{sample}.count\&quot;, sample=SAMPLES),\n        \&quot;results/summary.txt\&quot;\n\nrule wordcount:\n    input:\n        \&quot;data/{sample}.txt\&quot;\n    output:\n        \&quot;results/{sample}.count\&quot;\n    log:\n        \&quot;logs/{sample}.wc.log\&quot;\n    threads: 2\n    shell:\n        \&quot;wc -w {input} &gt; {output} 2&gt; {log}\&quot;\n\nrule summarize:\n    input:\n        expand(\&quot;results/{sample}.count\&quot;, sample=SAMPLES)\n    output:\n        \&quot;results/summary.txt\&quot;\n    shell:\n        \&quot;cat {input} &gt; {output}\&quot;&quot;" class="sourceCode numberSource python numberLines code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
+<span id="cb11-2"><a href="#cb11-2"></a></span>
+<span id="cb11-3"><a href="#cb11-3"></a>configfile: <span class="st">"config.yaml"</span></span>
+<span id="cb11-4"><a href="#cb11-4"></a></span>
+<span id="cb11-5"><a href="#cb11-5"></a>samples <span class="op">=</span> pd.read_csv(config[<span class="st">"samples"</span>], sep<span class="op">=</span><span class="st">"</span><span class="ch">\t</span><span class="st">"</span>, dtype<span class="op">=</span><span class="bu">str</span>)</span>
+<span id="cb11-6"><a href="#cb11-6"></a>SAMPLES <span class="op">=</span> samples[<span class="st">"sample"</span>].tolist()</span>
+<span id="cb11-7"><a href="#cb11-7"></a></span>
+<span id="cb11-8"><a href="#cb11-8"></a>rule <span class="bu">all</span>:</span>
+<span id="cb11-9"><a href="#cb11-9"></a>    <span class="bu">input</span>:</span>
+<span id="cb11-10"><a href="#cb11-10"></a>        expand(<span class="st">"results/</span><span class="sc">{sample}</span><span class="st">.count"</span>, sample<span class="op">=</span>SAMPLES),</span>
+<span id="cb11-11"><a href="#cb11-11"></a>        <span class="co">"results/summary.txt"</span></span>
+<span id="cb11-12"><a href="#cb11-12"></a></span>
+<span id="cb11-13"><a href="#cb11-13"></a>rule wordcount:</span>
+<span id="cb11-14"><a href="#cb11-14"></a>    <span class="bu">input</span>:</span>
+<span id="cb11-15"><a href="#cb11-15"></a>        <span class="co">"data/{sample}.txt"</span></span>
+<span id="cb11-16"><a href="#cb11-16"></a>    output:</span>
+<span id="cb11-17"><a href="#cb11-17"></a>        <span class="co">"results/{sample}.count"</span></span>
+<span id="cb11-18"><a href="#cb11-18"></a>    log:</span>
+<span id="cb11-19"><a href="#cb11-19"></a>        <span class="co">"logs/{sample}.wc.log"</span></span>
+<span id="cb11-20"><a href="#cb11-20"></a>    threads: <span class="dv">2</span></span>
+<span id="cb11-21"><a href="#cb11-21"></a>    shell:</span>
+<span id="cb11-22"><a href="#cb11-22"></a>        <span class="co">"wc -w {input} &gt; {output} 2&gt; {log}"</span></span>
+<span id="cb11-23"><a href="#cb11-23"></a></span>
+<span id="cb11-24"><a href="#cb11-24"></a>rule summarize:</span>
+<span id="cb11-25"><a href="#cb11-25"></a>    <span class="bu">input</span>:</span>
+<span id="cb11-26"><a href="#cb11-26"></a>        expand(<span class="st">"results/</span><span class="sc">{sample}</span><span class="st">.count"</span>, sample<span class="op">=</span>SAMPLES)</span>
+<span id="cb11-27"><a href="#cb11-27"></a>    output:</span>
+<span id="cb11-28"><a href="#cb11-28"></a>        <span class="co">"results/summary.txt"</span></span>
+<span id="cb11-29"><a href="#cb11-29"></a>    shell:</span>
+<span id="cb11-30"><a href="#cb11-30"></a>        <span class="co">"cat {input} &gt; {output}"</span></span></code></pre></div><button title="复制到剪贴板" class="code-copy-button"><i class="bi"></i></button></div>
+<p><code>configfile:</code> 指令读入 YAML 配置，<code>config[...]</code> 取其中的键。这几十行已经包含实战流程的全部骨架：样本表提供样本与分组（<code>group</code> 列现在没用上，到 10.2 节它就是差异分析的分组依据）；<code>log:</code> 指令为每个任务单独保存日志；<code>threads:</code> 声明一个任务想用几个核心；<code>summarize</code> 这类汇总规则把所有样本的中间结果收集成一个最终文件。改配置文件（比如接头序列、参考路径）不算改规则代码，但通过 <code>params:</code> 进入命令的配置值变化同样会触发重算——这是有意设计：影响结果的输入变了，结果就该重算。</p>
+</section>
+<section id="topic-10-operations" class="level3">
+<h3 class="anchored" data-anchor-id="topic-10-operations">运行、日志与失败恢复</h3>
+<p>流程跑起来之后，日常打交道的是运行行为。几个要点：</p>
+<ul>
+<li><strong>并行由两层控制。</strong> <code>threads:</code> 是单个任务声明的核心数，命令行 <code>-c</code>（<code>--cores</code>）限制整个流程同时可用的核心总数；Snakemake 会据此决定同时跑几个任务。<code>-p</code>（<code>--printshellcmds</code>）在执行前打印每条实际命令，排查问题很有用。</li>
+<li><strong>每个任务有日志。</strong> <code>log:</code> 指定的文件（如 <code>logs/{sample}.wc.log</code>）承接命令的报错输出；目录会自动创建。任务失败时，先看屏幕上的报错和该任务的 <code>logs/</code> 文件，再查 <code>.snakemake/log/</code> 里 Snakemake 自身的运行日志。</li>
+<li><strong>重算不是”全部重来”。</strong> Snakemake 记录每次运行的元数据（代码、参数、输入清单、输入校验和、软件环境），据此判断哪些任务需要重跑，见 <a href="#tbl-10-rerun-triggers" class="quarto-xref">表&nbsp;<span>10.1</span></a> 。</li>
+</ul>
+<div id="tbl-10-rerun-triggers" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-tbl figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-10-rerun-triggers-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+表&nbsp;10.1: Snakemake 的重跑触发条件（默认全部启用，2026 年 10 月按 9.x 核对）
+</figcaption>
+<div aria-describedby="tbl-10-rerun-triggers-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div class="book-table-scroll" role="region" aria-label="表格，可横向滚动" tabindex="0"><table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;">触发条件</th>
+<th style="text-align: left;">含义</th>
+<th style="text-align: left;">典型场景</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">输出文件缺失</td>
+<td style="text-align: left;">输出不存在，规则必须执行</td>
+<td style="text-align: left;">删了某个中间文件、首次运行</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">输入内容变化</td>
+<td style="text-align: left;">输入比输出新，且校验和与上次记录不同</td>
+<td style="text-align: left;">重新下载了 FASTQ、换了注释文件</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">规则代码变化</td>
+<td style="text-align: left;"><code>shell:</code> 命令本体改了</td>
+<td style="text-align: left;">修正参数、换命令</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">参数变化</td>
+<td style="text-align: left;"><code>params:</code> 引用的值变了</td>
+<td style="text-align: left;">配置文件里改了接头或阈值</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">输入集合变化</td>
+<td style="text-align: left;">输入文件的清单本身变了</td>
+<td style="text-align: left;">样本表加了新样本</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">软件环境变化</td>
+<td style="text-align: left;">每规则 conda 环境的定义变了</td>
+<td style="text-align: left;">升级了环境文件里的工具版本</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">上次运行中断</td>
+<td style="text-align: left;">输出被标记为不完整</td>
+<td style="text-align: left;">任务被杀、断电、断网</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+</figure>
+</div>
+<p>对应的常用恢复手段：中断的任务用 <code>snakemake --rerun-incomplete -c 8</code> 补跑（<code>--ri</code> 是简写）；强制重算某个目标用 <code>-f</code>；想让整个流程从头再来用 <code>-R all</code>。只改了文件时间戳而内容没变时不会触发重跑——这就是上一小节 <code>touch</code> 不重算的原因，也是”判断依据是内容而不只是时间”的好处。</p>
+<p>把依赖关系画出来检查，是流程写完后值得做的一步：</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb12" data-book-role="code"><pre data-code-text="&quot;# 输出 dot 格式的 DAG，交给 Graphviz 渲染成图片\nsnakemake --dag -c 8 | dot -Tsvg &gt; dag.svg&quot;" class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 输出 dot 格式的 DAG，交给 Graphviz 渲染成图片</span></span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a><span class="ex">snakemake</span> <span class="at">--dag</span> <span class="at">-c</span> 8 <span class="kw">|</span> <span class="ex">dot</span> <span class="at">-Tsvg</span> <span class="op">&gt;</span> dag.svg</span></code></pre></div><button title="复制到剪贴板" class="code-copy-button"><i class="bi"></i></button></div>
+<p>最后是两个进阶能力，本章实战流程不依赖它们，但真实项目常用：一是 <code>--use-conda</code>，配合规则里的 <code>conda: "envs/xxx.yaml"</code> 指令，让每条规则在各自独立、版本固定的 conda 环境中执行（前置条件见本节开头的注意框）；二是 <code>--report report.html</code>，生成一份把关键结果文件、统计和运行环境打包在内的自包含 HTML 报告，方便随论文或课题报告一起交付。</p>
+</section>
 </section>
 <section id="sec-10-02" class="level2" data-number="10.2">
-<h2 data-number="10.2" class="anchored" data-anchor-id="sec-10-02"><span class="header-section-number">10.2</span> 第一个可运行的Snakefile</h2>
-<p>掌握构成最小流程的核心语法。</p>
-<div class="book-placeholder">
-<p>本节内容待补充。</p>
+<h2 data-number="10.2" class="anchored" data-anchor-id="sec-10-02"><span class="header-section-number">10.2</span> RNA-seq 的 Snakemake 流程</h2>
+<p>把第 5 章的 RNA-seq 分析组织成一条完整、可增量重跑的工作流。</p>
+<p>第 5 章的主案例是 METTL3 敲降的 HEK293T 转录组数据（<a href="../manuscript/05-rna-seq.html#sec-05-02">5.2 节</a>）：对照与敲降各两个生物学重复，四个样本，链特异性 mRNA 文库、双端 100 bp。每一步的生物学理由和工具选择都已在第 5 章讲过——FastQC 质控、cutadapt 去接头、HISAT2 剪接感知比对、featureCounts 基因水平定量；本节的任务只有一个：把这些命令组织成 Snakemake 流程，从原始 FASTQ 一直走到差异分析需要的计数矩阵。</p>
+<section id="topic-10-rnaseq-structure" class="level3">
+<h3 class="anchored" data-anchor-id="topic-10-rnaseq-structure">项目结构与样本表</h3>
+<p>为流程单独建一个目录，数据、参考、结果、日志各归其位：</p>
+<pre data-code-text="&quot;rnaseq/\n├── Snakefile            # 流程本体（下一小节）\n├── config.yaml          # 配置：路径、接头、链特异性\n├── samples.tsv          # 样本表\n├── envs/\n│   └── rnaseq.yaml      # 流程环境定义\n├── raw/                 # 原始 FASTQ：{样本}_1.fastq.gz / {样本}_2.fastq.gz\n├── reference/\n│   ├── hisat2_index/    # HISAT2 索引（5.3 节构建）\n│   └── hg38_refseq_from_ucsc.rm_XM_XR.fix_name.gtf\n├── results/             # 全部输出（自动创建）\n└── logs/                # 全部任务日志（自动创建）&quot;" class="text" data-book-role="data" data-code-title="流程目录结构"><code>rnaseq/
+├── Snakefile            # 流程本体（下一小节）
+├── config.yaml          # 配置：路径、接头、链特异性
+├── samples.tsv          # 样本表
+├── envs/
+│   └── rnaseq.yaml      # 流程环境定义
+├── raw/                 # 原始 FASTQ：{样本}_1.fastq.gz / {样本}_2.fastq.gz
+├── reference/
+│   ├── hisat2_index/    # HISAT2 索引（5.3 节构建）
+│   └── hg38_refseq_from_ucsc.rm_XM_XR.fix_name.gtf
+├── results/             # 全部输出（自动创建）
+└── logs/                # 全部任务日志（自动创建）</code></pre>
+<p>原始数据按<a href="../manuscript/05-rna-seq.html#sec-05-02">5.2 节</a>的 <code>prefetch</code> + <code>fasterq-dump</code> 下载四个 Run，重命名成 <code>raw/{样本}_1.fastq.gz</code> 与 <code>{样本}_2.fastq.gz</code> 的统一约定；HISAT2 索引按<a href="../manuscript/05-rna-seq.html#sec-05-03">5.3 节</a>构建。样本表把样本和分组写在一起——<code>condition</code> 列就是第 5 章差异分析的分组依据，下游做 DESeq2 时直接取用：</p>
+<pre data-code-text="&quot;sample\tcondition\nSRR1573494\tcontrol\nSRR1573495\tcontrol\nSRR1573498\tMETTL3_kd\nSRR1573499\tMETTL3_kd&quot;" class="text" data-book-role="data" data-code-title="rnaseq/samples.tsv"><code>sample  condition
+SRR1573494  control
+SRR1573495  control
+SRR1573498  METTL3_kd
+SRR1573499  METTL3_kd</code></pre>
+<p>配置文件集中存放”换一批数据就要改”的内容：参考路径、接头序列、链特异性参数。接头用 Illumina TruSeq 标准序列；<code>strandedness: 2</code> 对应 featureCounts 的 <code>-s 2</code>（read1 比对在反义链），与<a href="../manuscript/05-rna-seq.html#sec-05-04">5.4 节</a>链特异性文库用 <code>htseq-count -s reverse</code> 是同一个事实的两种写法：</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb15" data-book-role="data" data-code-title="rnaseq/config.yaml"><pre data-code-text="&quot;samples: \&quot;samples.tsv\&quot;\nhisat2_index: \&quot;reference/hisat2_index/hg38\&quot;\nannotation: \&quot;reference/hg38_refseq_from_ucsc.rm_XM_XR.fix_name.gtf\&quot;\nadapter_r1: \&quot;AGATCGGAAGAGCACACGTCTGAACTCCAGTCAC\&quot;\nadapter_r2: \&quot;AGATCGGAAGAGCGTCGTGTAGGGAAAGAGTGT\&quot;\nstrandedness: 2        # 链特异性文库；非链特异性写 0&quot;" class="sourceCode numberSource yaml numberLines code-with-copy"><code class="sourceCode yaml"><span id="cb15-1"><a href="#cb15-1"></a><span class="fu">samples</span><span class="kw">:</span><span class="at"> </span><span class="st">"samples.tsv"</span></span>
+<span id="cb15-2"><a href="#cb15-2"></a><span class="fu">hisat2_index</span><span class="kw">:</span><span class="at"> </span><span class="st">"reference/hisat2_index/hg38"</span></span>
+<span id="cb15-3"><a href="#cb15-3"></a><span class="fu">annotation</span><span class="kw">:</span><span class="at"> </span><span class="st">"reference/hg38_refseq_from_ucsc.rm_XM_XR.fix_name.gtf"</span></span>
+<span id="cb15-4"><a href="#cb15-4"></a><span class="fu">adapter_r1</span><span class="kw">:</span><span class="at"> </span><span class="st">"AGATCGGAAGAGCACACGTCTGAACTCCAGTCAC"</span></span>
+<span id="cb15-5"><a href="#cb15-5"></a><span class="fu">adapter_r2</span><span class="kw">:</span><span class="at"> </span><span class="st">"AGATCGGAAGAGCGTCGTGTAGGGAAAGAGTGT"</span></span>
+<span id="cb15-6"><a href="#cb15-6"></a><span class="fu">strandedness</span><span class="kw">:</span><span class="at"> </span><span class="dv">2</span><span class="co">        # 链特异性文库；非链特异性写 0</span></span></code></pre></div><button title="复制到剪贴板" class="code-copy-button"><i class="bi"></i></button></div>
+<p>环境定义沿用第 6 章的做法，一个环境装齐整条流程的工具（<code>subread</code> 提供 <code>featureCounts</code> 命令；Snakemake 读样本表需要 <code>pandas</code>）：</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb16" data-book-role="data" data-code-title="rnaseq/envs/rnaseq.yaml"><pre data-code-text="&quot;name: ch10_rnaseq\nchannels:\n  - conda-forge\n  - bioconda\ndependencies:\n  - python=3.11\n  - snakemake=9\n  - pandas\n  - fastqc\n  - cutadapt\n  - hisat2\n  - samtools=1.21\n  - subread        # 提供 featureCounts\n  - multiqc&quot;" class="sourceCode numberSource yaml numberLines code-with-copy"><code class="sourceCode yaml"><span id="cb16-1"><a href="#cb16-1"></a><span class="fu">name</span><span class="kw">:</span><span class="at"> ch10_rnaseq</span></span>
+<span id="cb16-2"><a href="#cb16-2"></a><span class="fu">channels</span><span class="kw">:</span></span>
+<span id="cb16-3"><a href="#cb16-3"></a><span class="at">  </span><span class="kw">-</span><span class="at"> conda-forge</span></span>
+<span id="cb16-4"><a href="#cb16-4"></a><span class="at">  </span><span class="kw">-</span><span class="at"> bioconda</span></span>
+<span id="cb16-5"><a href="#cb16-5"></a><span class="fu">dependencies</span><span class="kw">:</span></span>
+<span id="cb16-6"><a href="#cb16-6"></a><span class="at">  </span><span class="kw">-</span><span class="at"> python=3.11</span></span>
+<span id="cb16-7"><a href="#cb16-7"></a><span class="at">  </span><span class="kw">-</span><span class="at"> snakemake=9</span></span>
+<span id="cb16-8"><a href="#cb16-8"></a><span class="at">  </span><span class="kw">-</span><span class="at"> pandas</span></span>
+<span id="cb16-9"><a href="#cb16-9"></a><span class="at">  </span><span class="kw">-</span><span class="at"> fastqc</span></span>
+<span id="cb16-10"><a href="#cb16-10"></a><span class="at">  </span><span class="kw">-</span><span class="at"> cutadapt</span></span>
+<span id="cb16-11"><a href="#cb16-11"></a><span class="at">  </span><span class="kw">-</span><span class="at"> hisat2</span></span>
+<span id="cb16-12"><a href="#cb16-12"></a><span class="at">  </span><span class="kw">-</span><span class="at"> samtools=1.21</span></span>
+<span id="cb16-13"><a href="#cb16-13"></a><span class="at">  </span><span class="kw">-</span><span class="at"> subread</span><span class="co">        # 提供 featureCounts</span></span>
+<span id="cb16-14"><a href="#cb16-14"></a><span class="at">  </span><span class="kw">-</span><span class="at"> multiqc</span></span></code></pre></div><button title="复制到剪贴板" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb17" data-book-role="code"><pre data-code-text="&quot;micromamba create -n ch10_rnaseq -f envs/rnaseq.yaml\nmicromamba activate ch10_rnaseq&quot;" class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="ex">micromamba</span> create <span class="at">-n</span> ch10_rnaseq <span class="at">-f</span> envs/rnaseq.yaml</span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a><span class="ex">micromamba</span> activate ch10_rnaseq</span></code></pre></div><button title="复制到剪贴板" class="code-copy-button"><i class="bi"></i></button></div>
+</section>
+<section id="topic-10-rnaseq-snakefile" class="level3">
+<h3 class="anchored" data-anchor-id="topic-10-rnaseq-snakefile">完整的 Snakefile</h3>
+<p>下面是完整的流程文件。命令体与第 5 章一致，只把路径改成了流程目录的结构：</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb18" data-book-role="code" data-code-title="rnaseq/Snakefile"><pre data-code-text="&quot;import pandas as pd\n\nconfigfile: \&quot;config.yaml\&quot;\n\nSAMPLES = pd.read_csv(config[\&quot;samples\&quot;], sep=\&quot;\\t\&quot;, dtype=str)\nSAMPLE_IDS = SAMPLES[\&quot;sample\&quot;].tolist()\n\nrule all:\n    input:\n        \&quot;results/counts/featureCounts.txt\&quot;,\n        \&quot;results/counts/featureCounts.txt.summary\&quot;,\n        expand(\&quot;results/bam/{sample}.bam\&quot;, sample=SAMPLE_IDS),\n        expand(\&quot;results/bam/{sample}.bam.bai\&quot;, sample=SAMPLE_IDS),\n        \&quot;results/multiqc/multiqc_report.html\&quot;,\n\nrule fastqc_raw:\n    input:\n        r1=\&quot;raw/{sample}_1.fastq.gz\&quot;,\n        r2=\&quot;raw/{sample}_2.fastq.gz\&quot;,\n    output:\n        html=[\&quot;results/qc/fastqc/{sample}_1_fastqc.html\&quot;,\n              \&quot;results/qc/fastqc/{sample}_2_fastqc.html\&quot;],\n        zip=[\&quot;results/qc/fastqc/{sample}_1_fastqc.zip\&quot;,\n             \&quot;results/qc/fastqc/{sample}_2_fastqc.zip\&quot;],\n    log:\n        \&quot;logs/fastqc/{sample}.log\&quot;,\n    threads: 2\n    shell:\n        \&quot;fastqc --threads {threads} --outdir results/qc/fastqc \&quot;\n        \&quot;{input.r1} {input.r2} &gt; {log} 2&gt;&amp;1\&quot;\n\nrule cutadapt:\n    input:\n        r1=\&quot;raw/{sample}_1.fastq.gz\&quot;,\n        r2=\&quot;raw/{sample}_2.fastq.gz\&quot;,\n    output:\n        r1=\&quot;results/clean/{sample}_1.clean.fq.gz\&quot;,\n        r2=\&quot;results/clean/{sample}_2.clean.fq.gz\&quot;,\n    log:\n        \&quot;logs/cutadapt/{sample}.log\&quot;,\n    threads: 6\n    params:\n        a=config[\&quot;adapter_r1\&quot;],\n        A=config[\&quot;adapter_r2\&quot;],\n    shell:\n        \&quot;cutadapt -j {threads} --times 1 -e 0.1 -O 3 \&quot;\n        \&quot;--quality-cutoff 25 -m 55 \&quot;\n        \&quot;-a {params.a} -A {params.A} \&quot;\n        \&quot;-o {output.r1} -p {output.r2} \&quot;\n        \&quot;{input.r1} {input.r2} &gt; {log} 2&gt;&amp;1\&quot;\n\nrule hisat2_align:\n    input:\n        r1=rules.cutadapt.output.r1,\n        r2=rules.cutadapt.output.r2,\n    output:\n        bam=\&quot;results/bam/{sample}.bam\&quot;,\n    log:\n        \&quot;logs/hisat2/{sample}.log\&quot;,\n    threads: 8\n    params:\n        index=config[\&quot;hisat2_index\&quot;],\n    shell:\n        \&quot;hisat2 -p {threads} -x {params.index} \&quot;\n        \&quot;-1 {input.r1} -2 {input.r2} 2&gt; {log} \&quot;\n        \&quot;| samtools sort -@ {threads} -o {output.bam} -\&quot;\n\nrule samtools_index:\n    input:\n        \&quot;results/bam/{sample}.bam\&quot;,\n    output:\n        \&quot;results/bam/{sample}.bam.bai\&quot;,\n    log:\n        \&quot;logs/samtools_index/{sample}.log\&quot;,\n    threads: 2\n    shell:\n        \&quot;samtools index -@ {threads} {input} &gt; {log} 2&gt;&amp;1\&quot;\n\nrule feature_counts:\n    input:\n        bams=expand(\&quot;results/bam/{sample}.bam\&quot;, sample=SAMPLE_IDS),\n        gtf=config[\&quot;annotation\&quot;],\n    output:\n        counts=\&quot;results/counts/featureCounts.txt\&quot;,\n        summary=\&quot;results/counts/featureCounts.txt.summary\&quot;,\n    log:\n        \&quot;logs/featureCounts.log\&quot;,\n    threads: 8\n    params:\n        stranded=config[\&quot;strandedness\&quot;],\n    shell:\n        \&quot;featureCounts -t exon -g gene_id -Q 10 --primary \&quot;\n        \&quot;-s {params.stranded} -p -T {threads} \&quot;\n        \&quot;-a {input.gtf} -o {output.counts} {input.bams} &gt; {log} 2&gt;&amp;1\&quot;\n\nrule multiqc:\n    input:\n        fastqc=expand(\&quot;results/qc/fastqc/{sample}_1_fastqc.html\&quot;, sample=SAMPLE_IDS),\n        cutadapt=expand(\&quot;logs/cutadapt/{sample}.log\&quot;, sample=SAMPLE_IDS),\n        hisat2=expand(\&quot;logs/hisat2/{sample}.log\&quot;, sample=SAMPLE_IDS),\n        featurecounts=\&quot;logs/featureCounts.log\&quot;,\n    output:\n        \&quot;results/multiqc/multiqc_report.html\&quot;,\n    log:\n        \&quot;logs/multiqc.log\&quot;,\n    threads: 2\n    shell:\n        \&quot;multiqc --outdir results/multiqc {input} &gt; {log} 2&gt;&amp;1\&quot;&quot;" class="sourceCode numberSource python numberLines code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
+<span id="cb18-2"><a href="#cb18-2"></a></span>
+<span id="cb18-3"><a href="#cb18-3"></a>configfile: <span class="st">"config.yaml"</span></span>
+<span id="cb18-4"><a href="#cb18-4"></a></span>
+<span id="cb18-5"><a href="#cb18-5"></a>SAMPLES <span class="op">=</span> pd.read_csv(config[<span class="st">"samples"</span>], sep<span class="op">=</span><span class="st">"</span><span class="ch">\t</span><span class="st">"</span>, dtype<span class="op">=</span><span class="bu">str</span>)</span>
+<span id="cb18-6"><a href="#cb18-6"></a>SAMPLE_IDS <span class="op">=</span> SAMPLES[<span class="st">"sample"</span>].tolist()</span>
+<span id="cb18-7"><a href="#cb18-7"></a></span>
+<span id="cb18-8"><a href="#cb18-8"></a>rule <span class="bu">all</span>:</span>
+<span id="cb18-9"><a href="#cb18-9"></a>    <span class="bu">input</span>:</span>
+<span id="cb18-10"><a href="#cb18-10"></a>        <span class="co">"results/counts/featureCounts.txt"</span>,</span>
+<span id="cb18-11"><a href="#cb18-11"></a>        <span class="co">"results/counts/featureCounts.txt.summary"</span>,</span>
+<span id="cb18-12"><a href="#cb18-12"></a>        expand(<span class="st">"results/bam/</span><span class="sc">{sample}</span><span class="st">.bam"</span>, sample<span class="op">=</span>SAMPLE_IDS),</span>
+<span id="cb18-13"><a href="#cb18-13"></a>        expand(<span class="st">"results/bam/</span><span class="sc">{sample}</span><span class="st">.bam.bai"</span>, sample<span class="op">=</span>SAMPLE_IDS),</span>
+<span id="cb18-14"><a href="#cb18-14"></a>        <span class="co">"results/multiqc/multiqc_report.html"</span>,</span>
+<span id="cb18-15"><a href="#cb18-15"></a></span>
+<span id="cb18-16"><a href="#cb18-16"></a>rule fastqc_raw:</span>
+<span id="cb18-17"><a href="#cb18-17"></a>    <span class="bu">input</span>:</span>
+<span id="cb18-18"><a href="#cb18-18"></a>        r1<span class="op">=</span><span class="st">"raw/</span><span class="sc">{sample}</span><span class="st">_1.fastq.gz"</span>,</span>
+<span id="cb18-19"><a href="#cb18-19"></a>        r2<span class="op">=</span><span class="st">"raw/</span><span class="sc">{sample}</span><span class="st">_2.fastq.gz"</span>,</span>
+<span id="cb18-20"><a href="#cb18-20"></a>    output:</span>
+<span id="cb18-21"><a href="#cb18-21"></a>        html<span class="op">=</span>[<span class="st">"results/qc/fastqc/</span><span class="sc">{sample}</span><span class="st">_1_fastqc.html"</span>,</span>
+<span id="cb18-22"><a href="#cb18-22"></a>              <span class="st">"results/qc/fastqc/</span><span class="sc">{sample}</span><span class="st">_2_fastqc.html"</span>],</span>
+<span id="cb18-23"><a href="#cb18-23"></a>        <span class="bu">zip</span><span class="op">=</span>[<span class="st">"results/qc/fastqc/</span><span class="sc">{sample}</span><span class="st">_1_fastqc.zip"</span>,</span>
+<span id="cb18-24"><a href="#cb18-24"></a>             <span class="st">"results/qc/fastqc/</span><span class="sc">{sample}</span><span class="st">_2_fastqc.zip"</span>],</span>
+<span id="cb18-25"><a href="#cb18-25"></a>    log:</span>
+<span id="cb18-26"><a href="#cb18-26"></a>        <span class="co">"logs/fastqc/{sample}.log"</span>,</span>
+<span id="cb18-27"><a href="#cb18-27"></a>    threads: <span class="dv">2</span></span>
+<span id="cb18-28"><a href="#cb18-28"></a>    shell:</span>
+<span id="cb18-29"><a href="#cb18-29"></a>        <span class="co">"fastqc --threads {threads} --outdir results/qc/fastqc "</span></span>
+<span id="cb18-30"><a href="#cb18-30"></a>        <span class="co">"{input.r1} {input.r2} &gt; {log} 2&gt;&amp;1"</span></span>
+<span id="cb18-31"><a href="#cb18-31"></a></span>
+<span id="cb18-32"><a href="#cb18-32"></a>rule cutadapt:</span>
+<span id="cb18-33"><a href="#cb18-33"></a>    <span class="bu">input</span>:</span>
+<span id="cb18-34"><a href="#cb18-34"></a>        r1<span class="op">=</span><span class="st">"raw/</span><span class="sc">{sample}</span><span class="st">_1.fastq.gz"</span>,</span>
+<span id="cb18-35"><a href="#cb18-35"></a>        r2<span class="op">=</span><span class="st">"raw/</span><span class="sc">{sample}</span><span class="st">_2.fastq.gz"</span>,</span>
+<span id="cb18-36"><a href="#cb18-36"></a>    output:</span>
+<span id="cb18-37"><a href="#cb18-37"></a>        r1<span class="op">=</span><span class="st">"results/clean/</span><span class="sc">{sample}</span><span class="st">_1.clean.fq.gz"</span>,</span>
+<span id="cb18-38"><a href="#cb18-38"></a>        r2<span class="op">=</span><span class="st">"results/clean/</span><span class="sc">{sample}</span><span class="st">_2.clean.fq.gz"</span>,</span>
+<span id="cb18-39"><a href="#cb18-39"></a>    log:</span>
+<span id="cb18-40"><a href="#cb18-40"></a>        <span class="co">"logs/cutadapt/{sample}.log"</span>,</span>
+<span id="cb18-41"><a href="#cb18-41"></a>    threads: <span class="dv">6</span></span>
+<span id="cb18-42"><a href="#cb18-42"></a>    params:</span>
+<span id="cb18-43"><a href="#cb18-43"></a>        a<span class="op">=</span>config[<span class="st">"adapter_r1"</span>],</span>
+<span id="cb18-44"><a href="#cb18-44"></a>        A<span class="op">=</span>config[<span class="st">"adapter_r2"</span>],</span>
+<span id="cb18-45"><a href="#cb18-45"></a>    shell:</span>
+<span id="cb18-46"><a href="#cb18-46"></a>        <span class="co">"cutadapt -j {threads} --times 1 -e 0.1 -O 3 "</span></span>
+<span id="cb18-47"><a href="#cb18-47"></a>        <span class="co">"--quality-cutoff 25 -m 55 "</span></span>
+<span id="cb18-48"><a href="#cb18-48"></a>        <span class="co">"-a {params.a} -A {params.A} "</span></span>
+<span id="cb18-49"><a href="#cb18-49"></a>        <span class="co">"-o {output.r1} -p {output.r2} "</span></span>
+<span id="cb18-50"><a href="#cb18-50"></a>        <span class="co">"{input.r1} {input.r2} &gt; {log} 2&gt;&amp;1"</span></span>
+<span id="cb18-51"><a href="#cb18-51"></a></span>
+<span id="cb18-52"><a href="#cb18-52"></a>rule hisat2_align:</span>
+<span id="cb18-53"><a href="#cb18-53"></a>    <span class="bu">input</span>:</span>
+<span id="cb18-54"><a href="#cb18-54"></a>        r1<span class="op">=</span>rules.cutadapt.output.r1,</span>
+<span id="cb18-55"><a href="#cb18-55"></a>        r2<span class="op">=</span>rules.cutadapt.output.r2,</span>
+<span id="cb18-56"><a href="#cb18-56"></a>    output:</span>
+<span id="cb18-57"><a href="#cb18-57"></a>        bam<span class="op">=</span><span class="st">"results/bam/</span><span class="sc">{sample}</span><span class="st">.bam"</span>,</span>
+<span id="cb18-58"><a href="#cb18-58"></a>    log:</span>
+<span id="cb18-59"><a href="#cb18-59"></a>        <span class="co">"logs/hisat2/{sample}.log"</span>,</span>
+<span id="cb18-60"><a href="#cb18-60"></a>    threads: <span class="dv">8</span></span>
+<span id="cb18-61"><a href="#cb18-61"></a>    params:</span>
+<span id="cb18-62"><a href="#cb18-62"></a>        index<span class="op">=</span>config[<span class="st">"hisat2_index"</span>],</span>
+<span id="cb18-63"><a href="#cb18-63"></a>    shell:</span>
+<span id="cb18-64"><a href="#cb18-64"></a>        <span class="co">"hisat2 -p {threads} -x {params.index} "</span></span>
+<span id="cb18-65"><a href="#cb18-65"></a>        <span class="co">"-1 {input.r1} -2 {input.r2} 2&gt; {log} "</span></span>
+<span id="cb18-66"><a href="#cb18-66"></a>        <span class="co">"| samtools sort -@ {threads} -o {output.bam} -"</span></span>
+<span id="cb18-67"><a href="#cb18-67"></a></span>
+<span id="cb18-68"><a href="#cb18-68"></a>rule samtools_index:</span>
+<span id="cb18-69"><a href="#cb18-69"></a>    <span class="bu">input</span>:</span>
+<span id="cb18-70"><a href="#cb18-70"></a>        <span class="co">"results/bam/{sample}.bam"</span>,</span>
+<span id="cb18-71"><a href="#cb18-71"></a>    output:</span>
+<span id="cb18-72"><a href="#cb18-72"></a>        <span class="co">"results/bam/{sample}.bam.bai"</span>,</span>
+<span id="cb18-73"><a href="#cb18-73"></a>    log:</span>
+<span id="cb18-74"><a href="#cb18-74"></a>        <span class="co">"logs/samtools_index/{sample}.log"</span>,</span>
+<span id="cb18-75"><a href="#cb18-75"></a>    threads: <span class="dv">2</span></span>
+<span id="cb18-76"><a href="#cb18-76"></a>    shell:</span>
+<span id="cb18-77"><a href="#cb18-77"></a>        <span class="co">"samtools index -@ {threads} {input} &gt; {log} 2&gt;&amp;1"</span></span>
+<span id="cb18-78"><a href="#cb18-78"></a></span>
+<span id="cb18-79"><a href="#cb18-79"></a>rule feature_counts:</span>
+<span id="cb18-80"><a href="#cb18-80"></a>    <span class="bu">input</span>:</span>
+<span id="cb18-81"><a href="#cb18-81"></a>        bams<span class="op">=</span>expand(<span class="st">"results/bam/</span><span class="sc">{sample}</span><span class="st">.bam"</span>, sample<span class="op">=</span>SAMPLE_IDS),</span>
+<span id="cb18-82"><a href="#cb18-82"></a>        gtf<span class="op">=</span>config[<span class="st">"annotation"</span>],</span>
+<span id="cb18-83"><a href="#cb18-83"></a>    output:</span>
+<span id="cb18-84"><a href="#cb18-84"></a>        counts<span class="op">=</span><span class="st">"results/counts/featureCounts.txt"</span>,</span>
+<span id="cb18-85"><a href="#cb18-85"></a>        summary<span class="op">=</span><span class="st">"results/counts/featureCounts.txt.summary"</span>,</span>
+<span id="cb18-86"><a href="#cb18-86"></a>    log:</span>
+<span id="cb18-87"><a href="#cb18-87"></a>        <span class="co">"logs/featureCounts.log"</span>,</span>
+<span id="cb18-88"><a href="#cb18-88"></a>    threads: <span class="dv">8</span></span>
+<span id="cb18-89"><a href="#cb18-89"></a>    params:</span>
+<span id="cb18-90"><a href="#cb18-90"></a>        stranded<span class="op">=</span>config[<span class="st">"strandedness"</span>],</span>
+<span id="cb18-91"><a href="#cb18-91"></a>    shell:</span>
+<span id="cb18-92"><a href="#cb18-92"></a>        <span class="co">"featureCounts -t exon -g gene_id -Q 10 --primary "</span></span>
+<span id="cb18-93"><a href="#cb18-93"></a>        <span class="co">"-s {params.stranded} -p -T {threads} "</span></span>
+<span id="cb18-94"><a href="#cb18-94"></a>        <span class="co">"-a {input.gtf} -o {output.counts} {input.bams} &gt; {log} 2&gt;&amp;1"</span></span>
+<span id="cb18-95"><a href="#cb18-95"></a></span>
+<span id="cb18-96"><a href="#cb18-96"></a>rule multiqc:</span>
+<span id="cb18-97"><a href="#cb18-97"></a>    <span class="bu">input</span>:</span>
+<span id="cb18-98"><a href="#cb18-98"></a>        fastqc<span class="op">=</span>expand(<span class="st">"results/qc/fastqc/</span><span class="sc">{sample}</span><span class="st">_1_fastqc.html"</span>, sample<span class="op">=</span>SAMPLE_IDS),</span>
+<span id="cb18-99"><a href="#cb18-99"></a>        cutadapt<span class="op">=</span>expand(<span class="st">"logs/cutadapt/</span><span class="sc">{sample}</span><span class="st">.log"</span>, sample<span class="op">=</span>SAMPLE_IDS),</span>
+<span id="cb18-100"><a href="#cb18-100"></a>        hisat2<span class="op">=</span>expand(<span class="st">"logs/hisat2/</span><span class="sc">{sample}</span><span class="st">.log"</span>, sample<span class="op">=</span>SAMPLE_IDS),</span>
+<span id="cb18-101"><a href="#cb18-101"></a>        featurecounts<span class="op">=</span><span class="st">"logs/featureCounts.log"</span>,</span>
+<span id="cb18-102"><a href="#cb18-102"></a>    output:</span>
+<span id="cb18-103"><a href="#cb18-103"></a>        <span class="co">"results/multiqc/multiqc_report.html"</span>,</span>
+<span id="cb18-104"><a href="#cb18-104"></a>    log:</span>
+<span id="cb18-105"><a href="#cb18-105"></a>        <span class="co">"logs/multiqc.log"</span>,</span>
+<span id="cb18-106"><a href="#cb18-106"></a>    threads: <span class="dv">2</span></span>
+<span id="cb18-107"><a href="#cb18-107"></a>    shell:</span>
+<span id="cb18-108"><a href="#cb18-108"></a>        <span class="co">"multiqc --outdir results/multiqc {input} &gt; {log} 2&gt;&amp;1"</span></span></code></pre></div><button title="复制到剪贴板" class="code-copy-button"><i class="bi"></i></button></div>
+<p>几个值得注意的写法：</p>
+<ul>
+<li><strong><code>all</code> 就是交付清单。</strong> 它列出计数矩阵（含 summary）、四个排序 BAM 及索引、MultiQC 报告。想让某个中间文件在运行结束后保留，把它加进 <code>all</code> 即可——比如想在 IGV 里查看比对，BAM 与 <code>.bai</code> 都在。</li>
+<li><strong>具名输入输出与规则间引用。</strong> <code>r1="raw/{sample}_1.fastq.gz"</code> 给文件起了名字，命令里用 <code>{input.r1}</code> 引用；<code>hisat2_align</code> 的输入直接写 <code>rules.cutadapt.output.r1</code>，依赖关系一目了然，改 cutadapt 的输出路径时下游自动跟随。</li>
+<li><strong>管道与日志的分工。</strong> <code>hisat2_align</code> 里 HISAT2 的比对汇总走标准错误流，用 <code>2&gt; {log}</code> 存档；比对结果经管道直接交给 <code>samtools sort</code>，不落地未排序的 SAM——省空间，也少一类中间文件。</li>
+<li><strong>汇总型规则没有通配符。</strong> <code>feature_counts</code> 一次吃进所有样本的 BAM（<code>expand</code> 展开），<code>multiqc</code> 把各类日志当作普通输入文件收集。它们与每样本规则一起，构成”先分后合”的完整 DAG。</li>
+<li><strong>配置进入命令要走 <code>params:</code>。</strong> 接头、索引前缀、链特异性都经 <code>params:</code> 进入命令——改 <code>config.yaml</code> 就能换一批数据，且参数变化会正确触发下游重算。</li>
+</ul>
+</section>
+<section id="topic-10-rnaseq-run" class="level3">
+<h3 class="anchored" data-anchor-id="topic-10-rnaseq-run">运行流程与检查结果</h3>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb19" data-book-role="code"><pre data-code-text="&quot;cd rnaseq\n\n# 1. 试运行：检查依赖是否完整、将要执行哪些任务\nsnakemake -n -c 8\n\n# 2. 正式运行（-p 打印每条实际命令）\nsnakemake -c 8 -p\n\n# 3. 依赖图存档（可选）\nsnakemake --dag -c 8 | dot -Tsvg &gt; dag.svg&quot;" class="sourceCode numberSource bash numberLines code-with-copy"><code class="sourceCode bash"><span id="cb19-1"><a href="#cb19-1"></a><span class="bu">cd</span> rnaseq</span>
+<span id="cb19-2"><a href="#cb19-2"></a></span>
+<span id="cb19-3"><a href="#cb19-3"></a><span class="co"># 1. 试运行：检查依赖是否完整、将要执行哪些任务</span></span>
+<span id="cb19-4"><a href="#cb19-4"></a><span class="ex">snakemake</span> <span class="at">-n</span> <span class="at">-c</span> 8</span>
+<span id="cb19-5"><a href="#cb19-5"></a></span>
+<span id="cb19-6"><a href="#cb19-6"></a><span class="co"># 2. 正式运行（-p 打印每条实际命令）</span></span>
+<span id="cb19-7"><a href="#cb19-7"></a><span class="ex">snakemake</span> <span class="at">-c</span> 8 <span class="at">-p</span></span>
+<span id="cb19-8"><a href="#cb19-8"></a></span>
+<span id="cb19-9"><a href="#cb19-9"></a><span class="co"># 3. 依赖图存档（可选）</span></span>
+<span id="cb19-10"><a href="#cb19-10"></a><span class="ex">snakemake</span> <span class="at">--dag</span> <span class="at">-c</span> 8 <span class="kw">|</span> <span class="ex">dot</span> <span class="at">-Tsvg</span> <span class="op">&gt;</span> dag.svg</span></code></pre></div><button title="复制到剪贴板" class="code-copy-button"><i class="bi"></i></button></div>
+<p>四个样本、七条规则，试运行会报告 19 个任务（4 个 fastqc_raw + 4 个 cutadapt + 4 个 hisat2_align + 4 个 samtools_index + feature_counts + multiqc + all）。运行中断后重新执行同样的命令即可：已完成的任务直接跳过，被标记为不完整的输出自动补跑。本章流程的规则、依赖与命令展开在写作时通过了 Snakemake 9.27 的试运行检查；各工具命令与第 5 章实测口径一致。</p>
+<p>结果检查沿用第 5 章的口径：<code>results/counts/featureCounts.txt.summary</code> 里看 Assigned 比例——落到注释基因上的 read 占比，人类样本通常应有六成以上，明显偏低时先怀疑注释与参考基因组不同源（<a href="../manuscript/05-rna-seq.html#sec-05-02">5.2 节</a>的混用陷阱）或存在污染；<code>logs/hisat2/</code> 里每个样本的总体比对率（人类 RNA-seq 一般应有 80% 以上，多定位 read 通常不超过 10%）；<code>results/multiqc/multiqc_report.html</code> 把这些指标汇总在同一页，四个样本横向比较，谁异常一目了然。计数矩阵 <code>featureCounts.txt</code> 的每一列对应 <code>samples.tsv</code> 里一个样本，接下来就交回<a href="../manuscript/05-rna-seq.html#sec-05-06">5.5 节</a>的 DESeq2 做差异分析——R 里的统计环节不塞进这条流程，边界保持清晰。</p>
+<div class="book-warning callout callout-style-default callout-warning callout-titled" title="注意｜换数据先核对口径，再跑流程">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
 </div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">警告</span>注意｜换数据先核对口径，再跑流程
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>这条流程的可复用性来自显式声明，也正因为如此，换一批数据时必须核对声明是否还成立：样本表是否更新；<code>strandedness</code> 与新文库的建库方式是否一致（非链特异性文库要改回 0）；<code>adapter</code> 序列是否匹配新接头；参考索引与 GTF 是否同源（<a href="../manuscript/05-rna-seq.html#sec-05-02">5.2 节</a>的混用陷阱）。流程不会替你判断这些——它忠实地执行声明，口径错了就一路错到底。</p>
+</div>
+</div>
+</section>
 </section>
 <section id="sec-10-03" class="level2" data-number="10.3">
-<h2 data-number="10.3" class="anchored" data-anchor-id="sec-10-03"><span class="header-section-number">10.3</span> 样本表、配置与多样本扩展</h2>
-<p>让流程通过配置适配数据，而非复制粘贴命令。</p>
-<div class="book-placeholder">
-<p>本节内容待补充。</p>
-</div>
+<h2 data-number="10.3" class="anchored" data-anchor-id="sec-10-03"><span class="header-section-number">10.3</span> ATAC-seq 的 Snakemake 流程</h2>
+<p>用同一条工作流骨架组织 ATAC-seq，并练习向新任务迁移。</p>
+<p>第 6 章 6.5 节的 ATAC-seq 案例是 Irf8 敲除小鼠的造血干细胞数据：野生型与敲除各两个重复（SRR5852294–2297），从 FASTQ 到过滤后 BAM、片段分布、TSS 富集度与峰集合。它与 RNA-seq 流程共用同一套骨架（样本表、配置、每样本规则 + 汇总规则），但多了三类 ATAC 特有环节：比对与过滤的参数不同（<code>-X 2000</code> 容纳核小体片段、去线粒体、去重）；Tn5 偏移校正；以及用配对末端信息直接找峰与 ataqv 质控。每一步的生物学理由见<a href="../manuscript/06-chip-seq-and-atac-seq.html#sec-06-05">6.5 节</a>，这里专注组织方式。</p>
+<section id="topic-10-atac-structure" class="level3">
+<h3 class="anchored" data-anchor-id="topic-10-atac-structure">项目结构与样本表</h3>
+<p>目录结构与 RNA-seq 流程完全相同，只是参考换成小鼠 mm10 的 Bowtie 2 索引（<a href="../manuscript/06-chip-seq-and-atac-seq.html#sec-06-03">6.3 节</a>）和 TSS 注释文件：</p>
+<pre data-code-text="&quot;atac/\n├── Snakefile\n├── config.yaml\n├── samples.tsv\n├── envs/\n│   └── atac.yaml\n├── raw/                 # {样本}_1.fastq.gz / {样本}_2.fastq.gz\n├── reference/\n│   ├── mm10.1.bt2 ...   # Bowtie 2 索引前缀 reference/mm10\n│   └── mm10_tss.bed     # 与 BAM 染色体命名一致的 TSS 注释（6.5 节）\n├── results/\n└── logs/&quot;" class="text" data-book-role="data" data-code-title="流程目录结构"><code>atac/
+├── Snakefile
+├── config.yaml
+├── samples.tsv
+├── envs/
+│   └── atac.yaml
+├── raw/                 # {样本}_1.fastq.gz / {样本}_2.fastq.gz
+├── reference/
+│   ├── mm10.1.bt2 ...   # Bowtie 2 索引前缀 reference/mm10
+│   └── mm10_tss.bed     # 与 BAM 染色体命名一致的 TSS 注释（6.5 节）
+├── results/
+└── logs/</code></pre>
+<pre data-code-text="&quot;sample\tcondition\nSRR5852294\tWT\nSRR5852295\tWT\nSRR5852296\tKO\nSRR5852297\tKO&quot;" class="text" data-book-role="data" data-code-title="atac/samples.tsv"><code>sample  condition
+SRR5852294  WT
+SRR5852295  WT
+SRR5852296  KO
+SRR5852297  KO</code></pre>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb22" data-book-role="data" data-code-title="atac/config.yaml"><pre data-code-text="&quot;samples: \&quot;samples.tsv\&quot;\nbowtie2_index: \&quot;reference/mm10\&quot;\ngenome_size: \&quot;mm\&quot;      # macs3 的 -g 参数：小鼠\ntss_file: \&quot;reference/mm10_tss.bed\&quot;&quot;" class="sourceCode numberSource yaml numberLines code-with-copy"><code class="sourceCode yaml"><span id="cb22-1"><a href="#cb22-1"></a><span class="fu">samples</span><span class="kw">:</span><span class="at"> </span><span class="st">"samples.tsv"</span></span>
+<span id="cb22-2"><a href="#cb22-2"></a><span class="fu">bowtie2_index</span><span class="kw">:</span><span class="at"> </span><span class="st">"reference/mm10"</span></span>
+<span id="cb22-3"><a href="#cb22-3"></a><span class="fu">genome_size</span><span class="kw">:</span><span class="at"> </span><span class="st">"mm"</span><span class="co">      # macs3 的 -g 参数：小鼠</span></span>
+<span id="cb22-4"><a href="#cb22-4"></a><span class="fu">tss_file</span><span class="kw">:</span><span class="at"> </span><span class="st">"reference/mm10_tss.bed"</span></span></code></pre></div><button title="复制到剪贴板" class="code-copy-button"><i class="bi"></i></button></div>
+<p>环境沿用第 6 章的版本口径（<code>macs</code> 包装的是 <code>macs3</code> 命令；<code>deeptools</code> 提供 <code>alignmentSieve</code>）：</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb23" data-book-role="data" data-code-title="atac/envs/atac.yaml"><pre data-code-text="&quot;name: ch10_atac\nchannels:\n  - conda-forge\n  - bioconda\ndependencies:\n  - python=3.11\n  - snakemake=9\n  - pandas\n  - fastp\n  - bowtie2=2.5\n  - samtools=1.21\n  - deeptools       # 提供 alignmentSieve\n  - macs=3          # 提供 macs3 命令\n  - ataqv&quot;" class="sourceCode numberSource yaml numberLines code-with-copy"><code class="sourceCode yaml"><span id="cb23-1"><a href="#cb23-1"></a><span class="fu">name</span><span class="kw">:</span><span class="at"> ch10_atac</span></span>
+<span id="cb23-2"><a href="#cb23-2"></a><span class="fu">channels</span><span class="kw">:</span></span>
+<span id="cb23-3"><a href="#cb23-3"></a><span class="at">  </span><span class="kw">-</span><span class="at"> conda-forge</span></span>
+<span id="cb23-4"><a href="#cb23-4"></a><span class="at">  </span><span class="kw">-</span><span class="at"> bioconda</span></span>
+<span id="cb23-5"><a href="#cb23-5"></a><span class="fu">dependencies</span><span class="kw">:</span></span>
+<span id="cb23-6"><a href="#cb23-6"></a><span class="at">  </span><span class="kw">-</span><span class="at"> python=3.11</span></span>
+<span id="cb23-7"><a href="#cb23-7"></a><span class="at">  </span><span class="kw">-</span><span class="at"> snakemake=9</span></span>
+<span id="cb23-8"><a href="#cb23-8"></a><span class="at">  </span><span class="kw">-</span><span class="at"> pandas</span></span>
+<span id="cb23-9"><a href="#cb23-9"></a><span class="at">  </span><span class="kw">-</span><span class="at"> fastp</span></span>
+<span id="cb23-10"><a href="#cb23-10"></a><span class="at">  </span><span class="kw">-</span><span class="at"> bowtie2=2.5</span></span>
+<span id="cb23-11"><a href="#cb23-11"></a><span class="at">  </span><span class="kw">-</span><span class="at"> samtools=1.21</span></span>
+<span id="cb23-12"><a href="#cb23-12"></a><span class="at">  </span><span class="kw">-</span><span class="at"> deeptools</span><span class="co">       # 提供 alignmentSieve</span></span>
+<span id="cb23-13"><a href="#cb23-13"></a><span class="at">  </span><span class="kw">-</span><span class="at"> macs=3</span><span class="co">          # 提供 macs3 命令</span></span>
+<span id="cb23-14"><a href="#cb23-14"></a><span class="at">  </span><span class="kw">-</span><span class="at"> ataqv</span></span></code></pre></div><button title="复制到剪贴板" class="code-copy-button"><i class="bi"></i></button></div>
 </section>
-<section id="sec-10-04" class="level2" data-number="10.4">
-<h2 data-number="10.4" class="anchored" data-anchor-id="sec-10-04"><span class="header-section-number">10.4</span> 环境与参考资源的版本管理</h2>
-<p>使他人能在可追溯的条件下重跑分析。</p>
-<div class="book-placeholder">
-<p>本节内容待补充。</p>
-</div>
+<section id="topic-10-atac-snakefile" class="level3">
+<h3 class="anchored" data-anchor-id="topic-10-atac-snakefile">完整的 Snakefile</h3>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb24" data-book-role="code" data-code-title="atac/Snakefile"><pre data-code-text="&quot;import pandas as pd\n\nconfigfile: \&quot;config.yaml\&quot;\n\nSAMPLES = pd.read_csv(config[\&quot;samples\&quot;], sep=\&quot;\\t\&quot;, dtype=str)\nSAMPLE_IDS = SAMPLES[\&quot;sample\&quot;].tolist()\n\nrule all:\n    input:\n        expand(\&quot;results/bam/{sample}.final.bam\&quot;, sample=SAMPLE_IDS),\n        expand(\&quot;results/bam/{sample}.final.bam.bai\&quot;, sample=SAMPLE_IDS),\n        expand(\&quot;results/bam/{sample}.shifted.bam\&quot;, sample=SAMPLE_IDS),\n        expand(\&quot;results/peaks/ATAC_{sample}_peaks.narrowPeak\&quot;, sample=SAMPLE_IDS),\n        expand(\&quot;results/qc/fragment_dist_{sample}.txt\&quot;, sample=SAMPLE_IDS),\n        expand(\&quot;results/qc/ataqv_{sample}.txt\&quot;, sample=SAMPLE_IDS),\n\nrule fastp_atac:\n    input:\n        r1=\&quot;raw/{sample}_1.fastq.gz\&quot;,\n        r2=\&quot;raw/{sample}_2.fastq.gz\&quot;,\n    output:\n        r1=\&quot;results/clean/{sample}_1.clean.fq.gz\&quot;,\n        r2=\&quot;results/clean/{sample}_2.clean.fq.gz\&quot;,\n    log:\n        \&quot;logs/fastp/{sample}.log\&quot;,\n    threads: 8\n    shell:\n        \&quot;fastp --thread {threads} --detect_adapter_for_pe \&quot;\n        \&quot;-i {input.r1} -I {input.r2} \&quot;\n        \&quot;-o {output.r1} -O {output.r2} \&quot;\n        \&quot;-h results/qc/{wildcards.sample}.fastp.html \&quot;\n        \&quot;-j results/qc/{wildcards.sample}.fastp.json &gt; {log} 2&gt;&amp;1\&quot;\n\nrule bowtie2_align:\n    input:\n        r1=rules.fastp_atac.output.r1,\n        r2=rules.fastp_atac.output.r2,\n    output:\n        flt=\&quot;results/bam/{sample}.flt.bam\&quot;,\n    log:\n        \&quot;logs/bowtie2/{sample}.log\&quot;,\n    threads: 8\n    params:\n        index=config[\&quot;bowtie2_index\&quot;],\n    shell:\n        \&quot;bowtie2 -x {params.index} -p {threads} -X 2000 --very-sensitive \&quot;\n        \&quot;-1 {input.r1} -2 {input.r2} 2&gt; {log} \&quot;\n        \&quot;| samtools view -h -@ {threads} -bS -q 30 -F 1804 -o {output.flt} -\&quot;\n\nrule remove_chrM:\n    input:\n        rules.bowtie2_align.output.flt,\n    output:\n        bam=\&quot;results/bam/{sample}.ns.bam\&quot;,\n        idxstats=\&quot;results/qc/{sample}.idxstats.txt\&quot;,\n    threads: 6\n    shell:\n        \&quot;samtools idxstats {input} | awk &#x27;$3&gt;0&#x27; &gt; {output.idxstats}; \&quot;\n        \&quot;samtools view -h -@ {threads} -o - {input} \&quot;\n        \&quot;| awk &#x27;BEGIN{{OFS=\\\&quot;\\\\t\\\&quot;}} /^@/{{print; next}} \&quot;\n        \&quot;$3!=\\\&quot;chrM\\\&quot; &amp;&amp; $7!=\\\&quot;chrM\\\&quot; {{print}}&#x27; \&quot;\n        \&quot;| samtools sort -n -@ {threads} -o {output.bam} -\&quot;\n\nrule fixmate:\n    input:\n        rules.remove_chrM.output.bam,\n    output:\n        temp(\&quot;results/bam/{sample}.fx.bam\&quot;),\n    threads: 6\n    shell:\n        \&quot;samtools fixmate -m -@ {threads} {input} {output}\&quot;\n\nrule sort_coord:\n    input:\n        rules.fixmate.output,\n    output:\n        temp(\&quot;results/bam/{sample}.fxs.bam\&quot;),\n    threads: 6\n    shell:\n        \&quot;samtools sort -@ {threads} -o {output} {input}\&quot;\n\nrule markdup:\n    input:\n        rules.sort_coord.output,\n    output:\n        \&quot;results/bam/{sample}.final.bam\&quot;,\n    log:\n        \&quot;logs/markdup/{sample}.log\&quot;,\n    threads: 6\n    shell:\n        \&quot;samtools markdup -r -@ {threads} -s {input} {output} 2&gt; {log}\&quot;\n\nrule samtools_index:\n    input:\n        \&quot;results/bam/{sample}.final.bam\&quot;,\n    output:\n        \&quot;results/bam/{sample}.final.bam.bai\&quot;,\n    threads: 2\n    shell:\n        \&quot;samtools index -@ {threads} {input}\&quot;\n\nrule tn5_shift:\n    input:\n        \&quot;results/bam/{sample}.final.bam\&quot;,\n    output:\n        \&quot;results/bam/{sample}.shifted.bam\&quot;,\n    log:\n        \&quot;logs/alignmentsieve/{sample}.log\&quot;,\n    threads: 4\n    shell:\n        \&quot;alignmentSieve -b {input} -o {output} --ATACshift &gt; {log} 2&gt;&amp;1\&quot;\n\nrule fragment_dist:\n    input:\n        \&quot;results/bam/{sample}.final.bam\&quot;,\n    output:\n        \&quot;results/qc/fragment_dist_{sample}.txt\&quot;,\n    shell:\n        \&quot;samtools view {input} | awk &#x27;$9&gt;0{{print $9}}&#x27; \&quot;\n        \&quot;| sort -n | uniq -c \&quot;\n        \&quot;| awk &#x27;BEGIN{{OFS=\\\&quot;\\\\t\\\&quot;}}{{print $2,$1}}&#x27; &gt; {output}\&quot;\n\nrule macs3_callpeak:\n    input:\n        \&quot;results/bam/{sample}.final.bam\&quot;,\n    output:\n        peaks=\&quot;results/peaks/ATAC_{sample}_peaks.narrowPeak\&quot;,\n        summits=\&quot;results/peaks/ATAC_{sample}_summits.bed\&quot;,\n    log:\n        \&quot;logs/macs3/{sample}.log\&quot;,\n    params:\n        genome=config[\&quot;genome_size\&quot;],\n    shell:\n        \&quot;macs3 callpeak -t {input} -f BAMPE -g {params.genome} \&quot;\n        \&quot;-n ATAC_{wildcards.sample} -q 0.01 \&quot;\n        \&quot;--outdir results/peaks &gt; {log} 2&gt;&amp;1\&quot;\n\nrule ataqv_qc:\n    input:\n        bam=\&quot;results/bam/{sample}.shifted.bam\&quot;,\n        peaks=\&quot;results/peaks/ATAC_{sample}_peaks.narrowPeak\&quot;,\n        tss=config[\&quot;tss_file\&quot;],\n    output:\n        \&quot;results/qc/ataqv_{sample}.txt\&quot;,\n    log:\n        \&quot;logs/ataqv/{sample}.log\&quot;,\n    shell:\n        \&quot;ataqv mouse --tss-file {input.tss} \&quot;\n        \&quot;--peak-file {input.peaks} \&quot;\n        \&quot;{input.bam} &gt; {output} 2&gt; {log}\&quot;&quot;" class="sourceCode numberSource python numberLines code-with-copy"><code class="sourceCode python"><span id="cb24-1"><a href="#cb24-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
+<span id="cb24-2"><a href="#cb24-2"></a></span>
+<span id="cb24-3"><a href="#cb24-3"></a>configfile: <span class="st">"config.yaml"</span></span>
+<span id="cb24-4"><a href="#cb24-4"></a></span>
+<span id="cb24-5"><a href="#cb24-5"></a>SAMPLES <span class="op">=</span> pd.read_csv(config[<span class="st">"samples"</span>], sep<span class="op">=</span><span class="st">"</span><span class="ch">\t</span><span class="st">"</span>, dtype<span class="op">=</span><span class="bu">str</span>)</span>
+<span id="cb24-6"><a href="#cb24-6"></a>SAMPLE_IDS <span class="op">=</span> SAMPLES[<span class="st">"sample"</span>].tolist()</span>
+<span id="cb24-7"><a href="#cb24-7"></a></span>
+<span id="cb24-8"><a href="#cb24-8"></a>rule <span class="bu">all</span>:</span>
+<span id="cb24-9"><a href="#cb24-9"></a>    <span class="bu">input</span>:</span>
+<span id="cb24-10"><a href="#cb24-10"></a>        expand(<span class="st">"results/bam/</span><span class="sc">{sample}</span><span class="st">.final.bam"</span>, sample<span class="op">=</span>SAMPLE_IDS),</span>
+<span id="cb24-11"><a href="#cb24-11"></a>        expand(<span class="st">"results/bam/</span><span class="sc">{sample}</span><span class="st">.final.bam.bai"</span>, sample<span class="op">=</span>SAMPLE_IDS),</span>
+<span id="cb24-12"><a href="#cb24-12"></a>        expand(<span class="st">"results/bam/</span><span class="sc">{sample}</span><span class="st">.shifted.bam"</span>, sample<span class="op">=</span>SAMPLE_IDS),</span>
+<span id="cb24-13"><a href="#cb24-13"></a>        expand(<span class="st">"results/peaks/ATAC_</span><span class="sc">{sample}</span><span class="st">_peaks.narrowPeak"</span>, sample<span class="op">=</span>SAMPLE_IDS),</span>
+<span id="cb24-14"><a href="#cb24-14"></a>        expand(<span class="st">"results/qc/fragment_dist_</span><span class="sc">{sample}</span><span class="st">.txt"</span>, sample<span class="op">=</span>SAMPLE_IDS),</span>
+<span id="cb24-15"><a href="#cb24-15"></a>        expand(<span class="st">"results/qc/ataqv_</span><span class="sc">{sample}</span><span class="st">.txt"</span>, sample<span class="op">=</span>SAMPLE_IDS),</span>
+<span id="cb24-16"><a href="#cb24-16"></a></span>
+<span id="cb24-17"><a href="#cb24-17"></a>rule fastp_atac:</span>
+<span id="cb24-18"><a href="#cb24-18"></a>    <span class="bu">input</span>:</span>
+<span id="cb24-19"><a href="#cb24-19"></a>        r1<span class="op">=</span><span class="st">"raw/</span><span class="sc">{sample}</span><span class="st">_1.fastq.gz"</span>,</span>
+<span id="cb24-20"><a href="#cb24-20"></a>        r2<span class="op">=</span><span class="st">"raw/</span><span class="sc">{sample}</span><span class="st">_2.fastq.gz"</span>,</span>
+<span id="cb24-21"><a href="#cb24-21"></a>    output:</span>
+<span id="cb24-22"><a href="#cb24-22"></a>        r1<span class="op">=</span><span class="st">"results/clean/</span><span class="sc">{sample}</span><span class="st">_1.clean.fq.gz"</span>,</span>
+<span id="cb24-23"><a href="#cb24-23"></a>        r2<span class="op">=</span><span class="st">"results/clean/</span><span class="sc">{sample}</span><span class="st">_2.clean.fq.gz"</span>,</span>
+<span id="cb24-24"><a href="#cb24-24"></a>    log:</span>
+<span id="cb24-25"><a href="#cb24-25"></a>        <span class="co">"logs/fastp/{sample}.log"</span>,</span>
+<span id="cb24-26"><a href="#cb24-26"></a>    threads: <span class="dv">8</span></span>
+<span id="cb24-27"><a href="#cb24-27"></a>    shell:</span>
+<span id="cb24-28"><a href="#cb24-28"></a>        <span class="co">"fastp --thread {threads} --detect_adapter_for_pe "</span></span>
+<span id="cb24-29"><a href="#cb24-29"></a>        <span class="co">"-i {input.r1} -I {input.r2} "</span></span>
+<span id="cb24-30"><a href="#cb24-30"></a>        <span class="co">"-o {output.r1} -O {output.r2} "</span></span>
+<span id="cb24-31"><a href="#cb24-31"></a>        <span class="co">"-h results/qc/{wildcards.sample}.fastp.html "</span></span>
+<span id="cb24-32"><a href="#cb24-32"></a>        <span class="co">"-j results/qc/{wildcards.sample}.fastp.json &gt; {log} 2&gt;&amp;1"</span></span>
+<span id="cb24-33"><a href="#cb24-33"></a></span>
+<span id="cb24-34"><a href="#cb24-34"></a>rule bowtie2_align:</span>
+<span id="cb24-35"><a href="#cb24-35"></a>    <span class="bu">input</span>:</span>
+<span id="cb24-36"><a href="#cb24-36"></a>        r1<span class="op">=</span>rules.fastp_atac.output.r1,</span>
+<span id="cb24-37"><a href="#cb24-37"></a>        r2<span class="op">=</span>rules.fastp_atac.output.r2,</span>
+<span id="cb24-38"><a href="#cb24-38"></a>    output:</span>
+<span id="cb24-39"><a href="#cb24-39"></a>        flt<span class="op">=</span><span class="st">"results/bam/</span><span class="sc">{sample}</span><span class="st">.flt.bam"</span>,</span>
+<span id="cb24-40"><a href="#cb24-40"></a>    log:</span>
+<span id="cb24-41"><a href="#cb24-41"></a>        <span class="co">"logs/bowtie2/{sample}.log"</span>,</span>
+<span id="cb24-42"><a href="#cb24-42"></a>    threads: <span class="dv">8</span></span>
+<span id="cb24-43"><a href="#cb24-43"></a>    params:</span>
+<span id="cb24-44"><a href="#cb24-44"></a>        index<span class="op">=</span>config[<span class="st">"bowtie2_index"</span>],</span>
+<span id="cb24-45"><a href="#cb24-45"></a>    shell:</span>
+<span id="cb24-46"><a href="#cb24-46"></a>        <span class="co">"bowtie2 -x {params.index} -p {threads} -X 2000 --very-sensitive "</span></span>
+<span id="cb24-47"><a href="#cb24-47"></a>        <span class="co">"-1 {input.r1} -2 {input.r2} 2&gt; {log} "</span></span>
+<span id="cb24-48"><a href="#cb24-48"></a>        <span class="co">"| samtools view -h -@ {threads} -bS -q 30 -F 1804 -o {output.flt} -"</span></span>
+<span id="cb24-49"><a href="#cb24-49"></a></span>
+<span id="cb24-50"><a href="#cb24-50"></a>rule remove_chrM:</span>
+<span id="cb24-51"><a href="#cb24-51"></a>    <span class="bu">input</span>:</span>
+<span id="cb24-52"><a href="#cb24-52"></a>        rules.bowtie2_align.output.flt,</span>
+<span id="cb24-53"><a href="#cb24-53"></a>    output:</span>
+<span id="cb24-54"><a href="#cb24-54"></a>        bam<span class="op">=</span><span class="st">"results/bam/</span><span class="sc">{sample}</span><span class="st">.ns.bam"</span>,</span>
+<span id="cb24-55"><a href="#cb24-55"></a>        idxstats<span class="op">=</span><span class="st">"results/qc/</span><span class="sc">{sample}</span><span class="st">.idxstats.txt"</span>,</span>
+<span id="cb24-56"><a href="#cb24-56"></a>    threads: <span class="dv">6</span></span>
+<span id="cb24-57"><a href="#cb24-57"></a>    shell:</span>
+<span id="cb24-58"><a href="#cb24-58"></a>        <span class="co">"samtools idxstats {input} | awk '$3&gt;0' &gt; {output.idxstats}; "</span></span>
+<span id="cb24-59"><a href="#cb24-59"></a>        <span class="co">"samtools view -h -@ {threads} -o - {input} "</span></span>
+<span id="cb24-60"><a href="#cb24-60"></a>        <span class="co">"| awk '</span><span class="re">BEGIN</span><span class="co">{{OFS=</span><span class="ch">\"\\</span><span class="co">t</span><span class="ch">\"</span><span class="co">}} /^@/{{print; next}} "</span></span>
+<span id="cb24-61"><a href="#cb24-61"></a>        <span class="co">"$3!=</span><span class="ch">\"</span><span class="co">chrM</span><span class="ch">\"</span><span class="co"> &amp;&amp; $7!=</span><span class="ch">\"</span><span class="co">chrM</span><span class="ch">\"</span><span class="co"> {{print}}' "</span></span>
+<span id="cb24-62"><a href="#cb24-62"></a>        <span class="co">"| samtools sort -n -@ {threads} -o {output.bam} -"</span></span>
+<span id="cb24-63"><a href="#cb24-63"></a></span>
+<span id="cb24-64"><a href="#cb24-64"></a>rule fixmate:</span>
+<span id="cb24-65"><a href="#cb24-65"></a>    <span class="bu">input</span>:</span>
+<span id="cb24-66"><a href="#cb24-66"></a>        rules.remove_chrM.output.bam,</span>
+<span id="cb24-67"><a href="#cb24-67"></a>    output:</span>
+<span id="cb24-68"><a href="#cb24-68"></a>        temp(<span class="st">"results/bam/</span><span class="sc">{sample}</span><span class="st">.fx.bam"</span>),</span>
+<span id="cb24-69"><a href="#cb24-69"></a>    threads: <span class="dv">6</span></span>
+<span id="cb24-70"><a href="#cb24-70"></a>    shell:</span>
+<span id="cb24-71"><a href="#cb24-71"></a>        <span class="co">"samtools fixmate -m -@ {threads} {input} {output}"</span></span>
+<span id="cb24-72"><a href="#cb24-72"></a></span>
+<span id="cb24-73"><a href="#cb24-73"></a>rule sort_coord:</span>
+<span id="cb24-74"><a href="#cb24-74"></a>    <span class="bu">input</span>:</span>
+<span id="cb24-75"><a href="#cb24-75"></a>        rules.fixmate.output,</span>
+<span id="cb24-76"><a href="#cb24-76"></a>    output:</span>
+<span id="cb24-77"><a href="#cb24-77"></a>        temp(<span class="st">"results/bam/</span><span class="sc">{sample}</span><span class="st">.fxs.bam"</span>),</span>
+<span id="cb24-78"><a href="#cb24-78"></a>    threads: <span class="dv">6</span></span>
+<span id="cb24-79"><a href="#cb24-79"></a>    shell:</span>
+<span id="cb24-80"><a href="#cb24-80"></a>        <span class="co">"samtools sort -@ {threads} -o {output} {input}"</span></span>
+<span id="cb24-81"><a href="#cb24-81"></a></span>
+<span id="cb24-82"><a href="#cb24-82"></a>rule markdup:</span>
+<span id="cb24-83"><a href="#cb24-83"></a>    <span class="bu">input</span>:</span>
+<span id="cb24-84"><a href="#cb24-84"></a>        rules.sort_coord.output,</span>
+<span id="cb24-85"><a href="#cb24-85"></a>    output:</span>
+<span id="cb24-86"><a href="#cb24-86"></a>        <span class="co">"results/bam/{sample}.final.bam"</span>,</span>
+<span id="cb24-87"><a href="#cb24-87"></a>    log:</span>
+<span id="cb24-88"><a href="#cb24-88"></a>        <span class="co">"logs/markdup/{sample}.log"</span>,</span>
+<span id="cb24-89"><a href="#cb24-89"></a>    threads: <span class="dv">6</span></span>
+<span id="cb24-90"><a href="#cb24-90"></a>    shell:</span>
+<span id="cb24-91"><a href="#cb24-91"></a>        <span class="co">"samtools markdup -r -@ {threads} -s {input} {output} 2&gt; {log}"</span></span>
+<span id="cb24-92"><a href="#cb24-92"></a></span>
+<span id="cb24-93"><a href="#cb24-93"></a>rule samtools_index:</span>
+<span id="cb24-94"><a href="#cb24-94"></a>    <span class="bu">input</span>:</span>
+<span id="cb24-95"><a href="#cb24-95"></a>        <span class="co">"results/bam/{sample}.final.bam"</span>,</span>
+<span id="cb24-96"><a href="#cb24-96"></a>    output:</span>
+<span id="cb24-97"><a href="#cb24-97"></a>        <span class="co">"results/bam/{sample}.final.bam.bai"</span>,</span>
+<span id="cb24-98"><a href="#cb24-98"></a>    threads: <span class="dv">2</span></span>
+<span id="cb24-99"><a href="#cb24-99"></a>    shell:</span>
+<span id="cb24-100"><a href="#cb24-100"></a>        <span class="co">"samtools index -@ {threads} {input}"</span></span>
+<span id="cb24-101"><a href="#cb24-101"></a></span>
+<span id="cb24-102"><a href="#cb24-102"></a>rule tn5_shift:</span>
+<span id="cb24-103"><a href="#cb24-103"></a>    <span class="bu">input</span>:</span>
+<span id="cb24-104"><a href="#cb24-104"></a>        <span class="co">"results/bam/{sample}.final.bam"</span>,</span>
+<span id="cb24-105"><a href="#cb24-105"></a>    output:</span>
+<span id="cb24-106"><a href="#cb24-106"></a>        <span class="co">"results/bam/{sample}.shifted.bam"</span>,</span>
+<span id="cb24-107"><a href="#cb24-107"></a>    log:</span>
+<span id="cb24-108"><a href="#cb24-108"></a>        <span class="co">"logs/alignmentsieve/{sample}.log"</span>,</span>
+<span id="cb24-109"><a href="#cb24-109"></a>    threads: <span class="dv">4</span></span>
+<span id="cb24-110"><a href="#cb24-110"></a>    shell:</span>
+<span id="cb24-111"><a href="#cb24-111"></a>        <span class="co">"alignmentSieve -b {input} -o {output} --ATACshift &gt; {log} 2&gt;&amp;1"</span></span>
+<span id="cb24-112"><a href="#cb24-112"></a></span>
+<span id="cb24-113"><a href="#cb24-113"></a>rule fragment_dist:</span>
+<span id="cb24-114"><a href="#cb24-114"></a>    <span class="bu">input</span>:</span>
+<span id="cb24-115"><a href="#cb24-115"></a>        <span class="co">"results/bam/{sample}.final.bam"</span>,</span>
+<span id="cb24-116"><a href="#cb24-116"></a>    output:</span>
+<span id="cb24-117"><a href="#cb24-117"></a>        <span class="co">"results/qc/fragment_dist_{sample}.txt"</span>,</span>
+<span id="cb24-118"><a href="#cb24-118"></a>    shell:</span>
+<span id="cb24-119"><a href="#cb24-119"></a>        <span class="co">"samtools view {input} | awk '$9&gt;0{{print $9}}' "</span></span>
+<span id="cb24-120"><a href="#cb24-120"></a>        <span class="co">"| sort -n | uniq -c "</span></span>
+<span id="cb24-121"><a href="#cb24-121"></a>        <span class="co">"| awk '</span><span class="re">BEGIN</span><span class="co">{{OFS=</span><span class="ch">\"\\</span><span class="co">t</span><span class="ch">\"</span><span class="co">}}{{print $2,$1}}' &gt; {output}"</span></span>
+<span id="cb24-122"><a href="#cb24-122"></a></span>
+<span id="cb24-123"><a href="#cb24-123"></a>rule macs3_callpeak:</span>
+<span id="cb24-124"><a href="#cb24-124"></a>    <span class="bu">input</span>:</span>
+<span id="cb24-125"><a href="#cb24-125"></a>        <span class="co">"results/bam/{sample}.final.bam"</span>,</span>
+<span id="cb24-126"><a href="#cb24-126"></a>    output:</span>
+<span id="cb24-127"><a href="#cb24-127"></a>        peaks<span class="op">=</span><span class="st">"results/peaks/ATAC_</span><span class="sc">{sample}</span><span class="st">_peaks.narrowPeak"</span>,</span>
+<span id="cb24-128"><a href="#cb24-128"></a>        summits<span class="op">=</span><span class="st">"results/peaks/ATAC_</span><span class="sc">{sample}</span><span class="st">_summits.bed"</span>,</span>
+<span id="cb24-129"><a href="#cb24-129"></a>    log:</span>
+<span id="cb24-130"><a href="#cb24-130"></a>        <span class="co">"logs/macs3/{sample}.log"</span>,</span>
+<span id="cb24-131"><a href="#cb24-131"></a>    params:</span>
+<span id="cb24-132"><a href="#cb24-132"></a>        genome<span class="op">=</span>config[<span class="st">"genome_size"</span>],</span>
+<span id="cb24-133"><a href="#cb24-133"></a>    shell:</span>
+<span id="cb24-134"><a href="#cb24-134"></a>        <span class="co">"macs3 callpeak -t {input} -f BAMPE -g {params.genome} "</span></span>
+<span id="cb24-135"><a href="#cb24-135"></a>        <span class="co">"-n ATAC_{wildcards.sample} -q 0.01 "</span></span>
+<span id="cb24-136"><a href="#cb24-136"></a>        <span class="co">"--outdir results/peaks &gt; {log} 2&gt;&amp;1"</span></span>
+<span id="cb24-137"><a href="#cb24-137"></a></span>
+<span id="cb24-138"><a href="#cb24-138"></a>rule ataqv_qc:</span>
+<span id="cb24-139"><a href="#cb24-139"></a>    <span class="bu">input</span>:</span>
+<span id="cb24-140"><a href="#cb24-140"></a>        bam<span class="op">=</span><span class="st">"results/bam/</span><span class="sc">{sample}</span><span class="st">.shifted.bam"</span>,</span>
+<span id="cb24-141"><a href="#cb24-141"></a>        peaks<span class="op">=</span><span class="st">"results/peaks/ATAC_</span><span class="sc">{sample}</span><span class="st">_peaks.narrowPeak"</span>,</span>
+<span id="cb24-142"><a href="#cb24-142"></a>        tss<span class="op">=</span>config[<span class="st">"tss_file"</span>],</span>
+<span id="cb24-143"><a href="#cb24-143"></a>    output:</span>
+<span id="cb24-144"><a href="#cb24-144"></a>        <span class="co">"results/qc/ataqv_{sample}.txt"</span>,</span>
+<span id="cb24-145"><a href="#cb24-145"></a>    log:</span>
+<span id="cb24-146"><a href="#cb24-146"></a>        <span class="co">"logs/ataqv/{sample}.log"</span>,</span>
+<span id="cb24-147"><a href="#cb24-147"></a>    shell:</span>
+<span id="cb24-148"><a href="#cb24-148"></a>        <span class="co">"ataqv mouse --tss-file {input.tss} "</span></span>
+<span id="cb24-149"><a href="#cb24-149"></a>        <span class="co">"--peak-file {input.peaks} "</span></span>
+<span id="cb24-150"><a href="#cb24-150"></a>        <span class="co">"{input.bam} &gt; {output} 2&gt; {log}"</span></span></code></pre></div><button title="复制到剪贴板" class="code-copy-button"><i class="bi"></i></button></div>
+<p>对照 RNA-seq 流程，注意四个新写法：</p>
+<ul>
+<li><strong>awk 的花括号要写成 <code>{ }</code>。</strong> Snakemake 把 <code>{...}</code> 当作占位符语法，所以 <code>remove_chrM</code> 和 <code>fragment_dist</code> 里 awk 程序的所有花括号都加倍了；这是把 awk 命令搬进 Snakefile 时最常踩的坑，报错通常是”格式串无效”或命令被拦腰截断。</li>
+<li><strong>一条规则可以产出多个文件。</strong> <code>remove_chrM</code> 同时产出去掉线粒体的 BAM 和各染色体统计——<code>idxstats</code> 先记录、再去 chrM 的顺序在<a href="../manuscript/06-chip-seq-and-atac-seq.html#topic-06-atac-align">6.5 节</a>解释过：线粒体比例本身是质控指标，不能先删后算。</li>
+<li><strong><code>temp()</code> 标记中间文件。</strong> 去重需要”按名字排序 → fixmate 标记 → 按坐标排序 → markdup”的链条，<code>fixmate</code> 和 <code>sort_coord</code> 的输出只是必经的中间站，用 <code>temp()</code> 包裹后，下游一完成 Snakemake 就自动删除它们。</li>
+<li><strong><code>{wildcards.sample}</code> 显式取通配符的值。</strong> <code>fastp</code> 的报告名和 <code>macs3</code> 的 <code>-n</code> 项目名用它拼进命令；<code>{wildcards.xxx}</code> 永远解析为通配符本身，不会被误认为其他占位符。</li>
+</ul>
 </section>
-<section id="sec-10-05" class="level2" data-number="10.5">
-<h2 data-number="10.5" class="anchored" data-anchor-id="sec-10-05"><span class="header-section-number">10.5</span> 资源、日志、失败恢复与增量运行</h2>
-<p>能诊断失败并有效管理计算资源。</p>
-<div class="book-placeholder">
-<p>本节内容待补充。</p>
+<section id="topic-10-atac-compare" class="level3">
+<h3 class="anchored" data-anchor-id="topic-10-atac-compare">运行、检查与迁移</h3>
+<p>运行方式与 RNA-seq 流程完全一样（<code>snakemake -n -c 8</code> 试运行、<code>snakemake -c 8 -p</code> 正式运行）。四个样本、十一条规则，共 45 个任务。结果检查的口径全部来自<a href="../manuscript/06-chip-seq-and-atac-seq.html#topic-06-atac-qc">6.5 节</a>：<code>logs/bowtie2/</code> 的比对率（那套数据实测 92% 上下，其中 SRR5852296 只有 46%——是数据集特性而非流程错误，处理方式见第 6 章）；<code>fragment_dist_*.txt</code> 画出来应呈现 NFR 峰与约 200 bp 周期的核小体锯齿；<code>ataqv_*.txt</code> 的 TSS 富集度与 FRiP 参照第 6 章的实测与 ENCODE 阈值讨论；四个样本的峰数量与第 6 章 BAMPE 口径的 24,964 / 14,971 / 28,796 / 55,203 应属同一量级。</p>
+<p>两条流程并排放在一起，迁移的规律就清楚了：</p>
+<div id="tbl-10-rnaseq-atac" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-tbl figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-10-rnaseq-atac-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+表&nbsp;10.2: 两条实战流程的环节对照
+</figcaption>
+<div aria-describedby="tbl-10-rnaseq-atac-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div class="book-table-scroll" role="region" aria-label="表格，可横向滚动" tabindex="0"><table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;">环节</th>
+<th style="text-align: left;">RNA-seq 流程</th>
+<th style="text-align: left;">ATAC-seq 流程</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">过滤</td>
+<td style="text-align: left;">cutadapt（TruSeq 接头，来自配置）</td>
+<td style="text-align: left;">fastp（<code>--detect_adapter_for_pe</code> 自动识别）</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">比对</td>
+<td style="text-align: left;">HISAT2（剪接感知）</td>
+<td style="text-align: left;">Bowtie 2（<code>-X 2000 --very-sensitive</code>）</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">比对后处理</td>
+<td style="text-align: left;">samtools sort + index</td>
+<td style="text-align: left;">过滤 <code>-q 30 -F 1804</code>、去 chrM、fixmate/markdup 去重</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">定量 / 找峰</td>
+<td style="text-align: left;">featureCounts 汇总成计数矩阵</td>
+<td style="text-align: left;">MACS3 BAMPE 每样本找峰</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">实验质控</td>
+<td style="text-align: left;">MultiQC 汇总</td>
+<td style="text-align: left;">片段分布、ataqv（TSS 富集度、FRiP、线粒体比例）</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">交给下游</td>
+<td style="text-align: left;">计数矩阵 → DESeq2（5.5 节）</td>
+<td style="text-align: left;">峰集合 → IDR 与统一峰（6.6 节）</td>
+</tr>
+</tbody>
+</table></div>
 </div>
-</section>
-<section id="sec-10-06" class="level2" data-number="10.6">
-<h2 data-number="10.6" class="anchored" data-anchor-id="sec-10-06"><span class="header-section-number">10.6</span> 流程验证与自动报告</h2>
-<p>验证流程不仅能执行，而且输出符合分析要求。</p>
-<div class="book-placeholder">
-<p>本节内容待补充。</p>
+</figure>
 </div>
-</section>
-<section id="sec-10-07" class="level2" data-number="10.7">
-<h2 data-number="10.7" class="anchored" data-anchor-id="sec-10-07"><span class="header-section-number">10.7</span> 完整项目与跨任务迁移</h2>
-<p>形成编写和改造流程的能力。</p>
-<div class="book-placeholder">
-<p>本节内容待补充。</p>
-</div>
+<p>骨架不变，变的是每条规则的命令体：换一批 ATAC 样本，只改 <code>samples.tsv</code>；换参考基因组，只改 <code>config.yaml</code> 的索引与 TSS 路径；把比对器换成 BWA，只重写 <code>bowtie2_align</code> 一条规则并核对其输出约定。第 7 章的 WGS 变异流程（比对、标记重复、BQSR、 calling 一路到 VCF）和第 9 章的单细胞分析，同样可以按”每样本规则 + 汇总规则”的方式组织——规则划分的自然单位就是”一次工具调用产出一类文件”。</p>
+<p>让 AI 帮忙写或改工作流时，这套结构就是你的核对清单：检查每条规则的<strong>输入是否真实存在</strong>（路径、命名约定、参考版本）、<strong>输出是否与命令实际生成的文件一致</strong>（少声明会留下无主文件，多声明会永远判缺失）、通配符能否从输出推断、以及 awk 这类含花括号的命令有没有正确转义。AI 生成的流程几乎总能在语法上通过，错得最多的正是这些与文件实情对不上的地方——而 dry-run 加逐条对照 <code>all</code> 清单，就是抓住它们的最快办法。</p>
 
 
+</section>
+</section>
+<section id="footnotes" class="footnotes footnotes-end-of-document" role="doc-endnotes">
+<hr>
+<ol>
+<li id="fn1"><p>Köster J, Rahmann S. Snakemake—a scalable bioinformatics workflow engine. <em>Bioinformatics</em>, 28(19): 2520–2522, 2012. <a href="https://doi.org/10.1093/bioinformatics/bts480">原始论文</a>。<a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+</ol>
 </section>
 
 </main> <!-- /main -->
 <div class="book-toolbar" role="navigation" aria-label="阅读工具">
-  <div class="book-brand"><span class="book-brand-name">AI时代生信入门</span><time class="book-last-modified" datetime="2026-10-11T10:35:41+08:00" title="最后修改时间（北京时间，UTC+08:00）">最后修改 2026-10-11 10:35</time></div>
+  <div class="book-brand"><span class="book-brand-name">AI时代生信入门</span><time class="book-last-modified" datetime="2026-10-11T11:37:05+08:00" title="最后修改时间（北京时间，UTC+08:00）">最后修改 2026-10-11 11:37</time></div>
   <button class="book-menu-button" type="button" aria-controls="quarto-sidebar" aria-expanded="false">目录</button>
   <button class="book-search-button" type="button">搜索</button>
 </div>
