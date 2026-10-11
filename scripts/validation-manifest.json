@@ -138,15 +138,11 @@
   {
    "file": "manuscript/10-snakemake-and-reproducibility.md",
    "title": "Snakemake与可复现分析工作流",
-   "planned_sections": 7,
+   "planned_sections": 3,
    "section_titles": [
-    "从命令脚本到依赖图",
-    "第一个可运行的Snakefile",
-    "样本表、配置与多样本扩展",
-    "环境与参考资源的版本管理",
-    "资源、日志、失败恢复与增量运行",
-    "流程验证与自动报告",
-    "完整项目与跨任务迁移"
+    "Snakemake 的安装与基本语法",
+    "RNA-seq 的 Snakemake 流程",
+    "ATAC-seq 的 Snakemake 流程"
    ],
    "summary": true
   },

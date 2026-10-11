@@ -554,10 +554,10 @@
       "sec-09-01": "manuscript/10-snakemake-and-reproducibility.html#sec-10-01",
       "sec-09-02": "manuscript/10-snakemake-and-reproducibility.html#sec-10-02",
       "sec-09-03": "manuscript/10-snakemake-and-reproducibility.html#sec-10-03",
-      "sec-09-04": "manuscript/10-snakemake-and-reproducibility.html#sec-10-04",
-      "sec-09-05": "manuscript/10-snakemake-and-reproducibility.html#sec-10-05",
-      "sec-09-06": "manuscript/10-snakemake-and-reproducibility.html#sec-10-06",
-      "sec-09-07": "manuscript/10-snakemake-and-reproducibility.html#sec-10-07",
+      "sec-09-04": "manuscript/10-snakemake-and-reproducibility.html#sec-10-02",
+      "sec-09-05": "manuscript/10-snakemake-and-reproducibility.html#topic-10-operations",
+      "sec-09-06": "manuscript/10-snakemake-and-reproducibility.html#topic-10-rnaseq-run",
+      "sec-09-07": "manuscript/10-snakemake-and-reproducibility.html#topic-10-atac-compare",
       "sec-ch09": "manuscript/10-snakemake-and-reproducibility.html#sec-ch10"
     }
   },
