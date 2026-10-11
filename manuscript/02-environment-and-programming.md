@@ -115,7 +115,7 @@ macOS 的基础配置比 Windows 简单得多，基本不太需要专门折腾�
 SSH命令是连接服务器很重要的工具。Linux和macOS都自带`ssh`命令；Windows长期以来不自带SSH命令，从Windows 10开始情况改善，较新的Windows 10和Windows 11已经预装OpenSSH客户端，在PowerShell中直接运行`ssh`就可以使用。OpenSSH服务器端则仍需要手动安装：在任务栏搜索框中输入“可选功能”，结果中会出现“添加可选功能”，点击即可进入。也可以通过“Windows设置→应用→可选功能”进入。
 
 
-![Windows“管理可选功能”页面：已安装功能列表与“添加功能”入口](../assets/02-computing-and-programming/013-c575c9fa-1e74-4fc5-99e4-465792565047.png){#fig-02-computing-and-programming-013}
+![Windows“管理可选功能”页面：已安装功能列表与“添加功能”入口](../assets/02-computing-and-programming/013-c575c9fa-1e74-4fc5-99e4-465792565047.png){#fig-02-computing-and-programming-013 width=75%}
 
 点击“添加功能”进入到添加功能的页面，选择需要的组件（例如“OpenSSH 服务器”；较早系统上未预装客户端时也可在此安装“OpenSSH 客户端”），点击“安装”按钮即可开始安装，不长的一段时间后就安装完毕了。
 
@@ -974,6 +974,10 @@ results/
 ### 排错的基本思路 {#topic-02-troubleshooting}
 
 分析出错是常态，排错能力比不出错更值得练。一套固定的动作能解决大部分问题。
+
+先看全景：四步排查层层递进，每一步都可能直接解决问题——解决了就从右侧出口收尾记录，没解决才进入下一步；无论从哪一步走出来，最后都以记录收尾。
+
+![排错的基本流程：四步递进排查，任一步解决即记录收尾](../assets/02-computing-and-programming/svg/troubleshooting-flow.svg){#fig-02-computing-and-programming-026}
 
 第一，读报错。从输出里找 `error` 而不是 `warning`——`warning` 是提醒，`error` 才是失败原因。程序崩掉时，最后几行通常就是关键信息；找不到就把整段输出从头读，第一条 error 之后的内容往往是连锁反应，修好它，后面自然消失。把报错原文复制下来，不要凭印象转述。
 
