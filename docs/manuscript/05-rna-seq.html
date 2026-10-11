@@ -921,7 +921,7 @@ window.Quarto = {
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
 <h1 class="title"><span id="sec-ch05" class="quarto-section-identifier"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">RNA-seq：从表达定量到差异表达</span></span></h1>
-<p class="chapter-last-modified"><time datetime="2026-10-11T10:11:42+08:00" title="本章书稿最后修改时间（北京时间，UTC+08:00）">最后修改：2026-10-11 10:11（北京时间）</time></p>
+<p class="chapter-last-modified"><time datetime="2026-10-11T17:31:04+08:00" title="本章书稿最后修改时间（北京时间，UTC+08:00）">最后修改：2026-10-11 17:31（北京时间）</time></p>
 </div>
 
 
@@ -975,13 +975,14 @@ window.Quarto = {
 <div id="fig-05-genome-transcriptome" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-05-genome-transcriptome-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="../assets/06-rna-seq/svg/genome-transcriptome.svg" class="img-fluid figure-img">
+<img src="../assets/06-rna-seq/cited/nhgri-different-cells-different-rnas.jpg" class="img-fluid figure-img" width="620">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-05-genome-transcriptome-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-图&nbsp;5.2: 基因组与转录组的关系：同一套基因组，不同状态的细胞转录出不同的 RNA 集合（示意图）
+图&nbsp;5.2: 不同细胞类型的转录组：神经、肌肉与上皮细胞包含不同的 RNA 集合（NHGRI 原图，Courtesy: National Human Genome Research Institute<a href="#fn8" class="footnote-ref" id="fnref8" role="doc-noteref"><sup>8</sup></a>）
 </figcaption>
 </figure>
 </div>
+<p>图上方为神经细胞，左下为肌肉细胞，右下为上皮细胞。彩色曲线示意不同的 RNA，并非定量测量值。读图时关注的是：同一生物体中这些细胞的基因组基本相同，但各自使用的基因不同，因此具有不同的转录组；同一类型的细胞在不同条件下，RNA 的种类和丰度也可以发生变化。</p>
 </section>
 <section id="topic-05-lib-strategies" class="level3">
 <h3 class="anchored" data-anchor-id="topic-05-lib-strategies">mRNA 与全转录组建库</h3>
@@ -1011,14 +1012,14 @@ window.Quarto = {
 </section>
 <section id="src-0050-RNA-seq-26" class="level4">
 <h4 class="anchored" data-anchor-id="src-0050-RNA-seq-26">去 rRNA 的全转录组测序</h4>
-<p>长非编码RNA（lncRNA）是一类长度大于 200 nt 的非编码 RNA，在不同物种中的保守性较差，曾经被认为是无用的RNA，目前被发现广泛参与基因表达调控的多种过程<a href="#fn8" class="footnote-ref" id="fnref8" role="doc-noteref"><sup>8</sup></a>。可根据其在基因组上的位置分为四类：</p>
+<p>长非编码RNA（lncRNA）是一类长度大于 200 nt 的非编码 RNA，在不同物种中的保守性较差，曾经被认为是无用的RNA，目前被发现广泛参与基因表达调控的多种过程<a href="#fn9" class="footnote-ref" id="fnref9" role="doc-noteref"><sup>9</sup></a>。可根据其在基因组上的位置分为四类：</p>
 <ol type="1">
 <li>与编码基因有重叠且转录方向一致的同义长非编码RNA（sense lncRNA）；</li>
 <li>与编码基因有重叠但在反义链上的反义长非编码RNA（antisense lncRNA）；</li>
 <li>由编码基因内含子转录产生的内含子长非编码RNA（intronic lncRNA）；</li>
 <li>以及位于两个编码基因之间非编码区的基因间区长非编码RNA（intergenic lncRNA, lincRNA）。</li>
 </ol>
-<p>lncRNA 发挥多种调控功能，扮演信号分子、诱导因子、引导分子、支架分子等多种角色<a href="#fn9" class="footnote-ref" id="fnref9" role="doc-noteref"><sup>9</sup></a>。</p>
+<p>lncRNA 发挥多种调控功能，扮演信号分子、诱导因子、引导分子、支架分子等多种角色<a href="#fn10" class="footnote-ref" id="fnref10" role="doc-noteref"><sup>10</sup></a>。</p>
 <p>对lncRNA 进行测序需要采用去rRNA的方法建库，以最大限度地保留lncRNA（<a href="#fig-06-rna-seq-001" class="quarto-xref">图&nbsp;<span>5.3</span></a> ）。与此同时，mRNA、snoRNA、snRNA、tRNA 和 circRNA 的表达信息也能在去 rRNA 文库中获得。与富集polyA方法不同的是，建库的第一步是去除样本中的rRNA，接下的步骤则与富集polyA方式建库差不多。lncRNA测序一般采取双端测序，测序读长150bp，数据量约 10–12 G clean bases。</p>
 <p>去 rRNA 不依赖 poly(A) 尾，而是用探针杂交或核酸酶特异性地把占总 RNA 80%–90% 的 rRNA 移除，保留其余全部 RNA，因此信息面比富集 poly(A) 宽得多，也能用在部分降解的样本上。代价是去除效率因试剂盒与样本质量而异：数据里常有 5%–20% 的 read 仍来自残留 rRNA，分析前值得用 FastQC 或比对统计评估一下这部分占比。</p>
 <p>两种策略的选择可以一句话概括：研究蛋白编码基因、样本质量好，用富集 poly(A)；要覆盖非编码 RNA、circRNA 或样本有降解，用去 rRNA。</p>
@@ -1057,7 +1058,7 @@ window.Quarto = {
 <section id="src-0050-RNA-seq-49" class="level4">
 <h4 class="anchored" data-anchor-id="src-0050-RNA-seq-49">环状 RNA 测序</h4>
 <p>通常情况下，DNA和RNA是以线性形式存在的，有时也以环状的形式出现，例如线粒体DNA和细菌DNA、类病毒和一些RNA病毒的单链环状RNA基因组。近年研究发现，真核生物细胞普遍且稳定存在环状的RNA，是mRNA剪接过程中形成的，主要通过吸附miRNA来实现转录水平的调控。circRNA 能像“海绵”一样竞争性结合 miRNA 或 RNA结合蛋白，从而可能在生理和疾病过程中发挥重要功能。</p>
-<p>去rRNA的方式，是目前最常用的方法，可以捕捉环形RNA的信息；另外，也可以通过去线性RNA的方式建库测序，核糖核酸酶R从RNA的自由3’端向5’端方向逐一水解线性RNA，烟草酸性磷酸酶和终止子外切酶能够从5’端向3’端方向逐一水解RNA，而环形RNA没有3’与5‘端和poly(A)，因此不会被降解；还可以利用环形RNA与线性RNA电泳迁移速度的不同来实现对环形RNA的特异性捕获，因为环形RNA会比等长的线性RNA迁移速度快，并且凝胶交联程度越高这种差别就会越大<a href="#fn10" class="footnote-ref" id="fnref10" role="doc-noteref"><sup>10</sup></a>。总的来说，去 rRNA 的方式建库具有更高的性价比，能够同时获得mRNA、lncRNA和circRNA的信息。</p>
+<p>去rRNA的方式，是目前最常用的方法，可以捕捉环形RNA的信息；另外，也可以通过去线性RNA的方式建库测序，核糖核酸酶R从RNA的自由3’端向5’端方向逐一水解线性RNA，烟草酸性磷酸酶和终止子外切酶能够从5’端向3’端方向逐一水解RNA，而环形RNA没有3’与5‘端和poly(A)，因此不会被降解；还可以利用环形RNA与线性RNA电泳迁移速度的不同来实现对环形RNA的特异性捕获，因为环形RNA会比等长的线性RNA迁移速度快，并且凝胶交联程度越高这种差别就会越大<a href="#fn11" class="footnote-ref" id="fnref11" role="doc-noteref"><sup>11</sup></a>。总的来说，去 rRNA 的方式建库具有更高的性价比，能够同时获得mRNA、lncRNA和circRNA的信息。</p>
 <p>四种建库策略的检测范围与典型参数汇总见 <a href="#tbl-05-lib-strategies" class="quarto-xref">表&nbsp;<span>5.1</span></a> 。</p>
 <div id="tbl-05-lib-strategies" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-tbl figure">
@@ -1127,7 +1128,7 @@ window.Quarto = {
 </section>
 <section id="topic-05-stranded-lib" class="level3">
 <h3 class="anchored" data-anchor-id="topic-05-stranded-lib">链特异性建库</h3>
-<p>以上建库流程都没有保留“RNA 来自基因组哪条链”的信息：随机引物反转录出的 cDNA 双链，看不出原来那条 RNA 是正链基因还是反义转录本转录来的。链特异性建库（stranded library prep）在常规流程里加了一步标记，最常用的是 dUTP 法：合成第二链 cDNA 时用 dUTP 替代 dTTP，接头连接后再用专门识别含尿嘧啶 DNA 的酶（如 USER）把第二链降解掉，只留下与原始 RNA 互补的第一链进入 PCR（<a href="#fig-05-stranded-lib" class="quarto-xref">图&nbsp;<span>5.5</span></a>）<a href="#fn11" class="footnote-ref" id="fnref11" role="doc-noteref"><sup>11</sup></a>。这样每条 read 相对原始转录本的方向是确定的，比对回基因组后能唯一归属到正链或负链。</p>
+<p>以上建库流程都没有保留“RNA 来自基因组哪条链”的信息：随机引物反转录出的 cDNA 双链，看不出原来那条 RNA 是正链基因还是反义转录本转录来的。链特异性建库（stranded library prep）在常规流程里加了一步标记，最常用的是 dUTP 法：合成第二链 cDNA 时用 dUTP 替代 dTTP，接头连接后再用专门识别含尿嘧啶 DNA 的酶（如 USER）把第二链降解掉，只留下与原始 RNA 互补的第一链进入 PCR（<a href="#fig-05-stranded-lib" class="quarto-xref">图&nbsp;<span>5.5</span></a>）<a href="#fn12" class="footnote-ref" id="fnref12" role="doc-noteref"><sup>12</sup></a>。这样每条 read 相对原始转录本的方向是确定的，比对回基因组后能唯一归属到正链或负链。</p>
 <div id="fig-05-stranded-lib" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-05-stranded-lib-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
@@ -1517,22 +1518,22 @@ window.Quarto = {
 <h3 class="anchored" data-anchor-id="src-0050-RNA-seq-259">剪接感知比对器：HISAT2 与 STAR</h3>
 <section id="rnaseq-aligners-bowtie" class="level4">
 <h4 class="anchored" data-anchor-id="rnaseq-aligners-bowtie">Bowtie 与 Bowtie 2</h4>
-<p><strong>Bowtie</strong><a href="#fn12" class="footnote-ref" id="fnref12" role="doc-noteref"><sup>12</sup></a> 和 <strong>Bowtie2</strong>都是常用的短序列比对软件，生成SAM格式的序列比对文件。Bowtie在小于50bp的reads比对中更精确更快，最长支持1000bp；而Bowtie2在大于50bp的reads比对中更精确更快，reads长度没有上限，支持空位比对、局部比对。</p>
+<p><strong>Bowtie</strong><a href="#fn13" class="footnote-ref" id="fnref13" role="doc-noteref"><sup>13</sup></a> 和 <strong>Bowtie2</strong>都是常用的短序列比对软件，生成SAM格式的序列比对文件。Bowtie在小于50bp的reads比对中更精确更快，最长支持1000bp；而Bowtie2在大于50bp的reads比对中更精确更快，reads长度没有上限，支持空位比对、局部比对。</p>
 </section>
 <section id="rnaseq-aligners-bwa" class="level4">
 <h4 class="anchored" data-anchor-id="rnaseq-aligners-bwa">BWA</h4>
-<p><strong>BWA</strong><a href="#fn13" class="footnote-ref" id="fnref13" role="doc-noteref"><sup>13</sup></a> 有多个子命令，可以实现不同算法的比对。</p>
+<p><strong>BWA</strong><a href="#fn14" class="footnote-ref" id="fnref14" role="doc-noteref"><sup>14</sup></a> 有多个子命令，可以实现不同算法的比对。</p>
 <p>上述3款软件都是针对DNA序列比对进行设计的，并不能直接应用于RNA-Seq的比对。一个最主要的原因就是因为真核生物的基因是间隔的，每两个外显子中间就会有一个内含子。最终成熟的mRNA是不包含内含子序列的，因此针对真核生物的RNA-Seq数据的比对，需要在上述3款软件的基础上加上一些限制条件与修正。最常用的有下面3款Tophat/Tophat2，HISAT/HISAT2, STAR。</p>
-<p><span id="src-0050-RNA-seq-520"></span> TopHat<a href="#fn14" class="footnote-ref" id="fnref14" role="doc-noteref"><sup>14</sup></a> 与 TopHat2<a href="#fn15" class="footnote-ref" id="fnref15" role="doc-noteref"><sup>15</sup></a> 是第一代广泛使用的剪接感知比对软件，采用的正是 exon-first 策略：先整体比对，再把剩余 read 按剪接方式拆开重比。它对假基因的处理不好（见前一个练习框），速度也慢，开发团队已明确建议改用同组的 HISAT2——HISAT2 官方说明中写道”HISAT2 是 HISAT 与 TopHat2 的后继者，建议两者用户切换到 HISAT2”<a href="#fn16" class="footnote-ref" id="fnref16" role="doc-noteref"><sup>16</sup></a>。<span id="rnaseq-aligners-tophat"></span></p>
+<p><span id="src-0050-RNA-seq-520"></span> TopHat<a href="#fn15" class="footnote-ref" id="fnref15" role="doc-noteref"><sup>15</sup></a> 与 TopHat2<a href="#fn16" class="footnote-ref" id="fnref16" role="doc-noteref"><sup>16</sup></a> 是第一代广泛使用的剪接感知比对软件，采用的正是 exon-first 策略：先整体比对，再把剩余 read 按剪接方式拆开重比。它对假基因的处理不好（见前一个练习框），速度也慢，开发团队已明确建议改用同组的 HISAT2——HISAT2 官方说明中写道”HISAT2 是 HISAT 与 TopHat2 的后继者，建议两者用户切换到 HISAT2”<a href="#fn17" class="footnote-ref" id="fnref17" role="doc-noteref"><sup>17</sup></a>。<span id="rnaseq-aligners-tophat"></span></p>
 </section>
 <section id="rnaseq-aligners-hisat" class="level4">
 <h4 class="anchored" data-anchor-id="rnaseq-aligners-hisat">HISAT2</h4>
-<p>HISAT（Hierarchical Indexing for Spliced Alignment of Transcripts）和 <strong>HISAT2</strong><a href="#fn17" class="footnote-ref" id="fnref17" role="doc-noteref"><sup>17</sup></a>是Tophat2的升级版本。利用数量众多的索引，覆盖整个基因组，使用小索引结合几种比对策略，以人类基因组为例，全基因组被分成约 48,000 个局部索引、每个覆盖约 64,000 bp，跨外显子比对因此又快又省内存。其下游分析软件为StringTie和Ballgown。HISAT2 相比 HISAT 还引入了 SNP 与单倍型信息，比对时可以区分参考等位与替代等位。</p>
+<p>HISAT（Hierarchical Indexing for Spliced Alignment of Transcripts）和 <strong>HISAT2</strong><a href="#fn18" class="footnote-ref" id="fnref18" role="doc-noteref"><sup>18</sup></a>是Tophat2的升级版本。利用数量众多的索引，覆盖整个基因组，使用小索引结合几种比对策略，以人类基因组为例，全基因组被分成约 48,000 个局部索引、每个覆盖约 64,000 bp，跨外显子比对因此又快又省内存。其下游分析软件为StringTie和Ballgown。HISAT2 相比 HISAT 还引入了 SNP 与单倍型信息，比对时可以区分参考等位与替代等位。</p>
 <p>HISAT/HISAT2 与 TopHat/TopHat2 出自同一个课题组。</p>
 </section>
 <section id="rnaseq-aligners-star" class="level4">
 <h4 class="anchored" data-anchor-id="rnaseq-aligners-star">STAR</h4>
-<p><strong>STAR</strong><a href="#fn18" class="footnote-ref" id="fnref18" role="doc-noteref"><sup>18</sup></a> 的优势在于快，是 ENCODE 计划采用的比对软件。缺点在于占用内存比较大，以人类的参考基因组为例，比对时的运行内存需要28G~32G左右。STAR使用了Suffix Tree 的index：先把read切成若干小的seed，找到全基因组符合seed的位置；再通过打分算法，把邻近的全基因组符合的seed拼在一起，形成mapping结果。</p>
+<p><strong>STAR</strong><a href="#fn19" class="footnote-ref" id="fnref19" role="doc-noteref"><sup>19</sup></a> 的优势在于快，是 ENCODE 计划采用的比对软件。缺点在于占用内存比较大，以人类的参考基因组为例，比对时的运行内存需要28G~32G左右。STAR使用了Suffix Tree 的index：先把read切成若干小的seed，找到全基因组符合seed的位置；再通过打分算法，把邻近的全基因组符合的seed拼在一起，形成mapping结果。</p>
 <p>比对任务多、数据量大时，推荐用 STAR 得到最终比对结果；常规规模用 HISAT2 更省资源。</p>
 <p>资源对照与选型：HISAT2 内存需求低，普通服务器即可运行全流程，适合多数场景；TopHat2 速度慢且已被官方弃用，仅见于历史文献，新项目不要再选用。<span id="question-21-307"></span></p>
 </section>
@@ -1694,7 +1695,7 @@ window.Quarto = {
 <section id="src-0050-RNA-seq-601" class="level4">
 <h4 class="anchored" data-anchor-id="src-0050-RNA-seq-601">比对结果的格式与检查</h4>
 <p><span id="src-0050-RNA-seq-253"></span> 比对结果保存为 SAM（Sequence Alignment/Map format）或其压缩的二进制格式 BAM。二者由 Heng Li 等人制定标准并实现了第一代工具。SAM文件由两部分组成：头部区和主体区，头部区以“@”开始，提供比对的总体信息，例如SAM格式版本、比对参考序列、比对使用的命令等；主体区是比对结果，每一行储存一个比对结果，共11个主列和1个可选列。</p>
-<p>SAM/BAM 的列结构、排序与 samtools 基本操作在<a href="../manuscript/04-sequence-alignment.html#sec-04-06">第 4 章</a>已系统介绍，这里不再重复；无论 DNA 还是 RNA 的比对结果，都保存为同样的 SAM/BAM 格式。 序列比对是获得每条测序片段在参考基因组上对应染色体上的位置坐标、正负链等信息。比对率反映样品与参考基因组的匹配程度和测序质量：人 RNA-seq 数据比对率一般应有 80% 以上；比对到多个位置的 read 占比通常不超过 10%，多定位 read 过多往往提示 rRNA 残留或注释不当。常用比对软件为 HISAT2 与 STAR（RSEM 是定量软件，不属于比对器，见 5.4 节）。这些经验值可参考 RNA-seq 分析最佳实践综述<a href="#fn19" class="footnote-ref" id="fnref19" role="doc-noteref"><sup>19</sup></a>。</p>
+<p>SAM/BAM 的列结构、排序与 samtools 基本操作在<a href="../manuscript/04-sequence-alignment.html#sec-04-06">第 4 章</a>已系统介绍，这里不再重复；无论 DNA 还是 RNA 的比对结果，都保存为同样的 SAM/BAM 格式。 序列比对是获得每条测序片段在参考基因组上对应染色体上的位置坐标、正负链等信息。比对率反映样品与参考基因组的匹配程度和测序质量：人 RNA-seq 数据比对率一般应有 80% 以上；比对到多个位置的 read 占比通常不超过 10%，多定位 read 过多往往提示 rRNA 残留或注释不当。常用比对软件为 HISAT2 与 STAR（RSEM 是定量软件，不属于比对器，见 5.4 节）。这些经验值可参考 RNA-seq 分析最佳实践综述<a href="#fn20" class="footnote-ref" id="fnref20" role="doc-noteref"><sup>20</sup></a>。</p>
 <div class="book-prose">
 <p>用 <code>samtools</code> 抽查比对结果（<code>view</code> 的完整用法见<a href="../manuscript/04-sequence-alignment.html#sec-04-06">第 4 章</a>）。提取比对到参考序列上的结果：</p>
 </div>
@@ -1853,7 +1854,7 @@ window.Quarto = {
 </section>
 <section id="topic-05-rsem" class="level4">
 <h4 class="anchored" data-anchor-id="topic-05-rsem">转录本丰度估计：RSEM</h4>
-<p>回看上面的核心知识框：一条 read 常常同时兼容同一基因的多个转录本，基因水平计数可以整 gene 合并，转录本水平却必须把它们分开。RSEM（RNA-Seq by Expectation-Maximization）<a href="#fn20" class="footnote-ref" id="fnref20" role="doc-noteref"><sup>20</sup></a> 用期望最大化迭代解决这个分摊问题：先假设各转录本丰度均一，按当前丰度把模糊 read 按概率分摊给各转录本，再用分摊结果更新丰度，反复迭代直到收敛。输出每个转录本的期望计数（expected count）与 TPM，同时汇总出基因水平结果。</p>
+<p>回看上面的核心知识框：一条 read 常常同时兼容同一基因的多个转录本，基因水平计数可以整 gene 合并，转录本水平却必须把它们分开。RSEM（RNA-Seq by Expectation-Maximization）<a href="#fn21" class="footnote-ref" id="fnref21" role="doc-noteref"><sup>21</sup></a> 用期望最大化迭代解决这个分摊问题：先假设各转录本丰度均一，按当前丰度把模糊 read 按概率分摊给各转录本，再用分摊结果更新丰度，反复迭代直到收敛。输出每个转录本的期望计数（expected count）与 TPM，同时汇总出基因水平结果。</p>
 <p>典型流程两步：<code>rsem-prepare-reference</code> 把 GTF 与基因组 FASTA 转成转录本序列集合并建索引；<code>rsem-calculate-expression</code> 完成比对与定量（可内嵌调用 STAR 或 Bowtie 2，也可读入现成 BAM）：</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb19" data-book-role="code"><pre data-code-text="&quot;# 准备参考：从 GTF 提取转录本序列并建索引\nrsem-prepare-reference --gtf genome.gtf genome.fa rsem_ref/hg38\n\n# 双端定量：--aligner 指定内嵌比对器，输出到 count_result/test\nrsem-calculate-expression --paired-end -p 8 --aligner STAR \\\n  fix.fastq/test_R1_cutadapt.fq.gz fix.fastq/test_R2_cutadapt.fq.gz \\\n  rsem_ref/hg38 count_result/test&quot;" class="sourceCode numberSource bash numberLines code-with-copy"><code class="sourceCode bash"><span id="cb19-1"><a href="#cb19-1"></a><span class="co"># 准备参考：从 GTF 提取转录本序列并建索引</span></span>
 <span id="cb19-2"><a href="#cb19-2"></a><span class="ex">rsem-prepare-reference</span> <span class="at">--gtf</span> genome.gtf genome.fa rsem_ref/hg38</span>
@@ -1979,17 +1980,17 @@ window.Quarto = {
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>TopHat2 的官方建议是切换到 HISAT2<a href="#fn21" class="footnote-ref" id="fnref21" role="doc-noteref"><sup>21</sup></a>；Cufflinks 套件的最后一次发布停留在 2014 年（v2.2.1），此后不再更新<a href="#fn22" class="footnote-ref" id="fnref22" role="doc-noteref"><sup>22</sup></a>。两者如今主要出现在历史文献和旧教程中。同一团队路线的后继组合是 HISAT2＋StringTie；主流的定量与差异分析路线则是 featureCounts/htseq-count＋DESeq2/edgeR。本书仍保留 Cufflinks 套件的用法：它的 GTF 输入、FPKM 定量与转录本比较思路，是理解转录本水平分析的好材料，旧文献中也大量遇到。</p>
+<p>TopHat2 的官方建议是切换到 HISAT2<a href="#fn22" class="footnote-ref" id="fnref22" role="doc-noteref"><sup>22</sup></a>；Cufflinks 套件的最后一次发布停留在 2014 年（v2.2.1），此后不再更新<a href="#fn23" class="footnote-ref" id="fnref23" role="doc-noteref"><sup>23</sup></a>。两者如今主要出现在历史文献和旧教程中。同一团队路线的后继组合是 HISAT2＋StringTie；主流的定量与差异分析路线则是 featureCounts/htseq-count＋DESeq2/edgeR。本书仍保留 Cufflinks 套件的用法：它的 GTF 输入、FPKM 定量与转录本比较思路，是理解转录本水平分析的好材料，旧文献中也大量遇到。</p>
 </div>
 </div>
 </section>
 </section>
 <section id="src-0050-RNA-seq-304" class="level3">
 <h3 class="anchored" data-anchor-id="src-0050-RNA-seq-304">表达值的标准化：从 count 到可比的量</h3>
-<p><span id="src-0050-RNA-seq-300"></span> 为统计检验和可视化选择正确的数据表示。 通过前面的序列比对分析，获得了能够map到各个基因的reads数，也就是原始的count数。但原始的count数并不能完全表征基因的表达情况，因为不同基因的长度不同，不同批次数据的测序量也不同，所以需要校正测序深度和基因长度的影响，即对表达量做标准化定量<a href="#fn23" class="footnote-ref" id="fnref23" role="doc-noteref"><sup>23</sup></a>。 例如，同一个样本中基因 A 和基因 B 的 count 都是 1000，而两者长度分别为 100 bp 和 200 bp，不能认为它们的表达水平一样；再比如，基因 A 在样本 1、2 中的 count 分别为 1000 和 2000，也不能断定它在样本 2 中表达翻倍——两次测序的总量并不一致；由于基因本身长度的不同、不同样本测序量的差异，不能使用原始的count数来表征基因的表达水平。</p>
+<p><span id="src-0050-RNA-seq-300"></span> 为统计检验和可视化选择正确的数据表示。 通过前面的序列比对分析，获得了能够map到各个基因的reads数，也就是原始的count数。但原始的count数并不能完全表征基因的表达情况，因为不同基因的长度不同，不同批次数据的测序量也不同，所以需要校正测序深度和基因长度的影响，即对表达量做标准化定量<a href="#fn24" class="footnote-ref" id="fnref24" role="doc-noteref"><sup>24</sup></a>。 例如，同一个样本中基因 A 和基因 B 的 count 都是 1000，而两者长度分别为 100 bp 和 200 bp，不能认为它们的表达水平一样；再比如，基因 A 在样本 1、2 中的 count 分别为 1000 和 2000，也不能断定它在样本 2 中表达翻倍——两次测序的总量并不一致；由于基因本身长度的不同、不同样本测序量的差异，不能使用原始的count数来表征基因的表达水平。</p>
 <p>基因的表达进行标准化定量包括多种方式，包括：</p>
 <ol type="1">
-<li><strong>RPKM</strong>（Reads Per Kilobase per Million mapped reads）<a href="#fn24" class="footnote-ref" id="fnref24" role="doc-noteref"><sup>24</sup></a>、<strong>FPKM</strong>（Fragments Per Kilobase per Million mapped reads）；</li>
+<li><strong>RPKM</strong>（Reads Per Kilobase per Million mapped reads）<a href="#fn25" class="footnote-ref" id="fnref25" role="doc-noteref"><sup>25</sup></a>、<strong>FPKM</strong>（Fragments Per Kilobase per Million mapped reads）；</li>
 <li>TPM（Transcripts Per Million）</li>
 <li>RPM(Reads per million mapped reads)</li>
 <li>CPM（counts per million mapped reads）等。</li>
@@ -2100,7 +2101,7 @@ window.Quarto = {
 <p>完成正确的条件比较并读懂差异结果。</p>
 <section id="src-0050-RNA-seq-360" class="level3">
 <h3 class="anchored" data-anchor-id="src-0050-RNA-seq-360">差异分析的总体思路</h3>
-<p>寻找差异表达的基本假设是样本中的大部分基因表达不变。基于这个假设，对样本中的基因表达做定量计算，寻找不同样本之间发生差异性表达的基因。而RNA-Seq定量的本质是相对定量，即测定指标的相对比例，如浓度、Fold change；这区别于绝对定量测定的是客观的数值等 ，例如温度、高度、长度等。 <strong>cuffdiff</strong>、<strong>cuffdiff2</strong>、<strong>DESeq</strong>、<strong>DESeq2</strong><a href="#fn25" class="footnote-ref" id="fnref25" role="doc-noteref"><sup>25</sup></a>、<strong>edgeR</strong><a href="#fn26" class="footnote-ref" id="fnref26" role="doc-noteref"><sup>26</sup></a><a href="#fn27" class="footnote-ref" id="fnref27" role="doc-noteref"><sup>27</sup></a> 都是常用的表达差异分析软件。此外，<code>limma::voom</code><a href="#fn28" class="footnote-ref" id="fnref28" role="doc-noteref"><sup>28</sup></a> 也可用于差异分析。</p>
+<p>寻找差异表达的基本假设是样本中的大部分基因表达不变。基于这个假设，对样本中的基因表达做定量计算，寻找不同样本之间发生差异性表达的基因。而RNA-Seq定量的本质是相对定量，即测定指标的相对比例，如浓度、Fold change；这区别于绝对定量测定的是客观的数值等 ，例如温度、高度、长度等。 <strong>cuffdiff</strong>、<strong>cuffdiff2</strong>、<strong>DESeq</strong>、<strong>DESeq2</strong><a href="#fn26" class="footnote-ref" id="fnref26" role="doc-noteref"><sup>26</sup></a>、<strong>edgeR</strong><a href="#fn27" class="footnote-ref" id="fnref27" role="doc-noteref"><sup>27</sup></a><a href="#fn28" class="footnote-ref" id="fnref28" role="doc-noteref"><sup>28</sup></a> 都是常用的表达差异分析软件。此外，<code>limma::voom</code><a href="#fn29" class="footnote-ref" id="fnref29" role="doc-noteref"><sup>29</sup></a> 也可用于差异分析。</p>
 <div class="book-core callout callout-style-default callout-note callout-titled" title="核心知识｜差异表达分析的基本假设">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -2728,7 +2729,7 @@ hsa-miR-6090    5.80658 4.459086667
 </section>
 <section id="src-0050-RNA-seq-1163" class="level3">
 <h3 class="anchored" data-anchor-id="src-0050-RNA-seq-1163">circRNA 测序分析</h3>
-<p>circRNA 由 mRNA 前体的反向剪接（back-splicing）产生：一个外显子的 3′ 端与另一个外显子的 5′ 端首尾相连成环。来自连接点的 read 在参考基因组上找不到连续的对应位置——它两端对应的序列在基因组上并不相邻，这正是鉴定 circRNA 的特征信号。常用鉴定工具如 find_circ（利用 STAR 的嵌合比对结果）和 CIRI（在 BWA 比对结果上扫描候选连接点）都围绕这一信号工作<a href="#fn29" class="footnote-ref" id="fnref29" role="doc-noteref"><sup>29</sup></a><a href="#fn30" class="footnote-ref" id="fnref30" role="doc-noteref"><sup>30</sup></a>。</p>
+<p>circRNA 由 mRNA 前体的反向剪接（back-splicing）产生：一个外显子的 3′ 端与另一个外显子的 5′ 端首尾相连成环。来自连接点的 read 在参考基因组上找不到连续的对应位置——它两端对应的序列在基因组上并不相邻，这正是鉴定 circRNA 的特征信号。常用鉴定工具如 find_circ（利用 STAR 的嵌合比对结果）和 CIRI（在 BWA 比对结果上扫描候选连接点）都围绕这一信号工作<a href="#fn30" class="footnote-ref" id="fnref30" role="doc-noteref"><sup>30</sup></a><a href="#fn31" class="footnote-ref" id="fnref31" role="doc-noteref"><sup>31</sup></a>。</p>
 <div id="fig-06-rna-seq-007" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-06-rna-seq-007-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
@@ -2763,7 +2764,7 @@ hsa-miR-6090    5.80658 4.459086667
 <img src="../assets/06-rna-seq/cited/cerna-mechanism.jpg" class="img-fluid figure-img">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-06-rna-seq-008-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-图&nbsp;5.15: ceRNA 假说的机制：mRNA、lncRNA 与 circRNA 都带有 miRNA 应答元件（MRE），像海绵一样竞争结合同一批 miRNA；某个转录本把 miRNA”吸附”走之后，miRNA 对其他靶 mRNA 的降解与翻译抑制随之减弱（图片来自 Aria H 等 2024 年 Heliyon 综述图 1，CC BY 4.0，仅作教学示意<a href="#fn31" class="footnote-ref" id="fnref31" role="doc-noteref"><sup>31</sup></a>）
+图&nbsp;5.15: ceRNA 假说的机制：mRNA、lncRNA 与 circRNA 都带有 miRNA 应答元件（MRE），像海绵一样竞争结合同一批 miRNA；某个转录本把 miRNA”吸附”走之后，miRNA 对其他靶 mRNA 的降解与翻译抑制随之减弱（图片来自 Aria H 等 2024 年 Heliyon 综述图 1，CC BY 4.0，仅作教学示意<a href="#fn32" class="footnote-ref" id="fnref32" role="doc-noteref"><sup>32</sup></a>）
 </figcaption>
 </figure>
 </div>
@@ -2786,36 +2787,37 @@ hsa-miR-6090    5.80658 4.459086667
 <li id="fn5"><p>Will CL, Lührmann R. <a href="https://pubmed.ncbi.nlm.nih.gov/21441581/">Spliceosome structure and function</a>. Cold Spring Harbor Perspectives in Biology, 2011.<a href="#fnref5" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
 <li id="fn6"><p>Lee RC, Feinbaum RL, Ambros V. <a href="https://pubmed.ncbi.nlm.nih.gov/8252621/">The C. elegans heterochronic gene lin-4 encodes small RNAs with antisense complementarity to lin-14</a>. Cell, 1993.<a href="#fnref6" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
 <li id="fn7"><p>GFDL 许可原文见 <a href="https://commons.wikimedia.org/wiki/Commons:GNU_Free_Documentation_License">GNU Free Documentation License</a>（2026 年 10 月核对）。本章引用的外部图片均在图注注明出处，仅作教学示意，版权归原作者所有。<a href="#fnref7" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
-<li id="fn8"><p>Rinn JL, Chang HY. <a href="https://pubmed.ncbi.nlm.nih.gov/22655235/">Genome regulation by long noncoding RNAs</a>. Annual Review of Biochemistry, 2012.<a href="#fnref8" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
-<li id="fn9"><p>Wang KC, Chang HY. <a href="https://pubmed.ncbi.nlm.nih.gov/22164030/">Molecular mechanisms of long noncoding RNAs</a>. Molecular Cell, 2011（信号、诱饵、引导、支架四角色框架）。<a href="#fnref9" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
-<li id="fn10"><p>Jeck WR, Sharpless NE. <a href="https://pubmed.ncbi.nlm.nih.gov/25159020/">Detecting and characterizing circular RNAs</a>. Nature Biotechnology, 2014.<a href="#fnref10" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
-<li id="fn11"><p>Levin JZ 等. <a href="https://pubmed.ncbi.nlm.nih.gov/20920232/">Comparative analysis of RNA sequencing methods for degraded or low-input samples</a>. BMC Genomics, 2010（dUTP 等链特异性方法的系统比较）。<a href="#fnref11" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
-<li id="fn12"><p><a href="https://pubmed.ncbi.nlm.nih.gov/19261174/">Ultrafast and memory-efficient alignment of short DNA sequences to the human genome</a>. 2009.<a href="#fnref12" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
-<li id="fn13"><p>Heng Li、Richard Durbin. <a href="https://pubmed.ncbi.nlm.nih.gov/19451168/">Fast and accurate short read alignment with Burrows-Wheeler transform</a>. 2009.<a href="#fnref13" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
-<li id="fn14"><p><a href="https://pubmed.ncbi.nlm.nih.gov/19289445/">TopHat: discovering splice junctions with RNA-Seq</a>. 2009.<a href="#fnref14" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
-<li id="fn15"><p><a href="https://pubmed.ncbi.nlm.nih.gov/23618408/">TopHat2: accurate alignment of transcriptomes in the presence of insertions, deletions and gene fusions</a>. 2013.<a href="#fnref15" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
-<li id="fn16"><p>HISAT2 官方说明：<a href="https://daehwankimlab.github.io/hisat2/">HISAT2 is a successor to both HISAT and TopHat2</a>（2026 年 10 月核对）。<a href="#fnref16" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
-<li id="fn17"><p>Daehwan Kim 等. <a href="https://pubmed.ncbi.nlm.nih.gov/31375807/">Graph-based genome alignment and genotyping with HISAT2 and HISAT-genotype</a>. 2019.<a href="#fnref17" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
-<li id="fn18"><p>Alexander Dobin 等. <a href="https://pubmed.ncbi.nlm.nih.gov/23104886/">STAR: ultrafast universal RNA-seq aligner</a>. 2013.<a href="#fnref18" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
-<li id="fn19"><p>Conesa A 等. <a href="https://pubmed.ncbi.nlm.nih.gov/26813401/">A survey of best practices for RNA-seq data analysis</a>. Genome Biology, 2016（比对率等质控经验值的常用参考）。)<a href="#fnref19" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
-<li id="fn20"><p>Li B, Dewey CN. <a href="https://pubmed.ncbi.nlm.nih.gov/21816040/">RSEM: accurate transcript quantification from RNA-Seq data with or without a reference genome</a>. BMC Bioinformatics, 2011.<a href="#fnref20" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
-<li id="fn21"><p>HISAT2 官方说明：<a href="https://daehwankimlab.github.io/hisat2/">HISAT2 is a successor to both HISAT and TopHat2</a>（2026 年 10 月核对）。<a href="#fnref21" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
-<li id="fn22"><p>Cufflinks 项目仓库：<a href="https://github.com/cole-trapnell-lab/cufflinks">cole-trapnell-lab/cufflinks</a>，最后发布 v2.2.1（2014 年）。<a href="#fnref22" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
-<li id="fn23"><p>Manuel Garber 等. <a href="https://pubmed.ncbi.nlm.nih.gov/21623353/">Computational methods for transcriptome annotation and quantification using RNA-seq</a>. Nature Methods, 2011.<a href="#fnref23" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
-<li id="fn24"><p><a href="https://pubmed.ncbi.nlm.nih.gov/22872506/">Measurement of mRNA abundance using RNA-seq data: RPKM measure is inconsistent among samples</a>. 2012.<a href="#fnref24" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
-<li id="fn25"><p><a href="https://pubmed.ncbi.nlm.nih.gov/25516281/">Moderated estimation of fold change and dispersion for RNA-seq data with DESeq2</a>. 2014.<a href="#fnref25" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
-<li id="fn26"><p><a href="https://pubmed.ncbi.nlm.nih.gov/17728317/">Small-sample estimation of negative binomial dispersion, with applications to SAGE data</a>. 2008.<a href="#fnref26" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
-<li id="fn27"><p><a href="https://pubmed.ncbi.nlm.nih.gov/19910308/">edgeR: a Bioconductor package for differential expression analysis of digital gene expression data</a>. 2010.<a href="#fnref27" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
-<li id="fn28"><p><a href="https://pubmed.ncbi.nlm.nih.gov/24485249/">voom: Precision weights unlock linear model analysis tools for RNA-seq read counts</a>. 2014.<a href="#fnref28" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
-<li id="fn29"><p>Memczak S. 等. <a href="https://pubmed.ncbi.nlm.nih.gov/23446348/">Circular RNAs are a large class of animal RNAs with regulatory potency</a>. Nature, 2013.<a href="#fnref29" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
-<li id="fn30"><p>Gao Y. 等. <a href="https://pubmed.ncbi.nlm.nih.gov/25402085/">CIRI: an efficient and unbiased algorithm for de novo circular RNA identification</a>. Genome Biology, 2015.<a href="#fnref30" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
-<li id="fn31"><p>Aria H, Azizi M, Nazem S, et al.&nbsp;<a href="https://doi.org/10.1016/j.heliyon.2024.e35208">Competing endogenous RNAs regulatory crosstalk networks: The messages from the RNA world to signaling pathways directing cancer stem cell development</a>. <em>Heliyon</em>, 2024（图 1，CC BY 4.0 许可，2026 年 10 月核对）。<a href="#fnref31" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn8"><p>National Human Genome Research Institute. <a href="https://www.genome.gov/about-genomics/educational-resources/fact-sheets/ribonucleic-acid-fact-sheet">Ribonucleic Acid (RNA) Fact Sheet</a>，2024-05-24 更新，“Different cells with Different RNA”原始插图。<a href="https://www.genome.gov/about-nhgri/Policies-Guidance/Copyright">NHGRI 版权政策</a>规定，未另行注明的图文属于公共领域；本图保留原貌并注明来源，2026-10-11 核对。<a href="#fnref8" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn9"><p>Rinn JL, Chang HY. <a href="https://pubmed.ncbi.nlm.nih.gov/22655235/">Genome regulation by long noncoding RNAs</a>. Annual Review of Biochemistry, 2012.<a href="#fnref9" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn10"><p>Wang KC, Chang HY. <a href="https://pubmed.ncbi.nlm.nih.gov/22164030/">Molecular mechanisms of long noncoding RNAs</a>. Molecular Cell, 2011（信号、诱饵、引导、支架四角色框架）。<a href="#fnref10" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn11"><p>Jeck WR, Sharpless NE. <a href="https://pubmed.ncbi.nlm.nih.gov/25159020/">Detecting and characterizing circular RNAs</a>. Nature Biotechnology, 2014.<a href="#fnref11" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn12"><p>Levin JZ 等. <a href="https://pubmed.ncbi.nlm.nih.gov/20920232/">Comparative analysis of RNA sequencing methods for degraded or low-input samples</a>. BMC Genomics, 2010（dUTP 等链特异性方法的系统比较）。<a href="#fnref12" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn13"><p><a href="https://pubmed.ncbi.nlm.nih.gov/19261174/">Ultrafast and memory-efficient alignment of short DNA sequences to the human genome</a>. 2009.<a href="#fnref13" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn14"><p>Heng Li、Richard Durbin. <a href="https://pubmed.ncbi.nlm.nih.gov/19451168/">Fast and accurate short read alignment with Burrows-Wheeler transform</a>. 2009.<a href="#fnref14" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn15"><p><a href="https://pubmed.ncbi.nlm.nih.gov/19289445/">TopHat: discovering splice junctions with RNA-Seq</a>. 2009.<a href="#fnref15" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn16"><p><a href="https://pubmed.ncbi.nlm.nih.gov/23618408/">TopHat2: accurate alignment of transcriptomes in the presence of insertions, deletions and gene fusions</a>. 2013.<a href="#fnref16" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn17"><p>HISAT2 官方说明：<a href="https://daehwankimlab.github.io/hisat2/">HISAT2 is a successor to both HISAT and TopHat2</a>（2026 年 10 月核对）。<a href="#fnref17" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn18"><p>Daehwan Kim 等. <a href="https://pubmed.ncbi.nlm.nih.gov/31375807/">Graph-based genome alignment and genotyping with HISAT2 and HISAT-genotype</a>. 2019.<a href="#fnref18" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn19"><p>Alexander Dobin 等. <a href="https://pubmed.ncbi.nlm.nih.gov/23104886/">STAR: ultrafast universal RNA-seq aligner</a>. 2013.<a href="#fnref19" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn20"><p>Conesa A 等. <a href="https://pubmed.ncbi.nlm.nih.gov/26813401/">A survey of best practices for RNA-seq data analysis</a>. Genome Biology, 2016（比对率等质控经验值的常用参考）。)<a href="#fnref20" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn21"><p>Li B, Dewey CN. <a href="https://pubmed.ncbi.nlm.nih.gov/21816040/">RSEM: accurate transcript quantification from RNA-Seq data with or without a reference genome</a>. BMC Bioinformatics, 2011.<a href="#fnref21" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn22"><p>HISAT2 官方说明：<a href="https://daehwankimlab.github.io/hisat2/">HISAT2 is a successor to both HISAT and TopHat2</a>（2026 年 10 月核对）。<a href="#fnref22" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn23"><p>Cufflinks 项目仓库：<a href="https://github.com/cole-trapnell-lab/cufflinks">cole-trapnell-lab/cufflinks</a>，最后发布 v2.2.1（2014 年）。<a href="#fnref23" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn24"><p>Manuel Garber 等. <a href="https://pubmed.ncbi.nlm.nih.gov/21623353/">Computational methods for transcriptome annotation and quantification using RNA-seq</a>. Nature Methods, 2011.<a href="#fnref24" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn25"><p><a href="https://pubmed.ncbi.nlm.nih.gov/22872506/">Measurement of mRNA abundance using RNA-seq data: RPKM measure is inconsistent among samples</a>. 2012.<a href="#fnref25" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn26"><p><a href="https://pubmed.ncbi.nlm.nih.gov/25516281/">Moderated estimation of fold change and dispersion for RNA-seq data with DESeq2</a>. 2014.<a href="#fnref26" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn27"><p><a href="https://pubmed.ncbi.nlm.nih.gov/17728317/">Small-sample estimation of negative binomial dispersion, with applications to SAGE data</a>. 2008.<a href="#fnref27" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn28"><p><a href="https://pubmed.ncbi.nlm.nih.gov/19910308/">edgeR: a Bioconductor package for differential expression analysis of digital gene expression data</a>. 2010.<a href="#fnref28" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn29"><p><a href="https://pubmed.ncbi.nlm.nih.gov/24485249/">voom: Precision weights unlock linear model analysis tools for RNA-seq read counts</a>. 2014.<a href="#fnref29" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn30"><p>Memczak S. 等. <a href="https://pubmed.ncbi.nlm.nih.gov/23446348/">Circular RNAs are a large class of animal RNAs with regulatory potency</a>. Nature, 2013.<a href="#fnref30" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn31"><p>Gao Y. 等. <a href="https://pubmed.ncbi.nlm.nih.gov/25402085/">CIRI: an efficient and unbiased algorithm for de novo circular RNA identification</a>. Genome Biology, 2015.<a href="#fnref31" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn32"><p>Aria H, Azizi M, Nazem S, et al.&nbsp;<a href="https://doi.org/10.1016/j.heliyon.2024.e35208">Competing endogenous RNAs regulatory crosstalk networks: The messages from the RNA world to signaling pathways directing cancer stem cell development</a>. <em>Heliyon</em>, 2024（图 1，CC BY 4.0 许可，2026 年 10 月核对）。<a href="#fnref32" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
 </ol>
 </section>
 
 </main> <!-- /main -->
 <div class="book-toolbar" role="navigation" aria-label="阅读工具">
-  <div class="book-brand"><span class="book-brand-name">AI时代生信入门</span><time class="book-last-modified" datetime="2026-10-11T16:51:49+08:00" title="最后修改时间（北京时间，UTC+08:00）">最后修改 2026-10-11 16:51</time></div>
+  <div class="book-brand"><span class="book-brand-name">AI时代生信入门</span><time class="book-last-modified" datetime="2026-10-11T17:31:04+08:00" title="最后修改时间（北京时间，UTC+08:00）">最后修改 2026-10-11 17:31</time></div>
   <button class="book-menu-button" type="button" aria-controls="quarto-sidebar" aria-expanded="false">目录</button>
   <button class="book-search-button" type="button">搜索</button>
 </div>

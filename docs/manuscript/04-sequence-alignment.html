@@ -921,7 +921,7 @@ window.Quarto = {
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
 <h1 class="title"><span id="sec-ch04" class="quarto-section-identifier"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">测序结果的比对</span></span></h1>
-<p class="chapter-last-modified"><time datetime="2026-10-11T16:45:35+08:00" title="本章书稿最后修改时间（北京时间，UTC+08:00）">最后修改：2026-10-11 16:45（北京时间）</time></p>
+<p class="chapter-last-modified"><time datetime="2026-10-11T17:31:04+08:00" title="本章书稿最后修改时间（北京时间，UTC+08:00）">最后修改：2026-10-11 17:31（北京时间）</time></p>
 </div>
 
 
@@ -951,7 +951,7 @@ window.Quarto = {
 <img src="../assets/04-quality-control-and-alignment/svg/fastq-to-sam-pipeline.svg" class="img-fluid figure-img">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-a-questions-16-20-001-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-图&nbsp;4.1: 从 FASTQ 出发到生成 SAM 的技术路线
+图&nbsp;4.1: 从 FASTQ 经质控和比对生成 SAM，再转换为排序并建立索引的 BAM
 </figcaption>
 </figure>
 </div>
@@ -1522,7 +1522,7 @@ chr1    hg19_ncbiRefSeq exon    67091530    67091593    0.000000    +   .   gene
 <img src="../assets/04-quality-control-and-alignment/svg/pairwise-01-scoring-matrix.svg" class="img-fluid figure-img">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-a-questions-11-15-005-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-图&nbsp;4.15: 双序列比对示例使用的打分矩阵：match 得 5 分，mismatch 扣 4 分，空位罚分 d=-5
+图&nbsp;4.15: 双序列比对的评分规则：相同碱基得 5 分，不同碱基扣 4 分，每个空位扣 5 分
 </figcaption>
 </figure>
 </div>
@@ -1532,11 +1532,11 @@ chr1    hg19_ncbiRefSeq exon    67091530    67091593    0.000000    +   .   gene
 <img src="../assets/04-quality-control-and-alignment/svg/pairwise-02-empty-grid.svg" class="img-fluid figure-img">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-a-questions-11-15-006-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-图&nbsp;4.16: 待填写的双序列比对动态规划表格：列为 seq2（A、G、C、T），行为 seq1（A、A、G、T）
+图&nbsp;4.16: 待填写的动态规划表：列为 seq2（AGCT），行为 seq1（AAGT）；灰格按全局比对初始化，练习局部比对时先将灰格改为 0
 </figcaption>
 </figure>
 </div>
-<p><strong>Needleman-Wunsch（全局比对）</strong>：从左上角出发，第 0 行第 0 列按空位数初始化（0、-5、-10……），其余每格取“对角线+匹配得分、上方-空位罚分、左方-空位罚分”三者最大值，右下角的值就是全局最优得分。填表结果见 <a href="#fig-a-questions-11-15-007" class="quarto-xref">图&nbsp;<span>4.17</span></a> ：最优得分 5，回溯路径（图中箭头）给出最优比对。本例并列两个最优结果（得分都是 5）：</p>
+<p><strong>Needleman-Wunsch（全局比对）</strong>：从左上角出发，第 0 行第 0 列按空位数初始化（0、-5、-10……），其余每格取“对角线+匹配得分、上方−5、左方−5”三者最大值，右下角的值就是全局最优得分。填表结果见 <a href="#fig-a-questions-11-15-007" class="quarto-xref">图&nbsp;<span>4.17</span></a> ：最优得分 5，回溯路径（图中箭头）给出最优比对。本例并列两个最优结果（得分都是 5）：</p>
 <pre data-code-text="&quot;A A G - T        A A G - T\n- A G C T        A - G C T&quot;" class="text" data-book-role="data"><code>A A G - T        A A G - T
 - A G C T        A - G C T</code></pre>
 <div id="fig-a-questions-11-15-007" class="quarto-float quarto-figure quarto-figure-center anchored">
@@ -1545,7 +1545,7 @@ chr1    hg19_ncbiRefSeq exon    67091530    67091593    0.000000    +   .   gene
 <img src="../assets/04-quality-control-and-alignment/svg/pairwise-03-nw-matrix.svg" class="img-fluid figure-img">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-a-questions-11-15-007-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-图&nbsp;4.17: Needleman-Wunsch 全局比对填表结果：每格小箭头标出取值来源（对角/上/左），加粗格为回溯路径，右下角最优得分 5
+图&nbsp;4.17: Needleman–Wunsch 全局比对：灰色小箭头为取值来源，绿色连线为回溯；A、B 两种最优比对均为 5 分，B 独有的回溯段用虚线表示
 </figcaption>
 </figure>
 </div>
@@ -1558,7 +1558,7 @@ A G              A G C T</code></pre>
 <img src="../assets/04-quality-control-and-alignment/svg/pairwise-04-sw-matrix.svg" class="img-fluid figure-img">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-a-questions-11-15-009-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-图&nbsp;4.18: Smith-Waterman 局部比对填表结果：记 0 的格子无来源箭头，两个最高分 10（加框）分别回溯得到两个最优局部比对
+图&nbsp;4.18: Smith–Waterman 局部比对：从两个加框的 10 分格分别回溯，遇到 0 停止；A、B 共用段为实线，B 独有段为虚线，零分格没有来源箭头
 </figcaption>
 </figure>
 </div>
@@ -2724,7 +2724,7 @@ H(X) = I(n)\times4^{\,n-1} + I(n-1)\times4^{\,n-2} + \cdots + I(1)\times4^0
 </figcaption>
 </figure>
 </div>
-<p><strong>参考解答</strong>：该 read 对中下游 read 起点为 11123，上游 read 起点为 10946、read 长 145bp，覆盖区总长 <span class="math inline">\(11123-10946+145=322\)</span>；下游 read 的 TLEN 取负值：</p>
+<p><strong>参考解答</strong>：第 20 行记录的下游 read 起点为 11123，CIGAR 为 <code>145M</code>，因此最后一个比对碱基的坐标为 <span class="math inline">\(11123+145-1=11267\)</span>。其 mate 的起点为 10946；按 SAM 的 1-based 闭区间计算，外侧跨度为 <span class="math inline">\(11267-10946+1=322\)</span>。等价地可写为 <span class="math inline">\(11123-10946+145=322\)</span>；下游 read 的 TLEN 取负值：</p>
 <p><span id="eq-tlen-example" class="book-equation"><span class="equation-scroll" tabindex="0" role="region" aria-label="公式 4.5"><span class="math display">\[
 -(11123-10946+145)=-322
 \]</span></span><a class="equation-label" href="#eq-tlen-example" aria-label="公式（4.5）">(4.5)</a></span></p>
@@ -2735,7 +2735,7 @@ H(X) = I(n)\times4^{\,n-1} + I(n-1)\times4^{\,n-2} + \cdots + I(1)\times4^0
 <img src="../assets/04-quality-control-and-alignment/svg/tlen-calculation.svg" class="img-fluid figure-img">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-a-questions-16-20-014-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-图&nbsp;4.58: TLEN 的计算示意：上游 read 从 10946 起、长 145bp，下游 read 从 11123 起；覆盖跨度为 322，上游 read 的 TLEN 取 +322、下游取 −322
+图&nbsp;4.58: TLEN 的 IGV 风格示意：左端起点 10946，右端 read 从 11123 起、CIGAR 为 145M，终点 11267；外侧跨度 322 bp，左端 TLEN 为 +322，右端为 −322。左端 read 长度仅作示意
 </figcaption>
 </figure>
 </div>
@@ -3422,13 +3422,14 @@ d\approx 1-\frac{\lambda N}{M}
 <div id="fig-04-quality-control-and-alignment-041" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-04-quality-control-and-alignment-041-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="../assets/04-quality-control-and-alignment/041-gatk4-pipeline-remove-duplicates-1.png" class="img-fluid figure-img">
+<img src="../assets/04-quality-control-and-alignment/svg/pcr-duplicate-pileup.svg" class="img-fluid figure-img">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-04-quality-control-and-alignment-041-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-图&nbsp;4.70: GATK 流程中关于去重复必要性的说明
+图&nbsp;4.70: PCR 重复会抬高表观覆盖：上图中的 6 对同端点 reads 设定为同一个原始片段的 PCR 拷贝；下图标记并过滤重复后保留 1 份。两图使用相同坐标与覆盖度刻度（自绘 IGV 风格示意）
 </figcaption>
 </figure>
 </div>
+<p>图中成组的 reads 左右端点一致，提供了识别重复的线索；这些拷贝增加了测序条数，却没有增加独立原始片段数。实际数据中，仅凭堆叠外观不能确定重复来自 PCR，还需要结合建库方式和重复标记结果。Picard 的 MarkDuplicates 默认在 BAM 中标记重复；图中下半部分展示的是随后过滤这些标记后的视图。<a href="#fn8" class="footnote-ref" id="fnref8" role="doc-noteref"><sup>8</sup></a></p>
 <div class="book-example callout callout-style-default callout-tip callout-titled" title="示例与练习｜什么情况该去 duplicate，什么情况不该？">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -3583,12 +3584,13 @@ d\approx 1-\frac{\lambda N}{M}
 <li id="fn5"><p>Mohammed Alser、Jeremy Rotman、Dhrithi Deshpande、Kayla Taylor、Sriram P Chockalingam、Onur Mutlu. <a href="https://doi.org/10.1186/s13059-020-02160-9">Technology dictates algorithms: recent developments in read alignment</a>. Genome Biology, 2020.<a href="#fnref5" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
 <li id="fn6"><p>D R Bentley 等. <a href="https://doi.org/10.1038/nature07517">Accurate whole human genome sequencing using reversible terminator chemistry</a>. Nature, 2008. 实测方差约为泊松分布 2.26 倍的结论出自该文。<a href="#fnref6" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
 <li id="fn7"><p>Yufeng Shen 等. <a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC2555370/">A SNP discovery method to assess variant allele probability from next-generation resequencing data</a>. Genome Research, 2008.（原稿将出处误记为 Nature 2008，已按论文实际发表信息更正。）<a href="#fnref7" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn8"><p>Broad Institute. <a href="https://gatk.broadinstitute.org/hc/en-us/articles/360057439771-MarkDuplicates-Picard">MarkDuplicates (Picard) 官方说明</a>：识别并标记 PCR 或测序过程产生的重复，默认标记而非删除。本图为说明原理构造的 read pairs，不是实际 IGV 截图。<a href="#fnref8" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
 </ol>
 </section>
 
 </main> <!-- /main -->
 <div class="book-toolbar" role="navigation" aria-label="阅读工具">
-  <div class="book-brand"><span class="book-brand-name">AI时代生信入门</span><time class="book-last-modified" datetime="2026-10-11T16:51:49+08:00" title="最后修改时间（北京时间，UTC+08:00）">最后修改 2026-10-11 16:51</time></div>
+  <div class="book-brand"><span class="book-brand-name">AI时代生信入门</span><time class="book-last-modified" datetime="2026-10-11T17:31:04+08:00" title="最后修改时间（北京时间，UTC+08:00）">最后修改 2026-10-11 17:31</time></div>
   <button class="book-menu-button" type="button" aria-controls="quarto-sidebar" aria-expanded="false">目录</button>
   <button class="book-search-button" type="button">搜索</button>
 </div>

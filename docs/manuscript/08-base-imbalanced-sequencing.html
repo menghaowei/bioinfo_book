@@ -921,7 +921,7 @@ window.Quarto = {
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
 <h1 class="title"><span id="sec-ch08" class="quarto-section-identifier"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">碱基不平衡测序数据的分析</span></span></h1>
-<p class="chapter-last-modified"><time datetime="2026-10-11T16:15:14+08:00" title="本章书稿最后修改时间（北京时间，UTC+08:00）">最后修改：2026-10-11 16:15（北京时间）</time></p>
+<p class="chapter-last-modified"><time datetime="2026-10-11T17:31:04+08:00" title="本章书稿最后修改时间（北京时间，UTC+08:00）">最后修改：2026-10-11 17:31（北京时间）</time></p>
 </div>
 
 
@@ -1160,14 +1160,15 @@ window.Quarto = {
 </section>
 <section id="sec-08-02-chemistry-in-reads" class="level3">
 <h3 class="anchored" data-anchor-id="sec-08-02-chemistry-in-reads">转化如何写进 reads：质控时看什么</h3>
-<p><a href="#fig-08-bisulfite-conversion-principle" class="quarto-xref">图&nbsp;<span>8.5</span></a> 把 8.1 的化学放进了数据形态：未甲基化 C 在 reads 里变成 T，5mC 仍是 C。把它推到全基因组尺度——小鼠基因组约 20% 的碱基是 C，其中绝大多数未甲基化——BS-seq 的 reads 相对参考基因组带有<strong>成串的系统性 C→T 错配</strong>，reads 自身的碱基组成也严重偏向 A/T。</p>
+<p>先看参考基因组上的一个 C 位点（<a href="#fig-08-bisulfite-conversion-principle" class="quarto-xref">图&nbsp;<span>8.5</span></a>）：原始 DNA 中未甲基化的 C 经亚硫酸盐处理变为 U，PCR 与测序后读作 T；5mC 在处理后保留，测序仍读作 C。参考序列只记录这个位置是 C，不记录甲基化状态，因此将 reads 对齐后，可以通过该位点读到的 C 和 T 计数来估计甲基化比例。图中 5 条有效覆盖来自不同原始分子，其中 3 条读 C、2 条读 T，比例估计为 <span class="math inline">\(3/(3+2)=60\%\)</span>；它的统计不确定性将在 8.3 讨论。</p>
+<p>把它推到全基因组尺度——小鼠基因组约 20% 的碱基是 C，其中绝大多数未甲基化——BS-seq 的 reads 相对参考基因组带有<strong>成串的系统性 C→T 错配</strong>，reads 自身的碱基组成也严重偏向 A/T。</p>
 <div id="fig-08-bisulfite-conversion-principle" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-08-bisulfite-conversion-principle-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <img src="../assets/09-base-imbalanced-sequencing/bisulfite-conversion-principle.svg" class="img-fluid figure-img">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-08-bisulfite-conversion-principle-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-图&nbsp;8.5: 亚硫酸盐转化原理：上，未甲基化 C 脱氨为 U、5mC 保留；下，PCR 与测序后 reads 相对参考出现系统性 C→T 错配，错配本身就是甲基化信息（自绘示意图）
+图&nbsp;8.5: 亚硫酸盐处理如何进入测序读数：未甲基化 C 经 U 读作 T，5mC 仍读作 C；下方展示同一参考位点的 C/T 计数。示意假设转化完全、忽略测序错误，仅展示正链；常规 BS-seq 的 C 信号也包含 5hmC（自绘示意图）
 </figcaption>
 </figure>
 </div>
@@ -1348,14 +1349,15 @@ C methylated in CHH context:     5.2%</code></pre>
 <h3 class="anchored" data-anchor-id="sec-08-03-coverage">从 coverage 到可信位点：比例与置信区间</h3>
 <p>无论数据来自我们自己的 bismark 链（<code>bismark.cov</code>）还是论文处理表，一个甲基化位点的原始信息都只有两个数：覆盖 reads 数 <span class="math inline">\(N\)</span> 与其中读作”甲基化 C”的条数 <span class="math inline">\(X\)</span>。位点比例的估计就是：</p>
 <p><span id="eq-08-methy-ratio" class="book-equation"><span class="equation-scroll" tabindex="0" role="region" aria-label="公式 8.1"><span class="math display">\[\hat{p} = \frac{X}{N} \]</span></span><a class="equation-label" href="#eq-08-methy-ratio" aria-label="公式（8.1）">(8.1)</a></span></p>
-<p>但 <span class="math inline">\(\hat{p}=0\)</span> 在 <span class="math inline">\(N=5\)</span> 与 <span class="math inline">\(N=50\)</span> 时含义完全不同。给比例配上置信区间，最直接的模型是把每条 read 当作一次伯努利试验，<span class="math inline">\(X \sim \mathrm{Binomial}(N, p)\)</span>，用精确法（Clopper–Pearson）或正态近似得到 <span class="math inline">\(p\)</span> 的区间估计。<a href="#fig-08-binom-ci" class="quarto-xref">图&nbsp;<span>8.8</span></a> 画出不同覆盖下 95% 置信区间的宽度：<span class="math inline">\(N=5\)</span>、<span class="math inline">\(X=0\)</span> 时，区间是 <span class="math inline">\([0, 0.45]\)</span>——“未甲基化”三个字根本站不住；<span class="math inline">\(N=30\)</span>、<span class="math inline">\(X=0\)</span> 才能收到 <span class="math inline">\([0, 0.10]\)</span> 左右；而 <span class="math inline">\(X/N=3/5\)</span> 与 <span class="math inline">\(X/N=30/50\)</span> 同为 60%，前者的区间宽得几乎不含信息。</p>
+<p>同样的比例估计，背后的覆盖条数可以差很多。把去重并避免双端重叠重复计数后的有效观测近似看作独立伯努利试验，<span class="math inline">\(X \sim \mathrm{Binomial}(N,p)\)</span>，就可以用 Clopper–Pearson 精确法计算双侧 95% 置信区间。读 <a href="#fig-08-binom-ci" class="quarto-xref">图&nbsp;<span>8.8</span></a> 时，先看每行的 C 计数与覆盖条数，再看圆点和横线：圆点是观察到的比例，横线是置信区间。</p>
+<p>A 图中，<span class="math inline">\(3/5\)</span>、<span class="math inline">\(30/50\)</span>、<span class="math inline">\(300/500\)</span> 都等于 60%，但区间分别约为 14.7%–94.7%、45.2%–73.6%、55.6%–64.3%。覆盖越高，抽样不确定性越小，估计越精确。B 图则说明为什么“没有观察到 C”不等于“真实比例确定为零”：<span class="math inline">\(0/5\)</span> 的区间仍为 0%–52.2%，<span class="math inline">\(0/30\)</span> 的区间为 0%–11.6%。这些区间只描述二项抽样的不确定性，不包含转化误差或生物学重复之间的差异。</p>
 <div id="fig-08-binom-ci" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-08-binom-ci-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="../assets/09-base-imbalanced-sequencing/binom-ci-demo.png" class="img-fluid figure-img">
+<img src="../assets/09-base-imbalanced-sequencing/binom-ci-demo.png" class="img-fluid figure-img" width="600">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-08-binom-ci-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-图&nbsp;8.8: 不同覆盖深度下二项比例的 95% 置信区间（Clopper–Pearson）：同样的比例估计，覆盖越低区间越宽；低覆盖位点的”比例”接近噪声（自绘计算图）
+图&nbsp;8.8: 覆盖深度与比例估计的精确度：A，同为 60% 的估计，覆盖增加时双侧 95% Clopper–Pearson 区间变窄；B，观察到零条 C 时，区间上限仍可明显大于零。圆点表示比例估计，横线表示置信区间（自绘计算图）
 </figcaption>
 </figure>
 </div>
@@ -1950,7 +1952,7 @@ MNT    chr17:2386699 (−)   0.591  0.682   0.127   0.119   3e-09</code></pre>
 
 </main> <!-- /main -->
 <div class="book-toolbar" role="navigation" aria-label="阅读工具">
-  <div class="book-brand"><span class="book-brand-name">AI时代生信入门</span><time class="book-last-modified" datetime="2026-10-11T16:51:49+08:00" title="最后修改时间（北京时间，UTC+08:00）">最后修改 2026-10-11 16:51</time></div>
+  <div class="book-brand"><span class="book-brand-name">AI时代生信入门</span><time class="book-last-modified" datetime="2026-10-11T17:31:04+08:00" title="最后修改时间（北京时间，UTC+08:00）">最后修改 2026-10-11 17:31</time></div>
   <button class="book-menu-button" type="button" aria-controls="quarto-sidebar" aria-expanded="false">目录</button>
   <button class="book-search-button" type="button">搜索</button>
 </div>
