@@ -1,58 +1,56 @@
-<svg xmlns='http://www.w3.org/2000/svg' width='880' height='460' viewBox='0 0 880 460' role='img' aria-labelledby='t d'>
+<svg xmlns='http://www.w3.org/2000/svg' width='640' height='1210' viewBox='0 0 640 1210' role='img' aria-labelledby='t d'>
 <title id='t'>DNA 小变异分析的前处理流程</title>
-<desc id='d'>从 FASTQ 到分析就绪 BAM 的六个步骤，每步给出输出与目的；下方标注各步的检查点。BQSR 之后进入变异检测。</desc>
-<rect x='24' y='64' width='256' height='92' rx='6' fill='none' stroke='#186254' stroke-width='1.2'/>
-<text x='152.0' y='105.18' font-family="'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size='13' fill='#333333' font-weight='bold' text-anchor='middle'>① 原始质控</text>
-<text x='152.0' y='124.18' font-family="'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size='13' fill='#333333' font-weight='bold' text-anchor='middle'>与过滤</text>
-<text x='152.0' y='176' font-family="'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size='12' fill='#186254' font-weight='bold' text-anchor='middle'>FASTQ</text>
-<text x='152.0' y='196' font-family="'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size='12' fill='#6b7280' font-weight='normal' text-anchor='middle'>去接头、去低质量末端</text>
-<text x='152.0' y='214' font-family="'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size='12' fill='#6b7280' font-weight='normal' text-anchor='middle'>fastp / cutadapt</text>
-<text x='152.0' y='240' font-family="'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size='12' fill='#b45309' font-weight='normal' text-anchor='middle'>检查：保留率、Q30 比例（FastQC/MultiQC）</text>
-<rect x='320' y='64' width='256' height='92' rx='6' fill='none' stroke='#186254' stroke-width='1.2'/>
-<text x='448.0' y='114.68' font-family="'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size='13' fill='#333333' font-weight='bold' text-anchor='middle'>② 比对</text>
-<text x='448.0' y='176' font-family="'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size='12' fill='#186254' font-weight='bold' text-anchor='middle'>SAM/BAM</text>
-<text x='448.0' y='196' font-family="'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size='12' fill='#6b7280' font-weight='normal' text-anchor='middle'>reads 定位到参考基因组</text>
-<text x='448.0' y='214' font-family="'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size='12' fill='#6b7280' font-weight='normal' text-anchor='middle'>bwa mem（写入 @RG）</text>
-<text x='448.0' y='240' font-family="'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size='12' fill='#b45309' font-weight='normal' text-anchor='middle'>检查：比对率、@RG 是否完整</text>
-<rect x='616' y='64' width='256' height='92' rx='6' fill='none' stroke='#186254' stroke-width='1.2'/>
-<text x='744.0' y='114.68' font-family="'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size='13' fill='#333333' font-weight='bold' text-anchor='middle'>③ 排序</text>
-<text x='744.0' y='176' font-family="'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size='12' fill='#186254' font-weight='bold' text-anchor='middle'>BAM（按坐标）</text>
-<text x='744.0' y='196' font-family="'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size='12' fill='#6b7280' font-weight='normal' text-anchor='middle'>按基因组位置排列</text>
-<text x='744.0' y='214' font-family="'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size='12' fill='#6b7280' font-weight='normal' text-anchor='middle'>samtools sort</text>
-<text x='744.0' y='240' font-family="'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size='12' fill='#b45309' font-weight='normal' text-anchor='middle'>检查：索引可用、坐标有序</text>
-<rect x='616' y='248' width='256' height='92' rx='6' fill='none' stroke='#186254' stroke-width='1.2'/>
-<text x='744.0' y='298.68' font-family="'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size='13' fill='#333333' font-weight='bold' text-anchor='middle'>④ 标记重复</text>
-<text x='744.0' y='360' font-family="'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size='12' fill='#186254' font-weight='bold' text-anchor='middle'>BAM（带 FLAG 标记）</text>
-<text x='744.0' y='380' font-family="'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size='12' fill='#6b7280' font-weight='normal' text-anchor='middle'>PCR 重复不算独立证据</text>
-<text x='744.0' y='398' font-family="'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size='12' fill='#6b7280' font-weight='normal' text-anchor='middle'>MarkDuplicates</text>
-<text x='744.0' y='424' font-family="'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size='12' fill='#b45309' font-weight='normal' text-anchor='middle'>检查：重复率是否异常升高</text>
-<rect x='320' y='248' width='256' height='92' rx='6' fill='none' stroke='#186254' stroke-width='1.2'/>
-<text x='448.0' y='298.68' font-family="'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size='13' fill='#333333' font-weight='bold' text-anchor='middle'>⑤ 碱基质量校正</text>
-<text x='448.0' y='360' font-family="'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size='12' fill='#186254' font-weight='bold' text-anchor='middle'>recal BAM</text>
-<text x='448.0' y='380' font-family="'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size='12' fill='#6b7280' font-weight='normal' text-anchor='middle'>校准质量值系统偏差</text>
-<text x='448.0' y='398' font-family="'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size='12' fill='#6b7280' font-weight='normal' text-anchor='middle'>BaseRecalibrator + ApplyBQSR</text>
-<text x='448.0' y='424' font-family="'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size='12' fill='#b45309' font-weight='normal' text-anchor='middle'>检查：recal table 是否收敛</text>
-<rect x='24' y='248' width='256' height='92' rx='6' fill='#e8f4f1' stroke='#186254' stroke-width='1.2'/>
-<text x='152.0' y='289.18' font-family="'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size='13' fill='#333333' font-weight='bold' text-anchor='middle'>⑥ 分析就绪</text>
-<text x='152.0' y='308.18' font-family="'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size='13' fill='#333333' font-weight='bold' text-anchor='middle'>进入变异检测</text>
-<text x='152.0' y='360' font-family="'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size='12' fill='#186254' font-weight='bold' text-anchor='middle'>BAM + 质控指标</text>
-<text x='152.0' y='380' font-family="'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size='12' fill='#6b7280' font-weight='normal' text-anchor='middle'>比对率、重复率、深度分布</text>
-<text x='152.0' y='398' font-family="'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size='12' fill='#6b7280' font-weight='normal' text-anchor='middle'>全部达标后调用</text>
-<text x='152.0' y='424' font-family="'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size='12' fill='#b45309' font-weight='normal' text-anchor='middle'>检查：深度是否覆盖目标区域</text>
-<line x1='284' y1='110.0' x2='316' y2='110.0' stroke='#186254' stroke-width='2.0'/>
-<line x1='316.0' y1='110.0' x2='307.9' y2='106.1' stroke='#186254' stroke-width='2.0'/>
-<line x1='316.0' y1='110.0' x2='307.9' y2='113.9' stroke='#186254' stroke-width='2.0'/>
-<line x1='580' y1='110.0' x2='612' y2='110.0' stroke='#186254' stroke-width='2.0'/>
-<line x1='612.0' y1='110.0' x2='603.9' y2='106.1' stroke='#186254' stroke-width='2.0'/>
-<line x1='612.0' y1='110.0' x2='603.9' y2='113.9' stroke='#186254' stroke-width='2.0'/>
-<line x1='744.0' y1='244' x2='744.0' y2='242' stroke='#186254' stroke-width='2.0'/>
-<line x1='744.0' y1='242.0' x2='740.1' y2='250.1' stroke='#186254' stroke-width='2.0'/>
-<line x1='744.0' y1='242.0' x2='747.9' y2='250.1' stroke='#186254' stroke-width='2.0'/>
-<line x1='538' y1='294.0' x2='16' y2='294.0' stroke='#186254' stroke-width='2.0'/>
-<line x1='16.0' y1='294.0' x2='24.1' y2='297.9' stroke='#186254' stroke-width='2.0'/>
-<line x1='16.0' y1='294.0' x2='24.1' y2='290.1' stroke='#186254' stroke-width='2.0'/>
-<line x1='834' y1='294.0' x2='312' y2='294.0' stroke='#186254' stroke-width='2.0'/>
-<line x1='312.0' y1='294.0' x2='320.1' y2='297.9' stroke='#186254' stroke-width='2.0'/>
-<line x1='312.0' y1='294.0' x2='320.1' y2='290.1' stroke='#186254' stroke-width='2.0'/>
-<text x='24' y='32' font-family="ui-monospace, 'SFMono-Regular', Menlo, Consolas, 'Liberation Mono', monospace" font-size='15' fill='#186254' font-weight='bold' text-anchor='start'>每一步都在为变异检测整理证据：跳过或做错，错误会直接进入候选变异列表</text>
+<desc id='d'>从 FASTQ 到分析就绪 BAM 的六个步骤（竖版），每步给出输出与目的；右侧标注各步的检查点。BQSR 之后进入变异检测。</desc>
+<rect x='60' y='66' width='470' height='66' rx='6' fill='none' stroke='#186254' stroke-width='1.2'/>
+<text x='295.0' y='103.68' font-family="'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size='13' fill='#333333' font-weight='bold' text-anchor='middle'>① 原始质控与过滤</text>
+<text x='546' y='86' font-family="'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size='12' fill='#186254' font-weight='bold' text-anchor='start'>FASTQ</text>
+<text x='546' y='106' font-family="'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size='12' fill='#6b7280' font-weight='normal' text-anchor='start'>去接头、去低质量末端</text>
+<text x='546' y='122' font-family="'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size='12' fill='#6b7280' font-weight='normal' text-anchor='start'>fastp / cutadapt</text>
+<text x='70' y='148' font-family="'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size='12' fill='#b45309' font-weight='normal' text-anchor='start'>检查：保留率、Q30 比例（FastQC/MultiQC）</text>
+<line x1='295.0' y1='158' x2='295.0' y2='232' stroke='#186254' stroke-width='2.0'/>
+<line x1='295.0' y1='232.0' x2='298.9' y2='223.9' stroke='#186254' stroke-width='2.0'/>
+<line x1='295.0' y1='232.0' x2='291.1' y2='223.9' stroke='#186254' stroke-width='2.0'/>
+<rect x='60' y='250' width='470' height='66' rx='6' fill='none' stroke='#186254' stroke-width='1.2'/>
+<text x='295.0' y='287.68' font-family="'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size='13' fill='#333333' font-weight='bold' text-anchor='middle'>② 比对</text>
+<text x='546' y='270' font-family="'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size='12' fill='#186254' font-weight='bold' text-anchor='start'>SAM/BAM</text>
+<text x='546' y='290' font-family="'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size='12' fill='#6b7280' font-weight='normal' text-anchor='start'>reads 定位到参考基因组</text>
+<text x='546' y='306' font-family="'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size='12' fill='#6b7280' font-weight='normal' text-anchor='start'>bwa mem（写入 @RG）</text>
+<text x='70' y='332' font-family="'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size='12' fill='#b45309' font-weight='normal' text-anchor='start'>检查：比对率、@RG 是否完整</text>
+<line x1='295.0' y1='342' x2='295.0' y2='416' stroke='#186254' stroke-width='2.0'/>
+<line x1='295.0' y1='416.0' x2='298.9' y2='407.9' stroke='#186254' stroke-width='2.0'/>
+<line x1='295.0' y1='416.0' x2='291.1' y2='407.9' stroke='#186254' stroke-width='2.0'/>
+<rect x='60' y='434' width='470' height='66' rx='6' fill='none' stroke='#186254' stroke-width='1.2'/>
+<text x='295.0' y='471.68' font-family="'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size='13' fill='#333333' font-weight='bold' text-anchor='middle'>③ 排序</text>
+<text x='546' y='454' font-family="'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size='12' fill='#186254' font-weight='bold' text-anchor='start'>BAM（按坐标）</text>
+<text x='546' y='474' font-family="'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size='12' fill='#6b7280' font-weight='normal' text-anchor='start'>按基因组位置排列</text>
+<text x='546' y='490' font-family="'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size='12' fill='#6b7280' font-weight='normal' text-anchor='start'>samtools sort</text>
+<text x='70' y='516' font-family="'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size='12' fill='#b45309' font-weight='normal' text-anchor='start'>检查：索引可用、坐标有序</text>
+<line x1='295.0' y1='526' x2='295.0' y2='600' stroke='#186254' stroke-width='2.0'/>
+<line x1='295.0' y1='600.0' x2='298.9' y2='591.9' stroke='#186254' stroke-width='2.0'/>
+<line x1='295.0' y1='600.0' x2='291.1' y2='591.9' stroke='#186254' stroke-width='2.0'/>
+<rect x='60' y='618' width='470' height='66' rx='6' fill='none' stroke='#186254' stroke-width='1.2'/>
+<text x='295.0' y='655.68' font-family="'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size='13' fill='#333333' font-weight='bold' text-anchor='middle'>④ 标记重复</text>
+<text x='546' y='638' font-family="'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size='12' fill='#186254' font-weight='bold' text-anchor='start'>BAM（带 FLAG 标记）</text>
+<text x='546' y='658' font-family="'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size='12' fill='#6b7280' font-weight='normal' text-anchor='start'>PCR 重复不算独立证据</text>
+<text x='546' y='674' font-family="'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size='12' fill='#6b7280' font-weight='normal' text-anchor='start'>MarkDuplicates</text>
+<text x='70' y='700' font-family="'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size='12' fill='#b45309' font-weight='normal' text-anchor='start'>检查：重复率是否异常升高</text>
+<line x1='295.0' y1='710' x2='295.0' y2='784' stroke='#186254' stroke-width='2.0'/>
+<line x1='295.0' y1='784.0' x2='298.9' y2='775.9' stroke='#186254' stroke-width='2.0'/>
+<line x1='295.0' y1='784.0' x2='291.1' y2='775.9' stroke='#186254' stroke-width='2.0'/>
+<rect x='60' y='802' width='470' height='66' rx='6' fill='none' stroke='#186254' stroke-width='1.2'/>
+<text x='295.0' y='839.68' font-family="'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size='13' fill='#333333' font-weight='bold' text-anchor='middle'>⑤ 碱基质量校正</text>
+<text x='546' y='822' font-family="'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size='12' fill='#186254' font-weight='bold' text-anchor='start'>recal BAM</text>
+<text x='546' y='842' font-family="'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size='12' fill='#6b7280' font-weight='normal' text-anchor='start'>校准质量值系统偏差</text>
+<text x='546' y='858' font-family="'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size='12' fill='#6b7280' font-weight='normal' text-anchor='start'>BaseRecalibrator + ApplyBQSR</text>
+<text x='70' y='884' font-family="'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size='12' fill='#b45309' font-weight='normal' text-anchor='start'>检查：recal table 是否收敛</text>
+<line x1='295.0' y1='894' x2='295.0' y2='968' stroke='#186254' stroke-width='2.0'/>
+<line x1='295.0' y1='968.0' x2='298.9' y2='959.9' stroke='#186254' stroke-width='2.0'/>
+<line x1='295.0' y1='968.0' x2='291.1' y2='959.9' stroke='#186254' stroke-width='2.0'/>
+<rect x='60' y='986' width='470' height='66' rx='6' fill='#e8f4f1' stroke='#186254' stroke-width='1.2'/>
+<text x='295.0' y='1023.68' font-family="'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size='13' fill='#333333' font-weight='bold' text-anchor='middle'>⑥ 分析就绪，进入变异检测</text>
+<text x='546' y='1006' font-family="'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size='12' fill='#186254' font-weight='bold' text-anchor='start'>BAM + 质控指标</text>
+<text x='546' y='1026' font-family="'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size='12' fill='#6b7280' font-weight='normal' text-anchor='start'>比对率、重复率、深度分布</text>
+<text x='546' y='1042' font-family="'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size='12' fill='#6b7280' font-weight='normal' text-anchor='start'>全部达标后调用</text>
+<text x='70' y='1068' font-family="'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size='12' fill='#b45309' font-weight='normal' text-anchor='start'>检查：深度是否覆盖目标区域</text>
+<text x='60' y='36' font-family="ui-monospace, 'SFMono-Regular', Menlo, Consolas, 'Liberation Mono', monospace" font-size='15' fill='#186254' font-weight='bold' text-anchor='start'>每一步都在为变异检测整理证据：跳过或做错，错误会直接进入候选变异列表</text>
 </svg>
