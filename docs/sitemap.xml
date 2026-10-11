@@ -2,58 +2,58 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>https://book.bioinfo.info/index.html</loc>
-    <lastmod>2026-10-11T02:09:19.285Z</lastmod>
+    <lastmod>2026-10-11T01:59:22.602Z</lastmod>
   </url>
   <url>
     <loc>https://book.bioinfo.info/manuscript/01-ai-era-introduction.html</loc>
-    <lastmod>2026-10-11T02:09:19.285Z</lastmod>
+    <lastmod>2026-10-11T01:59:22.602Z</lastmod>
   </url>
   <url>
     <loc>https://book.bioinfo.info/manuscript/02-environment-and-programming.html</loc>
-    <lastmod>2026-10-11T02:09:19.287Z</lastmod>
+    <lastmod>2026-10-11T01:59:22.603Z</lastmod>
   </url>
   <url>
     <loc>https://book.bioinfo.info/manuscript/03-sequencing-technologies.html</loc>
-    <lastmod>2026-10-11T02:09:19.287Z</lastmod>
+    <lastmod>2026-10-11T01:59:22.604Z</lastmod>
   </url>
   <url>
     <loc>https://book.bioinfo.info/manuscript/04-sequence-alignment.html</loc>
-    <lastmod>2026-10-11T02:09:19.287Z</lastmod>
+    <lastmod>2026-10-11T01:59:22.605Z</lastmod>
   </url>
   <url>
     <loc>https://book.bioinfo.info/manuscript/05-rna-seq.html</loc>
-    <lastmod>2026-10-11T02:09:19.287Z</lastmod>
+    <lastmod>2026-10-11T02:11:42.770Z</lastmod>
   </url>
   <url>
     <loc>https://book.bioinfo.info/manuscript/06-chip-seq-and-atac-seq.html</loc>
-    <lastmod>2026-10-11T02:09:19.287Z</lastmod>
+    <lastmod>2026-10-11T01:59:22.606Z</lastmod>
   </url>
   <url>
     <loc>https://book.bioinfo.info/manuscript/07-wgs-and-wes.html</loc>
-    <lastmod>2026-10-11T02:09:19.288Z</lastmod>
+    <lastmod>2026-10-11T02:11:42.759Z</lastmod>
   </url>
   <url>
     <loc>https://book.bioinfo.info/manuscript/08-base-imbalanced-sequencing.html</loc>
-    <lastmod>2026-10-11T02:09:19.288Z</lastmod>
+    <lastmod>2026-10-11T01:59:22.607Z</lastmod>
   </url>
   <url>
     <loc>https://book.bioinfo.info/manuscript/09-single-cell-and-spatial-omics.html</loc>
-    <lastmod>2026-10-11T02:09:19.288Z</lastmod>
+    <lastmod>2026-10-11T01:59:22.608Z</lastmod>
   </url>
   <url>
     <loc>https://book.bioinfo.info/manuscript/10-snakemake-and-reproducibility.html</loc>
-    <lastmod>2026-10-11T02:09:19.288Z</lastmod>
+    <lastmod>2026-10-11T01:59:22.608Z</lastmod>
   </url>
   <url>
     <loc>https://book.bioinfo.info/manuscript/11-statistics-and-learning.html</loc>
-    <lastmod>2026-10-11T02:09:19.288Z</lastmod>
+    <lastmod>2026-10-11T01:59:22.608Z</lastmod>
   </url>
   <url>
     <loc>https://book.bioinfo.info/manuscript/12-ai-learning-and-practice.html</loc>
-    <lastmod>2026-10-11T02:09:19.288Z</lastmod>
+    <lastmod>2026-10-11T01:59:22.608Z</lastmod>
   </url>
   <url>
     <loc>https://book.bioinfo.info/appendices/a-references-and-materials.html</loc>
-    <lastmod>2026-10-11T02:09:18.737Z</lastmod>
+    <lastmod>2026-10-11T01:59:22.052Z</lastmod>
   </url>
 </urlset>
