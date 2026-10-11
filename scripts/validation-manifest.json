@@ -29,7 +29,7 @@
     },
     {
       "file": "manuscript/03-sequencing-technologies.md",
-      "title": "测序技术",
+      "title": "测序技术基础",
       "planned_sections": 10,
       "section_titles": [
         "不同测序实验究竟测到了什么",

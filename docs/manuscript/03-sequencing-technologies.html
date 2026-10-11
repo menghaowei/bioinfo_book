@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>3&nbsp; 测序技术 – 在AI时代写给每一位的生信入门书</title>
+<title>3&nbsp; 测序技术基础 – 在AI时代写给每一位的生信入门书</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -77,7 +77,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <link href="../site_libs/quarto-html/quarto-syntax-highlighting-795e9e8eca1e12b12abcb09a27409631.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../site_libs/bootstrap/bootstrap-327e94239d145e2ade4f4fd6ca7bdbfa.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-58d24092528a0c32a0041a323b33ed0c.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -148,7 +148,7 @@ window.Quarto = {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="展开或折叠侧边栏导航" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../manuscript/03-sequencing-technologies.html"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">测序技术</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../manuscript/03-sequencing-technologies.html"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">测序技术基础</span></a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="展开或折叠侧边栏导航" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="搜索" onclick="window.quartoOpenSearch();">
@@ -277,7 +277,7 @@ window.Quarto = {
 </li>
 <li>
 <details class="book-chapter" data-book-page="manuscript/03-sequencing-technologies.html" open data-current-chapter="true">
-<summary><a class="book-nav-link book-chapter-link no-external" href="03-sequencing-technologies.html" aria-current="page">3 测序技术</a></summary><ul class="book-sections">
+<summary><a class="book-nav-link book-chapter-link no-external" href="03-sequencing-technologies.html" aria-current="page">3 测序技术基础</a></summary><ul class="book-sections">
 <li>
 <div class="book-nav-leaf"><a class="book-nav-link book-section-link no-external" href="#chapter-summary-03" data-book-level="2" data-book-target="chapter-summary-03" id="book-nav-3-chapter-summary-03">本章提要</a></div>
 </li>
@@ -919,7 +919,7 @@ window.Quarto = {
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title"><span id="sec-ch03" class="quarto-section-identifier"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">测序技术</span></span></h1>
+<h1 class="title"><span id="sec-ch03" class="quarto-section-identifier"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">测序技术基础</span></span></h1>
 <p class="chapter-last-modified"><time datetime="2026-10-09T16:17:47+08:00" title="本章书稿最后修改时间（北京时间，UTC+08:00）">最后修改：2026-10-09 16:17（北京时间）</time></p>
 </div>
 
@@ -1518,7 +1518,7 @@ window.Quarto = {
 表&nbsp;3.4: ASCII 全表（0—127）与两种 Phred 质量编码的对照
 </figcaption>
 <div aria-describedby="tbl-03-ascii-phred-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<div class="book-table-scroll" role="region" aria-label="表格，可横向滚动" tabindex="0"><table class="caption-top table">
+<div class="book-table-scroll book-table-compact" role="region" aria-label="表格，可横向滚动" tabindex="0"><table class="caption-top table">
 <colgroup>
 <col style="width: 11%">
 <col style="width: 14%">
@@ -2265,24 +2265,14 @@ CCCACAGACTCAGAGAGAACCCACCATGGTGCTGTCTCCTGACGACAAGACCAACGTCAAGGCCGCCTGGGGTAAGGTCG
 <li>特定短序列（k-mer）的富集情况（Kmer Content）</li>
 </ol>
 <p>软件对每一项给出判定：绿色对勾代表 pass，黄色叹号代表 warn，红色叉代表 fail。<strong>判定只针对“随机文库”这一默认假设</strong>，评估为 warn 或 fail 不代表样品一定不能用，必须结合具体测序对象解读。</p>
-<div id="fig-04-quality-control-and-alignment-036" class="quarto-float quarto-figure quarto-figure-center anchored">
-<figure class="quarto-float quarto-float-fig figure">
-<div aria-describedby="fig-04-quality-control-and-alignment-036-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="../assets/04-quality-control-and-alignment/036-fastqc2.jpg" class="img-fluid figure-img">
-</div>
-<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-04-quality-control-and-alignment-036-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-图&nbsp;3.15: FastQC 对一个 RNA 测序样本的总览
-</figcaption>
-</figure>
-</div>
-<p>基本统计模块汇总文件类型、编码方式、总 read 数、GC 含量和序列长度等，能最快了解样本概况（ <a href="#fig-04-quality-control-and-alignment-037" class="quarto-xref">图&nbsp;<span>3.16</span></a> ）。</p>
+<p>基本统计模块汇总文件类型、编码方式、总 read 数、GC 含量和序列长度等，能最快了解样本概况（ <a href="#fig-04-quality-control-and-alignment-037" class="quarto-xref">图&nbsp;<span>3.15</span></a> ）。</p>
 <div id="fig-04-quality-control-and-alignment-037" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-04-quality-control-and-alignment-037-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <img src="../assets/04-quality-control-and-alignment/037-fastqc3.jpg" class="img-fluid figure-img">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-04-quality-control-and-alignment-037-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-图&nbsp;3.16: FastQC 对 RNA 测序样本基本信息统计
+图&nbsp;3.15: FastQC 对 RNA 测序样本基本信息统计
 </figcaption>
 </figure>
 </div>
@@ -2292,7 +2282,7 @@ CCCACAGACTCAGAGAGAACCCACCATGGTGCTGTCTCCTGACGACAAGACCAACGTCAAGGCCGCCTGGGGTAAGGTCG
 <img src="../assets/a-questions-06-10/003-7-0.jpg" class="img-fluid figure-img">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-a-questions-06-10-003-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-图&nbsp;3.17: FastQC 报告中重点关注的质控模块（红框标出）
+图&nbsp;3.16: FastQC 报告中重点关注的质控模块（红框标出）
 </figcaption>
 </figure>
 </div>
@@ -2300,26 +2290,26 @@ CCCACAGACTCAGAGAGAACCCACCATGGTGCTGTCTCCTGACGACAAGACCAACGTCAAGGCCGCCTGGGGTAAGGTCG
 <p>下面逐模块解读最常看的几张图。</p>
 <section id="question-06-7" class="level4">
 <h4 class="anchored" data-anchor-id="question-06-7">逐碱基序列质量（Per base sequence quality）</h4>
-<p>横轴是 read 中的位置（第 1 到第 150 个碱基），纵轴是每个位置所有碱基的质量值（ <a href="#fig-04-quality-control-and-alignment-034" class="quarto-xref">图&nbsp;<span>3.18</span></a> ）。每个位置画一个箱线图：上下横线分别是 90% 和 10% 分位数，箱体上下缘是 75% 和 25% 分位数，箱中横线是中位数；蓝色细线连接各位置的平均质量。分位数的直观解释：若一组数的 25% 分位数是 a，意味着 a 超过了这组数中 25% 的值。判读阈值：任一位置的下四分位数低于 10 或中位数低于 25 时评估为 warn；低于 5 或 20 时评估为 fail。</p>
+<p>横轴是 read 中的位置（第 1 到第 150 个碱基），纵轴是每个位置所有碱基的质量值（ <a href="#fig-04-quality-control-and-alignment-034" class="quarto-xref">图&nbsp;<span>3.17</span></a> ）。每个位置画一个箱线图：上下横线分别是 90% 和 10% 分位数，箱体上下缘是 75% 和 25% 分位数，箱中横线是中位数；蓝色细线连接各位置的平均质量。分位数的直观解释：若一组数的 25% 分位数是 a，意味着 a 超过了这组数中 25% 的值。判读阈值：任一位置的下四分位数低于 10 或中位数低于 25 时评估为 warn；低于 5 或 20 时评估为 fail。</p>
 <div id="fig-04-quality-control-and-alignment-034" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-04-quality-control-and-alignment-034-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <img src="../assets/04-quality-control-and-alignment/034-fastqc4.jpg" class="img-fluid figure-img">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-04-quality-control-and-alignment-034-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-图&nbsp;3.18: FastQC 对 RNA 测序样本的逐碱基质量
+图&nbsp;3.17: FastQC 对 RNA 测序样本的逐碱基质量
 </figcaption>
 </figure>
 </div>
 <p><span id="question-06-35"></span></p>
-<p>双端数据要把 R1 与 R2 分开看。下面的两张图来自同一次测序（ <a href="#fig-a-questions-06-10-001" class="quarto-xref">图&nbsp;<span>3.19</span></a> 与 <a href="#fig-a-questions-06-10-002" class="quarto-xref">图&nbsp;<span>3.20</span></a> ）：reads2 的质量均匀性明显差于 reads1。原因在本章 3.3 已经埋下伏笔——reads2 的测序是在 reads1 的 150bp 完成后，先重新合成互补链、再进行荧光测序；此时合成酶活性经过长时间反应已经下降，部分链加不上碱基，cluster 内的同步性变差，主要表现为 phasing 错误累积，箱体整体下移、离群点增多。</p>
+<p>双端数据要把 R1 与 R2 分开看。下面的两张图来自同一次测序（ <a href="#fig-a-questions-06-10-001" class="quarto-xref">图&nbsp;<span>3.18</span></a> 与 <a href="#fig-a-questions-06-10-002" class="quarto-xref">图&nbsp;<span>3.19</span></a> ）：reads2 的质量均匀性明显差于 reads1。原因在本章 3.3 已经埋下伏笔——reads2 的测序是在 reads1 的 150bp 完成后，先重新合成互补链、再进行荧光测序；此时合成酶活性经过长时间反应已经下降，部分链加不上碱基，cluster 内的同步性变差，主要表现为 phasing 错误累积，箱体整体下移、离群点增多。</p>
 <div id="fig-a-questions-06-10-001" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-a-questions-06-10-001-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <img src="../assets/a-questions-06-10/001-6-1.jpg" class="img-fluid figure-img">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-a-questions-06-10-001-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-图&nbsp;3.19: Illumina 测序结果 reads1 的逐碱基质量箱线图
+图&nbsp;3.18: Illumina 测序结果 reads1 的逐碱基质量箱线图
 </figcaption>
 </figure>
 </div>
@@ -2329,7 +2319,7 @@ CCCACAGACTCAGAGAGAACCCACCATGGTGCTGTCTCCTGACGACAAGACCAACGTCAAGGCCGCCTGGGGTAAGGTCG
 <img src="../assets/a-questions-06-10/002-6-2.jpg" class="img-fluid figure-img">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-a-questions-06-10-002-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-图&nbsp;3.20: Illumina 测序结果 reads2 的逐碱基质量箱线图
+图&nbsp;3.19: Illumina 测序结果 reads2 的逐碱基质量箱线图
 </figcaption>
 </figure>
 </div>
@@ -2337,38 +2327,38 @@ CCCACAGACTCAGAGAGAACCCACCATGGTGCTGTCTCCTGACGACAAGACCAACGTCAAGGCCGCCTGGGGTAAGGTCG
 </section>
 <section id="question-06-80" class="level4">
 <h4 class="anchored" data-anchor-id="question-06-80">碱基组成（Per base sequence content）</h4>
-<p>横轴同样是 read 中的位置，纵轴是每个位置 A、T、C、G 各自的百分比（ <a href="#fig-04-quality-control-and-alignment-035" class="quarto-xref">图&nbsp;<span>3.21</span></a> ）。随机文库中每个位置四种碱基的比例应大致相等（Chargaff 法则），四条线应当平行地贴着 25%。判读阈值：任一位置 A 与 T 的比例之差、或 G 与 C 的比例之差超过 10% 评估为 warn，超过 20% 评估为 fail——比较的是互补碱基之间的差值，而不是 A/T 与 G/C 两个比值之间的差。</p>
+<p>横轴同样是 read 中的位置，纵轴是每个位置 A、T、C、G 各自的百分比（ <a href="#fig-04-quality-control-and-alignment-035" class="quarto-xref">图&nbsp;<span>3.20</span></a> ）。随机文库中每个位置四种碱基的比例应大致相等（Chargaff 法则），四条线应当平行地贴着 25%。判读阈值：任一位置 A 与 T 的比例之差、或 G 与 C 的比例之差超过 10% 评估为 warn，超过 20% 评估为 fail——比较的是互补碱基之间的差值，而不是 A/T 与 G/C 两个比值之间的差。</p>
 <div id="fig-04-quality-control-and-alignment-035" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-04-quality-control-and-alignment-035-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <img src="../assets/04-quality-control-and-alignment/035-fastqc5.jpg" class="img-fluid figure-img">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-04-quality-control-and-alignment-035-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-图&nbsp;3.21: FastQC 对小 RNA 测序样本的碱基组成
+图&nbsp;3.20: FastQC 对小 RNA 测序样本的碱基组成
 </figcaption>
 </figure>
 </div>
 <p><span id="question-06-109"></span></p>
 <p>开头几 bp 出现波动是普遍现象，主要原因是建库引入的序列偏好：RNA-seq 的随机六聚体引物、转座酶片段化都会造成对起始位置的选择偏好。FastQC 官方文档指出，这类文库在约前 12bp 普遍存在偏差，多数 RNA-seq 样本在这一模块都会触发警告，一般不影响下游分析，也无法靠 trim 消除。如果测序质量得分很高，可以不 trim 开头部分；只有得分也差时才考虑 trim。</p>
-<p>DNA 全基因组测序样本通常呈现“前 10bp 左右波动、之后四线平稳”的形态（ <a href="#fig-a-questions-06-10-004" class="quarto-xref">图&nbsp;<span>3.22</span></a> ），平稳区的四条线可以用来读出该物种的 GC 含量——图中 GC 合计约 42%，与人类基因组的已知值一致。GC 含量在同一物种内是相当稳定的量，不同物种间通常不同。</p>
+<p>DNA 全基因组测序样本通常呈现“前 10bp 左右波动、之后四线平稳”的形态（ <a href="#fig-a-questions-06-10-004" class="quarto-xref">图&nbsp;<span>3.21</span></a> ），平稳区的四条线可以用来读出该物种的 GC 含量——图中 GC 合计约 42%，与人类基因组的已知值一致。GC 含量在同一物种内是相当稳定的量，不同物种间通常不同。</p>
 <div id="fig-a-questions-06-10-004" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-a-questions-06-10-004-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <img src="../assets/a-questions-06-10/004-7-1.jpg" class="img-fluid figure-img">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-a-questions-06-10-004-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-图&nbsp;3.22: DNA 全基因组测序样本的碱基组成（前 10bp 波动）
+图&nbsp;3.21: DNA 全基因组测序样本的碱基组成（前 10bp 波动）
 </figcaption>
 </figure>
 </div>
-<p>如果四条线全程剧烈波动（ <a href="#fig-a-questions-06-10-005" class="quarto-xref">图&nbsp;<span>3.23</span></a> ），说明文库测到的分子群体碱基组成不随机——例如特殊建库富集的 RNA 群体。再如 <a href="#fig-04-quality-control-and-alignment-035" class="quarto-xref">图&nbsp;<span>3.21</span></a> 的小 RNA 样本：文库测到的是 miRNA 等特定的小 RNA 分子，其群体碱基组成本身不随机（例如 miRNA 的第 1 位碱基多为 U），四线不平行、AT 占比偏高属于正常现象。</p>
+<p>如果四条线全程剧烈波动（ <a href="#fig-a-questions-06-10-005" class="quarto-xref">图&nbsp;<span>3.22</span></a> ），说明文库测到的分子群体碱基组成不随机——例如特殊建库富集的 RNA 群体。再如 <a href="#fig-04-quality-control-and-alignment-035" class="quarto-xref">图&nbsp;<span>3.20</span></a> 的小 RNA 样本：文库测到的是 miRNA 等特定的小 RNA 分子，其群体碱基组成本身不随机（例如 miRNA 的第 1 位碱基多为 U），四线不平行、AT 占比偏高属于正常现象。</p>
 <div id="fig-a-questions-06-10-005" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-a-questions-06-10-005-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <img src="../assets/a-questions-06-10/005-7-2.jpg" class="img-fluid figure-img">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-a-questions-06-10-005-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-图&nbsp;3.23: 特殊 RNA 建库样本的碱基组成（四线全程波动）
+图&nbsp;3.22: 特殊 RNA 建库样本的碱基组成（四线全程波动）
 </figcaption>
 </figure>
 </div>
@@ -2377,25 +2367,25 @@ CCCACAGACTCAGAGAGAACCCACCATGGTGCTGTCTCCTGACGACAAGACCAACGTCAAGGCCGCCTGGGGTAAGGTCG
 <section id="question-06-137" class="level4">
 <h4 class="anchored" data-anchor-id="question-06-137">每序列 GC 含量分布（Per sequence GC content）</h4>
 <p><span id="question-06-178"></span></p>
-<p>这个模块换了一个视角：对每条 read 计算整体 GC 含量，画所有 reads 的分布曲线（ <a href="#fig-a-questions-06-10-007" class="quarto-xref">图&nbsp;<span>3.24</span></a> ）。横轴是 GC 含量（0—100%），纵轴是具有相应 GC 含量的 reads 数量；蓝色虚线是根据数据拟合的理论正态分布。随机文库的曲线应是与蓝线基本重合的单峰，峰的位置就是该物种基因组的 GC 含量。</p>
+<p>这个模块换了一个视角：对每条 read 计算整体 GC 含量，画所有 reads 的分布曲线（ <a href="#fig-a-questions-06-10-007" class="quarto-xref">图&nbsp;<span>3.23</span></a> ）。横轴是 GC 含量（0—100%），纵轴是具有相应 GC 含量的 reads 数量；蓝色虚线是根据数据拟合的理论正态分布。随机文库的曲线应是与蓝线基本重合的单峰，峰的位置就是该物种基因组的 GC 含量。</p>
 <div id="fig-a-questions-06-10-007" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-a-questions-06-10-007-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <img src="../assets/a-questions-06-10/007-8-1-1.jpg" class="img-fluid figure-img">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-a-questions-06-10-007-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-图&nbsp;3.24: human 全基因组测序的每序列 GC 含量分布
+图&nbsp;3.23: human 全基因组测序的每序列 GC 含量分布
 </figcaption>
 </figure>
 </div>
-<p>当曲线出现异常形态时需要追问原因。 <a href="#fig-a-questions-06-10-008" class="quarto-xref">图&nbsp;<span>3.25</span></a> 的曲线出现双峰且偏离理论分布，最常见的解释是混入了其他物种的 DNA（污染），也可能是 rRNA、接头序列或 PCR 过度扩增等造成。</p>
+<p>当曲线出现异常形态时需要追问原因。 <a href="#fig-a-questions-06-10-008" class="quarto-xref">图&nbsp;<span>3.24</span></a> 的曲线出现双峰且偏离理论分布，最常见的解释是混入了其他物种的 DNA（污染），也可能是 rRNA、接头序列或 PCR 过度扩增等造成。</p>
 <div id="fig-a-questions-06-10-008" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-a-questions-06-10-008-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <img src="../assets/a-questions-06-10/008-8-1-2.jpg" class="img-fluid figure-img">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-a-questions-06-10-008-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-图&nbsp;3.25: 出现双峰的每序列 GC 含量分布
+图&nbsp;3.24: 出现双峰的每序列 GC 含量分布
 </figcaption>
 </figure>
 </div>
@@ -2420,14 +2410,14 @@ CCCACAGACTCAGAGAGAACCCACCATGGTGCTGTCTCCTGACGACAAGACCAACGTCAAGGCCGCCTGGGGTAAGGTCG
 </section>
 <section id="topic-03-sequence-length-distribution" class="level4">
 <h4 class="anchored" data-anchor-id="topic-03-sequence-length-distribution">序列长度分布（Sequence Length Distribution）</h4>
-<p>横轴是序列长度，纵轴是相应长度 reads 的数量（ <a href="#fig-a-questions-06-10-009" class="quarto-xref">图&nbsp;<span>3.26</span></a> ）。刚下机的 Illumina 数据所有 reads 长度一致（如双端 150bp），因为测序循环数固定，图中应是一个尖峰。经过 cutadapt 等去除接头后，reads 长度就会变得参差——不同 insert 是否被测穿、被切掉多长并不相同。看到“长度不齐”不要惊讶，那通常是处理后的正常形态。</p>
+<p>横轴是序列长度，纵轴是相应长度 reads 的数量（ <a href="#fig-a-questions-06-10-009" class="quarto-xref">图&nbsp;<span>3.25</span></a> ）。刚下机的 Illumina 数据所有 reads 长度一致（如双端 150bp），因为测序循环数固定，图中应是一个尖峰。经过 cutadapt 等去除接头后，reads 长度就会变得参差——不同 insert 是否被测穿、被切掉多长并不相同。看到“长度不齐”不要惊讶，那通常是处理后的正常形态。</p>
 <div id="fig-a-questions-06-10-009" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-a-questions-06-10-009-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <img src="../assets/a-questions-06-10/009-8-2-1.jpg" class="img-fluid figure-img">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-a-questions-06-10-009-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-图&nbsp;3.26: 刚下机数据的序列长度分布
+图&nbsp;3.25: 刚下机数据的序列长度分布
 </figcaption>
 </figure>
 </div>
@@ -2441,14 +2431,14 @@ CCCACAGACTCAGAGAGAACCCACCATGGTGCTGTCTCCTGACGACAAGACCAACGTCAAGGCCGCCTGGGGTAAGGTCG
 </section>
 <section id="question-06-340" class="level4">
 <h4 class="anchored" data-anchor-id="question-06-340">接头含量（Adapter Content）</h4>
-<p>横轴是 read 中的位置，纵轴是相应位置含某种接头序列的 reads 百分比，不同颜色对应不同的通用接头（ <a href="#fig-a-questions-06-10-011" class="quarto-xref">图&nbsp;<span>3.27</span></a> 、 <a href="#fig-a-questions-06-10-012" class="quarto-xref">图&nbsp;<span>3.28</span></a> ）。正常文库只有少量 reads 在 3′ 端测穿进入接头；如果 read 后半段接头比例很高（如 <a href="#fig-a-questions-06-10-012" class="quarto-xref">图&nbsp;<span>3.28</span></a> ），说明文库插入片段普遍偏短或存在建库问题，必须去除接头才能比对。</p>
+<p>横轴是 read 中的位置，纵轴是相应位置含某种接头序列的 reads 百分比，不同颜色对应不同的通用接头（ <a href="#fig-a-questions-06-10-011" class="quarto-xref">图&nbsp;<span>3.26</span></a> 、 <a href="#fig-a-questions-06-10-012" class="quarto-xref">图&nbsp;<span>3.27</span></a> ）。正常文库只有少量 reads 在 3′ 端测穿进入接头；如果 read 后半段接头比例很高（如 <a href="#fig-a-questions-06-10-012" class="quarto-xref">图&nbsp;<span>3.27</span></a> ），说明文库插入片段普遍偏短或存在建库问题，必须去除接头才能比对。</p>
 <div id="fig-a-questions-06-10-011" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-a-questions-06-10-011-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <img src="../assets/a-questions-06-10/011-10-1-1.jpg" class="img-fluid figure-img">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-a-questions-06-10-011-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-图&nbsp;3.27: 一个正常的接头含量报告
+图&nbsp;3.26: 一个正常的接头含量报告
 </figcaption>
 </figure>
 </div>
@@ -2458,7 +2448,7 @@ CCCACAGACTCAGAGAGAACCCACCATGGTGCTGTCTCCTGACGACAAGACCAACGTCAAGGCCGCCTGGGGTAAGGTCG
 <img src="../assets/a-questions-06-10/012-10-1-2.jpg" class="img-fluid figure-img">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-a-questions-06-10-012-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-图&nbsp;3.28: 一个接头污染严重的 RNA-Seq 接头含量报告
+图&nbsp;3.27: 一个接头污染严重的 RNA-Seq 接头含量报告
 </figcaption>
 </figure>
 </div>
@@ -2468,7 +2458,7 @@ CCCACAGACTCAGAGAGAACCCACCATGGTGCTGTCTCCTGACGACAAGACCAACGTCAAGGCCGCCTGGGGTAAGGTCG
 <img src="../assets/a-questions-11-15/002-11-2.jpg" class="img-fluid figure-img">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-a-questions-11-15-002-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-图&nbsp;3.29: FastQC 的 Adapter Content 模块示例
+图&nbsp;3.28: FastQC 的 Adapter Content 模块示例
 </figcaption>
 </figure>
 </div>
@@ -2488,25 +2478,25 @@ Bottom adapter
 <section id="question-06-375" class="level4">
 <h4 class="anchored" data-anchor-id="question-06-375">K-mer 含量（Kmer Content）</h4>
 <p><span id="question-06-211"></span></p>
-<p>k-mer 指定长的短序列，例如 AATTCCGG 是一个 8-mer。该模块统计每个 7-mer 在 read 各位置的出现频率：横轴是 read 中的位置，纵轴是在对应位置含有该 k-mer 的 reads 百分比，每条线代表一个出现富集的 k-mer（ <a href="#fig-a-questions-06-10-013" class="quarto-xref">图&nbsp;<span>3.30</span></a> ）。正常文库的短序列不应偏好特定位置；某条线在固定位置明显抬升，说明存在系统性来源——接头、随机引物偏好，或建库时加入的固定序列。</p>
+<p>k-mer 指定长的短序列，例如 AATTCCGG 是一个 8-mer。该模块统计每个 7-mer 在 read 各位置的出现频率：横轴是 read 中的位置，纵轴是在对应位置含有该 k-mer 的 reads 百分比，每条线代表一个出现富集的 k-mer（ <a href="#fig-a-questions-06-10-013" class="quarto-xref">图&nbsp;<span>3.29</span></a> ）。正常文库的短序列不应偏好特定位置；某条线在固定位置明显抬升，说明存在系统性来源——接头、随机引物偏好，或建库时加入的固定序列。</p>
 <div id="fig-a-questions-06-10-013" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-a-questions-06-10-013-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <img src="../assets/a-questions-06-10/013-10-2-1.jpg" class="img-fluid figure-img">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-a-questions-06-10-013-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-图&nbsp;3.30: 正常的 RNA-Seq 建库 kmer 统计
+图&nbsp;3.29: 正常的 RNA-Seq 建库 kmer 统计
 </figcaption>
 </figure>
 </div>
-<p><a href="#fig-a-questions-06-10-014" class="quarto-xref">图&nbsp;<span>3.31</span></a> 中 kmer 在 read 开头集中富集，原因是建库时在 5′ 端加入了约 10bp 的 random barcode（UMI）——这段固定位置的随机序列本身造成了 kmer 富集，与 <a href="#fig-a-questions-06-10-015" class="quarto-xref">图&nbsp;<span>3.32</span></a> 的统计表互相印证。表中各列依次是：kmer 序列、该 kmer 在整个文库中被观测到的总次数（Count）、二项分布检验的 P 值、观察值与期望值之比的最大值（Obs/Exp Max）、以及该最大值出现的位置（Max Position）。FastQC 采样约 2% 的 reads 进行统计，序列超过 500bp 时只分析前 500bp。</p>
+<p><a href="#fig-a-questions-06-10-014" class="quarto-xref">图&nbsp;<span>3.30</span></a> 中 kmer 在 read 开头集中富集，原因是建库时在 5′ 端加入了约 10bp 的 random barcode（UMI）——这段固定位置的随机序列本身造成了 kmer 富集，与 <a href="#fig-a-questions-06-10-015" class="quarto-xref">图&nbsp;<span>3.31</span></a> 的统计表互相印证。表中各列依次是：kmer 序列、该 kmer 在整个文库中被观测到的总次数（Count）、二项分布检验的 P 值、观察值与期望值之比的最大值（Obs/Exp Max）、以及该最大值出现的位置（Max Position）。FastQC 采样约 2% 的 reads 进行统计，序列超过 500bp 时只分析前 500bp。</p>
 <div id="fig-a-questions-06-10-014" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-a-questions-06-10-014-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <img src="../assets/a-questions-06-10/014-10-2-2.jpg" class="img-fluid figure-img">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-a-questions-06-10-014-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-图&nbsp;3.31: 加入 random barcode 的 RNA-Seq 建库 kmer 统计
+图&nbsp;3.30: 加入 random barcode 的 RNA-Seq 建库 kmer 统计
 </figcaption>
 </figure>
 </div>
@@ -2516,7 +2506,7 @@ Bottom adapter
 <img src="../assets/a-questions-06-10/015-10-2-3.jpg" class="img-fluid figure-img">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-a-questions-06-10-015-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-图&nbsp;3.32: kmer 的统计显著性分析
+图&nbsp;3.31: kmer 的统计显著性分析
 </figcaption>
 </figure>
 </div>
@@ -2526,7 +2516,7 @@ Bottom adapter
 <img src="../assets/a-questions-11-15/003-12-1.jpg" class="img-fluid figure-img">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-a-questions-11-15-003-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-图&nbsp;3.33: FastQC 的 Kmer Content 模块示例（WARN）
+图&nbsp;3.32: FastQC 的 Kmer Content 模块示例（WARN）
 </figcaption>
 </figure>
 </div>
@@ -2608,24 +2598,46 @@ Bottom adapter
 <h2 data-number="3.10" class="anchored" data-anchor-id="sec-03-09"><span class="header-section-number">3.10</span> 其他常用整理操作</h2>
 <section id="src-0030-QC-of-FASTQ-23" class="level3">
 <h3 class="anchored" data-anchor-id="src-0030-QC-of-FASTQ-23">seqkit：FASTQ/FASTA 的多功能工具箱</h3>
-<p>除了去接头和裁剪，日常还经常需要对 FASTQ/FASTA 做统计、抽样、截取等整理。<a href="https://bioinf.shenwei.me/seqkit/">seqkit</a> 是一个跨平台、多线程的命令行工具箱，直接操作 gzip 文件，命令风格统一。</p>
+<p>除了去接头和裁剪，日常还经常需要对 FASTQ/FASTA 做统计、筛选、抽样、截取等整理。<a href="https://bioinf.shenwei.me/seqkit/">seqkit</a> 是一个跨平台、多线程的命令行工具箱，直接读写 gzip 文件，所有子命令共享一致的风格：输入文件作为最后一个参数，<code>-j</code> 指定线程数，<code>-o</code> 指定输出（省略时打印到屏幕，便于先预览再落盘）。下面按常见任务分组介绍代表性用法。</p>
+<section id="topic-03-seqkit-stats-convert" class="level4">
+<h4 class="anchored" data-anchor-id="topic-03-seqkit-stats-convert">统计与格式转换</h4>
+<p>最常用的是文件级统计，汇总每个文件的 reads 数、长度、GC 含量和 Q20/Q30 比例，是检查数据概况最快的方式之一：</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb13" data-book-role="code"><pre data-code-text="&quot;seqkit stats -a *.fastq.gz&quot;" class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="ex">seqkit</span> stats <span class="at">-a</span> <span class="pp">*</span>.fastq.gz</span></code></pre></div><button title="复制到剪贴板" class="code-copy-button"><i class="bi"></i></button></div>
-<p><code>seqkit stats</code> 汇总每个文件的 reads 数、长度、GC 含量和 Q20/Q30 比例，是检查数据概况最快的方式之一。</p>
+<p>想快速看一眼文件内容，用 <code>head</code> 取前几条（相当于 Linux 的 <code>head</code>，但按“条”而不是按“行”计数）：</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb14" data-book-role="code"><pre data-code-text="&quot;seqkit head -n 4 sample_R1.fastq.gz&quot;" class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="ex">seqkit</span> head <span class="at">-n</span> 4 sample_R1.fastq.gz</span></code></pre></div><button title="复制到剪贴板" class="code-copy-button"><i class="bi"></i></button></div>
+<p><code>fx2tab</code> 把序列文件转成制表符分隔的表格，<code>-l</code> 加序列长度、<code>-g</code> 加 GC 含量，便于用 <code>sort</code>、<code>awk</code> 等文本工具继续处理；<code>tab2fx</code> 做反向转换：</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb15" data-book-role="code"><pre data-code-text="&quot;seqkit fx2tab -n -l -g genome.fa | head -5&quot;" class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="ex">seqkit</span> fx2tab <span class="at">-n</span> <span class="at">-l</span> <span class="at">-g</span> genome.fa <span class="kw">|</span> <span class="fu">head</span> <span class="at">-5</span></span></code></pre></div><button title="复制到剪贴板" class="code-copy-button"><i class="bi"></i></button></div>
+</section>
+<section id="src-0030-QC-of-FASTQ-29" class="level4">
+<h4 class="anchored" data-anchor-id="src-0030-QC-of-FASTQ-29">按名称或序列筛选</h4>
+<p><code>grep</code> 按 ID（<code>-n</code> 按完整名称）或序列匹配提取子集，配合 <code>-f</code> 从文件读取模式列表。FASTA 处理的经典场景——从参考基因组里挑出指定染色体：</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb16" data-book-role="code"><pre data-code-text="&quot;seqkit grep -n -p chrM genome.fa -o chrM.fa&quot;" class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="ex">seqkit</span> grep <span class="at">-n</span> <span class="at">-p</span> chrM genome.fa <span class="at">-o</span> chrM.fa</span></code></pre></div><button title="复制到剪贴板" class="code-copy-button"><i class="bi"></i></button></div>
+<p>写一个每行一个名称的 <code>ids.txt</code>（<code>-f ids.txt</code>）即可批量提取；FASTQ 同样适用，例如从大文件中挑出关心的 reads。加 <code>-v</code> 反向排除、<code>-r</code> 启用正则表达式，<code>-C</code> 只显示匹配计数。</p>
+</section>
 <section id="src-0030-QC-of-FASTQ-25" class="level4">
-<h4 class="anchored" data-anchor-id="src-0030-QC-of-FASTQ-25">截取固定长度</h4>
-<p>需要统一 reads 长度时（例如某些特定分析流程的输入要求），可以用 <code>seqkit subseq</code> 按位置截取：</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb14" data-book-role="code"><pre data-code-text="&quot;seqkit subseq -r 1:50 input.fastq.gz -o trim50.fastq.gz&quot;" class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="ex">seqkit</span> subseq <span class="at">-r</span> 1:50 input.fastq.gz <span class="at">-o</span> trim50.fastq.gz</span></code></pre></div><button title="复制到剪贴板" class="code-copy-button"><i class="bi"></i></button></div>
-<p><code>-r 1:50</code> 表示保留每条 read 的第 1 到 50 位。注意这会“硬截”而不管质量，一般先做质控裁剪再统一长度；老一代工具中 fastx_trimmer 也做同样的事。</p>
+<h4 class="anchored" data-anchor-id="src-0030-QC-of-FASTQ-25">截取区间与固定长度</h4>
+<p><code>subseq</code> 按坐标截取：<code>-r 1:50</code> 取第 1 到 50 位，<code>-r -12:-1</code> 取末尾 12 位，负数坐标从末尾数起。</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb17" data-book-role="code"><pre data-code-text="&quot;seqkit subseq -r 1:50 input.fastq.gz -o trim50.fastq.gz&quot;" class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="ex">seqkit</span> subseq <span class="at">-r</span> 1:50 input.fastq.gz <span class="at">-o</span> trim50.fastq.gz</span></code></pre></div><button title="复制到剪贴板" class="code-copy-button"><i class="bi"></i></button></div>
+<p>需要统一 reads 长度时（例如某些特定分析流程的输入要求），可以先用质量裁剪，再用 <code>subseq</code> 硬截到固定长度——注意“硬截”不管质量，老一代工具中 fastx_trimmer 也做同样的事。</p>
 </section>
 <section id="src-0030-QC-of-FASTQ-27" class="level4">
 <h4 class="anchored" data-anchor-id="src-0030-QC-of-FASTQ-27">随机抽样</h4>
-<p>调试流程或做大数据集的快速预览时，常需要抽取一部分 reads：</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb15" data-book-role="code"><pre data-code-text="&quot;seqkit sample -p 0.1 -s 11 -2 sample_R1.fastq.gz -o sub_R1.fastq.gz&quot;" class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="ex">seqkit</span> sample <span class="at">-p</span> 0.1 <span class="at">-s</span> 11 <span class="at">-2</span> sample_R1.fastq.gz <span class="at">-o</span> sub_R1.fastq.gz</span></code></pre></div><button title="复制到剪贴板" class="code-copy-button"><i class="bi"></i></button></div>
-<p><code>-p 0.1</code> 表示按比例抽取 10%，<code>-s</code> 是随机种子（固定种子保证可重复），<code>-2</code> 采用两遍扫描模式以降低内存占用。双端数据需对 R1、R2 使用相同种子分别抽样，保持配对关系。</p>
+<p>调试流程或做大数据集的快速预览时，常需要抽取一部分 reads：<code>-p 0.1</code> 按比例抽 10%，<code>-n 100000</code> 按条数抽，<code>-s</code> 是随机种子（固定种子保证可重复）：</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb18" data-book-role="code"><pre data-code-text="&quot;seqkit sample -p 0.1 -s 11 sample_R1.fastq.gz -o sub_R1.fastq.gz&quot;" class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="ex">seqkit</span> sample <span class="at">-p</span> 0.1 <span class="at">-s</span> 11 sample_R1.fastq.gz <span class="at">-o</span> sub_R1.fastq.gz</span></code></pre></div><button title="复制到剪贴板" class="code-copy-button"><i class="bi"></i></button></div>
+<p>双端数据对 R1、R2 用相同种子分别抽样，即可保持配对关系不变。</p>
 </section>
-<section id="src-0030-QC-of-FASTQ-29" class="level4">
-<h4 class="anchored" data-anchor-id="src-0030-QC-of-FASTQ-29">其他常用操作</h4>
-<p>seqkit 还覆盖大量日常操作：<code>seqkit grep</code> 按名称或序列筛选 reads，<code>seqkit fx2tab</code> 把 FASTQ/FASTA 转成表格便于查看和统计，<code>seqkit split</code> 拆分文件。同类的还有更早的 seqtk（<code>seqtk sample</code>、<code>seqtk trimfq</code> 等）。原则是一样的：先明确要做什么，再选择工具，用 <code>--help</code> 确认参数含义。</p>
+<section id="topic-03-seqkit-transform-split" class="level4">
+<h4 class="anchored" data-anchor-id="topic-03-seqkit-transform-split">序列变换与拆分</h4>
+<p><code>seq</code> 对序列本身做变换：<code>-r -p</code> 反向互补、<code>--rna2dna</code> 把 RNA 转成 DNA、<code>-u</code> 统一转大写，建库软件给出的低软遮蔽（小写）序列常需要这一步；<code>-g</code> 去掉比对后序列里的缺口符：</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb19" data-book-role="code"><pre data-code-text="&quot;seqkit seq -r -p chrM.fa | seqkit head -n 1&quot;" class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="ex">seqkit</span> seq <span class="at">-r</span> <span class="at">-p</span> chrM.fa <span class="kw">|</span> <span class="ex">seqkit</span> head <span class="at">-n</span> 1</span></code></pre></div><button title="复制到剪贴板" class="code-copy-button"><i class="bi"></i></button></div>
+<p>需要去重时用专门的 <code>seqkit rmdup</code>（按序列或按名称去除重复记录，<code>-D</code> 统计重复而不删除）。<code>split</code> 把文件拆成多份，<code>-p 4</code> 平均分 4 份，便于并行处理：</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb20" data-book-role="code"><pre data-code-text="&quot;seqkit split -p 4 big_R1.fastq.gz&quot;" class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="ex">seqkit</span> split <span class="at">-p</span> 4 big_R1.fastq.gz</span></code></pre></div><button title="复制到剪贴板" class="code-copy-button"><i class="bi"></i></button></div>
+</section>
+<section id="topic-03-seqkit-chrm-example" class="level4">
+<h4 class="anchored" data-anchor-id="topic-03-seqkit-chrm-example">综合示例：从参考基因组到 chrM 的 GC 含量</h4>
+<p>把前面的命令串起来，就能一行解决 3.8 节练习里“计算一条染色体 GC 含量”的任务——<code>grep</code> 提取 chrM，<code>fx2tab</code> 直接给出它的长度与 GC 含量：</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb21" data-book-role="code"><pre data-code-text="&quot;seqkit grep -n -p chrM genome.fa | seqkit fx2tab -n -l -g&quot;" class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="ex">seqkit</span> grep <span class="at">-n</span> <span class="at">-p</span> chrM genome.fa <span class="kw">|</span> <span class="ex">seqkit</span> fx2tab <span class="at">-n</span> <span class="at">-l</span> <span class="at">-g</span></span></code></pre></div><button title="复制到剪贴板" class="code-copy-button"><i class="bi"></i></button></div>
+<p>同类工具还有更早的 seqtk（<code>seqtk sample</code>、<code>seqtk trimfq</code> 等）。选择原则是一样的：先明确要做什么，再选工具，用 <code>--help</code> 确认参数含义。</p>
 </section>
 </section>
 <section id="question-11-86" class="level3">
@@ -2649,19 +2661,19 @@ Bottom adapter
 </ol>
 <p>输入文件是 <code>input.fastq</code>，系统是 Linux Ubuntu，adapter 序列为 <code>AGATCGGAAGAGCGTCGTGTAGGGAAAGAGTGTAGATCTCGGTGGTCGCCGTATCATT</code>。请参考 cutadapt 与历史工具 fastx_trimmer 的用法，设计处理路线并给出参数。</p>
 <p><strong>参考解答：</strong> 分三步——先用 FastQC 确认 3′ 端接头与 5′ 端 barcode 的情况；再用 cutadapt 去掉 3′ 端接头并用 <code>-m</code> 保留足够长的序列；最后截掉开头 10bp 并统一到固定长度（fastx_trimmer 的 <code>-f 11 -l 125</code> 表示保留第 11 到 125 位，得到 115bp 的等长序列；现代流程可用 seqkit subseq 完成同样操作）：</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb16" data-book-role="code"><pre data-code-text="&quot;# step 1, FastQC\nfastqc -q -t 3 -o ./FastQC_result ./input.fastq\n\n# step 2, cut adapter\ncutadapt -q 25 -m 125 \\\n-a AGATCGGAAGAGCGTCGTGTAGGGAAAGAGTGTAGATCTCGGTGGTCGCCGTATCATT \\\n-o input_cutadapt.fq.gz input.fastq\n\n# step 3, trim\nzcat input_cutadapt.fq.gz | fastx_trimmer \\\n-f 11 -l 125 -z -o ./input_cutadapt_trim11_125.fq.gz\n\n# 经过上述 3 个步骤，可以获得长度统一为 115bp 的序列&quot;" class="sourceCode numberSource bash numberLines code-with-copy"><code class="sourceCode bash"><span id="cb16-1"><a href="#cb16-1"></a><span class="co"># step 1, FastQC</span></span>
-<span id="cb16-2"><a href="#cb16-2"></a><span class="ex">fastqc</span> <span class="at">-q</span> <span class="at">-t</span> 3 <span class="at">-o</span> ./FastQC_result ./input.fastq</span>
-<span id="cb16-3"><a href="#cb16-3"></a></span>
-<span id="cb16-4"><a href="#cb16-4"></a><span class="co"># step 2, cut adapter</span></span>
-<span id="cb16-5"><a href="#cb16-5"></a><span class="ex">cutadapt</span> <span class="at">-q</span> 25 <span class="at">-m</span> 125 <span class="dt">\</span></span>
-<span id="cb16-6"><a href="#cb16-6"></a>-a AGATCGGAAGAGCGTCGTGTAGGGAAAGAGTGTAGATCTCGGTGGTCGCCGTATCATT <span class="dt">\</span></span>
-<span id="cb16-7"><a href="#cb16-7"></a>-o input_cutadapt.fq.gz input.fastq</span>
-<span id="cb16-8"><a href="#cb16-8"></a></span>
-<span id="cb16-9"><a href="#cb16-9"></a><span class="co"># step 3, trim</span></span>
-<span id="cb16-10"><a href="#cb16-10"></a><span class="fu">zcat</span> input_cutadapt.fq.gz <span class="kw">|</span> <span class="ex">fastx_trimmer</span> <span class="dt">\</span></span>
-<span id="cb16-11"><a href="#cb16-11"></a>-f 11 <span class="at">-l</span> 125 <span class="at">-z</span> <span class="at">-o</span> ./input_cutadapt_trim11_125.fq.gz</span>
-<span id="cb16-12"><a href="#cb16-12"></a></span>
-<span id="cb16-13"><a href="#cb16-13"></a><span class="co"># 经过上述 3 个步骤，可以获得长度统一为 115bp 的序列</span></span></code></pre></div><button title="复制到剪贴板" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb22" data-book-role="code"><pre data-code-text="&quot;# step 1, FastQC\nfastqc -q -t 3 -o ./FastQC_result ./input.fastq\n\n# step 2, cut adapter\ncutadapt -q 25 -m 125 \\\n-a AGATCGGAAGAGCGTCGTGTAGGGAAAGAGTGTAGATCTCGGTGGTCGCCGTATCATT \\\n-o input_cutadapt.fq.gz input.fastq\n\n# step 3, trim\nzcat input_cutadapt.fq.gz | fastx_trimmer \\\n-f 11 -l 125 -z -o ./input_cutadapt_trim11_125.fq.gz\n\n# 经过上述 3 个步骤，可以获得长度统一为 115bp 的序列&quot;" class="sourceCode numberSource bash numberLines code-with-copy"><code class="sourceCode bash"><span id="cb22-1"><a href="#cb22-1"></a><span class="co"># step 1, FastQC</span></span>
+<span id="cb22-2"><a href="#cb22-2"></a><span class="ex">fastqc</span> <span class="at">-q</span> <span class="at">-t</span> 3 <span class="at">-o</span> ./FastQC_result ./input.fastq</span>
+<span id="cb22-3"><a href="#cb22-3"></a></span>
+<span id="cb22-4"><a href="#cb22-4"></a><span class="co"># step 2, cut adapter</span></span>
+<span id="cb22-5"><a href="#cb22-5"></a><span class="ex">cutadapt</span> <span class="at">-q</span> 25 <span class="at">-m</span> 125 <span class="dt">\</span></span>
+<span id="cb22-6"><a href="#cb22-6"></a>-a AGATCGGAAGAGCGTCGTGTAGGGAAAGAGTGTAGATCTCGGTGGTCGCCGTATCATT <span class="dt">\</span></span>
+<span id="cb22-7"><a href="#cb22-7"></a>-o input_cutadapt.fq.gz input.fastq</span>
+<span id="cb22-8"><a href="#cb22-8"></a></span>
+<span id="cb22-9"><a href="#cb22-9"></a><span class="co"># step 3, trim</span></span>
+<span id="cb22-10"><a href="#cb22-10"></a><span class="fu">zcat</span> input_cutadapt.fq.gz <span class="kw">|</span> <span class="ex">fastx_trimmer</span> <span class="dt">\</span></span>
+<span id="cb22-11"><a href="#cb22-11"></a>-f 11 <span class="at">-l</span> 125 <span class="at">-z</span> <span class="at">-o</span> ./input_cutadapt_trim11_125.fq.gz</span>
+<span id="cb22-12"><a href="#cb22-12"></a></span>
+<span id="cb22-13"><a href="#cb22-13"></a><span class="co"># 经过上述 3 个步骤，可以获得长度统一为 115bp 的序列</span></span></code></pre></div><button title="复制到剪贴板" class="code-copy-button"><i class="bi"></i></button></div>
 <p>其中 fastx_trimmer 所属的 fastx_toolkit 是长期停止维护的早期工具，此处保留用于演示流程；实际项目中可用 <code>seqkit subseq -r 11:125</code> 替代第三步。</p>
 </div>
 </div>
@@ -2671,7 +2683,7 @@ Bottom adapter
 <img src="../assets/a-questions-11-15/004-12-2.jpg" class="img-fluid figure-img">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-a-questions-11-15-004-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-图&nbsp;3.34: Human RNA-Seq 样本的接头含量分布（练习背景图）
+图&nbsp;3.33: Human RNA-Seq 样本的接头含量分布（练习背景图）
 </figcaption>
 </figure>
 </div>

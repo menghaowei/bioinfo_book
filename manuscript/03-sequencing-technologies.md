@@ -1,4 +1,4 @@
-# 测序技术 {#sec-ch03}
+# 测序技术基础 {#sec-ch03}
 
 ::: {.hero-book .book-chapter-summary}
 
@@ -476,8 +476,6 @@ FastQC 会对每一个输入文件生成一个 html 网页和一个 zip 压缩�
 
 软件对每一项给出判定：绿色对勾代表 pass，黄色叹号代表 warn，红色叉代表 fail。**判定只针对“随机文库”这一默认假设**，评估为 warn 或 fail 不代表样品一定不能用，必须结合具体测序对象解读。
 
-![FastQC 对一个 RNA 测序样本的总览](../assets/04-quality-control-and-alignment/036-fastqc2.jpg){#fig-04-quality-control-and-alignment-036}
-
 基本统计模块汇总文件类型、编码方式、总 read 数、GC 含量和序列长度等，能最快了解样本概况（ @fig-04-quality-control-and-alignment-037 ）。
 
 ![FastQC 对 RNA 测序样本基本信息统计](../assets/04-quality-control-and-alignment/037-fastqc3.jpg){#fig-04-quality-control-and-alignment-037}
@@ -705,37 +703,81 @@ cutadapt 的规则是取累加和最小值（−25）出现的位置——第 8 
 
 ### seqkit：FASTQ/FASTA 的多功能工具箱 {#src-0030-QC-of-FASTQ-23}
 
-除了去接头和裁剪，日常还经常需要对 FASTQ/FASTA 做统计、抽样、截取等整理。[seqkit](https://bioinf.shenwei.me/seqkit/) 是一个跨平台、多线程的命令行工具箱，直接操作 gzip 文件，命令风格统一。
+除了去接头和裁剪，日常还经常需要对 FASTQ/FASTA 做统计、筛选、抽样、截取等整理。[seqkit](https://bioinf.shenwei.me/seqkit/) 是一个跨平台、多线程的命令行工具箱，直接读写 gzip 文件，所有子命令共享一致的风格：输入文件作为最后一个参数，`-j` 指定线程数，`-o` 指定输出（省略时打印到屏幕，便于先预览再落盘）。下面按常见任务分组介绍代表性用法。
+
+#### 统计与格式转换 {#topic-03-seqkit-stats-convert}
+
+最常用的是文件级统计，汇总每个文件的 reads 数、长度、GC 含量和 Q20/Q30 比例，是检查数据概况最快的方式之一：
 
 ```{.bash data-book-role="code"}
 seqkit stats -a *.fastq.gz
 ```
 
-`seqkit stats` 汇总每个文件的 reads 数、长度、GC 含量和 Q20/Q30 比例，是检查数据概况最快的方式之一。
+想快速看一眼文件内容，用 `head` 取前几条（相当于 Linux 的 `head`，但按“条”而不是按“行”计数）：
 
-#### 截取固定长度 {#src-0030-QC-of-FASTQ-25}
+```{.bash data-book-role="code"}
+seqkit head -n 4 sample_R1.fastq.gz
+```
 
-需要统一 reads 长度时（例如某些特定分析流程的输入要求），可以用 `seqkit subseq` 按位置截取：
+`fx2tab` 把序列文件转成制表符分隔的表格，`-l` 加序列长度、`-g` 加 GC 含量，便于用 `sort`、`awk` 等文本工具继续处理；`tab2fx` 做反向转换：
+
+```{.bash data-book-role="code"}
+seqkit fx2tab -n -l -g genome.fa | head -5
+```
+
+#### 按名称或序列筛选 {#src-0030-QC-of-FASTQ-29}
+
+`grep` 按 ID（`-n` 按完整名称）或序列匹配提取子集，配合 `-f` 从文件读取模式列表。FASTA 处理的经典场景——从参考基因组里挑出指定染色体：
+
+```{.bash data-book-role="code"}
+seqkit grep -n -p chrM genome.fa -o chrM.fa
+```
+
+写一个每行一个名称的 `ids.txt`（`-f ids.txt`）即可批量提取；FASTQ 同样适用，例如从大文件中挑出关心的 reads。加 `-v` 反向排除、`-r` 启用正则表达式，`-C` 只显示匹配计数。
+
+#### 截取区间与固定长度 {#src-0030-QC-of-FASTQ-25}
+
+`subseq` 按坐标截取：`-r 1:50` 取第 1 到 50 位，`-r -12:-1` 取末尾 12 位，负数坐标从末尾数起。
 
 ```{.bash data-book-role="code"}
 seqkit subseq -r 1:50 input.fastq.gz -o trim50.fastq.gz
 ```
 
-`-r 1:50` 表示保留每条 read 的第 1 到 50 位。注意这会“硬截”而不管质量，一般先做质控裁剪再统一长度；老一代工具中 fastx_trimmer 也做同样的事。
+需要统一 reads 长度时（例如某些特定分析流程的输入要求），可以先用质量裁剪，再用 `subseq` 硬截到固定长度——注意“硬截”不管质量，老一代工具中 fastx_trimmer 也做同样的事。
 
 #### 随机抽样 {#src-0030-QC-of-FASTQ-27}
 
-调试流程或做大数据集的快速预览时，常需要抽取一部分 reads：
+调试流程或做大数据集的快速预览时，常需要抽取一部分 reads：`-p 0.1` 按比例抽 10%，`-n 100000` 按条数抽，`-s` 是随机种子（固定种子保证可重复）：
 
 ```{.bash data-book-role="code"}
-seqkit sample -p 0.1 -s 11 -2 sample_R1.fastq.gz -o sub_R1.fastq.gz
+seqkit sample -p 0.1 -s 11 sample_R1.fastq.gz -o sub_R1.fastq.gz
 ```
 
-`-p 0.1` 表示按比例抽取 10%，`-s` 是随机种子（固定种子保证可重复），`-2` 采用两遍扫描模式以降低内存占用。双端数据需对 R1、R2 使用相同种子分别抽样，保持配对关系。
+双端数据对 R1、R2 用相同种子分别抽样，即可保持配对关系不变。
 
-#### 其他常用操作 {#src-0030-QC-of-FASTQ-29}
+#### 序列变换与拆分 {#topic-03-seqkit-transform-split}
 
-seqkit 还覆盖大量日常操作：`seqkit grep` 按名称或序列筛选 reads，`seqkit fx2tab` 把 FASTQ/FASTA 转成表格便于查看和统计，`seqkit split` 拆分文件。同类的还有更早的 seqtk（`seqtk sample`、`seqtk trimfq` 等）。原则是一样的：先明确要做什么，再选择工具，用 `--help` 确认参数含义。
+`seq` 对序列本身做变换：`-r -p` 反向互补、`--rna2dna` 把 RNA 转成 DNA、`-u` 统一转大写，建库软件给出的低软遮蔽（小写）序列常需要这一步；`-g` 去掉比对后序列里的缺口符：
+
+```{.bash data-book-role="code"}
+seqkit seq -r -p chrM.fa | seqkit head -n 1
+```
+
+需要去重时用专门的 `seqkit rmdup`（按序列或按名称去除重复记录，`-D` 统计重复而不删除）。`split` 把文件拆成多份，`-p 4` 平均分 4 份，便于并行处理：
+
+```{.bash data-book-role="code"}
+seqkit split -p 4 big_R1.fastq.gz
+```
+
+#### 综合示例：从参考基因组到 chrM 的 GC 含量 {#topic-03-seqkit-chrm-example}
+
+把前面的命令串起来，就能一行解决 3.8 节练习里“计算一条染色体 GC 含量”的任务——`grep` 提取 chrM，`fx2tab` 直接给出它的长度与 GC 含量：
+
+```{.bash data-book-role="code"}
+seqkit grep -n -p chrM genome.fa | seqkit fx2tab -n -l -g
+```
+
+同类工具还有更早的 seqtk（`seqtk sample`、`seqtk trimfq` 等）。选择原则是一样的：先明确要做什么，再选工具，用 `--help` 确认参数含义。
 
 ### 综合练习：等长截取的三步流程 {#question-11-86}
 

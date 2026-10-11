@@ -1,71 +1,68 @@
-<svg xmlns='http://www.w3.org/2000/svg' width='900' height='560' viewBox='0 0 900 560' role='img' aria-labelledby='t d'>
+<svg xmlns='http://www.w3.org/2000/svg' width='760' height='442' viewBox='0 0 760 442' role='img' aria-labelledby='t d'>
 <title id='t'>设计公式到模型矩阵的展开</title>
 <desc id='d'>alb ~ tissue 中分类型变量展开为 0/1 哑变量，回归系数对应组均值与均值差</desc>
-<text x='60' y='70' font-family="ui-monospace, 'SFMono-Regular', Menlo, Consolas, 'Liberation Mono', monospace" font-size='15' fill='#6b7280' font-weight='normal' text-anchor='start'>R</text>
-<text x='110' y='70' font-family="ui-monospace, 'SFMono-Regular', Menlo, Consolas, 'Liberation Mono', monospace" font-size='15' fill='#333333' font-weight='bold' text-anchor='start'>fit &lt;- lm(alb ~ tissue, data = d2)</text>
-<text x='110' y='98' font-family="'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size='12' fill='#6b7280' font-weight='normal' text-anchor='start'>设计公式读作：alb 由 tissue 解释</text>
-<rect x='60' y='130' width='220' height='42' rx='3' fill='#e8f4f1' stroke='#186254' stroke-width='1.2'/>
-<text x='170.0' y='156.0' font-family="'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size='13' fill='#333333' font-weight='bold' text-anchor='middle'>样本（前 2+后 2 行）</text>
-<rect x='280' y='130' width='110' height='42' rx='3' fill='#e8f4f1' stroke='#186254' stroke-width='1.2'/>
-<text x='335.0' y='156.0' font-family="'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size='13' fill='#333333' font-weight='bold' text-anchor='middle'>(截距)</text>
-<rect x='390' y='130' width='190' height='42' rx='3' fill='#e8f4f1' stroke='#186254' stroke-width='1.2'/>
-<text x='485.0' y='156.0' font-family="'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size='13' fill='#333333' font-weight='bold' text-anchor='middle'>tissuePancreas</text>
-<rect x='580' y='130' width='110' height='42' rx='3' fill='#e8f4f1' stroke='#186254' stroke-width='1.2'/>
-<text x='635.0' y='156.0' font-family="'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size='13' fill='#333333' font-weight='bold' text-anchor='middle'>alb</text>
-<rect x='60' y='172' width='220' height='42' rx='3' fill='none' stroke='#9ca3af' stroke-width='1.0'/>
-<text x='170.0' y='198.0' font-family="'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size='13' fill='#333333' font-weight='normal' text-anchor='middle'>Liver · 样本1</text>
-<rect x='280' y='172' width='110' height='42' rx='3' fill='none' stroke='#9ca3af' stroke-width='1.0'/>
-<text x='335.0' y='198.0' font-family="ui-monospace, 'SFMono-Regular', Menlo, Consolas, 'Liberation Mono', monospace" font-size='13' fill='#186254' font-weight='normal' text-anchor='middle'>1</text>
-<rect x='390' y='172' width='190' height='42' rx='3' fill='none' stroke='#9ca3af' stroke-width='1.0'/>
-<text x='485.0' y='198.0' font-family="ui-monospace, 'SFMono-Regular', Menlo, Consolas, 'Liberation Mono', monospace" font-size='13' fill='#186254' font-weight='normal' text-anchor='middle'>0</text>
-<rect x='580' y='172' width='110' height='42' rx='3' fill='none' stroke='#9ca3af' stroke-width='1.0'/>
-<text x='635.0' y='198.0' font-family="ui-monospace, 'SFMono-Regular', Menlo, Consolas, 'Liberation Mono', monospace" font-size='13' fill='#186254' font-weight='normal' text-anchor='middle'>15.412</text>
-<rect x='60' y='214' width='220' height='42' rx='3' fill='none' stroke='#9ca3af' stroke-width='1.0'/>
-<text x='170.0' y='240.0' font-family="'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size='13' fill='#333333' font-weight='normal' text-anchor='middle'>Liver · 样本2</text>
-<rect x='280' y='214' width='110' height='42' rx='3' fill='none' stroke='#9ca3af' stroke-width='1.0'/>
-<text x='335.0' y='240.0' font-family="ui-monospace, 'SFMono-Regular', Menlo, Consolas, 'Liberation Mono', monospace" font-size='13' fill='#186254' font-weight='normal' text-anchor='middle'>1</text>
-<rect x='390' y='214' width='190' height='42' rx='3' fill='none' stroke='#9ca3af' stroke-width='1.0'/>
-<text x='485.0' y='240.0' font-family="ui-monospace, 'SFMono-Regular', Menlo, Consolas, 'Liberation Mono', monospace" font-size='13' fill='#186254' font-weight='normal' text-anchor='middle'>0</text>
-<rect x='580' y='214' width='110' height='42' rx='3' fill='none' stroke='#9ca3af' stroke-width='1.0'/>
-<text x='635.0' y='240.0' font-family="ui-monospace, 'SFMono-Regular', Menlo, Consolas, 'Liberation Mono', monospace" font-size='13' fill='#186254' font-weight='normal' text-anchor='middle'>15.850</text>
-<rect x='60' y='256' width='220' height='42' rx='3' fill='none' stroke='#9ca3af' stroke-width='1.0'/>
-<text x='170.0' y='282.0' font-family="'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size='13' fill='#333333' font-weight='normal' text-anchor='middle'>……（各 10 行）</text>
-<rect x='280' y='256' width='110' height='42' rx='3' fill='none' stroke='#9ca3af' stroke-width='1.0'/>
-<text x='335.0' y='282.0' font-family="ui-monospace, 'SFMono-Regular', Menlo, Consolas, 'Liberation Mono', monospace" font-size='13' fill='#186254' font-weight='normal' text-anchor='middle'>1</text>
-<rect x='390' y='256' width='190' height='42' rx='3' fill='none' stroke='#9ca3af' stroke-width='1.0'/>
-<text x='485.0' y='282.0' font-family="ui-monospace, 'SFMono-Regular', Menlo, Consolas, 'Liberation Mono', monospace" font-size='13' fill='#186254' font-weight='normal' text-anchor='middle'>0</text>
-<rect x='580' y='256' width='110' height='42' rx='3' fill='none' stroke='#9ca3af' stroke-width='1.0'/>
-<text x='635.0' y='282.0' font-family="ui-monospace, 'SFMono-Regular', Menlo, Consolas, 'Liberation Mono', monospace" font-size='13' fill='#186254' font-weight='normal' text-anchor='middle'>·</text>
-<rect x='60' y='298' width='220' height='42' rx='3' fill='none' stroke='#9ca3af' stroke-width='1.0'/>
-<text x='170.0' y='324.0' font-family="'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size='13' fill='#333333' font-weight='normal' text-anchor='middle'>Pancreas · 样本1</text>
-<rect x='280' y='298' width='110' height='42' rx='3' fill='none' stroke='#9ca3af' stroke-width='1.0'/>
-<text x='335.0' y='324.0' font-family="ui-monospace, 'SFMono-Regular', Menlo, Consolas, 'Liberation Mono', monospace" font-size='13' fill='#186254' font-weight='normal' text-anchor='middle'>1</text>
-<rect x='390' y='298' width='190' height='42' rx='3' fill='none' stroke='#9ca3af' stroke-width='1.0'/>
-<text x='485.0' y='324.0' font-family="ui-monospace, 'SFMono-Regular', Menlo, Consolas, 'Liberation Mono', monospace" font-size='13' fill='#186254' font-weight='normal' text-anchor='middle'>1</text>
-<rect x='580' y='298' width='110' height='42' rx='3' fill='none' stroke='#9ca3af' stroke-width='1.0'/>
-<text x='635.0' y='324.0' font-family="ui-monospace, 'SFMono-Regular', Menlo, Consolas, 'Liberation Mono', monospace" font-size='13' fill='#186254' font-weight='normal' text-anchor='middle'>9.376</text>
-<rect x='60' y='340' width='220' height='42' rx='3' fill='none' stroke='#9ca3af' stroke-width='1.0'/>
-<text x='170.0' y='366.0' font-family="'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size='13' fill='#333333' font-weight='normal' text-anchor='middle'>Pancreas · 样本2</text>
-<rect x='280' y='340' width='110' height='42' rx='3' fill='none' stroke='#9ca3af' stroke-width='1.0'/>
-<text x='335.0' y='366.0' font-family="ui-monospace, 'SFMono-Regular', Menlo, Consolas, 'Liberation Mono', monospace" font-size='13' fill='#186254' font-weight='normal' text-anchor='middle'>1</text>
-<rect x='390' y='340' width='190' height='42' rx='3' fill='none' stroke='#9ca3af' stroke-width='1.0'/>
-<text x='485.0' y='366.0' font-family="ui-monospace, 'SFMono-Regular', Menlo, Consolas, 'Liberation Mono', monospace" font-size='13' fill='#186254' font-weight='normal' text-anchor='middle'>1</text>
-<rect x='580' y='340' width='110' height='42' rx='3' fill='none' stroke='#9ca3af' stroke-width='1.0'/>
-<text x='635.0' y='366.0' font-family="ui-monospace, 'SFMono-Regular', Menlo, Consolas, 'Liberation Mono', monospace" font-size='13' fill='#186254' font-weight='normal' text-anchor='middle'>8.707</text>
-<rect x='740' y='150' width='140' height='84' rx='3' fill='#e8f4f1' stroke='#186254' stroke-width='1.4'/>
-<text x='810' y='180' font-family="ui-monospace, 'SFMono-Regular', Menlo, Consolas, 'Liberation Mono', monospace" font-size='13' fill='#333333' font-weight='bold' text-anchor='middle'>(Intercept)</text>
-<text x='810' y='204' font-family="ui-monospace, 'SFMono-Regular', Menlo, Consolas, 'Liberation Mono', monospace" font-size='15' fill='#186254' font-weight='bold' text-anchor='middle'>14.909</text>
-<text x='810' y='224' font-family="'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size='12' fill='#6b7280' font-weight='normal' text-anchor='middle'>= Liver 组均值</text>
-<rect x='740' y='280' width='140' height='84' rx='3' fill='#fdf3e3' stroke='#b45309' stroke-width='1.4'/>
-<text x='810' y='310' font-family="ui-monospace, 'SFMono-Regular', Menlo, Consolas, 'Liberation Mono', monospace" font-size='13' fill='#333333' font-weight='bold' text-anchor='middle'>tissuePancreas</text>
-<text x='810' y='334' font-family="ui-monospace, 'SFMono-Regular', Menlo, Consolas, 'Liberation Mono', monospace" font-size='15' fill='#b45309' font-weight='bold' text-anchor='middle'>-6.503</text>
-<text x='810' y='354' font-family="'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size='12' fill='#6b7280' font-weight='normal' text-anchor='middle'>= 均值差（胰 − 肝）</text>
-<line x1='335.0' y1='264' x2='734' y2='192' stroke='#186254' stroke-width='1.6'/>
-<line x1='734.0' y1='192.0' x2='725.3' y2='189.6' stroke='#186254' stroke-width='1.6'/>
-<line x1='734.0' y1='192.0' x2='726.7' y2='197.3' stroke='#186254' stroke-width='1.6'/>
-<line x1='485.0' y1='264' x2='734' y2='322' stroke='#186254' stroke-width='1.6'/>
-<line x1='734.0' y1='322.0' x2='727.0' y2='316.3' stroke='#186254' stroke-width='1.6'/>
-<line x1='734.0' y1='322.0' x2='725.2' y2='324.0' stroke='#186254' stroke-width='1.6'/>
-<text x='60' y='520' font-family="ui-monospace, 'SFMono-Regular', Menlo, Consolas, 'Liberation Mono', monospace" font-size='15' fill='#333333' font-weight='bold' text-anchor='start'>拟合结果：alb = 14.909 − 6.503 × tissuePancreas</text>
-<text x='60' y='544' font-family="'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size='12' fill='#6b7280' font-weight='normal' text-anchor='start'>Liver 行哑变量为 0，胰腺行为 1；换对照水平，系数与符号随之改变。</text>
+<text x='380.0' y='26' font-family="ui-monospace, 'SFMono-Regular', Menlo, Consolas, 'Liberation Mono', monospace" font-size='15' fill='#333333' font-weight='bold' text-anchor='middle'>fit &lt;- lm(alb ~ tissue, data = d2)</text>
+<text x='380.0' y='45' font-family="'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size='12.5' fill='#6b7280' font-weight='normal' text-anchor='middle'>设计公式读作：alb 由 tissue 解释（R 把分类型变量展开成 0/1 哑变量列）</text>
+<rect x='100.0' y='58' width='218' height='36' rx='3' fill='#e8f4f1' stroke='#186254' stroke-width='1.2'/>
+<text x='209.0' y='81.0' font-family="'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size='14' fill='#333333' font-weight='bold' text-anchor='middle'>样本（前 2 + 后 2 行）</text>
+<rect x='318.0' y='58' width='84' height='36' rx='3' fill='#e8f4f1' stroke='#186254' stroke-width='1.2'/>
+<text x='360.0' y='81.0' font-family="'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size='14' fill='#333333' font-weight='bold' text-anchor='middle'>(截距)</text>
+<rect x='402.0' y='58' width='158' height='36' rx='3' fill='#e8f4f1' stroke='#186254' stroke-width='1.2'/>
+<text x='481.0' y='81.0' font-family="'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size='14' fill='#333333' font-weight='bold' text-anchor='middle'>tissuePancreas</text>
+<rect x='560.0' y='58' width='100' height='36' rx='3' fill='#e8f4f1' stroke='#186254' stroke-width='1.2'/>
+<text x='610.0' y='81.0' font-family="'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size='14' fill='#333333' font-weight='bold' text-anchor='middle'>alb</text>
+<rect x='100.0' y='94' width='218' height='36' rx='3' fill='none' stroke='#9ca3af' stroke-width='1.0'/>
+<text x='209.0' y='117.0' font-family="'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size='14' fill='#333333' font-weight='normal' text-anchor='middle'>Liver · 样本1</text>
+<rect x='318.0' y='94' width='84' height='36' rx='3' fill='none' stroke='#9ca3af' stroke-width='1.0'/>
+<text x='360.0' y='117.0' font-family="ui-monospace, 'SFMono-Regular', Menlo, Consolas, 'Liberation Mono', monospace" font-size='14' fill='#186254' font-weight='normal' text-anchor='middle'>1</text>
+<rect x='402.0' y='94' width='158' height='36' rx='3' fill='none' stroke='#9ca3af' stroke-width='1.0'/>
+<text x='481.0' y='117.0' font-family="ui-monospace, 'SFMono-Regular', Menlo, Consolas, 'Liberation Mono', monospace" font-size='14' fill='#186254' font-weight='normal' text-anchor='middle'>0</text>
+<rect x='560.0' y='94' width='100' height='36' rx='3' fill='none' stroke='#9ca3af' stroke-width='1.0'/>
+<text x='610.0' y='117.0' font-family="ui-monospace, 'SFMono-Regular', Menlo, Consolas, 'Liberation Mono', monospace" font-size='14' fill='#186254' font-weight='normal' text-anchor='middle'>15.412</text>
+<rect x='100.0' y='130' width='218' height='36' rx='3' fill='none' stroke='#9ca3af' stroke-width='1.0'/>
+<text x='209.0' y='153.0' font-family="'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size='14' fill='#333333' font-weight='normal' text-anchor='middle'>Liver · 样本2</text>
+<rect x='318.0' y='130' width='84' height='36' rx='3' fill='none' stroke='#9ca3af' stroke-width='1.0'/>
+<text x='360.0' y='153.0' font-family="ui-monospace, 'SFMono-Regular', Menlo, Consolas, 'Liberation Mono', monospace" font-size='14' fill='#186254' font-weight='normal' text-anchor='middle'>1</text>
+<rect x='402.0' y='130' width='158' height='36' rx='3' fill='none' stroke='#9ca3af' stroke-width='1.0'/>
+<text x='481.0' y='153.0' font-family="ui-monospace, 'SFMono-Regular', Menlo, Consolas, 'Liberation Mono', monospace" font-size='14' fill='#186254' font-weight='normal' text-anchor='middle'>0</text>
+<rect x='560.0' y='130' width='100' height='36' rx='3' fill='none' stroke='#9ca3af' stroke-width='1.0'/>
+<text x='610.0' y='153.0' font-family="ui-monospace, 'SFMono-Regular', Menlo, Consolas, 'Liberation Mono', monospace" font-size='14' fill='#186254' font-weight='normal' text-anchor='middle'>15.850</text>
+<rect x='100.0' y='166' width='218' height='36' rx='3' fill='none' stroke='#9ca3af' stroke-width='1.0'/>
+<text x='209.0' y='189.0' font-family="'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size='14' fill='#333333' font-weight='normal' text-anchor='middle'>……（各 10 行）</text>
+<rect x='318.0' y='166' width='84' height='36' rx='3' fill='none' stroke='#9ca3af' stroke-width='1.0'/>
+<text x='360.0' y='189.0' font-family="ui-monospace, 'SFMono-Regular', Menlo, Consolas, 'Liberation Mono', monospace" font-size='14' fill='#186254' font-weight='normal' text-anchor='middle'>1</text>
+<rect x='402.0' y='166' width='158' height='36' rx='3' fill='none' stroke='#9ca3af' stroke-width='1.0'/>
+<text x='481.0' y='189.0' font-family="ui-monospace, 'SFMono-Regular', Menlo, Consolas, 'Liberation Mono', monospace" font-size='14' fill='#186254' font-weight='normal' text-anchor='middle'>0</text>
+<rect x='560.0' y='166' width='100' height='36' rx='3' fill='none' stroke='#9ca3af' stroke-width='1.0'/>
+<text x='610.0' y='189.0' font-family="ui-monospace, 'SFMono-Regular', Menlo, Consolas, 'Liberation Mono', monospace" font-size='14' fill='#186254' font-weight='normal' text-anchor='middle'>·</text>
+<rect x='100.0' y='202' width='218' height='36' rx='3' fill='none' stroke='#9ca3af' stroke-width='1.0'/>
+<text x='209.0' y='225.0' font-family="'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size='14' fill='#333333' font-weight='normal' text-anchor='middle'>Pancreas · 样本1</text>
+<rect x='318.0' y='202' width='84' height='36' rx='3' fill='none' stroke='#9ca3af' stroke-width='1.0'/>
+<text x='360.0' y='225.0' font-family="ui-monospace, 'SFMono-Regular', Menlo, Consolas, 'Liberation Mono', monospace" font-size='14' fill='#186254' font-weight='normal' text-anchor='middle'>1</text>
+<rect x='402.0' y='202' width='158' height='36' rx='3' fill='none' stroke='#9ca3af' stroke-width='1.0'/>
+<text x='481.0' y='225.0' font-family="ui-monospace, 'SFMono-Regular', Menlo, Consolas, 'Liberation Mono', monospace" font-size='14' fill='#186254' font-weight='normal' text-anchor='middle'>1</text>
+<rect x='560.0' y='202' width='100' height='36' rx='3' fill='none' stroke='#9ca3af' stroke-width='1.0'/>
+<text x='610.0' y='225.0' font-family="ui-monospace, 'SFMono-Regular', Menlo, Consolas, 'Liberation Mono', monospace" font-size='14' fill='#186254' font-weight='normal' text-anchor='middle'>9.376</text>
+<rect x='100.0' y='238' width='218' height='36' rx='3' fill='none' stroke='#9ca3af' stroke-width='1.0'/>
+<text x='209.0' y='261.0' font-family="'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size='14' fill='#333333' font-weight='normal' text-anchor='middle'>Pancreas · 样本2</text>
+<rect x='318.0' y='238' width='84' height='36' rx='3' fill='none' stroke='#9ca3af' stroke-width='1.0'/>
+<text x='360.0' y='261.0' font-family="ui-monospace, 'SFMono-Regular', Menlo, Consolas, 'Liberation Mono', monospace" font-size='14' fill='#186254' font-weight='normal' text-anchor='middle'>1</text>
+<rect x='402.0' y='238' width='158' height='36' rx='3' fill='none' stroke='#9ca3af' stroke-width='1.0'/>
+<text x='481.0' y='261.0' font-family="ui-monospace, 'SFMono-Regular', Menlo, Consolas, 'Liberation Mono', monospace" font-size='14' fill='#186254' font-weight='normal' text-anchor='middle'>1</text>
+<rect x='560.0' y='238' width='100' height='36' rx='3' fill='none' stroke='#9ca3af' stroke-width='1.0'/>
+<text x='610.0' y='261.0' font-family="ui-monospace, 'SFMono-Regular', Menlo, Consolas, 'Liberation Mono', monospace" font-size='14' fill='#186254' font-weight='normal' text-anchor='middle'>8.707</text>
+<line x1='360.0' y1='276' x2='182.0' y2='298' stroke='#186254' stroke-width='1.6'/>
+<line x1='182.0' y1='298.0' x2='190.5' y2='300.9' stroke='#186254' stroke-width='1.6'/>
+<line x1='182.0' y1='298.0' x2='189.6' y2='293.1' stroke='#186254' stroke-width='1.6'/>
+<line x1='481.0' y1='276' x2='576.0' y2='298' stroke='#186254' stroke-width='1.6'/>
+<line x1='576.0' y1='298.0' x2='569.0' y2='292.4' stroke='#186254' stroke-width='1.6'/>
+<line x1='576.0' y1='298.0' x2='567.2' y2='300.0' stroke='#186254' stroke-width='1.6'/>
+<rect x='112.0' y='300' width='350' height='62' rx='3' fill='#e8f4f1' stroke='#186254' stroke-width='1.4'/>
+<text x='287.0' y='324' font-family="ui-monospace, 'SFMono-Regular', Menlo, Consolas, 'Liberation Mono', monospace" font-size='14' fill='#333333' font-weight='bold' text-anchor='middle'>(Intercept) = 14.909</text>
+<text x='287.0' y='346' font-family="'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size='12' fill='#6b7280' font-weight='normal' text-anchor='middle'>Liver 组均值（首个水平当截距）</text>
+<rect x='486.0' y='300' width='350' height='62' rx='3' fill='#fdf3e3' stroke='#b45309' stroke-width='1.4'/>
+<text x='661.0' y='324' font-family="ui-monospace, 'SFMono-Regular', Menlo, Consolas, 'Liberation Mono', monospace" font-size='14' fill='#333333' font-weight='bold' text-anchor='middle'>tissuePancreas = −6.503</text>
+<text x='661.0' y='346' font-family="'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size='12' fill='#6b7280' font-weight='normal' text-anchor='middle'>均值差（胰 − 肝），即 log2FC 方向</text>
+<text x='380.0' y='392' font-family="ui-monospace, 'SFMono-Regular', Menlo, Consolas, 'Liberation Mono', monospace" font-size='15' fill='#333333' font-weight='bold' text-anchor='middle'>拟合结果：alb = 14.909 − 6.503 × tissuePancreas</text>
+<text x='380.0' y='412' font-family="'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size='12.5' fill='#6b7280' font-weight='normal' text-anchor='middle'>Liver 行哑变量为 0，胰腺行为 1；换对照水平，系数与符号随之改变。</text>
 </svg>

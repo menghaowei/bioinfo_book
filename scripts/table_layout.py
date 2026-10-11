@@ -1,9 +1,20 @@
 """Wrap reading tables without rewriting their contents or column alignment."""
+import re
 from html.parser import HTMLParser
 
 
 def wrap_tables(source):
     """Add one scroll region per outermost table in main; preserve source bytes."""
+
+    # 行数较多的长表（如 ASCII 对照表）加入紧凑类，收紧行距与单元格内边距。
+    compact_starts = set()
+    for m in re.finditer(r'<table\b', source):
+        end = source.find('</table>', m.start())
+        if end == -1:
+            continue
+        if source.count('<tr', m.start(), end) >= 25:
+            compact_starts.add(m.start())
+
     class Tables(HTMLParser):
         void_tags = {'area', 'base', 'br', 'col', 'embed', 'hr', 'img', 'input',
                      'link', 'meta', 'param', 'source', 'track', 'wbr'}
@@ -33,7 +44,10 @@ def wrap_tables(source):
                                   for item in self.stack)
             wrap = tag == 'table' and 'main' in ancestors and 'table' not in ancestors and not already_wrapped
             if wrap:
-                self.insert(self.source_position(), '<div class="book-table-scroll" role="region" '
+                scroll_class = 'book-table-scroll'
+                if self.source_position() in compact_starts:
+                    scroll_class += ' book-table-compact'
+                self.insert(self.source_position(), f'<div class="{scroll_class}" role="region" '
                             'aria-label="表格，可横向滚动" tabindex="0">')
                 self.param_table = False
                 self.first_row_cells = []
