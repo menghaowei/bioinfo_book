@@ -835,41 +835,58 @@ bowtie2-build chrX.fa chrX.fa
 接着就是拿我们在上一个步骤处理干净的clean data进行回帖操作，这一步可以理解为将所有短序列在参考基因组上找回他们对应的位置，下面我们对Bowtie 2的参数进行一个大概的认知。
 
 
-```{.text data-book-role="data" data-code-title="bowtie2 常用参数速查"}
-#必选参数
-# -x <bt2-idx>   索引前缀，即刚刚由 bowtie2-build 生成的 chrX.fa
-# -1 <m1>        双端测序对应的 R1.fastq，可为多个文件并用逗号分开，需与 -2 的文件一一对应
-# -2 <m2>        双端测序对应的 R2.fastq
-# -U <r>         单端测序对应的 fastq，可为多个文件并用逗号分开
-# -S <sam>       指定输出的 SAM 文件名
-#常用可选参数
-# -p/--threads <num>  设置线程数，默认为1
-# --reorder           配合-p使用，使比对结果顺序与fq的reads顺序一致
-# --seed <int>        设置随机种子
-# --no-unal           不记录没比对上的reads
-# --un-gz <path>      将unpaired的未比对reads输出到<path>并以gzip压缩
-# --al-gz <path>      将至少能比对1次以上的unpaired reads写入<path>并以gzip压缩
-# -5/--trim5 <int>    剪掉5'端<int>个碱基再比对
-# -3/--trim3 <int>    剪掉3'端<int>个碱基再比对
-#比对参数
-# -N <int>       种子区域内允许的mismatch数目（默认0），除非是跨物种比对，一般不更改
-# -L <int>       设置比对时reads种子的长度
-# -i <func>      设置两个相邻种子间的间隔函数
-# --n-ceil <func>  设置reads中允许含有的N碱基数目
-# --gbar <int>   设置头尾<int>个碱基内不允许出现gap
-# --end-to-end   全局比对，为默认模式
-# --local        局部比对，read两端的碱基可以不参与比对罚分
-#罚分参数
-# --ma <int>     设置匹配得分，仅在--local时生效，默认为2，全局比对时匹配不加分
-# --mp MX,MN     设置错配罚分，MX为最高罚分，MN为最低罚分，默认为MX=6，MN=2；设置--ignore-qual时每次错配罚MX
-# --np <int>     当匹配到N时的罚分，默认为1
-# --rdg <int1>,<int2>  设置read上打开gap罚分<int1>、延长gap罚分<int2>，默认为5,3
-# --rfg <int1>,<int2>  设置reference上打开gap罚分<int1>、延长gap罚分<int2>，默认为5,3
-# --score-min <func>   设置有效比对的最小分值函数，全局比对默认为L,-0.6,-0.6，局部比对默认为G,20,8
-#双端比对参数
-# -I/--minins <int>  设置允许插入片段最小长度，默认为0
-# -X/--maxins <int>  设置允许插入片段最大长度，默认为500
-```
+**必选参数**
+
+| 参数 | 含义 |
+| --- | --- |
+| `-x <bt2-idx>` | 索引前缀，即刚刚由 bowtie2-build 生成的 chrX.fa |
+| `-1 <m1>` | 双端测序对应的 R1.fastq，可为多个文件并用逗号分开，需与 `-2` 的文件一一对应 |
+| `-2 <m2>` | 双端测序对应的 R2.fastq |
+| `-U <r>` | 单端测序对应的 fastq，可为多个文件并用逗号分开 |
+| `-S <sam>` | 指定输出的 SAM 文件名 |
+
+**常用可选参数**
+
+| 参数 | 含义 |
+| --- | --- |
+| `-p/--threads <num>` | 设置线程数，默认为 1 |
+| `--reorder` | 配合 `-p` 使用，使比对结果顺序与 fq 的 reads 顺序一致 |
+| `--seed <int>` | 设置随机种子 |
+| `--no-unal` | 不记录没比对上的 reads |
+| `--un-gz <path>` | 将 unpaired 的未比对 reads 输出到 `<path>` 并以 gzip 压缩 |
+| `--al-gz <path>` | 将至少能比对 1 次以上的 unpaired reads 写入 `<path>` 并以 gzip 压缩 |
+| `-5/--trim5 <int>` | 剪掉 5' 端 `<int>` 个碱基再比对 |
+| `-3/--trim3 <int>` | 剪掉 3' 端 `<int>` 个碱基再比对 |
+
+**比对参数**
+
+| 参数 | 含义 |
+| --- | --- |
+| `-N <int>` | 种子区域内允许的 mismatch 数目（默认 0），除非是跨物种比对，一般不更改 |
+| `-L <int>` | 设置比对时 reads 种子的长度 |
+| `-i <func>` | 设置两个相邻种子间的间隔函数 |
+| `--n-ceil <func>` | 设置 reads 中允许含有的 N 碱基数目 |
+| `--gbar <int>` | 设置头尾 `<int>` 个碱基内不允许出现 gap |
+| `--end-to-end` | 全局比对，为默认模式 |
+| `--local` | 局部比对，read 两端的碱基可以不参与比对罚分 |
+
+**罚分参数**
+
+| 参数 | 含义 |
+| --- | --- |
+| `--ma <int>` | 设置匹配得分，仅在 `--local` 时生效，默认为 2，全局比对时匹配不加分 |
+| `--mp MX,MN` | 设置错配罚分，MX 为最高罚分，MN 为最低罚分，默认为 MX=6、MN=2；设置 `--ignore-qual` 时每次错配罚 MX |
+| `--np <int>` | 当匹配到 N 时的罚分，默认为 1 |
+| `--rdg <int1>,<int2>` | 设置 read 上打开 gap 罚分 `<int1>`、延长 gap 罚分 `<int2>`，默认为 5,3 |
+| `--rfg <int1>,<int2>` | 设置 reference 上打开 gap 罚分 `<int1>`、延长 gap 罚分 `<int2>`，默认为 5,3 |
+| `--score-min <func>` | 设置有效比对的最小分值函数，全局比对默认为 L,-0.6,-0.6，局部比对默认为 G,20,8 |
+
+**双端比对参数**
+
+| 参数 | 含义 |
+| --- | --- |
+| `-I/--minins <int>` | 设置允许插入片段最小长度，默认为 0 |
+| `-X/--maxins <int>` | 设置允许插入片段最大长度，默认为 500 |
 
 看到这么多参数可能会觉得头晕目眩，其实在我们正常使用中，仅仅是选择必须参数与多线程即可，在比对完成后查看结果再进行调整。
 
@@ -1350,7 +1367,17 @@ samtools bam2fq filter_MAPQ20.bam > filter_MAPQ20.fastq
 
 **问题 4**：用 `samtools sort` 对 test.bam 排序，输出 test_sort.bam，并记录文件大小。
 
-**参考解答**：`samtools sort -o test_sort.bam test.bam`。排序前后文件大小基本不变（约 660K）。sort 的常用参数：`-l INT` 压缩等级 0-9；`-m INT` 每线程内存（可用 K/M/G）；`-n` 按 read 名称排序；`-o FILE` 输出文件名；`-T PREFIX` 临时文件前缀；`-O FORMAT` 输出格式（bam/sam/cram，默认 bam）；`-@ INT` 线程数。
+**参考解答**：`samtools sort -o test_sort.bam test.bam`。排序前后文件大小基本不变（约 660K）。sort 的常用参数：
+
+| 参数 | 含义 |
+| --- | --- |
+| `-l INT` | 输出文件压缩等级，0-9 |
+| `-m INT` | 每线程运行时的内存，可用 K/M/G 表示 |
+| `-n` | 按 read 名称排序 |
+| `-o FILE` | 排序后的输出文件名 |
+| `-T PREFIX` | 临时文件前缀 |
+| `-O FORMAT` | 输出格式（bam/sam/cram，默认 bam） |
+| `-@ INT` | 排序和压缩的线程数 |
 
 **问题 5**：用 `samtools index` 给 test_sort.bam 建立索引，写出命令并记录索引文件大小。
 
