@@ -70,9 +70,9 @@ ChIP-seq 需要交联和大量细胞，这两点在实践中都常成为瓶颈�
 
 早期的开放染色质测定靠 DNase-seq 和 MNase-seq，ATAC-seq 因其简便和低细胞量需求成为现在的主流；三者测的都是"可接触性"，数据形态与分析方法相通。
 
-![ATAC-seq 原理示意](../assets/07-chip-seq-and-atac-seq/017-atac-principle.svg){#fig-06-atac-principle}
+![ATAC-seq 原理示意](../assets/07-chip-seq-and-atac-seq/021-buenrostro2013-fig1.jpg){#fig-06-atac-principle width=78%}
 
-@fig-06-atac-principle 概括了从开放染色质到测序文库的转换，以及片段长度与核小体组织的对应关系——这个对应关系正是 6.5 节质控指标的来源。
+@fig-06-atac-principle 的图 a 概括了从开放染色质到测序文库的转换：Tn5 在开放的染色质区域切割并同时连上接头（图源：Buenrostro 等 2013[^ch06-atac-paper]，图 b、c 为文库片段与测序环节）。片段长度与核小体组织的对应关系（无核小体区/单核小体/多核小体）则是 6.5 节质控指标的来源。
 
 ### 三类信号放在一起看 {#topic-06-three-signals}
 
