@@ -891,7 +891,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
 <h1 class="title"><span id="sec-ch02" class="quarto-section-identifier"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">分析环境的搭建与必要的编程技术</span></span></h1>
-<p class="chapter-last-modified"><time datetime="2026-10-09T21:32:15+08:00" title="本章书稿最后修改时间（北京时间，UTC+08:00）">最后修改：2026-10-09 21:32（北京时间）</time></p>
+<p class="chapter-last-modified"><time datetime="2026-10-11T16:23:42+08:00" title="本章书稿最后修改时间（北京时间，UTC+08:00）">最后修改：2026-10-11 16:23（北京时间）</time></p>
 </div>
 
 
@@ -1022,7 +1022,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div id="fig-02-computing-and-programming-013" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-02-computing-and-programming-013-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="../assets/02-computing-and-programming/013-c575c9fa-1e74-4fc5-99e4-465792565047.png" class="img-fluid figure-img">
+<img src="../assets/02-computing-and-programming/013-c575c9fa-1e74-4fc5-99e4-465792565047.png" class="img-fluid figure-img" style="width:75.0%">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-02-computing-and-programming-013-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 图&nbsp;2.4: Windows“管理可选功能”页面：已安装功能列表与“添加功能”入口
@@ -1987,6 +1987,17 @@ results/
 <section id="topic-02-troubleshooting" class="level3">
 <h3 class="anchored" data-anchor-id="topic-02-troubleshooting">排错的基本思路</h3>
 <p>分析出错是常态，排错能力比不出错更值得练。一套固定的动作能解决大部分问题。</p>
+<p>先看全景：四步排查层层递进，每一步都可能直接解决问题——解决了就从右侧出口收尾记录，没解决才进入下一步；无论从哪一步走出来，最后都以记录收尾。</p>
+<div id="fig-02-computing-and-programming-026" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-02-computing-and-programming-026-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="../assets/02-computing-and-programming/svg/troubleshooting-flow.svg" class="img-fluid figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-02-computing-and-programming-026-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+图&nbsp;2.12: 排错的基本流程：四步递进排查，任一步解决即记录收尾
+</figcaption>
+</figure>
+</div>
 <p>第一，读报错。从输出里找 <code>error</code> 而不是 <code>warning</code>——<code>warning</code> 是提醒，<code>error</code> 才是失败原因。程序崩掉时，最后几行通常就是关键信息；找不到就把整段输出从头读，第一条 error 之后的内容往往是连锁反应，修好它，后面自然消失。把报错原文复制下来，不要凭印象转述。</p>
 <p>第二，最小复现。整个流程报错，就把出错那一步单独拿出来，用最小的输入跑一遍：全部样本失败，先拿一个样本试；脚本失败，先把循环里那一条命令手动敲一遍。问题缩到最小，原因往往自己浮出来。</p>
 <p>第三，查输入。很多“程序坏了”其实是数据不对：<code>head</code> 看文件开头格式，<code>wc -l</code> 数行数，和上一步的输出对一对。传输出错、表头变了、路径少了一层，都排在“软件有 bug”前面。</p>
@@ -1999,7 +2010,7 @@ results/
 
 </main> <!-- /main -->
 <div class="book-toolbar" role="navigation" aria-label="阅读工具">
-  <div class="book-brand"><span class="book-brand-name">AI时代生信入门</span><time class="book-last-modified" datetime="2026-10-11T16:15:14+08:00" title="最后修改时间（北京时间，UTC+08:00）">最后修改 2026-10-11 16:15</time></div>
+  <div class="book-brand"><span class="book-brand-name">AI时代生信入门</span><time class="book-last-modified" datetime="2026-10-11T16:23:42+08:00" title="最后修改时间（北京时间，UTC+08:00）">最后修改 2026-10-11 16:23</time></div>
   <button class="book-menu-button" type="button" aria-controls="quarto-sidebar" aria-expanded="false">目录</button>
   <button class="book-search-button" type="button">搜索</button>
 </div>
