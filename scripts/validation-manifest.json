@@ -165,16 +165,13 @@
   },
   {
    "file": "manuscript/12-ai-learning-and-practice.md",
-   "title": "AI技术学习路线与综合实践",
-   "planned_sections": 7,
+   "title": "拥抱大语言模型",
+   "planned_sections": 4,
    "section_titles": [
-    "AI改变了哪些工作，仍需掌握什么",
-    "向AI描述任务并核查信息",
-    "AI辅助写代码、排错和改造流程",
-    "识别能运行但结论错误的分析",
-    "AI使用中的数据、版本与责任记录",
-    "当AI本身成为分析方法",
-    "独立项目、能力自检与进阶路线"
+    "从自然语言处理到大语言模型的智能涌现",
+    "AI的能力边界",
+    "如何用好大语言模型",
+    "智能体项目实战"
    ],
    "summary": true
   }

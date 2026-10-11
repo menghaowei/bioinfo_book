@@ -37,7 +37,7 @@ AI时代，什么都变了，但什么也都没有变。
 9. [单细胞与空间组学](manuscript/09-single-cell-and-spatial-omics.md)
 10. [Snakemake与可复现分析工作流](manuscript/10-snakemake-and-reproducibility.md)
 11. [统计相关知识学习路线及实践](manuscript/11-statistics-and-learning.md)
-12. [AI技术学习路线与综合实践](manuscript/12-ai-learning-and-practice.md)
+12. [拥抱大语言模型](manuscript/12-ai-learning-and-practice.md)
 
 [附录：参考资料与素材说明](appendices/a-references-and-materials.md)
 

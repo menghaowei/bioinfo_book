@@ -1,0 +1,55 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1000" height="330" viewBox="0 0 1000 330">
+<title>从自然语言处理到大语言模型的关键节点时间线</title>
+<desc>2013 至 2025 年的七个关键节点：深度学习普及、2017 年 Transformer、2020 年 GPT-3、2022 年思维链、2023 年 GPT-4、2024 年 o1、2025 年 1 月 DeepSeek-R1 开源（琥珀色标出）。每一节点的能力建立在此前积累之上。</desc>
+<line x1="60.0" y1="168" x2="916.0" y2="168" stroke="#9ca3af" stroke-width="2"/>
+<path d="M 928.0 168 l -12 -6 l 0 12 z" fill="#9ca3af"/>
+<circle cx="120.0" cy="168" r="10" fill="none" stroke="#186254" stroke-width="1.5" opacity="0.45"/>
+<circle cx="120.0" cy="168" r="6" fill="#186254"/>
+<line x1="120.0" y1="156" x2="120.0" y2="142" stroke="#9ca3af" stroke-width="1" stroke-dasharray="3 3"/>
+<text x="120.0" y="94.0" font-family="'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size="12" fill="#6b7280" text-anchor="middle" font-weight="normal">词向量、序列到序列翻译</text>
+<text x="120.0" y="111.0" font-family="'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size="12" fill="#6b7280" text-anchor="middle" font-weight="normal">2016 AlphaGo 出圈</text>
+<text x="120.0" y="130.0" font-family="'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size="14" fill="#333333" text-anchor="middle" font-weight="bold">深度学习普及</text>
+<text x="120.0" y="150.0" font-family="'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size="13" fill="#186254" text-anchor="middle" font-weight="bold">2013–2016</text>
+<circle cx="246.7" cy="168" r="10" fill="none" stroke="#186254" stroke-width="1.5" opacity="0.45"/>
+<circle cx="246.7" cy="168" r="6" fill="#186254"/>
+<line x1="246.7" y1="180" x2="246.7" y2="204" stroke="#9ca3af" stroke-width="1" stroke-dasharray="3 3"/>
+<text x="246.7" y="218.0" font-family="'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size="13" fill="#186254" text-anchor="middle" font-weight="bold">2017</text>
+<text x="246.7" y="240.0" font-family="'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size="14" fill="#333333" text-anchor="middle" font-weight="bold">Transformer</text>
+<text x="246.7" y="262.0" font-family="'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size="12" fill="#6b7280" text-anchor="middle" font-weight="normal">注意力取代循环结构</text>
+<text x="246.7" y="279.0" font-family="'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size="12" fill="#6b7280" text-anchor="middle" font-weight="normal">可并行、可随规模扩展</text>
+<circle cx="373.3" cy="168" r="10" fill="none" stroke="#186254" stroke-width="1.5" opacity="0.45"/>
+<circle cx="373.3" cy="168" r="6" fill="#186254"/>
+<line x1="373.3" y1="156" x2="373.3" y2="142" stroke="#9ca3af" stroke-width="1" stroke-dasharray="3 3"/>
+<text x="373.3" y="94.0" font-family="'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size="12" fill="#6b7280" text-anchor="middle" font-weight="normal">1750 亿参数</text>
+<text x="373.3" y="111.0" font-family="'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size="12" fill="#6b7280" text-anchor="middle" font-weight="normal">少样本上下文学习</text>
+<text x="373.3" y="130.0" font-family="'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size="14" fill="#333333" text-anchor="middle" font-weight="bold">GPT-3</text>
+<text x="373.3" y="150.0" font-family="'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size="13" fill="#186254" text-anchor="middle" font-weight="bold">2020</text>
+<circle cx="500.0" cy="168" r="10" fill="none" stroke="#186254" stroke-width="1.5" opacity="0.45"/>
+<circle cx="500.0" cy="168" r="6" fill="#186254"/>
+<line x1="500.0" y1="180" x2="500.0" y2="204" stroke="#9ca3af" stroke-width="1" stroke-dasharray="3 3"/>
+<text x="500.0" y="218.0" font-family="'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size="13" fill="#186254" text-anchor="middle" font-weight="bold">2022</text>
+<text x="500.0" y="240.0" font-family="'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size="14" fill="#333333" text-anchor="middle" font-weight="bold">思维链 CoT</text>
+<text x="500.0" y="262.0" font-family="'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size="12" fill="#6b7280" text-anchor="middle" font-weight="normal">在提示中给推理示例</text>
+<text x="500.0" y="279.0" font-family="'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size="12" fill="#6b7280" text-anchor="middle" font-weight="normal">让模型“先想再答”</text>
+<circle cx="626.7" cy="168" r="10" fill="none" stroke="#186254" stroke-width="1.5" opacity="0.45"/>
+<circle cx="626.7" cy="168" r="6" fill="#186254"/>
+<line x1="626.7" y1="156" x2="626.7" y2="142" stroke="#9ca3af" stroke-width="1" stroke-dasharray="3 3"/>
+<text x="626.7" y="94.0" font-family="'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size="12" fill="#6b7280" text-anchor="middle" font-weight="normal">多模态输入</text>
+<text x="626.7" y="111.0" font-family="'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size="12" fill="#6b7280" text-anchor="middle" font-weight="normal">综合推理能力跃升</text>
+<text x="626.7" y="130.0" font-family="'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size="14" fill="#333333" text-anchor="middle" font-weight="bold">GPT-4</text>
+<text x="626.7" y="150.0" font-family="'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size="13" fill="#186254" text-anchor="middle" font-weight="bold">2023</text>
+<circle cx="753.3" cy="168" r="10" fill="none" stroke="#186254" stroke-width="1.5" opacity="0.45"/>
+<circle cx="753.3" cy="168" r="6" fill="#186254"/>
+<line x1="753.3" y1="180" x2="753.3" y2="204" stroke="#9ca3af" stroke-width="1" stroke-dasharray="3 3"/>
+<text x="753.3" y="218.0" font-family="'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size="13" fill="#186254" text-anchor="middle" font-weight="bold">2024</text>
+<text x="753.3" y="240.0" font-family="'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size="14" fill="#333333" text-anchor="middle" font-weight="bold">o1</text>
+<text x="753.3" y="262.0" font-family="'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size="12" fill="#6b7280" text-anchor="middle" font-weight="normal">开创推理模型形态</text>
+<text x="753.3" y="279.0" font-family="'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size="12" fill="#6b7280" text-anchor="middle" font-weight="normal">（闭源产品）</text>
+<circle cx="880.0" cy="168" r="10" fill="none" stroke="#b45309" stroke-width="1.5" opacity="0.45"/>
+<circle cx="880.0" cy="168" r="6" fill="#b45309"/>
+<line x1="880.0" y1="156" x2="880.0" y2="142" stroke="#9ca3af" stroke-width="1" stroke-dasharray="3 3"/>
+<text x="880.0" y="94.0" font-family="'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size="12" fill="#6b7280" text-anchor="middle" font-weight="normal">MIT 许可完整开源</text>
+<text x="880.0" y="111.0" font-family="'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size="12" fill="#6b7280" text-anchor="middle" font-weight="normal">同年 9 月登 Nature 封面</text>
+<text x="880.0" y="130.0" font-family="'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size="14" fill="#333333" text-anchor="middle" font-weight="bold">DeepSeek-R1</text>
+<text x="880.0" y="150.0" font-family="'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size="13" fill="#b45309" text-anchor="middle" font-weight="bold">2025.1</text>
+</svg>
