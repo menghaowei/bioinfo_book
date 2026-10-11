@@ -1,0 +1,41 @@
+<svg xmlns='http://www.w3.org/2000/svg' width='900' height='600' viewBox='0 0 900 600' role='img' aria-labelledby='t d'>
+<title id='t'>主成分分析的投影直觉</title>
+<desc id='d'>两个基因维度上的散点云，PC1 取投影方差最大的方向，PC2 与之垂直</desc>
+<line x1='90' y1='500' x2='810' y2='500' stroke='#9ca3af' stroke-width='1.2'/>
+<line x1='810.0' y1='500.0' x2='801.9' y2='496.1' stroke='#9ca3af' stroke-width='1.2'/>
+<line x1='810.0' y1='500.0' x2='801.9' y2='503.9' stroke='#9ca3af' stroke-width='1.2'/>
+<line x1='90' y1='500' x2='90' y2='80' stroke='#9ca3af' stroke-width='1.2'/>
+<line x1='90.0' y1='80.0' x2='86.1' y2='88.1' stroke='#9ca3af' stroke-width='1.2'/>
+<line x1='90.0' y1='80.0' x2='93.9' y2='88.1' stroke='#9ca3af' stroke-width='1.2'/>
+<text x='810' y='522' font-family="'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size='13' fill='#6b7280' font-weight='normal' text-anchor='end'>基因 A 表达（log2）</text>
+<text x='80' y='80' font-family="'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size='13' fill='#6b7280' font-weight='normal' text-anchor='start'>基因 B 表达（log2）</text>
+<circle cx='150' cy='385' r='6' fill='#186254' opacity='0.75'/>
+<circle cx='185' cy='350' r='6' fill='#186254' opacity='0.75'/>
+<circle cx='215' cy='375' r='6' fill='#186254' opacity='0.75'/>
+<circle cx='250' cy='330' r='6' fill='#186254' opacity='0.75'/>
+<circle cx='280' cy='345' r='6' fill='#186254' opacity='0.75'/>
+<circle cx='310' cy='300' r='6' fill='#186254' opacity='0.75'/>
+<circle cx='345' cy='320' r='6' fill='#186254' opacity='0.75'/>
+<circle cx='375' cy='275' r='6' fill='#186254' opacity='0.75'/>
+<circle cx='410' cy='290' r='6' fill='#186254' opacity='0.75'/>
+<circle cx='440' cy='250' r='6' fill='#186254' opacity='0.75'/>
+<circle cx='470' cy='265' r='6' fill='#186254' opacity='0.75'/>
+<circle cx='505' cy='225' r='6' fill='#186254' opacity='0.75'/>
+<circle cx='535' cy='240' r='6' fill='#186254' opacity='0.75'/>
+<circle cx='565' cy='200' r='6' fill='#186254' opacity='0.75'/>
+<circle cx='600' cy='215' r='6' fill='#186254' opacity='0.75'/>
+<circle cx='630' cy='175' r='6' fill='#186254' opacity='0.75'/>
+<line x1='127.5625' y1='481.75' x2='655.5625' y2='85.75' stroke='#186254' stroke-width='3.0'/>
+<line x1='655.6' y1='85.8' x2='646.7' y2='87.5' stroke='#186254' stroke-width='3.0'/>
+<line x1='655.6' y1='85.8' x2='651.4' y2='93.7' stroke='#186254' stroke-width='3.0'/>
+<text x='667.5625' y='79.75' font-family="'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size='15' fill='#186254' font-weight='bold' text-anchor='start'>PC1（方差最大）</text>
+<line x1='319.5625' y1='187.75' x2='463.5625' y2='379.75' stroke='#b45309' stroke-width='2.2'/>
+<line x1='463.6' y1='379.8' x2='461.8' y2='370.9' stroke='#b45309' stroke-width='2.2'/>
+<line x1='463.6' y1='379.8' x2='455.6' y2='375.6' stroke='#b45309' stroke-width='2.2'/>
+<text x='473.5625' y='397.75' font-family="'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size='13' fill='#b45309' font-weight='bold' text-anchor='start'>PC2（垂直于 PC1）</text>
+<line x1='505' y1='225' x2='492.3625' y2='208.15' stroke='#b45309' stroke-width='1.4' stroke-dasharray='5,4'/>
+<circle cx='492' cy='208' r='7' fill='none' stroke='#b45309' stroke-width='2'/>
+<text x='517' y='215' font-family="'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size='12' fill='#333333' font-weight='normal' text-anchor='start'>样本</text>
+<text x='504.3625' y='230.15' font-family="'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size='12' fill='#6b7280' font-weight='normal' text-anchor='start'>它在 PC1 上的投影（得分）</text>
+<text x='90' y='584' font-family="'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size='12' fill='#6b7280' font-weight='normal' text-anchor='start'>实心点为示意样本；虚线是样本到 PC1 的垂线，所有点的投影构成主成分得分。</text>
+</svg>
