@@ -920,7 +920,7 @@ window.Quarto = {
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
 <h1 class="title"><span id="sec-ch04" class="quarto-section-identifier"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">测序结果的比对</span></span></h1>
-<p class="chapter-last-modified"><time datetime="2026-10-09T21:49:21+08:00" title="本章书稿最后修改时间（北京时间，UTC+08:00）">最后修改：2026-10-09 21:49（北京时间）</time></p>
+<p class="chapter-last-modified"><time datetime="2026-10-11T16:45:35+08:00" title="本章书稿最后修改时间（北京时间，UTC+08:00）">最后修改：2026-10-11 16:45（北京时间）</time></p>
 </div>
 
 
@@ -2195,50 +2195,200 @@ H(X) = I(n)\times4^{\,n-1} + I(n-1)\times4^{\,n-2} + \cdots + I(1)\times4^0
 </figure>
 </div>
 <p>接着就是拿我们在上一个步骤处理干净的clean data进行回帖操作，这一步可以理解为将所有短序列在参考基因组上找回他们对应的位置，下面我们对Bowtie 2的参数进行一个大概的认知。</p>
-<pre data-code-text="&quot;#必选参数\n# -x &lt;bt2-idx&gt;   索引前缀，即刚刚由 bowtie2-build 生成的 chrX.fa\n# -1 &lt;m1&gt;        双端测序对应的 R1.fastq，可为多个文件并用逗号分开，需与 -2 的文件一一对应\n# -2 &lt;m2&gt;        双端测序对应的 R2.fastq\n# -U &lt;r&gt;         单端测序对应的 fastq，可为多个文件并用逗号分开\n# -S &lt;sam&gt;       指定输出的 SAM 文件名\n#常用可选参数\n# -p/--threads &lt;num&gt;  设置线程数，默认为1\n# --reorder           配合-p使用，使比对结果顺序与fq的reads顺序一致\n# --seed &lt;int&gt;        设置随机种子\n# --no-unal           不记录没比对上的reads\n# --un-gz &lt;path&gt;      将unpaired的未比对reads输出到&lt;path&gt;并以gzip压缩\n# --al-gz &lt;path&gt;      将至少能比对1次以上的unpaired reads写入&lt;path&gt;并以gzip压缩\n# -5/--trim5 &lt;int&gt;    剪掉5&#x27;端&lt;int&gt;个碱基再比对\n# -3/--trim3 &lt;int&gt;    剪掉3&#x27;端&lt;int&gt;个碱基再比对\n#比对参数\n# -N &lt;int&gt;       种子区域内允许的mismatch数目（默认0），除非是跨物种比对，一般不更改\n# -L &lt;int&gt;       设置比对时reads种子的长度\n# -i &lt;func&gt;      设置两个相邻种子间的间隔函数\n# --n-ceil &lt;func&gt;  设置reads中允许含有的N碱基数目\n# --gbar &lt;int&gt;   设置头尾&lt;int&gt;个碱基内不允许出现gap\n# --end-to-end   全局比对，为默认模式\n# --local        局部比对，read两端的碱基可以不参与比对罚分\n#罚分参数\n# --ma &lt;int&gt;     设置匹配得分，仅在--local时生效，默认为2，全局比对时匹配不加分\n# --mp MX,MN     设置错配罚分，MX为最高罚分，MN为最低罚分，默认为MX=6，MN=2；设置--ignore-qual时每次错配罚MX\n# --np &lt;int&gt;     当匹配到N时的罚分，默认为1\n# --rdg &lt;int1&gt;,&lt;int2&gt;  设置read上打开gap罚分&lt;int1&gt;、延长gap罚分&lt;int2&gt;，默认为5,3\n# --rfg &lt;int1&gt;,&lt;int2&gt;  设置reference上打开gap罚分&lt;int1&gt;、延长gap罚分&lt;int2&gt;，默认为5,3\n# --score-min &lt;func&gt;   设置有效比对的最小分值函数，全局比对默认为L,-0.6,-0.6，局部比对默认为G,20,8\n#双端比对参数\n# -I/--minins &lt;int&gt;  设置允许插入片段最小长度，默认为0\n# -X/--maxins &lt;int&gt;  设置允许插入片段最大长度，默认为500&quot;" class="text" data-book-role="data" data-code-title="bowtie2 常用参数速查"><code>#必选参数
-# -x &lt;bt2-idx&gt;   索引前缀，即刚刚由 bowtie2-build 生成的 chrX.fa
-# -1 &lt;m1&gt;        双端测序对应的 R1.fastq，可为多个文件并用逗号分开，需与 -2 的文件一一对应
-# -2 &lt;m2&gt;        双端测序对应的 R2.fastq
-# -U &lt;r&gt;         单端测序对应的 fastq，可为多个文件并用逗号分开
-# -S &lt;sam&gt;       指定输出的 SAM 文件名
-#常用可选参数
-# -p/--threads &lt;num&gt;  设置线程数，默认为1
-# --reorder           配合-p使用，使比对结果顺序与fq的reads顺序一致
-# --seed &lt;int&gt;        设置随机种子
-# --no-unal           不记录没比对上的reads
-# --un-gz &lt;path&gt;      将unpaired的未比对reads输出到&lt;path&gt;并以gzip压缩
-# --al-gz &lt;path&gt;      将至少能比对1次以上的unpaired reads写入&lt;path&gt;并以gzip压缩
-# -5/--trim5 &lt;int&gt;    剪掉5'端&lt;int&gt;个碱基再比对
-# -3/--trim3 &lt;int&gt;    剪掉3'端&lt;int&gt;个碱基再比对
-#比对参数
-# -N &lt;int&gt;       种子区域内允许的mismatch数目（默认0），除非是跨物种比对，一般不更改
-# -L &lt;int&gt;       设置比对时reads种子的长度
-# -i &lt;func&gt;      设置两个相邻种子间的间隔函数
-# --n-ceil &lt;func&gt;  设置reads中允许含有的N碱基数目
-# --gbar &lt;int&gt;   设置头尾&lt;int&gt;个碱基内不允许出现gap
-# --end-to-end   全局比对，为默认模式
-# --local        局部比对，read两端的碱基可以不参与比对罚分
-#罚分参数
-# --ma &lt;int&gt;     设置匹配得分，仅在--local时生效，默认为2，全局比对时匹配不加分
-# --mp MX,MN     设置错配罚分，MX为最高罚分，MN为最低罚分，默认为MX=6，MN=2；设置--ignore-qual时每次错配罚MX
-# --np &lt;int&gt;     当匹配到N时的罚分，默认为1
-# --rdg &lt;int1&gt;,&lt;int2&gt;  设置read上打开gap罚分&lt;int1&gt;、延长gap罚分&lt;int2&gt;，默认为5,3
-# --rfg &lt;int1&gt;,&lt;int2&gt;  设置reference上打开gap罚分&lt;int1&gt;、延长gap罚分&lt;int2&gt;，默认为5,3
-# --score-min &lt;func&gt;   设置有效比对的最小分值函数，全局比对默认为L,-0.6,-0.6，局部比对默认为G,20,8
-#双端比对参数
-# -I/--minins &lt;int&gt;  设置允许插入片段最小长度，默认为0
-# -X/--maxins &lt;int&gt;  设置允许插入片段最大长度，默认为500</code></pre>
+<p><strong>必选参数</strong></p>
+<div class="book-table-scroll" role="region" aria-label="表格，可横向滚动" tabindex="0"><table class="caption-top table"><colgroup><col style="width:22%;min-width:110px"><col style="width:78%"></colgroup>
+<colgroup>
+<col style="width: 50%">
+<col style="width: 50%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>参数</th>
+<th>含义</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>-x &lt;bt2-idx&gt;</code></td>
+<td>索引前缀，即刚刚由 bowtie2-build 生成的 chrX.fa</td>
+</tr>
+<tr class="even">
+<td><code>-1 &lt;m1&gt;</code></td>
+<td>双端测序对应的 R1.fastq，可为多个文件并用逗号分开，需与 <code>-2</code> 的文件一一对应</td>
+</tr>
+<tr class="odd">
+<td><code>-2 &lt;m2&gt;</code></td>
+<td>双端测序对应的 R2.fastq</td>
+</tr>
+<tr class="even">
+<td><code>-U &lt;r&gt;</code></td>
+<td>单端测序对应的 fastq，可为多个文件并用逗号分开</td>
+</tr>
+<tr class="odd">
+<td><code>-S &lt;sam&gt;</code></td>
+<td>指定输出的 SAM 文件名</td>
+</tr>
+</tbody>
+</table></div>
+<p><strong>常用可选参数</strong></p>
+<div class="book-table-scroll" role="region" aria-label="表格，可横向滚动" tabindex="0"><table class="caption-top table"><colgroup><col style="width:22%;min-width:110px"><col style="width:78%"></colgroup>
+<colgroup>
+<col style="width: 50%">
+<col style="width: 50%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>参数</th>
+<th>含义</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>-p/--threads &lt;num&gt;</code></td>
+<td>设置线程数，默认为 1</td>
+</tr>
+<tr class="even">
+<td><code>--reorder</code></td>
+<td>配合 <code>-p</code> 使用，使比对结果顺序与 fq 的 reads 顺序一致</td>
+</tr>
+<tr class="odd">
+<td><code>--seed &lt;int&gt;</code></td>
+<td>设置随机种子</td>
+</tr>
+<tr class="even">
+<td><code>--no-unal</code></td>
+<td>不记录没比对上的 reads</td>
+</tr>
+<tr class="odd">
+<td><code>--un-gz &lt;path&gt;</code></td>
+<td>将 unpaired 的未比对 reads 输出到 <code>&lt;path&gt;</code> 并以 gzip 压缩</td>
+</tr>
+<tr class="even">
+<td><code>--al-gz &lt;path&gt;</code></td>
+<td>将至少能比对 1 次以上的 unpaired reads 写入 <code>&lt;path&gt;</code> 并以 gzip 压缩</td>
+</tr>
+<tr class="odd">
+<td><code>-5/--trim5 &lt;int&gt;</code></td>
+<td>剪掉 5’ 端 <code>&lt;int&gt;</code> 个碱基再比对</td>
+</tr>
+<tr class="even">
+<td><code>-3/--trim3 &lt;int&gt;</code></td>
+<td>剪掉 3’ 端 <code>&lt;int&gt;</code> 个碱基再比对</td>
+</tr>
+</tbody>
+</table></div>
+<p><strong>比对参数</strong></p>
+<div class="book-table-scroll" role="region" aria-label="表格，可横向滚动" tabindex="0"><table class="caption-top table"><colgroup><col style="width:22%;min-width:110px"><col style="width:78%"></colgroup>
+<colgroup>
+<col style="width: 50%">
+<col style="width: 50%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>参数</th>
+<th>含义</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>-N &lt;int&gt;</code></td>
+<td>种子区域内允许的 mismatch 数目（默认 0），除非是跨物种比对，一般不更改</td>
+</tr>
+<tr class="even">
+<td><code>-L &lt;int&gt;</code></td>
+<td>设置比对时 reads 种子的长度</td>
+</tr>
+<tr class="odd">
+<td><code>-i &lt;func&gt;</code></td>
+<td>设置两个相邻种子间的间隔函数</td>
+</tr>
+<tr class="even">
+<td><code>--n-ceil &lt;func&gt;</code></td>
+<td>设置 reads 中允许含有的 N 碱基数目</td>
+</tr>
+<tr class="odd">
+<td><code>--gbar &lt;int&gt;</code></td>
+<td>设置头尾 <code>&lt;int&gt;</code> 个碱基内不允许出现 gap</td>
+</tr>
+<tr class="even">
+<td><code>--end-to-end</code></td>
+<td>全局比对，为默认模式</td>
+</tr>
+<tr class="odd">
+<td><code>--local</code></td>
+<td>局部比对，read 两端的碱基可以不参与比对罚分</td>
+</tr>
+</tbody>
+</table></div>
+<p><strong>罚分参数</strong></p>
+<div class="book-table-scroll" role="region" aria-label="表格，可横向滚动" tabindex="0"><table class="caption-top table"><colgroup><col style="width:22%;min-width:110px"><col style="width:78%"></colgroup>
+<colgroup>
+<col style="width: 50%">
+<col style="width: 50%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>参数</th>
+<th>含义</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>--ma &lt;int&gt;</code></td>
+<td>设置匹配得分，仅在 <code>--local</code> 时生效，默认为 2，全局比对时匹配不加分</td>
+</tr>
+<tr class="even">
+<td><code>--mp MX,MN</code></td>
+<td>设置错配罚分，MX 为最高罚分，MN 为最低罚分，默认为 MX=6、MN=2；设置 <code>--ignore-qual</code> 时每次错配罚 MX</td>
+</tr>
+<tr class="odd">
+<td><code>--np &lt;int&gt;</code></td>
+<td>当匹配到 N 时的罚分，默认为 1</td>
+</tr>
+<tr class="even">
+<td><code>--rdg &lt;int1&gt;,&lt;int2&gt;</code></td>
+<td>设置 read 上打开 gap 罚分 <code>&lt;int1&gt;</code>、延长 gap 罚分 <code>&lt;int2&gt;</code>，默认为 5,3</td>
+</tr>
+<tr class="odd">
+<td><code>--rfg &lt;int1&gt;,&lt;int2&gt;</code></td>
+<td>设置 reference 上打开 gap 罚分 <code>&lt;int1&gt;</code>、延长 gap 罚分 <code>&lt;int2&gt;</code>，默认为 5,3</td>
+</tr>
+<tr class="even">
+<td><code>--score-min &lt;func&gt;</code></td>
+<td>设置有效比对的最小分值函数，全局比对默认为 L,-0.6,-0.6，局部比对默认为 G,20,8</td>
+</tr>
+</tbody>
+</table></div>
+<p><strong>双端比对参数</strong></p>
+<div class="book-table-scroll" role="region" aria-label="表格，可横向滚动" tabindex="0"><table class="caption-top table"><colgroup><col style="width:22%;min-width:110px"><col style="width:78%"></colgroup>
+<thead>
+<tr class="header">
+<th>参数</th>
+<th>含义</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>-I/--minins &lt;int&gt;</code></td>
+<td>设置允许插入片段最小长度，默认为 0</td>
+</tr>
+<tr class="even">
+<td><code>-X/--maxins &lt;int&gt;</code></td>
+<td>设置允许插入片段最大长度，默认为 500</td>
+</tr>
+</tbody>
+</table></div>
 <p>看到这么多参数可能会觉得头晕目眩，其实在我们正常使用中，仅仅是选择必须参数与多线程即可，在比对完成后查看结果再进行调整。</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb20" data-book-role="code"><pre data-code-text="&quot;bowtie2 -p 10 -x chrX.fa -1 ERR188245_chrX_1.fastq.gz -2 ERR188245_chrX_2.fastq.gz -S ERR188245.sam &amp;&quot;" class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="ex">bowtie2</span> <span class="at">-p</span> 10 <span class="at">-x</span> chrX.fa <span class="at">-1</span> ERR188245_chrX_1.fastq.gz <span class="at">-2</span> ERR188245_chrX_2.fastq.gz <span class="at">-S</span> ERR188245.sam <span class="kw">&amp;</span></span></code></pre></div><button title="复制到剪贴板" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb19" data-book-role="code"><pre data-code-text="&quot;bowtie2 -p 10 -x chrX.fa -1 ERR188245_chrX_1.fastq.gz -2 ERR188245_chrX_2.fastq.gz -S ERR188245.sam &amp;&quot;" class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="ex">bowtie2</span> <span class="at">-p</span> 10 <span class="at">-x</span> chrX.fa <span class="at">-1</span> ERR188245_chrX_1.fastq.gz <span class="at">-2</span> ERR188245_chrX_2.fastq.gz <span class="at">-S</span> ERR188245.sam <span class="kw">&amp;</span></span></code></pre></div><button title="复制到剪贴板" class="code-copy-button"><i class="bi"></i></button></div>
 </section>
 <section id="src-0040-mapping-and-BAM-operation-256" class="level4">
 <h4 class="anchored" data-anchor-id="src-0040-mapping-and-BAM-operation-256">比对结果检查</h4>
 <p>在比对完成之后，Bowtie 2会输出一段log文件，记录着比对情况，但那只是粗略的比对情况，简单的检查可以用；如果要查看每个染色体的比对情况，则推荐用Qualimap 2进行检查。该软件的安装使用conda即可（注意：qualimap bamqc 的输入是排序后的 BAM 文件，SAM 或未排序的 BAM 需要先转换排序，下一节会讲到）。</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb21" data-book-role="code"><pre data-code-text="&quot;conda install -c bioconda qualimap&quot;" class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="ex">conda</span> install <span class="at">-c</span> bioconda qualimap</span></code></pre></div><button title="复制到剪贴板" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb20" data-book-role="code"><pre data-code-text="&quot;conda install -c bioconda qualimap&quot;" class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="ex">conda</span> install <span class="at">-c</span> bioconda qualimap</span></code></pre></div><button title="复制到剪贴板" class="code-copy-button"><i class="bi"></i></button></div>
 <p>而后进行质检也非常简单，选择bamqc即可：</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb22" data-book-role="code"><pre data-code-text="&quot;qualimap bamqc -bam ERR188245_chrX.sorted.bam -outdir bamqc_result -outformat PDF:HTML&quot;" class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="ex">qualimap</span> bamqc <span class="at">-bam</span> ERR188245_chrX.sorted.bam <span class="at">-outdir</span> bamqc_result <span class="at">-outformat</span> PDF:HTML</span></code></pre></div><button title="复制到剪贴板" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb21" data-book-role="code"><pre data-code-text="&quot;qualimap bamqc -bam ERR188245_chrX.sorted.bam -outdir bamqc_result -outformat PDF:HTML&quot;" class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="ex">qualimap</span> bamqc <span class="at">-bam</span> ERR188245_chrX.sorted.bam <span class="at">-outdir</span> bamqc_result <span class="at">-outformat</span> PDF:HTML</span></code></pre></div><button title="复制到剪贴板" class="code-copy-button"><i class="bi"></i></button></div>
 <p>如果想看注释的区域也可以加上gff文件的参数：</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb23" data-book-role="code"><pre data-code-text="&quot;qualimap bamqc -bam ERR188245_chrX.sorted.bam -gff chrX.gff -outdir bamqc_result -outformat PDF:HTML&quot;" class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="ex">qualimap</span> bamqc <span class="at">-bam</span> ERR188245_chrX.sorted.bam <span class="at">-gff</span> chrX.gff <span class="at">-outdir</span> bamqc_result <span class="at">-outformat</span> PDF:HTML</span></code></pre></div><button title="复制到剪贴板" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb22" data-book-role="code"><pre data-code-text="&quot;qualimap bamqc -bam ERR188245_chrX.sorted.bam -gff chrX.gff -outdir bamqc_result -outformat PDF:HTML&quot;" class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="ex">qualimap</span> bamqc <span class="at">-bam</span> ERR188245_chrX.sorted.bam <span class="at">-gff</span> chrX.gff <span class="at">-outdir</span> bamqc_result <span class="at">-outformat</span> PDF:HTML</span></code></pre></div><button title="复制到剪贴板" class="code-copy-button"><i class="bi"></i></button></div>
 <p><span id="question-16-2"></span></p>
 <p><span id="question-16-3"></span></p>
 <p><span id="question-16-66"></span></p>
@@ -2256,7 +2406,7 @@ H(X) = I(n)\times4^{\,n-1} + I(n-1)\times4^{\,n-2} + \cdots + I(1)\times4^0
 <h3 class="anchored" data-anchor-id="src-0040-mapping-and-BAM-operation-278">SAM 与 BAM 总览</h3>
 <p>SAM 的全称是 Sequence Alignment Map，设计之初就是为了存储 mapping 结果。BAM 是 SAM 的二进制压缩版本：内容完全等价，体积小得多，排好序后还能随机访问。一个标准的 SAM 文件由两部分组成：第 1 部分是以 <code>@</code> 开头的头部；第 2 部分是紧跟在头部后面的比对结果。</p>
 <p>经过 Bowtie 2 比对之后，会生成一个后缀是 sam 的结果文件。下面我们使用 less 指令查看这个文件（ <a href="#fig-04-quality-control-and-alignment-024" class="quarto-xref">图&nbsp;<span>4.51</span></a> ； <a href="#fig-a-questions-16-20-002" class="quarto-xref">图&nbsp;<span>4.52</span></a> 是另一份文件的完整视图）：</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb24" data-book-role="code"><pre data-code-text="&quot;less ERR188245.sam&quot;" class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="fu">less</span> ERR188245.sam</span></code></pre></div><button title="复制到剪贴板" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb23" data-book-role="code"><pre data-code-text="&quot;less ERR188245.sam&quot;" class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="fu">less</span> ERR188245.sam</span></code></pre></div><button title="复制到剪贴板" class="code-copy-button"><i class="bi"></i></button></div>
 <div id="fig-04-quality-control-and-alignment-024" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-04-quality-control-and-alignment-024-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
@@ -2720,87 +2870,87 @@ H(X) = I(n)\times4^{\,n-1} + I(n-1)\times4^{\,n-2} + \cdots + I(1)\times4^0
 <section id="src-0040-mapping-and-BAM-operation-330" class="level3">
 <h3 class="anchored" data-anchor-id="src-0040-mapping-and-BAM-operation-330">samtools 常用操作</h3>
 <p>在 Linux 中查看和处理 SAM/BAM 最好用的工具是 samtools（可用 <code>conda install -c bioconda samtools</code> 安装）。查看 SAM 文件的常用操作：</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb28" data-book-role="code"><pre data-code-text="&quot;# 假设SAM文件的文件名是 test.sam\n\n# 1.只查看头部\nsamtools view -H test.sam\n\n# 2.只查看内容，不查看头部\nsamtools view test.sam\n\n# 3.头部和内容一起查看\nsamtools view -h test.sam\n\n# 4.查看帮助文档\nsamtools view&quot;" class="sourceCode numberSource bash numberLines code-with-copy"><code class="sourceCode bash"><span id="cb28-1"><a href="#cb28-1"></a><span class="co"># 假设SAM文件的文件名是 test.sam</span></span>
-<span id="cb28-2"><a href="#cb28-2"></a></span>
-<span id="cb28-3"><a href="#cb28-3"></a><span class="co"># 1.只查看头部</span></span>
-<span id="cb28-4"><a href="#cb28-4"></a><span class="ex">samtools</span> view <span class="at">-H</span> test.sam</span>
-<span id="cb28-5"><a href="#cb28-5"></a></span>
-<span id="cb28-6"><a href="#cb28-6"></a><span class="co"># 2.只查看内容，不查看头部</span></span>
-<span id="cb28-7"><a href="#cb28-7"></a><span class="ex">samtools</span> view test.sam</span>
-<span id="cb28-8"><a href="#cb28-8"></a></span>
-<span id="cb28-9"><a href="#cb28-9"></a><span class="co"># 3.头部和内容一起查看</span></span>
-<span id="cb28-10"><a href="#cb28-10"></a><span class="ex">samtools</span> view <span class="at">-h</span> test.sam</span>
-<span id="cb28-11"><a href="#cb28-11"></a></span>
-<span id="cb28-12"><a href="#cb28-12"></a><span class="co"># 4.查看帮助文档</span></span>
-<span id="cb28-13"><a href="#cb28-13"></a><span class="ex">samtools</span> view</span></code></pre></div><button title="复制到剪贴板" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb27" data-book-role="code"><pre data-code-text="&quot;# 假设SAM文件的文件名是 test.sam\n\n# 1.只查看头部\nsamtools view -H test.sam\n\n# 2.只查看内容，不查看头部\nsamtools view test.sam\n\n# 3.头部和内容一起查看\nsamtools view -h test.sam\n\n# 4.查看帮助文档\nsamtools view&quot;" class="sourceCode numberSource bash numberLines code-with-copy"><code class="sourceCode bash"><span id="cb27-1"><a href="#cb27-1"></a><span class="co"># 假设SAM文件的文件名是 test.sam</span></span>
+<span id="cb27-2"><a href="#cb27-2"></a></span>
+<span id="cb27-3"><a href="#cb27-3"></a><span class="co"># 1.只查看头部</span></span>
+<span id="cb27-4"><a href="#cb27-4"></a><span class="ex">samtools</span> view <span class="at">-H</span> test.sam</span>
+<span id="cb27-5"><a href="#cb27-5"></a></span>
+<span id="cb27-6"><a href="#cb27-6"></a><span class="co"># 2.只查看内容，不查看头部</span></span>
+<span id="cb27-7"><a href="#cb27-7"></a><span class="ex">samtools</span> view test.sam</span>
+<span id="cb27-8"><a href="#cb27-8"></a></span>
+<span id="cb27-9"><a href="#cb27-9"></a><span class="co"># 3.头部和内容一起查看</span></span>
+<span id="cb27-10"><a href="#cb27-10"></a><span class="ex">samtools</span> view <span class="at">-h</span> test.sam</span>
+<span id="cb27-11"><a href="#cb27-11"></a></span>
+<span id="cb27-12"><a href="#cb27-12"></a><span class="co"># 4.查看帮助文档</span></span>
+<span id="cb27-13"><a href="#cb27-13"></a><span class="ex">samtools</span> view</span></code></pre></div><button title="复制到剪贴板" class="code-copy-button"><i class="bi"></i></button></div>
 <section id="sec-04-06-sam-bam-convert" class="level4">
 <h4 class="anchored" data-anchor-id="sec-04-06-sam-bam-convert">SAM 与 BAM 互转</h4>
 <p>由于我们的sam文件是文本类的文件，这就导致比对所产生的结果文件动辄大几G，对我们硬盘的造成了很大存储压力，如果压缩则能够减小很多体积，而直接转成二进制文件则更为节约体积，故而就诞生了一种二进制格式bam来对比对结果进行存储，除了是二进制以外其存储的内容与sam文件无异。怎么区分这两个呢，我觉得用英文区分就很简单可以区分开，s是string的意思，字符，文本的意思，b是binary的意思，二进制的意思，一下子就知道两者的区别了。</p>
 <p>那么转成二进制文件之后，要怎么打开呢？很明显使用less这种打开文本文件的是不适合的了。这个时候就要提到BWA之父李恒大神为sam与bam开发的一个处理利器samtools。首先是国际惯例，安装</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb29" data-book-role="code"><pre data-code-text="&quot;conda install -c bioconda samtools&quot;" class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="ex">conda</span> install <span class="at">-c</span> bioconda samtools</span></code></pre></div><button title="复制到剪贴板" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb28" data-book-role="code"><pre data-code-text="&quot;conda install -c bioconda samtools&quot;" class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="ex">conda</span> install <span class="at">-c</span> bioconda samtools</span></code></pre></div><button title="复制到剪贴板" class="code-copy-button"><i class="bi"></i></button></div>
 <p>安装完毕之后就可以在命令行上使用了，首先是将sam文件转换为bam文件：</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb30" data-book-role="code"><pre data-code-text="&quot;# 将sam文件转换为bam文件\nsamtools view -b ERR188245.sam &gt; ERR188245.bam\n\n# 同样的，我们可以把bam文件转为sam文件\nsamtools view -h ERR188245.bam &gt; ERR188245.sam&quot;" class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 将sam文件转换为bam文件</span></span>
-<span id="cb30-2"><a href="#cb30-2" aria-hidden="true" tabindex="-1"></a><span class="ex">samtools</span> view <span class="at">-b</span> ERR188245.sam <span class="op">&gt;</span> ERR188245.bam</span>
-<span id="cb30-3"><a href="#cb30-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb30-4"><a href="#cb30-4" aria-hidden="true" tabindex="-1"></a><span class="co"># 同样的，我们可以把bam文件转为sam文件</span></span>
-<span id="cb30-5"><a href="#cb30-5" aria-hidden="true" tabindex="-1"></a><span class="ex">samtools</span> view <span class="at">-h</span> ERR188245.bam <span class="op">&gt;</span> ERR188245.sam</span></code></pre></div><button title="复制到剪贴板" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb29" data-book-role="code"><pre data-code-text="&quot;# 将sam文件转换为bam文件\nsamtools view -b ERR188245.sam &gt; ERR188245.bam\n\n# 同样的，我们可以把bam文件转为sam文件\nsamtools view -h ERR188245.bam &gt; ERR188245.sam&quot;" class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 将sam文件转换为bam文件</span></span>
+<span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a><span class="ex">samtools</span> view <span class="at">-b</span> ERR188245.sam <span class="op">&gt;</span> ERR188245.bam</span>
+<span id="cb29-3"><a href="#cb29-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb29-4"><a href="#cb29-4" aria-hidden="true" tabindex="-1"></a><span class="co"># 同样的，我们可以把bam文件转为sam文件</span></span>
+<span id="cb29-5"><a href="#cb29-5" aria-hidden="true" tabindex="-1"></a><span class="ex">samtools</span> view <span class="at">-h</span> ERR188245.bam <span class="op">&gt;</span> ERR188245.sam</span></code></pre></div><button title="复制到剪贴板" class="code-copy-button"><i class="bi"></i></button></div>
 <p>那么问题来了，转为bam文件之后，怎么用samtools查看？我们可以将bam转为sam，然后再利用管道符用less查看：</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb31" data-book-role="code"><pre data-code-text="&quot;# 查看完整的bam文件\nsamtools view -h ERR188245_chrX.bam | less -S\n\n#如果只想查看头文件\nsamtools view -H ERR188245_chrX.bam\n\n#如果想跳过头文件\nsamtools view ERR188245_chrX.bam  | less -S&quot;" class="sourceCode numberSource bash numberLines code-with-copy"><code class="sourceCode bash"><span id="cb31-1"><a href="#cb31-1"></a><span class="co"># 查看完整的bam文件</span></span>
-<span id="cb31-2"><a href="#cb31-2"></a><span class="ex">samtools</span> view <span class="at">-h</span> ERR188245_chrX.bam <span class="kw">|</span> <span class="fu">less</span> <span class="at">-S</span></span>
-<span id="cb31-3"><a href="#cb31-3"></a></span>
-<span id="cb31-4"><a href="#cb31-4"></a><span class="co">#如果只想查看头文件</span></span>
-<span id="cb31-5"><a href="#cb31-5"></a><span class="ex">samtools</span> view <span class="at">-H</span> ERR188245_chrX.bam</span>
-<span id="cb31-6"><a href="#cb31-6"></a></span>
-<span id="cb31-7"><a href="#cb31-7"></a><span class="co">#如果想跳过头文件</span></span>
-<span id="cb31-8"><a href="#cb31-8"></a><span class="ex">samtools</span> view ERR188245_chrX.bam  <span class="kw">|</span> <span class="fu">less</span> <span class="at">-S</span></span></code></pre></div><button title="复制到剪贴板" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb30" data-book-role="code"><pre data-code-text="&quot;# 查看完整的bam文件\nsamtools view -h ERR188245_chrX.bam | less -S\n\n#如果只想查看头文件\nsamtools view -H ERR188245_chrX.bam\n\n#如果想跳过头文件\nsamtools view ERR188245_chrX.bam  | less -S&quot;" class="sourceCode numberSource bash numberLines code-with-copy"><code class="sourceCode bash"><span id="cb30-1"><a href="#cb30-1"></a><span class="co"># 查看完整的bam文件</span></span>
+<span id="cb30-2"><a href="#cb30-2"></a><span class="ex">samtools</span> view <span class="at">-h</span> ERR188245_chrX.bam <span class="kw">|</span> <span class="fu">less</span> <span class="at">-S</span></span>
+<span id="cb30-3"><a href="#cb30-3"></a></span>
+<span id="cb30-4"><a href="#cb30-4"></a><span class="co">#如果只想查看头文件</span></span>
+<span id="cb30-5"><a href="#cb30-5"></a><span class="ex">samtools</span> view <span class="at">-H</span> ERR188245_chrX.bam</span>
+<span id="cb30-6"><a href="#cb30-6"></a></span>
+<span id="cb30-7"><a href="#cb30-7"></a><span class="co">#如果想跳过头文件</span></span>
+<span id="cb30-8"><a href="#cb30-8"></a><span class="ex">samtools</span> view ERR188245_chrX.bam  <span class="kw">|</span> <span class="fu">less</span> <span class="at">-S</span></span></code></pre></div><button title="复制到剪贴板" class="code-copy-button"><i class="bi"></i></button></div>
 </section>
 <section id="src-0040-mapping-and-BAM-operation-364" class="level4">
 <h4 class="anchored" data-anchor-id="src-0040-mapping-and-BAM-operation-364">BAM文件的排序</h4>
 <p>如果我们是做全基因组测序，那么在进行下游分析之前，需要对bam文件进行一个排序，这个功能可以用samtools，也可以用Picard或者GATK做到。</p>
 <p>使用samtools对bam文件进行排序：</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb32" data-book-role="code"><pre data-code-text="&quot;samtools sort -@ 20 -m 8G -O bam -o ERR188245_chrX.sorted.bam ERR188245_chrX.bam\n# @：指定线程数\n# m：每个线程分配的最大内存\n# O：输出文件格式\n# o：输出文件的名字\n# 输入文件放在最后&quot;" class="sourceCode numberSource bash numberLines code-with-copy"><code class="sourceCode bash"><span id="cb32-1"><a href="#cb32-1"></a><span class="ex">samtools</span> sort <span class="at">-@</span> 20 <span class="at">-m</span> 8G <span class="at">-O</span> bam <span class="at">-o</span> ERR188245_chrX.sorted.bam ERR188245_chrX.bam</span>
-<span id="cb32-2"><a href="#cb32-2"></a><span class="co"># @：指定线程数</span></span>
-<span id="cb32-3"><a href="#cb32-3"></a><span class="co"># m：每个线程分配的最大内存</span></span>
-<span id="cb32-4"><a href="#cb32-4"></a><span class="co"># O：输出文件格式</span></span>
-<span id="cb32-5"><a href="#cb32-5"></a><span class="co"># o：输出文件的名字</span></span>
-<span id="cb32-6"><a href="#cb32-6"></a><span class="co"># 输入文件放在最后</span></span></code></pre></div><button title="复制到剪贴板" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb31" data-book-role="code"><pre data-code-text="&quot;samtools sort -@ 20 -m 8G -O bam -o ERR188245_chrX.sorted.bam ERR188245_chrX.bam\n# @：指定线程数\n# m：每个线程分配的最大内存\n# O：输出文件格式\n# o：输出文件的名字\n# 输入文件放在最后&quot;" class="sourceCode numberSource bash numberLines code-with-copy"><code class="sourceCode bash"><span id="cb31-1"><a href="#cb31-1"></a><span class="ex">samtools</span> sort <span class="at">-@</span> 20 <span class="at">-m</span> 8G <span class="at">-O</span> bam <span class="at">-o</span> ERR188245_chrX.sorted.bam ERR188245_chrX.bam</span>
+<span id="cb31-2"><a href="#cb31-2"></a><span class="co"># @：指定线程数</span></span>
+<span id="cb31-3"><a href="#cb31-3"></a><span class="co"># m：每个线程分配的最大内存</span></span>
+<span id="cb31-4"><a href="#cb31-4"></a><span class="co"># O：输出文件格式</span></span>
+<span id="cb31-5"><a href="#cb31-5"></a><span class="co"># o：输出文件的名字</span></span>
+<span id="cb31-6"><a href="#cb31-6"></a><span class="co"># 输入文件放在最后</span></span></code></pre></div><button title="复制到剪贴板" class="code-copy-button"><i class="bi"></i></button></div>
 <p>如果是Picard的话，可以参考下面的命令：</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb33" data-book-role="code"><pre data-code-text="&quot;java -jar picard.jar SortSam I=ERR188245_chrX.bam  O=ERR188245_chrX.sorted.bam  SORT_ORDER=coordinate&quot;" class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a><span class="ex">java</span> <span class="at">-jar</span> picard.jar SortSam I=ERR188245_chrX.bam  O=ERR188245_chrX.sorted.bam  SORT_ORDER=coordinate</span></code></pre></div><button title="复制到剪贴板" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb32" data-book-role="code"><pre data-code-text="&quot;java -jar picard.jar SortSam I=ERR188245_chrX.bam  O=ERR188245_chrX.sorted.bam  SORT_ORDER=coordinate&quot;" class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a><span class="ex">java</span> <span class="at">-jar</span> picard.jar SortSam I=ERR188245_chrX.bam  O=ERR188245_chrX.sorted.bam  SORT_ORDER=coordinate</span></code></pre></div><button title="复制到剪贴板" class="code-copy-button"><i class="bi"></i></button></div>
 <p>如果使用GATK工具，对bam文件进行排序，可以参考：</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb34" data-book-role="code"><pre data-code-text="&quot;#如果是gatk的话, 先建立index与dict\nsamtools faidx chrX.fa\ngatk CreateSequenceDictionary -R chrX.fa -O chrX.dict\n\n#再使用gatk进行排序\ngatk SortSam -I ERR188245_chrX.bam -O ERR188245_chrX.sorted.bam -R chrX.fa -SO coordinate --CREATE_INDEX&quot;" class="sourceCode numberSource bash numberLines code-with-copy"><code class="sourceCode bash"><span id="cb34-1"><a href="#cb34-1"></a><span class="co">#如果是gatk的话, 先建立index与dict</span></span>
-<span id="cb34-2"><a href="#cb34-2"></a><span class="ex">samtools</span> faidx chrX.fa</span>
-<span id="cb34-3"><a href="#cb34-3"></a><span class="ex">gatk</span> CreateSequenceDictionary <span class="at">-R</span> chrX.fa <span class="at">-O</span> chrX.dict</span>
-<span id="cb34-4"><a href="#cb34-4"></a></span>
-<span id="cb34-5"><a href="#cb34-5"></a><span class="co">#再使用gatk进行排序</span></span>
-<span id="cb34-6"><a href="#cb34-6"></a><span class="ex">gatk</span> SortSam <span class="at">-I</span> ERR188245_chrX.bam <span class="at">-O</span> ERR188245_chrX.sorted.bam <span class="at">-R</span> chrX.fa <span class="at">-SO</span> coordinate <span class="at">--CREATE_INDEX</span></span></code></pre></div><button title="复制到剪贴板" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb33" data-book-role="code"><pre data-code-text="&quot;#如果是gatk的话, 先建立index与dict\nsamtools faidx chrX.fa\ngatk CreateSequenceDictionary -R chrX.fa -O chrX.dict\n\n#再使用gatk进行排序\ngatk SortSam -I ERR188245_chrX.bam -O ERR188245_chrX.sorted.bam -R chrX.fa -SO coordinate --CREATE_INDEX&quot;" class="sourceCode numberSource bash numberLines code-with-copy"><code class="sourceCode bash"><span id="cb33-1"><a href="#cb33-1"></a><span class="co">#如果是gatk的话, 先建立index与dict</span></span>
+<span id="cb33-2"><a href="#cb33-2"></a><span class="ex">samtools</span> faidx chrX.fa</span>
+<span id="cb33-3"><a href="#cb33-3"></a><span class="ex">gatk</span> CreateSequenceDictionary <span class="at">-R</span> chrX.fa <span class="at">-O</span> chrX.dict</span>
+<span id="cb33-4"><a href="#cb33-4"></a></span>
+<span id="cb33-5"><a href="#cb33-5"></a><span class="co">#再使用gatk进行排序</span></span>
+<span id="cb33-6"><a href="#cb33-6"></a><span class="ex">gatk</span> SortSam <span class="at">-I</span> ERR188245_chrX.bam <span class="at">-O</span> ERR188245_chrX.sorted.bam <span class="at">-R</span> chrX.fa <span class="at">-SO</span> coordinate <span class="at">--CREATE_INDEX</span></span></code></pre></div><button title="复制到剪贴板" class="code-copy-button"><i class="bi"></i></button></div>
 </section>
 <section id="src-0040-mapping-and-BAM-operation-396" class="level4">
 <h4 class="anchored" data-anchor-id="src-0040-mapping-and-BAM-operation-396">BAM文件的index的建立</h4>
 <p>经过排序之后的bam文件，就可以建立索引，如果不排序则会报错。建立bam文件的索引文件，是为了更方便地</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb35" data-book-role="code"><pre data-code-text="&quot;samtools index ERR188245_chrX.sorted.bam&quot;" class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a><span class="ex">samtools</span> index ERR188245_chrX.sorted.bam</span></code></pre></div><button title="复制到剪贴板" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb34" data-book-role="code"><pre data-code-text="&quot;samtools index ERR188245_chrX.sorted.bam&quot;" class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a><span class="ex">samtools</span> index ERR188245_chrX.sorted.bam</span></code></pre></div><button title="复制到剪贴板" class="code-copy-button"><i class="bi"></i></button></div>
 <p>运行完上面的命令，即可在文件夹中获得一个index文件，一般情况下默认的文件名为bam文件名后面增加<code>.bai</code>后缀。比如这里就会生成<code>ERR188245_chrX.sorted.bam.bai</code>文件。我们在对排序完的bam文件进行一些特殊的操作时，一般都需要index文件和bam文件在同一文件夹中，否则可能会出现报错的现象。</p>
 </section>
 <section id="src-0040-mapping-and-BAM-operation-406" class="level4">
 <h4 class="anchored" data-anchor-id="src-0040-mapping-and-BAM-operation-406">对比对结果进行过滤</h4>
 <p>果然想通过mapping质量或者比对情况进行过滤，那samtools一定是处理代码最为简洁的。</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb36" data-book-role="code"><pre data-code-text="&quot;samtools view -h -b -q 20 -F 260 ERR188245_chrX.sorted.bam &gt; ERR188245_chrX.q1F4F260.sorted.bam\n\n# -f INT 只保留满足这些 FLAG 位的 reads（本例未使用）\n# -F INT 过滤掉满足这些 FLAG 位的 reads：260 = 4 + 256，\n#         即去掉“没比对上（4）”与“次优比对（256）”的记录\n# -q INT 过滤掉 MAPQ 低于该阈值的记录\n# -h 输出中包含 header\n# -b 输出格式设定为 BAM&quot;" class="sourceCode numberSource bash numberLines code-with-copy"><code class="sourceCode bash"><span id="cb36-1"><a href="#cb36-1"></a><span class="ex">samtools</span> view <span class="at">-h</span> <span class="at">-b</span> <span class="at">-q</span> 20 <span class="at">-F</span> 260 ERR188245_chrX.sorted.bam <span class="op">&gt;</span> ERR188245_chrX.q1F4F260.sorted.bam</span>
-<span id="cb36-2"><a href="#cb36-2"></a></span>
-<span id="cb36-3"><a href="#cb36-3"></a><span class="co"># -f INT 只保留满足这些 FLAG 位的 reads（本例未使用）</span></span>
-<span id="cb36-4"><a href="#cb36-4"></a><span class="co"># -F INT 过滤掉满足这些 FLAG 位的 reads：260 = 4 + 256，</span></span>
-<span id="cb36-5"><a href="#cb36-5"></a><span class="co">#         即去掉“没比对上（4）”与“次优比对（256）”的记录</span></span>
-<span id="cb36-6"><a href="#cb36-6"></a><span class="co"># -q INT 过滤掉 MAPQ 低于该阈值的记录</span></span>
-<span id="cb36-7"><a href="#cb36-7"></a><span class="co"># -h 输出中包含 header</span></span>
-<span id="cb36-8"><a href="#cb36-8"></a><span class="co"># -b 输出格式设定为 BAM</span></span></code></pre></div><button title="复制到剪贴板" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb35" data-book-role="code"><pre data-code-text="&quot;samtools view -h -b -q 20 -F 260 ERR188245_chrX.sorted.bam &gt; ERR188245_chrX.q1F4F260.sorted.bam\n\n# -f INT 只保留满足这些 FLAG 位的 reads（本例未使用）\n# -F INT 过滤掉满足这些 FLAG 位的 reads：260 = 4 + 256，\n#         即去掉“没比对上（4）”与“次优比对（256）”的记录\n# -q INT 过滤掉 MAPQ 低于该阈值的记录\n# -h 输出中包含 header\n# -b 输出格式设定为 BAM&quot;" class="sourceCode numberSource bash numberLines code-with-copy"><code class="sourceCode bash"><span id="cb35-1"><a href="#cb35-1"></a><span class="ex">samtools</span> view <span class="at">-h</span> <span class="at">-b</span> <span class="at">-q</span> 20 <span class="at">-F</span> 260 ERR188245_chrX.sorted.bam <span class="op">&gt;</span> ERR188245_chrX.q1F4F260.sorted.bam</span>
+<span id="cb35-2"><a href="#cb35-2"></a></span>
+<span id="cb35-3"><a href="#cb35-3"></a><span class="co"># -f INT 只保留满足这些 FLAG 位的 reads（本例未使用）</span></span>
+<span id="cb35-4"><a href="#cb35-4"></a><span class="co"># -F INT 过滤掉满足这些 FLAG 位的 reads：260 = 4 + 256，</span></span>
+<span id="cb35-5"><a href="#cb35-5"></a><span class="co">#         即去掉“没比对上（4）”与“次优比对（256）”的记录</span></span>
+<span id="cb35-6"><a href="#cb35-6"></a><span class="co"># -q INT 过滤掉 MAPQ 低于该阈值的记录</span></span>
+<span id="cb35-7"><a href="#cb35-7"></a><span class="co"># -h 输出中包含 header</span></span>
+<span id="cb35-8"><a href="#cb35-8"></a><span class="co"># -b 输出格式设定为 BAM</span></span></code></pre></div><button title="复制到剪贴板" class="code-copy-button"><i class="bi"></i></button></div>
 <p>注意：<code>-F</code> 只应出现一次；要同时过滤多个 FLAG 位，就把数值相加成一个数（例如 4+256=260）传入，前后写两个 <code>-F</code> 并不能自动合并。</p>
 </section>
 <section id="src-0040-mapping-and-BAM-operation-421" class="level4">
 <h4 class="anchored" data-anchor-id="src-0040-mapping-and-BAM-operation-421">对比对结果进行统计</h4>
 <p>如果想对bam文件进行一些基础的统计分析，比如测序片段的数目，整体的突变情况，基因组测序结果的覆盖度等等，都可以用下面的命令生成报告。</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb37" data-book-role="code"><pre data-code-text="&quot;samtools flagstat ERR188245_chrX.sorted.bam&quot;" class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a><span class="ex">samtools</span> flagstat ERR188245_chrX.sorted.bam</span></code></pre></div><button title="复制到剪贴板" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb36" data-book-role="code"><pre data-code-text="&quot;samtools flagstat ERR188245_chrX.sorted.bam&quot;" class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a><span class="ex">samtools</span> flagstat ERR188245_chrX.sorted.bam</span></code></pre></div><button title="复制到剪贴板" class="code-copy-button"><i class="bi"></i></button></div>
 <p>结果文件统计bam文件中reads的比对情况，如多少reads比对上等信息，其中的结果比较丰富，但是需要再使用R或者Python编程进行生成图表。所以，当不追求速度的情况下还是建议用Qualimap 2软件。</p>
 <p>顺带一提，SAM 不仅记录比对，还保留了 reads 的原始序列，所以也能反向提取 FASTQ：</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb38" data-book-role="code"><pre data-code-text="&quot;samtools view -b -h filter_MAPQ20.sam &gt; filter_MAPQ20.bam\nsamtools bam2fq filter_MAPQ20.bam &gt; filter_MAPQ20.fastq&quot;" class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a><span class="ex">samtools</span> view <span class="at">-b</span> <span class="at">-h</span> filter_MAPQ20.sam <span class="op">&gt;</span> filter_MAPQ20.bam</span>
-<span id="cb38-2"><a href="#cb38-2" aria-hidden="true" tabindex="-1"></a><span class="ex">samtools</span> bam2fq filter_MAPQ20.bam <span class="op">&gt;</span> filter_MAPQ20.fastq</span></code></pre></div><button title="复制到剪贴板" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb37" data-book-role="code"><pre data-code-text="&quot;samtools view -b -h filter_MAPQ20.sam &gt; filter_MAPQ20.bam\nsamtools bam2fq filter_MAPQ20.bam &gt; filter_MAPQ20.fastq&quot;" class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a><span class="ex">samtools</span> view <span class="at">-b</span> <span class="at">-h</span> filter_MAPQ20.sam <span class="op">&gt;</span> filter_MAPQ20.bam</span>
+<span id="cb37-2"><a href="#cb37-2" aria-hidden="true" tabindex="-1"></a><span class="ex">samtools</span> bam2fq filter_MAPQ20.bam <span class="op">&gt;</span> filter_MAPQ20.fastq</span></code></pre></div><button title="复制到剪贴板" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="book-example callout callout-style-default callout-tip callout-titled" title="示例与练习｜samtools 六连操作">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -2837,12 +2987,50 @@ H(X) = I(n)\times4^{\,n-1} + I(n-1)\times4^{\,n-2} + \cdots + I(1)\times4^0
 <p><strong>问题 3</strong>：用 less 分别打开 test.sam 和 test.bam，为什么 BAM 文件是乱码？再用 samtools view 试试。</p>
 <p><strong>参考解答</strong>：less 只能正常查看文本；BAM 是二进制文件，需要 <code>samtools view test.bam</code> 查看。</p>
 <p><strong>问题 4</strong>：用 <code>samtools sort</code> 对 test.bam 排序，输出 test_sort.bam，并记录文件大小。</p>
-<p><strong>参考解答</strong>：<code>samtools sort -o test_sort.bam test.bam</code>。排序前后文件大小基本不变（约 660K）。sort 的常用参数：<code>-l INT</code> 压缩等级 0-9；<code>-m INT</code> 每线程内存（可用 K/M/G）；<code>-n</code> 按 read 名称排序；<code>-o FILE</code> 输出文件名；<code>-T PREFIX</code> 临时文件前缀；<code>-O FORMAT</code> 输出格式（bam/sam/cram，默认 bam）；<code>-@ INT</code> 线程数。</p>
+<p><strong>参考解答</strong>：<code>samtools sort -o test_sort.bam test.bam</code>。排序前后文件大小基本不变（约 660K）。sort 的常用参数：</p>
+<div class="book-table-scroll" role="region" aria-label="表格，可横向滚动" tabindex="0"><table class="caption-top table"><colgroup><col style="width:22%;min-width:110px"><col style="width:78%"></colgroup>
+<thead>
+<tr class="header">
+<th>参数</th>
+<th>含义</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>-l INT</code></td>
+<td>输出文件压缩等级，0-9</td>
+</tr>
+<tr class="even">
+<td><code>-m INT</code></td>
+<td>每线程运行时的内存，可用 K/M/G 表示</td>
+</tr>
+<tr class="odd">
+<td><code>-n</code></td>
+<td>按 read 名称排序</td>
+</tr>
+<tr class="even">
+<td><code>-o FILE</code></td>
+<td>排序后的输出文件名</td>
+</tr>
+<tr class="odd">
+<td><code>-T PREFIX</code></td>
+<td>临时文件前缀</td>
+</tr>
+<tr class="even">
+<td><code>-O FORMAT</code></td>
+<td>输出格式（bam/sam/cram，默认 bam）</td>
+</tr>
+<tr class="odd">
+<td><code>-@ INT</code></td>
+<td>排序和压缩的线程数</td>
+</tr>
+</tbody>
+</table></div>
 <p><strong>问题 5</strong>：用 <code>samtools index</code> 给 test_sort.bam 建立索引，写出命令并记录索引文件大小。</p>
 <p><strong>参考解答</strong>：<code>samtools index test_sort.bam</code>，生成 <code>test_sort.bam.bai</code>（约 4.0K）。</p>
 <p><strong>问题 6</strong>：用 <code>samtools tview</code> 查看 chr1:160000-160100 区域的比对情况。</p>
 <p><strong>参考解答</strong>：</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb39" data-book-role="code"><pre data-code-text="&quot;samtools tview -p chr1:160000-160100  test_sort.bam&quot;" class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a><span class="ex">samtools</span> tview <span class="at">-p</span> chr1:160000-160100  test_sort.bam</span></code></pre></div><button title="复制到剪贴板" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb38" data-book-role="code"><pre data-code-text="&quot;samtools tview -p chr1:160000-160100  test_sort.bam&quot;" class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a><span class="ex">samtools</span> tview <span class="at">-p</span> chr1:160000-160100  test_sort.bam</span></code></pre></div><button title="复制到剪贴板" class="code-copy-button"><i class="bi"></i></button></div>
 <div id="fig-a-questions-21-25-004" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-a-questions-21-25-004-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
@@ -3018,11 +3206,11 @@ print(duplication_num)</code></pre>
 <p>这一步，我们经常叫<code>remove duplication</code>。所谓的duplication一般是指构建测序文库的过程中，会有PCR扩增的步骤，这个步骤往往会对片段进行多次扩增。如果有来源于同一个原始片段的测序结果比对到了基因组上，有可能会对我们的下游分析造成一些影响。所以，某些情况下需要对bam文件进行冗余的去除，这里的冗余一般习惯上称为<code>duplication</code>。</p>
 <p>去除duplication的常用工具是 GATK/Picard 的 MarkDuplicates（按坐标排序后运行）。早期常用 <code>samtools rmdup</code>，它对双端数据的处理有已知问题；官方目前保留它仅为向后兼容，明确推荐改用 <code>samtools collate</code> + <code>samtools fixmate</code> + <code>samtools markdup</code> 流程（依据 samtools 官方 NEWS，2026 年 10 月核对）。去重工具本书以 GATK 的 MarkDuplicates 为例。</p>
 <p>MarkDuplicates 最常见的用法是<strong>只标记、不删除</strong>：duplicate 会被打上 FLAG 1024，供后续步骤按需过滤（这是推荐做法，保留的信息最完整）：</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb41" data-book-role="code"><pre data-code-text="&quot;gatk MarkDuplicates -I ERR188245_chrX.sorted.bam -O ERR188245_chrX.sorted.mkdup.bam -M ERR188245_chrX.metrics --CREATE_INDEX&quot;" class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb41-1"><a href="#cb41-1" aria-hidden="true" tabindex="-1"></a><span class="ex">gatk</span> MarkDuplicates <span class="at">-I</span> ERR188245_chrX.sorted.bam <span class="at">-O</span> ERR188245_chrX.sorted.mkdup.bam <span class="at">-M</span> ERR188245_chrX.metrics <span class="at">--CREATE_INDEX</span></span></code></pre></div><button title="复制到剪贴板" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb40" data-book-role="code"><pre data-code-text="&quot;gatk MarkDuplicates -I ERR188245_chrX.sorted.bam -O ERR188245_chrX.sorted.mkdup.bam -M ERR188245_chrX.metrics --CREATE_INDEX&quot;" class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb40-1"><a href="#cb40-1" aria-hidden="true" tabindex="-1"></a><span class="ex">gatk</span> MarkDuplicates <span class="at">-I</span> ERR188245_chrX.sorted.bam <span class="at">-O</span> ERR188245_chrX.sorted.mkdup.bam <span class="at">-M</span> ERR188245_chrX.metrics <span class="at">--CREATE_INDEX</span></span></code></pre></div><button title="复制到剪贴板" class="code-copy-button"><i class="bi"></i></button></div>
 <p>如果确有必要直接删除 duplicate，在同一条命令里加 <code>REMOVE_DUPLICATES=true</code> 即可（注意不要对已标记过的文件重复运行 MarkDuplicates，二次运行会重复计数）：</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb42" data-book-role="code"><pre data-code-text="&quot;gatk MarkDuplicates REMOVE_DUPLICATES=true -I ERR188245_chrX.sorted.bam -O ERR188245_chrX.sorted.rmdup.bam -M ERR188245_chrX.metrics&quot;" class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb42-1"><a href="#cb42-1" aria-hidden="true" tabindex="-1"></a><span class="ex">gatk</span> MarkDuplicates REMOVE_DUPLICATES=true <span class="at">-I</span> ERR188245_chrX.sorted.bam <span class="at">-O</span> ERR188245_chrX.sorted.rmdup.bam <span class="at">-M</span> ERR188245_chrX.metrics</span></code></pre></div><button title="复制到剪贴板" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb41" data-book-role="code"><pre data-code-text="&quot;gatk MarkDuplicates REMOVE_DUPLICATES=true -I ERR188245_chrX.sorted.bam -O ERR188245_chrX.sorted.rmdup.bam -M ERR188245_chrX.metrics&quot;" class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb41-1"><a href="#cb41-1" aria-hidden="true" tabindex="-1"></a><span class="ex">gatk</span> MarkDuplicates REMOVE_DUPLICATES=true <span class="at">-I</span> ERR188245_chrX.sorted.bam <span class="at">-O</span> ERR188245_chrX.sorted.rmdup.bam <span class="at">-M</span> ERR188245_chrX.metrics</span></code></pre></div><button title="复制到剪贴板" class="code-copy-button"><i class="bi"></i></button></div>
 <p>也可以使用Picard完成同样的工作：</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb43" data-book-role="code"><pre data-code-text="&quot;java -jar picard.jar MarkDuplicates I=ERR188245_chrX.sorted.bam O=ERR188245_chrX.sorted.mkdup.bam M=ERR188245_chrX.metrics ASO=coordinate REMOVE_DUPLICATES=true&quot;" class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb43-1"><a href="#cb43-1" aria-hidden="true" tabindex="-1"></a><span class="ex">java</span> <span class="at">-jar</span> picard.jar MarkDuplicates I=ERR188245_chrX.sorted.bam O=ERR188245_chrX.sorted.mkdup.bam M=ERR188245_chrX.metrics ASO=coordinate REMOVE_DUPLICATES=true</span></code></pre></div><button title="复制到剪贴板" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb42" data-book-role="code"><pre data-code-text="&quot;java -jar picard.jar MarkDuplicates I=ERR188245_chrX.sorted.bam O=ERR188245_chrX.sorted.mkdup.bam M=ERR188245_chrX.metrics ASO=coordinate REMOVE_DUPLICATES=true&quot;" class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb42-1"><a href="#cb42-1" aria-hidden="true" tabindex="-1"></a><span class="ex">java</span> <span class="at">-jar</span> picard.jar MarkDuplicates I=ERR188245_chrX.sorted.bam O=ERR188245_chrX.sorted.mkdup.bam M=ERR188245_chrX.metrics ASO=coordinate REMOVE_DUPLICATES=true</span></code></pre></div><button title="复制到剪贴板" class="code-copy-button"><i class="bi"></i></button></div>
 <p>关于samtools的用法其实很多，但限于篇幅，我们只对最常用的几个命令进行了简单介绍，对于组学分析中的其他应用可以参考接下来各章的介绍。</p>
 <p><span id="src-0070-WGS-46"></span></p>
 <p><span id="src-0070-WGS-48"></span></p>
@@ -3045,13 +3233,13 @@ print(duplication_num)</code></pre>
 <li>排序本身用上一节讲过的 <code>samtools sort</code> 也可以完成，两种工具都会在头信息里写入 <code>SO:coordinate</code> 标签说明文件已按坐标排序；GATK 流程推荐统一用 Picard/GATK 的 SortSam，主要是为了与后续 GATK 工具链保持一致。</li>
 <li>工具文档：<a href="https://broadinstitute.github.io/Picard/command-line-overview.html#SortSam">Picard/GATK SortSam</a>（2026 年 10 月核对可访问；也可在 <a href="https://GATK.broadinstitute.org">GATK.broadinstitute.org</a> 的 Tool Documentation 中查找同名工具）。</li>
 </ul>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb44" data-book-role="code"><pre data-code-text="&quot;# 使用GATK命令\ngatk SortSam -I mapping/T.chr17.sam -O preprocess/T.chr17.sort.bam -SO coordinate --CREATE_INDEX\n# 使用picard命令\njava -jar picard.jar SortSam \\\n      I=input.bam \\\n      O=sorted.bam \\\n      SORT_ORDER=coordinate&quot;" class="sourceCode numberSource bash numberLines code-with-copy"><code class="sourceCode bash"><span id="cb44-1"><a href="#cb44-1"></a><span class="co"># 使用GATK命令</span></span>
-<span id="cb44-2"><a href="#cb44-2"></a><span class="ex">gatk</span> SortSam <span class="at">-I</span> mapping/T.chr17.sam <span class="at">-O</span> preprocess/T.chr17.sort.bam <span class="at">-SO</span> coordinate <span class="at">--CREATE_INDEX</span></span>
-<span id="cb44-3"><a href="#cb44-3"></a><span class="co"># 使用picard命令</span></span>
-<span id="cb44-4"><a href="#cb44-4"></a><span class="ex">java</span> <span class="at">-jar</span> picard.jar SortSam <span class="dt">\</span></span>
-<span id="cb44-5"><a href="#cb44-5"></a>      I=input.bam <span class="dt">\</span></span>
-<span id="cb44-6"><a href="#cb44-6"></a>      O=sorted.bam <span class="dt">\</span></span>
-<span id="cb44-7"><a href="#cb44-7"></a>      SORT_ORDER=coordinate</span></code></pre></div><button title="复制到剪贴板" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb43" data-book-role="code"><pre data-code-text="&quot;# 使用GATK命令\ngatk SortSam -I mapping/T.chr17.sam -O preprocess/T.chr17.sort.bam -SO coordinate --CREATE_INDEX\n# 使用picard命令\njava -jar picard.jar SortSam \\\n      I=input.bam \\\n      O=sorted.bam \\\n      SORT_ORDER=coordinate&quot;" class="sourceCode numberSource bash numberLines code-with-copy"><code class="sourceCode bash"><span id="cb43-1"><a href="#cb43-1"></a><span class="co"># 使用GATK命令</span></span>
+<span id="cb43-2"><a href="#cb43-2"></a><span class="ex">gatk</span> SortSam <span class="at">-I</span> mapping/T.chr17.sam <span class="at">-O</span> preprocess/T.chr17.sort.bam <span class="at">-SO</span> coordinate <span class="at">--CREATE_INDEX</span></span>
+<span id="cb43-3"><a href="#cb43-3"></a><span class="co"># 使用picard命令</span></span>
+<span id="cb43-4"><a href="#cb43-4"></a><span class="ex">java</span> <span class="at">-jar</span> picard.jar SortSam <span class="dt">\</span></span>
+<span id="cb43-5"><a href="#cb43-5"></a>      I=input.bam <span class="dt">\</span></span>
+<span id="cb43-6"><a href="#cb43-6"></a>      O=sorted.bam <span class="dt">\</span></span>
+<span id="cb43-7"><a href="#cb43-7"></a>      SORT_ORDER=coordinate</span></code></pre></div><button title="复制到剪贴板" class="code-copy-button"><i class="bi"></i></button></div>
 <div id="fig-04-quality-control-and-alignment-043" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-04-quality-control-and-alignment-043-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
@@ -3063,7 +3251,7 @@ print(duplication_num)</code></pre>
 </figure>
 </div>
 <p>如何检查是否成功排序？</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb45" data-book-role="code"><pre data-code-text="&quot;samtools view -H /path/to/my.bam&quot;" class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb45-1"><a href="#cb45-1" aria-hidden="true" tabindex="-1"></a><span class="ex">samtools</span> view <span class="at">-H</span> /path/to/my.bam</span></code></pre></div><button title="复制到剪贴板" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb44" data-book-role="code"><pre data-code-text="&quot;samtools view -H /path/to/my.bam&quot;" class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb44-1"><a href="#cb44-1" aria-hidden="true" tabindex="-1"></a><span class="ex">samtools</span> view <span class="at">-H</span> /path/to/my.bam</span></code></pre></div><button title="复制到剪贴板" class="code-copy-button"><i class="bi"></i></button></div>
 <p>这份示例来自一份较早参考版本的文件，部分染色体长度与 hg19/GRCh37 的标准值不同（例如 GRCh37 的 chr1 长度是 249,250,621）；查看自己的文件时，以 header 实际内容为准：</p>
 <pre data-code-text="&quot;@HD     VN:1.0  GO:none SO:coordinate\n@SQ     SN:1    LN:247249719\n@SQ     SN:2    LN:242951149\n@SQ     SN:3    LN:199501827\n@SQ     SN:4    LN:191273063\n@SQ     SN:5    LN:180857866\n@SQ     SN:6    LN:170899992\n@SQ     SN:7    LN:158821424\n@SQ     SN:8    LN:146274826\n@SQ     SN:9    LN:140273252\n@SQ     SN:10   LN:135374737\n@SQ     SN:11   LN:134452384\n@SQ     SN:12   LN:132349534\n@SQ     SN:13   LN:114142980\n@SQ     SN:14   LN:106368585\n@SQ     SN:15   LN:100338915\n@SQ     SN:16   LN:88827254\n@SQ     SN:17   LN:78774742\n@SQ     SN:18   LN:76117153\n@SQ     SN:19   LN:63811651\n@SQ     SN:20   LN:62435964\n@SQ     SN:21   LN:46944323\n@SQ     SN:22   LN:49691432\n@SQ     SN:X    LN:154913754\n@SQ     SN:Y    LN:57772954\n@SQ     SN:MT   LN:16571\n@SQ     SN:NT_113887    LN:3994\n...&quot;" class="text" data-book-role="data"><code>@HD     VN:1.0  GO:none SO:coordinate
 @SQ     SN:1    LN:247249719
@@ -3099,7 +3287,7 @@ print(duplication_num)</code></pre>
 <li>标记文库中的重复。</li>
 <li>工具文档：<a href="https://broadinstitute.github.io/Picard/command-line-overview.html#MarkDuplicates">Picard/GATK MarkDuplicates</a>（2026 年 10 月核对可访问）。</li>
 </ul>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb47" data-book-role="code"><pre data-code-text="&quot;gatk MarkDuplicates -I preprocess/T.chr17.sort.bam -O preprocess/T.chr17.markdup.bam -M preprocess/T.chr17.metrics --CREATE_INDEX&quot;" class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb47-1"><a href="#cb47-1" aria-hidden="true" tabindex="-1"></a><span class="ex">gatk</span> MarkDuplicates <span class="at">-I</span> preprocess/T.chr17.sort.bam <span class="at">-O</span> preprocess/T.chr17.markdup.bam <span class="at">-M</span> preprocess/T.chr17.metrics <span class="at">--CREATE_INDEX</span></span></code></pre></div><button title="复制到剪贴板" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb46" data-book-role="code"><pre data-code-text="&quot;gatk MarkDuplicates -I preprocess/T.chr17.sort.bam -O preprocess/T.chr17.markdup.bam -M preprocess/T.chr17.metrics --CREATE_INDEX&quot;" class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb46-1"><a href="#cb46-1" aria-hidden="true" tabindex="-1"></a><span class="ex">gatk</span> MarkDuplicates <span class="at">-I</span> preprocess/T.chr17.sort.bam <span class="at">-O</span> preprocess/T.chr17.markdup.bam <span class="at">-M</span> preprocess/T.chr17.metrics <span class="at">--CREATE_INDEX</span></span></code></pre></div><button title="复制到剪贴板" class="code-copy-button"><i class="bi"></i></button></div>
 <div id="fig-04-quality-control-and-alignment-044" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-04-quality-control-and-alignment-044-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
@@ -3306,11 +3494,11 @@ d\approx 1-\frac{\lambda N}{M}
 <section id="sec-04-08-load-bam" class="level3">
 <h3 class="anchored" data-anchor-id="sec-04-08-load-bam">使用 IGV 载入 BAM 文件</h3>
 <p>IGV 载入 BAM 的前提是<strong>已排序、已建索引</strong>（4.6.4 已经做过；如果还没有，先补上）：</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb48" data-book-role="code"><pre data-code-text="&quot;#如果还没对序列排序，记得先排序\nsamtools sort -@ 2 -o ERR188245_chrX.sorted.bam ERR188245_chrX.bam\n\n#排好序之后，对bam文件建立index\nsamtools index -@ 2 ERR188245_chrX.sorted.bam ERR188245_chrX.sorted.bai&quot;" class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb48-1"><a href="#cb48-1" aria-hidden="true" tabindex="-1"></a><span class="co">#如果还没对序列排序，记得先排序</span></span>
-<span id="cb48-2"><a href="#cb48-2" aria-hidden="true" tabindex="-1"></a><span class="ex">samtools</span> sort <span class="at">-@</span> 2 <span class="at">-o</span> ERR188245_chrX.sorted.bam ERR188245_chrX.bam</span>
-<span id="cb48-3"><a href="#cb48-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb48-4"><a href="#cb48-4" aria-hidden="true" tabindex="-1"></a><span class="co">#排好序之后，对bam文件建立index</span></span>
-<span id="cb48-5"><a href="#cb48-5" aria-hidden="true" tabindex="-1"></a><span class="ex">samtools</span> index <span class="at">-@</span> 2 ERR188245_chrX.sorted.bam ERR188245_chrX.sorted.bai</span></code></pre></div><button title="复制到剪贴板" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb47" data-book-role="code"><pre data-code-text="&quot;#如果还没对序列排序，记得先排序\nsamtools sort -@ 2 -o ERR188245_chrX.sorted.bam ERR188245_chrX.bam\n\n#排好序之后，对bam文件建立index\nsamtools index -@ 2 ERR188245_chrX.sorted.bam ERR188245_chrX.sorted.bai&quot;" class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb47-1"><a href="#cb47-1" aria-hidden="true" tabindex="-1"></a><span class="co">#如果还没对序列排序，记得先排序</span></span>
+<span id="cb47-2"><a href="#cb47-2" aria-hidden="true" tabindex="-1"></a><span class="ex">samtools</span> sort <span class="at">-@</span> 2 <span class="at">-o</span> ERR188245_chrX.sorted.bam ERR188245_chrX.bam</span>
+<span id="cb47-3"><a href="#cb47-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb47-4"><a href="#cb47-4" aria-hidden="true" tabindex="-1"></a><span class="co">#排好序之后，对bam文件建立index</span></span>
+<span id="cb47-5"><a href="#cb47-5" aria-hidden="true" tabindex="-1"></a><span class="ex">samtools</span> index <span class="at">-@</span> 2 ERR188245_chrX.sorted.bam ERR188245_chrX.sorted.bai</span></code></pre></div><button title="复制到剪贴板" class="code-copy-button"><i class="bi"></i></button></div>
 <p>打开安装好的 IGV（ <a href="#fig-04-quality-control-and-alignment-028" class="quarto-xref">图&nbsp;<span>4.74</span></a> ），选择 File –&gt; Load from File 加载想要查看的 bam 文件（ <a href="#fig-04-quality-control-and-alignment-029" class="quarto-xref">图&nbsp;<span>4.75</span></a> ）。导入成功后选择染色体——我们的测序只测了 chrX，故而选择 chrX（ <a href="#fig-04-quality-control-and-alignment-030" class="quarto-xref">图&nbsp;<span>4.76</span></a> 、 <a href="#fig-04-quality-control-and-alignment-031" class="quarto-xref">图&nbsp;<span>4.77</span></a> ）。</p>
 <div id="fig-04-quality-control-and-alignment-028" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
@@ -3399,7 +3587,7 @@ d\approx 1-\frac{\lambda N}{M}
 
 </main> <!-- /main -->
 <div class="book-toolbar" role="navigation" aria-label="阅读工具">
-  <div class="book-brand"><span class="book-brand-name">AI时代生信入门</span><time class="book-last-modified" datetime="2026-10-11T16:29:11+08:00" title="最后修改时间（北京时间，UTC+08:00）">最后修改 2026-10-11 16:29</time></div>
+  <div class="book-brand"><span class="book-brand-name">AI时代生信入门</span><time class="book-last-modified" datetime="2026-10-11T16:45:35+08:00" title="最后修改时间（北京时间，UTC+08:00）">最后修改 2026-10-11 16:45</time></div>
   <button class="book-menu-button" type="button" aria-controls="quarto-sidebar" aria-expanded="false">目录</button>
   <button class="book-search-button" type="button">搜索</button>
 </div>
