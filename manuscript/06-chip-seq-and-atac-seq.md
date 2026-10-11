@@ -45,7 +45,7 @@ ChIP-seq 需要交联和大量细胞，这两点在实践中都常成为瓶颈�
 
 **CUT&Tag**（cleavage under targets and tagmentation）[^ch06-cuttag-paper]把切割换成了与蛋白 A 融合的 Tn5 转座酶（pA-Tn5）：Tn5 在切下邻近 DNA 的同时直接连上测序接头，省去了建库步骤。它同样不需要交联、背景低、可用很少的细胞（数百到数千个）完成实验，近年来在低细胞量与单细胞层面的应用中大量取代 ChIP-seq。
 
-::: {.callout-note .book-extension title="拓展阅读｜三种技术怎么选" collapse="true"}
+::: {.callout-note .book-core title="核心知识｜三种技术怎么选"}
 
 - **ChIP-seq**：需要交联，通常需要百万级细胞；抗体选择面最广，公共数据积累最多，分析工具链最成熟。
 - **CUT&RUN**：不交联、背景低、深度需求约为 ChIP-seq 的十分之一；切割窗口小，峰形更锐利。
@@ -353,9 +353,9 @@ bowtie2-build --threads 24 mm10.fa mm10
 
 **比对模式**：Bowtie 2 默认的 end-to-end（全局）模式要求整条 reads 都参与比对，不做修剪；`--local`（局部）模式会把 reads 两端低质量部分剪掉换取更高得分。
 
-![end-to-end 与 local 两种比对模式的区别](../assets/07-chip-seq-and-atac-seq/012-local-vs-global-alignment.jpg){#fig-07-chip-seq-and-atac-seq-012}
+![end-to-end 与 local 两种比对模式的区别](../assets/07-chip-seq-and-atac-seq/020-e2e-vs-local.svg){#fig-07-chip-seq-and-atac-seq-012}
 
-对随机打断、质量不错的 ChIP-seq 数据，**默认的 end-to-end 即可**；local 模式更适合 reads 质量差或期望存在融合/重排的场景[注：图示来自 Bowtie 2 手册](http://bowtie-bio.sourceforge.net/bowtie2/manual.shtml)。
+如 @fig-07-chip-seq-and-atac-seq-012 所示，同一条 read 在两种模式下有不同的结局：end-to-end 要求整条 read 参与比对、错配只计罚不剪除；local 允许把两端低质量部分 soft-clip 掉、只保留高分的中段（概念见 [Bowtie 2 手册](http://bowtie-bio.sourceforge.net/bowtie2/manual.shtml)，图为参照该概念自绘）。对随机打断、质量不错的 ChIP-seq 数据，**默认的 end-to-end 即可**；local 更适合 reads 质量差或预期存在融合/重排的场景。
 
 []{#src-0060-ChIP-seq-456}
 
@@ -401,9 +401,9 @@ peak calling 的目标，是在全基因组上找出 ChIP 信号相对背景显�
 - **组蛋白修饰：多数宽而平（broad）**。修饰覆盖整个核小体甚至跨越多个核小体，信号表现为成百上千 bp 的宽区域。
 - **RNA 聚合酶 II：混合形态（mixed）**。启动子处的暂停信号是窄峰，基因内部的延伸信号是宽峰。
 
-![不同类型蛋白的 ChIP-seq 信号形态](../assets/07-chip-seq-and-atac-seq/016-signal-types.svg){#fig-07-chip-seq-and-atac-seq-013}
+![不同类型蛋白的 ChIP-seq 信号形态](../assets/07-chip-seq-and-atac-seq/013-chip-diff-type-signal.png){#fig-07-chip-seq-and-atac-seq-013 width=88%}
 
-@fig-07-chip-seq-and-atac-seq-013 从上到下展示了三类信号：最上层是真实的结合设计，中间是正负链 reads 的分布（注意窄峰信号的双峰结构），最下层是片段密度与最终被识别的峰区域。
+@fig-07-chip-seq-and-atac-seq-013 按面板 A–C 展示三类信号：每列从上到下是实验设计示意、正负链 reads 分布（注意窄峰信号的双峰结构）、片段密度与最终被识别的峰区域（图源：Mifsud 等 2018[^ch06-mifsud2018]，CC BY 4.0）。
 
 **并非所有组蛋白修饰都是宽峰**。ENCODE 对组蛋白修饰的分类：
 
@@ -620,11 +620,11 @@ done
 
 ATAC-seq 的插入片段长度分布本身就是实验质量的"心电图"。本书实测（SRR5852294，去重后）的分布特征：在约 100 bp 以下有一个显著的**无核小体区（NFR）**峰，约 200 bp 处有**单核小体**峰，再往上以约 200 bp 为周期出现多核小体峰，强度递减。这种周期性锯齿说明 Tn5 确实在核小体之间的开放区域切割——**没有 NFR 峰、没有周期性，文库很可能失败了**。
 
-本书实测的分布如 @fig-06-fragment-dist ：
+片段长度分布的标准形态见 @fig-06-fragment-dist （Buenrostro 等 2013 原文数据，图 a 为片段长度直方图，图 b、c 为 TSS 附近的聚合信号与 V-plot）：
 
-![ATAC-seq 实测片段长度分布](../assets/07-chip-seq-and-atac-seq/018-fragment-dist-real.png){#fig-06-fragment-dist}
+![ATAC-seq 片段长度分布（GM12878）](../assets/07-chip-seq-and-atac-seq/019-buenrostro2013-fig2.jpg){#fig-06-fragment-dist width=70%}
 
-提取片段长度并数频次的命令：
+本书实测（Irf8 数据 SRR5852294）呈现出同样的结构——NFR 峰、约 200 bp 的单核小体主峰与递减的多核小体周期峰。提取片段长度并数频次的命令：
 
 ```{.bash .numberLines data-book-role="code"}
 samtools view SRR5852294.final.bam | awk '$9>0{print $9}' \
@@ -945,6 +945,8 @@ plotProfile -m matrix.gz -out profile.png --dpi 200
 [^ch06-idr-paper]: Li Q, Brown JB, Huang H, Bickel PJ. Measuring reproducibility of high-throughput experiments. *Annals of Applied Statistics* 5:1752–1779（2011）。[论文页](https://projecteuclid.org/journals/annals-of-applied-statistics/volume-5/issue-3/Measuring-reproducibility-of-high-throughput-experiments/10.1214/11-AOAS466.full)。
 
 [^ch06-macs-paper]: Zhang Y, et al. Model-based analysis of ChIP-Seq (MACS). *Genome Biology* 9:R137（2008）。[论文页](https://link.springer.com/article/10.1186/gb-2008-9-9-r137)。
+
+[^ch06-mifsud2018]: Mifsud B, Zarnack K, Bardet AF. Practical Guide to ChIP-seq Data Analysis. *Epigenomes* 2(4):20（2018）。CC BY 4.0。[论文页](https://doi.org/10.3390/epigenomes2040020)。
 
 [^ch06-park2009]: Park PJ. ChIP-seq: advantages and challenges of a maturing technology. *Nature Reviews Genetics* 10:669–680（2009）。[PMC 全文](https://pmc.ncbi.nlm.nih.gov/articles/PMC3191340/)。
 
