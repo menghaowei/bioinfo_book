@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>12&nbsp; AI技术学习路线与综合实践 – 在AI时代写给每一位的生信入门书</title>
+<title>12&nbsp; 拥抱大语言模型 – 在AI时代写给每一位的生信入门书</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -19,6 +19,41 @@ ul.task-list li input[type="checkbox"] {
   width: 0.8em;
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
 </style>
 
@@ -84,7 +119,7 @@ ul.task-list li input[type="checkbox"] {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="展开或折叠侧边栏导航" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../manuscript/12-ai-learning-and-practice.html"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">AI技术学习路线与综合实践</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../manuscript/12-ai-learning-and-practice.html"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">拥抱大语言模型</span></a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="展开或折叠侧边栏导航" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="搜索" onclick="window.quartoOpenSearch();">
@@ -714,30 +749,41 @@ ul.task-list li input[type="checkbox"] {
 </li>
 <li>
 <details class="book-chapter" data-book-page="manuscript/12-ai-learning-and-practice.html" open data-current-chapter="true">
-<summary><a class="book-nav-link book-chapter-link no-external" href="12-ai-learning-and-practice.html" aria-current="page">12 AI技术学习路线与综合实践</a></summary><ul class="book-sections">
+<summary><a class="book-nav-link book-chapter-link no-external" href="12-ai-learning-and-practice.html" aria-current="page">12 拥抱大语言模型</a></summary><ul class="book-sections">
 <li>
 <div class="book-nav-leaf"><a class="book-nav-link book-section-link no-external" href="#chapter-summary-12" data-book-level="2" data-book-target="chapter-summary-12" id="book-nav-12-chapter-summary-12">本章提要</a></div>
 </li>
 <li>
-<div class="book-nav-leaf"><a class="book-nav-link book-section-link no-external" href="#sec-12-01" data-book-level="2" data-book-target="sec-12-01" id="book-nav-12-sec-12-01">12.1 AI改变了哪些工作，仍需掌握什么</a></div>
+<details class="book-section"><summary><a class="book-nav-link book-section-link no-external" href="#sec-12-01" data-book-level="2" data-book-target="sec-12-01" id="book-nav-12-sec-12-01">12.1 从自然语言处理到大语言模型的智能涌现</a></summary><ul>
+<li class="book-nav-leaf"><a class="book-nav-link book-section-link no-external" href="#topic-12-nlp-to-llm" data-book-level="3" data-book-target="topic-12-nlp-to-llm" id="book-nav-12-topic-12-nlp-to-llm">从专用小模型到通用大模型</a></li>
+<li class="book-nav-leaf"><a class="book-nav-link book-section-link no-external" href="#topic-12-cot-reasoning" data-book-level="3" data-book-target="topic-12-cot-reasoning" id="book-nav-12-topic-12-cot-reasoning">思维链与推理模型</a></li>
+<li class="book-nav-leaf"><a class="book-nav-link book-section-link no-external" href="#topic-12-emergence" data-book-level="3" data-book-target="topic-12-emergence" id="book-nav-12-topic-12-emergence">涌现的”智能”与它的边界</a></li>
+</ul></details>
 </li>
 <li>
-<div class="book-nav-leaf"><a class="book-nav-link book-section-link no-external" href="#sec-12-02" data-book-level="2" data-book-target="sec-12-02" id="book-nav-12-sec-12-02">12.2 向AI描述任务并核查信息</a></div>
+<details class="book-section"><summary><a class="book-nav-link book-section-link no-external" href="#sec-12-02" data-book-level="2" data-book-target="sec-12-02" id="book-nav-12-sec-12-02">12.2 AI的能力边界</a></summary><ul>
+<li class="book-nav-leaf"><a class="book-nav-link book-section-link no-external" href="#topic-12-silver-bullet" data-book-level="3" data-book-target="topic-12-silver-bullet" id="book-nav-12-topic-12-silver-bullet">《没有银弹》的两种复杂度</a></li>
+<li class="book-nav-leaf"><a class="book-nav-link book-section-link no-external" href="#topic-12-accidental" data-book-level="3" data-book-target="topic-12-accidental" id="book-nav-12-topic-12-accidental">技术上的难：大模型能快速消除</a></li>
+<li class="book-nav-leaf"><a class="book-nav-link book-section-link no-external" href="#topic-12-essential" data-book-level="3" data-book-target="topic-12-essential" id="book-nav-12-topic-12-essential">本质上的难：大模型帮不了的部分</a></li>
+</ul></details>
 </li>
 <li>
-<div class="book-nav-leaf"><a class="book-nav-link book-section-link no-external" href="#sec-12-03" data-book-level="2" data-book-target="sec-12-03" id="book-nav-12-sec-12-03">12.3 AI辅助写代码、排错和改造流程</a></div>
+<details class="book-section"><summary><a class="book-nav-link book-section-link no-external" href="#sec-12-03" data-book-level="2" data-book-target="sec-12-03" id="book-nav-12-sec-12-03">12.3 如何用好大语言模型</a></summary><ul>
+<li class="book-nav-leaf"><a class="book-nav-link book-section-link no-external" href="#topic-12-three-stages" data-book-level="3" data-book-target="topic-12-three-stages" id="book-nav-12-topic-12-three-stages">用法演进的三个阶段</a></li>
+<li class="book-nav-leaf"><a class="book-nav-link book-section-link no-external" href="#topic-12-prompt" data-book-level="3" data-book-target="topic-12-prompt" id="book-nav-12-topic-12-prompt">提示词工程：把任务讲清楚</a></li>
+<li class="book-nav-leaf"><a class="book-nav-link book-section-link no-external" href="#topic-12-context" data-book-level="3" data-book-target="topic-12-context" id="book-nav-12-topic-12-context">上下文工程：把材料喂进去</a></li>
+<li class="book-nav-leaf"><a class="book-nav-link book-section-link no-external" href="#topic-12-harness" data-book-level="3" data-book-target="topic-12-harness" id="book-nav-12-topic-12-harness">Harness 工程：给模型装上手脚</a></li>
+<li class="book-nav-leaf"><a class="book-nav-link book-section-link no-external" href="#topic-12-control" data-book-level="3" data-book-target="topic-12-control" id="book-nav-12-topic-12-control">驾驶而非放手：控制、验证与版本管理</a></li>
+</ul></details>
 </li>
 <li>
-<div class="book-nav-leaf"><a class="book-nav-link book-section-link no-external" href="#sec-12-04" data-book-level="2" data-book-target="sec-12-04" id="book-nav-12-sec-12-04">12.4 识别能运行但结论错误的分析</a></div>
-</li>
-<li>
-<div class="book-nav-leaf"><a class="book-nav-link book-section-link no-external" href="#sec-12-05" data-book-level="2" data-book-target="sec-12-05" id="book-nav-12-sec-12-05">12.5 AI使用中的数据、版本与责任记录</a></div>
-</li>
-<li>
-<div class="book-nav-leaf"><a class="book-nav-link book-section-link no-external" href="#sec-12-06" data-book-level="2" data-book-target="sec-12-06" id="book-nav-12-sec-12-06">12.6 当AI本身成为分析方法</a></div>
-</li>
-<li>
-<div class="book-nav-leaf"><a class="book-nav-link book-section-link no-external" href="#sec-12-07" data-book-level="2" data-book-target="sec-12-07" id="book-nav-12-sec-12-07">12.7 独立项目、能力自检与进阶路线</a></div>
+<details class="book-section"><summary><a class="book-nav-link book-section-link no-external" href="#sec-12-04" data-book-level="2" data-book-target="sec-12-04" id="book-nav-12-sec-12-04">12.4 智能体项目实战</a></summary><ul>
+<li class="book-nav-leaf"><a class="book-nav-link book-section-link no-external" href="#topic-12-prepare" data-book-level="3" data-book-target="topic-12-prepare" id="book-nav-12-topic-12-prepare">准备：项目、环境与版本控制</a></li>
+<li class="book-nav-leaf"><a class="book-nav-link book-section-link no-external" href="#topic-12-round0" data-book-level="3" data-book-target="topic-12-round0" id="book-nav-12-topic-12-round0">第 0 轮：用 grill-me 把需求问清楚</a></li>
+<li class="book-nav-leaf"><a class="book-nav-link book-section-link no-external" href="#topic-12-round1" data-book-level="3" data-book-target="topic-12-round1" id="book-nav-12-topic-12-round1">第 1 轮：建立 AGENTS.md 项目记忆</a></li>
+<li class="book-nav-leaf"><a class="book-nav-link book-section-link no-external" href="#topic-12-round2" data-book-level="3" data-book-target="topic-12-round2" id="book-nav-12-topic-12-round2">第 2 轮：让 agent 实现核心功能</a></li>
+<li class="book-nav-leaf"><a class="book-nav-link book-section-link no-external" href="#topic-12-round3" data-book-level="3" data-book-target="topic-12-round3" id="book-nav-12-topic-12-round3">第 3 轮：测试、边界与复盘</a></li>
+</ul></details>
 </li>
 </ul></details>
 </li>
@@ -768,8 +814,8 @@ ul.task-list li input[type="checkbox"] {
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title"><span id="sec-ch12" class="quarto-section-identifier"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">AI技术学习路线与综合实践</span></span></h1>
-<p class="chapter-last-modified"><time datetime="2026-10-09T12:27:54+08:00" title="本章书稿最后修改时间（北京时间，UTC+08:00）">最后修改：2026-10-09 12:27（北京时间）</time></p>
+<h1 class="title"><span id="sec-ch12" class="quarto-section-identifier"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">拥抱大语言模型</span></span></h1>
+<p class="chapter-last-modified"><time datetime="2026-10-11T12:17:35+08:00" title="本章书稿最后修改时间（北京时间，UTC+08:00）">最后修改：2026-10-11 12:17（北京时间）</time></p>
 </div>
 
 
@@ -788,63 +834,431 @@ ul.task-list li input[type="checkbox"] {
 
 <section id="chapter-summary-12" class="level2 unnumbered hero-book book-chapter-summary">
 <h2 class="unnumbered anchored" data-anchor-id="chapter-summary-12">本章提要</h2>
-<p>本章把 AI 辅助学习与独立分析结合起来。我们先明确 AI 可以参与哪些工作、读者仍需掌握哪些能力，再学习描述任务、核查来源、辅助写代码和排错，并识别那些能够运行却可能得出错误结论的分析。随后记录数据、版本与人工修改，初步认识 AI 本身作为分析方法时的判断要求，最后通过综合项目检验学习成果。项目交付应包含分析依据、结果、局限和可复现记录，使采用的代码和结论都能够接受检查。</p>
+<p>本章不再展开新的分析技术，而是把全书一直在使用的工具——大语言模型——放到舞台中央。我们先回顾自然语言处理走过的路，看大语言模型如何在深度学习、超大规模预训练与思维链的接力中出现”智能涌现”，又为什么说它虽然不是人类的智能、却已经能够真正参与工作；随后借软件工程的经典文章《没有银弹》讨论 AI 的能力边界：技术上的难可以被大模型快速消除，本质上的难仍然要靠人来判断。在此基础上，我们学习用好大语言模型的三个阶段——提示词工程、上下文工程与 Harness 工程，理解为什么对模型要”驾驶而非放手”。最后以 ZCode 为例，从拷问需求、建立项目记忆，到逐轮实现、测试与复盘，完整走一遍智能体项目实战。读完本章，你应该能放心地把重复劳动交给 agent，同时清楚哪些判断必须由自己负责。</p>
 </section>
 <section id="sec-12-01" class="level2" data-number="12.1">
-<h2 data-number="12.1" class="anchored" data-anchor-id="sec-12-01"><span class="header-section-number">12.1</span> AI改变了哪些工作，仍需掌握什么</h2>
-<p>形成合理的能力目标和工具分工。</p>
-<div class="book-placeholder">
-<p>本节内容待补充。</p>
+<h2 data-number="12.1" class="anchored" data-anchor-id="sec-12-01"><span class="header-section-number">12.1</span> 从自然语言处理到大语言模型的智能涌现</h2>
+<p>看清大语言模型从哪里来，理解它”会做事”的能力来源。</p>
+<section id="topic-12-nlp-to-llm" class="level3">
+<h3 class="anchored" data-anchor-id="topic-12-nlp-to-llm">从专用小模型到通用大模型</h3>
+<p>在大语言模型（Large Language Model，LLM）出现之前，让计算机处理自然语言是一件”一个任务一套办法”的事。自然语言处理（Natural Language Processing，NLP）的经典任务包括中文分词、词性标注、命名实体识别、机器翻译、情感分析和文本分类。生物信息学也用这些技术做文献挖掘，例如从 PubMed 的海量论文里抽取”某个基因与某种疾病相关”的线索。每个任务都要标注专门的数据、设计专门的的特征、训练专门的模型；换一个任务，这些工作基本重来。</p>
+<p>2016 年是一个转折点。这一年 3 月，AlphaGo 以 4:1 战胜李世石，深度学习从学术圈走向公众视野。在自然语言处理领域，深度学习其实早已铺开——词向量、序列到序列翻译、注意力机制相继出现——但”一个任务一套模型”的格局没有变。真正的转折发生在 2017 年：Google 的团队提出 Transformer 架构，用注意力机制完全取代了循环结构<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a>。这个架构有两个后来被证明极其关键的特性：<strong>可以并行计算</strong>，因此能够用海量文本训练；<strong>可以随规模扩展</strong>，模型越大、效果越好。</p>
+<p>沿着”预训练＋规模化”的路线，参数量从亿级一路涨到千亿级。2020 年，OpenAI 发布拥有 1750 亿参数的 GPT-3<a href="#fn2" class="footnote-ref" id="fnref2" role="doc-noteref"><sup>2</sup></a>，它展示了一种前所未有的能力：<strong>少样本学习</strong>（few-shot learning）——不再需要为每个任务微调模型，只要在提示（prompt）里给几个例子，它就能照着做新任务。“一个任务一套模型”的时代就此让位给”一个通用大模型做所有任务”的时代。</p>
+</section>
+<section id="topic-12-cot-reasoning" class="level3">
+<h3 class="anchored" data-anchor-id="topic-12-cot-reasoning">思维链与推理模型</h3>
+<p>GPT-3 虽然什么任务都能”照猫画虎”，但做数学题、多步推理时仍然频繁出错。2022 年初，Google 的研究者发表了思维链（Chain-of-Thought，CoT）提示方法：在提示里给出带中间推理步骤的示例，模型就会跟着”想一步再答”，在数学、常识和符号推理任务上的表现大幅提升<a href="#fn3" class="footnote-ref" id="fnref3" role="doc-noteref"><sup>3</sup></a>。这一发现说明：大模型的能力不只藏在参数里，也藏在<strong>你怎样让它工作</strong>里——这个认识为后面 12.3 节的三个阶段埋下伏笔。</p>
+<p>2023 年 3 月，GPT-4 发布，能够同时接受图像和文本输入，综合推理能力再次跃升<a href="#fn4" class="footnote-ref" id="fnref4" role="doc-noteref"><sup>4</sup></a>。很多人从这一刻开始真正把大模型当作工作工具，而不只是聊天玩具。2024 年，OpenAI 发布 o1，开创了”推理模型”这一形态——模型在给出答案前先进行长链条的内部思考。但 o1 是闭源产品。</p>
+<p>2025 年 1 月，DeepSeek 发布 R1，并采用 MIT 许可完整开源<a href="#fn5" class="footnote-ref" id="fnref5" role="doc-noteref"><sup>5</sup></a>。R1 是第一个把当时最先进的推理能力连同训练方法一起开源的模型：论文显示，模型的推理能力可以通过纯强化学习激发出来，甚至不需要人工标注的思维链数据去微调；这项工作后来登上 Nature 封面。它的意义不只是”多了一个免费模型”：全世界的团队都能在 R1 的基础上研究、改进和部署，开源模型的门槛从”能用”一步跨到”最强梯队”，成本也随之一路下降。今天你在本地或免费服务里用的模型，很可能已经超过两年前的付费旗舰。</p>
+<p><a href="#fig-12-llm-timeline" class="quarto-xref">图&nbsp;<span>12.1</span></a> 把这段历程排成一条时间线。值得注意的规律是：<strong>每一次跃迁都建立在此前的积累上</strong>——没有深度学习的普及就没有 Transformer 的快速采纳，没有超大规模预训练就没有少样本学习，没有思维链的发现就谈不上推理模型的训练目标。</p>
+<div id="fig-12-llm-timeline" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-12-llm-timeline-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="../assets/12-ai-learning-and-practice/001-llm-timeline.svg" class="img-fluid figure-img">
 </div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-12-llm-timeline-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+图&nbsp;12.1: 从自然语言处理到大语言模型的关键节点（2025 年前的关键事件按时间排列；每个节点标注当年能力的主要来源）
+</figcaption>
+</figure>
+</div>
+</section>
+<section id="topic-12-emergence" class="level3">
+<h3 class="anchored" data-anchor-id="topic-12-emergence">涌现的”智能”与它的边界</h3>
+<p>随着规模跨过某个阈值，大模型出现了小模型完全不具备的能力——不训练就能按示例做新任务、跟随指令、多步推理。研究者把这种现象称为”智能涌现”（emergent abilities）。这里要保持一个清醒的表述：<strong>涌现出来的不是人类的智能</strong>。机制上，大模型做的仍然是”预测下一个词”；它没有体验、没有目的，也不知道自己什么时候在编造。“涌现是否只是度量方式的假象”在学界仍有讨论，但工程界不太纠结这个争论，因为另一个事实更直接。</p>
+<div class="book-core callout callout-style-default callout-note callout-titled" title="核心知识｜大模型的能与不能">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">注记</span>核心知识｜大模型的能与不能
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>大语言模型通过超大规模预训练获得了通用语言与知识处理能力，配合思维链等使用方式可以完成大量过去需要专门系统的任务；但它仍然是基于概率的下一个词预测，会产生”一本正经的胡说”（幻觉），也不会因为规模变大而自动获得目的、体验或对真伪的自我觉察。</p>
+<p><strong>工程结论：把它当作能力极强但需要检查的协作者，而不是无所不知的权威。</strong></p>
+</div>
+</div>
+<p>我自己经历过一个直观的对比。GPT-3 刚发布时，我让它推荐几篇某个方向的文献，返回的标题、作者、期刊看起来像模像样，逐条去查，几乎一篇都不存在——那一代模型离”能干活”很远。而今天，同样是我，正在用大模型驱动的智能体（agent）编写和维护包含构建、校验、自动部署在内的完整软件项目；你在 12.4 节会看到，agent 现场写出一个可运行、带测试的质控工具。</p>
+<p>所以我的态度是：<strong>拥抱它</strong>。以大语言模型为代表的 AI 技术，是这个时代给每一个人的礼物，也是机遇。它不会因为你的犹豫而放慢脚步，却会因为你善用而放大你的能力——尤其是生物信息学这样天天与文档、代码、数据格式打交道的行业。拥抱不等于迷信，下一节我们就来划清它能做什么、做不了什么。</p>
+</section>
 </section>
 <section id="sec-12-02" class="level2" data-number="12.2">
-<h2 data-number="12.2" class="anchored" data-anchor-id="sec-12-02"><span class="header-section-number">12.2</span> 向AI描述任务并核查信息</h2>
-<p>让AI在准确的上下文中工作，并验证其依据。</p>
-<div class="book-placeholder">
-<p>本节内容待补充。</p>
+<h2 data-number="12.2" class="anchored" data-anchor-id="sec-12-02"><span class="header-section-number">12.2</span> AI的能力边界</h2>
+<p>判断一个任务的瓶颈在哪，就能预期 AI 能帮到哪一步。</p>
+<section id="topic-12-silver-bullet" class="level3">
+<h3 class="anchored" data-anchor-id="topic-12-silver-bullet">《没有银弹》的两种复杂度</h3>
+<p>1987 年，《人月神话》的作者布鲁克斯（Fred Brooks）发表了一篇软件工程的经典文章：《没有银弹——软件工程中的本质与偶然》（No Silver Bullet — Essence and Accident in Software Engineering）<a href="#fn6" class="footnote-ref" id="fnref6" role="doc-noteref"><sup>6</sup></a>。银弹（silver bullet）是欧洲传说中杀死狼人的唯一武器，引申为”一招解决所有问题的万能解”。布鲁克斯的著名论断是：</p>
+<blockquote class="blockquote">
+<p>未来十年内，没有任何单一的技术进展或管理方法，能够仅凭自身让软件的生产力、可靠性和简洁性获得一个数量级（十倍）的提升。</p>
+</blockquote>
+<p>为什么这么悲观？他的论证借用了亚里士多德的一对古老概念，把软件的困难分成两类：</p>
+<ul>
+<li><strong>本质的困难（essence）</strong>：软件固有、无法绕开的困难——问题本身的复杂度、与真实世界的一致性、需求的无休止变化、以及不可见的抽象结构。</li>
+<li><strong>偶然的困难（accident）</strong>：制作软件过程中碰到的、但并非固有的困难——工具难用、语言低效、流程繁琐。</li>
+</ul>
+<p>布鲁克斯观察到：软件工程此前几十年的生产力提升，几乎全部来自消除偶然的困难（高级语言、集成环境、图形界面），这部分的红利快被吃完了；而本质的困难没有银弹，“造软件永远会是难的”。</p>
+<p>这篇文章是 1987 年写的，但它讨论的问题今天读来毫不陌生。把”软件”换成”科学研究”、“生信分析”，框架照样成立。而大模型的出现让这个问题有了新的紧迫感：<strong>它是人们找了四十年的那颗银弹吗？</strong></p>
+</section>
+<section id="topic-12-accidental" class="level3">
+<h3 class="anchored" data-anchor-id="topic-12-accidental">技术上的难：大模型能快速消除</h3>
+<p>把布鲁克斯的两类困难翻译成更朴素的说法，这个世界上的问题有两种难。</p>
+<p><strong>第一种是技术上的难</strong>：事情本身有明确做法，障碍只是信息与操作——文档繁琐、不会语法、环境配置、样板代码、正则表达式、格式转换。这类困难对应布鲁克斯说的”偶然的困难”。</p>
+<p>大语言模型恰好是消除这类困难的利器，因为它在人类语料的海量”做法”上训练过，而且结果<strong>可验证</strong>。生物信息学的日常几乎被这类任务填满：</p>
+<ul>
+<li>读不懂某个工具的文档，让模型逐段解释；</li>
+<li>不会写一行流的 bash 命令，描述需求让模型生成；</li>
+<li>把一段 R 代码翻译成 Python，或反过来；</li>
+<li>配置 conda 环境、解决依赖冲突；</li>
+<li>为 Snakemake 工作流写样板规则；</li>
+<li>解释一段看不懂的报错。</li>
+</ul>
+<p>这些任务的共同特征：任务本身可以说清楚，判断对错的标准明确，出了错容易发现。<strong>大模型已经把这类任务的时间成本压缩了一个数量级</strong>——这恰恰是布鲁克斯认为银弹才能做到的事，只不过只在”偶然”这一半成立。</p>
+</section>
+<section id="topic-12-essential" class="level3">
+<h3 class="anchored" data-anchor-id="topic-12-essential">本质上的难：大模型帮不了的部分</h3>
+<p><strong>第二种是本质上的难</strong>：问题的答案不在任何语料里——设计一款抗癌药、提出一个新的生物学假说、判断某个差异表达结果反映的是生物学还是批次效应、决定一个结论的边界画在哪里。这类困难对应”本质的困难”：它们需要提出问题、设计实验、权衡证据，而这些正是布鲁克斯说的无法用工具批量消除的部分。</p>
+<p>大模型对这类问题不是没有用，但用途限于<strong>加速其中的信息环节</strong>：帮你检索和整理已知文献、列出候选假说、把权衡摆到桌面上。注意，它给出的每一个”答案”都可能是自信的错——因为答案本来就不在语料里，模型只能把最像答案的东西生成出来。最终按下判断键的，必须是你。</p>
+<p><a href="#tbl-12-two-difficulties" class="quarto-xref">表&nbsp;<span>12.1</span></a> 给出一个可以随身携带的判断框架。</p>
+<div id="tbl-12-two-difficulties" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-tbl figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-12-two-difficulties-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+表&nbsp;12.1: 两种难的判断框架（对应布鲁克斯”偶然—本质”复杂度之分）
+</figcaption>
+<div aria-describedby="tbl-12-two-difficulties-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div class="book-table-scroll" role="region" aria-label="表格，可横向滚动" tabindex="0"><table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;">维度</th>
+<th style="text-align: left;">技术上的难</th>
+<th style="text-align: left;">本质上的难</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">典型任务</td>
+<td style="text-align: left;">配环境、写正则、翻译代码、读文档</td>
+<td style="text-align: left;">设计药物、提假说、判断批次效应、定结论边界</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">答案在哪</td>
+<td style="text-align: left;">在人类积累的语料中</td>
+<td style="text-align: left;">不在任何语料中</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">大模型角色</td>
+<td style="text-align: left;">直接完成，快速消除</td>
+<td style="text-align: left;">只加速信息环节，不能替代判断</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">出错方式</td>
+<td style="text-align: left;">少数情况幻觉，易验证</td>
+<td style="text-align: left;">一本正经地编，验证代价高</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">你要做的</td>
+<td style="text-align: left;">验证输出可用</td>
+<td style="text-align: left;">守住判断权，把模型当顾问</td>
+</tr>
+</tbody>
+</table></div>
 </div>
+</figure>
+</div>
+<p>遇到一个任务，先问一句：<strong>这个任务的瓶颈是信息与操作，还是知识与判断？</strong> 前者尽管交给模型，后者模型只能陪跑。这也是全书反复强调的那条线在 AI 时代的延伸——“能运行”从来不等于”能得出正确的结论”，工具跑通了，结论的边界仍然要由理解数据的人来划定。第 11 章结尾留下的那道题——“AI 给出的统计方案如何核查”——答案就在这张表里：把它的方案拆开，逐项问哪些只是技术上的顺手，哪些悄悄替你做了本质的判断。</p>
+</section>
 </section>
 <section id="sec-12-03" class="level2" data-number="12.3">
-<h2 data-number="12.3" class="anchored" data-anchor-id="sec-12-03"><span class="header-section-number">12.3</span> AI辅助写代码、排错和改造流程</h2>
-<p>把AI产出转为能够理解与维护的代码。</p>
-<div class="book-placeholder">
-<p>本节内容待补充。</p>
+<h2 data-number="12.3" class="anchored" data-anchor-id="sec-12-03"><span class="header-section-number">12.3</span> 如何用好大语言模型</h2>
+<p>把大模型从”聊天对象”变成”可靠协作者”。</p>
+<section id="topic-12-three-stages" class="level3">
+<h3 class="anchored" data-anchor-id="topic-12-three-stages">用法演进的三个阶段</h3>
+<p>大语言模型出生以来的使用方式，大致经历了三个阶段：<strong>提示词工程、上下文工程、Harness 工程</strong>。它们不是互相取代，而是不断叠加——每个新阶段都把前一个阶段包进来，见 <a href="#fig-12-three-stages" class="quarto-xref">图&nbsp;<span>12.2</span></a>。</p>
+<div id="fig-12-three-stages" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-12-three-stages-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="../assets/12-ai-learning-and-practice/003-three-stages.svg" class="img-fluid figure-img">
 </div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-12-three-stages-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+图&nbsp;12.2: 用好大语言模型的三个阶段（外层阶段包含内层阶段；每一层标注使用者提供什么、模型获得什么）
+</figcaption>
+</figure>
+</div>
+<p><strong>提示词工程</strong>（prompt engineering）流行于 2022 年前后：把任务说明写得清楚——给角色、给例子、分步骤、定输出格式。它解决的问题是”任务没说清”。</p>
+<p><strong>上下文工程</strong>（context engineering）在 2025 年由 Karpathy 的一篇帖子推广开来，他把它定义为”为下一步在上下文窗口里放进恰好正确的信息的精密艺术与科学”<a href="#fn7" class="footnote-ref" id="fnref7" role="doc-noteref"><sup>7</sup></a>。它解决的问题是”材料没给全”：模型只知道你提供给它的上下文，报错要贴原文、版本要交代、文件要给到，同时窗口有限，塞什么、不塞什么本身就是设计。</p>
+<p><strong>Harness 工程</strong>（harness engineering，harness 原意是”挽具”，这里指模型的运行环境）在 2025 年底到 2026 年初进入主流<a href="#fn8" class="footnote-ref" id="fnref8" role="doc-noteref"><sup>8</sup></a>。它解决的问题是”模型不能动手”：给模型装上工具——读写文件、执行命令、检索网络——再配上规则与循环，让它自己完成多步骤任务。</p>
+<div class="book-core callout callout-style-default callout-note callout-titled" title="核心知识｜Agent = 模型 + Harness">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">注记</span>核心知识｜Agent = 模型 + Harness
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>智能体（agent）＝大模型＋挽具（harness）。模型负责理解和生成；harness 是模型之外的一切——能调用哪些工具、遵循哪些规则（AGENTS.md）、按什么循环工作（计划→行动→观察→修正）、在什么边界内被授权（审批与沙箱）。</p>
+<p>同一个模型配不同的 harness，表现出的”能干程度”天差地别；优化 harness 往往比换更大的模型更划算。</p>
+</div>
+</div>
+<p>三个阶段在分工上的对照见 <a href="#tbl-12-three-stages" class="quarto-xref">表&nbsp;<span>12.2</span></a> 。</p>
+<div id="tbl-12-three-stages" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-tbl figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-12-three-stages-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+表&nbsp;12.2: 用好大语言模型的三个阶段（阶段相互叠加，后一阶段包含前一阶段）
+</figcaption>
+<div aria-describedby="tbl-12-three-stages-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div class="book-table-scroll" role="region" aria-label="表格，可横向滚动" tabindex="0"><table class="caption-top table">
+<colgroup>
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;">阶段</th>
+<th style="text-align: left;">你提供什么</th>
+<th style="text-align: left;">典型动作</th>
+<th style="text-align: left;">对应失败模式</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">提示词工程</td>
+<td style="text-align: left;">清晰的任务说明</td>
+<td style="text-align: left;">给角色、示例、分步、格式</td>
+<td style="text-align: left;">指令含糊，答非所问</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">上下文工程</td>
+<td style="text-align: left;">恰好的材料</td>
+<td style="text-align: left;">贴报错原文、版本、文件、数据说明</td>
+<td style="text-align: left;">关键信息缺失，模型只能猜</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Harness 工程</td>
+<td style="text-align: left;">工具、规则与循环</td>
+<td style="text-align: left;">AGENTS.md 项目记忆、skill、审批控制</td>
+<td style="text-align: left;">无约束地乱改，错误层层累积</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+</figure>
+</div>
+</section>
+<section id="topic-12-prompt" class="level3">
+<h3 class="anchored" data-anchor-id="topic-12-prompt">提示词工程：把任务讲清楚</h3>
+<p>提示词工程的全部要义可以用一句话概括：<strong>把任务讲到一个人不用追问就能接手的程度</strong>。具体要素：交代角色与目标、提供输入材料、给出示例、复杂任务拆步骤、规定输出格式与约束。</p>
+<div class="book-example callout callout-style-default callout-tip callout-titled" title="示例与练习｜同需求的两种提问">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">提示</span>示例与练习｜同需求的两种提问
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>需求：看不懂一段 DESeq2 差异分析的结果表。</p>
+<ul>
+<li>差的提问：“帮我看看这个表。”——模型不知道表在哪、列是什么、你想知道什么。</li>
+<li>好的提问：“这是一份 DESeq2 的 <code>results()</code> 输出，列有 baseMean、log2FoldChange、lfcSE、stat、pvalue、padj。请逐列解释含义和单位，说明 padj 是怎么从 pvalue 校正来的，并指出按 <code>padj &lt; 0.05</code> 且 <code>|log2FoldChange| &gt; 1</code> 筛选时的注意事项。下面是前 3 行数据：（略）”</li>
+</ul>
+<p><strong>练习：</strong> 把第二个提问里的要素（角色／材料／问题／输出要求）逐项标出来，再用同样的结构为”解释一段报错信息”写一个提问。</p>
+</div>
+</div>
+<p>提示词能解决的只是”说清楚”。如果问题出在材料没给全，写得再漂亮也没用——那是下一阶段的事。</p>
+</section>
+<section id="topic-12-context" class="level3">
+<h3 class="anchored" data-anchor-id="topic-12-context">上下文工程：把材料喂进去</h3>
+<p>模型只有上下文窗口里的信息。三条实践中最立竿见影的原则：</p>
+<ol type="1">
+<li><strong>给原文，不给转述。</strong> 排错时贴完整报错（而不是”好像有个格式错误”）、贴你执行的确切命令、贴期望结果与实际结果的对照。第 2 章排错一节讲的”问对问题带三样东西”，在这里原样适用。</li>
+<li><strong>交代版本与环境。</strong> 同一个函数在不同版本里参数默认值可能不同；<code>sessionInfo()</code>、<code>pip list</code> 的输出、参考基因组版本，都是模型的眼睛。</li>
+<li><strong>按需选材，而不是全部塞入。</strong> 窗口有限，无关材料会稀释关键信息。给一个 200 行文件里相关的 20 行，通常比整份文件加一句”自己找”更好；当然，如果工具能让模型自己读文件（12.4 节的 agent 就可以），就把选材权交给它。</li>
+</ol>
+</section>
+<section id="topic-12-harness" class="level3">
+<h3 class="anchored" data-anchor-id="topic-12-harness">Harness 工程：给模型装上手脚</h3>
+<p>当模型能读写文件、执行命令，使用方式就完全变了：你不再把材料复制进对话，而是让它<strong>到项目里自己拿</strong>；它不再只给建议，而是直接改代码、跑测试、看输出、再修正。让这套循环可靠运转的配置工作，就是 Harness 工程。对初学者来说，最重要的三件事：</p>
+<p><strong>AGENTS.md 项目记忆。</strong> 在项目仓库根目录放一个 <code>AGENTS.md</code>，写清楚项目目的、常用命令、目录结构、代码约定和注意事项。主流工具（ZCode、Claude Code、Codex、Cursor 等）都会在每次会话自动读取它——2025 年它已经成为事实标准，数以万计的项目在用<a href="#fn9" class="footnote-ref" id="fnref9" role="doc-noteref"><sup>9</sup></a>。它一次写成，此后每一轮对话都不必重复交代背景，是性价比最高的上下文工程。</p>
+<p><strong>Skill（技能）。</strong> 把重复的工作流程固化成一段可调用的说明，起个名字，用的时候一句话调用。比如 12.4 节要用的 grill-me，就是”拷问你的计划直到把需求问清”的技能。</p>
+<p><strong>审批与沙箱。</strong> 默认模式下，agent 读写文件、执行命令前要经过你批准；熟练之后可以放宽，但权限越自动，事后的验证越要认真。宁可慢一点，也不要让模型在没有围栏的地方奔跑。</p>
+</section>
+<section id="topic-12-control" class="level3">
+<h3 class="anchored" data-anchor-id="topic-12-control">驾驶而非放手：控制、验证与版本管理</h3>
+<div class="book-warning callout callout-style-default callout-warning callout-titled" title="注意｜agent 改代码的破坏半径">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">警告</span>注意｜agent 改代码的破坏半径
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>LLM 需要大量的调试和控制，不能完全交给它。模型会幻觉、会忘记几轮之前的要求、会在你不知道的地方”顺手”改掉一行关键代码，而且这些都发生得非常有信心。agent 的每一次改动都落在你的项目里——放权越多，检查越不能少。</p>
+</div>
+</div>
+<p>把 agent 当成一位手速极快、知识面极宽、但偶尔自信犯错的新同事来管理，需要三个习惯：</p>
+<ul>
+<li><strong>审查每一轮改动。</strong> 用 <code>git diff</code> 逐行看它改了什么、为什么改，读不懂的改动当场问。第 2 章 Git 一节讲过，<code>git diff</code> 就是”人审查 AI 工作”的基本工具。</li>
+<li><strong>小步提交。</strong> 一轮对话一个提交，说明写清楚。改坏了随时回退，好的改动沉淀下来。版本管理的具体操作第 2 章 2.6 节已经讲过，这里强调的是纪律：<strong>提交粒度就是你的后悔药粒度</strong>。</li>
+<li><strong>用运行结果验证。</strong> “代码看起来对”不算数——运行它，看输出，核对统计口径。这也是本书每一章都在练的：能运行不等于能得出正确结论。</li>
+</ul>
+</section>
 </section>
 <section id="sec-12-04" class="level2" data-number="12.4">
-<h2 data-number="12.4" class="anchored" data-anchor-id="sec-12-04"><span class="header-section-number">12.4</span> 识别能运行但结论错误的分析</h2>
-<p>发现语法检查无法暴露的科学错误。</p>
-<div class="book-placeholder">
-<p>本节内容待补充。</p>
-</div>
+<h2 data-number="12.4" class="anchored" data-anchor-id="sec-12-04"><span class="header-section-number">12.4</span> 智能体项目实战</h2>
+<p>把前三节的认识变成一次完整的动手经验。</p>
+<p>这一节我们用 ZCode 真实做一个与本书内容相关的项目：一个 <strong>FASTQ 质检小工具</strong>。它读取 FASTQ 文件，统计 reads 数量、长度分布、GC 含量、Q20/Q30 比例和平均质量，输出一份 Markdown 报告——正是第 3 章 FASTQ 格式与第 5 章质控思想的浓缩。项目小而完整：有数据生成、有核心代码、有测试、有版本历史，纯 Python 标准库实现，你在自己的电脑上可以完整复现。本节所有指令、代码、输出和提交记录都来自一次真实会话的实录，仅在篇幅上做了节选。</p>
+<section id="topic-12-prepare" class="level3">
+<h3 class="anchored" data-anchor-id="topic-12-prepare">准备：项目、环境与版本控制</h3>
+<p>工具准备在第 2 章 2.5 节已经完成：安装 ZCode（<a href="https://zcode.z.ai/">zcode.z.ai</a> 下载客户端），用 GLM Coding Plan 或 API key 登录。这里只回顾关键动作：在 ZCode 中新建一个空白文件夹 <code>fastq-qc</code> 并打开，这个文件夹就是 agent 的工作目录。</p>
+<p>按第 2 章的项目目录约定建好骨架，并初始化 Git 仓库：</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1" data-book-role="code"><pre data-code-text="&quot;mkdir -p fastq-qc/{data,reports,tests}\ncd fastq-qc\ngit init&quot;" class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mkdir</span> <span class="at">-p</span> fastq-qc/<span class="dt">{data</span><span class="op">,</span><span class="dt">reports</span><span class="op">,</span><span class="dt">tests}</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> fastq-qc</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> init</span></code></pre></div><button title="复制到剪贴板" class="code-copy-button"><i class="bi"></i></button></div>
+<p>教学数据不下载真实测序文件，而是用一段 40 行的 Python 脚本生成模拟 FASTQ：固定随机种子 42，生成 300 条 reads，长度在 80–120 bp 之间波动，质量值从 5’ 端到 3’ 端逐渐衰减，GC 含量约 45%——模拟了真实数据的主要特征。<strong>注意这是模拟数据，仅用于教学</strong>；生成脚本 <code>make_mock_fastq.py</code> 与数据一起保存在项目里，任何人运行同一脚本都能得到逐字节相同的数据（这就是第 10 章讲的可复现性思想，用固定种子实现）。生成后我们独立校验过格式：1200 行恰好 300 条记录、序列与质量等长、质量字符都在合法范围内，统计值为 GC 45.14%、Q20 99.63%、Q30 64.48%——这组数字后面用来核对工具输出。</p>
 </section>
-<section id="sec-12-05" class="level2" data-number="12.5">
-<h2 data-number="12.5" class="anchored" data-anchor-id="sec-12-05"><span class="header-section-number">12.5</span> AI使用中的数据、版本与责任记录</h2>
-<p>保持数据可控和分析过程可追溯。</p>
-<div class="book-placeholder">
-<p>本节内容待补充。</p>
-</div>
+<section id="topic-12-round0" class="level3">
+<h3 class="anchored" data-anchor-id="topic-12-round0">第 0 轮：用 grill-me 把需求问清楚</h3>
+<p>动手前最容易踩的坑，是需求自己都没想清。grill-me 是一个把”拷问式访谈”固化下来的技能：它会像一位较真的合作者，就你的计划一轮一轮提问，每题附上它的推荐答案，直到把每个含糊之处都问明白。在 ZCode 里输入：</p>
+<pre data-code-text="&quot;/grill-me 我想给 FASTQ 文件做一个质控小工具，帮我梳理需求。&quot;" class="text" data-book-role="data" data-code-title="Prompt｜第 0 轮"><code>/grill-me 我想给 FASTQ 文件做一个质控小工具，帮我梳理需求。</code></pre>
+<p>它第一轮抛出的问题（节选）与我们的决定：</p>
+<pre data-code-text="&quot;❓ Q1 - 输入数据：用真实测序数据还是教学数据？\n   ➡️ 教学数据：脚本生成模拟 FASTQ，固定种子可复现。\n❓ Q2 - 输出形式：报告给谁看，什么格式？\n   ➡️ 给自己快速判断数据质量；Markdown 报告，不依赖浏览器。\n❓ Q3 - 统计指标：算哪些，为什么是这些？\n   ➡️ Reads 数、长度分布、GC、Q20/Q30、平均质量——与主流质控口径一致。\n❓ Q4 - 依赖边界：允许引入哪些第三方库？\n   ➡️ 只用 Python 标准库，兼容 3.8+，任何机器 python3 直接能跑。\n❓ Q5 - 完成标准：怎么判断这个工具\&quot;做好了\&quot;？\n   ➡️ 模拟数据端到端跑通；单元测试覆盖正常与异常输入；报告数值与独立校验一致。&quot;" class="text" data-book-role="data" data-code-title="grill-me 第一轮问题（节选，➡️ 为其推荐答案）"><code>❓ Q1 - 输入数据：用真实测序数据还是教学数据？
+   ➡️ 教学数据：脚本生成模拟 FASTQ，固定种子可复现。
+❓ Q2 - 输出形式：报告给谁看，什么格式？
+   ➡️ 给自己快速判断数据质量；Markdown 报告，不依赖浏览器。
+❓ Q3 - 统计指标：算哪些，为什么是这些？
+   ➡️ Reads 数、长度分布、GC、Q20/Q30、平均质量——与主流质控口径一致。
+❓ Q4 - 依赖边界：允许引入哪些第三方库？
+   ➡️ 只用 Python 标准库，兼容 3.8+，任何机器 python3 直接能跑。
+❓ Q5 - 完成标准：怎么判断这个工具"做好了"？
+   ➡️ 模拟数据端到端跑通；单元测试覆盖正常与异常输入；报告数值与独立校验一致。</code></pre>
+<p>五问下来，“做个质控工具”这句模糊的话变成了五条可执行的规格。这一轮的本质是<strong>把提示词工程做在动手之前</strong>——12.2 节说 AI 擅长消除技术上的难，但前提是你能把它说清；说不清的部分，永远是你自己的瓶颈。</p>
 </section>
-<section id="sec-12-06" class="level2" data-number="12.6">
-<h2 data-number="12.6" class="anchored" data-anchor-id="sec-12-06"><span class="header-section-number">12.6</span> 当AI本身成为分析方法</h2>
-<p>能初步判断一个预测模型是否适合自己的数据与问题。</p>
-<div class="book-placeholder">
-<p>本节内容待补充。</p>
-</div>
+<section id="topic-12-round1" class="level3">
+<h3 class="anchored" data-anchor-id="topic-12-round1">第 1 轮：建立 AGENTS.md 项目记忆</h3>
+<p>需求清楚了，先不写代码，先写项目的”说明书”。把第 0 轮的结论交给 agent：</p>
+<pre data-code-text="&quot;按上面确认的需求，为这个项目创建 AGENTS.md，写清楚：项目目标、\n常用命令（生成数据、运行质检、跑测试）、目录结构、代码约定\n（只用标准库、兼容 Python 3.8+、报错带行号）、注意事项\n（发现 bug 先写复现测试再修复）。再建 .gitignore 把 data/、\nreports/ 和 __pycache__/ 排除出仓库。完成后做首次提交。&quot;" class="text" data-book-role="data" data-code-title="Prompt｜第 1 轮"><code>按上面确认的需求，为这个项目创建 AGENTS.md，写清楚：项目目标、
+常用命令（生成数据、运行质检、跑测试）、目录结构、代码约定
+（只用标准库、兼容 Python 3.8+、报错带行号）、注意事项
+（发现 bug 先写复现测试再修复）。再建 .gitignore 把 data/、
+reports/ 和 __pycache__/ 排除出仓库。完成后做首次提交。</code></pre>
+<p>agent 生成的 <code>AGENTS.md</code> 核心部分如下（完整文件见项目仓库）：</p>
+<pre data-code-text="&quot;# AGENTS.md — fastq-qc 项目说明\n\n## 常用命令\npython3 make_mock_fastq.py            # 生成模拟数据（种子 42）\npython3 fastq_qc.py data/sample.fastq -o reports/qc_report.md\npython3 -m unittest discover -s tests -v\n\n## 代码约定\n- 只用 Python 标准库，兼容 Python 3.8+；不引入第三方依赖。\n- 质量值按 Phred+33 解码；FASTQ 记录为标准 4 行结构。\n- 函数必须有 docstring；报错信息带行号，方便定位格式问题。\n\n## 注意事项\n- 发现程序 bug：先写一个能复现问题的测试，再修复，最后提交。\n- 不要改动 data/ 下的任何文件；需要新数据时改生成脚本。&quot;" class="text" data-book-role="data" data-code-title="AGENTS.md（节选）"><code># AGENTS.md — fastq-qc 项目说明
+
+## 常用命令
+python3 make_mock_fastq.py            # 生成模拟数据（种子 42）
+python3 fastq_qc.py data/sample.fastq -o reports/qc_report.md
+python3 -m unittest discover -s tests -v
+
+## 代码约定
+- 只用 Python 标准库，兼容 Python 3.8+；不引入第三方依赖。
+- 质量值按 Phred+33 解码；FASTQ 记录为标准 4 行结构。
+- 函数必须有 docstring；报错信息带行号，方便定位格式问题。
+
+## 注意事项
+- 发现程序 bug：先写一个能复现问题的测试，再修复，最后提交。
+- 不要改动 data/ 下的任何文件；需要新数据时改生成脚本。</code></pre>
+<p>注意两个设计：<code>data/</code> 与 <code>reports/</code> 不入库——数据可以由固定种子的脚本再生，生成的报告也可以由程序再生，仓库里只放”不能再生”的东西；AGENTS.md 里写下了”发现 bug 先写复现测试”的工作规则——下一轮它真的用上了。首次提交：</p>
+<pre data-code-text="&quot;17d56c3 第1轮：建立项目说明与数据生成脚本，完成首次提交&quot;" class="text" data-book-role="output"><code>17d56c3 第1轮：建立项目说明与数据生成脚本，完成首次提交</code></pre>
+<p>（你复现时提交号会不同，这不影响；看的是提交信息的写法——一行说清做了什么。）</p>
 </section>
-<section id="sec-12-07" class="level2" data-number="12.7">
-<h2 data-number="12.7" class="anchored" data-anchor-id="sec-12-07"><span class="header-section-number">12.7</span> 独立项目、能力自检与进阶路线</h2>
-<p>检验能否自主分析，并规划下一阶段学习。</p>
-<div class="book-placeholder">
-<p>本节内容待补充。</p>
+<section id="topic-12-round2" class="level3">
+<h3 class="anchored" data-anchor-id="topic-12-round2">第 2 轮：让 agent 实现核心功能</h3>
+<pre data-code-text="&quot;按 AGENTS.md 实现 fastq_qc.py：解析 FASTQ（4 行一条记录，Phred+33），\n校验格式（行数、头行、序列与质量等长、质量字符范围），统计 reads 数、\n长度分布（含字符直方图）、GC 含量、Q20/Q30 比例、平均质量，\n生成 Markdown 报告。完成后在 data/sample.fastq 上运行并保存报告。&quot;" class="text" data-book-role="data" data-code-title="Prompt｜第 2 轮"><code>按 AGENTS.md 实现 fastq_qc.py：解析 FASTQ（4 行一条记录，Phred+33），
+校验格式（行数、头行、序列与质量等长、质量字符范围），统计 reads 数、
+长度分布（含字符直方图）、GC 含量、Q20/Q30 比例、平均质量，
+生成 Markdown 报告。完成后在 data/sample.fastq 上运行并保存报告。</code></pre>
+<p>agent 写出了约 150 行的 <code>fastq_qc.py</code>，其中格式校验一段是审查重点：</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb8" data-book-role="code"><pre data-code-text="&quot;for pos, ch in enumerate(qual):\n    q = ord(ch) - 33\n    if q &lt; 0 or q &gt; 41:  # Illumina 1.8+ 的 Phred+33 合法范围为 Q0–Q41\n        raise ValueError(\n            \&quot;第 %d 条记录第 %d 个质量字符 %r 超出 Phred+33 范围\&quot;\n            % (i // 4 + 1, pos + 1, ch))&quot;" class="sourceCode numberSource python numberLines code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1"></a><span class="cf">for</span> pos, ch <span class="kw">in</span> <span class="bu">enumerate</span>(qual):</span>
+<span id="cb8-2"><a href="#cb8-2"></a>    q <span class="op">=</span> <span class="bu">ord</span>(ch) <span class="op">-</span> <span class="dv">33</span></span>
+<span id="cb8-3"><a href="#cb8-3"></a>    <span class="cf">if</span> q <span class="op">&lt;</span> <span class="dv">0</span> <span class="kw">or</span> q <span class="op">&gt;</span> <span class="dv">41</span>:  <span class="co"># Illumina 1.8+ 的 Phred+33 合法范围为 Q0–Q41</span></span>
+<span id="cb8-4"><a href="#cb8-4"></a>        <span class="cf">raise</span> <span class="pp">ValueError</span>(</span>
+<span id="cb8-5"><a href="#cb8-5"></a>            <span class="st">"第 </span><span class="sc">%d</span><span class="st"> 条记录第 </span><span class="sc">%d</span><span class="st"> 个质量字符 </span><span class="sc">%r</span><span class="st"> 超出 Phred+33 范围"</span></span>
+<span id="cb8-6"><a href="#cb8-6"></a>            <span class="op">%</span> (i <span class="op">//</span> <span class="dv">4</span> <span class="op">+</span> <span class="dv">1</span>, pos <span class="op">+</span> <span class="dv">1</span>, ch))</span></code></pre></div><button title="复制到剪贴板" class="code-copy-button"><i class="bi"></i></button></div>
+<p>第一次运行，报错了：</p>
+<pre data-code-text="&quot;错误：第 1 条记录第 10 个质量字符 &#x27;J&#x27; 超出 Phred+33 范围&quot;" class="text" data-book-role="output"><code>错误：第 1 条记录第 10 个质量字符 'J' 超出 Phred+33 范围</code></pre>
+<p>这是一个真实的失误：agent 初版把质量上限写成了 Q40，而生成脚本会产出 Q41（字符 <code>J</code>）。把报错原样贴回去，agent 查明 Illumina 1.8+ 的 Phred+33 合法范围是 Q0–Q41，把上限修正为 41（上面的代码是修正后的版本），重新运行：</p>
+<pre data-code-text="&quot;Reads: 300  长度 80-120 bp  GC 45.14%  Q30 64.48%\n报告已写入 reports/qc_report.md&quot;" class="text" data-book-role="output"><code>Reads: 300  长度 80-120 bp  GC 45.14%  Q30 64.48%
+报告已写入 reports/qc_report.md</code></pre>
+<p>GC 45.14%、Q30 64.48%，与准备阶段的独立校验完全一致——两组数字对上，这次运行才算通过。这一轮的审查要点有两个：一是读统计口径，GC 的分母是全部碱基而不是 reads 数，Q20/Q30 按碱基计——口径错半分，报告就全错；二是看它修复 bug 的方式，改的是校验上限这个”病因”，而不是把生成脚本的质量压到 40 以下来”掩盖症状”。两次提交：</p>
+<pre data-code-text="&quot;345d458 第2轮：实现FASTQ解析、统计与Markdown报告生成\n569ad09 第2轮修复：质量字符合法上限应为Q41(Illumina 1.8+)，首跑报错后修正&quot;" class="text" data-book-role="output"><code>345d458 第2轮：实现FASTQ解析、统计与Markdown报告生成
+569ad09 第2轮修复：质量字符合法上限应为Q41(Illumina 1.8+)，首跑报错后修正</code></pre>
+</section>
+<section id="topic-12-round3" class="level3">
+<h3 class="anchored" data-anchor-id="topic-12-round3">第 3 轮：测试、边界与复盘</h3>
+<pre data-code-text="&quot;为 fastq_qc.py 补充 unittest 单元测试，至少覆盖：正常输入的统计\n正确性（用小的手工数据核对 GC、Q20/Q30、平均质量）、空文件、\n总行数不是 4 的倍数、序列与质量长度不一致、非法质量字符，\n以及 Q41（&#x27;J&#x27;）合法的回归测试。运行全部测试并提交。&quot;" class="text" data-book-role="data" data-code-title="Prompt｜第 3 轮"><code>为 fastq_qc.py 补充 unittest 单元测试，至少覆盖：正常输入的统计
+正确性（用小的手工数据核对 GC、Q20/Q30、平均质量）、空文件、
+总行数不是 4 的倍数、序列与质量长度不一致、非法质量字符，
+以及 Q41（'J'）合法的回归测试。运行全部测试并提交。</code></pre>
+<pre data-code-text="&quot;test_empty_file (test_fastq_qc.TestComputeStats) ... ok\ntest_stats_values (test_fastq_qc.TestComputeStats) ... ok\ntest_good_input (test_fastq_qc.TestParseFastq) ... ok\ntest_illegal_quality_char (test_fastq_qc.TestParseFastq) ... ok\ntest_length_mismatch (test_fastq_qc.TestParseFastq) ... ok\ntest_q41_j_is_legal (test_fastq_qc.TestParseFastq) ... ok\ntest_truncated_file (test_fastq_qc.TestParseFastq) ... ok\n\n----------------------------------------------------------------------\nRan 7 tests in 0.003s\n\nOK&quot;" class="text" data-book-role="output"><code>test_empty_file (test_fastq_qc.TestComputeStats) ... ok
+test_stats_values (test_fastq_qc.TestComputeStats) ... ok
+test_good_input (test_fastq_qc.TestParseFastq) ... ok
+test_illegal_quality_char (test_fastq_qc.TestParseFastq) ... ok
+test_length_mismatch (test_fastq_qc.TestParseFastq) ... ok
+test_q41_j_is_legal (test_fastq_qc.TestParseFastq) ... ok
+test_truncated_file (test_fastq_qc.TestParseFastq) ... ok
+
+----------------------------------------------------------------------
+Ran 7 tests in 0.003s
+
+OK</code></pre>
+<p>七项测试全部通过，其中 <code>test_q41_j_is_legal</code> 就是把第 2 轮的 bug 固化成回归测试——以后任何人改动这段代码，错误都会被测试当场拦下。项目到此收尾，最终四条提交记录：</p>
+<pre data-code-text="&quot;61098a3 第3轮：补充单元测试，覆盖正常输入、格式错误与Q41边界\n569ad09 第2轮修复：质量字符合法上限应为Q41(Illumina 1.8+)，首跑报错后修正\n345d458 第2轮：实现FASTQ解析、统计与Markdown报告生成\n17d56c3 第1轮：建立项目说明与数据生成脚本，完成首次提交&quot;" class="text" data-book-role="output"><code>61098a3 第3轮：补充单元测试，覆盖正常输入、格式错误与Q41边界
+569ad09 第2轮修复：质量字符合法上限应为Q41(Illumina 1.8+)，首跑报错后修正
+345d458 第2轮：实现FASTQ解析、统计与Markdown报告生成
+17d56c3 第1轮：建立项目说明与数据生成脚本，完成首次提交</code></pre>
+<p>复盘整个项目，每一轮都有一个”必须由人把关”的环节：第 0 轮是<strong>需求与完成标准</strong>（agent 只能给推荐答案，取舍是你的）；第 1 轮是<strong>项目规则</strong>（什么入库、bug 怎么处理，这些约定决定了后续所有轮次的行为）；第 2 轮是<strong>统计口径与修复方式</strong>（改病因还是掩症状）；第 3 轮是<strong>测试覆盖是否戳中要害</strong>（有没有把真实出过错的地方变成回归测试）。这正是 12.2 节边界的具体化——写代码、配格式是技术上的难，agent 几乎包办；需求、口径、结论的质量，从头到尾是你的责任。</p>
+<div class="book-example callout callout-style-default callout-tip callout-titled" title="示例与练习｜在真实数据上延续这个项目">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
 </div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">提示</span>示例与练习｜在真实数据上延续这个项目
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<ol type="1">
+<li>把工具跑到一份真实（小的）FASTQ 上，先检查它的报错信息能否帮你定位格式问题。</li>
+<li>给报告增加”每个位置的平均质量”指标，画出 5’→3’ 衰减曲线的数据；观察它与模拟数据的差异。</li>
+<li>思考题：如果要把这个工具接入第 10 章的 Snakemake 工作流，哪些设计要改？（提示：命令行参数、输入输出约定与退出码。）</li>
+</ol>
+</div>
+</div>
+<p>这个项目做完，你拥有的不只是一个质控工具，而是一套可以迁移到任何课题的工作流：<strong>grill-me 定需求 → AGENTS.md 立规矩 → 逐轮下指令、审 diff → 测试与独立校验收尾</strong>。把它用在你自己的数据上——从下一份要处理的 FASTQ、下一个要写的小脚本开始。到这一章，本书的十二章就结束了，但你在 AI 时代的生信实践，才刚刚开始。</p>
 
 
+</section>
+</section>
+<section id="footnotes" class="footnotes footnotes-end-of-document" role="doc-endnotes">
+<hr>
+<ol>
+<li id="fn1"><p>Vaswani A, et al.&nbsp;Attention Is All You Need. NeurIPS 2017。 <a href="https://arxiv.org/abs/1706.03762">arXiv:1706.03762</a>。<a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn2"><p>Brown T B, et al.&nbsp;Language Models are Few-Shot Learners. NeurIPS 2020。 <a href="https://arxiv.org/abs/2005.14165">arXiv:2005.14165</a>。<a href="#fnref2" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn3"><p>Wei J, et al.&nbsp;Chain-of-Thought Prompting Elicits Reasoning in Large Language Models. NeurIPS 2022。 <a href="https://arxiv.org/abs/2201.11903">arXiv:2201.11903</a>。<a href="#fnref3" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn4"><p>OpenAI. GPT-4 Technical Report. 2023。 <a href="https://arxiv.org/abs/2303.08774">arXiv:2303.08774</a>。<a href="#fnref4" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn5"><p>Guo D, et al.&nbsp;DeepSeek-R1 incentivizes reasoning in LLMs through reinforcement learning. Nature 645, 633–638 (2025-09-18 封面文章)。<a href="#fnref5" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn6"><p>Brooks F P. No Silver Bullet — Essence and Accident in Software Engineering. IEEE Computer, 1987 年 4 月。<a href="#fnref6" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn7"><p>Karpathy A. 关于 context engineering 的帖子，2025-06-25。<a href="#fnref7" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn8"><p>参见 Martin Fowler 的 Harness engineering for coding agent users 一文及相关工程博客（2025–2026）。<a href="#fnref8" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn9"><p>AGENTS.md 约定见 <a href="https://agents.md/">agents.md</a>；InfoQ 2025 年 8 月报道已有超过两万个项目采用。<a href="#fnref9" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+</ol>
 </section>
 
 </main> <!-- /main -->
 <div class="book-toolbar" role="navigation" aria-label="阅读工具">
-  <div class="book-brand"><span class="book-brand-name">AI时代生信入门</span><time class="book-last-modified" datetime="2026-10-11T12:08:31+08:00" title="最后修改时间（北京时间，UTC+08:00）">最后修改 2026-10-11 12:08</time></div>
+  <div class="book-brand"><span class="book-brand-name">AI时代生信入门</span><time class="book-last-modified" datetime="2026-10-11T12:17:35+08:00" title="最后修改时间（北京时间，UTC+08:00）">最后修改 2026-10-11 12:17</time></div>
   <button class="book-menu-button" type="button" aria-controls="quarto-sidebar" aria-expanded="false">目录</button>
   <button class="book-search-button" type="button">搜索</button>
 </div>
