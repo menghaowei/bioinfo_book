@@ -613,32 +613,67 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
 <li>
 <details class="book-section"><summary><a class="book-nav-link book-section-link no-external" href="09-single-cell-and-spatial-omics.html#sec-09-01" data-book-level="2" id="book-nav-9-sec-09-01">9.1 从组织平均到细胞差异与空间位置：研究问题与数据结构</a></summary><ul>
-<li class="book-nav-leaf"><a class="book-nav-link book-section-link no-external" href="09-single-cell-and-spatial-omics.html#src-0050-RNA-seq-56" data-book-level="3" id="book-nav-9-src-0050-RNA-seq-56">单细胞RNA-seq</a></li>
+<li class="book-nav-leaf"><a class="book-nav-link book-section-link no-external" href="09-single-cell-and-spatial-omics.html#src-0050-RNA-seq-56" data-book-level="3" id="book-nav-9-src-0050-RNA-seq-56">为什么需要单细胞与空间分辨</a></li>
+<li class="book-nav-leaf"><a class="book-nav-link book-section-link no-external" href="09-single-cell-and-spatial-omics.html#topic-09-history" data-book-level="3" id="book-nav-9-topic-09-history">领域的发展与汤富酬实验室的贡献</a></li>
+<li class="book-nav-leaf"><a class="book-nav-link book-section-link no-external" href="09-single-cell-and-spatial-omics.html#topic-09-platforms" data-book-level="3" id="book-nav-9-topic-09-platforms">商业化成熟后的主流平台：10x Genomics 与 BD Rhapsody</a></li>
+<li class="book-nav-leaf"><a class="book-nav-link book-section-link no-external" href="09-single-cell-and-spatial-omics.html#topic-09-barcode-umi" data-book-level="3" id="book-nav-9-topic-09-barcode-umi">barcode、UMI 与细胞×基因计数矩阵</a></li>
+<li class="book-nav-leaf"><a class="book-nav-link book-section-link no-external" href="09-single-cell-and-spatial-omics.html#topic-09-multimics" data-book-level="3" id="book-nav-9-topic-09-multimics">单细胞多组学全景与本章边界</a></li>
+<li class="book-nav-leaf"><a class="book-nav-link book-section-link no-external" href="09-single-cell-and-spatial-omics.html#topic-09-data-route" data-book-level="3" id="book-nav-9-topic-09-data-route">本章示例数据与分析路线</a></li>
 </ul></details>
 </li>
 <li>
-<div class="book-nav-leaf"><a class="book-nav-link book-section-link no-external" href="09-single-cell-and-spatial-omics.html#sec-09-02" data-book-level="2" id="book-nav-9-sec-09-02">9.2 单细胞数据的质控：细胞、基因、双细胞与背景信号</a></div>
-</li>
-<li>
-<div class="book-nav-leaf"><a class="book-nav-link book-section-link no-external" href="09-single-cell-and-spatial-omics.html#sec-09-03" data-book-level="2" id="book-nav-9-sec-09-03">9.3 归一化、特征选择、降维与聚类</a></div>
-</li>
-<li>
-<div class="book-nav-leaf"><a class="book-nav-link book-section-link no-external" href="09-single-cell-and-spatial-omics.html#sec-09-04" data-book-level="2" id="book-nav-9-sec-09-04">9.4 细胞类型注释与证据核查</a></div>
-</li>
-<li>
-<div class="book-nav-leaf"><a class="book-nav-link book-section-link no-external" href="09-single-cell-and-spatial-omics.html#sec-09-05" data-book-level="2" id="book-nav-9-sec-09-05">9.5 多样本比较：批次、重复与差异分析</a></div>
-</li>
-<li>
-<details class="book-section"><summary><a class="book-nav-link book-section-link no-external" href="09-single-cell-and-spatial-omics.html#sec-09-06" data-book-level="2" id="book-nav-9-sec-09-06">9.6 空间转录组的技术、数据结构与质量控制</a></summary><ul>
-<li class="book-nav-leaf"><a class="book-nav-link book-section-link no-external" href="09-single-cell-and-spatial-omics.html#src-0050-RNA-seq-81" data-book-level="3" id="book-nav-9-src-0050-RNA-seq-81">其他转录组测序</a></li>
+<details class="book-section"><summary><a class="book-nav-link book-section-link no-external" href="09-single-cell-and-spatial-omics.html#sec-09-02" data-book-level="2" id="book-nav-9-sec-09-02">9.2 单细胞数据的质控：细胞、基因、双细胞与背景信号</a></summary><ul>
+<li class="book-nav-leaf"><a class="book-nav-link book-section-link no-external" href="09-single-cell-and-spatial-omics.html#topic-09-cellranger-seurat" data-book-level="3" id="book-nav-9-topic-09-cellranger-seurat">从比对到矩阵：Cell Ranger 输出与 Seurat 对象</a></li>
+<li class="book-nav-leaf"><a class="book-nav-link book-section-link no-external" href="09-single-cell-and-spatial-omics.html#topic-09-qc" data-book-level="3" id="book-nav-9-topic-09-qc">细胞水平质控：nFeature、nCount 与线粒体比例</a></li>
+<li class="book-nav-leaf"><a class="book-nav-link book-section-link no-external" href="09-single-cell-and-spatial-omics.html#topic-09-doublets" data-book-level="3" id="book-nav-9-topic-09-doublets">双细胞：来源、比例与检测</a></li>
+<li class="book-nav-leaf"><a class="book-nav-link book-section-link no-external" href="09-single-cell-and-spatial-omics.html#topic-09-ambient" data-book-level="3" id="book-nav-9-topic-09-ambient">背景 RNA 与基因过滤</a></li>
 </ul></details>
 </li>
 <li>
-<div class="book-nav-leaf"><a class="book-nav-link book-section-link no-external" href="09-single-cell-and-spatial-omics.html#sec-09-07" data-book-level="2" id="book-nav-9-sec-09-07">9.7 空间表达可视化、组织区域与结果解释</a></div>
+<details class="book-section"><summary><a class="book-nav-link book-section-link no-external" href="09-single-cell-and-spatial-omics.html#sec-09-03" data-book-level="2" id="book-nav-9-sec-09-03">9.3 归一化、特征选择、降维与聚类</a></summary><ul>
+<li class="book-nav-leaf"><a class="book-nav-link book-section-link no-external" href="09-single-cell-and-spatial-omics.html#topic-09-normalization" data-book-level="3" id="book-nav-9-topic-09-normalization">单细胞归一化：文库大小与测序深度</a></li>
+<li class="book-nav-leaf"><a class="book-nav-link book-section-link no-external" href="09-single-cell-and-spatial-omics.html#topic-09-hvg" data-book-level="3" id="book-nav-9-topic-09-hvg">高变基因：特征选择</a></li>
+<li class="book-nav-leaf"><a class="book-nav-link book-section-link no-external" href="09-single-cell-and-spatial-omics.html#topic-09-dimred" data-book-level="3" id="book-nav-9-topic-09-dimred">线性降维 PCA 与非线性嵌入 UMAP/tSNE</a></li>
+<li class="book-nav-leaf"><a class="book-nav-link book-section-link no-external" href="09-single-cell-and-spatial-omics.html#topic-09-clustering" data-book-level="3" id="book-nav-9-topic-09-clustering">图构建与聚类：kNN、Louvain/Leiden 与分辨率</a></li>
+<li class="book-nav-leaf"><a class="book-nav-link book-section-link no-external" href="09-single-cell-and-spatial-omics.html#topic-09-pipeline-code" data-book-level="3" id="book-nav-9-topic-09-pipeline-code">标准流程串联实操</a></li>
+</ul></details>
 </li>
 <li>
-<details class="book-section"><summary><a class="book-nav-link book-section-link no-external" href="09-single-cell-and-spatial-omics.html#sec-09-08" data-book-level="2" id="book-nav-9-sec-09-08">9.8 单细胞与空间信息的结合、完整案例与常见误区</a></summary><ul>
-<li class="book-nav-leaf"><a class="book-nav-link book-section-link no-external" href="09-single-cell-and-spatial-omics.html#src-0050-RNA-seq-1182" data-book-level="3" id="book-nav-9-src-0050-RNA-seq-1182">单细胞RNA-seq</a></li>
+<details class="book-section"><summary><a class="book-nav-link book-section-link no-external" href="09-single-cell-and-spatial-omics.html#sec-09-04" data-book-level="2" id="book-nav-9-sec-09-04">9.4 细胞类型注释与证据核查</a></summary><ul>
+<li class="book-nav-leaf"><a class="book-nav-link book-section-link no-external" href="09-single-cell-and-spatial-omics.html#topic-09-markers" data-book-level="3" id="book-nav-9-topic-09-markers">找每个簇的 marker 基因</a></li>
+<li class="book-nav-leaf"><a class="book-nav-link book-section-link no-external" href="09-single-cell-and-spatial-omics.html#topic-09-annotate-pbmc" data-book-level="3" id="book-nav-9-topic-09-annotate-pbmc">用经典 marker 注释 PBMC</a></li>
+<li class="book-nav-leaf"><a class="book-nav-link book-section-link no-external" href="09-single-cell-and-spatial-omics.html#topic-09-auto-annot" data-book-level="3" id="book-nav-9-topic-09-auto-annot">自动注释与参考映射</a></li>
+<li class="book-nav-leaf"><a class="book-nav-link book-section-link no-external" href="09-single-cell-and-spatial-omics.html#topic-09-annot-evidence" data-book-level="3" id="book-nav-9-topic-09-annot-evidence">注释的证据核查</a></li>
+</ul></details>
+</li>
+<li>
+<details class="book-section"><summary><a class="book-nav-link book-section-link no-external" href="09-single-cell-and-spatial-omics.html#sec-09-05" data-book-level="2" id="book-nav-9-sec-09-05">9.5 多样本比较：批次、重复与差异分析</a></summary><ul>
+<li class="book-nav-leaf"><a class="book-nav-link book-section-link no-external" href="09-single-cell-and-spatial-omics.html#topic-09-batch" data-book-level="3" id="book-nav-9-topic-09-batch">批次效应：来源与识别</a></li>
+<li class="book-nav-leaf"><a class="book-nav-link book-section-link no-external" href="09-single-cell-and-spatial-omics.html#topic-09-integration" data-book-level="3" id="book-nav-9-topic-09-integration">数据整合：anchors 与 Harmony</a></li>
+<li class="book-nav-leaf"><a class="book-nav-link book-section-link no-external" href="09-single-cell-and-spatial-omics.html#topic-09-pseudobulk" data-book-level="3" id="book-nav-9-topic-09-pseudobulk">伪批量差异分析：回到样本层面</a></li>
+<li class="book-nav-leaf"><a class="book-nav-link book-section-link no-external" href="09-single-cell-and-spatial-omics.html#topic-09-composition" data-book-level="3" id="book-nav-9-topic-09-composition">细胞比例变化：组成分析的另一条结论</a></li>
+</ul></details>
+</li>
+<li>
+<details class="book-section"><summary><a class="book-nav-link book-section-link no-external" href="09-single-cell-and-spatial-omics.html#sec-09-06" data-book-level="2" id="book-nav-9-sec-09-06">9.6 空间转录组的技术</a></summary><ul>
+<li class="book-nav-leaf"><a class="book-nav-link book-section-link no-external" href="09-single-cell-and-spatial-omics.html#src-0050-RNA-seq-91" data-book-level="3" id="book-nav-9-src-0050-RNA-seq-91">空间转录组解决什么问题</a></li>
+<li class="book-nav-leaf"><a class="book-nav-link book-section-link no-external" href="09-single-cell-and-spatial-omics.html#topic-09-spatial-tech" data-book-level="3" id="book-nav-9-topic-09-spatial-tech">技术全景：捕获型、原位杂交型与高分辨率平台</a></li>
+<li class="book-nav-leaf"><a class="book-nav-link book-section-link no-external" href="09-single-cell-and-spatial-omics.html#topic-09-visium-data" data-book-level="3" id="book-nav-9-topic-09-visium-data">Visium 数据结构与 Space Ranger 质控</a></li>
+</ul></details>
+</li>
+<li>
+<details class="book-section"><summary><a class="book-nav-link book-section-link no-external" href="09-single-cell-and-spatial-omics.html#sec-09-07" data-book-level="2" id="book-nav-9-sec-09-07">9.7 空间表达的可视化与结果解释</a></summary><ul>
+<li class="book-nav-leaf"><a class="book-nav-link book-section-link no-external" href="09-single-cell-and-spatial-omics.html#topic-09-spatial-plot" data-book-level="3" id="book-nav-9-topic-09-spatial-plot">在组织切片上画表达：空间 featureplot</a></li>
+<li class="book-nav-leaf"><a class="book-nav-link book-section-link no-external" href="09-single-cell-and-spatial-omics.html#topic-09-spatial-clusters" data-book-level="3" id="book-nav-9-topic-09-spatial-clusters">空间聚类与组织区域识别</a></li>
+<li class="book-nav-leaf"><a class="book-nav-link book-section-link no-external" href="09-single-cell-and-spatial-omics.html#topic-09-spatial-svg" data-book-level="3" id="book-nav-9-topic-09-spatial-svg">空间特有分析：高变基因与共定位</a></li>
+<li class="book-nav-leaf"><a class="book-nav-link book-section-link no-external" href="09-single-cell-and-spatial-omics.html#topic-09-spatial-limits" data-book-level="3" id="book-nav-9-topic-09-spatial-limits">分辨率限制与结论边界</a></li>
+</ul></details>
+</li>
+<li>
+<details class="book-section"><summary><a class="book-nav-link book-section-link no-external" href="09-single-cell-and-spatial-omics.html#sec-09-08" data-book-level="2" id="book-nav-9-sec-09-08">9.8 单细胞与空间信息的结合</a></summary><ul>
+<li class="book-nav-leaf"><a class="book-nav-link book-section-link no-external" href="09-single-cell-and-spatial-omics.html#topic-09-mapping-deconv" data-book-level="3" id="book-nav-9-topic-09-mapping-deconv">单细胞参考映射与空间去卷积</a></li>
+<li class="book-nav-leaf"><a class="book-nav-link book-section-link no-external" href="09-single-cell-and-spatial-omics.html#topic-09-full-case" data-book-level="3" id="book-nav-9-topic-09-full-case">完整案例回顾：从原始数据到交付</a></li>
+<li class="book-nav-leaf"><a class="book-nav-link book-section-link no-external" href="09-single-cell-and-spatial-omics.html#topic-09-pitfalls" data-book-level="3" id="book-nav-9-topic-09-pitfalls">常见误区清单</a></li>
 </ul></details>
 </li>
 </ul></details>
@@ -1547,7 +1582,7 @@ SRR5852297  KO</code></pre>
 
 </main> <!-- /main -->
 <div class="book-toolbar" role="navigation" aria-label="阅读工具">
-  <div class="book-brand"><span class="book-brand-name">AI时代生信入门</span><time class="book-last-modified" datetime="2026-10-11T12:17:35+08:00" title="最后修改时间（北京时间，UTC+08:00）">最后修改 2026-10-11 12:17</time></div>
+  <div class="book-brand"><span class="book-brand-name">AI时代生信入门</span><time class="book-last-modified" datetime="2026-10-11T12:32:53+08:00" title="最后修改时间（北京时间，UTC+08:00）">最后修改 2026-10-11 12:32</time></div>
   <button class="book-menu-button" type="button" aria-controls="quarto-sidebar" aria-expanded="false">目录</button>
   <button class="book-search-button" type="button">搜索</button>
 </div>

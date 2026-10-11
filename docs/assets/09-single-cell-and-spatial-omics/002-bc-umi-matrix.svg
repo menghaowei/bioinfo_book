@@ -1,0 +1,82 @@
+<svg xmlns='http://www.w3.org/2000/svg' width='900' height='430' viewBox='0 0 900 430' role='img' aria-labelledby='t d'>
+<title id='t'>barcode、UMI 与计数矩阵的对应关系</title>
+<desc id='d'>三条 read 带相同细胞 barcode AACGTACGTA；前两条 UMI 相同（TTAGGC），是同一 mRNA 分子的 PCR 重复，去重后只计 1 个分子并归属到 Gene1；第三条 UMI 不同（CCGATA），是另一个分子，归属到 Gene2。右下计数矩阵中高亮列即该细胞，数字为 UMI 分子数（示意，未按实际长度绘制）。</desc>
+<text x='48' y='54' font-family="'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size='15' fill='#186254' font-weight='bold' text-anchor='start'>测序得到的 read（同一细胞 barcode）</text>
+<rect x='60' y='70' width='142' height='30' rx='3' fill='#e8f4f1' stroke='#186254' stroke-width='1.2'/>
+<rect x='202' y='70' width='90' height='30' rx='3' fill='#fdf3e3' stroke='#b45309' stroke-width='1.2'/>
+<rect x='292' y='70' width='116' height='30' rx='3' fill='none' stroke='#9ca3af' stroke-width='1.2'/>
+<text x='66' y='90' font-family="ui-monospace, 'SFMono-Regular', Menlo, Consolas, 'Liberation Mono', monospace" font-size='13' fill='#333333' font-weight='normal' text-anchor='start'>AACGTACGTA</text>
+<text x='208' y='90' font-family="ui-monospace, 'SFMono-Regular', Menlo, Consolas, 'Liberation Mono', monospace" font-size='13' fill='#333333' font-weight='normal' text-anchor='start'>TTAGGC</text>
+<text x='298' y='90' font-family="ui-monospace, 'SFMono-Regular', Menlo, Consolas, 'Liberation Mono', monospace" font-size='13' fill='#6b7280' font-weight='normal' text-anchor='start'>cDNA…</text>
+<rect x='60' y='126' width='142' height='30' rx='3' fill='#e8f4f1' stroke='#186254' stroke-width='1.2'/>
+<rect x='202' y='126' width='90' height='30' rx='3' fill='#fdf3e3' stroke='#b45309' stroke-width='1.2'/>
+<rect x='292' y='126' width='116' height='30' rx='3' fill='none' stroke='#9ca3af' stroke-width='1.2'/>
+<text x='66' y='146' font-family="ui-monospace, 'SFMono-Regular', Menlo, Consolas, 'Liberation Mono', monospace" font-size='13' fill='#333333' font-weight='normal' text-anchor='start'>AACGTACGTA</text>
+<text x='208' y='146' font-family="ui-monospace, 'SFMono-Regular', Menlo, Consolas, 'Liberation Mono', monospace" font-size='13' fill='#333333' font-weight='normal' text-anchor='start'>TTAGGC</text>
+<text x='298' y='146' font-family="ui-monospace, 'SFMono-Regular', Menlo, Consolas, 'Liberation Mono', monospace" font-size='13' fill='#6b7280' font-weight='normal' text-anchor='start'>cDNA…</text>
+<rect x='60' y='182' width='142' height='30' rx='3' fill='#e8f4f1' stroke='#186254' stroke-width='1.2'/>
+<rect x='202' y='182' width='90' height='30' rx='3' fill='#e8eefb' stroke='#b45309' stroke-width='1.2'/>
+<rect x='292' y='182' width='116' height='30' rx='3' fill='none' stroke='#9ca3af' stroke-width='1.2'/>
+<text x='66' y='202' font-family="ui-monospace, 'SFMono-Regular', Menlo, Consolas, 'Liberation Mono', monospace" font-size='13' fill='#333333' font-weight='normal' text-anchor='start'>AACGTACGTA</text>
+<text x='208' y='202' font-family="ui-monospace, 'SFMono-Regular', Menlo, Consolas, 'Liberation Mono', monospace" font-size='13' fill='#333333' font-weight='normal' text-anchor='start'>CCGATA</text>
+<text x='298' y='202' font-family="ui-monospace, 'SFMono-Regular', Menlo, Consolas, 'Liberation Mono', monospace" font-size='13' fill='#6b7280' font-weight='normal' text-anchor='start'>cDNA…</text>
+<text x='418' y='90' font-family="'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size='12' fill='#333333' font-weight='normal' text-anchor='start'>→ 比对到 Gene1</text>
+<text x='418' y='146' font-family="'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size='12' fill='#333333' font-weight='normal' text-anchor='start'>→ 比对到 Gene1</text>
+<text x='418' y='202' font-family="'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size='12' fill='#333333' font-weight='normal' text-anchor='start'>→ 比对到 Gene2</text>
+<text x='66' y='36' font-family="'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size='11' fill='#6b7280' font-weight='normal' text-anchor='start'>细胞 barcode（归细胞）</text>
+<text x='278' y='52' font-family="'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size='11' fill='#b45309' font-weight='normal' text-anchor='start'>UMI（归分子）</text>
+<text x='428' y='36' font-family="'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size='11' fill='#6b7280' font-weight='normal' text-anchor='start'>cDNA（比对定基因）</text>
+<rect x='46' y='56' width='376' height='100' rx='3' fill='none' stroke='#b45309' stroke-width='1.2' stroke-dasharray='5,4'/>
+<text x='452' y='96' font-family="'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size='12' fill='#333333' font-weight='normal' text-anchor='start'>barcode 相同＋UMI 相同</text>
+<text x='452' y='114' font-family="'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size='12' fill='#333333' font-weight='normal' text-anchor='start'>= 同一分子的 PCR 重复</text>
+<text x='452' y='132' font-family="'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size='12' fill='#b45309' font-weight='bold' text-anchor='start'>去重后计 1 个分子</text>
+<text x='560' y='184' font-family="'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size='15' fill='#186254' font-weight='bold' text-anchor='start'>细胞×基因计数矩阵（数字 = UMI 分子数）</text>
+<text x='606.0' y='202' font-family="ui-monospace, 'SFMono-Regular', Menlo, Consolas, 'Liberation Mono', monospace" font-size='11' fill='#6b7280' font-weight='normal' text-anchor='middle'>…</text>
+<rect x='654' y='186' width='88' height='24' rx='3' fill='#e8f4f1' stroke='#186254' stroke-width='1.2'/>
+<text x='698.0' y='202' font-family="ui-monospace, 'SFMono-Regular', Menlo, Consolas, 'Liberation Mono', monospace" font-size='11' fill='#333333' font-weight='normal' text-anchor='middle'>AACGTACGTA</text>
+<text x='790.0' y='202' font-family="ui-monospace, 'SFMono-Regular', Menlo, Consolas, 'Liberation Mono', monospace" font-size='11' fill='#6b7280' font-weight='normal' text-anchor='middle'>…</text>
+<text x='882.0' y='202' font-family="ui-monospace, 'SFMono-Regular', Menlo, Consolas, 'Liberation Mono', monospace" font-size='11' fill='#6b7280' font-weight='normal' text-anchor='middle'>…</text>
+<text x='548' y='232' font-family="ui-monospace, 'SFMono-Regular', Menlo, Consolas, 'Liberation Mono', monospace" font-size='12' fill='#333333' font-weight='normal' text-anchor='end'>Gene1</text>
+<rect x='562' y='212' width='88' height='30' rx='3' fill='none' stroke='#9ca3af' stroke-width='1.2' stroke-dasharray='3,3'/>
+<text x='606.0' y='233' font-family="ui-monospace, 'SFMono-Regular', Menlo, Consolas, 'Liberation Mono', monospace" font-size='12' fill='#9ca3af' font-weight='normal' text-anchor='middle'>·</text>
+<rect x='654' y='212' width='88' height='30' rx='3' fill='#e8f4f1' stroke='#186254' stroke-width='1.2'/>
+<text x='698.0' y='233' font-family="ui-monospace, 'SFMono-Regular', Menlo, Consolas, 'Liberation Mono', monospace" font-size='14' fill='#333333' font-weight='bold' text-anchor='middle'>1</text>
+<rect x='746' y='212' width='88' height='30' rx='3' fill='none' stroke='#9ca3af' stroke-width='1.2' stroke-dasharray='3,3'/>
+<text x='790.0' y='233' font-family="ui-monospace, 'SFMono-Regular', Menlo, Consolas, 'Liberation Mono', monospace" font-size='12' fill='#9ca3af' font-weight='normal' text-anchor='middle'>·</text>
+<rect x='838' y='212' width='88' height='30' rx='3' fill='none' stroke='#9ca3af' stroke-width='1.2' stroke-dasharray='3,3'/>
+<text x='882.0' y='233' font-family="ui-monospace, 'SFMono-Regular', Menlo, Consolas, 'Liberation Mono', monospace" font-size='12' fill='#9ca3af' font-weight='normal' text-anchor='middle'>·</text>
+<text x='548' y='266' font-family="ui-monospace, 'SFMono-Regular', Menlo, Consolas, 'Liberation Mono', monospace" font-size='12' fill='#333333' font-weight='normal' text-anchor='end'>Gene2</text>
+<rect x='562' y='246' width='88' height='30' rx='3' fill='none' stroke='#9ca3af' stroke-width='1.2' stroke-dasharray='3,3'/>
+<text x='606.0' y='267' font-family="ui-monospace, 'SFMono-Regular', Menlo, Consolas, 'Liberation Mono', monospace" font-size='12' fill='#9ca3af' font-weight='normal' text-anchor='middle'>·</text>
+<rect x='654' y='246' width='88' height='30' rx='3' fill='#e8f4f1' stroke='#186254' stroke-width='1.2'/>
+<text x='698.0' y='267' font-family="ui-monospace, 'SFMono-Regular', Menlo, Consolas, 'Liberation Mono', monospace" font-size='14' fill='#333333' font-weight='bold' text-anchor='middle'>1</text>
+<rect x='746' y='246' width='88' height='30' rx='3' fill='none' stroke='#9ca3af' stroke-width='1.2' stroke-dasharray='3,3'/>
+<text x='790.0' y='267' font-family="ui-monospace, 'SFMono-Regular', Menlo, Consolas, 'Liberation Mono', monospace" font-size='12' fill='#9ca3af' font-weight='normal' text-anchor='middle'>·</text>
+<rect x='838' y='246' width='88' height='30' rx='3' fill='none' stroke='#9ca3af' stroke-width='1.2' stroke-dasharray='3,3'/>
+<text x='882.0' y='267' font-family="ui-monospace, 'SFMono-Regular', Menlo, Consolas, 'Liberation Mono', monospace" font-size='12' fill='#9ca3af' font-weight='normal' text-anchor='middle'>·</text>
+<text x='548' y='300' font-family="ui-monospace, 'SFMono-Regular', Menlo, Consolas, 'Liberation Mono', monospace" font-size='12' fill='#333333' font-weight='normal' text-anchor='end'>Gene3</text>
+<rect x='562' y='280' width='88' height='30' rx='3' fill='none' stroke='#9ca3af' stroke-width='1.2' stroke-dasharray='3,3'/>
+<text x='606.0' y='301' font-family="ui-monospace, 'SFMono-Regular', Menlo, Consolas, 'Liberation Mono', monospace" font-size='12' fill='#9ca3af' font-weight='normal' text-anchor='middle'>·</text>
+<rect x='654' y='280' width='88' height='30' rx='3' fill='#e8f4f1' stroke='#186254' stroke-width='1.2'/>
+<text x='698.0' y='301' font-family="ui-monospace, 'SFMono-Regular', Menlo, Consolas, 'Liberation Mono', monospace" font-size='14' fill='#333333' font-weight='bold' text-anchor='middle'>0</text>
+<rect x='746' y='280' width='88' height='30' rx='3' fill='none' stroke='#9ca3af' stroke-width='1.2' stroke-dasharray='3,3'/>
+<text x='790.0' y='301' font-family="ui-monospace, 'SFMono-Regular', Menlo, Consolas, 'Liberation Mono', monospace" font-size='12' fill='#9ca3af' font-weight='normal' text-anchor='middle'>·</text>
+<rect x='838' y='280' width='88' height='30' rx='3' fill='none' stroke='#9ca3af' stroke-width='1.2' stroke-dasharray='3,3'/>
+<text x='882.0' y='301' font-family="ui-monospace, 'SFMono-Regular', Menlo, Consolas, 'Liberation Mono', monospace" font-size='12' fill='#9ca3af' font-weight='normal' text-anchor='middle'>·</text>
+<text x='548' y='334' font-family="ui-monospace, 'SFMono-Regular', Menlo, Consolas, 'Liberation Mono', monospace" font-size='12' fill='#333333' font-weight='normal' text-anchor='end'>…</text>
+<rect x='562' y='314' width='88' height='30' rx='3' fill='none' stroke='#9ca3af' stroke-width='1.2' stroke-dasharray='3,3'/>
+<text x='606.0' y='335' font-family="ui-monospace, 'SFMono-Regular', Menlo, Consolas, 'Liberation Mono', monospace" font-size='12' fill='#9ca3af' font-weight='normal' text-anchor='middle'>·</text>
+<rect x='654' y='314' width='88' height='30' rx='3' fill='#e8f4f1' stroke='#186254' stroke-width='1.2'/>
+<text x='698.0' y='335' font-family="ui-monospace, 'SFMono-Regular', Menlo, Consolas, 'Liberation Mono', monospace" font-size='14' fill='#333333' font-weight='bold' text-anchor='middle'>0</text>
+<rect x='746' y='314' width='88' height='30' rx='3' fill='none' stroke='#9ca3af' stroke-width='1.2' stroke-dasharray='3,3'/>
+<text x='790.0' y='335' font-family="ui-monospace, 'SFMono-Regular', Menlo, Consolas, 'Liberation Mono', monospace" font-size='12' fill='#9ca3af' font-weight='normal' text-anchor='middle'>·</text>
+<rect x='838' y='314' width='88' height='30' rx='3' fill='none' stroke='#9ca3af' stroke-width='1.2' stroke-dasharray='3,3'/>
+<text x='882.0' y='335' font-family="ui-monospace, 'SFMono-Regular', Menlo, Consolas, 'Liberation Mono', monospace" font-size='12' fill='#9ca3af' font-weight='normal' text-anchor='middle'>·</text>
+<line x1='580' y1='140' x2='698.0' y2='212' stroke='#186254' stroke-width='1.6'/>
+<line x1='698.0' y1='212.0' x2='690.5' y2='207.1' stroke='#186254' stroke-width='1.6'/>
+<line x1='698.0' y1='212.0' x2='689.5' y2='214.8' stroke='#186254' stroke-width='1.6'/>
+<line x1='468' y1='212' x2='724.0' y2='244' stroke='#186254' stroke-width='1.6'/>
+<line x1='724.0' y1='244.0' x2='716.2' y2='239.6' stroke='#186254' stroke-width='1.6'/>
+<line x1='724.0' y1='244.0' x2='715.7' y2='247.4' stroke='#186254' stroke-width='1.6'/>
+<text x='46' y='404' font-family="'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size='12' fill='#6b7280' font-weight='normal' text-anchor='start'>一个数字的含义：这个细胞里，这个基因被捕获并计数到几个 UMI 分子。</text>
+</svg>
