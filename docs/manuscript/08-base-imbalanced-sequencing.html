@@ -670,7 +670,7 @@ window.Quarto = {
 <details class="book-section"><summary><a class="book-nav-link book-section-link no-external" href="#sec-08-06" data-book-level="2" data-book-target="sec-08-06" id="book-nav-8-sec-08-06">8.6 IGV 复核、修饰整合与完整交付</a></summary><ul>
 <li class="book-nav-leaf"><a class="book-nav-link book-section-link no-external" href="#sec-08-06-igv" data-book-level="3" data-book-target="sec-08-06-igv" id="book-nav-8-sec-08-06-igv">用眼睛复核：IGV 里的甲基化数据</a></li>
 <li class="book-nav-leaf"><a class="book-nav-link book-section-link no-external" href="#sec-08-06-integration" data-book-level="3" data-book-target="sec-08-06-integration" id="book-nav-8-sec-08-06-integration">跨层整合：修饰、表达与功能证据</a></li>
-<li class="book-nav-leaf"><a class="book-nav-link book-section-link no-external" href="#sec-08-06-deliverables" data-book-level="3" data-book-target="sec-08-06-deliverables" id="book-nav-8-sec-08-06-deliverables">完整交付与自检清单</a></li>
+<li class="book-nav-leaf"><a class="book-nav-link book-section-link no-external" href="#sec-08-06-deliverables" data-book-level="3" data-book-target="sec-08-06-deliverables" id="book-nav-8-sec-08-06-deliverables">完整交付：把判断过程写成文字</a></li>
 </ul></details>
 </li>
 </ul></details>
@@ -920,7 +920,7 @@ window.Quarto = {
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
 <h1 class="title"><span id="sec-ch08" class="quarto-section-identifier"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">碱基不平衡测序数据的分析</span></span></h1>
-<p class="chapter-last-modified"><time datetime="2026-10-11T13:16:30+08:00" title="本章书稿最后修改时间（北京时间，UTC+08:00）">最后修改：2026-10-11 13:16（北京时间）</time></p>
+<p class="chapter-last-modified"><time datetime="2026-10-11T16:15:14+08:00" title="本章书稿最后修改时间（北京时间，UTC+08:00）">最后修改：2026-10-11 16:15（北京时间）</time></p>
 </div>
 
 
@@ -1478,22 +1478,22 @@ DMR direction:  toSerum &gt; to2i:  376231    to2i &gt; toSerum:  6</code></pre>
 <p>从 DNA 转到 RNA：修饰的种类更多，定量更难，直到最近几年才有了单碱基的答案。</p>
 <section id="sec-08-04-modification-landscape" class="level3">
 <h3 class="anchored" data-anchor-id="sec-08-04-modification-landscape">mRNA 上的修饰版图：m6A、m1A、m6Am 与 m5C</h3>
-<p>DNA 甲基化讲了整整三节，转到 RNA 时先泼一盆冷水：<strong>mRNA 上的修饰研究比 DNA 更”年轻”，也更容易被技术假象误导</strong>。这一小节先把主要修饰的版图看清楚，读者心里要有一张”谁在哪里、有多少”的地图（<a href="#fig-08-rna-modification-landscape" class="quarto-xref">图&nbsp;<span>8.11</span></a>）。</p>
+<p>DNA 甲基化讲了整整三节，转到 RNA 时先泼一盆冷水：<strong>mRNA 上的修饰研究比 DNA 更”年轻”，也更容易被技术假象误导</strong>。认识它们要从化学结构开始——修饰之间的差别往往就是碱基环上的一两个甲基，但位置不同，化学后果完全不同。<a href="#fig-08-rna-modification-landscape" class="quarto-xref">图&nbsp;<span>8.11</span></a> 沿一条 mRNA 摆放了主要修饰的结构式，请对照它逐个认识。</p>
 <div id="fig-08-rna-modification-landscape" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-08-rna-modification-landscape-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="../assets/09-base-imbalanced-sequencing/rna-modification-landscape.svg" class="img-fluid figure-img">
+<img src="../assets/09-base-imbalanced-sequencing/cited/004-roundtree-mrna-modifications.jpg" class="img-fluid figure-img">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-08-rna-modification-landscape-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-图&nbsp;8.11: 信使 RNA 上主要内部修饰的分布示意（自绘示意图，位置与相对丰度据 Roundtree et al.&nbsp;2017 及后续文献绘制）
+图&nbsp;8.11: 真核 mRNA 上的化学修饰：各修饰的碱基结构式沿 mRNA（5′ 帽 → 5′UTR → CDS → 3′UTR → poly(A)）摆放，甲基位置标注在碱基环上（图源：Roundtree et al.&nbsp;2017，<em>Cell</em> 169:1187–1200，Fig. 1）
 </figcaption>
 </figure>
 </div>
 <ul>
-<li><strong>m6A（N6-甲基腺嘌呤）</strong>：mRNA 上最丰富的内部修饰，约占哺乳动物 mRNA 全部腺苷的 0.2%–0.6%<a href="#fn19" class="footnote-ref" id="fnref19" role="doc-noteref"><sup>19</sup></a>；几乎只出现在 DRACH 基序（D=A/G/U，R=A/G，H=A/C/U）中，沿转录本富集在终止密码子附近和 3′ 非翻译区<a href="#fn20" class="footnote-ref" id="fnref20" role="doc-noteref"><sup>20</sup></a><a href="#fn21" class="footnote-ref" id="fnref21" role="doc-noteref"><sup>21</sup></a>。它是本章 RNA 线的主角。</li>
-<li><strong>m6Am</strong>：位于 mRNA 5′ 帽子之后的<strong>第一个转录核苷酸</strong>（2′-O-甲基腺苷上的 N6 甲基），由写入酶 <strong>PCIF1</strong>（又称 CAPAM）催化<a href="#fn22" class="footnote-ref" id="fnref22" role="doc-noteref"><sup>22</sup></a><a href="#fn23" class="footnote-ref" id="fnref23" role="doc-noteref"><sup>23</sup></a>。它离转录起始只有一两个核苷酸，与内部 m6A 的调控语境完全不同；定量研究显示它的修饰比例（化学计量）通常远高于内部 m6A——这一点在 8.5 讨论”修饰比例”时是一个重要对照。</li>
-<li><strong>m1A（N1-甲基腺嘌呤）</strong>：在 tRNA 和 rRNA 中大量存在；mRNA 上是否存在丰富、动态的 m1A 曾经引起很大争议——2016 年有研究宣称 5′UTR 区域存在大量动态 m1A，随后的单碱基图谱显示胞质 mRNA 中 m1A 稀少、主要见于线粒体 mRNA<a href="#fn24" class="footnote-ref" id="fnref24" role="doc-noteref"><sup>24</sup></a>，而 5′UTR 的”m1A 信号”大部分被证明是<strong>抗体交叉反应造成的假象</strong><a href="#fn25" class="footnote-ref" id="fnref25" role="doc-noteref"><sup>25</sup></a>。</li>
-<li><strong>m5C（5-甲基胞嘧啶）</strong>：mRNA 上含量很低，在 tRNA 中则非常丰富<a href="#fn26" class="footnote-ref" id="fnref26" role="doc-noteref"><sup>26</sup></a>。RNA 的 m5C 恰好可以用与 DNA 完全相同的亚硫酸盐化学来检测，是”碱基不平衡”思想最早的 RNA 应用。</li>
+<li><strong>m6A（N6-甲基腺嘌呤）</strong>：结构上看，腺嘌呤环<strong>外侧</strong> 6 位氨基上的一个氢被甲基取代（N6 位）。这个位置不参与 Watson–Crick 配对——所以 m6A 不破坏 A:U 配对，却改变了碱基的氢键供体格局，让 YTH 结构域这类”读取器”能够专门识别它。m6A 是 mRNA 上最丰富的内部修饰，约占全部腺苷的 0.2%–0.6%<a href="#fn19" class="footnote-ref" id="fnref19" role="doc-noteref"><sup>19</sup></a>，几乎只出现在 DRACH 基序（D=A/G/U，R=A/G，H=A/C/U）中，沿转录本富集在终止密码子附近和 3′ 非翻译区<a href="#fn20" class="footnote-ref" id="fnref20" role="doc-noteref"><sup>20</sup></a><a href="#fn21" class="footnote-ref" id="fnref21" role="doc-noteref"><sup>21</sup></a>。它是本章 RNA 线的主角。</li>
+<li><strong>m6Am</strong>：结构上是”双重修饰”——帽子后<strong>第一个转录核苷酸</strong>的腺嘌呤既有 N6 甲基（与 m6A 同位），核糖 2′-O 又有一个甲基（2′-O-甲基化，即 Nm）。它由写入酶 <strong>PCIF1</strong>（又称 CAPAM）催化<a href="#fn22" class="footnote-ref" id="fnref22" role="doc-noteref"><sup>22</sup></a><a href="#fn23" class="footnote-ref" id="fnref23" role="doc-noteref"><sup>23</sup></a>。离转录起始只有一两个核苷酸，与内部 m6A 的调控语境完全不同；定量研究显示它的修饰比例（化学计量）通常远高于内部 m6A——这一点在 8.5 讨论”修饰比例”时是一个重要对照。它也是 FTO 底物偏好争议的主角（8.4.2）。</li>
+<li><strong>m1A（N1-甲基腺嘌呤）</strong>：甲基加在腺嘌呤环<strong>内侧</strong>的 N1 位——这个位置恰好参与 Watson–Crick 配对，所以 m1A 会干扰配对、拖慢翻译和逆转录。这一化学性质直接关联它的检测争议：mRNA 上是否存在丰富、动态的 m1A 曾引起很大争论——2016 年有研究宣称 5′UTR 区域存在大量动态 m1A，随后的单碱基图谱显示胞质 mRNA 中 m1A 稀少、主要见于线粒体 mRNA<a href="#fn24" class="footnote-ref" id="fnref24" role="doc-noteref"><sup>24</sup></a>，而 5′UTR 的”m1A 信号”大部分被证明是<strong>抗体交叉反应造成的假象</strong><a href="#fn25" class="footnote-ref" id="fnref25" role="doc-noteref"><sup>25</sup></a>。</li>
+<li><strong>m5C（5-甲基胞嘧啶）</strong>：结构与 DNA 的 5mC 完全同款——胞嘧啶环 5 位碳上的甲基。这决定了它的检测方式：RNA 的 m5C 恰好可以用与 DNA 完全相同的亚硫酸盐化学来测，是”碱基不平衡”思想最早的 RNA 应用。它在 mRNA 上含量很低，在 tRNA 中则非常丰富<a href="#fn26" class="footnote-ref" id="fnref26" role="doc-noteref"><sup>26</sup></a>。</li>
 </ul>
 <div class="book-warning callout callout-style-default callout-warning callout-titled" title="注意｜抗体是把双刃剑">
 <div class="callout-header d-flex align-content-center">
@@ -1600,7 +1600,7 @@ DMR direction:  toSerum &gt; to2i:  376231    to2i &gt; toSerum:  6</code></pre>
 </div>
 </figure>
 </div>
-<p>富集法只回答”哪里有”，回答不了”有多少”——IP 富集倍数取决于抗体亲和力、片段长度和表达量，换算不出修饰比例。真正做到<strong>单碱基分辨 + 绝对定量</strong>的是北大伊成器、王晶团队合作发展的 <strong>GLORI</strong>（GlyoxaL and nitrIte-mediated deamination）<a href="#fn43" class="footnote-ref" id="fnref43" role="doc-noteref"><sup>43</sup></a>，它的思路读到这里应该会让你觉得眼熟：</p>
+<p>富集法只回答”哪里有”，回答不了”有多少”——IP 富集倍数取决于抗体亲和力、片段长度和表达量，换算不出修饰比例。真正做到<strong>单碱基分辨 + 绝对定量</strong>的是北大伊成器、王晶团队合作发展的 <strong>GLORI</strong>（GlyoxaL and nitrIte-mediated deamination）<a href="#fn43" class="footnote-ref" id="fnref43" role="doc-noteref"><sup>43</sup></a>，它的化学原理（<a href="#fig-08-glori-chemistry" class="quarto-xref">图&nbsp;<span>8.12</span></a>）读到这里应该会让你觉得眼熟：</p>
 <ul>
 <li><strong>乙二醛（glyoxal）</strong>先与 m6A（以及鸟嘌呤 G）形成稳定的环状加合物，<strong>保护</strong>它们不被后续反应破坏；</li>
 <li><strong>亚硝酸盐</strong>在酸性条件下把所有<strong>未修饰的 A 脱氨</strong>为次黄嘌呤 I——PCR 和测序时读作 <strong>G</strong>；</li>
@@ -1859,17 +1859,17 @@ MNT    chr17:2386699 (−)   0.591  0.682   0.127   0.119   3e-09</code></pre>
 <h3 class="anchored" data-anchor-id="sec-08-06-igv">用眼睛复核：IGV 里的甲基化数据</h3>
 <p>第 4 章学过的 IGV 直接支持甲基化数据。<code>bismark.cov</code> 文件从 File → Load 加载（IGV 会把它识别为甲基化轨迹），或者加载 <code>bedGraph</code>；基因组坐标要选对参考版本——8.2 的链用 mm10，8.3 的官方表用 mm9，两套坐标不能混看。加载后在感兴趣的区域（例如一个 DMR、一个基因的启动子）逐个检查：</p>
 <ul>
-<li><strong>两个样本的轨迹叠放对比</strong>：血清样本条形高、2i 样本条形低的区域，正是全基因组去甲基化的局部写照（<a href="#fig-08-igv-methylation" class="quarto-xref">图&nbsp;<span>8.17</span></a>）；</li>
+<li><strong>两个样本的轨迹叠放对比</strong>：血清样本条形高、2i 样本条形低的区域，正是全基因组去甲基化的局部写照。<a href="#fig-08-igv-methylation" class="quarto-xref">图&nbsp;<span>8.17</span></a> 用本章数据画了一个真实区域（chr13，mm9）：同一批 CpG 在血清样本中普遍读到 80% 以上，2i 样本大面积塌到 20% 以下，阴影标出的正是 DSS 检出的 DMR；</li>
 <li><strong>位点层面的比例与覆盖是否合理</strong>：比例 100% 但覆盖只有 2 条 read 的位点，统计上几乎无信息；比例接近但覆盖悬殊的两个位点，置信区间完全不同（8.3.1 的直觉）；</li>
 <li><strong>抽查”明星位点”</strong>：把统计表格里最显著的几个 DML/DMR 在 IGV 里找到，确认数据形态与结论一致——这是第 7 章”眼见为实”习惯在修饰数据上的延续。</li>
 </ul>
 <div id="fig-08-igv-methylation" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-08-igv-methylation-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="../assets/09-base-imbalanced-sequencing/igv-methylation.svg" class="img-fluid figure-img">
+<img src="../assets/09-base-imbalanced-sequencing/igv-methylation-real.png" class="img-fluid figure-img">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-08-igv-methylation-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-图&nbsp;8.17: IGV 中复核甲基化数据（示意）：上为血清样本、下为 2i 样本的逐位点甲基化轨迹，同一区域血清样本几乎每位点高甲基化，2i 样本大面积塌陷；虚线标出一个 DMR（自绘示意图）
+图&nbsp;8.17: IGV 风格的真实甲基化轨迹（chr13:73.15 Mb，mm9，GSE67867 官方表）：上为血清样本、下为 2i 样本，每个条形是一个 CpG 位点的甲基化比例、条形下方灰色深度示意覆盖，阴影为 DSS 检出的 DMR（实测数据绘图）
 </figcaption>
 </figure>
 </div>
@@ -1885,39 +1885,13 @@ MNT    chr17:2386699 (−)   0.591  0.682   0.127   0.119   3e-09</code></pre>
 </ul>
 </section>
 <section id="sec-08-06-deliverables" class="level3">
-<h3 class="anchored" data-anchor-id="sec-08-06-deliverables">完整交付与自检清单</h3>
-<p>碱基不平衡数据的完整交付，至少回答这些问题：</p>
-<p><strong>数据与参考</strong></p>
-<ul class="task-list">
-<li><label><input type="checkbox">参考基因组版本（含坐标系统）明确记录，所有文件一致；</label></li>
-<li><label><input type="checkbox">文库类型（方向性/非方向性）与相应比对参数记录在案；</label></li>
-<li><label><input type="checkbox">转化率质控结果记录：lambda 外参，或非 CpG 语境（CHH）/空白对照（如 TKO）的残余率；</label></li>
-<li><label><input type="checkbox">位点过滤标准（最低覆盖、SNP 排除来源与版本）明确并写入方法。</label></li>
-</ul>
-<p><strong>过程与结果</strong></p>
-<ul class="task-list">
-<li><label><input type="checkbox">比对率、去重率、M-bias 检查结果随结果一起交付，而不是留在日志里；</label></li>
-<li><label><input type="checkbox">统计口径写清：检验模型、多重校正方法、差异阈值（δ）的取值与理由；</label></li>
-<li><label><input type="checkbox">生物学重复情况如实说明（本章示例每组 1 个样本 WGBS、2 个样本 GLORI——演示性结论，正式研究需按设计增加重复）；</label></li>
-<li><label><input type="checkbox">结果表包含坐标、覆盖、比例与置信度信息，供他人独立复核。</label></li>
-</ul>
-<p><strong>解读边界</strong></p>
-<ul class="task-list">
-<li><label><input type="checkbox">区分”检出的位点集合”与”全基因组口径”的统计差异；</label></li>
-<li><label><input type="checkbox">结论位置明确：启动子、基因体、重复序列的甲基化含义不同（8.1.2）；</label></li>
-<li><label><input type="checkbox">修饰变化与功能结论之间的证据层级写清（本节上一小节）。</label></li>
-</ul>
-<p>最后是本章特有的一组”高频事故”，每一条都在真实项目里反复出现：</p>
-<ol type="1">
-<li>用普通比对器（bwa mem 直接跑）处理 BS-seq——比对率崩塌或甲基化系统性偏移；</li>
-<li>用 picard 而非 <code>deduplicate_bismark</code> 去重——方向性文库的重复判定出错；</li>
-<li>M-bias 没看就提取——末端失真混入位点比例；</li>
-<li>不同处理来源的文件混用坐标版本（mm9 的表、mm10 的注释）——注释全部错位；</li>
-<li>把 CHH/CHG 的”甲基化率”当生物学信号——它主要是转化率镜子；</li>
-<li>DMR 只报数量不报方向与位置分布——无法回答”发生在哪里、意味着什么”；</li>
-<li>把 5hmC 丰富的样本的 BS-seq 信号直接说成”5mC”——混淆修饰家族（8.1.3）。</li>
-</ol>
-<p>带着这份清单回到你自己的项目：技术选型（测什么、怎么测）、数据处理（每一步前提是否满足）、统计口径（比较什么、以什么为单位）、证据边界（结论能推多远）——这四层判断力，就是本章希望你在两条线、两种修饰、两套工具链的平行展开中练成的东西。</p>
+<h3 class="anchored" data-anchor-id="sec-08-06-deliverables">完整交付：把判断过程写成文字</h3>
+<p>一份完整的碱基不平衡数据分析交付，核心不是附件齐全，而是把每一层判断<strong>写成别人能复核的文字</strong>。</p>
+<p>交付的第一个层面是数据与参考的来历。参考基因组的版本与坐标系统要明确记录，并确认所有文件一致——本章就在同一路数据里同时存在 mm9 处理表与 mm10 比对结果，两套口径并行而不混用，靠的就是显式记录（8.3.2）。文库类型（方向性或非方向性）与相应的比对参数要落在方法里，因为它决定了哪些比对组合被允许。转化率质控必须随结果给出：lambda 外参的转化率，或非 CpG 语境的残余率，或像本章用 TKO 空白对照估出的上界——没有这一项，所有低比例读数都无法解读。位点过滤的标准同样要写进方法：最低覆盖取多少、SNP 排除用了哪个数据库的哪个版本。</p>
+<p>第二个层面是过程与结果同交。比对率、去重率和 M-bias 检查不能只留在日志里，要作为结果的一部分随交付给出——它们是”数据可信”的证据，而不是过程废料。统计口径要写清到可以被复现：检验模型、多重校正方法、差异阈值 δ 的取值与理由。生物学重复的情况要如实说明——本章的 WGBS 每组只有 1 个样本、GLORI 每组 2 个重复，得出的都是演示性结论，正式研究需按设计补足重复；这类限制写出来是加分项，藏起来才是隐患。结果表本身应包含坐标、覆盖、比例与置信度信息，让他人在不重跑流程的情况下独立复核关键位点。</p>
+<p>第三个层面是解读边界。报告要区分”检出的位点集合”与”全基因组口径”的统计差异（8.5.4 的中位数陷阱就是一例）；每个结论要落到基因组位置上说话——启动子、基因体、重复序列的甲基化含义并不相同（8.1.2）；修饰变化与功能结论之间的证据层级更要交代清楚（上一小节的三层证据）。</p>
+<p>最后值得记住本章特有的一组高频事故，它们在真实项目里反复出现。最直接的是流程性错误：用 bwa mem 这类普通比对器直接处理 BS-seq，比对率崩塌或甲基化系统性偏移；用 picard 而非 <code>deduplicate_bismark</code> 去重，方向性文库的重复判定出错；M-bias 没看就提取，末端失真混进位点比例。更隐蔽的是口径性错误：把 mm9 的表与 mm10 的注释混用，注释悄无声息地全部错位；把 CHH/CHG 的”甲基化率”当生物学信号解读，而它主要是转化率的镜子。最隐蔽的是解释性错误：DMR 只报数量、不报方向与位置分布，回答不了”发生在哪里、意味着什么”；把 5hmC 丰富的样本的 BS-seq 信号直接说成 5mC，混淆了 8.1.3 讲过的修饰家族。</p>
+<p>带着这些回到你自己的项目：技术选型（测什么、怎么测）、数据处理（每一步前提是否满足）、统计口径（比较什么、以什么为单位）、证据边界（结论能推多远）——这四层判断力，就是本章希望你在两条线、两种修饰、两套工具链的平行展开中练成的东西。</p>
 
 
 </section>
@@ -1975,7 +1949,7 @@ MNT    chr17:2386699 (−)   0.591  0.682   0.127   0.119   3e-09</code></pre>
 
 </main> <!-- /main -->
 <div class="book-toolbar" role="navigation" aria-label="阅读工具">
-  <div class="book-brand"><span class="book-brand-name">AI时代生信入门</span><time class="book-last-modified" datetime="2026-10-11T16:14:24+08:00" title="最后修改时间（北京时间，UTC+08:00）">最后修改 2026-10-11 16:14</time></div>
+  <div class="book-brand"><span class="book-brand-name">AI时代生信入门</span><time class="book-last-modified" datetime="2026-10-11T16:15:14+08:00" title="最后修改时间（北京时间，UTC+08:00）">最后修改 2026-10-11 16:15</time></div>
   <button class="book-menu-button" type="button" aria-controls="quarto-sidebar" aria-expanded="false">目录</button>
   <button class="book-search-button" type="button">搜索</button>
 </div>
