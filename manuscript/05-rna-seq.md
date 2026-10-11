@@ -28,7 +28,9 @@ RNA可以分为能够编码蛋白基因的信使RNA（mRNA）[^rna-ref-2]和非�
 
 :::::
 
-![基因组与转录组的关系：同一套基因组，不同状态的细胞转录出不同的 RNA 集合（示意图）](../assets/06-rna-seq/svg/genome-transcriptome.svg){#fig-05-genome-transcriptome}
+![不同细胞类型的转录组：神经、肌肉与上皮细胞包含不同的 RNA 集合（NHGRI 原图，Courtesy: National Human Genome Research Institute[^rna-fig-nhgri]）](../assets/06-rna-seq/cited/nhgri-different-cells-different-rnas.jpg){#fig-05-genome-transcriptome width="620"}
+
+图上方为神经细胞，左下为肌肉细胞，右下为上皮细胞。彩色曲线示意不同的 RNA，并非定量测量值。读图时关注的是：同一生物体中这些细胞的基因组基本相同，但各自使用的基因不同，因此具有不同的转录组；同一类型的细胞在不同条件下，RNA 的种类和丰度也可以发生变化。
 
 ### mRNA 与全转录组建库 {#topic-05-lib-strategies}
 
@@ -1444,3 +1446,6 @@ ceRNA（competing endogenous RNA，内源竞争性 RNA）不是一类新的 RNA 
 [^rnaseq-stranded-dutp]: Levin JZ 等. [Comparative analysis of RNA sequencing methods for degraded or low-input samples](https://pubmed.ncbi.nlm.nih.gov/20920232/). BMC Genomics, 2010（dUTP 等链特异性方法的系统比较）。
 
 [^rnaseq-best-practices]: Conesa A 等. [A survey of best practices for RNA-seq data analysis](https://pubmed.ncbi.nlm.nih.gov/26813401/). Genome Biology, 2016（比对率等质控经验值的常用参考）。)
+
+
+[^rna-fig-nhgri]: National Human Genome Research Institute. [Ribonucleic Acid (RNA) Fact Sheet](https://www.genome.gov/about-genomics/educational-resources/fact-sheets/ribonucleic-acid-fact-sheet)，2024-05-24 更新，“Different cells with Different RNA”原始插图。[NHGRI 版权政策](https://www.genome.gov/about-nhgri/Policies-Guidance/Copyright)规定，未另行注明的图文属于公共领域；本图保留原貌并注明来源，2026-10-11 核对。

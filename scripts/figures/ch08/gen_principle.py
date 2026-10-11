@@ -11,74 +11,7 @@ from common import Svg, COLOR_TEXT, COLOR_MUTED, COLOR_PRIMARY, COLOR_FILL, \
 OUT = Path(__file__).resolve().parents[3] / "assets" / "09-base-imbalanced-sequencing"
 
 
-def gen_bisulfite_chemistry():
-    """图：亚硫酸盐转化原理——未甲基化 C→U、5mC 保留，reads 与参考出现系统性 C→T 错配。"""
-    W, H = 940, 560
-    s = Svg(W, H, "亚硫酸盐转化原理",
-            "上半部分展示 DNA 双链经亚硫酸氢盐处理后未甲基化 C 变为 U、5mC 保留；"
-            "下半部分展示 PCR 与测序后 reads 相对参考基因组出现系统性 C→T 错配与四碱基失衡。")
-    s.text(30, 34, "1 亚硫酸氢盐处理：未甲基化的 C 被脱氨为 U，5mC 不受影响", size=SIZE_TITLE, mono=False, weight="bold")
-
-    ref = "ACGTTCGAmCGTTCA"      # m 表示该位点是 5mC
-    x0, ytop, ybot = 190, 70, 118
-    cw = 46
-    s.text(30, 96, "参考链", size=SIZE_LABEL, mono=False, fill=COLOR_MUTED)
-    s.text(30, 144, "互补链", size=SIZE_LABEL, mono=False, fill=COLOR_MUTED)
-    for i, ch in enumerate(ref):
-        x = x0 + i * cw
-        if ch == "m":
-            s.text(x, ytop, "C", size=20, fill=COLOR_WARN, weight="bold")
-            s.text(x + 14, ytop - 14, "5mC", size=SIZE_NOTE, fill=COLOR_WARN, mono=False)
-            s.text(x, ybot, "G", size=20, fill=COLOR_WARN, weight="bold")
-        else:
-            s.text(x, ytop, ch, size=20)
-            s.text(x, ybot, {"A": "T", "T": "A", "C": "G", "G": "C"}[ch], size=20)
-        s.line(x + 8, ytop + 8, x + 8, ybot - 16, stroke=COLOR_LINE, sw=0.8, dash="2,3")
-
-    s.arrow(450, 168, 450, 208, stroke=COLOR_PRIMARY, sw=1.8)
-    s.text(468, 186, "NaHSO₃（单链、pH 酸性）", size=SIZE_LABEL, mono=False, fill=COLOR_PRIMARY)
-
-    ytop2 = 236
-    s.text(30, 240, "处理+PCR 后", size=SIZE_LABEL, mono=False, fill=COLOR_MUTED)
-    for i, ch in enumerate(ref):
-        x = x0 + i * cw
-        if ch == "C":
-            s.rect(x - 7, ytop2 - 18, 30, 26, fill=COLOR_FILL, stroke=COLOR_PRIMARY, sw=1.2, rx=4)
-            s.text(x, ytop2, "U", size=20, fill=COLOR_PRIMARY, weight="bold")
-        elif ch == "m":
-            s.rect(x - 7, ytop2 - 18, 30, 26, fill=COLOR_WARN_FILL, stroke=COLOR_WARN, sw=1.2, rx=4)
-            s.text(x, ytop2, "C", size=20, fill=COLOR_WARN, weight="bold")
-        else:
-            s.text(x, ytop2, {"A": "A", "T": "T", "G": "G"}[ch], size=20)
-    s.text(x0, ytop2 - 32, "C→U（PCR 后读作 T）", size=SIZE_NOTE, mono=False, fill=COLOR_PRIMARY)
-    s.text(x0 + 150, ytop2 - 32, "5mC→仍读 C", size=SIZE_NOTE, mono=False, fill=COLOR_WARN)
-
-    s.line(30, 330, W - 30, 330, stroke=COLOR_LINE, sw=1)
-
-    s.text(30, 364, "2 测序 reads 与参考基因组比对：系统性错配", size=SIZE_TITLE, mono=False, weight="bold")
-    yref, yread = 398, 444
-    s.text(30, 402, "参考", size=SIZE_LABEL, mono=False, fill=COLOR_MUTED)
-    s.text(30, 448, "reads", size=SIZE_LABEL, mono=False, fill=COLOR_MUTED)
-    for i, ch in enumerate(ref):
-        x = x0 + i * cw
-        s.line(x + 8, yref + 8, x + 8, yread - 14, stroke=COLOR_LINE, sw=0.8, dash="2,3")
-        s.text(x, yref, "C" if ch == "m" else ch, size=20,
-               fill=COLOR_WARN if ch == "m" else COLOR_TEXT,
-               weight="bold" if ch == "m" else "normal")
-        if ch == "C":
-            s.rect(x - 7, yread - 18, 30, 26, fill=COLOR_WARN_FILL, stroke=COLOR_WARN, sw=1.2, rx=4)
-            s.text(x, yread, "T", size=20, fill=COLOR_WARN, weight="bold")
-        elif ch == "m":
-            s.rect(x - 7, yread - 18, 30, 26, fill=COLOR_FILL, stroke=COLOR_PRIMARY, sw=1.2, rx=4)
-            s.text(x, yread, "C", size=20, fill=COLOR_PRIMARY, weight="bold")
-        else:
-            s.text(x, yread, ch, size=20)
-
-    s.text(30, 508, "结果：reads 中 C 大量减少、T 相应增多（四碱基不平衡）；几乎每条 read 都带成串“假错配”，常规比对器的前提被打破。",
-           size=SIZE_NOTE, mono=False, fill=COLOR_MUTED)
-    s.text(30, 530, "橙框：未甲基化 C 在 reads 中读 T（错配）；绿框：5mC 位点仍读 C——错配本身就是甲基化信息。",
-           size=SIZE_NOTE, mono=False, fill=COLOR_TEXT)
-    return s
+from gen_bisulfite import gen_bisulfite_chemistry
 
 
 def gen_glori_chemistry():

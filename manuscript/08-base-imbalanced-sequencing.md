@@ -97,9 +97,11 @@ DNA 线的示例数据是 8.1 提到的 Dnmt 三敲（TKO）系列小鼠胚胎�
 
 ### 转化如何写进 reads：质控时看什么 {#sec-08-02-chemistry-in-reads}
 
-@fig-08-bisulfite-conversion-principle 把 8.1 的化学放进了数据形态：未甲基化 C 在 reads 里变成 T，5mC 仍是 C。把它推到全基因组尺度——小鼠基因组约 20% 的碱基是 C，其中绝大多数未甲基化——BS-seq 的 reads 相对参考基因组带有**成串的系统性 C→T 错配**，reads 自身的碱基组成也严重偏向 A/T。
+先看参考基因组上的一个 C 位点（@fig-08-bisulfite-conversion-principle）：原始 DNA 中未甲基化的 C 经亚硫酸盐处理变为 U，PCR 与测序后读作 T；5mC 在处理后保留，测序仍读作 C。参考序列只记录这个位置是 C，不记录甲基化状态，因此将 reads 对齐后，可以通过该位点读到的 C 和 T 计数来估计甲基化比例。图中 5 条有效覆盖来自不同原始分子，其中 3 条读 C、2 条读 T，比例估计为 $3/(3+2)=60\%$；它的统计不确定性将在 8.3 讨论。
 
-![亚硫酸盐转化原理：上，未甲基化 C 脱氨为 U、5mC 保留；下，PCR 与测序后 reads 相对参考出现系统性 C→T 错配，错配本身就是甲基化信息（自绘示意图）](../assets/09-base-imbalanced-sequencing/bisulfite-conversion-principle.svg){#fig-08-bisulfite-conversion-principle}
+把它推到全基因组尺度——小鼠基因组约 20% 的碱基是 C，其中绝大多数未甲基化——BS-seq 的 reads 相对参考基因组带有**成串的系统性 C→T 错配**，reads 自身的碱基组成也严重偏向 A/T。
+
+![亚硫酸盐处理如何进入测序读数：未甲基化 C 经 U 读作 T，5mC 仍读作 C；下方展示同一参考位点的 C/T 计数。示意假设转化完全、忽略测序错误，仅展示正链；常规 BS-seq 的 C 信号也包含 5hmC（自绘示意图）](../assets/09-base-imbalanced-sequencing/bisulfite-conversion-principle.svg){#fig-08-bisulfite-conversion-principle}
 
 因此第 3 章 FastQC 的常规模块在 BS-seq 上要按新预期解读：
 
@@ -246,9 +248,11 @@ meth_extract/ 目录下的输出各司其职，后续章节都会用到：
 
 $$\hat{p} = \frac{X}{N}$$ {#eq-08-methy-ratio}
 
-但 $\hat{p}=0$ 在 $N=5$ 与 $N=50$ 时含义完全不同。给比例配上置信区间，最直接的模型是把每条 read 当作一次伯努利试验，$X \sim \mathrm{Binomial}(N, p)$，用精确法（Clopper–Pearson）或正态近似得到 $p$ 的区间估计。@fig-08-binom-ci 画出不同覆盖下 95% 置信区间的宽度：$N=5$、$X=0$ 时，区间是 $[0, 0.45]$——"未甲基化"三个字根本站不住；$N=30$、$X=0$ 才能收到 $[0, 0.10]$ 左右；而 $X/N=3/5$ 与 $X/N=30/50$ 同为 60%，前者的区间宽得几乎不含信息。
+同样的比例估计，背后的覆盖条数可以差很多。把去重并避免双端重叠重复计数后的有效观测近似看作独立伯努利试验，$X \sim \mathrm{Binomial}(N,p)$，就可以用 Clopper–Pearson 精确法计算双侧 95% 置信区间。读 @fig-08-binom-ci 时，先看每行的 C 计数与覆盖条数，再看圆点和横线：圆点是观察到的比例，横线是置信区间。
 
-![不同覆盖深度下二项比例的 95% 置信区间（Clopper–Pearson）：同样的比例估计，覆盖越低区间越宽；低覆盖位点的"比例"接近噪声（自绘计算图）](../assets/09-base-imbalanced-sequencing/binom-ci-demo.png){#fig-08-binom-ci}
+A 图中，$3/5$、$30/50$、$300/500$ 都等于 60%，但区间分别约为 14.7%–94.7%、45.2%–73.6%、55.6%–64.3%。覆盖越高，抽样不确定性越小，估计越精确。B 图则说明为什么“没有观察到 C”不等于“真实比例确定为零”：$0/5$ 的区间仍为 0%–52.2%，$0/30$ 的区间为 0%–11.6%。这些区间只描述二项抽样的不确定性，不包含转化误差或生物学重复之间的差异。
+
+![覆盖深度与比例估计的精确度：A，同为 60% 的估计，覆盖增加时双侧 95% Clopper–Pearson 区间变窄；B，观察到零条 C 时，区间上限仍可明显大于零。圆点表示比例估计，横线表示置信区间（自绘计算图）](../assets/09-base-imbalanced-sequencing/binom-ci-demo.png){#fig-08-binom-ci width="600"}
 
 除了抽样噪声，甲基化数据还有一层**下限噪声**：转化不完全的 C 会冒充甲基化。转化率 98% 时，一个真正 0% 甲基化的位点期望仍读到约 2% 的"甲基化"——所以低比例区间的解读要结合转化率（8.3.2 用空白对照实测）。
 

@@ -11,11 +11,11 @@ from common import (Svg, save, COLOR_TEXT, COLOR_MUTED, COLOR_PRIMARY,
 
 def fig_pipeline():
     """竖版技术路线：主线是数据（格式变化），操作与工具标注在箭头旁。"""
-    w, h = 430, 600
+    w, h = 360, 442
     svg = Svg(w, h, "从 FASTQ 到排序索引 BAM 的技术路线（竖版）",
               "主线为数据：FASTQ 经质控得到 clean reads，比对得到 SAM，"
               "排序索引得到 BAM；每步操作与所用软件标注在箭头旁。")
-    cx = 150
+    cx = 166
     svg.text(cx, 36, "从测序数据到排序索引的 BAM", mono=False, size=SIZE_TITLE,
              weight="bold", anchor="middle")
     nodes = ["FASTQ", "clean reads", "SAM", "BAM（排序+索引）"]
@@ -109,54 +109,7 @@ GTF_ROWS = [
 ]
 
 
-def fig_tlen():
-    """TLEN 计算示意：一对 reads 的覆盖跨度与 TLEN 取值。"""
-    x0, y_axis = 70, 210
-    w, h = 720, 300
-    svg = Svg(w, h, "TLEN 的计算示意",
-              "上游 read 从 10946 起、长 145bp，下游 read 从 11123 起；"
-              "覆盖跨度 11123-10946+145=322，上游 read 的 TLEN=+322，下游 read 的 TLEN=-322。")
-    svg.text(x0, 40, "TLEN：一对 reads 的覆盖跨度", mono=False, size=SIZE_TITLE, weight="bold")
-
-    span = 322
-    xend = 640
-    k = (xend - x0) / span  # 每bp像素
-
-    def px(pos):
-        return x0 + (pos - 10946) * k
-
-    # 坐标轴
-    svg.line(x0 - 14, y_axis, xend + 14, y_axis, stroke=COLOR_PRIMARY, sw=2)
-    for pos, lab in [(10946, "10946"), (11123, "11123"), (11268, "11268")]:
-        svg.line(px(pos), y_axis - 5, px(pos), y_axis + 5, stroke=COLOR_PRIMARY, sw=1.4)
-        svg.text(px(pos) - 18, y_axis + 26, lab, size=SIZE_LABEL, fill=COLOR_MUTED)
-    svg.text(x0 - 10, y_axis + 48, "基因组坐标（chr1）", mono=False, size=SIZE_NOTE, fill=COLOR_MUTED)
-
-    # 上游 read（10946 起，145bp → 到 11091）
-    y_up = y_axis - 78
-    svg.rect(px(10946), y_up, 145 * k, 26, fill=COLOR_FILL, stroke=COLOR_PRIMARY)
-    svg.text(px(10946) + 6, y_up + 18, "read1（上游，145bp）", mono=False,
-             size=SIZE_LABEL, weight="bold", fill=COLOR_PRIMARY)
-
-    # 下游 read（11123 起，145bp → 到 11268）
-    y_dn = y_axis - 40
-    svg.rect(px(11123), y_dn, 145 * k, 26, fill=COLOR_FILL, stroke=COLOR_PRIMARY)
-    svg.text(px(11123) + 6, y_dn + 18, "read2（下游，145bp）", mono=False,
-             size=SIZE_LABEL, weight="bold", fill=COLOR_PRIMARY)
-
-    # 跨度大括号
-    yb = y_axis - 118
-    svg.line(px(10946), yb, px(11268), yb, stroke=COLOR_WARN, sw=1.6)
-    svg.line(px(10946), yb, px(10946), yb + 8, stroke=COLOR_WARN, sw=1.6)
-    svg.line(px(11268), yb, px(11268), yb + 8, stroke=COLOR_WARN, sw=1.6)
-    svg.text((px(10946) + px(11268)) / 2 - 90, yb - 8,
-             "span = 11123 − 10946 + 145 = 322", size=SIZE_LABEL,
-             weight="bold", fill=COLOR_WARN)
-
-    # 结论
-    svg.text(x0, 280, "TLEN：read1 = +322（上游取正），read2 = −322（下游取负）",
-             mono=False, size=SIZE_LABEL, weight="bold", fill=COLOR_PRIMARY)
-    save("tlen-calculation", svg)
+from gen_igv import fig_tlen, fig_pcr_duplicates
 
 
 def fig_gtf_example():
@@ -285,6 +238,7 @@ def main():
     fig_pipeline()
     fig_splicing()
     fig_tlen()
+    fig_pcr_duplicates()
     fig_gtf_example()
     fig_cigar()
 

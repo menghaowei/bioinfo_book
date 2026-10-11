@@ -12,7 +12,7 @@
 
 经过上一章的质控，我们手上已经有了干净的测序数据（clean reads）。本章的核心任务用一句话概括：**把处理后的 clean reads 通过比对放回参考基因组，得到记录每条 read 位置与比对情况的 BAM 文件**。围绕这条主线，我们依次认识参考基因组与常用注释（比对的“地图”），学习序列比对的算法原理（双序列比对、BLAST、哈希表与 BWT），根据数据特点选择比对软件并实际操作，把结果保存成 SAM/BAM 文件，做排序、过滤与统计，用 IGV 目视检查，最后把公共数据库的数据下载下来作为练习输入。
 
-![从 FASTQ 出发到生成 SAM 的技术路线](../assets/04-quality-control-and-alignment/svg/fastq-to-sam-pipeline.svg){#fig-a-questions-16-20-001}
+![从 FASTQ 经质控和比对生成 SAM，再转换为排序并建立索引的 BAM](../assets/04-quality-control-and-alignment/svg/fastq-to-sam-pipeline.svg){#fig-a-questions-16-20-001}
 
 如 @fig-a-questions-16-20-001 所示，从 FASTQ 到 SAM 的每一步都有明确的输入和输出。看清楚每一步“进去的是什么、出来的是什么”，是本章反复强调的阅读方式，也是全书训练判断力的方式。
 
@@ -369,18 +369,18 @@ chr1	hg19_ncbiRefSeq	exon	67091530	67091593	0.000000	+	.	gene_id "SGIP1"; transc
 
 我们用一个贯穿的小例子把两种算法都算一遍。假设打分规则如 @fig-a-questions-11-15-005 所示：match 得 5 分，mismatch 扣 4 分，空位罚分 $d=-5$（每个空位扣 5 分）；要比对的序列是 seq1 = AAGT 和 seq2 = AGCT，需要填写 @fig-a-questions-11-15-006 的动态规划表格（以全局比对为例，第 0 行/第 0 列先填入空位累计罚分 0、-5、-10……；局部比对的初始化全为 0）。
 
-![双序列比对示例使用的打分矩阵：match 得 5 分，mismatch 扣 4 分，空位罚分 d=-5](../assets/04-quality-control-and-alignment/svg/pairwise-01-scoring-matrix.svg){#fig-a-questions-11-15-005}
+![双序列比对的评分规则：相同碱基得 5 分，不同碱基扣 4 分，每个空位扣 5 分](../assets/04-quality-control-and-alignment/svg/pairwise-01-scoring-matrix.svg){#fig-a-questions-11-15-005}
 
-![待填写的双序列比对动态规划表格：列为 seq2（A、G、C、T），行为 seq1（A、A、G、T）](../assets/04-quality-control-and-alignment/svg/pairwise-02-empty-grid.svg){#fig-a-questions-11-15-006}
+![待填写的动态规划表：列为 seq2（AGCT），行为 seq1（AAGT）；灰格按全局比对初始化，练习局部比对时先将灰格改为 0](../assets/04-quality-control-and-alignment/svg/pairwise-02-empty-grid.svg){#fig-a-questions-11-15-006}
 
-**Needleman-Wunsch（全局比对）**：从左上角出发，第 0 行第 0 列按空位数初始化（0、-5、-10……），其余每格取“对角线+匹配得分、上方-空位罚分、左方-空位罚分”三者最大值，右下角的值就是全局最优得分。填表结果见 @fig-a-questions-11-15-007 ：最优得分 5，回溯路径（图中箭头）给出最优比对。本例并列两个最优结果（得分都是 5）：
+**Needleman-Wunsch（全局比对）**：从左上角出发，第 0 行第 0 列按空位数初始化（0、-5、-10……），其余每格取“对角线+匹配得分、上方−5、左方−5”三者最大值，右下角的值就是全局最优得分。填表结果见 @fig-a-questions-11-15-007 ：最优得分 5，回溯路径（图中箭头）给出最优比对。本例并列两个最优结果（得分都是 5）：
 
 ```{.text data-book-role="data"}
 A A G - T        A A G - T
 - A G C T        A - G C T
 ```
 
-![Needleman-Wunsch 全局比对填表结果：每格小箭头标出取值来源（对角/上/左），加粗格为回溯路径，右下角最优得分 5](../assets/04-quality-control-and-alignment/svg/pairwise-03-nw-matrix.svg){#fig-a-questions-11-15-007}
+![Needleman–Wunsch 全局比对：灰色小箭头为取值来源，绿色连线为回溯；A、B 两种最优比对均为 5 分，B 独有的回溯段用虚线表示](../assets/04-quality-control-and-alignment/svg/pairwise-03-nw-matrix.svg){#fig-a-questions-11-15-007}
 
 **Smith-Waterman（局部比对）**：与全局比对的差别有两点——第 0 行第 0 列全为 0；每个格子算完后如果为负就记 0。填表结果见 @fig-a-questions-11-15-009 ：矩阵最高分是 10，回溯**从得分最高的单元格开始、遇到 0 停止**（注意不是“从第一个非零的格子开始”，那是初学时常见的错误）。本例最高分 10 对应两个并列的最优局部比对：
 
@@ -389,7 +389,7 @@ A G              A G - T
 A G              A G C T
 ```
 
-![Smith-Waterman 局部比对填表结果：记 0 的格子无来源箭头，两个最高分 10（加框）分别回溯得到两个最优局部比对](../assets/04-quality-control-and-alignment/svg/pairwise-04-sw-matrix.svg){#fig-a-questions-11-15-009}
+![Smith–Waterman 局部比对：从两个加框的 10 分格分别回溯，遇到 0 停止；A、B 共用段为实线，B 独有段为虚线，零分格没有来源箭头](../assets/04-quality-control-and-alignment/svg/pairwise-04-sw-matrix.svg){#fig-a-questions-11-15-009}
 
 ::::: {.callout-tip .book-example title="示例与练习｜亲手填出 NW 与 SW 两张表"}
 
@@ -1104,7 +1104,7 @@ CIGAR 用“数字+操作符”串描述一条 read 与参考的比对情况：`
 
 ![一份包含 11 列的 SAM 文件截图](../assets/a-questions-16-20/012-20-1.jpg){#fig-a-questions-16-20-012}
 
-**参考解答**：该 read 对中下游 read 起点为 11123，上游 read 起点为 10946、read 长 145bp，覆盖区总长 $11123-10946+145=322$；下游 read 的 TLEN 取负值：
+**参考解答**：第 20 行记录的下游 read 起点为 11123，CIGAR 为 `145M`，因此最后一个比对碱基的坐标为 $11123+145-1=11267$。其 mate 的起点为 10946；按 SAM 的 1-based 闭区间计算，外侧跨度为 $11267-10946+1=322$。等价地可写为 $11123-10946+145=322$；下游 read 的 TLEN 取负值：
 
 $$
 -(11123-10946+145)=-322
@@ -1112,7 +1112,7 @@ $$ {#eq-tlen-example}
 
 计算过程见 @fig-a-questions-16-20-014 。
 
-![TLEN 的计算示意：上游 read 从 10946 起、长 145bp，下游 read 从 11123 起；覆盖跨度为 322，上游 read 的 TLEN 取 +322、下游取 −322](../assets/04-quality-control-and-alignment/svg/tlen-calculation.svg){#fig-a-questions-16-20-014}
+![TLEN 的 IGV 风格示意：左端起点 10946，右端 read 从 11123 起、CIGAR 为 145M，终点 11267；外侧跨度 322 bp，左端 TLEN 为 +322，右端为 −322。左端 read 长度仅作示意](../assets/04-quality-control-and-alignment/svg/tlen-calculation.svg){#fig-a-questions-16-20-014}
 
 :::::
 
@@ -1813,7 +1813,9 @@ $$ {#eq-04-quality-control-and-alignment-019}
 
 3. 对真实的变异，PCR 可能对包含某个等位基因的模板扩增更剧烈（PCR bias）。如果反应体系对含 reference allele 的模板扩增偏向强烈，变异碱基的支持 reads 会变少，从而导致假阴性。
 
-![GATK 流程中关于去重复必要性的说明](../assets/04-quality-control-and-alignment/041-gatk4-pipeline-remove-duplicates-1.png){#fig-04-quality-control-and-alignment-041}
+![PCR 重复会抬高表观覆盖：上图中的 6 对同端点 reads 设定为同一个原始片段的 PCR 拷贝；下图标记并过滤重复后保留 1 份。两图使用相同坐标与覆盖度刻度（自绘 IGV 风格示意）](../assets/04-quality-control-and-alignment/svg/pcr-duplicate-pileup.svg){#fig-04-quality-control-and-alignment-041}
+
+图中成组的 reads 左右端点一致，提供了识别重复的线索；这些拷贝增加了测序条数，却没有增加独立原始片段数。实际数据中，仅凭堆叠外观不能确定重复来自 PCR，还需要结合建库方式和重复标记结果。Picard 的 MarkDuplicates 默认在 BAM 中标记重复；图中下半部分展示的是随后过滤这些标记后的视图。[^fig-pcr-duplicates]
 
 ::::: {.callout-tip .book-example title="示例与练习｜什么情况该去 duplicate，什么情况不该？"}
 
@@ -1902,3 +1904,6 @@ IGV 是可视化 BAM 文件的利器，用好它可以事半功倍地检查比�
 [^bentley-2008]: D R Bentley 等. [Accurate whole human genome sequencing using reversible terminator chemistry](https://doi.org/10.1038/nature07517). Nature, 2008. 实测方差约为泊松分布 2.26 倍的结论出自该文。
 
 [^shen-2008]: Yufeng Shen 等. [A SNP discovery method to assess variant allele probability from next-generation resequencing data](https://pmc.ncbi.nlm.nih.gov/articles/PMC2555370/). Genome Research, 2008.（原稿将出处误记为 Nature 2008，已按论文实际发表信息更正。）
+
+
+[^fig-pcr-duplicates]: Broad Institute. [MarkDuplicates (Picard) 官方说明](https://gatk.broadinstitute.org/hc/en-us/articles/360057439771-MarkDuplicates-Picard)：识别并标记 PCR 或测序过程产生的重复，默认标记而非删除。本图为说明原理构造的 read pairs，不是实际 IGV 截图。
