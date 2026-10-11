@@ -1,19 +1,22 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="900" height="540" viewBox="0 0 900 540">
 <title>用好大语言模型的三个阶段</title>
-<desc>三层嵌套：提示词工程（最内，把任务讲清楚）包含于上下文工程（把对的材料喂进上下文窗口），再包含于 Harness 工程（为模型配置工具、规则与循环）。外层阶段包含内层阶段。</desc>
+<desc>三层嵌套：提示词工程（最内，把任务讲清楚）包含于上下文工程（把对的材料喂进上下文窗口），再包含于 Harness 工程（为模型配置工具、规则与循环）。每层名称英文在上、中文在下；外层阶段包含内层阶段。</desc>
 <rect x="30" y="26" width="840" height="488" rx="14" fill="none" stroke="#186254" stroke-width="2.4"/>
-<text x="52.0" y="58.0" font-family="'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size="16" fill="#186254" text-anchor="start" font-weight="bold">Harness 工程</text>
-<text x="52.0" y="82.0" font-family="'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size="13" fill="#333333" text-anchor="start" font-weight="normal">给模型装上手脚：工具、规则与循环</text>
-<text x="52.0" y="104.0" font-family="'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size="12" fill="#6b7280" text-anchor="start" font-weight="normal">工具调用 · AGENTS.md 项目规则 · 审批与沙箱</text>
-<rect x="110" y="126" width="680" height="336" rx="14" fill="none" stroke="#186254" stroke-width="2.4"/>
-<text x="132.0" y="158.0" font-family="'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size="16" fill="#186254" text-anchor="start" font-weight="bold">上下文工程</text>
-<text x="132.0" y="182.0" font-family="'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size="13" fill="#333333" text-anchor="start" font-weight="normal">把材料喂进去：模型只知道窗口里的信息</text>
-<text x="132.0" y="204.0" font-family="'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size="12" fill="#6b7280" text-anchor="start" font-weight="normal">报错原文 · 版本与环境 · 文件与数据说明 · 按需选材</text>
-<text x="132.0" y="232.0" font-family="ui-monospace, 'SFMono-Regular', Menlo, Consolas, 'Liberation Mono', monospace" font-size="12.5" fill="#333333" text-anchor="start" font-weight="normal">示例：贴上完整报错、命令与版本，而不是“好像有格式错误”</text>
-<rect x="190" y="254" width="500" height="176" rx="14" fill="#e8f4f1" stroke="#186254" stroke-width="2.4"/>
-<text x="212.0" y="286.0" font-family="'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size="16" fill="#186254" text-anchor="start" font-weight="bold">提示词工程</text>
-<text x="212.0" y="310.0" font-family="'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size="13" fill="#333333" text-anchor="start" font-weight="normal">把任务讲清楚</text>
-<text x="212.0" y="332.0" font-family="'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size="12" fill="#6b7280" text-anchor="start" font-weight="normal">角色与目标 · 示例 · 分步骤 · 输出格式与约束</text>
-<text x="212.0" y="360.0" font-family="ui-monospace, 'SFMono-Regular', Menlo, Consolas, 'Liberation Mono', monospace" font-size="12.5" fill="#333333" text-anchor="start" font-weight="normal">示例：请逐列解释这份 DESeq2 结果表</text>
-<text x="450.0" y="486.0" font-family="ui-monospace, 'SFMono-Regular', Menlo, Consolas, 'Liberation Mono', monospace" font-size="13" fill="#333333" text-anchor="middle" font-weight="normal">循环：计划 → 行动 → 观察结果 → 修正，直到任务完成</text>
+<text x="52.0" y="58.0" font-family="'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size="16" fill="#186254" text-anchor="start" font-weight="bold">Harness Engineering</text>
+<text x="52.0" y="80.0" font-family="'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size="14" fill="#333333" text-anchor="start" font-weight="bold">Harness 工程</text>
+<text x="52.0" y="102.0" font-family="'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size="13" fill="#333333" text-anchor="start" font-weight="normal">给模型装上手脚：工具、规则与循环</text>
+<text x="52.0" y="124.0" font-family="'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size="12" fill="#6b7280" text-anchor="start" font-weight="normal">工具调用 · AGENTS.md 项目规则 · 审批与沙箱</text>
+<rect x="110" y="140" width="680" height="336" rx="14" fill="none" stroke="#186254" stroke-width="2.4"/>
+<text x="132.0" y="172.0" font-family="'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size="16" fill="#186254" text-anchor="start" font-weight="bold">Context Engineering</text>
+<text x="132.0" y="194.0" font-family="'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size="14" fill="#333333" text-anchor="start" font-weight="bold">上下文工程</text>
+<text x="132.0" y="216.0" font-family="'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size="13" fill="#333333" text-anchor="start" font-weight="normal">把材料喂进去：模型只知道窗口里的信息</text>
+<text x="132.0" y="238.0" font-family="'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size="12" fill="#6b7280" text-anchor="start" font-weight="normal">报错原文 · 版本与环境 · 文件与数据说明 · 按需选材</text>
+<text x="132.0" y="266.0" font-family="ui-monospace, 'SFMono-Regular', Menlo, Consolas, 'Liberation Mono', monospace" font-size="12.5" fill="#333333" text-anchor="start" font-weight="normal">示例：贴上完整报错、命令与版本，而不是“好像有格式错误”</text>
+<rect x="190" y="290" width="500" height="150" rx="14" fill="#e8f4f1" stroke="#186254" stroke-width="2.4"/>
+<text x="212.0" y="322.0" font-family="'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size="16" fill="#186254" text-anchor="start" font-weight="bold">Prompt Engineering</text>
+<text x="212.0" y="344.0" font-family="'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size="14" fill="#333333" text-anchor="start" font-weight="bold">提示词工程</text>
+<text x="212.0" y="366.0" font-family="'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size="13" fill="#333333" text-anchor="start" font-weight="normal">把任务讲清楚</text>
+<text x="212.0" y="388.0" font-family="'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size="12" fill="#6b7280" text-anchor="start" font-weight="normal">角色与目标 · 示例 · 分步骤 · 输出格式与约束</text>
+<text x="212.0" y="416.0" font-family="ui-monospace, 'SFMono-Regular', Menlo, Consolas, 'Liberation Mono', monospace" font-size="12.5" fill="#333333" text-anchor="start" font-weight="normal">示例：请逐列解释这份 DESeq2 结果表</text>
+<text x="450.0" y="494.0" font-family="ui-monospace, 'SFMono-Regular', Menlo, Consolas, 'Liberation Mono', monospace" font-size="13" fill="#333333" text-anchor="middle" font-weight="normal">循环：计划 → 行动 → 观察结果 → 修正，直到任务完成</text>
 </svg>
