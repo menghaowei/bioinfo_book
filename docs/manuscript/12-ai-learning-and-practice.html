@@ -849,7 +849,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li class="book-nav-leaf"><a class="book-nav-link book-section-link no-external" href="#topic-12-prompt" data-book-level="3" data-book-target="topic-12-prompt" id="book-nav-12-topic-12-prompt">提示词工程：把任务讲清楚</a></li>
 <li class="book-nav-leaf"><a class="book-nav-link book-section-link no-external" href="#topic-12-context" data-book-level="3" data-book-target="topic-12-context" id="book-nav-12-topic-12-context">上下文工程：把材料喂进去</a></li>
 <li class="book-nav-leaf"><a class="book-nav-link book-section-link no-external" href="#topic-12-harness" data-book-level="3" data-book-target="topic-12-harness" id="book-nav-12-topic-12-harness">Harness 工程：给模型装上手脚</a></li>
-<li class="book-nav-leaf"><a class="book-nav-link book-section-link no-external" href="#topic-12-control" data-book-level="3" data-book-target="topic-12-control" id="book-nav-12-topic-12-control">驾驶而非放手：控制、验证与版本管理</a></li>
+<li class="book-nav-leaf"><a class="book-nav-link book-section-link no-external" href="#topic-12-skills" data-book-level="3" data-book-target="topic-12-skills" id="book-nav-12-topic-12-skills">Skill 的概念、格式与安装</a></li>
+<li class="book-nav-leaf"><a class="book-nav-link book-section-link no-external" href="#topic-12-git-version-control" data-book-level="3" data-book-target="topic-12-git-version-control" id="book-nav-12-topic-12-git-version-control">使用 Git 进行版本管理</a></li>
 </ul></details>
 </li>
 <li>
@@ -891,7 +892,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
 <h1 class="title"><span id="sec-ch12" class="quarto-section-identifier"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">拥抱大语言模型</span></span></h1>
-<p class="chapter-last-modified"><time datetime="2026-10-11T12:17:35+08:00" title="本章书稿最后修改时间（北京时间，UTC+08:00）">最后修改：2026-10-11 12:17（北京时间）</time></p>
+<p class="chapter-last-modified"><time datetime="2026-10-11T16:51:49+08:00" title="本章书稿最后修改时间（北京时间，UTC+08:00）">最后修改：2026-10-11 16:51（北京时间）</time></p>
 </div>
 
 
@@ -910,7 +911,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 <section id="chapter-summary-12" class="level2 unnumbered hero-book book-chapter-summary">
 <h2 class="unnumbered anchored" data-anchor-id="chapter-summary-12">本章提要</h2>
-<p>本章不再展开新的分析技术，而是把全书一直在使用的工具——大语言模型——放到舞台中央。我们先回顾自然语言处理走过的路，看大语言模型如何在深度学习、超大规模预训练与思维链的接力中出现”智能涌现”，又为什么说它虽然不是人类的智能、却已经能够真正参与工作；随后借软件工程的经典文章《没有银弹》讨论 AI 的能力边界：技术上的难可以被大模型快速消除，本质上的难仍然要靠人来判断。在此基础上，我们学习用好大语言模型的三个阶段——提示词工程、上下文工程与 Harness 工程，理解为什么对模型要”驾驶而非放手”。最后以 ZCode 为例，从拷问需求、建立项目记忆，到逐轮实现、测试与复盘，完整走一遍智能体项目实战。读完本章，你应该能放心地把重复劳动交给 agent，同时清楚哪些判断必须由自己负责。</p>
+<p>本章不再展开新的分析技术，而是把全书一直在使用的工具——大语言模型——放到舞台中央。我们先回顾自然语言处理走过的路，看大语言模型如何在深度学习、超大规模预训练与思维链的接力中出现”智能涌现”，又为什么说它虽然不是人类的智能、却已经能够真正参与工作；随后借软件工程的经典文章《没有银弹》讨论 AI 的能力边界：技术上的难可以被大模型快速消除，本质上的难仍然要靠人来判断。在此基础上，我们学习用好大语言模型的三个阶段——提示词工程、上下文工程与 Harness 工程，认识把流程固化为可复用能力的 skill，理解为什么在 AI 时代必须用 Git 为每一轮改动留下案底。最后以 ZCode 为例，从拷问需求、建立项目记忆，到逐轮实现、测试与复盘，完整走一遍智能体项目实战。读完本章，你应该能放心地把重复劳动交给 agent，同时清楚哪些判断必须由自己负责。</p>
 </section>
 <section id="sec-12-01" class="level2" data-number="12.1">
 <h2 data-number="12.1" class="anchored" data-anchor-id="sec-12-01"><span class="header-section-number">12.1</span> 从自然语言处理到大语言模型的智能涌现</h2>
@@ -1165,11 +1166,39 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <h3 class="anchored" data-anchor-id="topic-12-harness">Harness 工程：给模型装上手脚</h3>
 <p>当模型能读写文件、执行命令，使用方式就完全变了：你不再把材料复制进对话，而是让它<strong>到项目里自己拿</strong>；它不再只给建议，而是直接改代码、跑测试、看输出、再修正。让这套循环可靠运转的配置工作，就是 Harness 工程。对初学者来说，最重要的三件事：</p>
 <p><strong>AGENTS.md 项目记忆。</strong> 在项目仓库根目录放一个 <code>AGENTS.md</code>，写清楚项目目的、常用命令、目录结构、代码约定和注意事项。主流工具（ZCode、Claude Code、Codex、Cursor 等）都会在每次会话自动读取它——2025 年它已经成为事实标准，数以万计的项目在用<a href="#fn9" class="footnote-ref" id="fnref9" role="doc-noteref"><sup>9</sup></a>。它一次写成，此后每一轮对话都不必重复交代背景，是性价比最高的上下文工程。</p>
-<p><strong>Skill（技能）。</strong> 把重复的工作流程固化成一段可调用的说明，起个名字，用的时候一句话调用。比如 12.4 节要用的 grill-me，就是”拷问你的计划直到把需求问清”的技能。</p>
+<p><strong>Skill（技能）。</strong> 把重复的工作流程固化成一份可调用的”说明书”，起个名字，用的时候一句话调用。它是什么、长什么样、怎么装，下一小节专门讲。</p>
 <p><strong>审批与沙箱。</strong> 默认模式下，agent 读写文件、执行命令前要经过你批准；熟练之后可以放宽，但权限越自动，事后的验证越要认真。宁可慢一点，也不要让模型在没有围栏的地方奔跑。</p>
 </section>
-<section id="topic-12-control" class="level3">
-<h3 class="anchored" data-anchor-id="topic-12-control">驾驶而非放手：控制、验证与版本管理</h3>
+<section id="topic-12-skills" class="level3">
+<h3 class="anchored" data-anchor-id="topic-12-skills">Skill 的概念、格式与安装</h3>
+<p>Harness 一节的最后提到 skill，这里把它讲清楚。<strong>Skill（技能）就是把一套流程或一项专长写成 agent 能读的说明书</strong>：告诉它在什么情况下、按什么步骤、遵守什么约束去做一件事。写好之后放在约定位置，agent 平时”记得有这个能力”，你一句话就能调用，比如 12.4 节开场的 <code>/grill-me</code>。</p>
+<p>skill 有一个特别值得称道的设计，叫<strong>渐进披露</strong>（progressive disclosure）：平时只有每个 skill 的名字和一句描述进入模型的上下文，正文只在被调用时才完整加载<a href="#fn10" class="footnote-ref" id="fnref10" role="doc-noteref"><sup>10</sup></a>。所以装几十个 skill 也不会撑爆上下文窗口——这比把所有流程都塞进 AGENTS.md 高明：AGENTS.md 是每次会话都在场的”项目宪法”，skill 是按需取用的”专项手册”，两者配合正好。</p>
+<p><strong>标准格式。</strong> 一个 skill 就是一个文件夹，核心是一份 <code>SKILL.md</code>：文件开头是 YAML frontmatter，声明 <code>name</code> 和 <code>description</code>；其后是 Markdown 正文，写给模型看的工作指令，可以再附脚本、模板等资源文件。开放规范（agentskills.io）要求 <code>name</code> 不超过 64 字符、只用小写字母数字和连字符；<code>description</code> 则是一段话，说清”什么时候用、用来做什么”。</p>
+<pre data-code-text="&quot;---\nname: my-qc-review\ndescription: 在生信分析产出结果后使用。按固定清单核查统计口径、\n  样本对应关系与图表一致性，列出发现的问题。\n---\n\n# 质控审查\n\n收到\&quot;审查结果\&quot;的请求后，按以下步骤执行：\n1. 核对输出文件的行列数与样本表是否一一对应；\n2. 复算一项关键统计量并与报告数值对照；\n3. 逐图检查图题与正文描述是否一致；\n4. 输出问题清单，按严重程度排序，不擅自修改文件。&quot;" class="text" data-book-role="data" data-code-title="SKILL.md 骨架"><code>---
+name: my-qc-review
+description: 在生信分析产出结果后使用。按固定清单核查统计口径、
+  样本对应关系与图表一致性，列出发现的问题。
+---
+
+# 质控审查
+
+收到"审查结果"的请求后，按以下步骤执行：
+1. 核对输出文件的行列数与样本表是否一一对应；
+2. 复算一项关键统计量并与报告数值对照；
+3. 逐图检查图题与正文描述是否一致；
+4. 输出问题清单，按严重程度排序，不擅自修改文件。</code></pre>
+<p><strong>如何安装。</strong> 把 skill 文件夹放进技能目录即可：个人全局放在本机目录（如 <code>~/.agents/skills/</code>，Claude Code 使用 <code>~/.claude/skills/</code>），团队共享则放进项目仓库内的技能目录，克隆即得；具体路径以所用客户端的文档为准。社区还提供了 <code>skills.sh</code> 这样的安装器，一条命令从 GitHub 安装别人写好的 skill。</p>
+<p><strong>哪里找。</strong> 三个来源：Anthropic 官方维护的技能仓库（github.com/anthropics/skills）；任何平台都可采用的开放规范与示例（agentskills.io）；以及社区整理的各类合集。2025 年底规范开放后，skill 正在成为跨客户端通用的能力格式<a href="#fn11" class="footnote-ref" id="fnref11" role="doc-noteref"><sup>11</sup></a>。</p>
+<p>最后看一个真实的 skill——<strong>grill-me</strong>。它的 <code>SKILL.md</code> 描述只有一句：</p>
+<blockquote class="blockquote">
+<p>A relentless interview to sharpen a plan or design. （一场毫不留情的追问，用来打磨你的计划或设计。）</p>
+</blockquote>
+<p>正文则规定了一套”拷问协议”：把方案拆成决策树，每轮把当前能问的问题一次问完，每个问题附推荐答案，等回答后再推进下一轮，直到没有悬而未决的假设。注意那句 description 的价值：模型读到”relentless interview to sharpen a plan”，就知道该在什么时候触发、按什么姿态执行——<strong>一段好描述，就能大幅对齐 LLM 对需求的理解</strong>，这正是写 skill 时最值得花心思的地方。这不是纸上谈兵：本章的两次修订（图 12.2 双语化、Git 与 skill 这两节的扩写）动手之前，作者都先用 grill-me 把方案拷问了一轮，一轮问答就锁定了全部取舍，之后的执行没有再返工。</p>
+</section>
+<section id="topic-12-git-version-control" class="level3">
+<h3 class="anchored" data-anchor-id="topic-12-git-version-control">使用 Git 进行版本管理</h3>
+<p>先说一个可能出乎你意料的观点：<strong>很多时候，生物信息学分析并不需要 Git。</strong> 一个脚本配一份数据，跑完出图交差；版本管理靠文件名后缀——<code>result_v2.xlsx</code>、<code>result_final_final.xlsx</code>——不优雅，但确实让大量轻量分析存活了很多年。如果你的分析是”一次跑完不再回头”的类型，这套土办法勉强够用。</p>
+<p>AI 时代的前提变了。agent 一个下午可能替你做几十轮修改：改代码、改配置、改参数，每一轮都又快又多。你无法逐行盯住每一次改动，也无法确定这一轮 AI 是否准确完成了任务、有没有把昨天还能跑通的文件悄悄改坏。看一个示意场景：周一你让 agent 给质控脚本加一个指标，它”顺手”把配置文件里的样本路径换成了自己的测试路径；周三你重新运行全部样本，报错一片，而你已经想不起周一之前配置文件长什么样——没有版本记录，“回退到上一个能跑的版本”这句话就没有落点。</p>
 <div class="book-warning callout callout-style-default callout-warning callout-titled" title="注意｜agent 改代码的破坏半径">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -1183,12 +1212,45 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>LLM 需要大量的调试和控制，不能完全交给它。模型会幻觉、会忘记几轮之前的要求、会在你不知道的地方”顺手”改掉一行关键代码，而且这些都发生得非常有信心。agent 的每一次改动都落在你的项目里——放权越多，检查越不能少。</p>
 </div>
 </div>
-<p>把 agent 当成一位手速极快、知识面极宽、但偶尔自信犯错的新同事来管理，需要三个习惯：</p>
-<ul>
-<li><strong>审查每一轮改动。</strong> 用 <code>git diff</code> 逐行看它改了什么、为什么改，读不懂的改动当场问。第 2 章 Git 一节讲过，<code>git diff</code> 就是”人审查 AI 工作”的基本工具。</li>
-<li><strong>小步提交。</strong> 一轮对话一个提交，说明写清楚。改坏了随时回退，好的改动沉淀下来。版本管理的具体操作第 2 章 2.6 节已经讲过，这里强调的是纪律：<strong>提交粒度就是你的后悔药粒度</strong>。</li>
-<li><strong>用运行结果验证。</strong> “代码看起来对”不算数——运行它，看输出，核对统计口径。这也是本书每一章都在练的：能运行不等于能得出正确结论。</li>
-</ul>
+<p>所以这一节的结论放在开头：<strong>完成一个项目的时候，尤其是利用 AI 帮助你完成项目的时候，一定要使用 Git。</strong></p>
+<p><strong>Git 是什么。</strong> Git 是一个免费开源的<strong>分布式版本管理系统</strong>：它把项目的每一次存档（提交）连同完整历史保存在本地，任何时候都能查看、比较、回退到任意版本。它诞生于一场危机——2005 年 4 月，Linux 内核社区与所用商业工具 BitKeeper 的合作破裂，免费授权被收回，Linus Torvalds 于是决定自己写一个替代品：最初约一千行 C 代码，十来天就跑了起来，当月就用 Git 管理起了 Git 自己的源码；2005 年 6 月发布的 Linux 2.6.12，成为第一个由 Git 管理的内核版本<a href="#fn12" class="footnote-ref" id="fnref12" role="doc-noteref"><sup>12</sup></a>。</p>
+<p>“分布式”是 Git 与前辈（CVS、SVN 等集中式系统）的根本区别：集中式系统离开中央服务器什么都做不了，而 Git 把完整历史复制到每个开发者手里，提交、建分支、回退全是本地操作，联网只是同步的附带动作。为全球上千人并行开发内核而生，概念自然不少——工作区、暂存区、提交、分支、合并——学习曲线确实陡峭；但换来的是近乎随心所欲的”时间旅行”。很复杂，也很强大，这两句话并不矛盾。</p>
+<p><strong>GitHub 是什么。</strong> GitHub 与 Git 是两回事：Git 是装在你电脑里的工具，GitHub 则是 2008 年上线的代码托管与协作平台——把 Git 仓库搬到云端，再加上社交化的 fork、pull request 和 issue 协作层。2018 年微软以 75 亿美元收购 GitHub 时，它已有 2800 万开发者、8500 万个仓库；如今仓库数超过 1.5 亿，是开源世界默认的门牌<a href="#fn13" class="footnote-ref" id="fnref13" role="doc-noteref"><sup>13</sup></a>。本书的源码就托管在 GitHub（menghaowei/bioinfo_book），你正在读的网页由它自动构建发布。</p>
+<p><strong>怎样查看一个项目的历史。</strong> 对 AI 协作来说，Git 最有价值的不是”保存”，而是<strong>查看</strong>——每一轮改动都留了案底，随时可以翻。三条命令覆盖日常所需，下面全部用本书自己的公开仓库作真实示范。</p>
+<p><code>git log --oneline</code> 把全部提交压成一行一条的时间线，最新的在最上面：</p>
+<pre data-code-text="&quot;6b6b0a7 第十二章图12.2反馈：三阶段名称改为英文在上中文在下\n180d8ab Rebuild book HTML [skip ci]\n858520b 第十二章整章创作《拥抱大语言模型》：智能涌现、能力边界、三阶段用法与ZCode智能体实战\n397d92d 第六章图6.3反馈：ATAC原理图换用Buenrostro2013原文图\n48c0d26 第六章反馈轮：框型调整与三图替换&quot;" class="text" data-book-role="output" data-code-title="本书仓库的 git log --oneline（节选）"><code>6b6b0a7 第十二章图12.2反馈：三阶段名称改为英文在上中文在下
+180d8ab Rebuild book HTML [skip ci]
+858520b 第十二章整章创作《拥抱大语言模型》：智能涌现、能力边界、三阶段用法与ZCode智能体实战
+397d92d 第六章图6.3反馈：ATAC原理图换用Buenrostro2013原文图
+48c0d26 第六章反馈轮：框型调整与三图替换</code></pre>
+<p><code>git show &lt;提交号&gt;</code> 展开某一次提交：谁在什么时候、动了哪些文件、各有多少增删行：</p>
+<pre data-code-text="&quot;858520b 第十二章整章创作《拥抱大语言模型》：智能涌现、能力边界、三阶段用法与ZCode智能体实战\n .../001-llm-timeline.svg                           |  55 +++\n .../003-three-stages.svg                            |  19 ++\n index.qmd                                           |   2 +-\n manuscript/12-ai-learning-and-practice.md           | 376 +++++++++++++++++++--\n scripts/figures/ch12/generate_all.py                | 147 ++++++++\n scripts/legacy-redirects.json                       |  12 +-\n scripts/validation-manifest.json                    |   15 +-\n 7 files changed, 578 insertions(+), 48 deletions(-)&quot;" class="text" data-book-role="output" data-code-title="git show --stat 858520b（节选）"><code>858520b 第十二章整章创作《拥抱大语言模型》：智能涌现、能力边界、三阶段用法与ZCode智能体实战
+ .../001-llm-timeline.svg                           |  55 +++
+ .../003-three-stages.svg                            |  19 ++
+ index.qmd                                           |   2 +-
+ manuscript/12-ai-learning-and-practice.md           | 376 +++++++++++++++++++--
+ scripts/figures/ch12/generate_all.py                | 147 ++++++++
+ scripts/legacy-redirects.json                       |  12 +-
+ scripts/validation-manifest.json                    |   15 +-
+ 7 files changed, 578 insertions(+), 48 deletions(-)</code></pre>
+<p><code>git diff &lt;版本一&gt; &lt;版本二&gt;</code> 逐行比较两个版本，<code>-</code> 开头是被删的行，<code>+</code> 开头是新增的行。比如比较本章初版与图 12.2 修订版（只看相关文件）：</p>
+<pre data-code-text="&quot; .../003-three-stages.svg             | 33 ++++++++++++----------\n scripts/figures/ch12/generate_all.py | 21 +++++++-------\n 2 files changed, 29 insertions(+), 25 deletions(-)&quot;" class="text" data-book-role="output" data-code-title="git diff --stat（限定本章绘图文件，节选）"><code> .../003-three-stages.svg             | 33 ++++++++++++----------
+ scripts/figures/ch12/generate_all.py | 21 +++++++-------
+ 2 files changed, 29 insertions(+), 25 deletions(-)</code></pre>
+<p>不看命令，用 GitHub 网页也能完成同样的检阅：打开仓库首页，点 “Commits” 就是那条时间线，点开任意一条提交，增删行用红绿高亮直接展示。你现在就可以打开本书的仓库试一遍——这比任何比喻都直观。</p>
+<p>再看上面那段 <code>git log</code>，它同时是一份<strong>提交信息的示范</strong>：每条一行，说清”改了哪一章、做了什么”（<code>Rebuild book HTML [skip ci]</code> 是机器人自动构建的提交）；这也是 12.4 节实录里四条提交信息的写法。反例是 <code>update</code>、<code>fix</code>、<code>改了一些</code>——三周后连你自己都不知道改了什么。</p>
+<p><strong>与 agent 协作的三条纪律。</strong> 建仓库和提交的基本操作（<code>git init</code>、<code>git add</code>、<code>git commit</code>），第 2 章 2.6 节已经带你做过，这里不重复教程，只强调跟 agent 配合时的用法：<strong>一轮一提交</strong>——每轮对话结束、验证通过就提交一次，提交粒度就是后悔药的粒度，改坏了随时退回上一粒；<strong>提交前审查 diff</strong>——<code>git diff</code> 逐行看 agent 改了什么，读不懂的当场问；<strong>提交前运行验证</strong>——“代码看起来对”不算数，跑一遍、看输出、对口径，这也是全书反复练的：能运行不等于能得出正确结论。</p>
+<p><strong>怎样让 LLM 真正执行这套纪律。</strong> 光靠自己每次口头叮嘱，早晚会漏；要把规矩写进 agent 读得到的地方。第一个位置是 AGENTS.md——一次立规，之后每轮自动生效：</p>
+<pre data-code-text="&quot;## 版本管理纪律\n- 每完成一轮可验证的修改（一个功能、一次修复、一批图），立即提交；一轮一个提交，不要攒。\n- 提交前先运行测试或在示例数据上执行一遍，失败不提交。\n- 提交信息用中文，一行说清\&quot;做了什么\&quot;，必要时补一句\&quot;为什么\&quot;。\n- data/、results/ 和任何密钥不入库（.gitignore 已排除）。\n- 禁止 git push --force，禁止改写已有提交历史。&quot;" class="text" data-book-role="data" data-code-title="写进 AGENTS.md 的版本管理纪律（模板）"><code>## 版本管理纪律
+- 每完成一轮可验证的修改（一个功能、一次修复、一批图），立即提交；一轮一个提交，不要攒。
+- 提交前先运行测试或在示例数据上执行一遍，失败不提交。
+- 提交信息用中文，一行说清"做了什么"，必要时补一句"为什么"。
+- data/、results/ 和任何密钥不入库（.gitignore 已排除）。
+- 禁止 git push --force，禁止改写已有提交历史。</code></pre>
+<p>第二个位置是每轮对话的收尾指令，当场把关：</p>
+<pre data-code-text="&quot;本轮修改完成后：先运行测试；然后把 git diff 完整展示给我，逐段说明\n改了什么、为什么这样改；我确认之后再提交，提交信息按\&quot;做了什么＋为什么\&quot;写。&quot;" class="text" data-book-role="data" data-code-title="Prompt｜每轮收尾"><code>本轮修改完成后：先运行测试；然后把 git diff 完整展示给我，逐段说明
+改了什么、为什么这样改；我确认之后再提交，提交信息按"做了什么＋为什么"写。</code></pre>
+<p>两个模板里最关键的一句是”<strong>我确认之后再提交</strong>”——它把提交的按钮留在你手里，这就是”驾驶而非放手”在版本管理上的落点。12.4 节实录里那条”第2轮修复：质量字符合法上限应为Q41(Illumina 1.8+)，首跑报错后修正”，就是这套流程的产物：报错、修复、验证、提交，每一步都留了案底。</p>
 </section>
 </section>
 <section id="sec-12-04" class="level2" data-number="12.4">
@@ -1199,9 +1261,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <h3 class="anchored" data-anchor-id="topic-12-prepare">准备：项目、环境与版本控制</h3>
 <p>工具准备在第 2 章 2.5 节已经完成：安装 ZCode（<a href="https://zcode.z.ai/">zcode.z.ai</a> 下载客户端），用 GLM Coding Plan 或 API key 登录。这里只回顾关键动作：在 ZCode 中新建一个空白文件夹 <code>fastq-qc</code> 并打开，这个文件夹就是 agent 的工作目录。</p>
 <p>按第 2 章的项目目录约定建好骨架，并初始化 Git 仓库：</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1" data-book-role="code"><pre data-code-text="&quot;mkdir -p fastq-qc/{data,reports,tests}\ncd fastq-qc\ngit init&quot;" class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mkdir</span> <span class="at">-p</span> fastq-qc/<span class="dt">{data</span><span class="op">,</span><span class="dt">reports</span><span class="op">,</span><span class="dt">tests}</span></span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> fastq-qc</span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> init</span></code></pre></div><button title="复制到剪贴板" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb7" data-book-role="code"><pre data-code-text="&quot;mkdir -p fastq-qc/{data,reports,tests}\ncd fastq-qc\ngit init&quot;" class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mkdir</span> <span class="at">-p</span> fastq-qc/<span class="dt">{data</span><span class="op">,</span><span class="dt">reports</span><span class="op">,</span><span class="dt">tests}</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> fastq-qc</span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> init</span></code></pre></div><button title="复制到剪贴板" class="code-copy-button"><i class="bi"></i></button></div>
 <p>教学数据不下载真实测序文件，而是用一段 40 行的 Python 脚本生成模拟 FASTQ：固定随机种子 42，生成 300 条 reads，长度在 80–120 bp 之间波动，质量值从 5’ 端到 3’ 端逐渐衰减，GC 含量约 45%——模拟了真实数据的主要特征。<strong>注意这是模拟数据，仅用于教学</strong>；生成脚本 <code>make_mock_fastq.py</code> 与数据一起保存在项目里，任何人运行同一脚本都能得到逐字节相同的数据（这就是第 10 章讲的可复现性思想，用固定种子实现）。生成后我们独立校验过格式：1200 行恰好 300 条记录、序列与质量等长、质量字符都在合法范围内，统计值为 GC 45.14%、Q20 99.63%、Q30 64.48%——这组数字后面用来核对工具输出。</p>
 </section>
 <section id="topic-12-round0" class="level3">
@@ -1256,12 +1318,12 @@ python3 -m unittest discover -s tests -v
 长度分布（含字符直方图）、GC 含量、Q20/Q30 比例、平均质量，
 生成 Markdown 报告。完成后在 data/sample.fastq 上运行并保存报告。</code></pre>
 <p>agent 写出了约 150 行的 <code>fastq_qc.py</code>，其中格式校验一段是审查重点：</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb8" data-book-role="code"><pre data-code-text="&quot;for pos, ch in enumerate(qual):\n    q = ord(ch) - 33\n    if q &lt; 0 or q &gt; 41:  # Illumina 1.8+ 的 Phred+33 合法范围为 Q0–Q41\n        raise ValueError(\n            \&quot;第 %d 条记录第 %d 个质量字符 %r 超出 Phred+33 范围\&quot;\n            % (i // 4 + 1, pos + 1, ch))&quot;" class="sourceCode numberSource python numberLines code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1"></a><span class="cf">for</span> pos, ch <span class="kw">in</span> <span class="bu">enumerate</span>(qual):</span>
-<span id="cb8-2"><a href="#cb8-2"></a>    q <span class="op">=</span> <span class="bu">ord</span>(ch) <span class="op">-</span> <span class="dv">33</span></span>
-<span id="cb8-3"><a href="#cb8-3"></a>    <span class="cf">if</span> q <span class="op">&lt;</span> <span class="dv">0</span> <span class="kw">or</span> q <span class="op">&gt;</span> <span class="dv">41</span>:  <span class="co"># Illumina 1.8+ 的 Phred+33 合法范围为 Q0–Q41</span></span>
-<span id="cb8-4"><a href="#cb8-4"></a>        <span class="cf">raise</span> <span class="pp">ValueError</span>(</span>
-<span id="cb8-5"><a href="#cb8-5"></a>            <span class="st">"第 </span><span class="sc">%d</span><span class="st"> 条记录第 </span><span class="sc">%d</span><span class="st"> 个质量字符 </span><span class="sc">%r</span><span class="st"> 超出 Phred+33 范围"</span></span>
-<span id="cb8-6"><a href="#cb8-6"></a>            <span class="op">%</span> (i <span class="op">//</span> <span class="dv">4</span> <span class="op">+</span> <span class="dv">1</span>, pos <span class="op">+</span> <span class="dv">1</span>, ch))</span></code></pre></div><button title="复制到剪贴板" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb14" data-book-role="code"><pre data-code-text="&quot;for pos, ch in enumerate(qual):\n    q = ord(ch) - 33\n    if q &lt; 0 or q &gt; 41:  # Illumina 1.8+ 的 Phred+33 合法范围为 Q0–Q41\n        raise ValueError(\n            \&quot;第 %d 条记录第 %d 个质量字符 %r 超出 Phred+33 范围\&quot;\n            % (i // 4 + 1, pos + 1, ch))&quot;" class="sourceCode numberSource python numberLines code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1"></a><span class="cf">for</span> pos, ch <span class="kw">in</span> <span class="bu">enumerate</span>(qual):</span>
+<span id="cb14-2"><a href="#cb14-2"></a>    q <span class="op">=</span> <span class="bu">ord</span>(ch) <span class="op">-</span> <span class="dv">33</span></span>
+<span id="cb14-3"><a href="#cb14-3"></a>    <span class="cf">if</span> q <span class="op">&lt;</span> <span class="dv">0</span> <span class="kw">or</span> q <span class="op">&gt;</span> <span class="dv">41</span>:  <span class="co"># Illumina 1.8+ 的 Phred+33 合法范围为 Q0–Q41</span></span>
+<span id="cb14-4"><a href="#cb14-4"></a>        <span class="cf">raise</span> <span class="pp">ValueError</span>(</span>
+<span id="cb14-5"><a href="#cb14-5"></a>            <span class="st">"第 </span><span class="sc">%d</span><span class="st"> 条记录第 </span><span class="sc">%d</span><span class="st"> 个质量字符 </span><span class="sc">%r</span><span class="st"> 超出 Phred+33 范围"</span></span>
+<span id="cb14-6"><a href="#cb14-6"></a>            <span class="op">%</span> (i <span class="op">//</span> <span class="dv">4</span> <span class="op">+</span> <span class="dv">1</span>, pos <span class="op">+</span> <span class="dv">1</span>, ch))</span></code></pre></div><button title="复制到剪贴板" class="code-copy-button"><i class="bi"></i></button></div>
 <p>第一次运行，报错了：</p>
 <pre data-code-text="&quot;错误：第 1 条记录第 10 个质量字符 &#x27;J&#x27; 超出 Phred+33 范围&quot;" class="text" data-book-role="output"><code>错误：第 1 条记录第 10 个质量字符 'J' 超出 Phred+33 范围</code></pre>
 <p>这是一个真实的失误：agent 初版把质量上限写成了 Q40，而生成脚本会产出 Q41（字符 <code>J</code>）。把报错原样贴回去，agent 查明 Illumina 1.8+ 的 Phred+33 合法范围是 Q0–Q41，把上限修正为 41（上面的代码是修正后的版本），重新运行：</p>
@@ -1329,12 +1391,16 @@ OK</code></pre>
 <li id="fn7"><p>Karpathy A. 关于 context engineering 的帖子，2025-06-25。<a href="#fnref7" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
 <li id="fn8"><p>参见 Martin Fowler 的 Harness engineering for coding agent users 一文及相关工程博客（2025–2026）。<a href="#fnref8" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
 <li id="fn9"><p>AGENTS.md 约定见 <a href="https://agents.md/">agents.md</a>；InfoQ 2025 年 8 月报道已有超过两万个项目采用。<a href="#fnref9" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn10"><p>Agent Skills 开放规范：<a href="https://agentskills.io/">agentskills.io</a>（SKILL.md 的 frontmatter 要求与渐进披露机制）。<a href="#fnref10" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn11"><p>Anthropic 官方技能仓库：<a href="https://github.com/anthropics/skills">github.com/anthropics/skills</a>；安装器 skills.sh 见其说明。<a href="#fnref11" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn12"><p>Git 起源与时间线见 Pro Git 官方书的 <a href="https://git-scm.com/book/en/v2/Getting-Started-A-Short-History-of-Git">A Short History of Git</a> 一节。<a href="#fnref12" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn13"><p>GitHub 创立与规模见维基百科 GitHub 条目；收购信息见<a href="https://news.microsoft.com/2018/06/04/microsoft-to-acquire-github-for-7-5-billion-in-microsoft-stock/">微软 2018 年 6 月公告</a>。<a href="#fnref13" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
 </ol>
 </section>
 
 </main> <!-- /main -->
 <div class="book-toolbar" role="navigation" aria-label="阅读工具">
-  <div class="book-brand"><span class="book-brand-name">AI时代生信入门</span><time class="book-last-modified" datetime="2026-10-11T16:45:35+08:00" title="最后修改时间（北京时间，UTC+08:00）">最后修改 2026-10-11 16:45</time></div>
+  <div class="book-brand"><span class="book-brand-name">AI时代生信入门</span><time class="book-last-modified" datetime="2026-10-11T16:51:49+08:00" title="最后修改时间（北京时间，UTC+08:00）">最后修改 2026-10-11 16:51</time></div>
   <button class="book-menu-button" type="button" aria-controls="quarto-sidebar" aria-expanded="false">目录</button>
   <button class="book-search-button" type="button">搜索</button>
 </div>
