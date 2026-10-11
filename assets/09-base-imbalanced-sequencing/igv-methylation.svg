@@ -1,0 +1,145 @@
+<svg xmlns='http://www.w3.org/2000/svg' width='780' height='420' viewBox='0 0 780 420'>
+<title>IGV 甲基化复核示意</title>
+<desc>上：血清样本；下：2i 样本。同一区域逐位点甲基化条形，血清样本普遍高，2i 样本塌陷；中间阴影为 DMR。</desc>
+<line x1='50' y1='210' x2='740' y2='210' stroke='#9ca3af' stroke-width='1'/>
+<text x='15' y='110' font-family="'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size='13' fill='#333333' font-weight='bold' text-anchor='start'>血清培养（toSerum）</text>
+<text x='15' y='205' font-family="'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size='10' fill='#6b7280' font-weight='normal' text-anchor='start'>100%</text>
+<text x='15' y='150' font-family="'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size='10' fill='#6b7280' font-weight='normal' text-anchor='start'>50%</text>
+<line x1='50' y1='150' x2='740' y2='150' stroke='#9ca3af' stroke-width='0.5' stroke-dasharray='3,4'/>
+<line x1='70' y1='210' x2='70' y2='133.5429353997863' stroke='#186254' stroke-width='7'/>
+<line x1='92' y1='210' x2='92' y2='107.55604097404293' stroke='#186254' stroke-width='7'/>
+<line x1='114' y1='210' x2='114' y2='137.08898201246245' stroke='#186254' stroke-width='7'/>
+<line x1='136' y1='210' x2='136' y2='116.65222774879183' stroke='#186254' stroke-width='7'/>
+<line x1='158' y1='210' x2='158' y2='138.54257485030303' stroke='#186254' stroke-width='7'/>
+<line x1='180' y1='210' x2='180' y2='132.81040488442528' stroke='#186254' stroke-width='7'/>
+<line x1='202' y1='210' x2='202' y2='106.25478696846442' stroke='#186254' stroke-width='7'/>
+<line x1='224' y1='210' x2='224' y2='134.1544004606285' stroke='#186254' stroke-width='7'/>
+<line x1='246' y1='210' x2='246' y2='118.8760719257726' stroke='#186254' stroke-width='7'/>
+<line x1='268' y1='210' x2='268' y2='125.33172242877677' stroke='#186254' stroke-width='7'/>
+<line x1='290' y1='210' x2='290' y2='125.54373747275169' stroke='#186254' stroke-width='7'/>
+<line x1='312' y1='210' x2='312' y2='124.06525139028312' stroke='#186254' stroke-width='7'/>
+<line x1='334' y1='210' x2='334' y2='134.76086880525054' stroke='#186254' stroke-width='7'/>
+<line x1='356' y1='210' x2='356' y2='112.21134444509437' stroke='#186254' stroke-width='7'/>
+<line x1='378' y1='210' x2='378' y2='138.38782565509086' stroke='#186254' stroke-width='7'/>
+<line x1='400' y1='210' x2='400' y2='133.2787844071477' stroke='#186254' stroke-width='7'/>
+<line x1='422' y1='210' x2='422' y2='140.84574713371214' stroke='#186254' stroke-width='7'/>
+<line x1='444' y1='210' x2='444' y2='132.127639137679' stroke='#186254' stroke-width='7'/>
+<line x1='466' y1='210' x2='466' y2='127.15005104931531' stroke='#186254' stroke-width='7'/>
+<line x1='488' y1='210' x2='488' y2='109.683872395058' stroke='#186254' stroke-width='7'/>
+<line x1='510' y1='210' x2='510' y2='128.16002353250835' stroke='#186254' stroke-width='7'/>
+<line x1='532' y1='210' x2='532' y2='137.53411380102392' stroke='#186254' stroke-width='7'/>
+<line x1='554' y1='210' x2='554' y2='132.4247742893046' stroke='#186254' stroke-width='7'/>
+<line x1='576' y1='210' x2='576' y2='106.52067051627331' stroke='#186254' stroke-width='7'/>
+<line x1='598' y1='210' x2='598' y2='139.323203088152' stroke='#186254' stroke-width='7'/>
+<line x1='620' y1='210' x2='620' y2='119.64270624070082' stroke='#186254' stroke-width='7'/>
+<line x1='642' y1='210' x2='642' y2='128.22609701754266' stroke='#186254' stroke-width='7'/>
+<line x1='664' y1='210' x2='664' y2='118.20573243329717' stroke='#186254' stroke-width='7'/>
+<line x1='686' y1='210' x2='686' y2='129.59564159326584' stroke='#186254' stroke-width='7'/>
+<line x1='708' y1='210' x2='708' y2='117.12973340630421' stroke='#186254' stroke-width='7'/>
+<circle cx='70' cy='218' r='2.5' fill='#6b7280'/>
+<circle cx='92' cy='218' r='2.5' fill='#6b7280'/>
+<circle cx='114' cy='218' r='2.5' fill='#6b7280'/>
+<circle cx='136' cy='218' r='2.5' fill='#6b7280'/>
+<circle cx='158' cy='218' r='2.5' fill='#6b7280'/>
+<circle cx='180' cy='218' r='2.5' fill='#6b7280'/>
+<circle cx='202' cy='218' r='2.5' fill='#6b7280'/>
+<circle cx='224' cy='218' r='2.5' fill='#6b7280'/>
+<circle cx='246' cy='218' r='2.5' fill='#6b7280'/>
+<circle cx='268' cy='218' r='2.5' fill='#6b7280'/>
+<circle cx='290' cy='218' r='2.5' fill='#6b7280'/>
+<circle cx='312' cy='218' r='2.5' fill='#6b7280'/>
+<circle cx='334' cy='218' r='2.5' fill='#6b7280'/>
+<circle cx='356' cy='218' r='2.5' fill='#6b7280'/>
+<circle cx='378' cy='218' r='2.5' fill='#6b7280'/>
+<circle cx='400' cy='218' r='2.5' fill='#6b7280'/>
+<circle cx='422' cy='218' r='2.5' fill='#6b7280'/>
+<circle cx='444' cy='218' r='2.5' fill='#6b7280'/>
+<circle cx='466' cy='218' r='2.5' fill='#6b7280'/>
+<circle cx='488' cy='218' r='2.5' fill='#6b7280'/>
+<circle cx='510' cy='218' r='2.5' fill='#6b7280'/>
+<circle cx='532' cy='218' r='2.5' fill='#6b7280'/>
+<circle cx='554' cy='218' r='2.5' fill='#6b7280'/>
+<circle cx='576' cy='218' r='2.5' fill='#6b7280'/>
+<circle cx='598' cy='218' r='2.5' fill='#6b7280'/>
+<circle cx='620' cy='218' r='2.5' fill='#6b7280'/>
+<circle cx='642' cy='218' r='2.5' fill='#6b7280'/>
+<circle cx='664' cy='218' r='2.5' fill='#6b7280'/>
+<circle cx='686' cy='218' r='2.5' fill='#6b7280'/>
+<circle cx='708' cy='218' r='2.5' fill='#6b7280'/>
+<line x1='50' y1='400' x2='740' y2='400' stroke='#9ca3af' stroke-width='1'/>
+<text x='15' y='300' font-family="'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size='13' fill='#333333' font-weight='bold' text-anchor='start'>2i 培养（to2i）</text>
+<text x='15' y='395' font-family="'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size='10' fill='#6b7280' font-weight='normal' text-anchor='start'>100%</text>
+<text x='15' y='340' font-family="'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size='10' fill='#6b7280' font-weight='normal' text-anchor='start'>50%</text>
+<line x1='50' y1='340' x2='740' y2='340' stroke='#9ca3af' stroke-width='0.5' stroke-dasharray='3,4'/>
+<line x1='70' y1='400' x2='70' y2='376.90681703861264' stroke='#b45309' stroke-width='7'/>
+<line x1='92' y1='400' x2='92' y2='371.1960588228179' stroke='#b45309' stroke-width='7'/>
+<line x1='114' y1='400' x2='114' y2='361.7499895012651' stroke='#b45309' stroke-width='7'/>
+<line x1='136' y1='400' x2='136' y2='373.75544424981007' stroke='#b45309' stroke-width='7'/>
+<line x1='158' y1='400' x2='158' y2='390.248708819466' stroke='#b45309' stroke-width='7'/>
+<line x1='180' y1='400' x2='180' y2='393.1676764085086' stroke='#b45309' stroke-width='7'/>
+<line x1='202' y1='400' x2='202' y2='360.0730133748183' stroke='#b45309' stroke-width='7'/>
+<line x1='224' y1='400' x2='224' y2='377.241401860658' stroke='#b45309' stroke-width='7'/>
+<line x1='246' y1='400' x2='246' y2='388.3074963386422' stroke='#b45309' stroke-width='7'/>
+<line x1='268' y1='400' x2='268' y2='360.07328022476514' stroke='#b45309' stroke-width='7'/>
+<line x1='290' y1='400' x2='290' y2='373.8520904173382' stroke='#b45309' stroke-width='7'/>
+<line x1='312' y1='400' x2='312' y2='368.2224533635469' stroke='#b45309' stroke-width='7'/>
+<line x1='334' y1='400' x2='334' y2='362.5162972457062' stroke='#b45309' stroke-width='7'/>
+<line x1='356' y1='400' x2='356' y2='384.8617203500899' stroke='#b45309' stroke-width='7'/>
+<line x1='378' y1='400' x2='378' y2='382.1950312156769' stroke='#b45309' stroke-width='7'/>
+<line x1='400' y1='400' x2='400' y2='362.62452033213646' stroke='#b45309' stroke-width='7'/>
+<line x1='422' y1='400' x2='422' y2='390.51755090291846' stroke='#b45309' stroke-width='7'/>
+<line x1='444' y1='400' x2='444' y2='366.89541164318587' stroke='#b45309' stroke-width='7'/>
+<line x1='466' y1='400' x2='466' y2='391.9198674233411' stroke='#b45309' stroke-width='7'/>
+<line x1='488' y1='400' x2='488' y2='369.677356311781' stroke='#b45309' stroke-width='7'/>
+<line x1='510' y1='400' x2='510' y2='369.22826969413836' stroke='#b45309' stroke-width='7'/>
+<line x1='532' y1='400' x2='532' y2='359.92481005566066' stroke='#b45309' stroke-width='7'/>
+<line x1='554' y1='400' x2='554' y2='363.9226480242721' stroke='#b45309' stroke-width='7'/>
+<line x1='576' y1='400' x2='576' y2='376.68006697751633' stroke='#b45309' stroke-width='7'/>
+<line x1='598' y1='400' x2='598' y2='388.16507885355657' stroke='#b45309' stroke-width='7'/>
+<line x1='620' y1='400' x2='620' y2='389.9475991846843' stroke='#b45309' stroke-width='7'/>
+<line x1='642' y1='400' x2='642' y2='375.73795877062133' stroke='#b45309' stroke-width='7'/>
+<line x1='664' y1='400' x2='664' y2='376.4484917689021' stroke='#b45309' stroke-width='7'/>
+<line x1='686' y1='400' x2='686' y2='392.9031476485903' stroke='#b45309' stroke-width='7'/>
+<line x1='708' y1='400' x2='708' y2='361.680710428015' stroke='#b45309' stroke-width='7'/>
+<circle cx='70' cy='408' r='2.5' fill='#6b7280'/>
+<circle cx='92' cy='408' r='2.5' fill='#6b7280'/>
+<circle cx='114' cy='408' r='2.5' fill='#6b7280'/>
+<circle cx='136' cy='408' r='2.5' fill='#6b7280'/>
+<circle cx='158' cy='408' r='2.5' fill='#6b7280'/>
+<circle cx='180' cy='408' r='2.5' fill='#6b7280'/>
+<circle cx='202' cy='408' r='2.5' fill='#6b7280'/>
+<circle cx='224' cy='408' r='2.5' fill='#6b7280'/>
+<circle cx='246' cy='408' r='2.5' fill='#6b7280'/>
+<circle cx='268' cy='408' r='2.5' fill='#6b7280'/>
+<circle cx='290' cy='408' r='2.5' fill='#6b7280'/>
+<circle cx='312' cy='408' r='2.5' fill='#6b7280'/>
+<circle cx='334' cy='408' r='2.5' fill='#6b7280'/>
+<circle cx='356' cy='408' r='2.5' fill='#6b7280'/>
+<circle cx='378' cy='408' r='2.5' fill='#6b7280'/>
+<circle cx='400' cy='408' r='2.5' fill='#6b7280'/>
+<circle cx='422' cy='408' r='2.5' fill='#6b7280'/>
+<circle cx='444' cy='408' r='2.5' fill='#6b7280'/>
+<circle cx='466' cy='408' r='2.5' fill='#6b7280'/>
+<circle cx='488' cy='408' r='2.5' fill='#6b7280'/>
+<circle cx='510' cy='408' r='2.5' fill='#6b7280'/>
+<circle cx='532' cy='408' r='2.5' fill='#6b7280'/>
+<circle cx='554' cy='408' r='2.5' fill='#6b7280'/>
+<circle cx='576' cy='408' r='2.5' fill='#6b7280'/>
+<circle cx='598' cy='408' r='2.5' fill='#6b7280'/>
+<circle cx='620' cy='408' r='2.5' fill='#6b7280'/>
+<circle cx='642' cy='408' r='2.5' fill='#6b7280'/>
+<circle cx='664' cy='408' r='2.5' fill='#6b7280'/>
+<circle cx='686' cy='408' r='2.5' fill='#6b7280'/>
+<circle cx='708' cy='408' r='2.5' fill='#6b7280'/>
+<rect x='278' y='82' width='288' height='316' fill='#fdf3e3' opacity='0.45' stroke='#b45309' stroke-width='1.2' stroke-dasharray='6,4'/>
+<text x='422.0' y='76' font-family="'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size='12' fill='#b45309' font-weight='bold' text-anchor='middle'>DMR（统计检出的差异区域）</text>
+<line x1='50' y1='404' x2='740' y2='404' stroke='#9ca3af' stroke-width='1'/>
+<line x1='50' y1='400' x2='50' y2='408' stroke='#6b7280' stroke-width='1'/>
+<text x='50' y='420' font-family="'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size='10' fill='#6b7280' font-weight='normal' text-anchor='middle'>48,200</text>
+<line x1='395.0' y1='400' x2='395.0' y2='408' stroke='#6b7280' stroke-width='1'/>
+<text x='395.0' y='420' font-family="'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size='10' fill='#6b7280' font-weight='normal' text-anchor='middle'>48,750</text>
+<line x1='740.0' y1='400' x2='740.0' y2='408' stroke='#6b7280' stroke-width='1'/>
+<text x='740.0' y='420' font-family="'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size='10' fill='#6b7280' font-weight='normal' text-anchor='middle'>49,300</text>
+<text x='740' y='390' font-family="'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size='10' fill='#6b7280' font-weight='normal' text-anchor='end'>chr12（mm9，示意坐标）</text>
+<text x='15' y='40' font-family="'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size='11' fill='#6b7280' font-weight='normal' text-anchor='start'>每个条形 = 一个 CpG 位点的甲基化比例；条形高度即比例，底部灰点示意覆盖深度。</text>
+</svg>

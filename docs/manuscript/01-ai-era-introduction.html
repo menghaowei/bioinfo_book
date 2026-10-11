@@ -42,7 +42,7 @@ ul.task-list li input[type="checkbox"] {
 <link href="../site_libs/quarto-html/quarto-syntax-highlighting-795e9e8eca1e12b12abcb09a27409631.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../site_libs/bootstrap/bootstrap-327e94239d145e2ade4f4fd6ca7bdbfa.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-58d24092528a0c32a0041a323b33ed0c.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -563,10 +563,51 @@ ul.task-list li input[type="checkbox"] {
 <div class="book-nav-leaf"><a class="book-nav-link book-section-link no-external" href="08-base-imbalanced-sequencing.html#chapter-summary-08" data-book-level="2" id="book-nav-8-chapter-summary-08">本章提要</a></div>
 </li>
 <li>
-<div class="book-nav-leaf"><a class="book-nav-link book-section-link no-external" href="08-base-imbalanced-sequencing.html#sec-08-01" data-book-level="2" id="book-nav-8-sec-08-01">8.1 BS-seq 甲基化测序</a></div>
+<details class="book-section"><summary><a class="book-nav-link book-section-link no-external" href="08-base-imbalanced-sequencing.html#sec-08-01" data-book-level="2" id="book-nav-8-sec-08-01">8.1 DNA 上的甲基化修饰</a></summary><ul>
+<li class="book-nav-leaf"><a class="book-nav-link book-section-link no-external" href="08-base-imbalanced-sequencing.html#sec-08-01-cytosine-family" data-book-level="3" id="book-nav-8-sec-08-01-cytosine-family">从 5mC 到 5caC：胞嘧啶修饰家族与动态循环</a></li>
+<li class="book-nav-leaf"><a class="book-nav-link book-section-link no-external" href="08-base-imbalanced-sequencing.html#sec-08-01-functions" data-book-level="3" id="book-nav-8-sec-08-01-functions">5mC 的生物学功能：沉默、发育与疾病</a></li>
+<li class="book-nav-leaf"><a class="book-nav-link book-section-link no-external" href="08-base-imbalanced-sequencing.html#sec-08-01-technologies" data-book-level="3" id="book-nav-8-sec-08-01-technologies">测 5mC 的技术路线与 BS-seq 的地位</a></li>
+</ul></details>
 </li>
 <li>
-<div class="book-nav-leaf"><a class="book-nav-link book-section-link no-external" href="08-base-imbalanced-sequencing.html#sec-08-02" data-book-level="2" id="book-nav-8-sec-08-02">8.2 GLORI m6A测序</a></div>
+<details class="book-section"><summary><a class="book-nav-link book-section-link no-external" href="08-base-imbalanced-sequencing.html#sec-08-02" data-book-level="2" id="book-nav-8-sec-08-02">8.2 BS-seq 的数据分析</a></summary><ul>
+<li class="book-nav-leaf"><a class="book-nav-link book-section-link no-external" href="08-base-imbalanced-sequencing.html#sec-08-02-example-data" data-book-level="3" id="book-nav-8-sec-08-02-example-data">示例数据与路线总览</a></li>
+<li class="book-nav-leaf"><a class="book-nav-link book-section-link no-external" href="08-base-imbalanced-sequencing.html#sec-08-02-chemistry-in-reads" data-book-level="3" id="book-nav-8-sec-08-02-chemistry-in-reads">转化如何写进 reads：质控时看什么</a></li>
+<li class="book-nav-leaf"><a class="book-nav-link book-section-link no-external" href="08-base-imbalanced-sequencing.html#sec-08-02-why-not-bwa" data-book-level="3" id="book-nav-8-sec-08-02-why-not-bwa">为什么不能直接用 BWA</a></li>
+<li class="book-nav-leaf"><a class="book-nav-link book-section-link no-external" href="08-base-imbalanced-sequencing.html#sec-08-02-bismark" data-book-level="3" id="book-nav-8-sec-08-02-bismark">比对：Bismark 的运行与输出</a></li>
+<li class="book-nav-leaf"><a class="book-nav-link book-section-link no-external" href="08-base-imbalanced-sequencing.html#sec-08-02-dedup" data-book-level="3" id="book-nav-8-sec-08-02-dedup">去重与插入长度：BS-seq 的前处理</a></li>
+<li class="book-nav-leaf"><a class="book-nav-link book-section-link no-external" href="08-base-imbalanced-sequencing.html#sec-08-02-extractor" data-book-level="3" id="book-nav-8-sec-08-02-extractor">甲基化提取：从 BAM 到逐位点计数</a></li>
+</ul></details>
+</li>
+<li>
+<details class="book-section"><summary><a class="book-nav-link book-section-link no-external" href="08-base-imbalanced-sequencing.html#sec-08-03" data-book-level="2" id="book-nav-8-sec-08-03">8.3 甲基化定量与差异甲基化区域</a></summary><ul>
+<li class="book-nav-leaf"><a class="book-nav-link book-section-link no-external" href="08-base-imbalanced-sequencing.html#sec-08-03-coverage" data-book-level="3" id="book-nav-8-sec-08-03-coverage">从 coverage 到可信位点：比例与置信区间</a></li>
+<li class="book-nav-leaf"><a class="book-nav-link book-section-link no-external" href="08-base-imbalanced-sequencing.html#sec-08-03-global" data-book-level="3" id="book-nav-8-sec-08-03-global">全局甲基化水平：样本画像与一个公共数据陷阱</a></li>
+<li class="book-nav-leaf"><a class="book-nav-link book-section-link no-external" href="08-base-imbalanced-sequencing.html#sec-08-03-dml-dmr" data-book-level="3" id="book-nav-8-sec-08-03-dml-dmr">差异的统计单位：从 DML 到 DMR</a></li>
+<li class="book-nav-leaf"><a class="book-nav-link book-section-link no-external" href="08-base-imbalanced-sequencing.html#sec-08-03-dss" data-book-level="3" id="book-nav-8-sec-08-03-dss">DSS 实战：to2i 对 toSerum 的差异甲基化</a></li>
+</ul></details>
+</li>
+<li>
+<details class="book-section"><summary><a class="book-nav-link book-section-link no-external" href="08-base-imbalanced-sequencing.html#sec-08-04" data-book-level="2" id="book-nav-8-sec-08-04">8.4 RNA 上的甲基化修饰</a></summary><ul>
+<li class="book-nav-leaf"><a class="book-nav-link book-section-link no-external" href="08-base-imbalanced-sequencing.html#sec-08-04-modification-landscape" data-book-level="3" id="book-nav-8-sec-08-04-modification-landscape">mRNA 上的修饰版图：m6A、m1A、m6Am 与 m5C</a></li>
+<li class="book-nav-leaf"><a class="book-nav-link book-section-link no-external" href="08-base-imbalanced-sequencing.html#sec-08-04-m6a-biology" data-book-level="3" id="book-nav-8-sec-08-04-m6a-biology">m6A：含量最丰富、研究最热的修饰</a></li>
+<li class="book-nav-leaf"><a class="book-nav-link book-section-link no-external" href="08-base-imbalanced-sequencing.html#sec-08-04-m6a-methods" data-book-level="3" id="book-nav-8-sec-08-04-m6a-methods">m6A 测序技术发展：从富集到单碱基定量</a></li>
+</ul></details>
+</li>
+<li>
+<details class="book-section"><summary><a class="book-nav-link book-section-link no-external" href="08-base-imbalanced-sequencing.html#sec-08-05" data-book-level="2" id="book-nav-8-sec-08-05">8.5 GLORI 数据分析</a></summary><ul>
+<li class="book-nav-leaf"><a class="book-nav-link book-section-link no-external" href="08-base-imbalanced-sequencing.html#sec-08-05-example-data" data-book-level="3" id="book-nav-8-sec-08-05-example-data">示例数据与整体路线</a></li>
+<li class="book-nav-leaf"><a class="book-nav-link book-section-link no-external" href="08-base-imbalanced-sequencing.html#sec-08-05-qc" data-book-level="3" id="book-nav-8-sec-08-05-qc">文库质控：A 的坍缩与转化率</a></li>
+<li class="book-nav-leaf"><a class="book-nav-link book-section-link no-external" href="08-base-imbalanced-sequencing.html#sec-08-05-pipeline" data-book-level="3" id="book-nav-8-sec-08-05-pipeline">从 reads 到位点修饰比例：流程与输出</a></li>
+<li class="book-nav-leaf"><a class="book-nav-link book-section-link no-external" href="08-base-imbalanced-sequencing.html#sec-08-05-quantify" data-book-level="3" id="book-nav-8-sec-08-05-quantify">位点定量与敲低效应：真实数据分析</a></li>
+</ul></details>
+</li>
+<li>
+<details class="book-section"><summary><a class="book-nav-link book-section-link no-external" href="08-base-imbalanced-sequencing.html#sec-08-06" data-book-level="2" id="book-nav-8-sec-08-06">8.6 IGV 复核、修饰整合与完整交付</a></summary><ul>
+<li class="book-nav-leaf"><a class="book-nav-link book-section-link no-external" href="08-base-imbalanced-sequencing.html#sec-08-06-igv" data-book-level="3" id="book-nav-8-sec-08-06-igv">用眼睛复核：IGV 里的甲基化数据</a></li>
+<li class="book-nav-leaf"><a class="book-nav-link book-section-link no-external" href="08-base-imbalanced-sequencing.html#sec-08-06-integration" data-book-level="3" id="book-nav-8-sec-08-06-integration">跨层整合：修饰、表达与功能证据</a></li>
+<li class="book-nav-leaf"><a class="book-nav-link book-section-link no-external" href="08-base-imbalanced-sequencing.html#sec-08-06-deliverables" data-book-level="3" id="book-nav-8-sec-08-06-deliverables">完整交付与自检清单</a></li>
+</ul></details>
 </li>
 </ul></details>
 </li>

@@ -926,7 +926,7 @@ plotProfile -m matrix.gz -out profile.png --dpi 200
 
 []{#src-0060-ChIP-seq-886}[]{#src-0060-ChIP-seq-890}[]{#src-0060-ChIP-seq-901}[]{#src-0060-ChIP-seq-906}
 
-区域信号数据天然适合互相叠加：ChIP 峰 × 表达数据（第 5 章的 RNA-seq：结合变化是否伴随表达变化）、峰 × 可及性（NRF1 案例中的 DNase-seq/本章的 ATAC-seq）、峰 × DNA 甲基化（WGBS）、峰 × 三维结构（Hi-C 环）。操作上都是同一模式：用 bedtools 把峰与另一数据的区间或信号对齐，再比较条件间的变化方向（delta-delta 散点图）。
+区域信号数据天然适合互相叠加：ChIP 峰 × 表达数据（第 5 章的 RNA-seq：结合变化是否伴随表达变化）、峰 × 可及性（NRF1 案例中的 DNase-seq/本章的 ATAC-seq）、峰 × DNA 甲基化（WGBS——本章 NRF1 案例同一批细胞的甲基化数据分析见[第 8 章](08-base-imbalanced-sequencing.md#sec-08-03)）、峰 × 三维结构（Hi-C 环）。操作上都是同一模式：用 bedtools 把峰与另一数据的区间或信号对齐，再比较条件间的变化方向（delta-delta 散点图）。
 
 ::::: {.callout-warning .book-warning title="注意｜联合分析前先统一处理链"}
 

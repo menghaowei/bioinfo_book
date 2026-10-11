@@ -1,0 +1,50 @@
+<svg xmlns='http://www.w3.org/2000/svg' width='760' height='620' viewBox='0 0 760 620'>
+<title>BS-seq 分析流程</title>
+<desc>从 FASTQ 到位点计数表的六个步骤（竖版）：质控、转化参考索引、三字母比对、去重、甲基化提取，最后进入位点定量与差异甲基化分析。</desc>
+<rect x='30' y='78' width='340' height='50' rx='6' fill='none' stroke='#186254' stroke-width='1.2'/>
+<text x='200.0' y='107.7' font-family="'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size='13' fill='#333333' font-weight='bold' text-anchor='middle'>① 原始质控与去接头</text>
+<text x='386' y='94' font-family="'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size='12' fill='#186254' font-weight='bold' text-anchor='start'>trimmed FASTQ</text>
+<text x='386' y='110' font-family="'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size='12' fill='#6b7280' font-weight='normal' text-anchor='start'>reads 带系统性 C→T 错配属预期（trim_galore）</text>
+<text x='386' y='124' font-family="'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size='12' fill='#b45309' font-weight='normal' text-anchor='start'>检查：碱基组成 T 高 C 低、接头去除</text>
+<line x1='200.0' y1='128' x2='200.0' y2='164' stroke='#186254' stroke-width='2.0'/>
+<line x1='200.0' y1='164' x2='203.9' y2='155.9' stroke='#186254' stroke-width='2.0'/>
+<line x1='200.0' y1='164' x2='196.1' y2='155.9' stroke='#186254' stroke-width='2.0'/>
+<rect x='30' y='164' width='340' height='50' rx='6' fill='none' stroke='#186254' stroke-width='1.2'/>
+<text x='200.0' y='193.7' font-family="'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size='13' fill='#333333' font-weight='bold' text-anchor='middle'>② 建立转化参考索引</text>
+<text x='386' y='180' font-family="'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size='12' fill='#186254' font-weight='bold' text-anchor='start'>两套三字母基因组索引</text>
+<text x='386' y='196' font-family="'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size='12' fill='#6b7280' font-weight='normal' text-anchor='start'>C→T 与 G→A 各建 bowtie2 索引（bismark_genome_preparation）</text>
+<text x='386' y='210' font-family="'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size='12' fill='#b45309' font-weight='normal' text-anchor='start'>检查：CT/GA 两套索引齐全</text>
+<line x1='200.0' y1='214' x2='200.0' y2='250' stroke='#186254' stroke-width='2.0'/>
+<line x1='200.0' y1='250' x2='203.9' y2='241.9' stroke='#186254' stroke-width='2.0'/>
+<line x1='200.0' y1='250' x2='196.1' y2='241.9' stroke='#186254' stroke-width='2.0'/>
+<rect x='30' y='250' width='340' height='50' rx='6' fill='none' stroke='#186254' stroke-width='1.2'/>
+<text x='200.0' y='279.7' font-family="'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size='13' fill='#333333' font-weight='bold' text-anchor='middle'>③ 三字母比对</text>
+<text x='386' y='266' font-family="'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size='12' fill='#186254' font-weight='bold' text-anchor='start'>BAM（XM/XR/XG 标签）</text>
+<text x='386' y='282' font-family="'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size='12' fill='#6b7280' font-weight='normal' text-anchor='start'>reads 同步转换后比对，再映射回原坐标（bismark）</text>
+<text x='386' y='296' font-family="'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size='12' fill='#b45309' font-weight='normal' text-anchor='start'>检查：方向性文库比对率 50%–75%</text>
+<line x1='200.0' y1='300' x2='200.0' y2='336' stroke='#186254' stroke-width='2.0'/>
+<line x1='200.0' y1='336' x2='203.9' y2='327.9' stroke='#186254' stroke-width='2.0'/>
+<line x1='200.0' y1='336' x2='196.1' y2='327.9' stroke='#186254' stroke-width='2.0'/>
+<rect x='30' y='336' width='340' height='50' rx='6' fill='none' stroke='#186254' stroke-width='1.2'/>
+<text x='200.0' y='365.7' font-family="'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size='13' fill='#333333' font-weight='bold' text-anchor='middle'>④ 去重</text>
+<text x='386' y='352' font-family="'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size='12' fill='#186254' font-weight='bold' text-anchor='start'>去重 BAM</text>
+<text x='386' y='368' font-family="'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size='12' fill='#6b7280' font-weight='normal' text-anchor='start'>PCR 重复不算独立证据（deduplicate_bismark）</text>
+<text x='386' y='382' font-family="'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size='12' fill='#b45309' font-weight='normal' text-anchor='start'>检查：重复率是否异常</text>
+<line x1='200.0' y1='386' x2='200.0' y2='422' stroke='#186254' stroke-width='2.0'/>
+<line x1='200.0' y1='422' x2='203.9' y2='413.9' stroke='#186254' stroke-width='2.0'/>
+<line x1='200.0' y1='422' x2='196.1' y2='413.9' stroke='#186254' stroke-width='2.0'/>
+<rect x='30' y='422' width='340' height='50' rx='6' fill='none' stroke='#186254' stroke-width='1.2'/>
+<text x='200.0' y='451.7' font-family="'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size='13' fill='#333333' font-weight='bold' text-anchor='middle'>⑤ 甲基化提取</text>
+<text x='386' y='438' font-family="'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size='12' fill='#186254' font-weight='bold' text-anchor='start'>bismark.cov / cytosine_report</text>
+<text x='386' y='454' font-family="'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size='12' fill='#6b7280' font-weight='normal' text-anchor='start'>逐位点清点甲基化/未甲基化 read（bismark_methylation_extractor）</text>
+<text x='386' y='468' font-family="'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size='12' fill='#b45309' font-weight='normal' text-anchor='start'>检查：M-bias 平坦、CHH 接近噪声地板</text>
+<line x1='200.0' y1='472' x2='200.0' y2='508' stroke='#186254' stroke-width='2.0'/>
+<line x1='200.0' y1='508' x2='203.9' y2='499.9' stroke='#186254' stroke-width='2.0'/>
+<line x1='200.0' y1='508' x2='196.1' y2='499.9' stroke='#186254' stroke-width='2.0'/>
+<rect x='30' y='508' width='340' height='50' rx='6' fill='#e8f4f1' stroke='#186254' stroke-width='1.2'/>
+<text x='200.0' y='537.7' font-family="'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size='13' fill='#333333' font-weight='bold' text-anchor='middle'>⑥ 位点计数表就绪，进入定量与 DMR</text>
+<text x='386' y='524' font-family="'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size='12' fill='#186254' font-weight='bold' text-anchor='start'>位点 × 样本计数表</text>
+<text x='386' y='540' font-family="'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size='12' fill='#6b7280' font-weight='normal' text-anchor='start'>覆盖率过滤、样本合并后做 DML/DMR 分析（8.3）</text>
+<text x='386' y='554' font-family="'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size='12' fill='#b45309' font-weight='normal' text-anchor='start'>检查：覆盖深度、转化率对照</text>
+<text x='30' y='40' font-family="'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size='15' fill='#186254' font-weight='bold' text-anchor='start'>每一步都在为“从错配读出甲基化”整理证据：转化错配是信号本体，但它的前提必须被显式管理</text>
+</svg>

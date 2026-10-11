@@ -1,0 +1,22 @@
+<svg xmlns='http://www.w3.org/2000/svg' width='900' height='520' viewBox='0 0 900 520'>
+<title>SNP 混杂：与 m6A 相同的信号</title>
+<desc>基因组 A/G SNP 的 G 错配与“m6A 被保护”的 A 残留，在单一样本中无法区分；需要 SNP 数据库或对照排除。</desc>
+<text x='30' y='34' font-family="'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size='15' fill='#333333' font-weight='bold' text-anchor='start'>情形一：真正的 m6A 位点</text>
+<text x='60' y='74' font-family="'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size='13' fill='#6b7280' font-weight='normal' text-anchor='start'>基因组:</text>
+<text x='140' y='74' font-family="ui-monospace, 'SFMono-Regular', Menlo, Consolas, 'Liberation Mono', monospace" font-size='18' fill='#333333' font-weight='normal' text-anchor='start'>…GACUAGAACUAA…</text>
+<text x='140' y='100' font-family="'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size='12' fill='#6b7280' font-weight='normal' text-anchor='start'>↑ 第 7 位为 A（无 SNP）</text>
+<text x='140' y='132' font-family="ui-monospace, 'SFMono-Regular', Menlo, Consolas, 'Liberation Mono', monospace" font-size='12' fill='#333333' font-weight='normal' text-anchor='start'>…G G G A G G…（带 m6A 的 reads：A 被保护而残留）</text>
+<text x='140' y='158' font-family="ui-monospace, 'SFMono-Regular', Menlo, Consolas, 'Liberation Mono', monospace" font-size='12' fill='#333333' font-weight='normal' text-anchor='start'>…G G G G G G…（未修饰 reads：A 脱氨读作 G）</text>
+<text x='560' y='150' font-family="'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size='13' fill='#186254' font-weight='bold' text-anchor='start'>A 残留比例 ≈ m6A 比例</text>
+<line x1='30' y1='220' x2='870' y2='220' stroke='#9ca3af' stroke-width='1'/>
+<text x='30' y='252' font-family="'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size='15' fill='#333333' font-weight='bold' text-anchor='start'>情形二：A/G SNP（基因组变异）伪装成 m6A</text>
+<text x='60' y='292' font-family="'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size='13' fill='#6b7280' font-weight='normal' text-anchor='start'>基因组:</text>
+<text x='140' y='292' font-family="ui-monospace, 'SFMono-Regular', Menlo, Consolas, 'Liberation Mono', monospace" font-size='18' fill='#333333' font-weight='normal' text-anchor='start'>…GACUAGAACUAA…</text>
+<text x='140' y='318' font-family="'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size='12' fill='#b45309' font-weight='normal' text-anchor='start'>↑ 该个体此位点是 A/G 杂合 SNP（一条染色单体为 G）</text>
+<text x='140' y='350' font-family="ui-monospace, 'SFMono-Regular', Menlo, Consolas, 'Liberation Mono', monospace" font-size='12' fill='#333333' font-weight='normal' text-anchor='start'>…G G G G G G…（G 等位单体：本来就是 G）</text>
+<text x='140' y='376' font-family="ui-monospace, 'SFMono-Regular', Menlo, Consolas, 'Liberation Mono', monospace" font-size='12' fill='#333333' font-weight='normal' text-anchor='start'>…G G G G G G…（A 等位单体未修饰：脱氨后也读 G）</text>
+<text x='140' y='402' font-family="ui-monospace, 'SFMono-Regular', Menlo, Consolas, 'Liberation Mono', monospace" font-size='12' fill='#333333' font-weight='normal' text-anchor='start'>…G G G A G G…（A 等位单体若带 m6A：读 A，与 m6A 信号混在一起）</text>
+<rect x='30' y='426' width='840' height='64' rx='8' fill='#fdf3e3' stroke='#b45309' stroke-width='1.2'/>
+<text x='50' y='450' font-family="'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size='13' fill='#b45309' font-weight='bold' text-anchor='start'>关键：A/G SNP 中的 G 等位 reads 与“未修饰 A 脱氨成 G”的 reads 完全同形；</text>
+<text x='50' y='474' font-family="'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size='12' fill='#333333' font-weight='normal' text-anchor='start'>杂合 SNP 若恰有 m6A，比例会被错误合并。必须用 dbSNP/1000G 等已知变异位点排除（GLORI-tools 内置多重过滤）。</text>
+</svg>
