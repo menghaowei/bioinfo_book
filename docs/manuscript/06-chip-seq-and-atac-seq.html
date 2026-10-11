@@ -799,7 +799,7 @@ window.Quarto = {
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
 <h1 class="title"><span id="sec-ch06" class="quarto-section-identifier"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">ChIP-seq与ATAC-seq：从富集信号到差异分析</span></span></h1>
-<p class="chapter-last-modified"><time datetime="2026-10-11T10:21:23+08:00" title="本章书稿最后修改时间（北京时间，UTC+08:00）">最后修改：2026-10-11 10:21（北京时间）</time></p>
+<p class="chapter-last-modified"><time datetime="2026-10-11T10:35:41+08:00" title="本章书稿最后修改时间（北京时间，UTC+08:00）">最后修改：2026-10-11 10:35（北京时间）</time></p>
 </div>
 
 
@@ -908,14 +908,14 @@ window.Quarto = {
 <div id="fig-06-atac-principle" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-06-atac-principle-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="../assets/07-chip-seq-and-atac-seq/017-atac-principle.svg" class="img-fluid figure-img">
+<img src="../assets/07-chip-seq-and-atac-seq/021-buenrostro2013-fig1.jpg" class="img-fluid figure-img" style="width:78.0%">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-06-atac-principle-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 图&nbsp;6.3: ATAC-seq 原理示意
 </figcaption>
 </figure>
 </div>
-<p><a href="#fig-06-atac-principle" class="quarto-xref">图&nbsp;<span>6.3</span></a> 概括了从开放染色质到测序文库的转换，以及片段长度与核小体组织的对应关系——这个对应关系正是 6.5 节质控指标的来源。</p>
+<p><a href="#fig-06-atac-principle" class="quarto-xref">图&nbsp;<span>6.3</span></a> 的图 a 概括了从开放染色质到测序文库的转换：Tn5 在开放的染色质区域切割并同时连上接头（图源：Buenrostro 等 2013<a href="#fn5" class="footnote-ref" id="fnref5" role="doc-noteref"><sup>5</sup></a>，图 b、c 为文库片段与测序环节）。片段长度与核小体组织的对应关系（无核小体区/单核小体/多核小体）则是 6.5 节质控指标的来源。</p>
 </section>
 <section id="topic-06-three-signals" class="level3">
 <h3 class="anchored" data-anchor-id="topic-06-three-signals">三类信号放在一起看</h3>
@@ -1016,7 +1016,7 @@ window.Quarto = {
 <section id="topic-06-antibody" class="level3">
 <h3 class="anchored" data-anchor-id="topic-06-antibody">抗体质量：实验成败的第一道关</h3>
 <p><span id="src-0060-ChIP-seq-66"></span></p>
-<p>ChIP-seq 的特异性完全依赖抗体。系统性评估的结果并不乐观：modENCODE 项目检测了 147 种商品化组蛋白修饰抗体，约 22% 未通过 ChIP 特异性检验，其中大部分还标称为 “ChIP 级”<a href="#fn5" class="footnote-ref" id="fnref5" role="doc-noteref"><sup>5</sup></a>。同一蛋白的不同抗体可能识别不同表位，在基因组不同位置的暴露程度不同，可能给出不一致的富集图谱（单克隆抗体尤其如此）。</p>
+<p>ChIP-seq 的特异性完全依赖抗体。系统性评估的结果并不乐观：modENCODE 项目检测了 147 种商品化组蛋白修饰抗体，约 22% 未通过 ChIP 特异性检验，其中大部分还标称为 “ChIP 级”<a href="#fn6" class="footnote-ref" id="fnref6" role="doc-noteref"><sup>6</sup></a>。同一蛋白的不同抗体可能识别不同表位，在基因组不同位置的暴露程度不同，可能给出不一致的富集图谱（单克隆抗体尤其如此）。</p>
 <p>实际选择抗体时，核验这几件事：厂商是否提供 ChIP 或 ChIP-seq 应用层面的验证数据；能否用 Western blot 确认条带特异；有条件时用敲低或敲除样本验证信号消失。ENCODE 的抗体验证标准（genetic, orthogonal, independent）可以作为参考框架。</p>
 </section>
 <section id="topic-06-depth-reps" class="level3">
@@ -1028,7 +1028,7 @@ window.Quarto = {
 </section>
 <section id="topic-06-nrf1-case" class="level3">
 <h3 class="anchored" data-anchor-id="topic-06-nrf1-case">主案例：NRF1 与 DNA 甲基化的竞争</h3>
-<p>本章第一条例线来自一个具体的生物学问题：<strong>DNA 甲基化是否阻挡转录因子的结合？</strong> 如果某些转录因子不能结合甲基化的 DNA，那么在去除甲基化的细胞里，它们应该出现新的结合位点。NRF1 就是这样的因子<a href="#fn6" class="footnote-ref" id="fnref6" role="doc-noteref"><sup>6</sup></a>。</p>
+<p>本章第一条例线来自一个具体的生物学问题：<strong>DNA 甲基化是否阻挡转录因子的结合？</strong> 如果某些转录因子不能结合甲基化的 DNA，那么在去除甲基化的细胞里，它们应该出现新的结合位点。NRF1 就是这样的因子<a href="#fn7" class="footnote-ref" id="fnref7" role="doc-noteref"><sup>7</sup></a>。</p>
 <p>实验设计：野生型小鼠胚胎干细胞（WT）与 DNA 甲基转移酶三敲除细胞系（Dnmt1/3a/3b triple knockout，TKO）中，分别做 NRF1 的 ChIP-seq（各两个生物学重复）、组蛋白修饰 H3K27ac 的 ChIP-seq（各两个重复），并各配一个 input。论文还配套了 DNase-seq（开放的染色质区域）与 RNA-seq——多组数据互相印证正是这类研究的常见做法。</p>
 <p><span id="src-0060-ChIP-seq-229"></span></p>
 <p>这 10 个样本的原始数据公开在 GEO（系列号 <strong>GSE67867</strong>）与 ENA（项目 <strong>PRJNA281090</strong>）：</p>
@@ -1376,7 +1376,7 @@ SRR2500885 (input):          98.69% overall alignment rate</code></pre>
 </figcaption>
 </figure>
 </div>
-<p><a href="#fig-07-chip-seq-and-atac-seq-013" class="quarto-xref">图&nbsp;<span>6.10</span></a> 按面板 A–C 展示三类信号：每列从上到下是实验设计示意、正负链 reads 分布（注意窄峰信号的双峰结构）、片段密度与最终被识别的峰区域（图源：Mifsud 等 2018<a href="#fn7" class="footnote-ref" id="fnref7" role="doc-noteref"><sup>7</sup></a>，CC BY 4.0）。</p>
+<p><a href="#fig-07-chip-seq-and-atac-seq-013" class="quarto-xref">图&nbsp;<span>6.10</span></a> 按面板 A–C 展示三类信号：每列从上到下是实验设计示意、正负链 reads 分布（注意窄峰信号的双峰结构）、片段密度与最终被识别的峰区域（图源：Mifsud 等 2018<a href="#fn8" class="footnote-ref" id="fnref8" role="doc-noteref"><sup>8</sup></a>，CC BY 4.0）。</p>
 <p><strong>并非所有组蛋白修饰都是宽峰</strong>。ENCODE 对组蛋白修饰的分类：</p>
 <div id="tbl-06-peak-types" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-tbl figure">
@@ -1435,7 +1435,7 @@ SRR2500885 (input):          98.69% overall alignment rate</code></pre>
 <section id="topic-06-macs3" class="level3">
 <h3 class="anchored" data-anchor-id="topic-06-macs3">MACS3 实操：NRF1 窄峰与 H3K27ac 宽峰</h3>
 <p><span id="src-0060-ChIP-seq-721"></span><span id="src-0060-ChIP-seq-717"></span><span id="src-0060-ChIP-seq-709"></span><span id="src-0060-ChIP-seq-701"></span></p>
-<p><strong>MACS</strong> 是使用最广的 peak caller<a href="#fn8" class="footnote-ref" id="fnref8" role="doc-noteref"><sup>8</sup></a>，现行版本为 MACS3<a href="https://github.com/macs3-project/MACS">注：项目主页</a>，基础 <code>callpeak</code> 语法与 MACS2 一致。对窄峰数据：</p>
+<p><strong>MACS</strong> 是使用最广的 peak caller<a href="#fn9" class="footnote-ref" id="fnref9" role="doc-noteref"><sup>9</sup></a>，现行版本为 MACS3<a href="https://github.com/macs3-project/MACS">注：项目主页</a>，基础 <code>callpeak</code> 语法与 MACS2 一致。对窄峰数据：</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb12" data-book-role="code"><pre data-code-text="&quot;# NRF1 WT 两个重复，各自对 input 找峰（窄峰）\nmacs3 callpeak \\\n  -t align/SRR2500883.q30.bam -c align/SRR2500885.q30.bam \\\n  -f BAM -g mm -n NRF1_WT1 -q 0.05 --outdir peaks\nmacs3 callpeak \\\n  -t align/SRR2500884.q30.bam -c align/SRR2500885.q30.bam \\\n  -f BAM -g mm -n NRF1_WT2 -q 0.05 --outdir peaks&quot;" class="sourceCode numberSource bash numberLines code-with-copy"><code class="sourceCode bash"><span id="cb12-1"><a href="#cb12-1"></a><span class="co"># NRF1 WT 两个重复，各自对 input 找峰（窄峰）</span></span>
 <span id="cb12-2"><a href="#cb12-2"></a><span class="ex">macs3</span> callpeak <span class="dt">\</span></span>
 <span id="cb12-3"><a href="#cb12-3"></a>  <span class="at">-t</span> align/SRR2500883.q30.bam <span class="at">-c</span> align/SRR2500885.q30.bam <span class="dt">\</span></span>
@@ -1562,7 +1562,7 @@ NRF1_WT2: 15,306 个峰（q&lt;0.05）</code></pre>
 </section>
 <section id="topic-06-atac-data" class="level3">
 <h3 class="anchored" data-anchor-id="topic-06-atac-data">示例数据：Irf8 敲除小鼠的造血干细胞</h3>
-<p>第二条案例线来自另一个转录因子故事：<strong>Irf8 编码的转录因子对造血干细胞（LT-HSC）的染色质可及性有什么影响？</strong> 数据为 Irf8 野生型（+/+）与敲除（−/−）小鼠 LT-HSC 的 ATAC-seq，各两个生物学重复，双端测序<a href="#fn9" class="footnote-ref" id="fnref9" role="doc-noteref"><sup>9</sup></a>：</p>
+<p>第二条案例线来自另一个转录因子故事：<strong>Irf8 编码的转录因子对造血干细胞（LT-HSC）的染色质可及性有什么影响？</strong> 数据为 Irf8 野生型（+/+）与敲除（−/−）小鼠 LT-HSC 的 ATAC-seq，各两个生物学重复，双端测序<a href="#fn10" class="footnote-ref" id="fnref10" role="doc-noteref"><sup>10</sup></a>：</p>
 <div id="tbl-06-atac-samples" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-tbl figure">
 <figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-06-atac-samples-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
@@ -1664,7 +1664,7 @@ SRR5852297 (KO rep2): 91.93% overall alignment rate</code></pre>
 </section>
 <section id="topic-06-tn5-shift" class="level3">
 <h3 class="anchored" data-anchor-id="topic-06-tn5-shift">Tn5 偏置与偏移校正</h3>
-<p>Tn5 转座酶以同源二聚体插入 DNA，两个单体的切割位点相隔 9 bp，而测序读到的接头位置是<strong>插入位点</strong>、不是切割位点：正链 reads 应向 3’ 端平移 +4 bp，负链 −5 bp，才能让片段端点对齐真实的可及位置<a href="#fn10" class="footnote-ref" id="fnref10" role="doc-noteref"><sup>10</sup></a>。deepTools 的 <code>alignmentSieve</code> 提供了现成参数：</p>
+<p>Tn5 转座酶以同源二聚体插入 DNA，两个单体的切割位点相隔 9 bp，而测序读到的接头位置是<strong>插入位点</strong>、不是切割位点：正链 reads 应向 3’ 端平移 +4 bp，负链 −5 bp，才能让片段端点对齐真实的可及位置<a href="#fn11" class="footnote-ref" id="fnref11" role="doc-noteref"><sup>11</sup></a>。deepTools 的 <code>alignmentSieve</code> 提供了现成参数：</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb21" data-book-role="code"><pre data-code-text="&quot;for id in SRR5852294 SRR5852295 SRR5852296 SRR5852297\ndo\n  alignmentSieve -b ${id}.final.bam -o ${id}.shifted.bam --ATACshift\ndone&quot;" class="sourceCode numberSource bash numberLines code-with-copy"><code class="sourceCode bash"><span id="cb21-1"><a href="#cb21-1"></a><span class="cf">for</span> id <span class="kw">in</span> SRR5852294 SRR5852295 SRR5852296 SRR5852297</span>
 <span id="cb21-2"><a href="#cb21-2"></a><span class="cf">do</span></span>
 <span id="cb21-3"><a href="#cb21-3"></a>  <span class="ex">alignmentSieve</span> <span class="at">-b</span> <span class="va">${id}</span>.final.bam <span class="at">-o</span> <span class="va">${id}</span>.shifted.bam <span class="at">--ATACshift</span></span>
@@ -1797,7 +1797,7 @@ SRR5852297: TSS 富集度 3.5, FRiP 32.6%, 高质量常染色体比对 15,182,56
 <section id="topic-06-idr" class="level3">
 <h3 class="anchored" data-anchor-id="topic-06-idr">IDR：用重复定义可信峰</h3>
 <p><span id="src-0060-ChIP-seq-747"></span><span id="src-0060-ChIP-seq-755"></span><span id="src-0060-ChIP-seq-760"></span></p>
-<p><strong>IDR（irreproducible discovery rate）</strong> 的思路与 FDR 类似，但针对重复：把两个重复各自的峰列表按信号强度排序后配对，真实信号在两个重复中的排序高度一致，噪声的排序则不一致；IDR 找到”排序一致性开始崩溃”的位置，把之前的峰判为可重复<a href="#fn11" class="footnote-ref" id="fnref11" role="doc-noteref"><sup>11</sup></a>。</p>
+<p><strong>IDR（irreproducible discovery rate）</strong> 的思路与 FDR 类似，但针对重复：把两个重复各自的峰列表按信号强度排序后配对，真实信号在两个重复中的排序高度一致，噪声的排序则不一致；IDR 找到”排序一致性开始崩溃”的位置，把之前的峰判为可重复<a href="#fn12" class="footnote-ref" id="fnref12" role="doc-noteref"><sup>12</sup></a>。</p>
 <p>使用要点：</p>
 <ul>
 <li>峰列表<strong>不能预先卡严阈值</strong>——IDR 需要完整的”信号+噪声”排序（惯例：<code>-p 1e-2</code> 宽松阈值）；</li>
@@ -1855,7 +1855,7 @@ SRR5852297: TSS 富集度 3.5, FRiP 32.6%, 高质量常染色体比对 15,182,56
 <section id="topic-06-diffbind" class="level3">
 <h3 class="anchored" data-anchor-id="topic-06-diffbind">DiffBind 实操</h3>
 <p><span id="src-0060-ChIP-seq-807"></span></p>
-<p><strong>DiffBind</strong>（Bioconductor）以样本表驱动整个流程<a href="#fn12" class="footnote-ref" id="fnref12" role="doc-noteref"><sup>12</sup></a>。以 ATAC 案例为例，先写样本表（CSV，bam 为 6.5 节产物、峰为各样本 MACS3 输出）：</p>
+<p><strong>DiffBind</strong>（Bioconductor）以样本表驱动整个流程<a href="#fn13" class="footnote-ref" id="fnref13" role="doc-noteref"><sup>13</sup></a>。以 ATAC 案例为例，先写样本表（CSV，bam 为 6.5 节产物、峰为各样本 MACS3 输出）：</p>
 <pre data-code-text="&quot;SampleID,Condition,Replicate,bamReads,Peaks,PeakCaller\nWT_rep1,WT,1,SRR5852294.final.bam,peaks/ATAC_SRR5852294_peaks.narrowPeak,narrow\nWT_rep2,WT,2,SRR5852295.final.bam,peaks/ATAC_SRR5852295_peaks.narrowPeak,narrow\nKO_rep1,KO,1,SRR5852296.final.bam,peaks/ATAC_SRR5852296_peaks.narrowPeak,narrow\nKO_rep2,KO,2,SRR5852297.final.bam,peaks/ATAC_SRR5852297_peaks.narrowPeak,narrow&quot;" class="text" data-book-role="data" data-code-title="atac_samplesheet.csv"><code>SampleID,Condition,Replicate,bamReads,Peaks,PeakCaller
 WT_rep1,WT,1,SRR5852294.final.bam,peaks/ATAC_SRR5852294_peaks.narrowPeak,narrow
 WT_rep2,WT,2,SRR5852295.final.bam,peaks/ATAC_SRR5852295_peaks.narrowPeak,narrow
@@ -2010,20 +2010,21 @@ p=1e-2738；7,661 条目标序列中 3,147 条（41%）含该 motif</code></pre>
 <li id="fn2"><p>Skene PJ, Henikoff S. An efficient targeted nuclease strategy for high-resolution mapping of DNA binding sites. <em>eLife</em> 6:e21856（2017）。<a href="https://elifesciences.org/articles/21856">论文页</a>。<a href="#fnref2" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
 <li id="fn3"><p>Kaya-Okur HS, et al.&nbsp;CUT&amp;Tag for efficient epigenomic profiling of small samples and single cells. <em>Nature Communications</em> 10:1930（2019）。<a href="https://www.nature.com/articles/s41467-019-09983-4">论文页</a>。<a href="#fnref3" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
 <li id="fn4"><p>Buenrostro JD, et al.&nbsp;Transposition of native chromatin for fast and sensitive epigenomic profiling of open chromatin, DNA-binding proteins and nucleosome position. <em>Nature Methods</em> 10:1213–1218（2013）。<a href="https://www.nature.com/articles/nmeth.2688">论文页</a>。<a href="#fnref4" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
-<li id="fn5"><p>Egelhofer L, et al.&nbsp;An assessment of histone-modification antibody quality. <em>Nature Structural &amp; Molecular Biology</em> 17:662–664（2010）。<a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC3017233/">PMC 全文</a>。<a href="#fnref5" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
-<li id="fn6"><p>Yin Y, et al.&nbsp;Competition between DNA methylation and transcription factors determines binding of NRF1. <em>Nature</em> 528:575–579（2015）。<a href="https://www.nature.com/articles/nature16462">论文页</a>；数据：<a href="https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE67867">GSE67867</a>。<a href="#fnref6" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
-<li id="fn7"><p>Mifsud B, Zarnack K, Bardet AF. Practical Guide to ChIP-seq Data Analysis. <em>Epigenomes</em> 2(4):20（2018）。CC BY 4.0。<a href="https://doi.org/10.3390/epigenomes2040020">论文页</a>。<a href="#fnref7" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
-<li id="fn8"><p>Zhang Y, et al.&nbsp;Model-based analysis of ChIP-Seq (MACS). <em>Genome Biology</em> 9:R137（2008）。<a href="https://link.springer.com/article/10.1186/gb-2008-9-9-r137">论文页</a>。<a href="#fnref8" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
-<li id="fn9"><p>Irf8 ATAC-seq 数据：Genome-wide maps of chromatin accessibility in Irf8+/+ and Irf8-/- mice LT-HSC cells。<a href="https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE101670">GSE101670</a>。<a href="#fnref9" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
-<li id="fn10"><p>Picelli S, et al.&nbsp;Tn5 transposase and tagmentation procedures for massively scaled sequencing projects. <em>Genome Research</em> 24:2033–2040（2014）。<a href="https://www.ncbi.nlm.nih.gov/pmc/articles/PMC3959581/">论文页</a>。<a href="#fnref10" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
-<li id="fn11"><p>Li Q, Brown JB, Huang H, Bickel PJ. Measuring reproducibility of high-throughput experiments. <em>Annals of Applied Statistics</em> 5:1752–1779（2011）。<a href="https://projecteuclid.org/journals/annals-of-applied-statistics/volume-5/issue-3/Measuring-reproducibility-of-high-throughput-experiments/10.1214/11-AOAS466.full">论文页</a>。<a href="#fnref11" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
-<li id="fn12"><p>Ross-Innes CS, et al.&nbsp;Differential oestrogen receptor binding is associated with clinical outcome in breast cancer. <em>Nature</em> 481:389–393（2012）（DiffBind 的示例分析）。<a href="https://www.nature.com/articles/nature10730">论文页</a>。<a href="#fnref12" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn5"><p>Buenrostro JD, et al.&nbsp;Transposition of native chromatin for fast and sensitive epigenomic profiling of open chromatin, DNA-binding proteins and nucleosome position. <em>Nature Methods</em> 10:1213–1218（2013）。<a href="https://www.nature.com/articles/nmeth.2688">论文页</a>。<a href="#fnref5" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn6"><p>Egelhofer L, et al.&nbsp;An assessment of histone-modification antibody quality. <em>Nature Structural &amp; Molecular Biology</em> 17:662–664（2010）。<a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC3017233/">PMC 全文</a>。<a href="#fnref6" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn7"><p>Yin Y, et al.&nbsp;Competition between DNA methylation and transcription factors determines binding of NRF1. <em>Nature</em> 528:575–579（2015）。<a href="https://www.nature.com/articles/nature16462">论文页</a>；数据：<a href="https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE67867">GSE67867</a>。<a href="#fnref7" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn8"><p>Mifsud B, Zarnack K, Bardet AF. Practical Guide to ChIP-seq Data Analysis. <em>Epigenomes</em> 2(4):20（2018）。CC BY 4.0。<a href="https://doi.org/10.3390/epigenomes2040020">论文页</a>。<a href="#fnref8" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn9"><p>Zhang Y, et al.&nbsp;Model-based analysis of ChIP-Seq (MACS). <em>Genome Biology</em> 9:R137（2008）。<a href="https://link.springer.com/article/10.1186/gb-2008-9-9-r137">论文页</a>。<a href="#fnref9" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn10"><p>Irf8 ATAC-seq 数据：Genome-wide maps of chromatin accessibility in Irf8+/+ and Irf8-/- mice LT-HSC cells。<a href="https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE101670">GSE101670</a>。<a href="#fnref10" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn11"><p>Picelli S, et al.&nbsp;Tn5 transposase and tagmentation procedures for massively scaled sequencing projects. <em>Genome Research</em> 24:2033–2040（2014）。<a href="https://www.ncbi.nlm.nih.gov/pmc/articles/PMC3959581/">论文页</a>。<a href="#fnref11" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn12"><p>Li Q, Brown JB, Huang H, Bickel PJ. Measuring reproducibility of high-throughput experiments. <em>Annals of Applied Statistics</em> 5:1752–1779（2011）。<a href="https://projecteuclid.org/journals/annals-of-applied-statistics/volume-5/issue-3/Measuring-reproducibility-of-high-throughput-experiments/10.1214/11-AOAS466.full">论文页</a>。<a href="#fnref12" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn13"><p>Ross-Innes CS, et al.&nbsp;Differential oestrogen receptor binding is associated with clinical outcome in breast cancer. <em>Nature</em> 481:389–393（2012）（DiffBind 的示例分析）。<a href="https://www.nature.com/articles/nature10730">论文页</a>。<a href="#fnref13" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
 </ol>
 </section>
 
 </main> <!-- /main -->
 <div class="book-toolbar" role="navigation" aria-label="阅读工具">
-  <div class="book-brand"><span class="book-brand-name">AI时代生信入门</span><time class="book-last-modified" datetime="2026-10-11T10:21:23+08:00" title="最后修改时间（北京时间，UTC+08:00）">最后修改 2026-10-11 10:21</time></div>
+  <div class="book-brand"><span class="book-brand-name">AI时代生信入门</span><time class="book-last-modified" datetime="2026-10-11T10:35:41+08:00" title="最后修改时间（北京时间，UTC+08:00）">最后修改 2026-10-11 10:35</time></div>
   <button class="book-menu-button" type="button" aria-controls="quarto-sidebar" aria-expanded="false">目录</button>
   <button class="book-search-button" type="button">搜索</button>
 </div>
