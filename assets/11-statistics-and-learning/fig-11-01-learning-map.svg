@@ -1,99 +1,99 @@
-<svg xmlns='http://www.w3.org/2000/svg' width='1060' height='700' viewBox='0 0 1060 700' role='img' aria-labelledby='t d'>
+<svg xmlns='http://www.w3.org/2000/svg' width='760' height='446' viewBox='0 0 760 446' role='img' aria-labelledby='t d'>
 <title id='t'>生信分析中的统计问题学习地图</title>
 <desc id='d'>按问题类型组织统计与机器学习方法：左列问题、中列方法、右列数学基础与本书章节</desc>
-<text x='172.5' y='66' font-family="'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size='15' fill='#186254' font-weight='bold' text-anchor='middle'>你想回答什么</text>
-<text x='507.5' y='66' font-family="'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size='15' fill='#186254' font-weight='bold' text-anchor='middle'>常用方法</text>
-<text x='862.5' y='66' font-family="'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size='15' fill='#186254' font-weight='bold' text-anchor='middle'>数学基础 · 本书位置</text>
-<rect x='30' y='96' width='285' height='66' rx='3' fill='#e8f4f1' stroke='#186254' stroke-width='1.4'/>
-<text x='172.5' y='134.0' font-family="'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size='14' fill='#333333' font-weight='bold' text-anchor='middle'>这批数据长什么样？</text>
-<line x1='321' y1='129.0' x2='327' y2='129.0' stroke='#186254' stroke-width='1.6'/>
-<line x1='327.0' y1='129.0' x2='318.9' y2='125.1' stroke='#186254' stroke-width='1.6'/>
-<line x1='327.0' y1='129.0' x2='318.9' y2='132.9' stroke='#186254' stroke-width='1.6'/>
-<rect x='335' y='96' width='345' height='66' rx='3' fill='none' stroke='#186254' stroke-width='1.2'/>
-<text x='507.5' y='134.0' font-family="'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size='13' fill='#333333' font-weight='normal' text-anchor='middle'>均值 · 方差 · 分位数 · 可视化</text>
-<line x1='686' y1='129.0' x2='692' y2='129.0' stroke='#186254' stroke-width='1.6'/>
-<line x1='692.0' y1='129.0' x2='683.9' y2='125.1' stroke='#186254' stroke-width='1.6'/>
-<line x1='692.0' y1='129.0' x2='683.9' y2='132.9' stroke='#186254' stroke-width='1.6'/>
-<rect x='700' y='96' width='325' height='66' rx='3' fill='none' stroke='#9ca3af' stroke-width='1.1'/>
-<text x='714' y='123.0' font-family="'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size='13' fill='#333333' font-weight='normal' text-anchor='start'>初等统计</text>
-<text x='714' y='147.0' font-family="'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size='12' fill='#6b7280' font-weight='normal' text-anchor='start'>11.2</text>
-<rect x='30' y='174' width='285' height='66' rx='3' fill='#e8f4f1' stroke='#186254' stroke-width='1.4'/>
-<text x='172.5' y='212.0' font-family="'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size='14' fill='#333333' font-weight='bold' text-anchor='middle'>数据是怎么产生的？</text>
-<line x1='321' y1='207.0' x2='327' y2='207.0' stroke='#186254' stroke-width='1.6'/>
-<line x1='327.0' y1='207.0' x2='318.9' y2='203.1' stroke='#186254' stroke-width='1.6'/>
-<line x1='327.0' y1='207.0' x2='318.9' y2='210.9' stroke='#186254' stroke-width='1.6'/>
-<rect x='335' y='174' width='345' height='66' rx='3' fill='none' stroke='#186254' stroke-width='1.2'/>
-<text x='507.5' y='212.0' font-family="'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size='13' fill='#333333' font-weight='normal' text-anchor='middle'>概率分布：泊松/负二项/正态</text>
-<line x1='686' y1='207.0' x2='692' y2='207.0' stroke='#186254' stroke-width='1.6'/>
-<line x1='692.0' y1='207.0' x2='683.9' y2='203.1' stroke='#186254' stroke-width='1.6'/>
-<line x1='692.0' y1='207.0' x2='683.9' y2='210.9' stroke='#186254' stroke-width='1.6'/>
-<rect x='700' y='174' width='325' height='66' rx='3' fill='none' stroke='#9ca3af' stroke-width='1.1'/>
-<text x='714' y='201.0' font-family="'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size='13' fill='#333333' font-weight='normal' text-anchor='start'>概率论</text>
-<text x='714' y='225.0' font-family="'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size='12' fill='#6b7280' font-weight='normal' text-anchor='start'>11.3</text>
-<rect x='30' y='252' width='285' height='66' rx='3' fill='#e8f4f1' stroke='#186254' stroke-width='1.4'/>
-<text x='172.5' y='290.0' font-family="'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size='14' fill='#333333' font-weight='bold' text-anchor='middle'>两组之间有没有差异？</text>
-<line x1='321' y1='285.0' x2='327' y2='285.0' stroke='#186254' stroke-width='1.6'/>
-<line x1='327.0' y1='285.0' x2='318.9' y2='281.1' stroke='#186254' stroke-width='1.6'/>
-<line x1='327.0' y1='285.0' x2='318.9' y2='288.9' stroke='#186254' stroke-width='1.6'/>
-<rect x='335' y='252' width='345' height='66' rx='3' fill='none' stroke='#186254' stroke-width='1.2'/>
-<text x='507.5' y='290.0' font-family="'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size='13' fill='#333333' font-weight='normal' text-anchor='middle'>t 检验 · 效应量 · FDR</text>
-<line x1='686' y1='285.0' x2='692' y2='285.0' stroke='#186254' stroke-width='1.6'/>
-<line x1='692.0' y1='285.0' x2='683.9' y2='281.1' stroke='#186254' stroke-width='1.6'/>
-<line x1='692.0' y1='285.0' x2='683.9' y2='288.9' stroke='#186254' stroke-width='1.6'/>
-<rect x='700' y='252' width='325' height='66' rx='3' fill='none' stroke='#9ca3af' stroke-width='1.1'/>
-<text x='714' y='279.0' font-family="'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size='13' fill='#333333' font-weight='normal' text-anchor='start'>数理统计</text>
-<text x='714' y='303.0' font-family="'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size='12' fill='#6b7280' font-weight='normal' text-anchor='start'>11.4</text>
-<rect x='30' y='330' width='285' height='66' rx='3' fill='#e8f4f1' stroke='#186254' stroke-width='1.4'/>
-<text x='172.5' y='368.0' font-family="'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size='14' fill='#333333' font-weight='bold' text-anchor='middle'>样本之间可以比较吗？</text>
-<line x1='321' y1='363.0' x2='327' y2='363.0' stroke='#186254' stroke-width='1.6'/>
-<line x1='327.0' y1='363.0' x2='318.9' y2='359.1' stroke='#186254' stroke-width='1.6'/>
-<line x1='327.0' y1='363.0' x2='318.9' y2='366.9' stroke='#186254' stroke-width='1.6'/>
-<rect x='335' y='330' width='345' height='66' rx='3' fill='none' stroke='#186254' stroke-width='1.2'/>
-<text x='507.5' y='368.0' font-family="'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size='13' fill='#333333' font-weight='normal' text-anchor='middle'>归一化：CPM/TPM/size factor</text>
-<line x1='686' y1='363.0' x2='692' y2='363.0' stroke='#186254' stroke-width='1.6'/>
-<line x1='692.0' y1='363.0' x2='683.9' y2='359.1' stroke='#186254' stroke-width='1.6'/>
-<line x1='692.0' y1='363.0' x2='683.9' y2='366.9' stroke='#186254' stroke-width='1.6'/>
-<rect x='700' y='330' width='325' height='66' rx='3' fill='none' stroke='#9ca3af' stroke-width='1.1'/>
-<text x='714' y='357.0' font-family="'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size='13' fill='#333333' font-weight='normal' text-anchor='start'>统计前提</text>
-<text x='714' y='381.0' font-family="'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size='12' fill='#6b7280' font-weight='normal' text-anchor='start'>11.5</text>
-<rect x='30' y='408' width='285' height='66' rx='3' fill='#e8f4f1' stroke='#186254' stroke-width='1.4'/>
-<text x='172.5' y='446.0' font-family="'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size='14' fill='#333333' font-weight='bold' text-anchor='middle'>多个因素怎么分离？</text>
-<line x1='321' y1='441.0' x2='327' y2='441.0' stroke='#186254' stroke-width='1.6'/>
-<line x1='327.0' y1='441.0' x2='318.9' y2='437.1' stroke='#186254' stroke-width='1.6'/>
-<line x1='327.0' y1='441.0' x2='318.9' y2='444.9' stroke='#186254' stroke-width='1.6'/>
-<rect x='335' y='408' width='345' height='66' rx='3' fill='none' stroke='#186254' stroke-width='1.2'/>
-<text x='507.5' y='446.0' font-family="'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size='13' fill='#333333' font-weight='normal' text-anchor='middle'>线性模型 · 设计公式 · 对照水平</text>
-<line x1='686' y1='441.0' x2='692' y2='441.0' stroke='#186254' stroke-width='1.6'/>
-<line x1='692.0' y1='441.0' x2='683.9' y2='437.1' stroke='#186254' stroke-width='1.6'/>
-<line x1='692.0' y1='441.0' x2='683.9' y2='444.9' stroke='#186254' stroke-width='1.6'/>
-<rect x='700' y='408' width='325' height='66' rx='3' fill='none' stroke='#9ca3af' stroke-width='1.1'/>
-<text x='714' y='435.0' font-family="'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size='13' fill='#333333' font-weight='normal' text-anchor='start'>线性代数＋统计</text>
-<text x='714' y='459.0' font-family="'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size='12' fill='#6b7280' font-weight='normal' text-anchor='start'>11.6</text>
-<rect x='30' y='486' width='285' height='66' rx='3' fill='#e8f4f1' stroke='#186254' stroke-width='1.4'/>
-<text x='172.5' y='524.0' font-family="'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size='14' fill='#333333' font-weight='bold' text-anchor='middle'>样本和基因是什么关系？</text>
-<line x1='321' y1='519.0' x2='327' y2='519.0' stroke='#186254' stroke-width='1.6'/>
-<line x1='327.0' y1='519.0' x2='318.9' y2='515.1' stroke='#186254' stroke-width='1.6'/>
-<line x1='327.0' y1='519.0' x2='318.9' y2='522.9' stroke='#186254' stroke-width='1.6'/>
-<rect x='335' y='486' width='345' height='66' rx='3' fill='none' stroke='#186254' stroke-width='1.2'/>
-<text x='507.5' y='524.0' font-family="'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size='13' fill='#333333' font-weight='normal' text-anchor='middle'>相关 · 聚类 · PCA/t-SNE/UMAP</text>
-<line x1='686' y1='519.0' x2='692' y2='519.0' stroke='#186254' stroke-width='1.6'/>
-<line x1='692.0' y1='519.0' x2='683.9' y2='515.1' stroke='#186254' stroke-width='1.6'/>
-<line x1='692.0' y1='519.0' x2='683.9' y2='522.9' stroke='#186254' stroke-width='1.6'/>
-<rect x='700' y='486' width='325' height='66' rx='3' fill='none' stroke='#9ca3af' stroke-width='1.1'/>
-<text x='714' y='513.0' font-family="'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size='13' fill='#333333' font-weight='normal' text-anchor='start'>线性代数 / 图论</text>
-<text x='714' y='537.0' font-family="'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size='12' fill='#6b7280' font-weight='normal' text-anchor='start'>11.7–11.8</text>
-<rect x='30' y='564' width='285' height='66' rx='3' fill='#fdf3e3' stroke='#b45309' stroke-width='1.4'/>
-<text x='172.5' y='602.0' font-family="'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size='14' fill='#333333' font-weight='bold' text-anchor='middle'>想预测或分类？</text>
-<line x1='321' y1='597.0' x2='327' y2='597.0' stroke='#186254' stroke-width='1.6'/>
-<line x1='327.0' y1='597.0' x2='318.9' y2='593.1' stroke='#186254' stroke-width='1.6'/>
-<line x1='327.0' y1='597.0' x2='318.9' y2='600.9' stroke='#186254' stroke-width='1.6'/>
-<rect x='335' y='564' width='345' height='66' rx='3' fill='none' stroke='#186254' stroke-width='1.2'/>
-<text x='507.5' y='602.0' font-family="'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size='13' fill='#333333' font-weight='normal' text-anchor='middle'>有监督机器学习（分类 · 回归）</text>
-<line x1='686' y1='597.0' x2='692' y2='597.0' stroke='#186254' stroke-width='1.6'/>
-<line x1='692.0' y1='597.0' x2='683.9' y2='593.1' stroke='#186254' stroke-width='1.6'/>
-<line x1='692.0' y1='597.0' x2='683.9' y2='600.9' stroke='#186254' stroke-width='1.6'/>
-<rect x='700' y='564' width='325' height='66' rx='3' fill='none' stroke='#9ca3af' stroke-width='1.1'/>
-<text x='714' y='591.0' font-family="'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size='13' fill='#333333' font-weight='normal' text-anchor='start'>统计学习</text>
-<text x='714' y='615.0' font-family="'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size='12' fill='#6b7280' font-weight='normal' text-anchor='start'>指向进阶资源</text>
-<text x='530.0' y='682' font-family="'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size='12' fill='#6b7280' font-weight='normal' text-anchor='middle'>学习顺序自上而下；底行为有监督学习，本章只做定位，深入靠进阶资源。</text>
+<text x='113.0' y='30' font-family="'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size='16' fill='#186254' font-weight='bold' text-anchor='middle'>你想回答什么</text>
+<text x='376.0' y='30' font-family="'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size='16' fill='#186254' font-weight='bold' text-anchor='middle'>常用方法</text>
+<text x='644.0' y='30' font-family="'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size='16' fill='#186254' font-weight='bold' text-anchor='middle'>数学基础 · 本书位置</text>
+<rect x='8' y='46' width='210' height='46' rx='3' fill='#e8f4f1' stroke='#186254' stroke-width='1.4'/>
+<text x='113.0' y='74.0' font-family="'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size='15' fill='#333333' font-weight='bold' text-anchor='middle'>这批数据长什么样？</text>
+<line x1='223' y1='69.0' x2='237' y2='69.0' stroke='#186254' stroke-width='1.6'/>
+<line x1='237.0' y1='69.0' x2='228.9' y2='65.1' stroke='#186254' stroke-width='1.6'/>
+<line x1='237.0' y1='69.0' x2='228.9' y2='72.9' stroke='#186254' stroke-width='1.6'/>
+<rect x='242' y='46' width='268' height='46' rx='3' fill='none' stroke='#186254' stroke-width='1.2'/>
+<text x='376.0' y='74.0' font-family="'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size='14' fill='#333333' font-weight='normal' text-anchor='middle'>均值 · 方差 · 分位数 · 可视化</text>
+<line x1='515' y1='69.0' x2='531' y2='69.0' stroke='#186254' stroke-width='1.6'/>
+<line x1='531.0' y1='69.0' x2='522.9' y2='65.1' stroke='#186254' stroke-width='1.6'/>
+<line x1='531.0' y1='69.0' x2='522.9' y2='72.9' stroke='#186254' stroke-width='1.6'/>
+<rect x='536' y='46' width='216' height='46' rx='3' fill='none' stroke='#9ca3af' stroke-width='1.1'/>
+<text x='550' y='65' font-family="'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size='13' fill='#333333' font-weight='normal' text-anchor='start'>初等统计</text>
+<text x='550' y='83' font-family="'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size='12' fill='#6b7280' font-weight='normal' text-anchor='start'>11.2</text>
+<rect x='8' y='100' width='210' height='46' rx='3' fill='#e8f4f1' stroke='#186254' stroke-width='1.4'/>
+<text x='113.0' y='128.0' font-family="'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size='15' fill='#333333' font-weight='bold' text-anchor='middle'>数据是怎么产生的？</text>
+<line x1='223' y1='123.0' x2='237' y2='123.0' stroke='#186254' stroke-width='1.6'/>
+<line x1='237.0' y1='123.0' x2='228.9' y2='119.1' stroke='#186254' stroke-width='1.6'/>
+<line x1='237.0' y1='123.0' x2='228.9' y2='126.9' stroke='#186254' stroke-width='1.6'/>
+<rect x='242' y='100' width='268' height='46' rx='3' fill='none' stroke='#186254' stroke-width='1.2'/>
+<text x='376.0' y='128.0' font-family="'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size='14' fill='#333333' font-weight='normal' text-anchor='middle'>概率分布：泊松/负二项/正态</text>
+<line x1='515' y1='123.0' x2='531' y2='123.0' stroke='#186254' stroke-width='1.6'/>
+<line x1='531.0' y1='123.0' x2='522.9' y2='119.1' stroke='#186254' stroke-width='1.6'/>
+<line x1='531.0' y1='123.0' x2='522.9' y2='126.9' stroke='#186254' stroke-width='1.6'/>
+<rect x='536' y='100' width='216' height='46' rx='3' fill='none' stroke='#9ca3af' stroke-width='1.1'/>
+<text x='550' y='119' font-family="'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size='13' fill='#333333' font-weight='normal' text-anchor='start'>概率论</text>
+<text x='550' y='137' font-family="'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size='12' fill='#6b7280' font-weight='normal' text-anchor='start'>11.3</text>
+<rect x='8' y='154' width='210' height='46' rx='3' fill='#e8f4f1' stroke='#186254' stroke-width='1.4'/>
+<text x='113.0' y='182.0' font-family="'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size='15' fill='#333333' font-weight='bold' text-anchor='middle'>两组之间有没有差异？</text>
+<line x1='223' y1='177.0' x2='237' y2='177.0' stroke='#186254' stroke-width='1.6'/>
+<line x1='237.0' y1='177.0' x2='228.9' y2='173.1' stroke='#186254' stroke-width='1.6'/>
+<line x1='237.0' y1='177.0' x2='228.9' y2='180.9' stroke='#186254' stroke-width='1.6'/>
+<rect x='242' y='154' width='268' height='46' rx='3' fill='none' stroke='#186254' stroke-width='1.2'/>
+<text x='376.0' y='182.0' font-family="'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size='14' fill='#333333' font-weight='normal' text-anchor='middle'>t 检验 · 效应量 · FDR</text>
+<line x1='515' y1='177.0' x2='531' y2='177.0' stroke='#186254' stroke-width='1.6'/>
+<line x1='531.0' y1='177.0' x2='522.9' y2='173.1' stroke='#186254' stroke-width='1.6'/>
+<line x1='531.0' y1='177.0' x2='522.9' y2='180.9' stroke='#186254' stroke-width='1.6'/>
+<rect x='536' y='154' width='216' height='46' rx='3' fill='none' stroke='#9ca3af' stroke-width='1.1'/>
+<text x='550' y='173' font-family="'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size='13' fill='#333333' font-weight='normal' text-anchor='start'>数理统计</text>
+<text x='550' y='191' font-family="'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size='12' fill='#6b7280' font-weight='normal' text-anchor='start'>11.4</text>
+<rect x='8' y='208' width='210' height='46' rx='3' fill='#e8f4f1' stroke='#186254' stroke-width='1.4'/>
+<text x='113.0' y='236.0' font-family="'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size='15' fill='#333333' font-weight='bold' text-anchor='middle'>样本之间可以比较吗？</text>
+<line x1='223' y1='231.0' x2='237' y2='231.0' stroke='#186254' stroke-width='1.6'/>
+<line x1='237.0' y1='231.0' x2='228.9' y2='227.1' stroke='#186254' stroke-width='1.6'/>
+<line x1='237.0' y1='231.0' x2='228.9' y2='234.9' stroke='#186254' stroke-width='1.6'/>
+<rect x='242' y='208' width='268' height='46' rx='3' fill='none' stroke='#186254' stroke-width='1.2'/>
+<text x='376.0' y='236.0' font-family="'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size='14' fill='#333333' font-weight='normal' text-anchor='middle'>归一化：CPM/TPM/size factor</text>
+<line x1='515' y1='231.0' x2='531' y2='231.0' stroke='#186254' stroke-width='1.6'/>
+<line x1='531.0' y1='231.0' x2='522.9' y2='227.1' stroke='#186254' stroke-width='1.6'/>
+<line x1='531.0' y1='231.0' x2='522.9' y2='234.9' stroke='#186254' stroke-width='1.6'/>
+<rect x='536' y='208' width='216' height='46' rx='3' fill='none' stroke='#9ca3af' stroke-width='1.1'/>
+<text x='550' y='227' font-family="'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size='13' fill='#333333' font-weight='normal' text-anchor='start'>统计前提</text>
+<text x='550' y='245' font-family="'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size='12' fill='#6b7280' font-weight='normal' text-anchor='start'>11.5</text>
+<rect x='8' y='262' width='210' height='46' rx='3' fill='#e8f4f1' stroke='#186254' stroke-width='1.4'/>
+<text x='113.0' y='290.0' font-family="'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size='15' fill='#333333' font-weight='bold' text-anchor='middle'>多个因素怎么分离？</text>
+<line x1='223' y1='285.0' x2='237' y2='285.0' stroke='#186254' stroke-width='1.6'/>
+<line x1='237.0' y1='285.0' x2='228.9' y2='281.1' stroke='#186254' stroke-width='1.6'/>
+<line x1='237.0' y1='285.0' x2='228.9' y2='288.9' stroke='#186254' stroke-width='1.6'/>
+<rect x='242' y='262' width='268' height='46' rx='3' fill='none' stroke='#186254' stroke-width='1.2'/>
+<text x='376.0' y='290.0' font-family="'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size='14' fill='#333333' font-weight='normal' text-anchor='middle'>线性模型 · 设计公式 · 对照水平</text>
+<line x1='515' y1='285.0' x2='531' y2='285.0' stroke='#186254' stroke-width='1.6'/>
+<line x1='531.0' y1='285.0' x2='522.9' y2='281.1' stroke='#186254' stroke-width='1.6'/>
+<line x1='531.0' y1='285.0' x2='522.9' y2='288.9' stroke='#186254' stroke-width='1.6'/>
+<rect x='536' y='262' width='216' height='46' rx='3' fill='none' stroke='#9ca3af' stroke-width='1.1'/>
+<text x='550' y='281' font-family="'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size='13' fill='#333333' font-weight='normal' text-anchor='start'>线性代数＋统计</text>
+<text x='550' y='299' font-family="'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size='12' fill='#6b7280' font-weight='normal' text-anchor='start'>11.6</text>
+<rect x='8' y='316' width='210' height='46' rx='3' fill='#e8f4f1' stroke='#186254' stroke-width='1.4'/>
+<text x='113.0' y='344.0' font-family="'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size='15' fill='#333333' font-weight='bold' text-anchor='middle'>样本和基因是什么关系？</text>
+<line x1='223' y1='339.0' x2='237' y2='339.0' stroke='#186254' stroke-width='1.6'/>
+<line x1='237.0' y1='339.0' x2='228.9' y2='335.1' stroke='#186254' stroke-width='1.6'/>
+<line x1='237.0' y1='339.0' x2='228.9' y2='342.9' stroke='#186254' stroke-width='1.6'/>
+<rect x='242' y='316' width='268' height='46' rx='3' fill='none' stroke='#186254' stroke-width='1.2'/>
+<text x='376.0' y='344.0' font-family="'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size='14' fill='#333333' font-weight='normal' text-anchor='middle'>相关 · 聚类 · PCA/t-SNE/UMAP</text>
+<line x1='515' y1='339.0' x2='531' y2='339.0' stroke='#186254' stroke-width='1.6'/>
+<line x1='531.0' y1='339.0' x2='522.9' y2='335.1' stroke='#186254' stroke-width='1.6'/>
+<line x1='531.0' y1='339.0' x2='522.9' y2='342.9' stroke='#186254' stroke-width='1.6'/>
+<rect x='536' y='316' width='216' height='46' rx='3' fill='none' stroke='#9ca3af' stroke-width='1.1'/>
+<text x='550' y='335' font-family="'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size='13' fill='#333333' font-weight='normal' text-anchor='start'>线性代数 / 图论</text>
+<text x='550' y='353' font-family="'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size='12' fill='#6b7280' font-weight='normal' text-anchor='start'>11.7–11.8</text>
+<rect x='8' y='370' width='210' height='46' rx='3' fill='#fdf3e3' stroke='#b45309' stroke-width='1.4'/>
+<text x='113.0' y='398.0' font-family="'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size='15' fill='#333333' font-weight='bold' text-anchor='middle'>想预测或分类？</text>
+<line x1='223' y1='393.0' x2='237' y2='393.0' stroke='#186254' stroke-width='1.6'/>
+<line x1='237.0' y1='393.0' x2='228.9' y2='389.1' stroke='#186254' stroke-width='1.6'/>
+<line x1='237.0' y1='393.0' x2='228.9' y2='396.9' stroke='#186254' stroke-width='1.6'/>
+<rect x='242' y='370' width='268' height='46' rx='3' fill='none' stroke='#186254' stroke-width='1.2'/>
+<text x='376.0' y='398.0' font-family="'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size='14' fill='#333333' font-weight='normal' text-anchor='middle'>有监督机器学习（分类 · 回归）</text>
+<line x1='515' y1='393.0' x2='531' y2='393.0' stroke='#186254' stroke-width='1.6'/>
+<line x1='531.0' y1='393.0' x2='522.9' y2='389.1' stroke='#186254' stroke-width='1.6'/>
+<line x1='531.0' y1='393.0' x2='522.9' y2='396.9' stroke='#186254' stroke-width='1.6'/>
+<rect x='536' y='370' width='216' height='46' rx='3' fill='none' stroke='#9ca3af' stroke-width='1.1'/>
+<text x='550' y='389' font-family="'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size='13' fill='#333333' font-weight='normal' text-anchor='start'>统计学习</text>
+<text x='550' y='407' font-family="'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size='12' fill='#6b7280' font-weight='normal' text-anchor='start'>指向进阶资源</text>
+<text x='380.0' y='438' font-family="'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size='12.5' fill='#6b7280' font-weight='normal' text-anchor='middle'>学习顺序自上而下；底行为有监督学习，本章只做定位，深入靠进阶资源。</text>
 </svg>
