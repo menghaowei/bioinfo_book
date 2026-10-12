@@ -10,7 +10,7 @@
 
 ## 不同测序实验究竟测到了什么 {#sec-03-01}
 
-避免把不同实验的 reads 当作同一种生物学测量。
+不同实验产生的 reads，代表的生物学测量并不相同。
 
 拿到一份测序数据时，最先要回答的问题不是“用什么软件分析”，而是“这份样本里究竟测到了什么分子”。测序仪输出的 reads 形式上都一样——一串 A、T、C、G 和对应的质量值——但它们背后的生物学对象可以完全不同：有的测的是基因组 DNA，有的测的是逆转录后的 mRNA，有的测的是被蛋白质“拉下来”的 DNA 片段，还有的只测外显子区域。如果不清楚 reads 的来源，后面的每一步分析都可能答非所问。
 
@@ -28,7 +28,7 @@
 
 : 常见测序实验类型与其测到的分子 {#tbl-03-experiment-types}
 
-同一个样本用不同实验处理，得到的 reads 含义完全不同；反过来，不同的建库方案也会改变数据的偏向和噪声特性。本章接下来先介绍产生这些 reads 的测序技术本身，再讲文库构建、数据存储格式与质量评估，为后续各章的具体分析打下基础。
+同一个样本采用不同实验，得到的 reads 含义会完全不同；建库方案也会改变数据的偏向和噪声特性。接下来，我们先看这些 reads 是怎样测出来的，再介绍文库构建、数据存储格式与质量评估。
 
 ## 从 Sanger 到高通量测序 {#sec-03-sequencing-generations}
 
@@ -42,7 +42,7 @@
 
 Sanger 法即双脱氧链终止法，是第一代测序技术的代表。它利用 DNA 复制原理，在反应中加入双脱氧核苷三磷酸（ddNTP）：ddNTP 缺少 3′ 羟基，一旦掺入延伸中的链，反应就无法继续，DNA 链便在对应位置终止。四种 ddNTP 分别反应（或以荧光标记区分）后，依据不同长度的终止片段判断每个位置的碱基类型。
 
-Sanger 测序的读长可达 500—1000 bp，单条序列的准确率很高，至今仍是验证少量序列的“金标准”。它通量低的核心原因是每条序列都需要独立的反应和电泳分离（早期为凝胶电泳，后来是毛细管电泳），一次运行的并行条数有限。实验室里常用它验证质粒、PCR 产物或克隆单条序列，但测一个人类基因组就需要天文数字的独立反应，成本无法承受。
+Sanger 测序的读长可达 500—1000 bp，单条序列的准确率很高，至今仍是验证少量序列的“金标准”。它的通量较低，因为每条序列都需要独立反应，再通过电泳分离（早期为凝胶电泳，后来是毛细管电泳），一次能并行处理的序列数量有限。实验室常用它验证质粒、PCR 产物或克隆单条序列；但若用它测一个人类基因组，就需要极其大量的独立反应，成本无法承受。
 
 ### 第二代测序的兴起 {#src-0020-introduction-of-NGS-1}
 
@@ -50,7 +50,7 @@ Sanger 测序的读长可达 500—1000 bp，单条序列的准确率很高，�
 
 第二代测序（Next Generation Sequencing，NGS）的核心突破不是把单条序列读得更准，而是**并行化**：把亿万条模板片段固定在芯片上同时测序，用“空间换通量”。发展过程中出现过几条技术路线：Roche 454 采用焦磷酸测序，Ion Torrent 用半导体芯片检测合成时释放的氢离子，而 Illumina（源于 Solexa 公司 2006 年发布的 Genome Analyzer）采用荧光可逆终止化学，凭借通量和成本的平衡最终占据主导。我们接触到的很多生物信息学技术，比如 RNA-seq、ChIP-seq、Hi-C 等，都建立在 NGS 之上。
 
-于是第二代测序呈现鲜明的特点：**高通量、单碱基成本低，但读长短**（通常 50—300 bp）。本章 3.3 节以 Illumina 为代表讲解原理，其他短读长平台思路相近。
+第二代测序的特点是**高通量、单碱基成本低，但读长短**（通常 50—300 bp）。本章 3.3 节以 Illumina 为例讲解原理，其他短读长平台的思路相近。
 
 ### 机型与通量：随时代变化 {#question-01-133}
 
@@ -113,7 +113,7 @@ Sanger 测序的读长可达 500—1000 bp，单条序列的准确率很高，�
 
 ![桥式 PCR 流程](../assets/03-sequencing-and-data-formats/005-pic-05-pcr.jpg){#fig-03-sequencing-and-data-formats-005}
 
-在整个 flowcell 上看，就是一个个彼此独立的 cluster；测序时每个 cluster 作为一个“单分子”参与信号读取，这就是二代测序并行化的物理基础。
+这样，整个 flowcell 上就形成了一个个彼此独立的 cluster。测序时，每个 cluster 作为一个“单分子”参与信号读取，二代测序便可以同时读取大量序列。
 
 ### 边合成边测序（SBS） {#src-0020-introduction-of-NGS-55}
 
@@ -129,7 +129,7 @@ Sanger 测序的读长可达 500—1000 bp，单条序列的准确率很高，�
 
 :::
 
-Illumina 边合成边测序（Sequencing by Synthesis，SBS）的化学核心是**可逆终止子核苷酸**：它在两个方面经过修饰——碱基通过可切除连接子带上荧光染料；脱氧核糖 3′ 羟基被叠氮甲基（–CH₂–N₃）封闭，保证每轮反应只能延伸一个碱基。下页的示意图给出直观印象，精确的化学结构见本节末的拓展阅读框。
+Illumina 边合成边测序（Sequencing by Synthesis，SBS）使用的关键分子是**可逆终止子核苷酸**。它有两处修饰：碱基通过可切除连接子带上荧光染料，脱氧核糖的 3′ 羟基被叠氮甲基（–CH₂–N₃）封闭，保证每轮反应只能延伸一个碱基。可以先看下面的示意图；精确的化学结构见本节末的拓展阅读框。
 
 ![base带有荧光基团（示意，图片来源 oezratty.net）](../assets/03-sequencing-and-data-formats/006-pic-06-base.jpg){#fig-03-sequencing-and-data-formats-006}
 
@@ -172,7 +172,7 @@ Illumina 单端读长通常不超过 300 bp，主要有两方面原因。
 
 ## MGI 测序技术 {#sec-03-03}
 
-知道第二个主流短读长平台用什么策略解决同样的问题。
+MGI 是另一个主流短读长平台。我们来看它怎样生成信号并读取序列。
 
 ### 华大智造测序仪 {#src-0020-introduction-of-NGS-84}
 
@@ -188,7 +188,7 @@ Illumina 单端读长通常不超过 300 bp，主要有两方面原因。
 
 ## 长读长测序：PacBio 与 Nanopore {#sec-03-04}
 
-知道何时短读长不足，并正确理解长读长技术的输入输出。
+短读长有哪些不足，长读长技术又能提供什么数据？
 
 短读长 reads 难以跨越重复序列、结构变异和全长转录本，这时需要长读长技术。与短读长平台不同，长读长测序不依赖簇扩增，而是直接读取单个分子。
 
@@ -210,7 +210,7 @@ Oxford Nanopore 的原理完全不同：马达蛋白牵引单链 DNA（或 RNA�
 
 ### 长读长 RNA 测序 {#src-0050-RNA-seq-85}
 
-常规短读长 RNA-seq 通常先把 RNA 逆转录成 cDNA，再进行文库构建（流程详见第 5 章）。长读长技术可以减少把一个转录本拆成许多短片段后再推断结构的困难，因此特别适合理解转录本异构体。
+常规短读长 RNA-seq 通常先把 RNA 逆转录成 cDNA，再构建文库（流程详见第 5 章）。一个转录本被拆成许多短片段后，需要根据这些片段推断原有结构。长读长技术可以减少这方面的困难，因此特别适合用来理解转录本异构体。
 
 ::: {.callout-note .book-core title="核心知识｜长读长与直接 RNA 测序"}
 
@@ -236,7 +236,7 @@ PacBio 的 SMRT 测序观察聚合酶合成 DNA 时的荧光信号。Iso-Seq 分
 
 :::
 
-打断以后的片段末端往往不平整，先用酶补平，得到平末端；再在 3′ 端用酶加上一个特异的碱基 A。此后利用 A 与未端 T 的互补配对，把 adapter 连接到片段两端。
+打断后的片段末端往往不平整，需要先用酶补平，再在 3′ 端用酶加上一个特异的碱基 A。此后利用 A 与末端 T 的互补配对，把 adapter 连接到片段两端。
 
 ![DNA 文库制备的典型流程](../assets/03-sequencing-and-data-formats/003-pic-03-make-lib.jpg){#fig-03-sequencing-and-data-formats-003}
 
@@ -254,7 +254,7 @@ adapter 中文常译为适配器或接头，是建库时连接到片段两端的
 P5 — adapter1（含 i5 index 位点）— fragment — adapter2（含 i7 index 位点）— P7
 ```
 
-测序时加入的引物结合的是 adapter 中专门的测序引物结合位点；index 序列由独立的 index read 单独读取，并不出现在 R1/R2 的 reads 里。adapter 与 primer 的区别由此清晰：adapter 是连接在分子上的固定序列，primer 是反应时外加的寡核苷酸，二者靠互补配对起作用。
+测序时加入的引物与 adapter 中专门的测序引物结合位点配对；index 序列由独立的 index read 单独读取，并不出现在 R1/R2 的 reads 里。这里要分清 adapter 与 primer：adapter 是连接在分子上的固定序列，primer 是反应时外加的寡核苷酸，二者靠互补配对起作用。
 
 ### index 与多样本混合上机 {#question-01-115}
 
@@ -424,7 +424,7 @@ CCCACAGACTCAGAGAGAACCCACCATGGTGCTGTCTCCTGACGACAAGACCAACGTCAAGGCCGCCTGGGGTAAGGTCG
 
 ### FASTA 与 FASTQ 的适用场景 {#question-01-66}
 
-只关心序列本身时用 FASTA：参考基因组、转录本序列、蛋白质序列都以此发布。需要同时保留每个碱基的测序质量时用 FASTQ：测序仪下机数据、交给比对和质控软件的原始数据都是 FASTQ。一句话概括：FASTA 描述“序列是什么”，FASTQ 额外记录“每个碱基测得多准”。
+只关心序列本身时用 FASTA，参考基因组、转录本序列和蛋白质序列都以此发布。需要同时保留每个碱基的测序质量时用 FASTQ，测序仪下机数据、交给比对和质控软件的原始数据都是 FASTQ。因此，FASTA 描述“序列是什么”，FASTQ 还记录“每个碱基测得多准”。
 
 ## 质量评估：FastQC 与 MultiQC {#sec-03-07}
 
@@ -432,7 +432,7 @@ CCCACAGACTCAGAGAGAACCCACCATGGTGCTGTCTCCTGACGACAAGACCAACGTCAAGGCCGCCTGGGGTAAGGTCG
 
 []{#ngs_qc}
 
-依据实验背景解释质控图，而非只看红绿灯。
+解读质控图时，需要结合实验背景，不能只看报告中的红绿灯。
 
 ### 质量控制包括什么 {#src-0050-RNA-seq-128}
 
@@ -494,7 +494,7 @@ FastQC 会对每一个输入文件生成一个 html 网页和一个 zip 压缩�
 
 []{#question-06-35}
 
-双端数据要把 R1 与 R2 分开看。下面的两张图来自同一次测序（ @fig-a-questions-06-10-001 与 @fig-a-questions-06-10-002 ）：reads2 的质量均匀性明显差于 reads1。原因在本章 3.3 已经埋下伏笔——reads2 的测序是在 reads1 的 150bp 完成后，先重新合成互补链、再进行荧光测序；此时合成酶活性经过长时间反应已经下降，部分链加不上碱基，cluster 内的同步性变差，主要表现为 phasing 错误累积，箱体整体下移、离群点增多。
+双端数据要把 R1 与 R2 分开看。下面两张图来自同一次测序（ @fig-a-questions-06-10-001 与 @fig-a-questions-06-10-002 ），reads2 的质量均匀性明显差于 reads1。结合本章 3.3 节的原理来看：reads1 的 150bp 测序完成后，要先重新合成互补链，再对 reads2 进行荧光测序。此时合成酶经过长时间反应，活性已经下降，部分链加不上碱基，cluster 内的同步性变差，主要表现为 phasing 错误累积、箱体整体下移、离群点增多。
 
 ![Illumina 测序结果 reads1 的逐碱基质量箱线图](../assets/a-questions-06-10/001-6-1.jpg){#fig-a-questions-06-10-001}
 
@@ -547,7 +547,7 @@ DNA 全基因组测序样本通常呈现“前 10bp 左右波动、之后四线�
 
 #### 序列长度分布（Sequence Length Distribution） {#topic-03-sequence-length-distribution}
 
-横轴是序列长度，纵轴是相应长度 reads 的数量（ @fig-a-questions-06-10-009 ）。刚下机的 Illumina 数据所有 reads 长度一致（如双端 150bp），因为测序循环数固定，图中应是一个尖峰。经过 cutadapt 等去除接头后，reads 长度就会变得参差——不同 insert 是否被测穿、被切掉多长并不相同。看到“长度不齐”不要惊讶，那通常是处理后的正常形态。
+横轴是序列长度，纵轴是相应长度 reads 的数量（ @fig-a-questions-06-10-009 ）。刚下机的 Illumina 数据所有 reads 长度一致（如双端 150bp），因为测序循环数固定，图中应是一个尖峰。经过 cutadapt 等工具去除接头后，reads 的长度就会有所不同：有些 insert 被测穿，有些没有，被切掉的长度也不相同。因此，处理后的数据出现长短不一的 reads，通常是正常现象。
 
 ![刚下机数据的序列长度分布](../assets/a-questions-06-10/009-8-2-1.jpg){#fig-a-questions-06-10-009}
 
@@ -626,11 +626,11 @@ k-mer 指定长的短序列，例如 AATTCCGG 是一个 8-mer。该模块统计�
 multiqc fastqc_result/ -o multiqc_report
 ```
 
-看报告时优先扫全局异常的样本，再回到单样本 FastQC 细看原因；两种报告配合使用，是项目质控的常规做法。
+看报告时，先找出整体比较中异常的样本，再打开相应的 FastQC 报告细看原因。实际项目中，通常将这两种报告配合使用。
 
 ## 数据清理：去接头与低质量序列 {#sec-03-08}
 
-理解何时修剪、如何保持配对关系以及如何验证处理效果。
+清理数据时，要确定哪些序列需要修剪，保持双端 reads 的配对关系，并检查处理效果。
 
 ### 为什么要清理以及常用工具 {#src-0050-RNA-seq-204}
 
@@ -644,7 +644,7 @@ multiqc fastqc_result/ -o multiqc_report
 
 ::: {.callout-warning .book-warning title="注意｜工具的年代"}
 
-Fastx-toolkit 与 NGSQC 是早期常用工具，已长期停止维护，本书保留其用于理解处理思路和练习。如今的同类操作更常用 Cutadapt、fastp、Trimmomatic（仍在维护）以及 seqtk、seqkit 等。
+Fastx-toolkit 与 NGSQC 是早期常用工具，已长期停止维护。本书保留它们的示例，用于理解处理思路和练习。如今的同类操作更常用 Cutadapt、fastp、Trimmomatic（仍在维护）以及 seqtk、seqkit 等。
 
 :::
 
@@ -672,7 +672,7 @@ cutadapt -q 10 -o output.fastq input.fastq
 
 `-q` 后的数字是质量阈值，低于该值的碱基将被切除；若文件采用 Phred64 编码，需加 `--quality-base=64`。
 
-cutadapt 不是“遇到第一个低质量碱基就停”，而是允许好碱基夹杂在坏区域中，找整体最优的切点。以一条 13bp、阈值 10 的 read 为例：
+cutadapt 会考虑整个低质量区域，允许其中夹杂质量较好的碱基，再寻找整体最优的切点，并非遇到第一个低质量碱基就停止。以一条 13bp、阈值 10 的 read 为例：
 
 ```{.text data-book-role="data" data-code-title="算例｜序列与质量值（逐列对齐）"}
  A   T   G   C   C   G   T   A   C   C   G   G   T
@@ -713,7 +713,7 @@ cutadapt 的规则是取累加和最小值（−25）出现的位置——第 8 
 seqkit stats -a *.fastq.gz
 ```
 
-想快速看一眼文件内容，用 `head` 取前几条（相当于 Linux 的 `head`，但按“条”而不是按“行”计数）：
+想先看看文件内容，可以用 `head` 取前几条记录。它类似 Linux 的 `head`，但按序列“条数”而不是文本“行数”计数：
 
 ```{.bash data-book-role="code"}
 seqkit head -n 4 sample_R1.fastq.gz
@@ -771,7 +771,7 @@ seqkit split -p 4 big_R1.fastq.gz
 
 #### 综合示例：从参考基因组到 chrM 的 GC 含量 {#topic-03-seqkit-chrm-example}
 
-把前面的命令串起来，就能一行解决 3.8 节练习里“计算一条染色体 GC 含量”的任务——`grep` 提取 chrM，`fx2tab` 直接给出它的长度与 GC 含量：
+把前面的命令接起来，就可以完成 3.8 节练习里“计算一条染色体 GC 含量”的任务：先用 `grep` 提取 chrM，再用 `fx2tab` 输出它的长度与 GC 含量。
 
 ```{.bash data-book-role="code"}
 seqkit grep -n -p chrM genome.fa | seqkit fx2tab -n -l -g

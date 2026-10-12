@@ -10,17 +10,17 @@
 
 ## 概览 {#sec-04-01}
 
-经过上一章的质控，我们手上已经有了干净的测序数据（clean reads）。本章的核心任务用一句话概括：**把处理后的 clean reads 通过比对放回参考基因组，得到记录每条 read 位置与比对情况的 BAM 文件**。围绕这条主线，我们依次认识参考基因组与常用注释（比对的“地图”），学习序列比对的算法原理（双序列比对、BLAST、哈希表与 BWT），根据数据特点选择比对软件并实际操作，把结果保存成 SAM/BAM 文件，做排序、过滤与统计，用 IGV 目视检查，最后把公共数据库的数据下载下来作为练习输入。
+经过上一章的质控，我们已经有了干净的测序数据（clean reads）。接下来要做的是**把处理后的 clean reads 通过比对放回参考基因组，得到记录每条 read 位置与比对情况的 BAM 文件**。我们先认识参考基因组与常用注释，也就是比对所需的“地图”，再学习双序列比对、BLAST、哈希表与 BWT 等算法。随后根据数据特点选择软件、完成比对，将结果保存成 SAM/BAM 文件，进行排序、过滤与统计，并用 IGV 查看。最后从公共数据库下载数据，作为练习的输入。
 
 ![从 FASTQ 经质控和比对生成 SAM，再转换为排序并建立索引的 BAM](../assets/04-quality-control-and-alignment/svg/fastq-to-sam-pipeline.svg){#fig-a-questions-16-20-001}
 
-如 @fig-a-questions-16-20-001 所示，从 FASTQ 到 SAM 的每一步都有明确的输入和输出。看清楚每一步“进去的是什么、出来的是什么”，是本章反复强调的阅读方式，也是全书训练判断力的方式。
+如 @fig-a-questions-16-20-001 所示，从 FASTQ 到 SAM 的每一步都有明确的输入和输出。阅读本章时，可以顺着流程逐步检查：输入的是什么文件，处理后得到什么，又保留了哪些比对信息。
 
 ## 参考基因组 {#sec-04-02}
 
 选取相互兼容的参考资源并理解注释差异。
 
-比对的第一件事不是选软件，而是确定比对的“地图”：参考基因组。它是一份由多家研究机构共同维护、尽可能准确和完整的物种 DNA 序列，以 FASTA 格式发布。我们在第 3 章见过 FASTA，这里要强调的是**版本**。
+比对前，先确定所用的参考基因组。它相当于比对的“地图”，是一份由多家研究机构共同维护、尽可能准确和完整的物种 DNA 序列，以 FASTA 格式发布。第 3 章已经介绍了 FASTA，这里还需要留意参考基因组的**版本**。
 
 - 人类参考基因组最常用的两个版本是 GRCh37（UCSC 称为 hg19，2009 年发布）和 GRCh38（hg38，2013 年发布）；2022 年发布的 T2T-CHM13 进一步补全了末端的重复区域。版本越新不代表“更适合所有分析”——大量已有工具、注释和教程仍基于 GRCh37/hg19，本书的教学示例也使用 hg19。关键是**全流程保持同一个版本**：参考 FASTA、注释文件、软件索引必须来自同一版本，混用会导致坐标错位。
 - 常用的下载来源有 UCSC Genome Browser、Ensembl 与 NCBI RefSeq。它们发布的序列基本一致，但染色体命名有细微差别（例如 Ensembl 用 `1`，UCSC 用 `chr1`），注释的基因集合也不完全相同，后一小节会展开。
@@ -58,7 +58,7 @@
 
 但 mapping 面临一个现实问题：输入常常是上千万条 reads，参考基因组又有约 30 亿碱基，逐条做精确比对运算量完全不可行（4.4.2 会算这笔账）。解决之道就是**先给参考基因组建立一个索引**：把基因组预处理成一套方便快速查询的数据结构，就像给一本 30 亿字的书先编好目录，之后每条 read 的定位都能在瞬间完成。建索引只需要做一次，之后可以反复使用。
 
-常用的 mapping 软件各有自己的索引格式，但都遵循“建索引一次、比对多次”的套路：
+常用 mapping 软件的索引格式各不相同，但建好的索引都可以反复用于比对：
 
 - 二代短读长：**BWA**[^alignment-BWA]、**Bowtie**[^alignment-Bowtie]、**Bowtie2**、**HISAT2**（RNA-Seq 剪接比对，见 4.5）；
 - 三代长读长：早期常用 BLASR（用 `sawriter` 建库、`blasr` 比对），当前的事实标准是 **minimap2**，PacBio 官方流程中的 pbmm2 也是基于它实现的。
@@ -122,19 +122,19 @@ bowtie2-build ./test/chr1.fa ./test/chr1_bowtie2_index
 
 ### 为什么需要基因注释 {#sec-04-03-why-annotation}
 
-有了参考基因组这张“地图”，还需要一张“标注图”：告诉分析软件哪里是基因、哪里是外显子——这就是基因注释文件的用处。
+参考基因组提供序列，基因注释文件则在这张“地图”上标出基因、外显子等的位置，供分析软件使用。
 
 我们的基因在基因组上的结构不是连续的，而是被 exon-intron-exon（exon=外显子，intron=内含子）分隔开的。基因要表达，首先会转录出包含 intron 的 pre-mRNA，再经过可变剪接、加 5' 帽子、3' PolyA 尾巴等加工过程，才形成成熟的 mRNA（ @fig-a-questions-21-25-008 ）。
 
 ![通过对外显子（exon）的可变剪接，同一个基因可以形成多种成熟的 mRNA 与蛋白](../assets/a-questions-21-25/008-24-1.jpg){#fig-a-questions-21-25-008}
 
-正因为 mRNA 由外显子拼接而来，在转录组比对中经常要处理**跨越两个外显子的 reads**：它对应的基因组序列中间隔着内含子。这时就需要基因注释告诉比对软件哪里是 exon、哪里是 intron。所以基因注释文件的核心内容就是一大堆基因（以及转录本、外显子、编码区）在基因组上的坐标，加上这些特征的属性。
+mRNA 由外显子拼接而来，因此转录组比对经常要处理**跨越两个外显子的 reads**：它们对应的基因组序列中间隔着内含子。这时需要基因注释告诉比对软件 exon 和 intron 的位置。基因注释文件记录的主要内容，就是基因、转录本、外显子和编码区在基因组上的坐标，以及这些特征的属性。
 
 ### GTF 与 GFF 文件 {#src-0050-RNA-seq-218}
 
 基因注释文件最常见的两种格式是 GTF（Gene Transfer Format）和 GFF（General Feature Format）。GFF 有若干版本，一般认为 GTF 就是 GFF 2.0 版本；两者只是格式细节不同，信息内容完全可以等价，很多工具可以互相转换。
 
-一个标准的 GTF/GFF2.0 文件每行 9 列、以 TAB 分隔。与其抽象地背定义，不如直接看一段真实的注释（人类 SGIP1 基因在 hg19 上的部分注释行， @fig-a-questions-21-25-009 是同样内容的截图）：
+一个标准的 GTF/GFF2.0 文件每行 9 列，以 TAB 分隔。我们来看人类 SGIP1 基因在 hg19 上的部分真实注释行， @fig-a-questions-21-25-009 是相同内容的截图：
 
 ```{.text data-book-role="data" data-code-title="GTF 数据（SGIP1 基因节选）"}
 chr1	hg19_ncbiRefSeq	exon	66999252	66999355	0.000000	+	.	gene_id "SGIP1"; transcript_id "NM_001308203.1";
@@ -147,7 +147,7 @@ chr1	hg19_ncbiRefSeq	stop_codon	67208776	67208778	0.000000	+	.	gene_id "SGIP1"; 
 
 ![一个标准 GTF 格式文件的内容示例](../assets/a-questions-21-25/009-24-2.jpg){#fig-a-questions-21-25-009}
 
-对着上面的真实文件，逐列看每一列是什么意思：
+下面对照文件，逐列解释各字段的含义：
 
 - **第 1 列 seqname**：`chr1`，序列名，一般为染色体名，**必须与参考 FASTA 里的名称一致**——一个用 `chr1`、另一个用 `1` 或 `Chr1` 都会造成注释对不上。
 - **第 2 列 source**：`hg19_ncbiRefSeq`，注释来源，通常是数据库名或软件名；没有则用 `.`。
@@ -286,7 +286,7 @@ chr1    hg19_ncbiRefSeq exon    66999929        67000051        0.000000        
 
 ::::: {.callout-note .book-extension title="拓展阅读｜拼装转录本与注释修正" collapse="true"}
 
-在转录组分析中经常听到“用 XX 软件拼装转录本”，不是说有了参考转录组还要再拼一个，而是两种场景：
+转录组分析中常说的“用 XX 软件拼装转录本”，通常涉及下面两种场景，并不意味着有了参考转录组还要重新拼装：
 
 1. **无参考基因组的物种**：需要先用 RNA-Seq 数据自己拼出参考转录组（包括注释信息），再做下游分析；
 2. **注释非常好的物种（如 human）**：不同细胞系的转录组存在结构变异和转录本差异（比如同一个基因在参考注释中从 chr1:1000~15000 转录，在某个细胞系中实际是 chr1:980~15050），有时需要根据已知注释和测序数据做修正，常用软件有 StringTie 等（Cufflinks 是更早期的工具，现在已较少使用）。
@@ -345,7 +345,7 @@ chr1	hg19_ncbiRefSeq	exon	67091530	67091593	0.000000	+	.	gene_id "SGIP1"; transc
 
 **回贴（mapping）** 一般指高通量数据寻找基因组位置：比如测序得到 10M 对 read pair，要确定它们在基因组上的位置，这就是典型的 mapping 问题。
 
-两者密切相关：所有 mapping 软件的核心思想，都是从低通量的精确比对逐步改进而来的。本节就沿着“精确比对（双序列比对）→ 启发式检索（BLAST/BLAT）→ 高通量算法（哈希表/BWT）”这条演进线，把比对算法讲清楚。
+两者密切相关：mapping 软件的核心思想都是从低通量的精确比对逐步改进而来的。下面按“精确比对（双序列比对）→ 启发式检索（BLAST/BLAT）→ 高通量算法（哈希表/BWT）”的顺序，介绍这些算法之间的联系。
 
 ### 双序列比对：Needleman-Wunsch 与 Smith-Waterman {#src-0040-mapping-and-BAM-operation-12}
 
@@ -353,7 +353,7 @@ chr1	hg19_ncbiRefSeq	exon	67091530	67091593	0.000000	+	.	gene_id "SGIP1"; transc
 
 ### BLAST：启发式检索 {#src-0040-mapping-and-BAM-operation-24}
 
-当我们在鉴定一些未知物种的时候，常规的分子生物学操作是：提取物种 DNA，用通用引物 PCR 扩增，送公司做 sanger 测序，再把序列提交到 NCBI 检索，从分子层面完成物种鉴定。在检索的过程中，面对上亿条序列的数据库，逐一做精确比对显然不现实——于是 NCBI 采用了启发式的检索工具 BLAST（Basic Local Alignment Search Tool）。
+鉴定未知物种时，常规的分子生物学操作是提取 DNA，用通用引物进行 PCR 扩增，送公司做 Sanger 测序，再把序列提交到 NCBI 检索，从分子层面完成物种鉴定。数据库中有上亿条序列，逐一做精确比对并不现实，因此 NCBI 采用了启发式检索工具 BLAST（Basic Local Alignment Search Tool）。
 
 []{#question-11-158}
 
@@ -401,7 +401,7 @@ A G              A G C T
 
 ::::: {.callout-tip .book-example title="示例与练习｜什么时候用全局比对，什么时候用局部比对？"}
 
-全局比对从头到尾对序列的每一个碱基都进行比对，找两条序列整体的最优解；局部比对只找两条序列中最相似的部分，最优结果可以有多个。全局比对用处自不必说，这里单独说说局部比对的意义。随着序列信息越来越多，人们发现：
+全局比对从头到尾比较两条序列的每一个碱基，寻找整体最优解；局部比对寻找最相似的部分，最优结果可以有多个。为什么需要局部比对？随着序列信息积累，人们发现：
 
 1. 某些蛋白序列虽然整体相差很大，但对某些特殊的功能域却有着极高的相似性；
 2. 这些功能域在不同物种中序列和功能都相当保守，这在全局比对中很难发现；
@@ -477,7 +477,7 @@ EDDMDFWYSVFIKSGDLLELPEF
 
 ### BLAT：单基因组快速定位 {#sec-04-04-blat}
 
-第一次看到 BLAT 这个名字可能会疑惑：不是 BLAST 吗，怎么少了个 S？从名字就能看出分工：
+BLAT 的名字与 BLAST 很接近，两者的用途有什么区别？
 
 - BLAST = Basic Local Alignment Search **Tool**：在**所有物种**的非冗余数据库里找相似序列，优点是全，缺点是输出冗余；
 - BLAT = BLAST-**like** alignment tool：只在**某一个指定基因组**上快速定位一条序列，比如“这条 SeqA 在 human genome 的哪里”。
@@ -492,7 +492,7 @@ EDDMDFWYSVFIKSGDLLELPEF
 
 ::::: {.callout-tip .book-example title="示例与练习｜两条 miRNA 为什么霸占百万 reads？"}
 
-这是一个来自真实数据分析的问题。一个小 RNA 测序结果（reads 平均长度小于 200bp）比对到 miRNA 序列库后，出现怪现象：只有 2 条 miRNA 各自霸占了海量 reads，其余 1800 种 miRNA 总共才比对上 10000 条：
+来看一个真实分析中遇到的问题：一份小 RNA 测序数据（reads 平均长度小于 200bp）比对到 miRNA 序列库后，只有 2 条 miRNA 各自比对上了大量 reads，其余 1800 种 miRNA 总共才比对上 10000 条：
 
 ```{.text data-book-role="data"}
 hsa-mir-7641-2    2000000
@@ -537,20 +537,20 @@ UCUCGUUUGAUCUCGGAAGCUAAGCAGGGUUGGGCCUGGUUAGUACUUGGAUGGGAAACUU
 
 ![高通量序列比对原理：不同时代的测序技术催生了不同的比对算法](../assets/04-quality-control-and-alignment/001-illustration.png){#fig-04-quality-control-and-alignment-001}
 
-哈希表是通过把关键码值（key value） 映射到表中的具体位置来进行访问，从而加快数据的查询速度。其核心思想就是采用种子序列定位及延伸算法（seed-and-extend algorithm）。
+哈希表把关键码值（key value）映射到表中的具体位置，从而加快查询。基于哈希表的比对采用种子序列定位及延伸算法（seed-and-extend algorithm）。
 
 根据索引构建对象的不同，可以将软件分为两类：基于参考基因组索引的延伸比对软件与基于短序列数据集索引的延伸比对软件。
 
-基于参考基因组索引构建哈希表数据结构的软件代表有PASS跟GASSST，其工作原理就是通过查询短序列在参考基因组的可能检索位点来定位序列可能存在的位置；基于短序列数据集构建索引的则刚好与之相反，此种索引构建方法为大部分哈希表比对软件所采用，代表软件诸如SOAP,SeqMap等等。
+PASS 和 GASSST 根据参考基因组构建哈希表，通过查询短序列在参考基因组中的候选位置来定位；另一类软件则对短序列数据集建立索引，查询方向与前者相反。大部分哈希表比对软件采用后一种方法，如 SOAP、SeqMap 等。
 
-而根据哈希表所采用的比对策略不同，又可以分为连续种子序列（contiguous seed）策略与间隔种子（spaced seed）策略。
-在了解这两种不同的比对策略之前，让我们先来实际看看哈希表是大概怎么构建的。
+按比对策略划分，哈希表比对又可分为连续种子序列（contiguous seed）策略与间隔种子（spaced seed）策略。
+比较这两种策略之前，先看哈希表怎样构建。
 
 #### 哈希表的构建 {#src-0040-mapping-and-BAM-operation-46}
 
-了解哈希表之前，我们需要补充一个概念k-mer：所谓k-mer，就是将一段序列拆分成包含k个碱基的迭代子序列，即从一条母序列中迭代的选取长度为K个碱基的序列，若母序列的长度为L，k-mer长度为K，那么就可以得到$L-K+1$个k-mer。
+这里需要用到 k-mer：沿一条序列依次选取长度为 K 个碱基的子序列。若原序列长度为 L，k-mer 长度为 K，就可以得到 $L-K+1$ 个 k-mer。
 
-DNA序列是由A,T,C,G四种碱基排序而成，我们可以按四进制给序列进行计数，而后转换为十进制作为哈希表的关键码值生成函数H（x），编码方式见 @fig-04-quality-control-and-alignment-002 。
+DNA 序列由 A、T、C、G 四种碱基排列而成。我们可以用四进制表示序列，再转换为十进制，以此构建生成哈希表关键码值的函数 H（x），编码方式见 @fig-04-quality-control-and-alignment-002 。
 
 ![把 A、T、C、G 分别编码为 0、1、2、3，碱基序列就可以按四进制转十进制得到哈希关键码](../assets/04-quality-control-and-alignment/svg/hash-01-base-encoding.svg){#fig-04-quality-control-and-alignment-002}
 
@@ -570,7 +570,7 @@ $$ {#eq-hash-key-function}
 
 其中 $I(j)$ 是第 $j$ 个碱基对应的编码值（见 @eq-hash-key-function ）。
   
-把参考基因组所有 k-mer 的位置都存进哈希表（ @fig-04-quality-control-and-alignment-003 以 k=5 为例），我们就相当于知道了所有 seed 序列的位置，在检索输入序列后，即可快速进行比对反馈，而后进行延伸就得到了序列所在位置。
+把参考基因组中所有 k-mer 的位置存入哈希表（ @fig-04-quality-control-and-alignment-003 以 k=5 为例），就记录了所有 seed 序列的位置。查询输入序列时，先找到种子的比对位置，再通过延伸确定整条序列的位置。
 
 ![以 k=5 构建的 k-mer 哈希表：每个 5-mer 作为关键码，指向它在参考基因组中出现的位置](../assets/04-quality-control-and-alignment/svg/hash-02-kmer-table.svg){#fig-04-quality-control-and-alignment-003}
 
@@ -579,7 +579,7 @@ $$ {#eq-hash-key-function}
 
 #### 连续种子序列策略 {#src-0040-mapping-and-BAM-operation-59}
 
-连续种子序列策略是将短序列拆分成k-mer长的子序列，而后查看由基因组k-mer的子序列所构建的哈希表数据结构进行匹配，从而完成整个回溯过程。
+连续种子序列策略先把短序列拆成 k-mer 子序列，再到参考基因组 k-mer 构建的哈希表中查找匹配，完成回溯。
   
   这种算法的缺点是显而易见的，即不允许mismatch的存在，如果序列中出现了至少一个位点的突变，则该位点就会被过滤掉。为了弥补这种缺陷，软件设计者们采用了鸽洞原理（pigeonhole principle）对算法进行了修正：首先，将短序列分割成等长的多段子序列，进行定位时，如果完全match上，则证明序列定位成功，如果存在mismatch，只要不超过设定的某个mismatch数目，则将该序列设定为候选序列，在所有候选序列汇总后选出最少的mismatch作为回溯序列。而后又陆续推出了一系列的修正算法，如q-gram过滤算法，但由于本书重点不在算法解释，仅作简单介绍，有兴趣的读者可以自行查阅相关文献。
   
@@ -593,15 +593,15 @@ $$ {#eq-hash-key-function}
 
 #### 间隔种子序列策略 {#src-0040-mapping-and-BAM-operation-66}
 
-所谓的间隔种子序列策略，就是种子序列中间允许存在若干个不确定的碱基，即在比对过程中允许mismatch的存在。举个例子，间隔种子序列AGxCGTAA，既可以跟AGGCGTAA匹配，也可以跟AGCCGTAA匹配。这样做的优势就是明显增加了比对算法的灵敏度，但反过来，比对所消耗的时间复杂度明显增加。
+间隔种子序列允许中间若干个位置的碱基不确定，也就是在这些位置允许 mismatch。例如，种子 AGxCGTAA 既可以匹配 AGGCGTAA，也可以匹配 AGCCGTAA。这样能明显提高比对灵敏度，但也会明显增加时间复杂度。
 
 ### BWT 与 FM 索引 {#src-0040-mapping-and-BAM-operation-69}
 
 无论采用的是连续种子策略还是间隔种子策略，两者都存在共同的问题，即面对高重复序列的真核生物基因组时，比对效果会比较差，究其原因就是因为k-mer分割所导致的。为了解决这个问题，软件设计者们把目光投向了另一类索引结构：后缀树与后缀数组。后缀树把参考序列的所有后缀组织成一棵树，查询很快，但把所有后缀完整存下来非常吃内存；后缀数组省得多，但对人类基因组来说仍然不小。这一方向真正的突破在于：**不需要真的存下整棵树或整个数组，只需要存下参考序列的 BWT 字符串和少量辅助数组，就能模拟在后缀数组上的查找**，这就是 FM 索引（FM-index）。Bowtie、BWA 这类软件正是靠它做到了既省内存又快速定位。
 
-所谓BWT (Burrows-Wheeler Transform)数据转换算法，原本是用于文本压缩的一种变换（压缩工具 bzip2 就使用了它），其大致原理是将原来的文本转换为一个相似的文本，转换后使得相同的字符位置连续或者相邻，再通过其他手段对文本进行压缩。
+BWT（Burrows-Wheeler Transform）原本是一种用于文本压缩的变换，压缩工具 bzip2 就使用了它。它重新排列原文本，使相同字符连续或相邻，再配合其他方法压缩文本。
 
-构建BWT的步骤大致如下：
+构建 BWT 的步骤如下：
 
 (1) 给定一个子序列，譬如：ACAACG，在其末尾加入一个只会出现在结尾的特殊符号 `$`，然后写出它全部 7 个循环旋转（rotation），见 @fig-04-quality-control-and-alignment-005 。每一行都是把原序列 ACAACG$ 循环左移一位得到，$ 只出现在结尾；高亮的第一行就是原序列本身。
 
@@ -613,7 +613,7 @@ $$ {#eq-hash-key-function}
 
 (3) 取排序矩阵每一行的最后一个字符，按行连成一个序列，即得到 BWT = `GC$AAAC`。矩阵第一列记为 F 列（排好序的），最后一列记为 L 列（就是 BWT 本身）。
 
-构建完一个BWT之后，把序列找回来的过程（回溯）其实就是一个解码过程。解码依据的是两条性质：
+构建 BWT 后，还原原序列的过程（回溯）就是解码。它依据下面两条性质：
 
 (1) L 列的第一个元素（G）是原始序列的最后一个字符——因为排序后第一行是 `$ACAACG`，它就是原始序列本身，其结尾的 G 正是原序列最后一个字符。
 (2) 同一行中，L 列的字符在原序列中紧挨在 F 列字符的前面。利用这一对应关系（LF 映射），从 L 走回 F，就能一步一步把原序列从后往前还原出来。
@@ -666,21 +666,21 @@ $$ {#eq-hash-key-function}
 
 本章仅对 BWA、Bowtie 以及 Bowtie 2 做深入比较，方便读者在科研工作中选择。
 
-首先说一下BWA，其优势在于提供了更多的比对模式选择，可以根据基因组大小进行比对模式选择，也可以根据序列长短进行比对模式选择，同时mem模式对长序列提供了更好的支持，可以处理三代测序数据，更常见于重测序数据的处理。
+BWA 提供多种比对模式，可以根据基因组大小和序列长短选择。其中 mem 模式对长序列支持更好，也能处理三代测序数据；BWA 更常用于重测序数据处理。
 
-Bowtie与Bowtie 2，其实Bowtie 2更像是对Bowtie的一个升级。比起Bowtie，Bowtie 2支持了gap，也支持了局部比对，在中长序列（50-1000bp）的处理上更具速度与准确性。但在面对small RNA等短序列的时候，不允许gap的Bowtie更具优势，究其原因就是比对上更为严格，仅支持全局最优的序列作为比对成功序列。
+Bowtie 2 可以看作 Bowtie 的升级版本：它支持 gap 和局部比对，在中长序列（50-1000bp）的处理上速度和准确性更好。面对 small RNA 等短序列时，不允许 gap 的 Bowtie 则更有优势，因为它的比对更严格，仅将全局最优的序列视为比对成功。
 
 至于BWA与Bowtie 2在处理转录组数据时谁更具备优势，其实很难界定，更多是看个人的工具使用倾向。真正针对"reads 跨外显子"这一问题的，是表中的剪接比对软件；HISAT2 在 2019 年下半年的大版本更新后性能有明显提升，在许多研究中被越来越多地使用。
 
 ### Bowtie 2 实操 {#src-0040-mapping-and-BAM-operation-108}
 
-下面本书就以Bowtie 2的安装与使用为例，讲解在使用过程中应该注意的事项。
+下面以 Bowtie 2 为例，介绍安装、使用和结果检查中的注意事项。
 
 #### Bowtie 2 的安装 {#src-0040-mapping-and-BAM-operation-111}
 
-由于Bowtie 2有将安装包放进conda的channel--bioconda里面，故而最为方便的安装方式是直接使用conda进行安装。可以直接访问 bioconda 的软件页面（<https://anaconda.org/bioconda/bowtie2>，2026 年 10 月核对可访问），也可以按下图在 Anaconda 云端检索（以下截图摄于 2019 年前后，界面可能已有调整，操作逻辑一致：搜索软件名，进入软件页，复制安装命令）。
+Bowtie 2 已收录在 conda 的 bioconda channel 中，用 conda 安装最方便。可以直接访问 bioconda 的软件页面（<https://anaconda.org/bioconda/bowtie2>，2026 年 10 月核对可访问），也可以按下图在 Anaconda 云端检索。以下截图摄于 2019 年前后，界面可能已有调整，操作仍是搜索软件名、进入软件页、复制安装命令。
 
-首先，如果我们在不知道具体哪个channel的情况下，可以在浏览器中输入“conda cloud”进行检索（以必应为例）
+如果不知道软件在哪个 channel，可以先在浏览器中搜索“conda cloud”，下图以必应为例。
 
 
 
@@ -688,7 +688,7 @@ Bowtie与Bowtie 2，其实Bowtie 2更像是对Bowtie的一个升级。比起Bowt
 
 
 
-点进去即可搜索Bowtie 2
+打开页面后，搜索 Bowtie 2。
 
 
 
@@ -696,7 +696,7 @@ Bowtie与Bowtie 2，其实Bowtie 2更像是对Bowtie的一个升级。比起Bowt
 
 
 
-搜索结果如下
+搜索结果如下：
 
 
 
@@ -704,7 +704,7 @@ Bowtie与Bowtie 2，其实Bowtie 2更像是对Bowtie的一个升级。比起Bowt
 
 
 
-点进入即可看到安装命令行
+打开软件页面，就能看到安装命令。
 
 
 
@@ -724,7 +724,7 @@ conda install -c bioconda bowtie2
 
 
 
-按照完成后即可在命令行中敲出Bowtie 2，连按tab键补齐三下即可看到所有Bowtie 2开头的命令
+安装完成后，在命令行输入 Bowtie 2，连续按三次 Tab 补全键，即可查看以 Bowtie 2 开头的命令。
 
 
 
@@ -732,9 +732,9 @@ conda install -c bioconda bowtie2
 
 
 
-这种按照方法较为简单，推荐刚入门的新手使用，而对于已经熟悉了的读者，则可以自行下载，并配置全局调用，此处简单介绍，各位以后想自己安装了就可以自行尝试
+这种安装方法较简单，推荐刚入门的同学使用。已经熟悉相关操作的读者，也可以自行下载软件并配置全局调用，下面简要介绍这种方式。
 
-首先在搜索引擎上搜索Bowtie 2
+先在搜索引擎中搜索 Bowtie 2。
 
 
 
@@ -742,7 +742,7 @@ conda install -c bioconda bowtie2
 
 
 
-进入官网，即可看到每个版本修复的问题，而在右下角提供的github链接则为我们要下载的源码地址
+进入官网后，可以查看各版本修复的问题；右下角的 GitHub 链接指向源码下载页面。
 
 
 
@@ -750,7 +750,7 @@ conda install -c bioconda bowtie2
 
 
 
-点击绿色的clone按键，在window的用户可以下载为zip而后解压传输到服务器上，如果服务器网络较好，也可以通过clone的方式下载到服务器上
+点击绿色的 clone 按钮。Windows 用户可以下载 ZIP 压缩包，解压后传到服务器；如果服务器网络较好，也可以直接 clone 到服务器。
 
 
 
@@ -795,11 +795,11 @@ export PATH="$PATH:/home/Alfred/biosoft/bowtie2/bowtie2-2.3.5.1-linux-x86_64/"
 source ~/.bashrc #更新当前环境
 ```
 
-考虑到阅读本书的多是刚入门的读者，不推荐一开始就自行下载、更新环境，能用conda解决就用conda解决，等熟悉了Linux的操作逻辑再自行翻阅尝试即可。
+对刚入门的同学，我建议优先用 conda 安装，暂时不必自行下载软件、更新环境。熟悉 Linux 的操作后，再按需要尝试手动安装。
 
 #### Bowtie 2 的使用 {#src-0040-mapping-and-BAM-operation-188}
 
-作为一名生信从业的科研人员，我们面对不熟悉的软件，第一件事并不是火急火燎的去乱问别人，而是应该秉承着先检索前人使用经验与阅读说明书的原则去熟悉一个新软件，在GitHub的下载页面下面即有Bowtie 2的使用简要说明
+遇到不熟悉的软件，先读说明书，再参考已有的使用经验。Bowtie 2 的 GitHub 下载页面下方就有简要使用说明，可以从这里开始。
 
 
 
@@ -807,7 +807,7 @@ source ~/.bashrc #更新当前环境
 
 
 
-下面由我跟大家用实际例子做个介绍
+下面通过一个实际例子说明用法。
 
 首先，我们需要下载参考基因组：本例使用人的 X 染色体（chrX），可以从 UCSC 的 hg19 下载目录获取（<https://hgdownload.soe.ucsc.edu/goldenPath/hg19/chromosomes/>，2026 年 10 月核对可访问），下载完成之后即为一个 fa 文件。
 
@@ -815,7 +815,7 @@ source ~/.bashrc #更新当前环境
 
 
 
-我们使用Bowtie 2做的第一件事就是对这个参考基因组构建一个索引，这一步的目的就是上文提到构建索引表，供后续比对检索回帖
+先用 Bowtie 2 为这个参考基因组构建索引，供后续比对时查询和定位 reads。
 
 
 ```{.bash data-book-role="code"}
@@ -832,7 +832,7 @@ bowtie2-build chrX.fa chrX.fa
 
 
 
-接着就是拿我们在上一个步骤处理干净的clean data进行回帖操作，这一步可以理解为将所有短序列在参考基因组上找回他们对应的位置，下面我们对Bowtie 2的参数进行一个大概的认知。
+接下来，将上一步处理好的 clean data 比对到参考基因组，找到各条短序列对应的位置。运行前，先了解 Bowtie 2 的主要参数。
 
 
 **必选参数**
@@ -888,7 +888,7 @@ bowtie2-build chrX.fa chrX.fa
 | `-I/--minins <int>` | 设置允许插入片段最小长度，默认为 0 |
 | `-X/--maxins <int>` | 设置允许插入片段最大长度，默认为 500 |
 
-看到这么多参数可能会觉得头晕目眩，其实在我们正常使用中，仅仅是选择必须参数与多线程即可，在比对完成后查看结果再进行调整。
+第一次运行时，通常只需设置必选参数和线程数，再根据比对结果调整其他参数。
 
 
 ```{.bash data-book-role="code"}
@@ -897,21 +897,21 @@ bowtie2 -p 10 -x chrX.fa -1 ERR188245_chrX_1.fastq.gz -2 ERR188245_chrX_2.fastq.
 
 #### 比对结果检查 {#src-0040-mapping-and-BAM-operation-256}
 
-在比对完成之后，Bowtie 2会输出一段log文件，记录着比对情况，但那只是粗略的比对情况，简单的检查可以用；如果要查看每个染色体的比对情况，则推荐用Qualimap 2进行检查。该软件的安装使用conda即可（注意：qualimap bamqc 的输入是排序后的 BAM 文件，SAM 或未排序的 BAM 需要先转换排序，下一节会讲到）。
+比对完成后，Bowtie 2 会输出记录比对情况的日志，可用于初步检查。若要查看每条染色体的比对情况，我推荐使用 Qualimap 2。该软件可以用 conda 安装；注意 qualimap bamqc 需要已排序的 BAM 文件，SAM 或未排序的 BAM 要先转换、排序，下一节会介绍。
 
 
 ```{.bash data-book-role="code"}
 conda install -c bioconda qualimap
 ```
 
-而后进行质检也非常简单，选择bamqc即可：
+运行 bamqc 进行检查：
 
 
 ```{.bash data-book-role="code"}
 qualimap bamqc -bam ERR188245_chrX.sorted.bam -outdir bamqc_result -outformat PDF:HTML
 ```
 
-如果想看注释的区域也可以加上gff文件的参数：
+如果还想检查注释区域，可以添加指定 GFF 文件的参数：
 
 
 ```{.bash data-book-role="code"}
@@ -933,7 +933,7 @@ qualimap bamqc -bam ERR188245_chrX.sorted.bam -gff chrX.gff -outdir bamqc_result
 
 能把比对结果转换成适合下游分析的输入。
 
-先记住本章这一段的核心：**比对结果文件（SAM/BAM）记录的就是每条 read 在基因组上的位置和比对情况**——哪条 read、比对到哪条染色体的哪个位置、质量如何、序列本身是什么。理解了这一句，本节所有内容都是在展开它的细节。
+**比对结果文件（SAM/BAM）记录的就是每条 read 在基因组上的位置和比对情况**，包括 read 名称、所比对的染色体与位置、比对质量和序列本身。下面逐项看这些信息怎样存储，又怎样读取和过滤。
 
 ### SAM 与 BAM 总览 {#src-0040-mapping-and-BAM-operation-278}
 
@@ -969,8 +969,8 @@ less ERR188245.sam
 
 ### 逐列读懂比对结果 {#src-0040-mapping-and-BAM-operation-276}
 
-第一列即ERR开头的这些表示的是read的编号，即fq文件的第一行。
-第二列是一列数字，这列数字叫做flag，即位标识，表示的是比对上的情况，是下面这些情况的数值之和：
+第一列是 read 的编号，图中以 ERR 开头，对应 FASTQ 文件中这条 read 的第一行。
+第二列是 FLAG（位标识），用一个整数记录比对情况，其值为下列各适用标识值之和：
 
 
 ```{.text data-book-role="data" data-code-title="常用 FLAG 位（可组合相加）"}
@@ -1014,7 +1014,7 @@ MAPQ 用 Phred 标度表达比对位置错误的概率。SAM 规范并未将取�
 
 
 
-**第六列 CIGAR** 是比对的简明描述，用一个很好记的名字叫 CIGAR（Concise Idiosyncratic Gapped Alignment Report，出自 SAM 官方规范）。它由数字加字母组成，字母对应比对中发生的事件：
+**第六列 CIGAR** 简要描述比对情况，全称是 Concise Idiosyncratic Gapped Alignment Report，出自 SAM 官方规范。它由数字和字母组成，字母代表比对中的不同操作：
 
 ::::: {.callout-note .book-core title="核心知识｜CIGAR 的含义"}
 
@@ -1043,7 +1043,7 @@ CIGAR 用“数字+操作符”串描述一条 read 与参考的比对情况：`
 
 **第十、十一列 SEQ、QUAL** 就是这条 read 的序列与碱基质量，编码方式同 FASTQ——SAM 不仅记录比对，还把 reads 的原始信息完整保留了下来。
 
-看到这里你可能觉得头晕晕的，但其实可以不用记得这么仔细：记住本节开头的核心句——**SAM 记录的就是每条 read 在基因组上的位置和比对情况**——到真的需要过滤时再回来查具体列的含义即可。
+不必一次记住所有字段。先理解**SAM 记录的就是每条 read 在基因组上的位置和比对情况**，需要过滤数据时，再回来查相应字段的含义。
 
 []{#question-16-111}
 
@@ -1216,16 +1216,16 @@ samtools view
 
 #### SAM 与 BAM 互转 {#sec-04-06-sam-bam-convert}
 
-由于我们的sam文件是文本类的文件，这就导致比对所产生的结果文件动辄大几G，对我们硬盘的造成了很大存储压力，如果压缩则能够减小很多体积，而直接转成二进制文件则更为节约体积，故而就诞生了一种二进制格式bam来对比对结果进行存储，除了是二进制以外其存储的内容与sam文件无异。怎么区分这两个呢，我觉得用英文区分就很简单可以区分开，s是string的意思，字符，文本的意思，b是binary的意思，二进制的意思，一下子就知道两者的区别了。
+SAM 是文本文件，比对结果动辄几 G，会占用较多磁盘空间。压缩能减小体积，转成二进制格式还能进一步节省空间，因此有了用于存储相同内容的 BAM 格式。区分两者时，可以借英文单词帮助记忆：s 对应 string，即字符、文本；b 对应 binary，即二进制。
 
-那么转成二进制文件之后，要怎么打开呢？很明显使用less这种打开文本文件的是不适合的了。这个时候就要提到BWA之父李恒大神为sam与bam开发的一个处理利器samtools。首先是国际惯例，安装
+BAM 是二进制文件，不能直接像文本那样用 less 查看。李恒为 SAM/BAM 开发的 samtools 可以处理这类文件，先来安装：
 
 
 ```{.bash data-book-role="code"}
 conda install -c bioconda samtools
 ```
 
-安装完毕之后就可以在命令行上使用了，首先是将sam文件转换为bam文件：
+安装完成后，先在命令行将 SAM 文件转换为 BAM：
 
 
 ```{.bash data-book-role="code"}
@@ -1236,7 +1236,7 @@ samtools view -b ERR188245.sam > ERR188245.bam
 samtools view -h ERR188245.bam > ERR188245.sam
 ```
 
-那么问题来了，转为bam文件之后，怎么用samtools查看？我们可以将bam转为sam，然后再利用管道符用less查看：
+要查看转换后的 BAM，可以先用 samtools 转为 SAM，再通过管道交给 less：
 
 
 ```{.bash .numberLines data-book-role="code"}
@@ -1252,7 +1252,7 @@ samtools view ERR188245_chrX.bam  | less -S
 
 #### BAM文件的排序 {#src-0040-mapping-and-BAM-operation-364}
 
-如果我们是做全基因组测序，那么在进行下游分析之前，需要对bam文件进行一个排序，这个功能可以用samtools，也可以用Picard或者GATK做到。
+全基因组测序数据进入下游分析前，需要对 BAM 文件排序。samtools、Picard 和 GATK 都能完成这一步。
 
 使用samtools对bam文件进行排序：
 
@@ -1286,18 +1286,18 @@ gatk SortSam -I ERR188245_chrX.bam -O ERR188245_chrX.sorted.bam -R chrX.fa -SO c
 
 #### BAM文件的index的建立 {#src-0040-mapping-and-BAM-operation-396}
 
-经过排序之后的bam文件，就可以建立索引，如果不排序则会报错。建立bam文件的索引文件，是为了更方便地
+BAM 文件排序后就可以建立索引；未经排序直接建立索引会报错。命令如下：
 
 
 ```{.bash data-book-role="code"}
 samtools index ERR188245_chrX.sorted.bam
 ```
 
-运行完上面的命令，即可在文件夹中获得一个index文件，一般情况下默认的文件名为bam文件名后面增加`.bai`后缀。比如这里就会生成`ERR188245_chrX.sorted.bam.bai`文件。我们在对排序完的bam文件进行一些特殊的操作时，一般都需要index文件和bam文件在同一文件夹中，否则可能会出现报错的现象。
+运行后会得到索引文件，默认文件名通常是在 BAM 文件名后加上 `.bai` 后缀，本例为 `ERR188245_chrX.sorted.bam.bai`。对排序后的 BAM 进行某些操作时，通常需要将索引与 BAM 放在同一目录，否则可能报错。
 
 #### 对比对结果进行过滤 {#src-0040-mapping-and-BAM-operation-406}
 
-果然想通过mapping质量或者比对情况进行过滤，那samtools一定是处理代码最为简洁的。
+如果要按 mapping 质量或比对情况过滤，使用 samtools 的命令较为简洁。
 
 
 ```{.bash .numberLines data-book-role="code"}
@@ -1315,14 +1315,14 @@ samtools view -h -b -q 20 -F 260 ERR188245_chrX.sorted.bam > ERR188245_chrX.q1F4
 
 #### 对比对结果进行统计 {#src-0040-mapping-and-BAM-operation-421}
 
-如果想对bam文件进行一些基础的统计分析，比如测序片段的数目，整体的突变情况，基因组测序结果的覆盖度等等，都可以用下面的命令生成报告。
+下面的命令可以生成基础统计报告，包括 BAM 中测序片段的数量、整体突变情况和基因组覆盖度等。
 
 
 ```{.bash data-book-role="code"}
 samtools flagstat ERR188245_chrX.sorted.bam
 ```
 
-结果文件统计bam文件中reads的比对情况，如多少reads比对上等信息，其中的结果比较丰富，但是需要再使用R或者Python编程进行生成图表。所以，当不追求速度的情况下还是建议用Qualimap 2软件。
+结果文件包含 reads 的比对情况，如比对成功的 reads 数量等。统计内容较丰富，但绘图还需要另写 R 或 Python 程序。因此，如果不追求运行速度，我仍建议使用 Qualimap 2。
 
 顺带一提，SAM 不仅记录比对，还保留了 reads 的原始序列，所以也能反向提取 FASTQ：
 
@@ -1401,7 +1401,7 @@ samtools tview -p chr1:160000-160100  test_sort.bam
 
 ::::: {.callout-note .book-extension title="拓展阅读｜继续学习软件的方法" collapse="true"}
 
-大家以后要用的软件种类非常多，不可能所有软件都学过，总有一个从不会到会的过程。学习各种软件时要学会类比和推理，想清楚 input 是什么、output 是什么——想不明白其中的道理，工具就只是黑盒子。软件用法的学习，入门时看别人的介绍尚可，有了一定基础后一定要多读官方文档，受益无穷。
+以后会不断遇到没用过的软件，不必事先学完所有工具。可以从熟悉的操作出发，比较新软件的 input 和 output，弄清它做了什么。刚入门时可以参考他人的教程；有了一定基础后，建议多读官方文档，查清具体用法。
 
 :::::
 
@@ -1411,7 +1411,7 @@ samtools tview -p chr1:160000-160100  test_sort.bam
 
 ### 覆盖度估算 {#src-0070-WGS-9}
 
-假设构建的基因组文库无区域偏好性，测序片段来自于基因组各个区域的概率均等，则我们可以估计特定建库方式下，一定的library size的序列所能覆盖的基因组区域
+如果基因组文库没有区域偏好，即测序片段来自各区域的概率相等，就可以估计特定建库方式下，一定 library size 的序列能够覆盖多少基因组区域。
 
 已知目标基因组的长度为$G$，测序片段长度（read size）为$S$，library size为$N$，则某一条read来自于一个长度为$L$的基因组区段的概率为$\frac{L}{G}$
 
@@ -1453,7 +1453,7 @@ $$ {#eq-04-quality-control-and-alignment-003}
 ![测序深度取整数的概率质量分布（以均值 λ=40 的泊松分布为例）](../assets/04-quality-control-and-alignment/038-snp-calling-estimate-depth-distribution.png){#fig-04-quality-control-and-alignment-038}
 
 
-依据测序深度的概率分布，可以很容易推出测序深度大于指定阈值$d$的基因组区域比例：
+根据测序深度的概率分布，可以进一步求出深度大于指定阈值 $d$ 的基因组区域比例：
 
 
 
@@ -1547,7 +1547,7 @@ print(duplication_num)
 
 #### 去除 duplicate：MarkDuplicates 实操 {#src-0040-mapping-and-BAM-operation-433}
 
-这一步，我们经常叫`remove duplication`。所谓的duplication一般是指构建测序文库的过程中，会有PCR扩增的步骤，这个步骤往往会对片段进行多次扩增。如果有来源于同一个原始片段的测序结果比对到了基因组上，有可能会对我们的下游分析造成一些影响。所以，某些情况下需要对bam文件进行冗余的去除，这里的冗余一般习惯上称为`duplication`。
+这一步常称为 `remove duplication`。建库时，PCR 会对片段进行多次扩增；如果来自同一个原始片段的多条测序结果都比对到基因组上，可能影响下游分析。因此，某些情况下需要去除 BAM 中的这类冗余，它通常称为 `duplication`。
 
 去除duplication的常用工具是 GATK/Picard 的 MarkDuplicates（按坐标排序后运行）。早期常用 `samtools rmdup`，它对双端数据的处理有已知问题；官方目前保留它仅为向后兼容，明确推荐改用 `samtools collate` + `samtools fixmate` + `samtools markdup` 流程（依据 samtools 官方 NEWS，2026 年 10 月核对）。去重工具本书以 GATK 的 MarkDuplicates 为例。
 
@@ -1572,7 +1572,7 @@ gatk MarkDuplicates REMOVE_DUPLICATES=true -I ERR188245_chrX.sorted.bam -O ERR18
 java -jar picard.jar MarkDuplicates I=ERR188245_chrX.sorted.bam O=ERR188245_chrX.sorted.mkdup.bam M=ERR188245_chrX.metrics ASO=coordinate REMOVE_DUPLICATES=true
 ```
 
-关于samtools的用法其实很多，但限于篇幅，我们只对最常用的几个命令进行了简单介绍，对于组学分析中的其他应用可以参考接下来各章的介绍。
+这里介绍了 samtools 最常用的几个命令，其他组学分析中的用法见后续各章。
 
 []{#src-0070-WGS-46}
 
@@ -1835,11 +1835,11 @@ $$ {#eq-04-quality-control-and-alignment-019}
 
 ### IGV 工具的介绍 {#src-0040-mapping-and-BAM-operation-467}
 
-samtools 的 flagstat 或 Qualimap 2 能告诉我们**总体**的比对情况，但有时候我们只想看染色体上某一段区域，或者想直观地看某个编码区的比对细节——这时就需要一个可视化的基因组浏览器：IGV（Integrative Genomics Viewer）。它把 BAM 里每条 read 的位置、正负链、错配、插入缺失都画在基因组坐标上，是检查比对问题、准备组会/论文配图的利器。
+samtools 的 flagstat 或 Qualimap 2 能告诉我们**总体**比对情况。如果要查看染色体上的某个区域或编码区的比对细节，可以使用基因组浏览器 IGV（Integrative Genomics Viewer）。它把 BAM 中每条 read 的位置、正负链、错配和插入缺失画在基因组坐标上，既可检查比对问题，也可准备组会或论文配图。
 
 ### IGV 的下载与安装 {#sec-04-08-download}
 
-老规矩，先找到软件：在搜索引擎搜索 IGV，进入官网（ @fig-04-quality-control-and-alignment-025 ；官网地址 <https://igv.org>，2026 年 10 月核对可访问）。本次以**桌面版**为例（ @fig-04-quality-control-and-alignment-026 ），按提示安装即可（ @fig-04-quality-control-and-alignment-027 ；以下截图摄于 2019 年前后，官网界面可能已有调整，但下载桌面版安装包的逻辑不变）。
+在搜索引擎中搜索 IGV 并进入官网（ @fig-04-quality-control-and-alignment-025 ；官网地址 <https://igv.org>，2026 年 10 月核对可访问）。这里使用**桌面版**（ @fig-04-quality-control-and-alignment-026 ），按提示安装即可（ @fig-04-quality-control-and-alignment-027 ）。以下截图摄于 2019 年前后，官网界面可能已有调整，但仍可按相同思路找到桌面版安装包。
 
 ![在必应搜索 IGV，进入软件官网（2019 年前后界面）](../assets/04-quality-control-and-alignment/025-illustration.png){#fig-04-quality-control-and-alignment-025}
 
@@ -1881,7 +1881,7 @@ samtools index -@ 2 ERR188245_chrX.sorted.bam ERR188245_chrX.sorted.bai
 - 截图里保留坐标轴与基因 track，让读者知道位置；多个样本比较时把各样本 BAM 依次载入、对齐同一坐标再导出；
 - PNG 适合日常记录与幻灯片；如期刊要求矢量图，可选 Save SVG Image。
 
-IGV 是可视化 BAM 文件的利器，用好它可以事半功倍地检查比对问题、展示结果。
+使用 IGV 查看局部比对时，可以同时检查 reads 与参考的位置关系，并保存需要展示的结果。
 
 ## 项目实战：下载公共数据进行分析 {#sec-04-09}
 

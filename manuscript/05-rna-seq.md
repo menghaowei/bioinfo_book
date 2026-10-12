@@ -10,14 +10,14 @@
 
 ## 转录组的研究问题、分析对象与建库策略 {#sec-05-01}
 
-明确样本中的RNA如何进入文库，以及最终要估计什么。
+分析转录组数据前，先弄清样本中的 RNA 怎样进入文库，以及我们要估计的是哪一类 RNA 的表达量。
 
 ### 转录组与 RNA 的种类 {#src-0050-RNA-seq-1}
 
 []{#src-0050-RNA-seq-5}
 []{#RNA_Seq}
 
-RNA测序（RNA sequencing，RNA-Seq）是一种非常成熟的研究转录组学的技术，是目前使用最广泛的高通量测序技术之一。一个细胞所蕴含的全部遗传物质（DNA）即基因组，根据中心法则[^rna-ref-1]，遗传信息由DNA通过转录作用流向RNA，这些RNA的总和被称为转录组 （transcriptome），研究转录组的方式方法及相关技术即转录组学（transcriptomics）。通过转录组测序可以解决多种生物学问题，例如寻找实验组和对照组的差异表达基因、目标研究对象在不同发育或者生物学过程中的基因表达时序性变化等。
+RNA 测序（RNA sequencing，RNA-Seq）是研究转录组的成熟技术，也是使用最广泛的高通量测序技术之一。一个细胞中的全部遗传物质（DNA）称为基因组。根据中心法则[^rna-ref-1]，遗传信息由 DNA 经转录流向 RNA，这些 RNA 的总和称为转录组（transcriptome），研究转录组的方法及相关技术则称为转录组学（transcriptomics）。转录组测序可以用来寻找实验组与对照组之间的差异表达基因，也可以研究基因表达在发育或其他生物学过程中的时序变化。
 RNA可以分为能够编码蛋白基因的信使RNA（mRNA）[^rna-ref-2]和非蛋白编码RNA （non-coding RNA, ncRNA），例如人类基因组，含有约20000个蛋白编码基因和7000个非蛋白编码RNA基因。随着研究的深入，生命科学研究者对RNA的认识逐渐全面，陆续发现了生物体中多种类型的非编码RNA，有持家非编码RNA（house-keeping non-coding RNA）：在翻译过程中起转运作用的tRNA[^rna-ref-3]、核糖体的组成成分rRNA[^rna-ref-4] 、参与mRNA剪接的snRNA（small nuclear RNA）[^rna-ref-5]等；还有能够起到调控作用的非编码RNA：长非编码RNA（long non-coding RNA, lncRNA）、miRNA（microRNA）[^rna-ref-6]、小干扰RNA（small interfering RNA, siRNA）和环状RNA（circRNA）等。RNA 家族的种类与分工见 @fig-05-rna-classes ：编码蛋白的 mRNA 之外，其余都是非编码 RNA，各自在中心法则的不同环节工作。
 
 ![RNA 的主要类型及其在中心法则中的位置（图片来自维基百科 Non-coding RNA 条目，作者 Ppgardne，GFDL 许可[^rna-ref-fig-license]）](../assets/06-rna-seq/cited/ncrnas-central-dogma.svg){#fig-05-rna-classes}
@@ -34,12 +34,12 @@ RNA可以分为能够编码蛋白基因的信使RNA（mRNA）[^rna-ref-2]和非�
 
 ### mRNA 与全转录组建库 {#topic-05-lib-strategies}
 
-研究人员通常会对mRNA和一些调控非编码RNA感兴趣，针对不同类型的RNA，采取的测序手段也不同，主要表现为样本建库策略的不同。测序仪通常只能对DNA序列进行测序，测序之前对样品里的目标待测 RNA 进行处理的过程称为“文库的制备”，简称建库（@fig-06-rna-seq-001 ）。 
+研究人员通常关注 mRNA 和一些具有调控作用的非编码 RNA。针对不同类型的 RNA，测序方法也有区别，主要体现在建库策略上。测序仪通常只能读取 DNA，因此测序前需要处理样品中的目标 RNA，这个过程称为“文库的制备”，简称建库（@fig-06-rna-seq-001 ）。
 	
 
 ![从总 RNA 到测序文库：四种主要建库策略（重绘自原稿示意图）](../assets/06-rna-seq/svg/lib-tree.svg){#fig-06-rna-seq-001}
 
-用富集polyA方式可以获得mRNA的表达信息、也可以获得部分lncRNA（含有polyA 的lncRNA）的表达信息；通过去rRNA方式建库可以检测到mRNA、全部lncRNA、circRNA的表达信息；去线性建库则是专门为了检测circRNA的表达；短片端建库能够获得以miRNA为主的小RNA表达信息。本节先讲最常用的两种——富集 poly(A) 与去 rRNA（@fig-05-lib-compare），小 RNA 与环状 RNA 文库放在下一小节。
+富集 polyA 可以获得 mRNA 和部分 lncRNA（含有 polyA 的 lncRNA）的表达信息；去 rRNA 建库可以检测 mRNA、全部 lncRNA 和 circRNA；去线性 RNA 建库专门用于检测 circRNA；短片段建库则主要获得 miRNA 等小 RNA 的表达信息。本节先介绍最常用的富集 poly(A) 与去 rRNA 两种方式（@fig-05-lib-compare），小 RNA 和环状 RNA 文库放在下一小节。
 
 #### 富集 poly(A) 的 mRNA 测序 {#src-0050-RNA-seq-15}
 
@@ -65,23 +65,23 @@ RNA可以分为能够编码蛋白基因的信使RNA（mRNA）[^rna-ref-2]和非�
 
 lncRNA 发挥多种调控功能，扮演信号分子、诱导因子、引导分子、支架分子等多种角色[^rna-ref-8]。
 
-对lncRNA 进行测序需要采用去rRNA的方法建库，以最大限度地保留lncRNA（@fig-06-rna-seq-001 ）。与此同时，mRNA、snoRNA、snRNA、tRNA 和 circRNA 的表达信息也能在去 rRNA 文库中获得。与富集polyA方法不同的是，建库的第一步是去除样本中的rRNA，接下的步骤则与富集polyA方式建库差不多。lncRNA测序一般采取双端测序，测序读长150bp，数据量约 10–12 G clean bases。
+为了尽可能保留 lncRNA，lncRNA 测序需要采用去 rRNA 的建库方法（@fig-06-rna-seq-001 ）。这类文库也能提供 mRNA、snoRNA、snRNA、tRNA 和 circRNA 的表达信息。建库时先去除样本中的 rRNA，后续步骤与富集 polyA 的方式大致相同。lncRNA 测序一般采用双端测序，读长 150bp，数据量约 10–12 G clean bases。
 
 去 rRNA 不依赖 poly(A) 尾，而是用探针杂交或核酸酶特异性地把占总 RNA 80%–90% 的 rRNA 移除，保留其余全部 RNA，因此信息面比富集 poly(A) 宽得多，也能用在部分降解的样本上。代价是去除效率因试剂盒与样本质量而异：数据里常有 5%–20% 的 read 仍来自残留 rRNA，分析前值得用 FastQC 或比对统计评估一下这部分占比。
 
-两种策略的选择可以一句话概括：研究蛋白编码基因、样本质量好，用富集 poly(A)；要覆盖非编码 RNA、circRNA 或样本有降解，用去 rRNA。
+研究蛋白编码基因且样本质量较好时，可以选择富集 poly(A)；需要覆盖非编码 RNA、circRNA，或样本已经降解时，可以选择去 rRNA。
 
 ![富集 poly(A)（mRNA 文库）与去 rRNA（total RNA 文库）两条建库路线（图片来自 Illumina 技术文档，仅作教学示意）](../assets/06-rna-seq/cited/illumina-workflows.jpg){#fig-05-lib-compare}
 
 ### 其他 RNA 文库 {#topic-05-other-rna-lib}
 
-除两类主力策略外，针对特定 RNA 类型的文库用得较少但不可替代：小 RNA 文库捕获短片段，环状 RNA 文库通过去掉线性 RNA 富集环状分子。
+针对特定 RNA 类型，还需要其他建库策略。它们使用较少，但有不可替代的用途：小 RNA 文库捕获短片段，环状 RNA 文库通过去除线性 RNA 来富集环状分子。
 
 #### 小 RNA 测序 {#src-0050-RNA-seq-39}
 
 ::::: {.callout-note .book-core title="核心知识｜microRNA 与小 RNA 测序"}
 
-microRNA 广泛存在于动植物中，是一类长度为22nt左右的小非编码RNA，通过抑制蛋白质翻译或者降解mRNA，在多种生物学过程中发挥调控作用。对microRNA测序需要做小RNA测序（small RNA-seq ），建库过程中需要回收小片段，这是与mRNA建库的主要不同之处。miRNA的功能涉及多种生物学过程，有潜力成为许多疾病包括癌症的标志物。建库起始样本可以用总RNA，也可以用分离纯化得到的small RNA。
+microRNA 广泛存在于动植物中，是一类长度约为 22nt 的小非编码 RNA，通过抑制蛋白质翻译或降解 mRNA 参与多种生物学过程，也有潜力成为癌症等疾病的标志物。测量 microRNA 需要做小 RNA 测序（small RNA-seq），建库时回收小片段，这是它与 mRNA 建库的主要区别。起始样本可以用总 RNA，也可以用分离纯化后的 small RNA。
 
 :::::
 
@@ -132,7 +132,7 @@ microRNA 广泛存在于动植物中，是一类长度为22nt左右的小非编�
 
 ## 本章示例数据下载与说明 {#sec-05-02}
 
-让后续各步骤对应同一批样本和同一个研究问题。
+后续步骤将使用同一批样本，围绕同一个研究问题展开。
 
 ### 研究问题与样本设计 {#topic-05-sample-design}
 
@@ -150,7 +150,7 @@ microRNA 广泛存在于动植物中，是一类长度为22nt左右的小非编�
 
 : 本章示例数据的样本信息 {#tbl-05-samples}
 
-这套数据是链特异性 mRNA 文库——5.1 节的建库策略、5.4 节 htseq-count 的 `-s` 参数都会用到这个事实。后续命令中的 `test_R1/test_R2` 文件名即对应这套数据经质控过滤后的双端 FASTQ。
+这套数据来自链特异性 mRNA 文库，后续选择分析参数时要记住这一点，尤其是 5.4 节 htseq-count 的 `-s` 参数；相关建库原理见 5.1 节。命令中的 `test_R1/test_R2` 对应这套数据经质控过滤后的双端 FASTQ 文件。
 
 ### 从 GEO 与 SRA 下载数据 {#src-0050-RNA-seq-396}
 
@@ -211,13 +211,13 @@ UCSC Table Browser 提供的是以上注释的镜像（knownGene 是 UCSC 自建
 
 ::::: {.callout-warning .book-warning title="注意｜索引、比对与定量必须同源"}
 
-比对索引的 FASTA、定量的 GTF 必须来自同一来源、同一版本的基因组装配（例如都基于 hg38 的 RefSeq，或都基于 GENCODE v44）。混用的典型后果：坐标对不上、大量 read 落入 no_feature、基因名对不回计数表。RefSeq 与 Ensembl 的 ID 体系互不相认，中途换注释等于推倒重来。
+比对索引的 FASTA 与定量所用的 GTF 必须来自同一来源、同一版本的基因组装配，例如都基于 hg38 的 RefSeq，或都基于 GENCODE v44。混用时可能出现坐标不一致、大量 read 落入 no_feature、计数表中的编号无法对应基因名等问题。RefSeq 与 Ensembl 的 ID 体系不同，中途更换注释需要重新分析。
 
 :::::
 
 ### 本章分析路线与工具地图 {#src-0050-RNA-seq-101}
 
-有参转录组分析一般包括：测序数据的质量控制、构建参考基因组索引、将read比对到参考基因组、拼接新的转录本（可选）、基因表达的定量、差异表达基因的分析，以及对目标基因群进行注释和富集分析（@fig-06-rna-seq-003 ）。	
+有参考基因组的转录组分析一般包括测序数据质控、构建参考基因组索引、将 reads 比对到参考基因组、拼接新转录本（可选）、表达定量、差异表达分析，以及目标基因集的注释与富集分析（@fig-06-rna-seq-003 ）。
 
 ![有参考基因组的 RNA-seq 分析流程（重绘自原稿示意图）](../assets/06-rna-seq/svg/rnaseq-workflow.svg){#fig-06-rna-seq-003}
 
@@ -251,14 +251,14 @@ fastq-dump SRR1573494.sra
 
 ```
 
-使用FastQC做质量控制：
+用 FastQC 评估数据质量：
 
 ```{.bash data-book-role="code"}
 fastqc SRR1573494.fq
 
 ```
 
-使用cutadapt去除接头序列，过滤数据质量：
+用 cutadapt 去除接头并过滤低质量数据：
 
 ```{.bash .numberLines data-book-role="code"}
 cutadapt -j 6 --times 1 -e 0.1 -O 3 --quality-cutoff 25 -m 55 \
@@ -278,9 +278,9 @@ cutadapt -j 6 --times 1 -e 0.1 -O 3 --quality-cutoff 25 -m 55 \
 []{#question-21-292}
 []{#src-0050-RNA-seq-247}
 测序得到的短 reads 需要比对回参考基因组，确定每条 read 的来源位置，这个过程叫做序列比对（reads mapping）。把数量庞大的 reads（上亿对）回溯到一条长度以 Gbp 计的参考基因组上，需要较高的计算成本和巧妙的比对策略。这与在进化分析等工作中提到的双序列比对 （pairwise alignment）和多序列比对（multiple sequences alignment）不同，alignment的比对通量较低，更多的强调两条序列或者少数几条序列之间的比对。RNA 比对策略主要有两大类：exon-first（先把能连续比对的 read 比上，再拆开剩余 read 跨剪接位点重比）与 seed-extend（把 read 切成种子段伸展），前者的局限会在下面的练习中看到。它们依赖的索引算法（BWT 与后缀树）已在[第 4 章](04-sequence-alignment.md#sec-04-04)介绍，不再展开。
-一般来说，DNA的mapping比较容易，因为DNA在基因上是连续的，直接回贴到基因组就可以找到相应的定位。就比如我们常用的Whole Genome Sequence（WGS）即全基因组测序；或者是我们所说的ChIP-Seq即染色体免疫共沉淀测序都是直接对DNA进行建库测序，其测序结果都是FASTQ文件，直接用 Bowtie 2、BWA 比对到基因组就可以得到标准的 SAM 文件。
+一般来说，DNA mapping 较容易，因为 DNA 序列在基因组上连续，直接回贴就可以找到相应位置。例如 Whole Genome Sequence（WGS，全基因组测序）和 ChIP-Seq（染色体免疫共沉淀测序）都直接对 DNA 建库测序，得到的 FASTQ 文件用 Bowtie 2、BWA 比对到基因组后，就可以生成标准的 SAM 文件。
 
-但是RNA就不一样了，真核生物的RNA需要经过复杂的加工过程。在细胞中RNA层面的调控至少可以分成2个大的阶段co-transcription（转录的同时） 和 post-transcription（转录以后）其中的调控机制也有很多。
+RNA 的情况不同。真核生物的 RNA 需要经过复杂加工，其调控至少可以分为 2 个阶段：co-transcription（转录的同时）和 post-transcription（转录以后），每个阶段又涉及多种机制。
 
 对我们mapping影响最大的因素是：真核生物转录出来的初步的mRNA都是带有intron（内含子）的，随后都需要在co-transcription（转录的同时） 或post-transcription（转录以后）阶段通过：1. alternative splicing（可变剪切）剪切掉intron；2.polyA尾巴； 3.加5'的帽子结构。这3个步骤，将不成熟的mRNA变为最终成熟的mRNA再转运出核，行使功能。
 
@@ -416,7 +416,7 @@ STAR --runThreadN 12 --runMode genomeGenerate \
 
 ### 比对实操与结果检查 {#src-0050-RNA-seq-518}
 
-概念已经清楚，以下命令以本章示例项目的文件命名为主线；个别例子来自工具官方教程数据（如 chrX 测试集），会明确标注。
+下面用本章示例项目的文件演示比对操作。少数例子使用工具官方教程中的数据，如 chrX 测试集，会在相应位置说明。
 
 #### 用 HISAT2 比对 {#src-0050-RNA-seq-538}
 
@@ -456,7 +456,7 @@ hisat2 -x genome -u 1000000 -p 24 -I 0 -X 500 --fr --min-intronlen 20 --max-intr
 
 #### 用 STAR 比对 {#src-0050-RNA-seq-574}
 
-也使用STAR比对到参考基因组：
+也可以用 STAR 比对到参考基因组：
 
 ```{.bash .numberLines data-book-role="code"}
 STAR \
@@ -504,7 +504,7 @@ samtools view abc.bam scaffold1:30000-100000 > scaffold1_30k-100k.sam
 
 ## 从比对到转录本定量 {#sec-05-04}
 
-理解计数由哪些归属规则产生。
+表达计数取决于 reads 的归属规则。下面先看一条 read 怎样计入某个基因。
 
 ### 计数归属：从比对到计数矩阵 {#src-0050-RNA-seq-349}
 
@@ -557,7 +557,7 @@ htseq-count -f sam -r name -s reverse -a 10 -t exon -i gene_id -m union hisat2.s
 
 #### 用 featureCounts 计数 {#src-0050-RNA-seq-710}
 
-使用featureCount对基因表达进行定量：
+用 featureCounts 对基因表达进行定量：
 
 ```{.bash .numberLines data-book-role="code"}
 featureCounts -t exon -g gene_id \
@@ -580,7 +580,7 @@ featureCounts -t exon -g gene_id \
 ### 转录本水平的定量：StringTie、RSEM 与 Cufflinks {#src-0050-RNA-seq-286}
 
 []{#src-0050-RNA-seq-625}
-组装转录本是一个可选项，如果想挖掘测序数据中的新转录本，则需要做这一步分析。拼接软件根据参考基因组将测序处理得到的高质量测序片段比对到该参考基因组上，然后对比对上的片段进行转录本组装。Cufflinks、StringTie和Scripture都是常用的转录本组装软件。
+如果要从测序数据中寻找新转录本，就需要进行转录本组装；否则这一步是可选的。先将处理后的高质量测序片段比对到参考基因组，再根据比对结果组装转录本。常用软件有 Cufflinks、StringTie 和 Scripture。
 
 ::::: {.callout-note .book-core title="核心知识｜一个基因可以产生多个转录本"}
 
@@ -641,7 +641,7 @@ rsem-calculate-expression --paired-end -p 8 --aligner STAR \
   rsem_ref/hg38 count_result/test
 ```
 
-结果文件 `test.isoforms.results` 逐转录本给出 length、expected_count、TPM 与 FPKM；`test.genes.results` 是基因水平汇总。与 StringTie 的分工：StringTie 长于组装发现新转录本，RSEM 长于在已知注释集上做严谨的丰度估计——它不发现新转录本，只把 read 分摊到给定集合。转录本水平的差异表达（5.5 节）正是拿 RSEM 的 isoform 计数往下走。
+`test.isoforms.results` 按转录本列出 length、expected_count、TPM 和 FPKM，`test.genes.results` 则汇总基因水平的结果。StringTie 擅长组装和发现新转录本，RSEM 则在给定注释集上估计丰度：它不发现新转录本，而是将 read 分摊给已有转录本。转录本水平的差异表达分析（5.5 节）会继续使用 RSEM 的 isoform 计数。
 
 #### Cufflinks 套件 {#src-0050-RNA-seq-627}
 
@@ -669,7 +669,7 @@ cuffcompare -r Homo_sapiens.GRCh38.85.gtf -i 1.txt -o cuffcmp01
 
 Cufflinks 的输入必须是排序后的 BAM/SAM；对剪接比对结果还要求记录带有 `XS` 标签（链方向）。用 HISAT2 比对非链特异性 RNA-seq 数据时，须加 `--dta-cufflinks` 参数，让跨内含子的比对带上 `XS` 标签，否则 cufflinks 无法正确处理。
 
-cufflinks的输出结果有genes.fpkm_tracking, isoforms.fpkm_tracking, transcripts.gtf。前两个时表达量FPKM结果文件，第三个是GTF文件，用于描述基因在染色体上的结构信息：序列名、来源、特征、起始坐标、终止坐标、得分、正负链、读码框、属性。不包含起始密码子和终止密码子，因此GTF不是标准的
+cufflinks 输出 genes.fpkm_tracking、isoforms.fpkm_tracking 和 transcripts.gtf。前两个是 FPKM 表达量文件，第三个是 GTF 文件，记录基因在染色体上的结构信息，包括序列名、来源、特征、起始坐标、终止坐标、得分、正负链、读码框和属性。由于不含起始密码子和终止密码子信息，这份 GTF 并非标准的基因注释。
 
 ```{.bash data-book-role="code"}
 cufflinks -p 4 -b genome.fasta -u -o sample1 -L sample1 tophat.bam
@@ -725,14 +725,14 @@ TopHat2 的官方建议是切换到 HISAT2[^rnaseq-hisat2-notice]；Cufflinks �
 通过前面的序列比对分析，获得了能够map到各个基因的reads数，也就是原始的count数。但原始的count数并不能完全表征基因的表达情况，因为不同基因的长度不同，不同批次数据的测序量也不同，所以需要校正测序深度和基因长度的影响，即对表达量做标准化定量[^rnaseq-quantification]。
 例如，同一个样本中基因 A 和基因 B 的 count 都是 1000，而两者长度分别为 100 bp 和 200 bp，不能认为它们的表达水平一样；再比如，基因 A 在样本 1、2 中的 count 分别为 1000 和 2000，也不能断定它在样本 2 中表达翻倍——两次测序的总量并不一致；由于基因本身长度的不同、不同样本测序量的差异，不能使用原始的count数来表征基因的表达水平。
 
-基因的表达进行标准化定量包括多种方式，包括：
+常见的表达量标准化方式包括：
 
 1. **RPKM**（Reads Per Kilobase per Million mapped reads）[^rnaseq-rpkm]、**FPKM**（Fragments Per Kilobase per Million mapped reads）；
 2. TPM（Transcripts Per Million）
 3. RPM(Reads per million mapped reads)
 4. CPM（counts per million mapped reads）等。
 
-各自的适用范围和优缺点不同，了解各自的原理才能在分析过程中选择最适合的定量方式:
+这些指标的原理和适用范围不同，需要按分析用途选择：
 
 $$
 \mathrm{RPM}\ \text{or}\ \mathrm{CPM}=\frac{\text{Number of reads mapped to gene}\times10^6}{\text{Total number of mapped reads}}
@@ -776,17 +776,17 @@ RNA-seq 的定量有时也会失败。例如，部分跨样本归一化方法依
 1. 绝大多数的gene不发生表达量的变化；
 2. 特别高表达的gene不发生表达量的变化。
 
-而且，如果仔细思考，你会发现普通的RNA-Seq定量计算采取的方式是样本内相对定量，定量值取决于基因本身的表达量和样本的表达总量的比值。当这些假设不成立时，TPM 带来的偏倚可能比 FPKM/RPKM 更大。从这个角度看，不存在绝对好或绝对坏的标准化方法，不能想当然地认为 TPM 一定优于 FPKM。
+普通 RNA-Seq 定量采用样本内相对定量，数值取决于基因表达量与样本表达总量的比值。当上述假设不成立时，TPM 带来的偏倚可能比 FPKM/RPKM 更大。因此，标准化方法需要结合数据条件选择，不能认为 TPM 一定优于 FPKM。
 
 当上述假设不成立时，需要借助外部参照做绝对定量。最常见的做法是在建库时加入已知摩尔数的内参序列（如 ERCC spike-in），事后根据内参的实测计数反推每个样本的绝对摩尔数。
 
 另一种策略是利用管家基因：它们在多数组织与条件下稳定表达，可以像 spike-in 一样拟合标准曲线来校正数据，再进行差异分析。
 
-无论加入 spike-in 还是使用管家基因，都可能引入新的变异（variation），在解读绝对定量结果时同样要有清醒认识。
+加入 spike-in 或使用管家基因都可能引入新的变异（variation），解读绝对定量结果时也需要考虑这一影响。
 
 ### 该用哪种定量值 {#topic-05-quant-choice}
 
-面对不同用途，按 @tbl-05-quant-choice 选择合适的定量值，不要用一种数值包打天下。
+不同用途需要不同的定量值，可以参照 @tbl-05-quant-choice 选择。
 
 | 用途 | 推荐使用的值 | 原因 |
 | --- | --- | --- |
@@ -835,7 +835,7 @@ pheatmap(cm, display_numbers = TRUE)
 
 ### 用 DESeq2 做差异分析 {#src-0050-RNA-seq-793}
 
-用 R 语言 DESeq2 包进行差异分析（先一步到位，再逐步拆解同样的计算）：
+下面用 R 语言的 DESeq2 包做差异分析，先给出完整流程，再逐步解释其中的计算：
 
 ```{.r .numberLines data-book-role="code"}
 library(DESeq2)
@@ -893,7 +893,7 @@ deseq2.obj.res <- results(deseq2.obj)
 
 ### 用 edgeR 做差异分析 {#src-0050-RNA-seq-840}
 
-使用R语言edgeR包进行差异分析：
+用 R 语言的 edgeR 包做差异分析：
 
 ```{.r .numberLines data-book-role="code"}
 library(edgeR)
@@ -1041,17 +1041,17 @@ DESeq2 的 `results()` 输出每行一个基因，各列含义见 @tbl-05-deseq2
 
 : DESeq2 结果表各列的含义 {#tbl-05-deseq2-columns}
 
-常用阈值是 padj &lt; 0.05 且 &#124;log2FoldChange&#124; &gt; 1（两倍变化），再按 baseMean 过滤低表达基因。下面三个陷阱占了初学者错误的大多数。
+常用阈值是 padj &lt; 0.05 且 &#124;log2FoldChange&#124; &gt; 1（两倍变化），再按 baseMean 过滤低表达基因。解读结果时，尤其要注意下面三个常见问题。
 
 ::::: {.callout-warning .book-warning title="注意｜比较方向取决于因子顺序"}
 
-R 的因子按字母顺序排级别：`condition = c("ctrl","KD")` 中 ctrl 是参考水平，log2FoldChange 的正数表示 KD 组升高。想让“敲降相对对照”就先 `sample_df$condition <- relevel(sample_df$condition, ref = "ctrl")`。火山图正负方向的解释务必先确认这一点，否则上调控错成下调。
+R 的因子按字母顺序排列水平：`condition = c("ctrl","KD")` 中 ctrl 是参考水平，log2FoldChange 为正表示 KD 组升高。若要比较“敲降相对对照”的变化，先运行 `sample_df$condition <- relevel(sample_df$condition, ref = "ctrl")`。解释火山图的正负方向前，务必确认参考水平，避免把上调误读成下调。
 
 :::::
 
 ::::: {.callout-warning .book-warning title="注意｜样本表与计数矩阵列错配"}
 
-`DESeqDataSetFromMatrix` 要求 colData 的行名与 count 矩阵的列名一致且同序。手工整理表格时最常见的错误是列顺序对调了两个样本——代码不报错，模型却把两个组各污染了一个样本，差异基因大幅缩水。构建对象后打印 `colnames(deseq2.obj)` 与分组表逐一对一遍，再用上一小节的 PCA 复核。
+`DESeqDataSetFromMatrix` 要求 colData 的行名与 count 矩阵的列名一致，且顺序相同。手工整理表格时，容易把两个样本的列顺序对调；代码可能不报错，模型却将两个样本分到了错误的组，导致差异基因大幅减少。构建对象后，打印 `colnames(deseq2.obj)`，与分组表逐一核对，再用上一小节的 PCA 复核。
 
 :::::
 
@@ -1074,7 +1074,7 @@ KEGG数据库是对基因进行信号通路、代谢等过程注释的数据库�
 
 ::::: {.callout-note .book-core title="核心知识｜功能注释与富集分析"}
 
-在上一步的RNA-seq分析中获得了差异表达基因。要了解差异表达基因的功能，一般会对基因进行GO和KEGG pathway注释。很多情况下，研究者希望得到的信息是一群基因主要集中在了那些功能上，则需要对基因集进行GO和KEGG pathway的富集注释。例如在胁迫或药物处理引起大量基因表达变化时，KEGG pathway 富集分析可以提示哪些通路发生了成规模的表达变化。基因注释与富集分析是两回事：注释回答“单个基因有哪些功能、参与哪些通路”，富集分析回答“某个基因集是否在特定通路或注释条目中过度出现”。气泡图是富集结果最常用的展示方式，见本章后面的结果图小节。
+上一步已经得到了差异表达基因。要了解这些基因各自的功能，可以做 GO 和 KEGG pathway 注释；要判断它们是否集中在某些功能上，则需要做富集分析。例如，胁迫或药物处理引起大量基因表达变化时，KEGG pathway 富集分析可以提示哪些通路发生了成规模的表达变化。两者回答的问题不同：注释说明“单个基因有哪些功能、参与哪些通路”，富集分析判断“某个基因集是否在特定通路或注释条目中过度出现”。富集结果常用气泡图展示，见后面的结果图小节。
 
 :::::
 
@@ -1082,7 +1082,7 @@ R 语言 clusterProfiler 包与 DAVID、Metascape 等在线工具都常用于注
 
 ### clusterProfiler 实操：GO 与 KEGG {#topic-05-clusterprofiler}
 
-任何差异分析工具得到的基因列表都可以作为 `clusterProfiler` 的输入。上一节 DESeq2 的结果取显著基因只要三行：
+任何差异分析工具得到的基因列表都可以作为 `clusterProfiler` 的输入。下面从上一节 DESeq2 的结果中提取显著基因：
 
 ```{.r .numberLines data-book-role="code"}
 res <- as.data.frame(results(deseq2.obj))
@@ -1207,7 +1207,7 @@ barplot(erich.kegg.res)
 
 ### 常用结果图：火山图、聚类热图与气泡图 {#src-0050-RNA-seq-930}
 
-聚类采用两种思路，寻找最近的样本进行聚集，即聚类法 agglomerative；剥离出最远的样本的方法，即分割法divisive。
+聚类有两种思路：凝聚法（agglomerative）逐步合并最近的样本，分割法（divisive）则逐步分离最远的样本。
 
 #### 火山图 {#src-0050-RNA-seq-932}
 
@@ -1265,7 +1265,7 @@ log2	pvalue
 
 #### 聚类热图 {#src-0050-RNA-seq-979}
 
-聚类热图把显著基因按行标准化后着色（红＝高、白＝中、蓝＝低），样本列经层次聚类排布——健康的重复会并排出现（@fig-05-heatmap-demo）。
+聚类热图把显著基因按行标准化后着色（红＝高、白＝中、蓝＝低），样本列按层次聚类的结果排列，质量良好的重复样本会相邻出现（@fig-05-heatmap-demo）。
 
 ![聚类热图的读法（演示数据，R 真实绘制；红＝高、白＝中、蓝＝低）](../assets/06-rna-seq/svg/heatmap-demo-r.svg){#fig-05-heatmap-demo}
 
@@ -1317,7 +1317,7 @@ hsa-miR-6090	5.80658	4.459086667
 
 把前文的 bulk RNA-seq 分析思路扩展到其他 RNA 类型。
 []{#src-0050-RNA-seq-1122}
-其他RNA测序的数据分析与普通RNA测序数据分析类似，例如质量检测、序列比对、表达定量和差异表达分析是所有RNA测序都需要做的分析。不同的地方在于鉴定是否属于这一类RNA的手段、定量的方法和一些下游分析，例如miRNA需要分析其靶基因，circRNA需要分析能够与之互作的miRNA。此外，单细胞RNA-seq的分析自基因表达矩阵后，与RNA-seq的分析会有较大的差异，一般会侧重于细胞的分群、分类、演化等分析。
+其他 RNA 测序同样需要质量检查、序列比对、表达定量和差异表达分析，与普通 RNA 测序的区别主要在于 RNA 类型的鉴定、定量方法及部分下游分析。例如，miRNA 需要分析靶基因，circRNA 需要分析与之互作的 miRNA。单细胞 RNA-seq 则从基因表达矩阵开始，与常规 RNA-seq 有较大区别，通常侧重细胞分群、分类和演化等分析。
 
 ### lncRNA 测序分析 {#src-0050-RNA-seq-1126}
 
@@ -1327,14 +1327,14 @@ hsa-miR-6090	5.80658	4.459086667
 
 ![lncRNA 测序分析流程：已知注释与新转录本预测并行（重绘自原稿示意图）](../assets/06-rna-seq/svg/lncrna-workflow.svg){#fig-06-rna-seq-005}
 
-而新lncRNA的预测分析则需要预测转录本的编码潜能和序列同源性等指标，主要包括：
+预测新的 lncRNA，需要评估转录本的编码潜能和序列同源性等指标，主要步骤包括：
 1. 在拼接好的转录本中提取长度大于200nt的转录本；
 2. 与其他非编码RNA数据库比对去除其他非编码RNA；
 3. 与已知蛋白质序列比对去除与之高度相似的转录本；
 4. 利用lncRNA鉴定软件评估潜在lncRNA转录本的编码能力，常用预测软件有PhyloCSF、CNCI、CPC、COME、PLEK、lncRNA-MFDl等；
 5. 获取可能的新lncRNA转录本。
 
-lncRNA数据分析中，表达定量和差异表达分析和mRNA的分析方法是类似的，但功能注释方法不同。包括直接注释和通过靶标基因注释两种方式：
+lncRNA 的表达定量和差异表达分析与 mRNA 类似，但功能注释不同，主要有直接注释和通过靶标基因注释两种方式：
 
 1. 直接注释可以基于一些收录lncRNA功能信息的数据库进行注释分析，例如[LncRNADisease](http://www.cuilab.cn/lncrnadisease) 收录人类疾病相关 lncRNA；NONCODE 也提供 lncRNA 注释信息（2026 年 10 月核对）；
 2. lncRNA 多通过调控蛋白编码基因发挥作用：cis 调控指影响基因组上相邻位置的基因；trans 作用指远离转录位点、通过碱基互补等方式作用于其他分子，可借助位置特征与序列互补性预测。
@@ -1383,7 +1383,7 @@ ceRNA（competing endogenous RNA，内源竞争性 RNA）不是一类新的 RNA 
 1. miRNA 是内源竞争 RNA 争夺的目标。除 mRNA 与 circRNA 外，具有类 mRNA 结构的 lncRNA 也能通过 3′ 非翻译区与 miRNA 结合，作用方式类似 miRNA 与 mRNA。miRcode 曾提供全转录组水平的 lncRNA miRNA 结合位点预测，其网站现已下线，可经原始论文检索数据。
 2. lncRNA 与基因之间还存在 cis 调控与 trans 作用等关系；circRNA 除结合 miRNA 外，与宿主基因的表达也存在关联——它的序列本就来自宿主基因的外显子。
 
-可见，生物体内的 RNA 之间有着千丝万缕的联系：有时竞争，有时协同。
+这些例子说明，RNA 分子之间既有竞争，也有协同关系。
 
 [^rna-ref-1]: Crick F. [Central dogma of molecular biology](https://pubmed.ncbi.nlm.nih.gov/4913914/). Nature, 1970.
 
