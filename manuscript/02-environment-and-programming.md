@@ -17,11 +17,11 @@
 
 []{#build_up_platform}
 
-生物信息学的分析平台由本地电脑和远端服务器两部分组成，两者分工不同。本地电脑主要承担三类工作：编辑代码，用 R 等工具绘制图形，以及运行 Claude Code、Codex、ZCode 这类 AI coding agent 辅助编程；而比对、定量这些吃算力的计算，几乎都在远端服务器上完成。因此，配置本地环境的关键不是性能，而是顺手：选择一个自己习惯的操作系统，把它配置成能写代码、能连服务器、能跑 AI agent 的工作台。本章就按这个思路展开：先选好并配置本地系统，再打通与服务器的连接和基本操作。
+生物信息学的分析平台由本地电脑和远端服务器两部分组成。本地电脑主要用来编辑代码、用 R 等工具绘图，以及运行 Claude Code、Codex、ZCode 这类 AI coding agent 辅助编程；比对、定量这些消耗算力的计算，几乎都在远端服务器上完成。因此，配置本地环境时，顺手比追求性能更重要：选一个自己习惯的操作系统，把写代码、连接服务器和运行 AI agent 所需的环境配好。本章就从这张工作台开始，先配置本地系统，再学习连接服务器和基本操作。
 
 ### Windows、Linux和macOS的选择 {#src-0090-build-up-bioinfo-platform-3}
 
-选择本地主机系统时，评判标准与挑选服务器不同：本地不承担重计算，关键在于开发体验、与服务器环境的接近程度，以及个人的使用习惯。下面分平台简要分析。
+选择本地主机系统时，评判标准与挑选服务器不同。本地不承担重计算，我们主要考虑开发是否方便、与服务器环境有多接近，以及自己用得是否习惯。
 
 #### Windows {#topic-02-platform-windows}
 
@@ -38,7 +38,7 @@ macOS 基于 Unix，自带终端和一批常用命令行工具，与 Linux 服�
 
 ### 在 Windows 下使用 Linux 命令行 {#src-0090-build-up-bioinfo-platform-147}
 
-微软官方文档很好地解释了WSL（Windows Subsystem for Linux）是什么。
+微软官方文档这样介绍 WSL（Windows Subsystem for Linux）：
 
 > 适用于 Linux 的 Windows 子系统可让开发人员按原样运行 GNU/Linux 环境 - 包括大多数命令行工具、实用工具和应用程序 - 且不会产生传统虚拟机或双启动设置开销。
 
@@ -79,7 +79,7 @@ wsl --set-default-version 2
 
 ##### 安装发行版 {#src-0090-build-up-bioinfo-platform-177}
 
-访问[Microsoft Store的Linux发行版页面](https://aka.ms/wslstore)，选择一个你中意的发行版即可，或者直接在应用商店搜索`Linux`，可以找到更多发行版；也可以按上一小节的方法，在命令行用`wsl --install -d 发行版名称`直接安装。
+访问[Microsoft Store的Linux发行版页面](https://aka.ms/wslstore)，选择你想使用的发行版；在应用商店搜索 `Linux`，还可以找到更多选择。也可以按上一小节的方法，用 `wsl --install -d 发行版名称` 在命令行直接安装。
 
 
 ![Microsoft Store 中的 Linux 分发版的视图](../assets/02-computing-and-programming/010-store.png){#fig-02-computing-and-programming-010}
@@ -87,7 +87,7 @@ wsl --set-default-version 2
 
 ##### 创建账户和密码 {#src-0090-build-up-bioinfo-platform-183}
 
-安装完成发行版后首次启动时会要求你创建用户名和密码。
+发行版安装完成后，首次启动时会要求你创建用户名和密码。
 
 
 ![Windows 控制台中的 Ubuntu 解包](../assets/02-computing-and-programming/011-ubuntuinstall.png){#fig-02-computing-and-programming-011}
@@ -104,22 +104,22 @@ wsl --set-default-version 2
 
 ### mac系统的基础配置 {#topic-02-macos-setup}
 
-macOS 的基础配置比 Windows 简单得多，基本不太需要专门折腾。系统自带的 Terminal 已经可以完成绝大多数工作，习惯图形界面的读者可以安装 iTerm2 等第三方终端，获得分页、分屏和搜索等增强功能。由于原生兼容 Unix，Linux 下的很多命令和工具在 macOS 上可以直接使用；需要安装命令行软件时，建议先安装 Homebrew 包管理器，再通过 `brew install` 安装。macOS 的劣势主要在少数商业软件和与服务器架构的差异上（见上一节），但作为本地主机，它是开箱即用程度最高的选择之一。
+相比 Windows，macOS 的基础配置简单得多，通常不需要太多额外设置。系统自带的 Terminal 已经能完成绝大多数工作；习惯图形界面的读者也可以安装 iTerm2 等第三方终端，使用分页、分屏和搜索等增强功能。由于原生兼容 Unix，Linux 下的很多命令和工具在 macOS 上可以直接使用。需要安装命令行软件时，建议先装 Homebrew 包管理器，再用 `brew install` 安装。macOS 的劣势主要在少数商业软件和与服务器架构的差异上（见上一节），但作为本地主机，它仍是开箱即用程度最高的选择之一。
 
 ## 连接远端服务器 {#sec-02-02}
 
-打通本地与服务器之间的链路：连接、传输文件、执行命令，再用 VS Code 直接在远端目录里工作。如今的服务器几乎全部运行 Linux，常见的有 Ubuntu Server LTS、Debian，以及接替 CentOS 的 Rocky Linux 和 AlmaLinux。
+接下来，我们学习连接服务器、传输文件、执行命令，再用 VS Code 直接打开远端目录工作。如今的服务器几乎全部运行 Linux，常见的有 Ubuntu Server LTS、Debian，以及接替 CentOS 的 Rocky Linux 和 AlmaLinux。
 
 ### 使用ssh连接 {#src-0090-build-up-bioinfo-platform-197}
 
-SSH命令是连接服务器很重要的工具。Linux和macOS都自带`ssh`命令；Windows长期以来不自带SSH命令，从Windows 10开始情况改善，较新的Windows 10和Windows 11已经预装OpenSSH客户端，在PowerShell中直接运行`ssh`就可以使用。OpenSSH服务器端则仍需要手动安装：在任务栏搜索框中输入“可选功能”，结果中会出现“添加可选功能”，点击即可进入。也可以通过“Windows设置→应用→可选功能”进入。
+SSH 是连接服务器的重要工具。Linux 和 macOS 都自带 `ssh` 命令；Windows 长期以来没有自带 SSH 命令，从 Windows 10 开始情况有所改善。较新的 Windows 10 和 Windows 11 已经预装 OpenSSH 客户端，在 PowerShell 中直接运行 `ssh` 即可。OpenSSH 服务器端仍需手动安装：在任务栏搜索“可选功能”，点击结果中的“添加可选功能”；也可以从“Windows设置→应用→可选功能”进入。
 
 
 ![Windows“管理可选功能”页面：已安装功能列表与“添加功能”入口](../assets/02-computing-and-programming/013-c575c9fa-1e74-4fc5-99e4-465792565047.png){#fig-02-computing-and-programming-013 width=75%}
 
-点击“添加功能”进入到添加功能的页面，选择需要的组件（例如“OpenSSH 服务器”；较早系统上未预装客户端时也可在此安装“OpenSSH 客户端”），点击“安装”按钮即可开始安装，不长的一段时间后就安装完毕了。
+点击“添加功能”，选择需要的组件（例如“OpenSSH 服务器”；较早系统上未预装客户端时，也可在此安装“OpenSSH 客户端”），再点击“安装”，稍等即可完成。
 
-连接服务器的基本命令是 `ssh 用户名@服务器地址`，首次连接时系统会提示确认并保存主机指纹，之后输入密码即可登录。
+连接服务器的基本命令是 `ssh 用户名@服务器地址`。下面用一个例子说明登录过程。
 
 
 假设服务器地址是 192.168.1.100，你的用户名是 meng，连接时输入：
@@ -180,7 +180,7 @@ scp -r result_dir meng@192.168.1.100:~/project/results/
 rsync -avP reads_dir/ meng@192.168.1.100:~/project/data/reads_dir/
 ```
 
-`-a` 保留权限和时间戳并递归处理目录，`-v` 显示过程，`-P` 显示进度并支持断点续传。这里有个容易踩的坑：
+`-a` 保留权限和时间戳并递归处理目录，`-v` 显示过程，`-P` 显示进度并支持断点续传。使用时要留意路径末尾的斜杠：
 
 ::::: {.callout-warning .book-warning title="注意｜路径末尾的斜杠"}
 
@@ -243,7 +243,7 @@ rsync -avP reads_dir/ meng@192.168.1.100:~/project/data/reads_dir/
 
 #### 文本的筛选与处理 {#topic-02-linux-text}
 
-这一组命令把文本当作流来加工，是命令行真正的核心。
+下面这组命令把文本当作流来处理，是命令行操作的核心。
 
 | 命令 | 作用 | 常用形式 |
 |:----- |:----- | ----- |
@@ -258,7 +258,7 @@ rsync -avP reads_dir/ meng@192.168.1.100:~/project/data/reads_dir/
 
 `grep` 负责找行：`grep control samples.tsv` 输出所有含 control 的行，`-v` 反选（排除匹配的行），`-i` 忽略大小写，`-n` 显示行号。`cut` 按列取字段，默认按制表符分隔（`-d` 可换分隔符），`-f 1,3` 取第 1、3 列。`sort` 默认按字典序，`-n` 按数值排，`-r` 逆序，`-k2,2n` 表示按第 2 列的数值排序。`uniq` 只合并相邻的重复行，所以总是跟在 `sort` 后面；`sort | uniq -c` 先排序再计数，是统计“每个值出现了多少次”的标准做法。`sed` 最常用的是替换：`sed 's/旧文本/新文本/g'`，结尾的 `g` 表示一行内全部替换。
 
-举个例子。samples.tsv 是一个样本表：每行一个样本，制表符分隔，共三列——样本名、分组、测序文件。统计对照组（control）有多少个样本、把所有样本名列出来，分别只需一条命令链：
+以样本表 samples.tsv 为例：每行一个样本，三列分别是样本名、分组和测序文件，用制表符分隔。要统计对照组（control）的样本数，或列出所有样本名，分别用下面两条命令链：
 
 ```{.bash data-book-role="code"}
 grep control samples.tsv | wc -l
@@ -281,7 +281,7 @@ cut -f 1 samples.tsv | tail -n +2
 cut -f 2 samples.tsv | tail -n +2 | sort | uniq -c > group_count.txt
 ```
 
-这条命令链逐段是：取出第 2 列（分组），去掉表头，排序，计数，最后写入 `group_count.txt`。读命令链就从左到右一段一段看——这也是全书阅读分析命令的基本方法。
+我们从左到右读这条命令链：取出第 2 列（分组），去掉表头，排序，计数，最后写入 `group_count.txt`。后面遇到分析命令，也可以按这个方法一段一段读。
 
 #### 压缩、归档与查找 {#topic-02-linux-archive}
 
@@ -352,11 +352,11 @@ echo $PATH
 
 将单条命令组织为可检查的批处理。
 
-分析中大量重复的操作，不该一条条手敲。把命令按顺序写进一个文件，交给 `bash` 执行，就是 Shell 脚本。它最大的价值不是省事，而是把分析过程变成可以检查、可以重跑、可以交给别人复核的文字记录。
+分析中有大量重复操作，不必每次都逐条手敲。把命令按顺序写进一个文件，交给 `bash` 执行，就是 Shell 脚本。它能省去重复输入，更重要的是把分析过程保存成文字记录，便于检查、重跑，也便于交给别人复核。
 
 ::::: {.callout-note .book-core title="核心知识｜脚本是分析过程的可核查记录"}
 
-命令行的历史留在终端里，脚本把每一步固化成文件。配合本章最后的版本管理，任何人——包括 AI agent 和几个月后的你——都能逐行检查分析做了什么、为什么这样做。这正是 AI 时代做分析需要的判断力基础。
+命令行的历史留在终端里，脚本则把每一步保存在文件中。配合本章最后介绍的版本管理，别人、AI agent，以及几个月后的你，都能逐行检查分析做了什么、为什么这样做。
 
 :::::
 
@@ -389,13 +389,13 @@ bash run_fastqc.sh
 fastqc "$1" --outdir results/fastqc/
 ```
 
-用 `bash check_one.sh data/S1.fastq.gz` 就能质控任意指定的文件。同一段处理逻辑要在不同数据上反复使用时，参数化比复制整个脚本再改名干净得多。
+用 `bash check_one.sh data/S1.fastq.gz` 就能质控任意指定的文件。同一段处理逻辑需要反复用于不同数据时，用参数传入文件，比复制整个脚本再改名更方便。
 
 两个习惯值得从第一天养成：每个脚本开头写两三行注释，说明用途、输入和输出；先在小数据上跑通，确认无误再放大到全部样本。脚本是给别人看的，也是给几个月后的自己看的——AI agent 读它、改它，同样依赖这些注释和清晰的结构。
 
 ### 使用vscode连接 {#topic-02-vscode-remote}
 
-VS Code 的 Remote-SSH 扩展可以把远端服务器变成本地开发环境：在本地编辑器中直接打开服务器上的目录，文件树、终端和代码补全都在本地呈现，修改实时同步到服务器。对习惯图形界面的读者，这是比纯命令行更友好的工作方式。
+通过 VS Code 的 Remote-SSH 扩展，你可以在本地编辑器中直接打开服务器上的目录，像使用本地开发环境一样工作。文件树、终端和代码补全都在本地呈现，修改实时同步到服务器。对习惯图形界面的读者，这比纯命令行更容易上手。
 
 安装与连接的完整步骤如下。
 
@@ -407,7 +407,7 @@ VS Code 的 Remote-SSH 扩展可以把远端服务器变成本地开发环境：
 
 连接成功后，窗口左下角会显示绿色的 SSH: 主机名。之后新建、编辑、保存文件都直接作用于服务器；按 ``Ctrl+` `` 打开的集成终端也是服务器上的 Shell，与 `ssh` 登录后的环境完全一致。编辑本地脚本再用 `scp` 传上去的往返流程，从此可以省去。
 
-上面第 3 步添加的主机实际写入了 `~/.ssh/config` 文件；反过来，`config` 里已有的 `Host` 别名（例如上一节的 `lab`）会直接出现在 `Connect to Host` 的候选列表里。装好密钥登录再使用 Remote-SSH，体验最顺。
+第 3 步添加的主机实际写入了 `~/.ssh/config` 文件。如果 `config` 里已经有 `Host` 别名，例如上一节的 `lab`，它就会直接出现在 `Connect to Host` 的候选列表里。先配置好密钥登录，再用 Remote-SSH 连接，使用起来最顺手。
 
 ## 在服务器安装软件 {#sec-02-server-software}
 
@@ -417,10 +417,10 @@ VS Code 的 Remote-SSH 扩展可以把远端服务器变成本地开发环境：
 
 ### 用 apt 安装软件 {#src-0090-build-up-bioinfo-platform-25}
 
-apt（Advanced Packaging Tool）是Debian系Linux发行版的默认包管理工具，用于对包括系统本身在内的升级、安装等管理操作。
+apt（Advanced Packaging Tool）是 Debian 系 Linux 发行版的默认包管理工具，用于管理软件的安装、升级等操作，也包括系统本身的升级。
 
 
-Ubuntu 的官方源中收录了不少常用生信软件，例如 `samtools`、`bwa`、`bedtools` 等，一条 `apt install` 命令即可完成安装，无需手动编译。不过官方源里的版本通常偏旧、更新较慢，而且需要管理员权限；遇到版本太旧或没有收录的软件，就轮到下一节的 conda 出场。
+Ubuntu 的官方源收录了不少常用生信软件，例如 `samtools`、`bwa`、`bedtools`，用一条 `apt install` 命令就能安装，无需手动编译。不过，官方源中的版本通常偏旧、更新较慢，安装还需要管理员权限。遇到版本太旧或没有收录的软件，可以用下一节介绍的 conda。
 
 ::::: {.callout-tip .book-example title="示例与练习｜用 apt 安装 R"}
 
@@ -443,7 +443,7 @@ R --version
 
 #### apt和apt-get命令 {#topic-02-31}
 
-`apt`是2014年正式发布的新的apt包管理工具的命令，相较于`apt-get`系列命令它更为简洁易用。
+`apt` 命令于 2014 年正式发布，相比 `apt-get` 系列命令，写法更简洁，也更容易使用。
 
 | apt 命令 | 取代的命令 | 命令的功能 |
 |:----- |:----- | ----- |
@@ -471,7 +471,7 @@ R --version
 
 apt默认的镜像在国内的访问速度是较慢的，所以设置一个国内的镜像是必要的。这里推荐北京外国语大学的开源软件站。其帮助信息完善，例如Ubuntu的[镜像设置帮助文档](https://mirrors.bfsu.edu.cn/help/ubuntu/)。
 
-可以在文档中选择你具体使用的Ubuntu版本以获取对应的软件源地址。备份原先的软件源配置文件后即可更改配置文件。修改完成后执行`sudo apt update`命令刷新索引即可生效。
+在帮助文档中选择你使用的 Ubuntu 版本，获取对应的软件源地址。先备份原配置文件，再按文档修改；完成后执行 `sudo apt update` 刷新索引，让新配置生效。
 
 
 ![北外镜像站的 Ubuntu 软件源帮助页面：选择系统版本后即可获得对应的 `sources.list` 配置](../assets/02-computing-and-programming/001-4bcc5c9c-49e7-465a-91f8-4e1ed8512e7c.png){#fig-02-computing-and-programming-001}
@@ -484,12 +484,12 @@ apt默认的镜像在国内的访问速度是较慢的，所以设置一个国�
 
 ::::: {.callout-note .book-core title="核心知识｜Anaconda、conda 与 Bioconda"}
 
-Anaconda是Anaconda公司开发的一个Python发行版，集成的除了Python本体外，还包括大量科学计算的常用模块，以及Anaconda公司开发的Python模块和环境管理器conda。conda对环境和包管理的易用性要超过Python本地自带的功能，而且还可以管理非Python的模块（Perl、Java、R……）。对于生信分析人员，Bioconda这个conda源更是收入了大量生信分析软件，大大降低了生信软件的安装复杂度，一条命令即可，不需要手动编译和root权限。
+Anaconda 是 Anaconda 公司开发的 Python 发行版，除了 Python 本体，还集成了大量科学计算常用模块，以及该公司开发的 Python 模块和环境管理器 conda。conda 的环境和包管理功能比 Python 本地自带的功能更易用，也能管理非 Python 的模块（Perl、Java、R……）。对生信分析人员来说，Bioconda 这个 conda 源尤其有用：它收录了大量生信分析软件，用一条命令即可安装，不需要手动编译，也不需要 root 权限，安装过程因此简单了很多。
 
 :::::
 
 
-在你已经添加了相应软件源的情况下，安装包只要用下面的命令即可(这里演示的是IPython的安装)。
+添加相应软件源后，就可以安装其中的包。下面以 IPython 为例：
 
 
 ```{.bash data-book-role="code"}
@@ -501,11 +501,11 @@ conda默认会从Anaconda公司的官方服务器下载模块，而且默认只�
 
 ### Anaconda的安装 {#src-0090-build-up-bioinfo-platform-221}
 
-这些镜像网站本身也会提供Anaconda的安装包。直接从镜像站下载安装包就免去官网下载可能的卡顿。需要特别提到的是，镜像站除了提供标准版的Anaconda安装包外还会提供Miniconda的安装包。这是一个精简的版本，体积相比标准版要小不少，只包括Python和conda管理器，包需要自行通过`conda`和`pip`安装。在一些磁盘有限的情况下可以选择Miniconda。此外还有社区维护的Miniforge发行版：默认使用conda-forge源，安装后开箱即用，近年来越来越多人直接以它作为安装入口。
+这些镜像网站也提供 Anaconda 安装包，从镜像下载可以避开官网可能出现的卡顿。除了标准版 Anaconda，镜像站还提供体积小得多的 Miniconda：它只包含 Python 和 conda 管理器，其余包需要自己通过 `conda` 和 `pip` 安装，适合磁盘空间有限的情况。另一个选择是社区维护的 Miniforge，默认使用 conda-forge 源，安装后即可使用，近年来越来越多人直接以它作为安装入口。
 
-Anaconda给Mac提供的是pkg和sh安装包，给Windows提供的是exe安装包，而给Linux只提供sh安装包。pkg和exe双击安装即可，而sh安装包需要通过命令行执行，即使通过图形界面启动sh安装包，很多设置也要在随之启动的终端下进行。
+Anaconda 为 Mac 提供 pkg 和 sh 安装包，为 Windows 提供 exe 安装包，为 Linux 提供的则只有 sh 安装包。pkg 和 exe 双击即可安装；sh 需要在命令行中执行，即使从图形界面启动，很多设置仍需在随后打开的终端中完成。
 
-在这里也要特别提醒的是pkg和exe安装过程中会有一步让你设置是否要将Anaconda的路径加入到环境变量中，建议勾上（安装器默认不勾选，官方更推荐从开始菜单中的Anaconda专用终端启动，两种方式都可用）。而sh安装的最后一步也会询问是否进行初始化（init），要记得输入`yes`。这些选上之后，只要重启终端环境变量即可生效，就可以正常使用conda管理和相关的包。
+安装 pkg 或 exe 时，会有一步询问是否把 Anaconda 的路径加入环境变量，这里建议勾选。安装器默认不勾选，官方更推荐从开始菜单中的 Anaconda 专用终端启动，两种方式都可用。用 sh 安装时，最后一步会询问是否初始化（init），记得输入 `yes`。完成这些设置后，重启终端即可使环境变量生效，随后就能正常使用 conda 管理器和相关包。
 
 
 ### Anaconda镜像的设置 {#src-0090-build-up-bioinfo-platform-229}
@@ -538,21 +538,21 @@ Bioconda 频道不在上面这份配置的 `channels` 列表里——这正是�
 
 ::::: {.callout-note .book-core title="核心知识｜为不同项目隔离环境"}
 
-为了防止不同的依赖之间相互冲突造成bug，除了最核心的常用组件，通常会为了每一类项目单独建立一个独立的环境。使得不同项目之间的模块可以版本不同。比如有时需要不同版本的Python或者R。
+不同项目有时需要不同版本的 Python、R 或其他模块。为了避免依赖相互冲突、造成 bug，除了最核心的常用组件，我们通常会为每一类项目单独建立环境。这样，各项目就可以使用自己需要的模块版本。
 
 :::::
 
 
 #### 创建环境 {#topic-02-329}
 
-你可以指定环境的名称，后面再指定环境中要安装的一个或几个包及其版本，也可以只有名称没有其他参数。这时新建的环境里就不会预装任何包
+创建环境时，先指定名称，再列出要安装的一个或几个包及其版本。也可以只给名称，不加其他参数，这样建出的环境就不会预装任何包。
 
 
 ```{.bash data-book-role="code"}
 conda create -n py3 python=3.12
 ```
 
-指定环境名称的创建方式会把环境相关文件放在Anaconda的安装目录下，但是有时候你需要将环境相关文件放在指定的路径。这个时候你就可以通过`-p`参数来指定conda环境的路径。比如下面就是一个指定环境目录为`/home/test_conda`并指定环境中的Python版本号为3.12的例子。
+按名称创建环境时，相关文件会放在 Anaconda 的安装目录下。如果希望放到其他位置，可以用 `-p` 指定 conda 环境的路径。下面把环境放在 `/home/test_conda`，并指定 Python 版本为 3.12：
 
 
 ```{.bash data-book-role="code"}
@@ -564,7 +564,7 @@ conda create -p /home/test_conda python=3.12
 
 #### 删除环境 {#topic-02-345}
 
-我们同样可以通过参数来指定特定名称或路径的环境。
+删除环境时，同样可以通过参数指定环境名称或路径。
 
 
 ```{.bash data-book-role="code"}
@@ -601,11 +601,11 @@ micromamba activate bio
 
 ### R and Rstudio {#src-0090-build-up-bioinfo-platform-300}
 
-R语言也是生信分析中一个极为重要的编程语言。R语言官方的软件源CRAN中有着大量数据分析和生信领域的相关包。Bioconductor项目更是集中了大多数生信领域的R包。
+R 是生信分析中一种很重要的编程语言。官方软件源 CRAN 收录了大量数据分析和生信相关包，Bioconductor 项目则集中了大多数生信领域的 R 包。
 
 #### R-base的安装和CRAN镜像设置 {#src-0090-build-up-bioinfo-platform-303}
 
-R-base的安装包可以通过CRAN的镜像站点获得，推荐使用[北外的CRAN镜像](https://mirrors.bfsu.edu.cn/CRAN/)。Windows和macOS用户根据自己的操作系统点击对应链接，可以进入获取二进制安装包的页面。
+R-base 安装包可以从 CRAN 镜像站点获取，这里推荐[北外的CRAN镜像](https://mirrors.bfsu.edu.cn/CRAN/)。Windows 和 macOS 用户点击各自操作系统的链接，就能进入二进制安装包的下载页面。
 
 
 ![CRAN 的 R 下载页面：按操作系统选择安装入口](../assets/02-computing-and-programming/015-68cfe7a0-c604-448b-ba4e-b5d4d7662919.png){#fig-02-computing-and-programming-015}
@@ -615,19 +615,19 @@ R-base的安装包可以通过CRAN的镜像站点获得，推荐使用[北外的
 ![“R for macOS”页面：提供当前版本签名公证过的 .pkg 安装包](../assets/02-computing-and-programming/019-e67610e2-b16a-4c9d-ae9d-e8bbd0698714.png){#fig-02-computing-and-programming-019}
 
 
-Linux用户如果有管理员权限，建议使用系统的包管理器安装。如果没有管理员权限也不要紧，使用Anaconda即可。使用`conda install -c conda-forge r-base`命令就可以完成R-base的安装。
+Linux 用户有管理员权限时，建议用系统包管理器安装；没有管理员权限时，可以用 Anaconda，执行 `conda install -c conda-forge r-base` 即可安装 R-base。
 
-而CRAN的镜像设置需要进入R的用户home目录，可以在R的交互模式下通过命令`path.expand("~")`获取。
+设置 CRAN 镜像，需要先找到 R 的用户 home 目录。在 R 的交互模式中运行 `path.expand("~")`，就能查看它的路径。
 
 
 ![在 R 中用 `path.expand("~")` 获取用户主目录](../assets/02-computing-and-programming/018-9abb65cf-e93e-4722-a9f7-3c346e09c565.png){#fig-02-computing-and-programming-018}
 
 
-获取R语言环境的home路径后，进入到该路径。查看路径下是否已经存在`.Rprofile`，如果没有则新建一个空白的即可。随后在`.Rprofile`文件末尾加入`options("repos" = c(CRAN="https://mirrors.bfsu.edu.cn/CRAN/"))`，保存后会在新启动的R环境中生效。
+进入这个目录，检查是否已有 `.Rprofile` 文件；没有就新建一个空文件。在 `.Rprofile` 末尾加入 `options("repos" = c(CRAN="https://mirrors.bfsu.edu.cn/CRAN/"))` 并保存，配置会在新启动的 R 环境中生效。
 
 #### Rtools {#src-0090-build-up-bioinfo-platform-321}
 
-Bioconductor和CRAN上提供的R包绝大部分都提供Windows平台下的二进制包，安装过程无需编译。但因为二进制包的更新一般晚于源码包的更新，且个别R包不提供二进制包，所以还是存在需要编译安装的情况。这个时候就需要R官方所提供的编译器集合Rtools。
+Bioconductor 和 CRAN 上的绝大部分 R 包都提供 Windows 二进制包，安装时无需编译。不过，二进制包的更新一般晚于源码包，也有个别 R 包不提供二进制包。遇到需要从源码编译安装的情况，就要用到 R 官方提供的编译器集合 Rtools。
 
 访问[Rtools页面](https://cran.r-project.org/bin/windows/Rtools/)即可获得安装包。Rtools与R的版本配套更新，页面最上方始终提供当前R版本对应的安装包（写作本节时为Rtools45，配套R 4.5及更新版本），且只提供64位版本。如果你使用较老的R版本，可以访问[历史版本页面](https://cran.r-project.org/bin/windows/Rtools/history.html)下载对应的Rtools。
 
@@ -646,7 +646,7 @@ PATH="D:\Program Files\rtools40\usr\bin;${PATH}"
 # 以免覆盖原有环境变量内容。
 ```
 
-配置完成后保存文件，然后重启R的交互环境。可以在交互环境中使用语句`Sys.which("make")`验证Rtools是否可用，如果成功则会出现Rtools目录下`make.exe`的路径（R 4.2及更新版本自动发现Rtools时，同样可以用这个语句验证）。以后在出现源码包版本高于二进制包版本，或R包无二进制包版本的情况，R就会提示你是否进行编译安装。你可以使用语句`install.packages("Rcpp", type = "source")`源码编译安装`Rcpp`包测试一下。
+保存配置文件后，重启 R 的交互环境，运行 `Sys.which("make")` 检查 Rtools 是否可用。成功时会返回 Rtools 目录下 `make.exe` 的路径；R 4.2 及更新版本自动发现 Rtools 时，也可以这样检查。之后，遇到源码包版本高于二进制包，或没有二进制包的情况，R 会提示是否编译安装。你可以运行 `install.packages("Rcpp", type = "source")`，试着从源码编译安装 `Rcpp` 包。
 
 
 ![在 R 中用 `Sys.which("make")` 验证 Rtools 已可用](../assets/02-computing-and-programming/017-6da0a303-f5d0-4cc3-96a4-3601c649742e.png){#fig-02-computing-and-programming-017}
@@ -659,7 +659,7 @@ RStudio 界面分四块：左上是脚本编辑器，代码写成 `.R` 文件保
 
 服务器上还有 RStudio Server：R 和 RStudio 都装在服务器上，浏览器打开就能用，本地零安装。数据量大时，它比“下载结果再本地画图”省事得多，不少课题组的服务器预装了它。
 
-RStudio 的 Project 功能值得从第一天用起来：File → New Project 新建项目后，工作目录固定在项目文件夹，脚本、数据、图形都收在同一处。这与本章最后要讲的项目目录组织是同一件事——一个项目一个目录，从 R 这边先养成习惯。
+建议从一开始就使用 RStudio 的 Project 功能。通过 File → New Project 新建项目后，工作目录固定在项目文件夹，脚本、数据和图形也收在同一处。这与本章最后介绍的项目目录组织是同一个习惯：一个项目用一个目录，可以先从 R 开始练习。
 
 ## Python 与结构化配置的最低必要知识 {#sec-02-05}
 
@@ -667,7 +667,7 @@ RStudio 的 Project 功能值得从第一天用起来：File → New Project 新
 
 ### Python 基础速览 {#topic-02-python-basics}
 
-本节提供 Python 的入门参考：变量、循环、函数与模块的最小知识集合，足以读懂后续章节的示例代码和 Snakemake 工作流中的 Python 表达式。
+下面介绍变量、循环、函数和模块这些必要的 Python 基础。有了这些知识，就足以读懂后续章节的示例代码和 Snakemake 工作流中的 Python 表达式。
 
 不需要专门安装：装好 Anaconda 后，终端输入 `python` 即进入交互环境，输入 `exit()` 退出。在交互环境里逐行试代码，是学语言最快的方式，下面所有例子都可以直接照抄运行。
 
@@ -738,7 +738,7 @@ def get_sample_id(filename):
 print(get_sample_id("S1_L001_R1_001.fastq.gz"))
 ```
 
-函数名后的三引号字符串是文档说明，写清输入输出，别人和 AI agent 都能读懂。这与前面 Shell 脚本一节的思路一致——语言不同，把过程写成可复用、可检查的文字相同。
+函数名后的三引号字符串是文档说明，写清输入和输出，别人和 AI agent 都能读懂。这与前面 Shell 脚本一节的思路一致：虽然语言不同，我们都要把处理过程写下来，让它可以复用，也可以检查。
 
 #### 文件读写与模块 {#topic-02-python-files}
 
@@ -752,19 +752,19 @@ with open("samples.tsv") as f:
         print(fields[0], fields[1])
 ```
 
-逐行读取，`strip()` 去掉行尾换行符，`split("\t")` 按制表符切列——这两步是处理表格文件的标准开场。写入文件加上模式参数：`with open("out.txt", "w") as f: f.write("...")`。
+这段代码逐行读取文件，用 `strip()` 去掉行尾换行符，再用 `split("\t")` 按制表符切列。这是处理表格文件时常用的基本步骤。写入文件时，需要加上模式参数：`with open("out.txt", "w") as f: f.write("...")`。
 
-Python 的功能大量以模块形式提供，import 导入使用。`os.path` 处理路径、`csv` 读写表格、`subprocess` 在脚本里调用外部命令，后续章节会陆续见到。
+Python 的许多功能由模块提供，用 import 导入后即可使用。例如，`os.path` 处理路径，`csv` 读写表格，`subprocess` 在脚本里调用外部命令，后续章节会陆续用到它们。
 
-本节不求覆盖 Python 全貌，目标是“读得懂”：看到一段脚本，能说出每个变量是什么、循环在遍历什么、结果写到哪里。写不出来的部分先照抄照跑，也可以让 AI agent 逐行解释——但读懂每一行的责任在你，这正是判断力的练习。
+这一节不要求学完 Python 的全部内容，先练习读懂脚本：看到一段代码，能说出每个变量是什么、循环在遍历什么、结果写到哪里。暂时写不出来的部分，可以先照着例子运行，也可以请 AI agent 逐行解释，但每一行的含义仍要自己弄明白。
 
 ### Jupyter {#src-0090-build-up-bioinfo-platform-270}
 
-Jupyter是一个非营利开源项目，2014年从IPython项目诞生。从诞生以来不断发展，基于网页支持跨几乎所有编程语言的交互式数据分析与科学计算。最早的项目是IPython Notebook，随着发展改名Jupyter Notebook。而现在Jupyter项目的核心是JupyterLab。如果你之前是Jupyter Notebook的用户，迁移到JupyterLab的学习成本很低。第一眼看上去最大的变化可能就是多标签和侧边栏。JupyterLab如今已经发展到4.X版本，经典的Jupyter Notebook仍在并行维护，扩展生态相当成熟。
+Jupyter 是一个非营利开源项目，2014 年从 IPython 项目中诞生，此后不断发展，通过网页支持几乎所有编程语言的交互式数据分析与科学计算。最早的项目是 IPython Notebook，后来改名为 Jupyter Notebook；如今，项目的核心是 JupyterLab。如果你用过 Jupyter Notebook，迁移到 JupyterLab 的学习成本很低，第一眼最明显的变化可能就是多标签和侧边栏。JupyterLab 现已发展到 4.X 版本，经典的 Jupyter Notebook 仍在并行维护，扩展生态也相当成熟。
 
 #### 安装JupyterLab {#src-0090-build-up-bioinfo-platform-274}
 
-安装JupyterLab非常简单，PyPI和Anaconda都有收录。这里再度建议大家使用前面小节介绍的独立包管理器micromamba进行安装
+PyPI 和 Anaconda 都收录了 JupyterLab，安装很方便。这里仍建议使用前面介绍的独立包管理器 micromamba：
 
 
 ```{.bash data-book-role="code"}
@@ -779,9 +779,9 @@ JupyterLab安装时只支持Python，如果需要支持其他语言，需要自�
 
 #### 本地和远程使用 {#src-0090-build-up-bioinfo-platform-288}
 
-JupyterLab的本地启动十分简单，启动一个终端（Windows下可以选择PowerShell，或者通过Windows Terminal使用某个终端），切换到你需要进行分析的目录。Jupyter只可以读取启动时的目录及其子目录下的文件。当进入到需要的目录时，在终端中使用`jupyter lab`命令就可以启动JupyterLab。默认浏览器这时会自动启动，并打开JupyterLab的页面。
+在本地启动 JupyterLab，先打开终端，切换到准备进行分析的目录。Windows 用户可以选择 PowerShell，或通过 Windows Terminal 打开其他终端。Jupyter 只能读取启动目录及其子目录下的文件，因此要先选好目录，再运行 `jupyter lab`。默认浏览器会自动启动，打开 JupyterLab 页面。
 
-而远程使用服务器上的应用会复杂一些。需要先在本地的终端中使用`ssh`命令，把服务器上JupyterLab监听的端口映射到本地计算机。执行完下面的命令后，会登录远程服务器，再使用`jupyter lab`即可启动远程服务器上的JupyterLab。在本地浏览器中访问`127.0.0.1:1234`即可连接服务器的8888端口。（username是你在服务器上的用户名，serverip为服务器IP地址。1234为希望的本地端口，8888则为远程服务器的端口。）
+远程使用服务器上的 JupyterLab，需要多做一步端口映射。在本地终端用 `ssh` 把服务器上 JupyterLab 监听的端口映射到本地计算机。执行下面的命令会登录远程服务器，再运行 `jupyter lab` 启动服务器上的 JupyterLab。随后在本地浏览器访问 `127.0.0.1:1234`，就能连接服务器的 8888 端口。命令中的 username 是服务器用户名，serverip 是服务器 IP 地址；1234 是希望使用的本地端口，8888 是远程服务器的端口。
 
 
 ```{.bash data-book-role="code"}
@@ -791,7 +791,7 @@ ssh username@serverip -L 127.0.0.1:1234:127.0.0.1:8888
 
 ::::: {.callout-warning .book-warning title="注意｜以实际启动端口为准"}
 
-这里还需要提醒大家，有时候因为服务器上已经有其他用户，或者你之前启动了一个JupyterLab还未关闭，远程端口可能不会是8888。所以这里其实更推荐大家，先用ssh登录远程服务器（可以使用某些ssh软件比如MobaXterm，也可以用`ssh`命令）启动JupyterLab，通过启动时的提示信息查看端口号，由此更改上面映射命令中的远程服务器端口。
+如果服务器上已有其他用户，或你上次启动的 JupyterLab 尚未关闭，远程端口可能不是 8888。因此，更推荐先用 ssh 登录服务器（可以用 MobaXterm 等 ssh 软件，也可以用 `ssh` 命令），启动 JupyterLab，查看启动信息中的实际端口号，再据此修改上面映射命令里的远程端口。
 
 :::::
 
@@ -830,7 +830,7 @@ YAML 只认空格缩进，编辑器插入 Tab 是配置报错的第一原因，�
 
 :::::
 
-JSON 表达同样的结构，规则是：花括号表对象，方括号表数组，键加双引号，元素间逗号分隔。上面两份 YAML 合成一份 JSON 是：
+JSON 可以表达同样的结构：花括号表示对象，方括号表示数组，键要加双引号，元素之间用逗号分隔。把上面两份 YAML 合成一份 JSON，写法如下：
 
 ```{.json data-book-role="data" data-code-title="config.json"}
 {
@@ -847,13 +847,13 @@ JSON 表达同样的结构，规则是：花括号表对象，方括号表数组
 
 JSON 没有 YAML 好读，但它是程序间交换数据的标准格式，网页、API 和各类软件的结果文件大量使用。生信实践中两者各就其位：人手写、人手改的配置用 YAML，程序输出和互相传递用 JSON。
 
-读取它们都有现成工具：Python 中 `import json` 与 `import yaml`（后者随 Anaconda 提供）之后，`json.load(open("config.json"))` 一行就能把文件读成字典，之后按上一节字典的方式取值。改配置文件改的是参数值，不碰代码——这正是配置文件存在的意义。
+读取这些文件也有现成工具。在 Python 中用 `import json` 与 `import yaml` 导入相应模块（后者随 Anaconda 提供），再用 `json.load(open("config.json"))` 就能把文件读成字典，随后按上一节介绍的方法取值。配置文件把参数值单独放出来，修改这些值时就不必改代码。
 
 ## 本地AI agent的配置与安装 {#sec-02-ai-agents}
 
 在本地装好 AI agent，让它们参与代码编写与排错。
 
-Claude Code、Codex、ZCode 等命令行 AI agent 可以在终端里读写代码、执行命令、完成多步骤任务，是 AI 时代生信分析的重要本地工具。使用它们的前提是完成订阅（coding plan）与 API 设置，并清楚它们擅长什么、可能在什么地方出错——这与全书的判断力主题一致。
+Claude Code、Codex、ZCode 等命令行 AI agent 可以在终端里读写代码、执行命令、完成多步骤任务，是 AI 时代生信分析的重要本地工具。使用它们的前提是完成订阅（coding plan）与 API 设置，并清楚它们擅长什么、可能在什么地方出错。
 
 ### coding plan 和 API 设置 {#topic-02-coding-plan}
 
@@ -906,13 +906,13 @@ npm install -g @openai/codex
 brew install codex
 ```
 
-Codex 在 Git 仓库内工作效果最好：它能读提交历史、理解项目结构，改动前后可以用 `git diff` 清楚对照。所以在项目目录里 `git init` 之后再启动 `codex`，是推荐姿势。首次启动按提示登录 ChatGPT 账号（Plus/Pro 订阅），或配置 OpenAI API key。
+Codex 在 Git 仓库内工作效果最好：它能读提交历史、理解项目结构，修改前后还可以用 `git diff` 对照。因此，建议在项目目录里先执行 `git init`，再启动 `codex`。首次启动时，按提示登录 ChatGPT 账号（Plus/Pro 订阅），或配置 OpenAI API key。
 
 ### ZCode {#topic-02-zcode}
 
 ZCode 是智谱推出的桌面版 AI coding 客户端，把 agent 对话、文件编辑和终端集成进图形界面，不习惯命令行的读者上手最容易。到官网 [zcode.z.ai](https://zcode.z.ai/) 下载 macOS 或 Windows 客户端安装，启动后用 GLM Coding Plan 或 API key 登录即可使用。安装说明见[官方文档](https://zcode.z.ai/cn/docs/install)，项目本身开源在 [GitHub](https://github.com/zai-org/ZCode)。
 
-三款工具功能定位相近，选一到两款深入即可。真正重要的不是选哪个，而是后面各章反复强调的用法：让 agent 做事，同时检查它做的每一步——读它改的代码，看它跑的命令，验证它给的结果。
+三款工具功能定位相近，选一到两款深入使用即可。后面各章会反复用到同一个习惯：让 agent 做事，同时检查它的每一步，读它改的代码、看它跑的命令、验证它给的结果。
 
 ## AI时代的版本管理 {#sec-02-06}
 
@@ -941,11 +941,11 @@ rnaseq_project/
 mkdir -p rnaseq_project/{data/{raw,clean},scripts,results/{tables,figures}}
 ```
 
-几条原则。原始数据进 `raw/` 后不再修改，所有处理都产生新文件写到下游目录，出错时才能随时回到起点。样本表 `samples.tsv` 一行一个样本，记录样本名、分组、文件路径；脚本都从它读信息，而不是把样本名硬写进代码——加样本改表不改脚本。`README.md` 哪怕只写三行：项目做什么、数据从哪来、按什么顺序跑。数据、脚本、结果分开存放，“哪个文件能不能重新生成”一目了然：`results` 里的都能由 `scripts` 加 `data` 再生，丢了不心疼。
+目录建好后，原始数据放进 `raw/` 就不再修改，后续处理都生成新文件，写入下游目录，出错时才能回到起点。样本表 `samples.tsv` 一行一个样本，记录样本名、分组和文件路径；脚本从表中读取信息，不把样本名写死在代码里，这样增加样本时只需改表。`README.md` 哪怕只写三行，也要交代项目做什么、数据从哪来、按什么顺序运行。数据、脚本、结果分开存放，就容易看清哪些文件可以重新生成：`results` 中的结果都能由 `scripts` 和 `data` 再生，丢失后也可以重新得到。
 
 ### 版本管理与 Git {#topic-02-git}
 
-AI agent 会大量改你的代码，改坏了怎么办？答案是版本管理。Git 记录每次提交的完整快照，任何时候都能对照、回退，配合远程仓库还能异地备份。对“AI 改代码”的工作流，`git diff` 让每一次 AI 修改都清晰可见——这是人审查 AI 工作的基本工具，也是本节放在 AI agent 之后的原因。
+AI agent 会大量修改你的代码，改坏了怎么办？这就需要版本管理。Git 记录每次提交的完整快照，随时可以对照、回退，配合远程仓库还能异地备份。用 AI 修改代码时，`git diff` 能把每次改动展示出来，供你审查。因此，学会使用 AI agent 之后，还要学会用版本管理检查它的工作。
 
 最小工作流只需四条命令：
 
@@ -956,7 +956,7 @@ git commit -m "添加样本表与质控脚本"
 git log --oneline
 ```
 
-依次是：在项目目录初始化仓库，把文件纳入跟踪，提交一版快照并附说明，查看提交历史。日常循环就是 `add`、`commit`、`diff`：改一批，提交一次。commit message 是写给未来的自己和协作者（以及 AI）的，“update”“fix”这类消息等于没写。
+这四条命令依次完成：在项目目录初始化仓库，把文件纳入跟踪，提交一版快照并附说明，再查看提交历史。日常使用时，围绕 `add`、`commit`、`diff` 操作，改一批就提交一次。commit message 要写给未来的自己、协作者和 AI 看；只写“update”“fix”，并不能交代这次具体改了什么。
 
 生信仓库必须配一个 `.gitignore`，把大文件和生成物挡在仓库外：
 
@@ -975,7 +975,7 @@ results/
 
 分析出错是常态，排错能力比不出错更值得练。一套固定的动作能解决大部分问题。
 
-先看全景：四步排查层层递进，每一步都可能直接解决问题——解决了就从右侧出口收尾记录，没解决才进入下一步；无论从哪一步走出来，最后都以记录收尾。
+下图给出四步排查的顺序。每一步都可能解决问题：解决了，就从右侧出口转到记录收尾；没有解决，再进入下一步。
 
 ![排错的基本流程：四步递进排查，任一步解决即记录收尾](../assets/02-computing-and-programming/svg/troubleshooting-flow.svg){#fig-02-computing-and-programming-026}
 
@@ -983,7 +983,7 @@ results/
 
 第二，最小复现。整个流程报错，就把出错那一步单独拿出来，用最小的输入跑一遍：全部样本失败，先拿一个样本试；脚本失败，先把循环里那一条命令手动敲一遍。问题缩到最小，原因往往自己浮出来。
 
-第三，查输入。很多“程序坏了”其实是数据不对：`head` 看文件开头格式，`wc -l` 数行数，和上一步的输出对一对。传输出错、表头变了、路径少了一层，都排在“软件有 bug”前面。
+第三，查输入。很多“程序坏了”其实是数据不对：用 `head` 看文件开头的格式，用 `wc -l` 数行数，再和上一步的输出核对。先检查传输是否出错、表头是否变化、路径是否少了一层，再考虑软件本身是否有 bug。
 
 第四，问对问题。向同事或 AI agent 求助时带上三样东西：完整报错原文、你执行的命令、期望结果与实际结果。AI agent 很擅长解释报错、给出排查步骤，但它也会自信地猜——每一条建议都要自己验证过再往前走。
 
