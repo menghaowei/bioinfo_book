@@ -36,7 +36,7 @@
 2. 两股液流在微流控节点与油相相遇，被油包裹成一个个"油包水"微液滴，称为 **GEM**（Gel bead in emulsion）——理想情况下每个液滴里进入一个细胞和一颗凝胶珠；
 3. 凝胶珠在液滴内溶解，释放寡核苷酸；细胞裂解释放 mRNA，带 barcode 的 oligo-dT 引物捕获 mRNA 并在液滴内完成反转录；
 4. 破乳后把所有液滴里的 cDNA 合并，统一扩增、建库；
-5. 测序时每条 read 自带"来自哪个细胞（barcode）＋哪个分子（UMI）"的信息，据此生成计数矩阵[^rna-ref-12]。
+5. 测序后，利用配对 reads 提供的细胞 barcode、UMI 和 cDNA 序列，生成计数矩阵[^rna-ref-12]。
 
 BD Rhapsody 采用蜂窝板（微孔板）完成单细胞分离和捕获：
 
@@ -53,23 +53,23 @@ BD Rhapsody 采用蜂窝板（微孔板）完成单细胞分离和捕获：
 
 ::: {.callout-note .book-core title="核心知识｜barcode 归细胞，UMI 归分子"}
 
-单细胞测序的每条 read 上有两段关键条形码：**细胞 barcode** 标记这条 read 来自哪个细胞（更准确地说，来自哪颗凝胶珠/磁珠），**UMI**（unique molecular identifier，分子唯一标识符）标记它来自哪个原始 mRNA 分子。同一条 mRNA 经 PCR 扩增出多条 read，会带着同一个 UMI——计数时每个 UMI 只算一次，这样 PCR 重复不会虚增表达量。这是单细胞计数与第 5 章 bulk 计数的一个本质差别：bulk 里我们数的是"比对到基因上的 read 数"，单细胞里数的是"带不同 UMI 的分子数"。
+在本章介绍的 UMI 型单细胞转录组文库中，**细胞 barcode** 用来把测序记录归回细胞（更准确地说，归回同一颗凝胶珠或磁珠），**UMI**（unique molecular identifier，分子唯一标识符）用于区分捕获到的原始 RNA 分子。以 10x 3′ 文库为例，一对 reads 分工不同：R1 读取细胞 barcode 和 UMI，R2 读取 cDNA 序列，用于判断基因归属。同一分子经 PCR 扩增产生的重复记录带着相同的 UMI；计数时，在**同一细胞、同一基因**内按校正后的 UMI 合并重复。不同细胞或不同基因之间不能只凭 UMI 相同就合并。第 5 章的 bulk 示例统计基因上的 read 计数，本章则据此估计捕获到的分子数。[^ch09-umi-counting]
 
 :::
 
-### barcode、UMI 与细胞×基因计数矩阵 {#topic-09-barcode-umi}
+### barcode、UMI 与基因×细胞计数矩阵 {#topic-09-barcode-umi}
 
-把上一步的测序结果整理一下，就得到本章分析的全部输入：一个**细胞×基因计数矩阵**。矩阵里每个数字的含义是——某个 barcode 对应的细胞里，某个基因被捕获并计数到多少个 UMI。barcode 的长度只有十几个碱基（不同化学版本的长度不同，例如 10x 早期版本为 14 bp barcode＋10 bp UMI，都从大约 75 万种设计中分配），碱基数虽少，足够给每个反应载体一个独立身份[^rna-ref-12]。
+把上一步的测序结果整理一下，就得到本章分析的主要输入：一个**基因×细胞计数矩阵**，行对应基因，列对应细胞。矩阵里每个数字表示某个 barcode 对应的细胞中，某个基因被捕获并计数到多少个 UMI 分子。barcode 与 UMI 的长度随平台和化学版本变化；图中为便于阅读使用了缩短的序列，不代表实际文库规格。[^ch09-umi-counting]
 
 10x 平台把从 FASTQ 到这个矩阵的中间步骤交给了官方软件 **Cell Ranger**：它把 read 比对到参考基因组（内部调用 STAR）、校正测序错误造成的 barcode/UMI 偏差、按 UMI 去重、把分子归属到基因，最后输出标准的三件套文件——`matrix.mtx`（稀疏矩阵）、`barcodes.tsv`（每行一个细胞 barcode）、`features.tsv`（每行一个基因）。这个三件套是 Seurat、Scanpy 等几乎所有下游分析工具的通用输入。
 
 从数据结构看，单细胞矩阵和第 5 章的基因×样本计数矩阵形状相同、语义不同：一列不再是"一个样本的文库"，而是"一个细胞"；矩阵极度稀疏（单个细胞只测得到一两千个基因非零），而且每个细胞的总计数（相当于"文库大小"）差异很大——这两点是后面归一化和质控设计的出发点。
 
-![barcode、UMI 与计数矩阵的对应关系（示意）](../assets/09-single-cell-and-spatial-omics/002-bc-umi-matrix.svg){#fig-09-bc-umi}
+![barcode、UMI 与计数矩阵的对应关系[^ch09-umi-counting]](../assets/09-single-cell-and-spatial-omics/002-bc-umi-matrix.svg){#fig-09-bc-umi}
 
-图注：序列未按实际长度绘制。
+图注：本例假定 barcode 与 UMI 已正确识别，无 UMI 碰撞或基因归属歧义。序列和数量均为教学示意，矩阵中的 0 表示本次未检出，不能据此断定细胞中完全没有该 RNA。
 
-@fig-09-bc-umi 把这套对应关系画在一起：三条 read 带着同一个细胞 barcode，其中前两条的 UMI 相同——它们是同一个 mRNA 分子经 PCR 扩增出来的重复，按 UMI 去重后只计 1 个分子；第三条 UMI 不同，是另一个分子。计数矩阵里那一列的每个数字，就是这样一条条数出来的"分子数"。
+@fig-09-bc-umi 展开了细胞 A 中 Gene A 的 5 条配对测序记录：它们的细胞 barcode 相同，R2 都归到 Gene A，UMI 则分成两组——ATGC 出现 3 次，GCTA 出现 2 次。每组合并后计 1 个分子，因此矩阵中 Gene A 行、细胞 A 列填 2。细胞 A 的 Gene B 另计 1 个，细胞 B 的 Gene A 计 1 个、Gene B 本次未检出。读到的记录数和计入矩阵的分子数，正是在这一步区分开的。
 
 ### 单细胞多组学全景与本章边界 {#topic-09-multimics}
 
@@ -558,3 +558,5 @@ SpatialPlot(brain, features = c("Hpca", "Plp1", "Rorb", "Cux2"))
 [^ch09-monocle]: Trapnell C, et al. The dynamics and regulators of cell fate decisions are revealed by pseudotemporal progression of transcriptomes (Monocle). Nat Biotechnol. 2014;32(4):381–386。
 
 [^ch09-capture-protocols]: [10x Chromium Next GEM Single Cell 3′ v3.1，CG000204 Rev D，第 15–16 页](https://cdn.10xgenomics.com/image/upload/v1660261285/support-documents/CG000204_ChromiumNextGEMSingleCell3_v3.1_Rev_D.pdf)；[BD Rhapsody Single Cell Capture and cDNA Synthesis User Guide，第 4–6 页](https://www.bdbiosciences.com/content/dam/bdb/marketing-documents/BD-Rhapsody-Single-Cell-Capture-and-cDNA-Synthesis-User-Guide.pdf)。图示对应这些基于 mRNA 捕获的流程，不概括各品牌所有试剂体系。
+
+[^ch09-umi-counting]: R1/R2 的分工参考 [10x Chromium Next GEM Single Cell 3′ HT v3.1，CG000416 Rev D，第 22 页](https://cdn.10xgenomics.com/image/upload/v1689110007/support-documents/CG000416_Chromium_NextGEM_SingleCell3-_HT_v3.1_GeneExp_RevD.pdf)。barcode 校正、基因归属和 UMI 合并参考 [Cell Ranger 9.0 Gene Expression Algorithms](https://www.10xgenomics.com/support/software/cell-ranger/9.0/algorithms-overview/cr-gex-algorithm)；实际软件还处理 UMI 测序错误、低支持记录及跨基因的归属歧义，图中仅展开没有这些歧义的计数例子。

@@ -1,140 +1,102 @@
 #!/usr/bin/env python3
-"""第9章 图9.2：barcode、UMI 与计数矩阵的对应关系（v2 全要素重排）。
+"""Figure 9.2: a checked molecule-to-matrix example, styled like Figure 9.1.
 
-v1 反馈（作者，2026-10-11）：效果不好、有遮挡——去重箭头穿过矩阵标题、
-read3 箭头横穿矩阵行。v2 布局：左区三条 read＋段标注与基因归属；中 corridor
-放两个"分子"标记；右区矩阵；全部箭头走空白走廊，不穿文字。
-
-教学要点（与 9.1 节正文一致）：
-- read 分三段：细胞 barcode（归细胞）＋UMI（归分子）＋cDNA（比对定基因）；
-- 同 barcode 同 UMI = 同一 mRNA 分子的 PCR 重复，去重后只计 1 个分子；
-- 计数矩阵中一个数字 = 某细胞某基因的 UMI 分子数。
-依据：Zheng et al. Nat Commun 2017;8:14049（示意，序列未按实际长度绘制）。
-
-运行：python3 scripts/figures/ch09/gen_bcumi.py
-输出：assets/09-single-cell-and-spatial-omics/002-bc-umi-matrix.svg
+Reads are paired records: R1 carries barcode/UMI and R2 supplies gene assignment.
+Deduplication is within a corrected cell-barcode + gene group, not global by UMI.
+The illustrative records assume no UMI collisions, errors or ambiguous mapping.
+Sources: 10x CG000416 Rev D, p.22; Cell Ranger gene-expression algorithms.
+Run: python3 scripts/figures/ch09/gen_bcumi.py
 """
-from common import (Svg, save, COLOR_TEXT, COLOR_MUTED, COLOR_PRIMARY,
-                    COLOR_FILL, COLOR_WARN, COLOR_WARN_FILL, COLOR_LINE,
-                    COLOR_BLUE, COLOR_BLUE_FILL, SIZE_NOTE, SIZE_TITLE)
+from collections import defaultdict
+from common import Svg, save, COLOR_PRIMARY as GREEN, COLOR_FILL as PALE, COLOR_WARN as AMBER, COLOR_WARN_FILL as CREAM, COLOR_MUTED as MUTED, COLOR_BLUE as BLUE
 
-CW = 13          # 等宽字符栅格
-BAR_H = 30       # read 条高度
-
-BC = "AACGTACGTA"
+BCA, BCB = 'AACGTA', 'TTGCAC'
+# Five paired records for Gene A in cell A, plus the remaining example molecules.
+RECORDS = [(BCA, 'Gene A', 'ATGC')]*3 + [(BCA, 'Gene A', 'GCTA')]*2 + [(BCA, 'Gene B', 'CAGT'), (BCB, 'Gene A', 'ATGC')]
 
 
-def read_bar(s, x, y, umi, fill_umi):
-    """一条 read：[barcode 段][UMI 段][cDNA 段]，先画底再画字。返回总宽。"""
-    w_bc, w_umi, w_cdna = len(BC) * CW + 12, len(umi) * CW + 12, 8 * CW + 12
-    s.rect(x, y, w_bc, BAR_H, fill=COLOR_FILL, stroke=COLOR_PRIMARY)
-    s.rect(x + w_bc, y, w_umi, BAR_H, fill=fill_umi, stroke=COLOR_WARN)
-    s.rect(x + w_bc + w_umi, y, w_cdna, BAR_H, stroke=COLOR_LINE)
-    s.text(x + 6, y + 20, BC, size=13, fill=COLOR_TEXT)
-    s.text(x + w_bc + 6, y + 20, umi, size=13, fill=COLOR_TEXT)
-    s.text(x + w_bc + w_umi + 6, y + 20, "cDNA…", size=13, fill=COLOR_MUTED)
-    return w_bc + w_umi + w_cdna
+def text(s,x,y,t,size=18,color='#333333',bold=False,anchor='start',mono=False):
+    s.text(x,y,t,size=size,fill=color,weight='bold' if bold else 'normal',anchor=anchor,mono=mono)
+
+
+def path(s,d,color=GREEN,width=2,fill='none'):
+    s.add(f'<path d="{d}" fill="{fill}" stroke="{color}" stroke-width="{width}" stroke-linecap="round" stroke-linejoin="round"/>')
+
+
+def wave(s,x,y,color=GREEN,length=52):
+    path(s,f'M {x} {y} q 6 -9 12 0 t 12 0 t 12 0 t 12 0',color,2.7)
+
+
+def cell(s,cx,cy,label,molecules):
+    path(s,f'M {cx-93} {cy} C {cx-88} {cy-61}, {cx-40} {cy-65}, {cx+11} {cy-55} C {cx+92} {cy-70}, {cx+101} {cy-15}, {cx+88} {cy+26} C {cx+71} {cy+72}, {cx-33} {cy+65}, {cx-77} {cy+39} Z',GREEN,2.1,PALE)
+    s.add(f'<ellipse cx="{cx-53}" cy="{cy+2}" rx="22" ry="26" fill="#ffffff" stroke="{GREEN}" stroke-width="1.5"/>')
+    for i,gene in enumerate(molecules):wave(s,cx-15,cy-29+i*29,GREEN if gene=='Gene A' else BLUE)
+    text(s,cx,cy-82,label,23,GREEN,True,'middle')
 
 
 def main():
-    W, H = 920, 392
-    s = Svg(W, H, "barcode、UMI 与计数矩阵的对应关系",
-            "三条 read 带相同细胞 barcode AACGTACGTA；前两条 UMI 相同（TTAGGC），"
-            "是同一 mRNA 分子的 PCR 重复，按 UMI 去重只计 1 个分子并归属 Gene1；"
-            "第三条 UMI 不同（CCGATA），是另一个分子，归属 Gene2。"
-            "右侧计数矩阵高亮列即该细胞，数字为 UMI 分子数。示意，未按实际长度绘制。")
+    umi_sets=defaultdict(set)
+    for bc,gene,umi in RECORDS:umi_sets[bc,gene].add(umi)
+    matrix=[[len(umi_sets[bc,gene]) for bc in [BCA,BCB]] for gene in ['Gene A','Gene B']]
+    assert matrix==[[2,1],[1,0]]
+    expanded=[r for r in RECORDS if r[0]==BCA and r[1]=='Gene A']
+    assert len(expanded)==5 and len({r[2] for r in expanded})==2
+    s=Svg(800,1060,'barcode、UMI 与基因×细胞计数矩阵',
+          '两个细胞捕获的 RNA 获得细胞 barcode 和 UMI。展开细胞 A 的 Gene A：五条配对测序记录中 ATGC 出现三次、GCTA 出现两次，同细胞同基因按校正后的 UMI 合并为两个分子。矩阵行是 Gene A、Gene B，列是细胞 A、B，数值为 2、1 和 1、0。序列缩短，数量为示意。')
+    text(s,28,35,'① 捕获 RNA，加入细胞 barcode 和 UMI',23,GREEN,True)
+    cell(s,206,158,'细胞 A',['Gene A','Gene A','Gene B'])
+    cell(s,596,158,'细胞 B',['Gene A'])
+    text(s,206,239,'barcode：'+BCA,18,GREEN,False,'middle',True)
+    text(s,596,239,'barcode：'+BCB,18,GREEN,False,'middle',True)
+    text(s,206,270,'Gene A：2 个　Gene B：1 个',17,anchor='middle')
+    text(s,596,270,'Gene A：1 个　Gene B：0 个',17,anchor='middle')
+    text(s,400,300,'只画本例捕获到的 RNA；不同基因以颜色和名称区分。',16,MUTED,anchor='middle')
+    s.line(28,319,772,319,stroke='#a7c9c0',sw=1)
 
-    x0 = 60
-    y1, y2, y3 = 100, 156, 212                     # 三条 read 的 y
-    w1 = read_bar(s, x0, y1, "TTAGGC", COLOR_WARN_FILL)   # read1 → Gene1
-    read_bar(s, x0, y2, "TTAGGC", COLOR_WARN_FILL)        # read2（PCR 重复）→ Gene1
-    read_bar(s, x0, y3, "CCGATA", COLOR_BLUE_FILL)        # read3 → Gene2
+    text(s,28,354,'② 展开细胞 A 的 Gene A：扩增产生多条测序记录',23,GREEN,True)
+    text(s,111,388,'R1：细胞 barcode',17,GREEN,True,'middle')
+    text(s,294,388,'R1：UMI',17,AMBER,True,'middle')
+    text(s,465,388,'R2：cDNA 比对结果',17,GREEN,True,'middle')
+    text(s,681,388,'合并 PCR 重复',17,GREEN,True,'middle')
+    for i,(_,gene,umi) in enumerate(expanded):
+        y=405+i*44
+        # These are paired metadata records, deliberately separated R1 / R2.
+        s.rect(31,y,159,32,fill=PALE,stroke=GREEN,rx=4)
+        s.rect(227,y,130,32,fill=CREAM,stroke=AMBER,rx=4)
+        s.rect(395,y,142,32,fill='#f4f6f5',stroke='#9ca3af',rx=4)
+        text(s,110,y+23,BCA,20,GREEN,anchor='middle',mono=True)
+        text(s,292,y+23,umi,20,AMBER,anchor='middle',mono=True)
+        text(s,466,y+23,gene,20,GREEN,anchor='middle',mono=True)
+        # A dashed link means metadata from one read pair, not a continuous read.
+        s.line(190,y+16,227,y+16,stroke='#9ca3af',dash='3,4')
+        s.line(357,y+16,395,y+16,stroke='#9ca3af',dash='3,4')
+    for y0,y1,mid,umi,n in [(405,525,465,'ATGC',3),(537,613,575,'GCTA',2)]:
+        path(s,f'M 552 {y0+3} H 564 V {y1-3} H 552',AMBER,1.8)
+        s.arrow(570,mid,620,mid,stroke=GREEN)
+        wave(s,640,mid-10)
+        text(s,666,mid+18,umi,18,AMBER,anchor='middle',mono=True)
+        text(s,733,mid-2,'1 个',19,GREEN,True,'middle')
+        text(s,666,mid+42,str(n)+' 条记录',15,MUTED,anchor='middle')
+    text(s,400,657,'5 条记录 → 2 个不同 UMI → 计 2 个分子',23,GREEN,True,'middle')
+    text(s,400,688,'去重范围：同一细胞、同一基因；使用校正后的 UMI。',18,anchor='middle')
+    s.arrow(400,706,400,736,stroke=GREEN,sw=2)
 
-    # ── 段标注（对齐 read1 三段正上方）──
-    w_bc = len(BC) * CW + 12                       # 142
-    w_umi = 6 * CW + 12                            # 90
-    for cx, lab in ((x0 + w_bc / 2, "细胞 barcode"),
-                    (x0 + w_bc + w_umi / 2, "UMI"),
-                    (x0 + w_bc + w_umi + 58, "cDNA")):
-        s.text(cx, 76, lab, size=11, mono=False, fill=COLOR_MUTED, anchor="middle")
-        s.line(cx, 82, cx, 94, stroke=COLOR_LINE, sw=1)   # 引线小刻度
-    s.text(x0 + w_bc / 2, 58, "归细胞", size=10, mono=False, fill=COLOR_PRIMARY,
-           anchor="middle")
-    s.text(x0 + w_bc + w_umi / 2, 58, "归分子", size=10, mono=False,
-           fill=COLOR_WARN, anchor="middle")
-    s.text(x0 + w_bc + w_umi + 58, 58, "比对定基因", size=10, mono=False,
-           fill=COLOR_MUTED, anchor="middle")
-
-    # ── 基因归属（cDNA 段右侧，短标签避免与说明冲突）──
-    s.text(x0 + w1 + 12, y1 + 20, "Gene1", size=13, fill=COLOR_TEXT)
-    s.text(x0 + w1 + 12, y2 + 20, "Gene1", size=13, fill=COLOR_TEXT)
-    s.text(x0 + w1 + 12, y3 + 20, "Gene2", size=13, fill=COLOR_TEXT)
-
-    # ── PCR 重复虚线分组（read1＋read2）──
-    s.rect(x0 - 14, 88, w1 + 28, 110, stroke=COLOR_WARN, dash="5,4", sw=1.2)
-    s.text(x0 - 14, 214, "└ barcode 与 UMI 都相同", size=11, mono=False,
-           fill=COLOR_WARN)
-
-    # ── 中 corridor：两个分子标记 ──
-    mk1 = (480, 140, 132, 26, COLOR_WARN_FILL, COLOR_WARN, "去重后 1 个分子")
-    mk2 = (480, 252, 132, 26, COLOR_BLUE_FILL, COLOR_BLUE, "另 1 个分子")
-    for mx, my, mw, mh, f, st, lab in (mk1, mk2):
-        s.rect(mx, my, mw, mh, fill=f, stroke=st, rx=4)
-        s.text(mx + mw / 2, my + 17, lab, size=SIZE_NOTE, mono=False,
-               fill=COLOR_TEXT, anchor="middle")
-    # 分组框 → 分子1
-    s.arrow(x0 + w1 + 28, 143, 480, 153)
-    # read3 底部折线 → 分子2（绕开 Gene2 标签）
-    s.line(x0 + 170, y3 + BAR_H, x0 + 170, 265, stroke=COLOR_PRIMARY, sw=1.6)
-    s.line(x0 + 170, 265, 480, 265, stroke=COLOR_PRIMARY, sw=1.6)
-
-    # ── 右区：计数矩阵 ──
-    mtitle_y = 116
-    s.text(735, mtitle_y, "细胞×基因计数矩阵（数字 = UMI 分子数）",
-           size=SIZE_TITLE, mono=False, fill=COLOR_PRIMARY, weight="bold",
-           anchor="middle")
-    mx0, my0 = 646, 130
-    col_ws = [36, 110, 36]                          # …/AACGTACGTA/…
-    col_x = [mx0, mx0 + 36, mx0 + 146]
-    row_h, n_rows = 34, 4
-    rows = ["Gene1", "Gene2", "Gene3", "…"]
-    vals = {0: ("1", COLOR_WARN), 1: ("1", COLOR_BLUE), 2: ("0", COLOR_MUTED)}
-    # 列头
-    heads = ["…", BC, "…"]
-    for j in range(3):
-        if j == 1:
-            s.rect(col_x[j] + 1, my0, col_ws[j] - 2, 22, fill=COLOR_FILL)
-        s.text(col_x[j] + col_ws[j] / 2, my0 + 15, heads[j], size=10,
-               anchor="middle", fill=COLOR_TEXT if j == 1 else COLOR_MUTED)
-    # 行
-    for i, r in enumerate(rows):
-        ry = my0 + 26 + i * row_h
-        s.text(mx0 - 10, ry + 22, r, size=12, anchor="end", fill=COLOR_TEXT)
-        for j in range(3):
-            if j == 1:
-                s.rect(col_x[j] + 1, ry + 2, col_ws[j] - 2, row_h - 4,
-                       fill=COLOR_FILL, stroke=COLOR_PRIMARY)
-                v, vc = vals.get(i, ("0", COLOR_MUTED))
-                s.text(col_x[j] + col_ws[j] / 2, ry + 23, v, size=14,
-                       anchor="middle", fill=vc, weight="bold")
-            else:
-                s.rect(col_x[j] + 1, ry + 2, col_ws[j] - 2, row_h - 4,
-                       stroke=COLOR_LINE, dash="3,3")
-                s.text(col_x[j] + col_ws[j] / 2, ry + 23, "·", size=12,
-                       anchor="middle", fill=COLOR_LINE)
-    # 分子 → 矩阵（沿空白走廊，不穿文字）
-    s.arrow(612, 153, 690, 172)                      # 分子1 → Gene1 格
-    s.arrow(612, 265, 690, 208)                      # 分子2 → Gene2 格
-
-    # ── 底部小结 ──
-    s.text(x0, 336, "前两条 read 是同一个分子的 PCR 重复：按 UMI 去重，只给 Gene1 记 1（琥珀）；"
-           "第三条 UMI 不同，给 Gene2 记 1（蓝色）。",
-           size=SIZE_NOTE, mono=False, fill=COLOR_TEXT)
-    s.text(x0, 360, "矩阵里一个数字的含义：这个细胞里，这个基因被捕获并计数到几个 UMI 分子（去重后）。",
-           size=SIZE_NOTE, mono=False, fill=COLOR_MUTED)
-
-    save("002-bc-umi-matrix", s)
+    text(s,28,772,'③ 填入基因×细胞计数矩阵',23,GREEN,True)
+    text(s,243,815,'行：基因',17,MUTED,anchor='end')
+    text(s,378,812,'细胞 A',20,GREEN,True,'middle')
+    text(s,560,812,'细胞 B',20,GREEN,True,'middle')
+    text(s,696,815,'列：细胞',17,MUTED,anchor='middle')
+    for i,gene in enumerate(['Gene A','Gene B']):
+        y=837+i*59
+        text(s,246,y+35,gene,20,GREEN if i==0 else BLUE,True,'end')
+        for j,value in enumerate(matrix[i]):
+            x=289+j*182
+            s.rect(x,y,177,53,fill=CREAM if (i,j)==(0,0) else PALE,stroke=AMBER if (i,j)==(0,0) else GREEN,sw=2 if (i,j)==(0,0) else 1.1,rx=4)
+            text(s,x+88.5,y+36,str(value),28,AMBER if (i,j)==(0,0) else GREEN,True,'middle')
+    text(s,400,993,'每个数字＝该细胞中、该基因被捕获并计数的 UMI 分子数',18,anchor='middle')
+    text(s,400,1028,'0 表示本次未检出；序列长度和分子数量均为教学示意。',16,MUTED,anchor='middle')
+    save('002-bc-umi-matrix',s)
+    print({'records_in_expanded_group':len(expanded),'unique_UMIs':2,'matrix':matrix})
 
 
-if __name__ == "__main__":
-    main()
+if __name__=='__main__':main()

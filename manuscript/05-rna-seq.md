@@ -20,7 +20,7 @@
 RNA 测序（RNA sequencing，RNA-Seq）是研究转录组的成熟技术，也是使用最广泛的高通量测序技术之一。一个细胞中的全部遗传物质（DNA）称为基因组。根据中心法则[^rna-ref-1]，遗传信息由 DNA 经转录流向 RNA，这些 RNA 的总和称为转录组（transcriptome），研究转录组的方法及相关技术则称为转录组学（transcriptomics）。转录组测序可以用来寻找实验组与对照组之间的差异表达基因，也可以研究基因表达在发育或其他生物学过程中的时序变化。
 RNA可以分为能够编码蛋白基因的信使RNA（mRNA）[^rna-ref-2]和非蛋白编码RNA （non-coding RNA, ncRNA），例如人类基因组，含有约20000个蛋白编码基因和7000个非蛋白编码RNA基因。随着研究的深入，生命科学研究者对RNA的认识逐渐全面，陆续发现了生物体中多种类型的非编码RNA，有持家非编码RNA（house-keeping non-coding RNA）：在翻译过程中起转运作用的tRNA[^rna-ref-3]、核糖体的组成成分rRNA[^rna-ref-4] 、参与mRNA剪接的snRNA（small nuclear RNA）[^rna-ref-5]等；还有能够起到调控作用的非编码RNA：长非编码RNA（long non-coding RNA, lncRNA）、miRNA（microRNA）[^rna-ref-6]、小干扰RNA（small interfering RNA, siRNA）和环状RNA（circRNA）等。RNA 的代表性形态与分工见 @fig-05-rna-classes 。先沿着 DNA、mRNA、蛋白质看转录和翻译的主线，再看参与剪接、翻译及调控的其他 RNA；RNA 的作用并不只是充当蛋白质合成的中间体。
 
-![RNA 的主要类型与分工[^rna-ref-fig-license]](../assets/06-rna-seq/svg/rna-classes-mechanism.svg){#fig-05-rna-classes}
+![RNA 的主要类型与分工[^rna-ref-fig-license]](../assets/06-rna-seq/illustrations/rna-roles.png){#fig-05-rna-classes}
 
 ::::: {.callout-note .book-core title="核心知识｜转录组与基因组的关系"}
 
@@ -28,9 +28,9 @@ RNA可以分为能够编码蛋白基因的信使RNA（mRNA）[^rna-ref-2]和非�
 
 :::::
 
-![相同基因组与不同细胞的 RNA 丰度[^rna-fig-nhgri]](../assets/06-rna-seq/svg/cell-transcriptomes.svg){#fig-05-genome-transcriptome}
+![相同基因组与不同细胞的 RNA 丰度[^rna-fig-nhgri]](../assets/06-rna-seq/illustrations/cell-transcriptomes.png){#fig-05-genome-transcriptome}
 
-图中三类细胞都保留同一组示意基因 A–D，下面的波浪线表示对应的 RNA。A 在三类细胞中都有表达，B、C、D 则分别在不同细胞中较多。读图时横向比较同一行：不同转录组既可能表现为某些 RNA 的有无，也可能表现为共有 RNA 的丰度差异，并不意味着每类细胞只表达一套互不重叠的基因。同一类细胞在不同条件下也会改变这些 RNA 的丰度组合。分子数和条形长度仅用于说明概念，不是实测结果。
+图中三类细胞都保留同一组示意基因 A–D，下方的条形图使用相同刻度，表示对应 RNA 的相对丰度。RNA A 在三类细胞中一样多，B、C、D 则分别在神经、肌肉、上皮细胞中较多。读图时横向比较同一行：不同转录组既可能表现为某些 RNA 的有无，也可能表现为共有 RNA 的丰度差异，并不意味着每类细胞只表达一套互不重叠的基因。同一类细胞在不同条件下也会改变这些 RNA 的丰度组合。条形长度和数字仅用于说明概念，不是实测结果。
 
 ### mRNA 与全转录组建库 {#topic-05-lib-strategies}
 
@@ -1496,7 +1496,7 @@ ceRNA（competing endogenous RNA，内源竞争性 RNA）不是一类新的 RNA 
 
 [^rna-ref-abundance]: 总 RNA 构成取常用教学口径：rRNA 约 80%–90%、tRNA 约 10%–15%、mRNA 约 3%–7%（数量级因细胞类型与生长状态而异）。
 
-[^rna-ref-fig-license]: RNA 类别与分工的参考资料：[NHGRI RNA Fact Sheet](https://www.genome.gov/about-genomics/educational-resources/fact-sheets/ribonucleic-acid-fact-sheet)；[OpenStax，Structure and Function of RNA](https://openstax.org/books/microbiology/pages/10-3-structure-and-function-of-rna)。图中为代表性形态和作用场景，具体 RNA 的分布、作用机制与功能证据需要分别判断。
+[^rna-ref-fig-license]: 本书使用 AI 辅助生成生物插画，并另行编排标签与关系。RNA 类别与分工的参考资料：[NHGRI RNA Fact Sheet](https://www.genome.gov/about-genomics/educational-resources/fact-sheets/ribonucleic-acid-fact-sheet)；[OpenStax，Structure and Function of RNA](https://openstax.org/books/microbiology/pages/10-3-structure-and-function-of-rna)。图中为代表性形态和作用场景，未按分子尺度绘制；具体 RNA 的分布、作用机制与功能证据需要分别判断。
 
 [^cerna-fig-license]: Aria H, Azizi M, Nazem S, et al. [Competing endogenous RNAs regulatory crosstalk networks: The messages from the RNA world to signaling pathways directing cancer stem cell development](https://doi.org/10.1016/j.heliyon.2024.e35208). *Heliyon*, 2024（图 1，CC BY 4.0 许可，2026 年 10 月核对）。
 
@@ -1507,7 +1507,7 @@ ceRNA（competing endogenous RNA，内源竞争性 RNA）不是一类新的 RNA 
 [^rnaseq-best-practices]: Conesa A 等. [A survey of best practices for RNA-seq data analysis](https://pubmed.ncbi.nlm.nih.gov/26813401/). Genome Biology, 2016（比对率等质控经验值的常用参考）。)
 
 
-[^rna-fig-nhgri]: 基因组与转录组关系的概念依据：[NHGRI，Ribonucleic Acid (RNA) Fact Sheet](https://www.genome.gov/about-genomics/educational-resources/fact-sheets/ribonucleic-acid-fact-sheet)。图中的 A–D 为示意标签，不对应真实基因或测量值。
+[^rna-fig-nhgri]: 本书使用 AI 辅助生成细胞插画，并另行绘制丰度图。基因组与转录组关系的概念依据：[NHGRI，Ribonucleic Acid (RNA) Fact Sheet](https://www.genome.gov/about-genomics/educational-resources/fact-sheets/ribonucleic-acid-fact-sheet)。图中的 A–D 为示意标签，不对应真实基因或测量值；细胞大小不按比例，肌肉细胞采用单核梭形的代表形态。
 
 [^fig05-library-source]: 图片来自 Illumina 技术文档，仅作教学示意。
 
