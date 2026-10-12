@@ -1,130 +1,103 @@
 #!/usr/bin/env python3
-"""第9章 图9.1：10x Genomics 与 BD Rhapsody 单细胞捕获流程对比（重绘自课程原图）。
+"""10x/BD physical capture compartments (Figure 9.1).
 
-信息边界（作者确认，2026-10-11）：只画"微反应载体"层——怎么把一个细胞和一个
-条形码载体关进一个小空间；barcode/UMI 细节留给图 9.2，本图不重复。
-依据：Zheng 2017 Nat Commun（GEM 过程）、Fan 2015 Science（CytoSeq 微孔板）。
-
-运行：python3 scripts/figures/ch09/gen_platforms.py
-输出：assets/09-single-cell-and-spatial-omics/008-10x-bd-platforms.svg
+10x Chromium Next GEM 3′ v3.1, CG000204 Rev D, pp15–16;
+BD Rhapsody Single Cell Capture and cDNA Synthesis User Guide, pp4–6.
+BD beads are retrieved/washed before RT; GEM RT occurs inside droplets.
+Run: python3 scripts/figures/ch09/gen_platforms.py
 """
-import math
-from common import (Svg, save, COLOR_TEXT, COLOR_MUTED, COLOR_PRIMARY,
-                    COLOR_FILL, COLOR_WARN, COLOR_WARN_FILL, COLOR_LINE,
-                    SIZE_NOTE, SIZE_TITLE)
-
-BOX_W = 330
-BOX_H = 64
+from common import Svg, save, COLOR_PRIMARY as GREEN, COLOR_FILL as PALE
+from common import COLOR_WARN as AMBER, COLOR_WARN_FILL as CREAM
 
 
-def step_box(s, x, y, title, sub):
-    """步骤框：第一行加粗步骤名，第二行灰色补充。先框后字。"""
-    s.rect(x, y, BOX_W, BOX_H, stroke=COLOR_PRIMARY, rx=6)
-    s.text(x + 14, y + 26, title, size=SIZE_NOTE, mono=False,
-           fill=COLOR_TEXT, weight="bold")
-    s.text(x + 14, y + 48, sub, size=11, mono=False, fill=COLOR_MUTED)
+def path(s,d,color=GREEN,width=2,fill='none'):
+    s.add(f'<path d="{d}" fill="{fill}" stroke="{color}" stroke-width="{width}" stroke-linecap="round" stroke-linejoin="round"/>')
 
 
-def down_arrow(s, cx, y1, y2):
-    s.line(cx, y1, cx, y2, stroke=COLOR_PRIMARY, sw=1.8)
-    for da in (0.42, -0.42):
-        s.line(cx, y2, cx - 8 * math.sin(da), y2 - 9 * math.cos(da),
-               stroke=COLOR_PRIMARY, sw=1.8)
+def circle(s,x,y,r,fill=PALE,color=GREEN,width=1.6):
+    s.add(f'<circle cx="{x}" cy="{y}" r="{r}" fill="{fill}" stroke="{color}" stroke-width="{width}"/>')
 
 
-def droplet_motif(s, cx, cy):
-    """10x：油包水液滴——圆内一个细胞（小圆）＋一颗凝胶珠（小方块）。"""
-    s.add(f"<circle cx='{cx}' cy='{cy}' r='26' fill='{COLOR_FILL}' "
-          f"stroke='{COLOR_PRIMARY}' stroke-width='1.4'/>")
-    s.add(f"<circle cx='{cx - 8}' cy='{cy + 4}' r='7' fill='none' "
-          f"stroke='{COLOR_TEXT}' stroke-width='1.4'/>")            # 细胞
-    s.add(f"<circle cx='{cx - 8}' cy='{cy + 4}' r='2.5' fill='{COLOR_TEXT}'/>")  # 细胞核
-    s.rect(cx + 6, cy - 4, 11, 11, fill=COLOR_WARN_FILL, stroke=COLOR_WARN)     # 凝胶珠
-    s.text(cx, cy + 44, "GEM：油包水液滴", size=11, mono=False,
-           fill=COLOR_MUTED, anchor="middle")
+def text(s,x,y,t,size=18,color='#333333',bold=False,anchor='start'):
+    s.text(x,y,t,size=size,mono=False,fill=color,weight='bold' if bold else 'normal',anchor=anchor)
 
 
-def microwell_motif(s, cx, cy):
-    """BD：蜂窝板微孔——三个六边形孔，两孔各一细胞，磁珠落入一孔。"""
-    r = 15
-    for dx, dy in ((-16, 9), (16, 9), (0, -8)):
-        pts = []
-        for k in range(6):
-            a = math.pi / 6 + k * math.pi / 3
-            pts.append((cx + dx + r * math.cos(a), cy + dy + r * math.sin(a)))
-        pstr = " ".join(f"{px:.1f},{py:.1f}" for px, py in pts)
-        s.add(f"<polygon points='{pstr}' fill='none' stroke='{COLOR_PRIMARY}' "
-              f"stroke-width='1.4'/>")
-    s.add(f"<circle cx='{cx - 16}' cy='{cy + 9}' r='6' fill='none' "
-          f"stroke='{COLOR_TEXT}' stroke-width='1.3'/>")            # 孔内细胞
-    s.rect(cx - 4, cy - 12, 9, 9, fill=COLOR_WARN_FILL, stroke=COLOR_WARN)      # 孔内磁珠
-    s.text(cx, cy + 44, "微孔板：一孔一细胞", size=11, mono=False,
-           fill=COLOR_MUTED, anchor="middle")
+def cell(s,x,y,r=13):
+    circle(s,x,y,r);circle(s,x+2,y,r*.33,CREAM,AMBER,1)
+
+
+def bead(s,x,y,r=11,probes=True):
+    import math
+    circle(s,x,y,r,CREAM,AMBER)
+    if probes:
+        for a in range(0,360,45):
+            t=math.radians(a);s.line(x+r*math.cos(t),y+r*math.sin(t),x+(r+7)*math.cos(t),y+(r+7)*math.sin(t),stroke=AMBER,sw=1.3)
+
+
+def rna(s,x,y,length=42):
+    path(s,f'M {x} {y} q {length/8} -9 {length/4} 0 t {length/4} 0 t {length/4} 0 t {length/4} 0',GREEN,2.4)
+
+
+def tube(s,x,y,beads=False):
+    path(s,f'M {x} {y} L {x+70} {y} L {x+70} {y+54} L {x+35} {y+86} L {x} {y+54} Z',GREEN,2,PALE)
+    s.rect(x-4,y-8,78,10,fill=CREAM,stroke=GREEN,rx=3)
+    for j in range(3):
+        if beads:bead(s,x+17+j*17,y+20+j*10,5,False)
+        else:s.line(x+14,y+18+j*13,x+53,y+18+j*13,stroke=GREEN,sw=2)
 
 
 def main():
-    W, H = 880, 660
-    s = Svg(W, H, "10x Genomics 与 BD Rhapsody 单细胞捕获流程对比",
-            "左栏 10x 液滴法五步：两路液流在微流控节点被油相包裹成 GEM，"
-            "液滴内裂解反转录，破乳合并扩增建库；右栏 BD 微孔板法三步："
-            "细胞重力落入蜂窝板微孔，磁珠入孔配对，孔内完成反应。"
-            "两栏底部汇合：把一个细胞和一个条形码载体关进一个小空间，后续建库测序几乎一致。")
-
-    # ── 栏标题与示意图 ──
-    lx, rx = 40, 500                     # 两栏左上角
-    s.text(lx + BOX_W / 2, 40, "10x Genomics（液滴法）", size=SIZE_TITLE,
-           mono=False, fill=COLOR_PRIMARY, weight="bold", anchor="middle")
-    s.text(rx + BOX_W / 2, 40, "BD Rhapsody（微孔板法）", size=SIZE_TITLE,
-           mono=False, fill=COLOR_PRIMARY, weight="bold", anchor="middle")
-    droplet_motif(s, lx + 70, 100)
-    microwell_motif(s, rx + 70, 100)
-
-    # ── 左栏五步 ──
-    left = [
-        ("① 两路液流汇入微流控节点", "细胞＋试剂一条通道，凝胶珠（带寡核苷酸）另一条"),
-        ("② 油相包裹成 GEM 液滴", "理想情况：一个液滴里进入一个细胞和一颗凝胶珠"),
-        ("③ 液滴内：裂解与反转录", "凝胶珠溶解释放引物，cDNA 带上 barcode 和 UMI"),
-        ("④ 破乳合并，统一扩增建库", "所有液滴的 cDNA 合并成一个文库"),
-        ("⑤ 测序：read 自带条形码", "barcode 归细胞、UMI 归分子（见下图）"),
-    ]
-    y = 170
-    step_gap = 18
-    for i, (t, sub) in enumerate(left):
-        step_box(s, lx, y, t, sub)
-        if i < len(left) - 1:
-            down_arrow(s, lx + BOX_W / 2, y + BOX_H, y + BOX_H + step_gap)
-        y += BOX_H + step_gap
-
-    # ── 右栏三步 ──
-    right = [
-        ("① 悬液流过蜂窝板", "数十万微孔，细胞靠重力落入，理想一孔一细胞"),
-        ("② 磁珠铺板，入孔配对", "带寡核苷酸的磁珠落入微孔，与细胞同处一孔"),
-        ("③ 微孔内：裂解与反转录", "孔就是反应器，cDNA 同样带上条形码"),
-    ]
-    y = 170
-    for i, (t, sub) in enumerate(right):
-        step_box(s, rx, y, t, sub)
-        if i < len(right) - 1:
-            down_arrow(s, rx + BOX_W / 2, y + BOX_H, y + BOX_H + step_gap)
-        y += BOX_H + step_gap
-
-    # ── 底部汇合框 ──
-    rail_y = 585                     # 汇合轨道：低于左栏末框（562）与右栏末框（398）
-    hub_top = 600
-    left_cx, right_cx = lx + BOX_W / 2, rx + BOX_W / 2
-    s.line(left_cx, 562, left_cx, rail_y, stroke=COLOR_PRIMARY, sw=1.8)
-    s.line(right_cx, 398, right_cx, rail_y, stroke=COLOR_PRIMARY, sw=1.8)
-    s.line(left_cx, rail_y, right_cx, rail_y, stroke=COLOR_PRIMARY, sw=1.8)
-    mid = (left_cx + right_cx) / 2
-    down_arrow(s, mid, rail_y, hub_top)
-    s.rect(mid - 330, hub_top, 660, 44, fill=COLOR_FILL,
-           stroke=COLOR_PRIMARY, rx=6)
-    s.text(mid, hub_top + 27, "殊途同归：把一个细胞和一个条形码载体关进一个小空间，"
-           "后续建库、测序流程几乎一致", size=SIZE_NOTE, mono=False,
-           fill=COLOR_TEXT, anchor="middle")
-
-    save("008-10x-bd-platforms", s)
+    s=Svg(800,930,'10x Genomics 与 BD Rhapsody 的单细胞捕获流程',
+          '10x 通过微流控形成包含细胞与凝胶珠的油包水液滴，液滴内反转录后破乳。BD 用微孔捕获细胞与磁珠，在孔内裂解并捕获 RNA；磁珠回收清洗后在管中反转录。所画为理想捕获单元，未按比例。')
+    s.line(400,60,400,857,stroke='#9ca3af',sw=1,dash='4 5')
+    text(s,198,35,'10x Genomics',24,GREEN,True,'middle');text(s,602,35,'BD Rhapsody',24,GREEN,True,'middle')
+    text(s,198,65,'油包水液滴',18,anchor='middle');text(s,602,65,'固态微孔',18,anchor='middle')
+    path(s,'M 31 119 L 144 119 L 202 161 L 215 161 L 215 112 L 242 112 L 242 161 L 263 150 L 376 150 L 376 210 L 263 210 L 242 199 L 242 250 L 215 250 L 215 199 L 202 199 L 144 245 L 31 245 L 31 214 L 134 214 L 179 180 L 134 149 L 31 149 Z',GREEN,1.7,PALE)
+    cell(s,66,134,10);cell(s,117,134,10)
+    bead(s,67,229,9);bead(s,117,229,9)
+    text(s,30,105,'细胞＋试剂',17);text(s,29,277,'带引物的凝胶珠',17,AMBER)
+    text(s,269,113,'油相',17,AMBER)
+    s.arrow(229,123,229,156,stroke=AMBER);s.arrow(229,239,229,207,stroke=AMBER)
+    for x in [278,343]:
+        circle(s,x,180,25,'#fcfcf9',GREEN,1.8);cell(s,x-8,180,8);bead(s,x+11,180,6,False)
+    text(s,302,227,'GEM 液滴',17,GREEN,True,'middle')
+    text(s,429,105,'细胞落孔 → 加载磁珠',17)
+    for x in [478,588,698]:
+        cell(s,x,126,11);s.arrow(x,142,x,170)
+    d='M 427 177 L 444 177 L 444 234 Q 444 243 454 243 L 502 243 Q 512 243 512 234 L 512 177 L 554 177 L 554 234 Q 554 243 564 243 L 612 243 Q 622 243 622 234 L 622 177 L 664 177 L 664 234 Q 664 243 674 243 L 722 243 Q 732 243 732 234 L 732 177 L 776 177 L 776 261 L 427 261 Z'
+    path(s,d,GREEN,1.8,PALE)
+    for x in [478,588,698]:cell(s,x-11,224,13);bead(s,x+17,230,8)
+    text(s,602,284,'侧面剖面：细胞与磁珠同处一孔',17,anchor='middle')
+    for x in [198,602]:s.arrow(x,301,x,334,sw=2)
+    text(s,198,365,'液滴内：裂解与反转录',20,GREEN,True,'middle')
+    text(s,602,365,'微孔内：裂解与 RNA 捕获',20,GREEN,True,'middle')
+    circle(s,198,483,106,CREAM,AMBER,1.6);circle(s,198,483,97,'#fcfcf9',GREEN,2)
+    path(s,'M 140 467 C 115 449 137 416 158 426 M 164 449 C 169 468 151 481 142 475',GREEN,2)
+    rna(s,143,451,47);rna(s,158,476,47)
+    for x,y in [(236,428),(246,441),(225,444),(255,456),(236,458)]:circle(s,x,y,3,CREAM,AMBER,1)
+    text(s,198,415,'凝胶珠溶解',15,AMBER,False,'middle')
+    s.line(232,419,242,428,stroke=AMBER,sw=1)
+    for x,y in [(228,478),(216,493),(242,502)]:s.line(x,y,x+23,y,stroke=AMBER,sw=2)
+    s.arrow(184,504,184,533,sw=1.5)
+    s.line(158,550,248,550,stroke=GREEN,sw=3);s.line(136,550,158,550,stroke=AMBER,sw=3)
+    text(s,198,612,'带条形码的 cDNA',16,anchor='middle')
+    path(s,'M 452 399 L 478 399 L 478 561 Q 478 584 501 584 L 703 584 Q 727 584 727 561 L 727 399 L 754 399 L 754 609 L 452 609 Z',GREEN,2,PALE)
+    path(s,'M 524 458 C 497 442 522 410 541 424 M 548 446 C 551 463 531 472 525 467',GREEN,2)
+    rna(s,536,444,48);rna(s,549,469,41);rna(s,599,425,43)
+    bead(s,637,531,31)
+    for x,y in [(594,513),(645,488),(662,550)]:rna(s,x,y,35)
+    s.arrow(567,472,608,501,sw=1.3)
+    text(s,525,543,'mRNA',16);text(s,637,580,'捕获磁珠',16,AMBER,False,'middle')
+    for x in [198,602]:s.arrow(x,623,x,657,sw=2)
+    text(s,198,686,'破乳，回收 cDNA',20,GREEN,True,'middle')
+    text(s,602,682,'磁珠回收、清洗',20,GREEN,True,'middle')
+    text(s,602,709,'再在管内反转录',19,GREEN,True,'middle')
+    tube(s,163,722,False);tube(s,567,739,True)
+    text(s,198,843,'扩增与建库',18,anchor='middle');text(s,602,850,'扩增与建库',18,anchor='middle')
+    s.line(30,870,770,870,stroke=GREEN,sw=1)
+    text(s,400,896,'两条路线都保留细胞来源信息，再按各平台流程完成建库和测序。',18,GREEN,False,'middle')
+    text(s,400,922,'图示为理想捕获单元；尺寸、分子数和空位比例均未按实际绘制。',16,anchor='middle')
+    save('008-10x-bd-platforms',s)
 
 
-if __name__ == "__main__":
-    main()
+if __name__=='__main__':main()

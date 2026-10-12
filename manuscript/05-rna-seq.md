@@ -18,9 +18,9 @@
 []{#RNA_Seq}
 
 RNA 测序（RNA sequencing，RNA-Seq）是研究转录组的成熟技术，也是使用最广泛的高通量测序技术之一。一个细胞中的全部遗传物质（DNA）称为基因组。根据中心法则[^rna-ref-1]，遗传信息由 DNA 经转录流向 RNA，这些 RNA 的总和称为转录组（transcriptome），研究转录组的方法及相关技术则称为转录组学（transcriptomics）。转录组测序可以用来寻找实验组与对照组之间的差异表达基因，也可以研究基因表达在发育或其他生物学过程中的时序变化。
-RNA可以分为能够编码蛋白基因的信使RNA（mRNA）[^rna-ref-2]和非蛋白编码RNA （non-coding RNA, ncRNA），例如人类基因组，含有约20000个蛋白编码基因和7000个非蛋白编码RNA基因。随着研究的深入，生命科学研究者对RNA的认识逐渐全面，陆续发现了生物体中多种类型的非编码RNA，有持家非编码RNA（house-keeping non-coding RNA）：在翻译过程中起转运作用的tRNA[^rna-ref-3]、核糖体的组成成分rRNA[^rna-ref-4] 、参与mRNA剪接的snRNA（small nuclear RNA）[^rna-ref-5]等；还有能够起到调控作用的非编码RNA：长非编码RNA（long non-coding RNA, lncRNA）、miRNA（microRNA）[^rna-ref-6]、小干扰RNA（small interfering RNA, siRNA）和环状RNA（circRNA）等。RNA 家族的种类与分工见 @fig-05-rna-classes ：编码蛋白的 mRNA 之外，其余都是非编码 RNA，各自在中心法则的不同环节工作。
+RNA可以分为能够编码蛋白基因的信使RNA（mRNA）[^rna-ref-2]和非蛋白编码RNA （non-coding RNA, ncRNA），例如人类基因组，含有约20000个蛋白编码基因和7000个非蛋白编码RNA基因。随着研究的深入，生命科学研究者对RNA的认识逐渐全面，陆续发现了生物体中多种类型的非编码RNA，有持家非编码RNA（house-keeping non-coding RNA）：在翻译过程中起转运作用的tRNA[^rna-ref-3]、核糖体的组成成分rRNA[^rna-ref-4] 、参与mRNA剪接的snRNA（small nuclear RNA）[^rna-ref-5]等；还有能够起到调控作用的非编码RNA：长非编码RNA（long non-coding RNA, lncRNA）、miRNA（microRNA）[^rna-ref-6]、小干扰RNA（small interfering RNA, siRNA）和环状RNA（circRNA）等。RNA 的代表性形态与分工见 @fig-05-rna-classes 。先沿着 DNA、mRNA、蛋白质看转录和翻译的主线，再看参与剪接、翻译及调控的其他 RNA；RNA 的作用并不只是充当蛋白质合成的中间体。
 
-![RNA 的主要类型及其在中心法则中的位置[^rna-ref-fig-license]](../assets/06-rna-seq/cited/ncrnas-central-dogma.svg){#fig-05-rna-classes}
+![RNA 的主要类型与分工[^rna-ref-fig-license]](../assets/06-rna-seq/svg/rna-classes-mechanism.svg){#fig-05-rna-classes}
 
 ::::: {.callout-note .book-core title="核心知识｜转录组与基因组的关系"}
 
@@ -28,9 +28,9 @@ RNA可以分为能够编码蛋白基因的信使RNA（mRNA）[^rna-ref-2]和非�
 
 :::::
 
-![神经、肌肉与上皮细胞的转录组[^rna-fig-nhgri]](../assets/06-rna-seq/cited/nhgri-different-cells-different-rnas.jpg){#fig-05-genome-transcriptome width="620"}
+![相同基因组与不同细胞的 RNA 丰度[^rna-fig-nhgri]](../assets/06-rna-seq/svg/cell-transcriptomes.svg){#fig-05-genome-transcriptome}
 
-图上方为神经细胞，左下为肌肉细胞，右下为上皮细胞。彩色曲线示意不同的 RNA，并非定量测量值。读图时关注的是：同一生物体中这些细胞的基因组基本相同，但各自使用的基因不同，因此具有不同的转录组；同一类型的细胞在不同条件下，RNA 的种类和丰度也可以发生变化。
+图中三类细胞都保留同一组示意基因 A–D，下面的波浪线表示对应的 RNA。A 在三类细胞中都有表达，B、C、D 则分别在不同细胞中较多。读图时横向比较同一行：不同转录组既可能表现为某些 RNA 的有无，也可能表现为共有 RNA 的丰度差异，并不意味着每类细胞只表达一套互不重叠的基因。同一类细胞在不同条件下也会改变这些 RNA 的丰度组合。分子数和条形长度仅用于说明概念，不是实测结果。
 
 ### mRNA 与全转录组建库 {#topic-05-lib-strategies}
 
@@ -1267,46 +1267,99 @@ log2	pvalue
 
 #### 聚类热图 {#src-0050-RNA-seq-979}
 
-聚类热图把显著基因按行标准化后着色（红＝高、白＝中、蓝＝低），样本列按层次聚类的结果排列，质量良好的重复样本会相邻出现（@fig-05-heatmap-demo）。
+聚类热图可以把一组基因在不同样本中的表达模式放在一起看。@fig-05-heatmap-demo 使用本章 METTL3 敲降案例的四个真实样本：GSM1502498、GSM1502499 为对照，GSM1502502、GSM1502503 为敲降。输入来自 NCBI 按 GRCh38.p13 统一重算的基因 counts，并非前文自建流程输出文件的副本；参考注释和处理流程不同，结果也可能有所差别。[^rna-heatmap-data]
 
-![聚类热图的读法（演示数据）](../assets/06-rna-seq/svg/heatmap-demo-r.svg){#fig-05-heatmap-demo}
+本例先保留至少在两个样本中 counts ≥ 10 的基因，用 DESeq2 比较敲降与对照，再从 `padj < 0.05` 且 `|log2FoldChange| > 1` 的差异基因中选取校正后 p 值最小的 30 个（并列时按 GeneID 排序）。用于检验的是 counts；用于画图的数值则经过方差稳定化变换（VST），再对每个基因单独计算 Z 分数：减去该基因在四个样本中的均值，除以其标准差。[^rna-heatmap-deseq2]
 
-图注：红色、白色、蓝色分别表示高、中、低水平。
+![METTL3 敲降样本中 30 个差异基因的表达与聚类[^rna-heatmap-data]](../assets/06-rna-seq/svg/heatmap-gse56010.svg){#fig-05-heatmap-demo}
 
-用 gplots 的 `heatmap.2` 绘制聚类热图：
+图注：每行一个基因，每列一个样本；红色表示高于该基因自身的平均水平，蓝色表示低于平均水平，白色接近平均水平。顶部色条标记分组，两侧树状图分别对样本和基因作层次聚类，采用欧氏距离与完全连接法（complete linkage）。可[打开原尺寸热图](../assets/06-rna-seq/svg/heatmap-gse56010.svg)查看标签，或下载[该图的基因、差异统计量和 Z 分数](../assets/06-rna-seq/data/GSE56010_heatmap_values.tsv)。
+
+读图时先横向看一行，例如 METTL3 在两个敲降样本中均呈蓝色、两个对照中呈红色；再看顶部树，两个敲降样本彼此相邻，两个对照也彼此相邻。这里显示的是所选差异基因的表达模式：筛选基因时已经使用了分组信息，所以这张图不能再作为“分组正确”或“样本质量良好”的独立证据。行标准化也意味着不能用两个不同行的红色深浅比较这两个基因的绝对表达量。
+
+下面的代码可以从这两份小文件开始重现图形。首次运行会下载[NCBI 计数矩阵](../assets/06-rna-seq/data/GSE56010_raw_counts_GRCh38.p13_NCBI.tsv.gz)和[GeneID—基因符号对照表](../assets/06-rna-seq/data/GSE56010_gene_symbols.tsv.gz)，保存在当前工作目录的 `heatmap-data/` 中；后者是从 NCBI Gene 名称表中提取的教学快照。环境需安装 DESeq2、pheatmap 和 svglite，生成的 `heatmap-gse56010.svg` 位于当前工作目录。
 
 ```{.r .numberLines data-book-role="code"}
-library("gplots")
+suppressPackageStartupMessages({
+  library(DESeq2)
+  library(pheatmap)
+  library(svglite)
+})
 
-est <- read.table(file = "DEgene.txt", header = T, row.names=1)
-tiff("DEgene.tiff", width = 1000, height = 1000, units = "px", res=80)
-heatmap.2(as.matrix(est),  margins = c(13, 13),col=redgreen(100), scale = "row", dendrogram = "column",
-         key = T, keysize=0.8, symkey = T, density.info = "none", trace = "none")
+data_dir <- "heatmap-data"
+out_dir <- "."
+dir.create(data_dir, recursive = TRUE, showWarnings = FALSE)
+count_file <- "GSE56010_raw_counts_GRCh38.p13_NCBI.tsv.gz"
+symbol_file <- "GSE56010_gene_symbols.tsv.gz"
+count_url <- paste0("https://www.ncbi.nlm.nih.gov/geo/download/?format=file&",
+                    "type=rnaseq_counts&acc=GSE56010&file=", count_file)
+symbol_url <- paste0("https://book.bioinfo.info/assets/06-rna-seq/data/", symbol_file)
+if (!file.exists(file.path(data_dir, count_file)))
+  download.file(count_url, file.path(data_dir, count_file), mode = "wb")
+if (!file.exists(file.path(data_dir, symbol_file)))
+  download.file(symbol_url, file.path(data_dir, symbol_file), mode = "wb")
+cts <- read.delim(gzfile(file.path(data_dir,
+  "GSE56010_raw_counts_GRCh38.p13_NCBI.tsv.gz")), row.names = 1,
+  check.names = FALSE)
+symbols <- read.delim(gzfile(file.path(data_dir,
+  "GSE56010_gene_symbols.tsv.gz")), colClasses = "character")
+
+samples <- data.frame(
+  row.names = c("GSM1502498", "GSM1502499", "GSM1502502", "GSM1502503"),
+  condition = factor(c("Control", "Control", "METTL3_KD", "METTL3_KD"),
+                     levels = c("Control", "METTL3_KD"))
+)
+cts <- as.matrix(cts[, rownames(samples)])
+stopifnot(identical(colnames(cts), rownames(samples)),
+          all(is.finite(cts)), all(cts >= 0), all(cts == round(cts)))
+
+# Keep genes with at least 10 counts in at least two samples.
+dds <- DESeqDataSetFromMatrix(cts, samples, design = ~ condition)
+dds <- dds[rowSums(counts(dds) >= 10) >= 2, ]
+dds <- DESeq(dds)
+res <- results(dds, contrast = c("condition", "METTL3_KD", "Control"),
+               alpha = 0.05)
+
+# The gene selection uses the group labels; this is a display of DE patterns.
+de <- which(!is.na(res$padj) & res$padj < 0.05 & abs(res$log2FoldChange) > 1)
+stopifnot(length(de) >= 30)
+de <- de[order(res$padj[de], rownames(res)[de])]
+gene_ids <- rownames(res)[de[seq_len(30)]]
+
+# The statistical test uses counts; only the visualization uses VST and Z scores.
+vsd <- vst(dds, blind = FALSE)
+mat <- assay(vsd)[gene_ids, , drop = FALSE]
+z <- t(scale(t(mat)))
+stopifnot(all(is.finite(z)), max(abs(rowMeans(z))) < 1e-10)
+gene_names <- symbols$Symbol[match(gene_ids, symbols$GeneID)]
+missing <- is.na(gene_names) | gene_names == ""
+gene_names[missing] <- paste0("GeneID:", gene_ids[missing])
+gene_names <- make.unique(gene_names)
+annotation <- data.frame(Condition = samples$condition,
+                         row.names = rownames(samples))
+
+# Euclidean distance and complete linkage are specified for both dendrograms.
+row_tree <- hclust(dist(z), method = "complete")
+col_tree <- hclust(dist(t(z)), method = "complete")
+palette <- colorRampPalette(c("#2166AC", "#FFFFFF", "#B2182B"))(101)
+svglite(file.path(out_dir, "heatmap-gse56010.svg"), width = 7.4, height = 8.1)
+hm <- pheatmap(z, color = palette, breaks = seq(-2, 2, length.out = 102),
+  cluster_rows = row_tree, cluster_cols = col_tree,
+  labels_row = gene_names, annotation_col = annotation,
+  annotation_colors = list(Condition = c(Control = "#186254", METTL3_KD = "#B45309")),
+  border_color = NA, fontsize = 11, fontsize_row = 10, fontsize_col = 10,
+  angle_col = 45, treeheight_row = 65, treeheight_col = 55,
+  main = "METTL3 knockdown: 30 DE genes\nVST expression, row Z score")
 dev.off()
-
-est <- read.table(file = "heatmap.txt", header = T, row.names=1)
-svg(file="e3.svg", width = 100, height = 100)
-heatmap.2(as.matrix(est),  margins = c(13, 13),col=redgreen(100), scale = "row", dendrogram = "column",
-          key = T, keysize=0.8, symkey = T, density.info = "none", trace = "none")
-dev.off()
-
-```
-输入文件格式为：
-
-```{.text data-book-role="data"}
-hsa-miR-6087	4.835286667	2.680141333
-hsa-miR-663a	5.537003333	3.407306667
-hsa-miR-6821-5p	3.699006667	2.02985
-hsa-miR-1469	6.229766667	4.79053
-hsa-miR-3665	4.710016667	3.276396667
-hsa-miR-2861	4.070266667	2.670983333
-hsa-miR-4466	3.904726667	2.54759
-hsa-miR-1915-3p	3.367876667	2.018898
-hsa-miR-6090	5.80658	4.459086667
-...	...	...
-...	...	...
-...	...	...
-
+# Add a short text alternative without changing the plotted values.
+svg_file <- file.path(out_dir, "heatmap-gse56010.svg")
+svg_text <- paste(readLines(svg_file), collapse = "\n")
+svg_text <- sub("(<svg[^>]*>)", paste0("\\1",
+  "<title>METTL3 knockdown: 30 differentially expressed genes</title>",
+  "<desc>Four GSE56010 samples; gene and sample dendrograms use Euclidean ",
+  "distance with complete linkage on row-standardized VST expression. ",
+  "Red is above and blue below each gene's mean.</desc>"), svg_text, perl = TRUE)
+writeLines(svg_text, svg_file)
 ```
 
 #### 富集气泡图 {#topic-05-bubble-plot}
@@ -1443,7 +1496,7 @@ ceRNA（competing endogenous RNA，内源竞争性 RNA）不是一类新的 RNA 
 
 [^rna-ref-abundance]: 总 RNA 构成取常用教学口径：rRNA 约 80%–90%、tRNA 约 10%–15%、mRNA 约 3%–7%（数量级因细胞类型与生长状态而异）。
 
-[^rna-ref-fig-license]: 图片来自维基百科 Non-coding RNA 条目，作者 Ppgardne，GFDL 许可。GFDL 许可原文见 [GNU Free Documentation License](https://commons.wikimedia.org/wiki/Commons:GNU_Free_Documentation_License)（2026 年 10 月核对）。本章引用的外部图片均随图标明出处，仅作教学示意，版权归原作者所有。
+[^rna-ref-fig-license]: RNA 类别与分工的参考资料：[NHGRI RNA Fact Sheet](https://www.genome.gov/about-genomics/educational-resources/fact-sheets/ribonucleic-acid-fact-sheet)；[OpenStax，Structure and Function of RNA](https://openstax.org/books/microbiology/pages/10-3-structure-and-function-of-rna)。图中为代表性形态和作用场景，具体 RNA 的分布、作用机制与功能证据需要分别判断。
 
 [^cerna-fig-license]: Aria H, Azizi M, Nazem S, et al. [Competing endogenous RNAs regulatory crosstalk networks: The messages from the RNA world to signaling pathways directing cancer stem cell development](https://doi.org/10.1016/j.heliyon.2024.e35208). *Heliyon*, 2024（图 1，CC BY 4.0 许可，2026 年 10 月核对）。
 
@@ -1454,10 +1507,14 @@ ceRNA（competing endogenous RNA，内源竞争性 RNA）不是一类新的 RNA 
 [^rnaseq-best-practices]: Conesa A 等. [A survey of best practices for RNA-seq data analysis](https://pubmed.ncbi.nlm.nih.gov/26813401/). Genome Biology, 2016（比对率等质控经验值的常用参考）。)
 
 
-[^rna-fig-nhgri]: National Human Genome Research Institute. [Ribonucleic Acid (RNA) Fact Sheet](https://www.genome.gov/about-genomics/educational-resources/fact-sheets/ribonucleic-acid-fact-sheet)，2024-05-24 更新，“Different cells with Different RNA”原始插图。[NHGRI 版权政策](https://www.genome.gov/about-nhgri/Policies-Guidance/Copyright)规定，未另行注明的图文属于公共领域；本图保留原貌并注明来源，2026-10-11 核对。
+[^rna-fig-nhgri]: 基因组与转录组关系的概念依据：[NHGRI，Ribonucleic Acid (RNA) Fact Sheet](https://www.genome.gov/about-genomics/educational-resources/fact-sheets/ribonucleic-acid-fact-sheet)。图中的 A–D 为示意标签，不对应真实基因或测量值。
 
 [^fig05-library-source]: 图片来自 Illumina 技术文档，仅作教学示意。
 
 [^fig05-stranded-source]: 图片来自 GENEWIZ 技术博客，仅作教学示意。
 
 [^fig05-splicing-source]: 图片来自维基百科 [Alternative splicing](https://en.wikipedia.org/wiki/Alternative_splicing) 条目。
+
+[^rna-heatmap-data]: 数据集 [GSE56010](https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE56010)；文件 `GSE56010_raw_counts_GRCh38.p13_NCBI.tsv.gz`，原表含 39,376 个 GeneID 和 8 个样本，本例只使用样本表中的四列。[NCBI 重算 counts 说明](https://www.ncbi.nlm.nih.gov/geo/info/rnaseqcounts.html)。名称对照提取自 [NCBI 人类 gene_info](https://ftp.ncbi.nlm.nih.gov/gene/DATA/GENE_INFO/Mammalia/Homo_sapiens.gene_info.gz)，2026-10-12 下载；保留 GeneID 以便追溯。
+
+[^rna-heatmap-deseq2]: [DESeq2 官方指南：Data transformations and visualization](https://bioconductor.org/packages/release/bioc/vignettes/DESeq2/inst/doc/DESeq2.html#data-transformations-and-visualization)。该变换用于可视化，不能把 VST 或 Z 分数重新当成原始 counts 输入差异检验。

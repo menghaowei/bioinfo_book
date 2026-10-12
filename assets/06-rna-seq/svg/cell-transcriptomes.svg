@@ -1,0 +1,163 @@
+<svg xmlns='http://www.w3.org/2000/svg' width='780' height='720' viewBox='0 0 780 720' role='img' aria-labelledby='t d'>
+<title id='t'>相同基因组，不同转录组</title>
+<desc id='d'>神经、肌肉和上皮细胞具有相同的一组示意基因 A 到 D；RNA A 共有，RNA B、C、D 在不同细胞中丰度不同。波浪线数量和对齐条形图均为示意，不是实测结果。</desc>
+<text x='390' y='34' font-family="'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size='23' fill='#186254' font-weight='bold' text-anchor='middle'>同一生物体：基因组基本相同</text>
+<path d="M 245.00 72.00 L 248.62 75.12 L 252.25 78.12 L 255.88 80.89 L 259.50 83.31 L 263.12 85.30 L 266.75 86.78 L 270.38 87.69 L 274.00 88.00 L 277.62 87.69 L 281.25 86.78 L 284.88 85.30 L 288.50 83.31 L 292.12 80.89 L 295.75 78.12 L 299.38 75.12 L 303.00 72.00 L 306.62 68.88 L 310.25 65.88 L 313.88 63.11 L 317.50 60.69 L 321.12 58.70 L 324.75 57.22 L 328.38 56.31 L 332.00 56.00 L 335.62 56.31 L 339.25 57.22 L 342.88 58.70 L 346.50 60.69 L 350.12 63.11 L 353.75 65.88 L 357.38 68.88 L 361.00 72.00 L 364.62 75.12 L 368.25 78.12 L 371.88 80.89 L 375.50 83.31 L 379.12 85.30 L 382.75 86.78 L 386.38 87.69 L 390.00 88.00 L 393.62 87.69 L 397.25 86.78 L 400.88 85.30 L 404.50 83.31 L 408.12 80.89 L 411.75 78.12 L 415.38 75.12 L 419.00 72.00 L 422.62 68.88 L 426.25 65.88 L 429.88 63.11 L 433.50 60.69 L 437.12 58.70 L 440.75 57.22 L 444.38 56.31 L 448.00 56.00 L 451.62 56.31 L 455.25 57.22 L 458.88 58.70 L 462.50 60.69 L 466.12 63.11 L 469.75 65.88 L 473.38 68.88 L 477.00 72.00 L 480.62 75.12 L 484.25 78.12 L 487.88 80.89 L 491.50 83.31 L 495.12 85.30 L 498.75 86.78 L 502.38 87.69 L 506.00 88.00 L 509.62 87.69 L 513.25 86.78 L 516.88 85.30 L 520.50 83.31 L 524.12 80.89 L 527.75 78.12 L 531.38 75.12 L 535.00 72.00" fill="none" stroke="#186254" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" />
+<path d="M 245.00 72.00 L 248.62 68.88 L 252.25 65.88 L 255.88 63.11 L 259.50 60.69 L 263.12 58.70 L 266.75 57.22 L 270.38 56.31 L 274.00 56.00 L 277.62 56.31 L 281.25 57.22 L 284.88 58.70 L 288.50 60.69 L 292.12 63.11 L 295.75 65.88 L 299.38 68.88 L 303.00 72.00 L 306.62 75.12 L 310.25 78.12 L 313.88 80.89 L 317.50 83.31 L 321.12 85.30 L 324.75 86.78 L 328.38 87.69 L 332.00 88.00 L 335.62 87.69 L 339.25 86.78 L 342.88 85.30 L 346.50 83.31 L 350.12 80.89 L 353.75 78.12 L 357.38 75.12 L 361.00 72.00 L 364.62 68.88 L 368.25 65.88 L 371.88 63.11 L 375.50 60.69 L 379.12 58.70 L 382.75 57.22 L 386.38 56.31 L 390.00 56.00 L 393.62 56.31 L 397.25 57.22 L 400.88 58.70 L 404.50 60.69 L 408.12 63.11 L 411.75 65.88 L 415.38 68.88 L 419.00 72.00 L 422.62 75.12 L 426.25 78.12 L 429.88 80.89 L 433.50 83.31 L 437.12 85.30 L 440.75 86.78 L 444.38 87.69 L 448.00 88.00 L 451.62 87.69 L 455.25 86.78 L 458.88 85.30 L 462.50 83.31 L 466.12 80.89 L 469.75 78.12 L 473.38 75.12 L 477.00 72.00 L 480.62 68.88 L 484.25 65.88 L 487.88 63.11 L 491.50 60.69 L 495.12 58.70 L 498.75 57.22 L 502.38 56.31 L 506.00 56.00 L 509.62 56.31 L 513.25 57.22 L 516.88 58.70 L 520.50 60.69 L 524.12 63.11 L 527.75 65.88 L 531.38 68.88 L 535.00 72.00" fill="none" stroke="#186254" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" />
+<line x1='252.25' y1='65.87706508215857' x2='252.25' y2='78.12293491784143' stroke='#186254' stroke-width='1.6'/>
+<line x1='266.75' y1='57.21792747981941' x2='266.75' y2='86.78207252018059' stroke='#186254' stroke-width='1.6'/>
+<line x1='281.25' y1='57.21792747981941' x2='281.25' y2='86.78207252018059' stroke='#186254' stroke-width='1.6'/>
+<line x1='295.75' y1='65.87706508215857' x2='295.75' y2='78.12293491784143' stroke='#186254' stroke-width='1.6'/>
+<line x1='310.25' y1='78.12293491784143' x2='310.25' y2='65.87706508215857' stroke='#186254' stroke-width='1.6'/>
+<line x1='324.75' y1='86.78207252018059' x2='324.75' y2='57.21792747981941' stroke='#186254' stroke-width='1.6'/>
+<line x1='339.25' y1='86.78207252018059' x2='339.25' y2='57.217927479819416' stroke='#186254' stroke-width='1.6'/>
+<line x1='353.75' y1='78.12293491784145' x2='353.75' y2='65.87706508215855' stroke='#186254' stroke-width='1.6'/>
+<line x1='368.25' y1='65.87706508215857' x2='368.25' y2='78.12293491784143' stroke='#186254' stroke-width='1.6'/>
+<line x1='382.75' y1='57.217927479819416' x2='382.75' y2='86.78207252018058' stroke='#186254' stroke-width='1.6'/>
+<line x1='397.25' y1='57.21792747981941' x2='397.25' y2='86.78207252018059' stroke='#186254' stroke-width='1.6'/>
+<line x1='411.75' y1='65.87706508215855' x2='411.75' y2='78.12293491784145' stroke='#186254' stroke-width='1.6'/>
+<line x1='426.25' y1='78.12293491784143' x2='426.25' y2='65.87706508215857' stroke='#186254' stroke-width='1.6'/>
+<line x1='440.75' y1='86.78207252018058' x2='440.75' y2='57.217927479819416' stroke='#186254' stroke-width='1.6'/>
+<line x1='455.25' y1='86.78207252018059' x2='455.25' y2='57.21792747981941' stroke='#186254' stroke-width='1.6'/>
+<line x1='469.75' y1='78.12293491784145' x2='469.75' y2='65.87706508215855' stroke='#186254' stroke-width='1.6'/>
+<line x1='484.25' y1='65.87706508215857' x2='484.25' y2='78.12293491784143' stroke='#186254' stroke-width='1.6'/>
+<line x1='498.75' y1='57.217927479819416' x2='498.75' y2='86.78207252018058' stroke='#186254' stroke-width='1.6'/>
+<line x1='513.25' y1='57.21792747981941' x2='513.25' y2='86.78207252018059' stroke='#186254' stroke-width='1.6'/>
+<line x1='527.75' y1='65.87706508215855' x2='527.75' y2='78.12293491784145' stroke='#186254' stroke-width='1.6'/>
+<rect x='283' y='94' width='32' height='26' rx='3' fill='#e8f4f1' stroke='#186254' stroke-width='1.2'/>
+<text x='299' y='114' font-family="'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size='18' fill='#186254' font-weight='bold' text-anchor='middle'>A</text>
+<rect x='344' y='94' width='32' height='26' rx='3' fill='#e8f4f1' stroke='#186254' stroke-width='1.2'/>
+<text x='360' y='114' font-family="'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size='18' fill='#186254' font-weight='bold' text-anchor='middle'>B</text>
+<rect x='405' y='94' width='32' height='26' rx='3' fill='#e8f4f1' stroke='#186254' stroke-width='1.2'/>
+<text x='421' y='114' font-family="'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size='18' fill='#186254' font-weight='bold' text-anchor='middle'>C</text>
+<rect x='466' y='94' width='32' height='26' rx='3' fill='#e8f4f1' stroke='#186254' stroke-width='1.2'/>
+<text x='482' y='114' font-family="'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size='18' fill='#186254' font-weight='bold' text-anchor='middle'>D</text>
+<line x1='298' y1='129' x2='144' y2='163' stroke='#186254' stroke-width='1.6'/>
+<line x1='144.0' y1='163.0' x2='152.8' y2='165.1' stroke='#186254' stroke-width='1.6'/>
+<line x1='144.0' y1='163.0' x2='151.1' y2='157.4' stroke='#186254' stroke-width='1.6'/>
+<line x1='390' y1='129' x2='390' y2='163' stroke='#186254' stroke-width='1.6'/>
+<line x1='390.0' y1='163.0' x2='393.9' y2='154.9' stroke='#186254' stroke-width='1.6'/>
+<line x1='390.0' y1='163.0' x2='386.1' y2='154.9' stroke='#186254' stroke-width='1.6'/>
+<line x1='482' y1='129' x2='636' y2='163' stroke='#186254' stroke-width='1.6'/>
+<line x1='636.0' y1='163.0' x2='628.9' y2='157.4' stroke='#186254' stroke-width='1.6'/>
+<line x1='636.0' y1='163.0' x2='627.2' y2='165.1' stroke='#186254' stroke-width='1.6'/>
+<path d="M 130 231 Q 101 220 92 194 M 108 223 L 77 224" fill="none" stroke="#186254" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" />
+<path d="M 144 223 Q 140 196 152 177 M 144 202 L 128 182" fill="none" stroke="#186254" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" />
+<path d="M 160 232 Q 188 215 205 193 M 187 214 L 216 214" fill="none" stroke="#186254" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" />
+<path d="M 136 253 Q 122 281 98 292 M 117 276 L 118 299" fill="none" stroke="#186254" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" />
+<path d="M 156 249 C 175 276 198 259 228 288" fill="none" stroke="#186254" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" />
+<path d="M 124 233 Q 130 212 152 220 Q 176 236 154 258 Q 122 266 124 233" fill="#e8f4f1" stroke="#186254" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+<circle cx="144" cy="239" r="9" fill="#fdf3e3" stroke="#b45309" stroke-width="1.8"/>
+<path d="M 308 267 C 358 187 417 194 472 232 C 420 308 353 297 308 267 Z" fill="#e8f4f1" stroke="#186254" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+<line x1='343' y1='225' x2='324' y2='272' stroke='#186254' stroke-width='1'/>
+<line x1='359' y1='225' x2='340' y2='272' stroke='#186254' stroke-width='1'/>
+<line x1='375' y1='225' x2='356' y2='272' stroke='#186254' stroke-width='1'/>
+<line x1='391' y1='225' x2='372' y2='272' stroke='#186254' stroke-width='1'/>
+<line x1='407' y1='225' x2='388' y2='272' stroke='#186254' stroke-width='1'/>
+<line x1='423' y1='225' x2='404' y2='272' stroke='#186254' stroke-width='1'/>
+<circle cx="390" cy="250" r="11" fill="#fdf3e3" stroke="#b45309" stroke-width="1.8"/>
+<rect x='574' y='193' width='39' height='97' rx='8' fill='#e8f4f1' stroke='#186254' stroke-width='1.2'/>
+<circle cx="594" cy="253" r="9" fill="#fdf3e3" stroke="#b45309" stroke-width="1.8"/>
+<line x1='582' y1='187' x2='582' y2='178' stroke='#186254' stroke-width='1.5'/>
+<line x1='589' y1='187' x2='589' y2='178' stroke='#186254' stroke-width='1.5'/>
+<line x1='596' y1='187' x2='596' y2='178' stroke='#186254' stroke-width='1.5'/>
+<line x1='603' y1='187' x2='603' y2='178' stroke='#186254' stroke-width='1.5'/>
+<rect x='616' y='193' width='39' height='97' rx='8' fill='#e8f4f1' stroke='#186254' stroke-width='1.2'/>
+<circle cx="636" cy="253" r="9" fill="#fdf3e3" stroke="#b45309" stroke-width="1.8"/>
+<line x1='624' y1='187' x2='624' y2='178' stroke='#186254' stroke-width='1.5'/>
+<line x1='631' y1='187' x2='631' y2='178' stroke='#186254' stroke-width='1.5'/>
+<line x1='638' y1='187' x2='638' y2='178' stroke='#186254' stroke-width='1.5'/>
+<line x1='645' y1='187' x2='645' y2='178' stroke='#186254' stroke-width='1.5'/>
+<rect x='658' y='193' width='39' height='97' rx='8' fill='#e8f4f1' stroke='#186254' stroke-width='1.2'/>
+<circle cx="678" cy="253" r="9" fill="#fdf3e3" stroke="#b45309" stroke-width="1.8"/>
+<line x1='666' y1='187' x2='666' y2='178' stroke='#186254' stroke-width='1.5'/>
+<line x1='673' y1='187' x2='673' y2='178' stroke='#186254' stroke-width='1.5'/>
+<line x1='680' y1='187' x2='680' y2='178' stroke='#186254' stroke-width='1.5'/>
+<line x1='687' y1='187' x2='687' y2='178' stroke='#186254' stroke-width='1.5'/>
+<text x='144' y='326' font-family="'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size='22' fill='#186254' font-weight='bold' text-anchor='middle'>神经细胞</text>
+<line x1='144' y1='340' x2='144' y2='367' stroke='#186254' stroke-width='1.6'/>
+<line x1='144.0' y1='367.0' x2='147.9' y2='358.9' stroke='#186254' stroke-width='1.6'/>
+<line x1='144.0' y1='367.0' x2='140.1' y2='358.9' stroke='#186254' stroke-width='1.6'/>
+<text x='390' y='326' font-family="'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size='22' fill='#186254' font-weight='bold' text-anchor='middle'>肌肉细胞</text>
+<line x1='390' y1='340' x2='390' y2='367' stroke='#186254' stroke-width='1.6'/>
+<line x1='390.0' y1='367.0' x2='393.9' y2='358.9' stroke='#186254' stroke-width='1.6'/>
+<line x1='390.0' y1='367.0' x2='386.1' y2='358.9' stroke='#186254' stroke-width='1.6'/>
+<text x='636' y='326' font-family="'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size='22' fill='#186254' font-weight='bold' text-anchor='middle'>上皮细胞</text>
+<line x1='636' y1='340' x2='636' y2='367' stroke='#186254' stroke-width='1.6'/>
+<line x1='636.0' y1='367.0' x2='639.9' y2='358.9' stroke='#186254' stroke-width='1.6'/>
+<line x1='636.0' y1='367.0' x2='632.1' y2='358.9' stroke='#186254' stroke-width='1.6'/>
+<rect x='34' y='383' width='220' height='140' rx='12' fill='#fcfcf9' stroke='#9ca3af' stroke-width='1.2'/>
+<text x='50' y='414' font-family="'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size='17' fill='#186254' font-weight='bold' text-anchor='start'>A</text>
+<path d="M 78 409 q 1.4375 -7 2.875 0 t 2.875 0 q 1.4375 -7 2.875 0 t 2.875 0 q 1.4375 -7 2.875 0 t 2.875 0 q 1.4375 -7 2.875 0 t 2.875 0" fill="none" stroke="#186254" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round" />
+<path d="M 109 409 q 1.4375 -7 2.875 0 t 2.875 0 q 1.4375 -7 2.875 0 t 2.875 0 q 1.4375 -7 2.875 0 t 2.875 0 q 1.4375 -7 2.875 0 t 2.875 0" fill="none" stroke="#186254" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round" />
+<path d="M 140 409 q 1.4375 -7 2.875 0 t 2.875 0 q 1.4375 -7 2.875 0 t 2.875 0 q 1.4375 -7 2.875 0 t 2.875 0 q 1.4375 -7 2.875 0 t 2.875 0" fill="none" stroke="#186254" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round" />
+<text x='50' y='444' font-family="'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size='17' fill='#186254' font-weight='bold' text-anchor='start'>B</text>
+<path d="M 78 439 q 1.4375 -7 2.875 0 t 2.875 0 q 1.4375 -7 2.875 0 t 2.875 0 q 1.4375 -7 2.875 0 t 2.875 0 q 1.4375 -7 2.875 0 t 2.875 0" fill="none" stroke="#186254" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round" />
+<path d="M 109 439 q 1.4375 -7 2.875 0 t 2.875 0 q 1.4375 -7 2.875 0 t 2.875 0 q 1.4375 -7 2.875 0 t 2.875 0 q 1.4375 -7 2.875 0 t 2.875 0" fill="none" stroke="#186254" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round" />
+<path d="M 140 439 q 1.4375 -7 2.875 0 t 2.875 0 q 1.4375 -7 2.875 0 t 2.875 0 q 1.4375 -7 2.875 0 t 2.875 0 q 1.4375 -7 2.875 0 t 2.875 0" fill="none" stroke="#186254" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round" />
+<path d="M 171 439 q 1.4375 -7 2.875 0 t 2.875 0 q 1.4375 -7 2.875 0 t 2.875 0 q 1.4375 -7 2.875 0 t 2.875 0 q 1.4375 -7 2.875 0 t 2.875 0" fill="none" stroke="#186254" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round" />
+<path d="M 202 439 q 1.4375 -7 2.875 0 t 2.875 0 q 1.4375 -7 2.875 0 t 2.875 0 q 1.4375 -7 2.875 0 t 2.875 0 q 1.4375 -7 2.875 0 t 2.875 0" fill="none" stroke="#186254" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round" />
+<text x='50' y='474' font-family="'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size='17' fill='#186254' font-weight='bold' text-anchor='start'>C</text>
+<path d="M 78 469 q 1.4375 -7 2.875 0 t 2.875 0 q 1.4375 -7 2.875 0 t 2.875 0 q 1.4375 -7 2.875 0 t 2.875 0 q 1.4375 -7 2.875 0 t 2.875 0" fill="none" stroke="#186254" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round" />
+<text x='50' y='504' font-family="'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size='17' fill='#186254' font-weight='bold' text-anchor='start'>D</text>
+<path d="M 78 499 q 1.4375 -7 2.875 0 t 2.875 0 q 1.4375 -7 2.875 0 t 2.875 0 q 1.4375 -7 2.875 0 t 2.875 0 q 1.4375 -7 2.875 0 t 2.875 0" fill="none" stroke="#186254" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round" />
+<text x='51' y='573' font-family="'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size='16' fill='#186254' font-weight='normal' text-anchor='start'>A</text>
+<rect x='79' y='561' width='90' height='12' rx='2' fill='#186254' stroke='none' stroke-width='1.2'/>
+<text x='51' y='598' font-family="'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size='16' fill='#186254' font-weight='normal' text-anchor='start'>B</text>
+<rect x='79' y='586' width='150' height='12' rx='2' fill='#186254' stroke='none' stroke-width='1.2'/>
+<text x='51' y='623' font-family="'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size='16' fill='#186254' font-weight='normal' text-anchor='start'>C</text>
+<rect x='79' y='611' width='30' height='12' rx='2' fill='#186254' stroke='none' stroke-width='1.2'/>
+<text x='51' y='648' font-family="'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size='16' fill='#186254' font-weight='normal' text-anchor='start'>D</text>
+<rect x='79' y='636' width='30' height='12' rx='2' fill='#186254' stroke='none' stroke-width='1.2'/>
+<text x='144' y='549' font-family="'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size='15' fill='#333333' font-weight='normal' text-anchor='middle'>对应 RNA 的相对丰度</text>
+<rect x='280' y='383' width='220' height='140' rx='12' fill='#fcfcf9' stroke='#9ca3af' stroke-width='1.2'/>
+<text x='296' y='414' font-family="'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size='17' fill='#186254' font-weight='bold' text-anchor='start'>A</text>
+<path d="M 324 409 q 1.4375 -7 2.875 0 t 2.875 0 q 1.4375 -7 2.875 0 t 2.875 0 q 1.4375 -7 2.875 0 t 2.875 0 q 1.4375 -7 2.875 0 t 2.875 0" fill="none" stroke="#186254" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round" />
+<path d="M 355 409 q 1.4375 -7 2.875 0 t 2.875 0 q 1.4375 -7 2.875 0 t 2.875 0 q 1.4375 -7 2.875 0 t 2.875 0 q 1.4375 -7 2.875 0 t 2.875 0" fill="none" stroke="#186254" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round" />
+<path d="M 386 409 q 1.4375 -7 2.875 0 t 2.875 0 q 1.4375 -7 2.875 0 t 2.875 0 q 1.4375 -7 2.875 0 t 2.875 0 q 1.4375 -7 2.875 0 t 2.875 0" fill="none" stroke="#186254" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round" />
+<text x='296' y='444' font-family="'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size='17' fill='#186254' font-weight='bold' text-anchor='start'>B</text>
+<path d="M 324 439 q 1.4375 -7 2.875 0 t 2.875 0 q 1.4375 -7 2.875 0 t 2.875 0 q 1.4375 -7 2.875 0 t 2.875 0 q 1.4375 -7 2.875 0 t 2.875 0" fill="none" stroke="#186254" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round" />
+<text x='296' y='474' font-family="'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size='17' fill='#186254' font-weight='bold' text-anchor='start'>C</text>
+<path d="M 324 469 q 1.4375 -7 2.875 0 t 2.875 0 q 1.4375 -7 2.875 0 t 2.875 0 q 1.4375 -7 2.875 0 t 2.875 0 q 1.4375 -7 2.875 0 t 2.875 0" fill="none" stroke="#186254" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round" />
+<path d="M 355 469 q 1.4375 -7 2.875 0 t 2.875 0 q 1.4375 -7 2.875 0 t 2.875 0 q 1.4375 -7 2.875 0 t 2.875 0 q 1.4375 -7 2.875 0 t 2.875 0" fill="none" stroke="#186254" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round" />
+<path d="M 386 469 q 1.4375 -7 2.875 0 t 2.875 0 q 1.4375 -7 2.875 0 t 2.875 0 q 1.4375 -7 2.875 0 t 2.875 0 q 1.4375 -7 2.875 0 t 2.875 0" fill="none" stroke="#186254" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round" />
+<path d="M 417 469 q 1.4375 -7 2.875 0 t 2.875 0 q 1.4375 -7 2.875 0 t 2.875 0 q 1.4375 -7 2.875 0 t 2.875 0 q 1.4375 -7 2.875 0 t 2.875 0" fill="none" stroke="#186254" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round" />
+<path d="M 448 469 q 1.4375 -7 2.875 0 t 2.875 0 q 1.4375 -7 2.875 0 t 2.875 0 q 1.4375 -7 2.875 0 t 2.875 0 q 1.4375 -7 2.875 0 t 2.875 0" fill="none" stroke="#186254" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round" />
+<text x='296' y='504' font-family="'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size='17' fill='#186254' font-weight='bold' text-anchor='start'>D</text>
+<path d="M 324 499 q 1.4375 -7 2.875 0 t 2.875 0 q 1.4375 -7 2.875 0 t 2.875 0 q 1.4375 -7 2.875 0 t 2.875 0 q 1.4375 -7 2.875 0 t 2.875 0" fill="none" stroke="#186254" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round" />
+<text x='297' y='573' font-family="'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size='16' fill='#186254' font-weight='normal' text-anchor='start'>A</text>
+<rect x='325' y='561' width='90' height='12' rx='2' fill='#186254' stroke='none' stroke-width='1.2'/>
+<text x='297' y='598' font-family="'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size='16' fill='#186254' font-weight='normal' text-anchor='start'>B</text>
+<rect x='325' y='586' width='30' height='12' rx='2' fill='#186254' stroke='none' stroke-width='1.2'/>
+<text x='297' y='623' font-family="'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size='16' fill='#186254' font-weight='normal' text-anchor='start'>C</text>
+<rect x='325' y='611' width='150' height='12' rx='2' fill='#186254' stroke='none' stroke-width='1.2'/>
+<text x='297' y='648' font-family="'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size='16' fill='#186254' font-weight='normal' text-anchor='start'>D</text>
+<rect x='325' y='636' width='30' height='12' rx='2' fill='#186254' stroke='none' stroke-width='1.2'/>
+<text x='390' y='549' font-family="'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size='15' fill='#333333' font-weight='normal' text-anchor='middle'>对应 RNA 的相对丰度</text>
+<rect x='526' y='383' width='220' height='140' rx='12' fill='#fcfcf9' stroke='#9ca3af' stroke-width='1.2'/>
+<text x='542' y='414' font-family="'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size='17' fill='#186254' font-weight='bold' text-anchor='start'>A</text>
+<path d="M 570 409 q 1.4375 -7 2.875 0 t 2.875 0 q 1.4375 -7 2.875 0 t 2.875 0 q 1.4375 -7 2.875 0 t 2.875 0 q 1.4375 -7 2.875 0 t 2.875 0" fill="none" stroke="#186254" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round" />
+<path d="M 601 409 q 1.4375 -7 2.875 0 t 2.875 0 q 1.4375 -7 2.875 0 t 2.875 0 q 1.4375 -7 2.875 0 t 2.875 0 q 1.4375 -7 2.875 0 t 2.875 0" fill="none" stroke="#186254" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round" />
+<path d="M 632 409 q 1.4375 -7 2.875 0 t 2.875 0 q 1.4375 -7 2.875 0 t 2.875 0 q 1.4375 -7 2.875 0 t 2.875 0 q 1.4375 -7 2.875 0 t 2.875 0" fill="none" stroke="#186254" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round" />
+<text x='542' y='444' font-family="'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size='17' fill='#186254' font-weight='bold' text-anchor='start'>B</text>
+<path d="M 570 439 q 1.4375 -7 2.875 0 t 2.875 0 q 1.4375 -7 2.875 0 t 2.875 0 q 1.4375 -7 2.875 0 t 2.875 0 q 1.4375 -7 2.875 0 t 2.875 0" fill="none" stroke="#186254" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round" />
+<text x='542' y='474' font-family="'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size='17' fill='#186254' font-weight='bold' text-anchor='start'>C</text>
+<path d="M 570 469 q 1.4375 -7 2.875 0 t 2.875 0 q 1.4375 -7 2.875 0 t 2.875 0 q 1.4375 -7 2.875 0 t 2.875 0 q 1.4375 -7 2.875 0 t 2.875 0" fill="none" stroke="#186254" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round" />
+<text x='542' y='504' font-family="'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size='17' fill='#186254' font-weight='bold' text-anchor='start'>D</text>
+<path d="M 570 499 q 1.4375 -7 2.875 0 t 2.875 0 q 1.4375 -7 2.875 0 t 2.875 0 q 1.4375 -7 2.875 0 t 2.875 0 q 1.4375 -7 2.875 0 t 2.875 0" fill="none" stroke="#186254" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round" />
+<path d="M 601 499 q 1.4375 -7 2.875 0 t 2.875 0 q 1.4375 -7 2.875 0 t 2.875 0 q 1.4375 -7 2.875 0 t 2.875 0 q 1.4375 -7 2.875 0 t 2.875 0" fill="none" stroke="#186254" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round" />
+<path d="M 632 499 q 1.4375 -7 2.875 0 t 2.875 0 q 1.4375 -7 2.875 0 t 2.875 0 q 1.4375 -7 2.875 0 t 2.875 0 q 1.4375 -7 2.875 0 t 2.875 0" fill="none" stroke="#186254" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round" />
+<path d="M 663 499 q 1.4375 -7 2.875 0 t 2.875 0 q 1.4375 -7 2.875 0 t 2.875 0 q 1.4375 -7 2.875 0 t 2.875 0 q 1.4375 -7 2.875 0 t 2.875 0" fill="none" stroke="#186254" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round" />
+<path d="M 694 499 q 1.4375 -7 2.875 0 t 2.875 0 q 1.4375 -7 2.875 0 t 2.875 0 q 1.4375 -7 2.875 0 t 2.875 0 q 1.4375 -7 2.875 0 t 2.875 0" fill="none" stroke="#186254" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round" />
+<text x='543' y='573' font-family="'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size='16' fill='#186254' font-weight='normal' text-anchor='start'>A</text>
+<rect x='571' y='561' width='90' height='12' rx='2' fill='#186254' stroke='none' stroke-width='1.2'/>
+<text x='543' y='598' font-family="'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size='16' fill='#186254' font-weight='normal' text-anchor='start'>B</text>
+<rect x='571' y='586' width='30' height='12' rx='2' fill='#186254' stroke='none' stroke-width='1.2'/>
+<text x='543' y='623' font-family="'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size='16' fill='#186254' font-weight='normal' text-anchor='start'>C</text>
+<rect x='571' y='611' width='30' height='12' rx='2' fill='#186254' stroke='none' stroke-width='1.2'/>
+<text x='543' y='648' font-family="'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size='16' fill='#186254' font-weight='normal' text-anchor='start'>D</text>
+<rect x='571' y='636' width='150' height='12' rx='2' fill='#186254' stroke='none' stroke-width='1.2'/>
+<text x='636' y='549' font-family="'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size='15' fill='#333333' font-weight='normal' text-anchor='middle'>对应 RNA 的相对丰度</text>
+<text x='390' y='686' font-family="'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size='20' fill='#186254' font-weight='bold' text-anchor='middle'>共有的 RNA 仍然存在，各类 RNA 的丰度组合发生变化。</text>
+<text x='390' y='711' font-family="'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size='16' fill='#333333' font-weight='normal' text-anchor='middle'>A–D 为示意标签；分子数和条形长度不代表实测值。</text>
+</svg>

@@ -42,11 +42,14 @@ BD Rhapsody 采用蜂窝板（微孔板）完成单细胞分离和捕获：
 
 1. 单细胞悬液流过含有数十万个微孔的蜂窝板，细胞靠重力落入微孔，理想情况下一孔一细胞；
 2. 带寡核苷酸的磁珠铺到板上，落入微孔与细胞配对；
-3. 在微孔内完成细胞裂解、反转录、扩增。
+3. 在微孔内裂解细胞，使释放的 mRNA 被同孔磁珠表面的 oligo-dT 引物捕获；
+4. 回收并清洗磁珠，然后在管中完成反转录，再进行后续扩增和建库。与 10x 的可溶凝胶珠不同，BD 的捕获磁珠在这一过程中保持完整。[^ch09-capture-protocols]
 
-两种方法的共同点是：都是"把一个细胞和一个条形码载体关进一个小空间"，后续建库和测序流程几乎一致。通量上两家处于同一量级：10x 标准试剂盒每个通道的目标回收量约为 500–10,000 个细胞（更高通量的试剂盒可达数万），BD Rhapsody 单筒典型捕获约一万个细胞。值得注意的是，**捕获的细胞越多，一个反应空间里挤进两个细胞的概率也越高**——这就是后面要处理的双细胞问题，10x 官方与原始文献的数据都显示双细胞率大约随回收细胞数线性上升（约每回收 1,000 个细胞增加 1%）[^rna-ref-12]。
+两种方法都利用小空间把细胞与条形码载体配对，但 RNA 捕获、反转录和回收的位置不同。10x 在液滴内完成反转录后破乳，BD 则先在微孔中捕获 RNA，再回收磁珠进行反转录；之后分别按各自的平台流程建库和测序。通量上两家处于同一量级：10x 标准试剂盒每个通道的目标回收量约为 500–10,000 个细胞（更高通量的试剂盒可达数万），BD Rhapsody 单筒典型捕获约一万个细胞。值得注意的是，**捕获的细胞越多，一个反应空间里挤进两个细胞的概率也越高**——这就是后面要处理的双细胞问题，10x 官方与原始文献的数据都显示双细胞率大约随回收细胞数线性上升（约每回收 1,000 个细胞增加 1%）[^rna-ref-12]。
 
-![10x Genomics 与 BD Rhapsody 的单细胞捕获流程](../assets/09-single-cell-and-spatial-omics/008-10x-bd-platforms.svg){#fig-06-rna-seq-002}
+![10x Genomics 与 BD Rhapsody 的单细胞捕获流程[^ch09-capture-protocols]](../assets/09-single-cell-and-spatial-omics/008-10x-bd-platforms.svg){#fig-06-rna-seq-002}
+
+图注：左侧显示微流控通道形成液滴，右侧显示固态微孔的侧面剖面；图中为理想的一细胞一珠捕获单元，未按实际尺寸与捕获比例绘制。观察两条路线中 RNA 被捕获的位置，以及反转录发生在回收之前还是之后。
 
 ::: {.callout-note .book-core title="核心知识｜barcode 归细胞，UMI 归分子"}
 
@@ -553,3 +556,5 @@ SpatialPlot(brain, features = c("Hpca", "Plp1", "Rorb", "Cux2"))
 [^ch09-cell2location]: Kleshchevnikov V, et al. Cell2location maps fine-grained cell types in spatial transcriptomics. Nat Biotechnol. 2022;40:661–671。
 
 [^ch09-monocle]: Trapnell C, et al. The dynamics and regulators of cell fate decisions are revealed by pseudotemporal progression of transcriptomes (Monocle). Nat Biotechnol. 2014;32(4):381–386。
+
+[^ch09-capture-protocols]: [10x Chromium Next GEM Single Cell 3′ v3.1，CG000204 Rev D，第 15–16 页](https://cdn.10xgenomics.com/image/upload/v1660261285/support-documents/CG000204_ChromiumNextGEMSingleCell3_v3.1_Rev_D.pdf)；[BD Rhapsody Single Cell Capture and cDNA Synthesis User Guide，第 4–6 页](https://www.bdbiosciences.com/content/dam/bdb/marketing-documents/BD-Rhapsody-Single-Cell-Capture-and-cDNA-Synthesis-User-Guide.pdf)。图示对应这些基于 mRNA 捕获的流程，不概括各品牌所有试剂体系。

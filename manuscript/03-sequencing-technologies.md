@@ -129,26 +129,27 @@ Sanger 测序的读长可达 500—1000 bp，单条序列的准确率很高，�
 
 :::
 
-Illumina 边合成边测序（Sequencing by Synthesis，SBS）使用的关键分子是**可逆终止子核苷酸**。它有两处修饰：碱基通过可切除连接子带上荧光染料，脱氧核糖的 3′ 羟基被叠氮甲基（–CH₂–N₃）封闭，保证每轮反应只能延伸一个碱基。可以先看下面的示意图；精确的化学结构见本节末的拓展阅读框。
+Illumina 边合成边测序（Sequencing by Synthesis，SBS）的关键是**可逆终止子核苷酸**：先暂时封闭核苷酸的 3′ 羟基，让链在掺入一个碱基后停下来；读出信号后再解除封闭，恢复下一轮延伸所需的 3′-OH。早期四通道体系还在碱基上连接可切除的荧光染料。下面先看测序过程，本节末的拓展阅读框再用一个早期化学实例解释这两处修饰。
 
 ![带荧光基团的碱基示意[^fig03-base-source]](../assets/03-sequencing-and-data-formats/006-pic-06-base.jpg){#fig-03-sequencing-and-data-formats-006}
 
-每轮循环包含三步：聚合酶掺入一个带荧光的可逆终止子，仪器扫描并记录整个 cluster 的荧光颜色，随后用化学试剂（TCEP）一步完成两件事——3′ 封闭基团完全恢复为羟基、碱基上的染料被切除（切除后在碱基上残留一小段连接子）——再进入下一轮。因为一个 cluster 中所有序列都是同一条模板的拷贝，理论上每轮整个 cluster 发出同一颜色的荧光；逐 tile 扫描、把信号序列转换成碱基序列，就完成了测序。
+以早期四通道体系为例，每轮循环包含三步：聚合酶掺入一个带荧光标记的可逆终止子，仪器扫描 cluster 并记录信号，随后去除染料并解除 3′ 封闭，再进入下一轮。一个 cluster 中的模板拷贝理想情况下同步延伸，因此这一轮的信号主要对应同一种碱基；仪器逐 tile 扫描，把连续多轮信号转换为碱基序列。染料编码与脱保护条件取决于所用化学体系，不能把一个历史实例的试剂配方套到所有平台。
 
 ![测序中用于区分碱基的荧光信号](../assets/03-sequencing-and-data-formats/007-pic-07-color.jpg){#fig-03-sequencing-and-data-formats-007}
 
-![边合成边测序示意图](../assets/03-sequencing-and-data-formats/008-pic-08-seq-color.jpg){#fig-03-sequencing-and-data-formats-008}
+![边合成边测序示意图](../assets/03-sequencing-and-data-formats/008-pic-08-seq-color.jpg){#fig-03-sequencing-and-data-formats-008 width="75%"}
 
 ::: {.callout-note .book-extension title="拓展阅读｜可逆终止子的化学结构" collapse="true"}
 
-下图是 3′-O-叠氮甲基-dCTP 的精确结构：A 面板为完整分子，B、C 面板放大两个关键修饰位点，供希望深入理解化学原理的读者参考。
+@fig-03-nucleotide-reversible-terminator 采用早期 Solexa/Illumina 专利中的一个 dCTP 实例。先沿着脱氧核糖看三个位置：5′ 端连着三磷酸，1′ 位与胞嘧啶的 N1 相连，3′ 位的羟基则被暂时封闭。碱基的 C5 位另接一条含二硫键的连接子，末端连接染料。图中将染料部分简写为 Dye；这是关键结构图，并未展开完整染料分子。可[打开原尺寸结构图](../assets/03-sequencing-and-data-formats/010-nucleotide-reversible-terminator.svg)查看各处键线。
 
-![Illumina 可逆终止子核苷酸的化学结构[^fig03-terminator-source]](../assets/03-sequencing-and-data-formats/010-nucleotide-reversible-terminator.png){#fig-03-nucleotide-reversible-terminator}
+![可逆终止子的关键结构与测序循环[^fig03-terminator-source]](../assets/03-sequencing-and-data-formats/010-nucleotide-reversible-terminator.svg){#fig-03-nucleotide-reversible-terminator}
 
-- **3′-O-叠氮甲基（–O–CH₂–N₃，B 面板）**：3′ 羟基被“叠氮甲基”以醚键封闭，聚合酶无法继续延伸。它本质上是半缩醛的保护形式：TCEP（水溶性膦试剂）对叠氮基发生 Staudinger 型还原，产物不稳定、随即水解释落，干净地恢复 3′-OH——掺入链的糖环上不留任何残基。注意名称与写法：是 3′-**O**-叠氮甲基（N₃，三个氮），不是“3′-叠氮”，更不是 N₂。
-- **碱基上的可切除染料（C 面板）**：荧光染料通过连接子接在碱基上——嘧啶接 C5，嘌呤接 C7（且必须画成 7-脱氮嘌呤才能带 C7 取代基）；先经炔丙胺（–C≡C–CH₂–NH–）连接，再经可断裂连接子（早期商业化学为二硫键）连到染料。同一步 TCEP 处理把染料切除，但连接子会有一小段残留在碱基上（所谓“scar”）：掺入的碱基与天然碱基并不完全相同，只是不影响后续轮次的碱基判读。
-- **5′-三磷酸**：与天然 dNTP 相同，由聚合酶正常识别并掺入，染料和封闭基团都只在 3′ 端与碱基上做文章。
-- **历史脉络**：2006 年 Ju 组的四色 SBS 论文用的是 3′-O-烯丙基封闭（钯催化脱除）；2008 年同组改为 3′-O-叠氮甲基（TCEP 脱除），后者成为 Solexa/Illumina 的商业化学并沿用至今。两色化学改变的只是检测方式，终止子本身没有变。
+- **为什么每轮只加入一个碱基？** 该实例的 3′ 位带有 –O–CH₂–N₃，即 3′-O-叠氮甲基。聚合酶把核苷酸接到正在延伸的 DNA 链后，新链末端没有可供下一次反应的游离 3′-OH，延伸便暂时停止。
+- **为什么还能继续测下一个碱基？** 成像之后，以 TCEP 为例的还原处理可使叠氮甲基经 Staudinger 型反应脱除，恢复 3′-OH；连接子中的二硫键也可以被还原，从碱基上切除染料。糖上的封闭被解除，而碱基上仍可留有一段连接子残基，不能把整个核苷酸说成恢复了天然结构。
+- **三磷酸去了哪里？** 图 A 画的是尚未掺入的底物。聚合反应保留与糖相连的 α 磷酸形成磷酸二酯键，另外两个磷酸以焦磷酸形式释放；图 B 的链末端因此不再带着完整三磷酸。
+
+这里要理解的是“暂停延伸—识别信号—恢复延伸”的机制。不同代际试剂的染料、连接子、封闭基团与处理条件可以变化，不能仅从光学通道数判断分子的化学结构。
 
 :::
 
@@ -238,7 +239,7 @@ PacBio 的 SMRT 测序观察聚合酶合成 DNA 时的荧光信号。Iso-Seq 分
 
 打断后的片段末端往往不平整，需要先用酶补平，再在 3′ 端用酶加上一个特异的碱基 A。此后利用 A 与末端 T 的互补配对，把 adapter 连接到片段两端。
 
-![DNA 文库制备的典型流程](../assets/03-sequencing-and-data-formats/003-pic-03-make-lib.jpg){#fig-03-sequencing-and-data-formats-003}
+![DNA 文库制备的典型流程](../assets/03-sequencing-and-data-formats/003-pic-03-make-lib.jpg){#fig-03-sequencing-and-data-formats-003 .book-image-width-cap width="75%" style="--book-image-max-width:600px;"}
 
 ### 接头（adapter）的结构与作用 {#question-01-97}
 
@@ -480,7 +481,7 @@ FastQC 会对每一个输入文件生成一个 html 网页和一个 zip 压缩�
 
 ![FastQC 中 RNA-seq 样本的基本信息](../assets/04-quality-control-and-alignment/037-fastqc3.jpg){#fig-04-quality-control-and-alignment-037}
 
-![FastQC 报告中重点关注的质控模块（红框标出）](../assets/a-questions-06-10/003-7-0.jpg){#fig-a-questions-06-10-003}
+![FastQC 报告中重点关注的质控模块（红框标出）](../assets/a-questions-06-10/003-7-0.jpg){#fig-a-questions-06-10-003 .book-image-width-cap width="75%" style="--book-image-max-width:430.5px;"}
 
 []{#question-06-8}
 
@@ -819,7 +820,7 @@ zcat input_cutadapt.fq.gz | fastx_trimmer \
 
 [^fig03-base-source]: 图片来源：oezratty.net。沿用原稿的来源标注。
 
-[^fig03-terminator-source]: 依据 Guo et al. 2008, PNAS 与 Illumina 专利 US 7,541,444 绘制。
+[^fig03-terminator-source]: 结构依据 [US7541444B2，化合物 (18)](https://patents.google.com/patent/US7541444B2/en)：C5 位经含二硫键的连接子连接 Alexa Fluor 488 的 3′-O-叠氮甲基 dCTP；图中以 Dye 简写染料部分。早期测序循环参见 Bentley DR, et al. *Accurate whole human genome sequencing using reversible terminator chemistry*. Nature. 2008;456:53–59. [DOI](https://doi.org/10.1038/nature07517)。叠氮甲基脱保护的补充说明见 [Guo et al. 2008, PNAS](https://pmc.ncbi.nlm.nih.gov/articles/PMC2442126/)；该文采用的混合 SBS 体系与本图专利实例不同。
 
 [^fig03-dnbseq-source]: 图片来源：Huang J. et al. 2017, GigaScience 6(5), doi:10.1093/gigascience/gix024，CC BY 4.0。
 

@@ -1,0 +1,111 @@
+<svg xmlns='http://www.w3.org/2000/svg' width='780' height='800' viewBox='0 0 780 800' role='img' aria-labelledby='t d'>
+<title id='t'>RNA 的主要类型与分工</title>
+<desc id='d'>核内 DNA 转录产生 RNA，snRNA 参与剪接；mRNA 进入细胞质，在含 rRNA 的核糖体上由 tRNA 配合翻译；miRNA、siRNA、lncRNA 与 circRNA 以不同方式参与调控。所画为代表性形态和作用场景。</desc>
+<rect x='16' y='55' width='348' height='463' rx='45' fill='#e8f4f1' stroke='#186254' stroke-width='1.6'/>
+<text x='40' y='91' font-family="'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size='22' fill='#186254' font-weight='bold' text-anchor='start'>细胞核</text>
+<text x='414' y='91' font-family="'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size='22' fill='#186254' font-weight='bold' text-anchor='start'>细胞质</text>
+<path d="M 68.00 143.00 L 70.95 146.12 L 73.90 149.12 L 76.85 151.89 L 79.80 154.31 L 82.75 156.30 L 85.70 157.78 L 88.65 158.69 L 91.60 159.00 L 94.55 158.69 L 97.50 157.78 L 100.45 156.30 L 103.40 154.31 L 106.35 151.89 L 109.30 149.12 L 112.25 146.12 L 115.20 143.00 L 118.15 139.88 L 121.10 136.88 L 124.05 134.11 L 127.00 131.69 L 129.95 129.70 L 132.90 128.22 L 135.85 127.31 L 138.80 127.00 L 141.75 127.31 L 144.70 128.22 L 147.65 129.70 L 150.60 131.69 L 153.55 134.11 L 156.50 136.88 L 159.45 139.88 L 162.40 143.00 L 165.35 146.12 L 168.30 149.12 L 171.25 151.89 L 174.20 154.31 L 177.15 156.30 L 180.10 157.78 L 183.05 158.69 L 186.00 159.00 L 188.95 158.69 L 191.90 157.78 L 194.85 156.30 L 197.80 154.31 L 200.75 151.89 L 203.70 149.12 L 206.65 146.12 L 209.60 143.00 L 212.55 139.88 L 215.50 136.88 L 218.45 134.11 L 221.40 131.69 L 224.35 129.70 L 227.30 128.22 L 230.25 127.31 L 233.20 127.00 L 236.15 127.31 L 239.10 128.22 L 242.05 129.70 L 245.00 131.69 L 247.95 134.11 L 250.90 136.88 L 253.85 139.88 L 256.80 143.00 L 259.75 146.12 L 262.70 149.12 L 265.65 151.89 L 268.60 154.31 L 271.55 156.30 L 274.50 157.78 L 277.45 158.69 L 280.40 159.00 L 283.35 158.69 L 286.30 157.78 L 289.25 156.30 L 292.20 154.31 L 295.15 151.89 L 298.10 149.12 L 301.05 146.12 L 304.00 143.00" fill="none" stroke="#186254" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" />
+<path d="M 68.00 143.00 L 70.95 139.88 L 73.90 136.88 L 76.85 134.11 L 79.80 131.69 L 82.75 129.70 L 85.70 128.22 L 88.65 127.31 L 91.60 127.00 L 94.55 127.31 L 97.50 128.22 L 100.45 129.70 L 103.40 131.69 L 106.35 134.11 L 109.30 136.88 L 112.25 139.88 L 115.20 143.00 L 118.15 146.12 L 121.10 149.12 L 124.05 151.89 L 127.00 154.31 L 129.95 156.30 L 132.90 157.78 L 135.85 158.69 L 138.80 159.00 L 141.75 158.69 L 144.70 157.78 L 147.65 156.30 L 150.60 154.31 L 153.55 151.89 L 156.50 149.12 L 159.45 146.12 L 162.40 143.00 L 165.35 139.88 L 168.30 136.88 L 171.25 134.11 L 174.20 131.69 L 177.15 129.70 L 180.10 128.22 L 183.05 127.31 L 186.00 127.00 L 188.95 127.31 L 191.90 128.22 L 194.85 129.70 L 197.80 131.69 L 200.75 134.11 L 203.70 136.88 L 206.65 139.88 L 209.60 143.00 L 212.55 146.12 L 215.50 149.12 L 218.45 151.89 L 221.40 154.31 L 224.35 156.30 L 227.30 157.78 L 230.25 158.69 L 233.20 159.00 L 236.15 158.69 L 239.10 157.78 L 242.05 156.30 L 245.00 154.31 L 247.95 151.89 L 250.90 149.12 L 253.85 146.12 L 256.80 143.00 L 259.75 139.88 L 262.70 136.88 L 265.65 134.11 L 268.60 131.69 L 271.55 129.70 L 274.50 128.22 L 277.45 127.31 L 280.40 127.00 L 283.35 127.31 L 286.30 128.22 L 289.25 129.70 L 292.20 131.69 L 295.15 134.11 L 298.10 136.88 L 301.05 139.88 L 304.00 143.00" fill="none" stroke="#186254" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" />
+<line x1='73.9' y1='136.87706508215857' x2='73.9' y2='149.12293491784143' stroke='#186254' stroke-width='1.6'/>
+<line x1='85.7' y1='128.21792747981942' x2='85.7' y2='157.78207252018058' stroke='#186254' stroke-width='1.6'/>
+<line x1='97.5' y1='128.21792747981942' x2='97.5' y2='157.78207252018058' stroke='#186254' stroke-width='1.6'/>
+<line x1='109.3' y1='136.87706508215857' x2='109.3' y2='149.12293491784143' stroke='#186254' stroke-width='1.6'/>
+<line x1='121.1' y1='149.12293491784143' x2='121.1' y2='136.87706508215857' stroke='#186254' stroke-width='1.6'/>
+<line x1='132.9' y1='157.78207252018058' x2='132.9' y2='128.21792747981942' stroke='#186254' stroke-width='1.6'/>
+<line x1='144.7' y1='157.78207252018058' x2='144.7' y2='128.21792747981942' stroke='#186254' stroke-width='1.6'/>
+<line x1='156.5' y1='149.12293491784143' x2='156.5' y2='136.87706508215857' stroke='#186254' stroke-width='1.6'/>
+<line x1='168.3' y1='136.87706508215857' x2='168.3' y2='149.12293491784143' stroke='#186254' stroke-width='1.6'/>
+<line x1='180.1' y1='128.21792747981942' x2='180.1' y2='157.78207252018058' stroke='#186254' stroke-width='1.6'/>
+<line x1='191.9' y1='128.21792747981942' x2='191.9' y2='157.78207252018058' stroke='#186254' stroke-width='1.6'/>
+<line x1='203.7' y1='136.87706508215854' x2='203.7' y2='149.12293491784146' stroke='#186254' stroke-width='1.6'/>
+<line x1='215.5' y1='149.12293491784143' x2='215.5' y2='136.87706508215857' stroke='#186254' stroke-width='1.6'/>
+<line x1='227.3' y1='157.78207252018058' x2='227.3' y2='128.21792747981942' stroke='#186254' stroke-width='1.6'/>
+<line x1='239.1' y1='157.78207252018058' x2='239.1' y2='128.21792747981942' stroke='#186254' stroke-width='1.6'/>
+<line x1='250.9' y1='149.12293491784146' x2='250.9' y2='136.87706508215854' stroke='#186254' stroke-width='1.6'/>
+<line x1='262.7' y1='136.87706508215857' x2='262.7' y2='149.12293491784143' stroke='#186254' stroke-width='1.6'/>
+<line x1='274.5' y1='128.21792747981942' x2='274.5' y2='157.78207252018058' stroke='#186254' stroke-width='1.6'/>
+<line x1='286.3' y1='128.21792747981942' x2='286.3' y2='157.78207252018058' stroke='#186254' stroke-width='1.6'/>
+<line x1='298.1' y1='136.87706508215854' x2='298.1' y2='149.12293491784146' stroke='#186254' stroke-width='1.6'/>
+<text x='180' y='126' font-family="'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size='19' fill='#186254' font-weight='bold' text-anchor='middle'>DNA</text>
+<line x1='190' y1='169' x2='190' y2='213' stroke='#186254' stroke-width='2'/>
+<line x1='190.0' y1='213.0' x2='193.9' y2='204.9' stroke='#186254' stroke-width='2'/>
+<line x1='190.0' y1='213.0' x2='186.1' y2='204.9' stroke='#186254' stroke-width='2'/>
+<text x='212' y='194' font-family="'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size='18' fill='#333333' font-weight='normal' text-anchor='start'>转录</text>
+<path d="M 69 243 L 305 243" fill="none" stroke="#186254" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" />
+<rect x='75' y='234' width='38' height='18' rx='2' fill='#186254' stroke='#186254' stroke-width='1.2'/>
+<rect x='162' y='234' width='38' height='18' rx='2' fill='#186254' stroke='#186254' stroke-width='1.2'/>
+<rect x='257' y='234' width='38' height='18' rx='2' fill='#186254' stroke='#186254' stroke-width='1.2'/>
+<text x='185' y='279' font-family="'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size='19' fill='#333333' font-weight='normal' text-anchor='middle'>前体 mRNA</text>
+<path d="M 86 334 L 86 316 C 61 310 66 290 86 292 C 106 290 111 310 94 316 L 94 334" fill="none" stroke="#b45309" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" />
+<line x1='86' y1='316' x2='94' y2='316' stroke='#b45309' stroke-width='1.6'/>
+<line x1='86' y1='323' x2='94' y2='323' stroke='#b45309' stroke-width='1.6'/>
+<line x1='86' y1='330' x2='94' y2='330' stroke='#b45309' stroke-width='1.6'/>
+<text x='43' y='364' font-family="'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size='18' fill='#b45309' font-weight='bold' text-anchor='start'>snRNA</text>
+<line x1='190' y1='291' x2='190' y2='355' stroke='#186254' stroke-width='2'/>
+<line x1='190.0' y1='355.0' x2='193.9' y2='346.9' stroke='#186254' stroke-width='2'/>
+<line x1='190.0' y1='355.0' x2='186.1' y2='346.9' stroke='#186254' stroke-width='2'/>
+<text x='210' y='329' font-family="'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size='18' fill='#333333' font-weight='normal' text-anchor='start'>剪接</text>
+<line x1='122' y1='332' x2='163' y2='332' stroke='#b45309' stroke-width='2'/>
+<rect x='116' y='376' width='37' height='18' rx='2' fill='#186254' stroke='#186254' stroke-width='1.2'/>
+<rect x='155' y='376' width='37' height='18' rx='2' fill='#186254' stroke='#186254' stroke-width='1.2'/>
+<rect x='194' y='376' width='37' height='18' rx='2' fill='#186254' stroke='#186254' stroke-width='1.2'/>
+<path d="M 232 385 q 2.5 -7 5.0 0 t 5.0 0 q 2.5 -7 5.0 0 t 5.0 0 q 2.5 -7 5.0 0 t 5.0 0 q 2.5 -7 5.0 0 t 5.0 0" fill="none" stroke="#186254" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" />
+<text x='184' y='425' font-family="'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size='19' fill='#333333' font-weight='normal' text-anchor='middle'>成熟 mRNA</text>
+<line x1='280' y1='385' x2='434' y2='385' stroke='#186254' stroke-width='2.5'/>
+<line x1='434.0' y1='385.0' x2='425.9' y2='381.1' stroke='#186254' stroke-width='2.5'/>
+<line x1='434.0' y1='385.0' x2='425.9' y2='388.9' stroke='#186254' stroke-width='2.5'/>
+<text x='387' y='418' font-family="'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size='16' fill='#333333' font-weight='normal' text-anchor='middle'>输出</text>
+<rect x='354' y='367' width='18' height='37' rx='3' fill='#fcfcf9' stroke='none' stroke-width='1.2'/>
+<line x1='280' y1='385' x2='434' y2='385' stroke='#186254' stroke-width='2.5'/>
+<line x1='434.0' y1='385.0' x2='425.9' y2='381.1' stroke='#186254' stroke-width='2.5'/>
+<line x1='434.0' y1='385.0' x2='425.9' y2='388.9' stroke='#186254' stroke-width='2.5'/>
+<path d="M 454 369 C 444 290 503 257 565 275 C 614 285 641 323 625 369 Z" fill="#e8f4f1" stroke="#186254" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+<path d="M 453 400 C 464 445 613 445 626 400 Z" fill="#e8f4f1" stroke="#186254" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+<path d="M 476 340 C 493 311 526 349 543 323 S 590 317 604 345" fill="none" stroke="#186254" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" />
+<path d="M 480 416 Q 519 404 543 421 T 603 412" fill="none" stroke="#186254" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" />
+<path d="M 442 385 q 15.75 -7 31.5 0 t 31.5 0 q 15.75 -7 31.5 0 t 31.5 0 q 15.75 -7 31.5 0 t 31.5 0 q 15.75 -7 31.5 0 t 31.5 0" fill="none" stroke="#186254" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" />
+<text x='668' y='421' font-family="'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size='19' fill='#186254' font-weight='bold' text-anchor='middle'>mRNA</text>
+<text x='568' y='474' font-family="'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size='19' fill='#186254' font-weight='bold' text-anchor='middle'>核糖体（含 rRNA）</text>
+<path d="M 533 375 L 533 302 L 515 302 C 492 300 491 273 513 272 L 526 272 L 526 255 C 506 234 516 214 535 231 C 554 214 564 234 544 255 L 544 272 L 557 272 C 579 273 578 300 555 302 L 539 302 L 539 375 Q 536 386 533 375" fill="none" stroke="#b45309" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" />
+<text x='435' y='236' font-family="'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size='20' fill='#b45309' font-weight='bold' text-anchor='start'>tRNA</text>
+<line x1='489' y1='239' x2='516' y2='264' stroke='#b45309' stroke-width='1.5'/>
+<circle cx="535" cy="210" r="7" fill="#fdf3e3" stroke="#b45309" stroke-width="1.8"/>
+<text x='576' y='207' font-family="'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size='16' fill='#333333' font-weight='normal' text-anchor='start'>携带氨基酸</text>
+<line x1='544' y1='210' x2='566' y2='203' stroke='#b45309' stroke-width='1.4'/>
+<circle cx="605" cy="272" r="7" fill="#fdf3e3" stroke="#b45309" stroke-width="1.8"/>
+<line x1='605' y1='272' x2='616' y2='255' stroke='#b45309' stroke-width='3'/>
+<circle cx="616" cy="255" r="7" fill="#fdf3e3" stroke="#b45309" stroke-width="1.8"/>
+<line x1='616' y1='255' x2='633' y2='249' stroke='#b45309' stroke-width='3'/>
+<circle cx="633" cy="249" r="7" fill="#fdf3e3" stroke="#b45309" stroke-width="1.8"/>
+<line x1='633' y1='249' x2='648' y2='233' stroke='#b45309' stroke-width='3'/>
+<circle cx="648" cy="233" r="7" fill="#fdf3e3" stroke="#b45309" stroke-width="1.8"/>
+<line x1='648' y1='233' x2='667' y2='227' stroke='#b45309' stroke-width='3'/>
+<circle cx="667" cy="227" r="7" fill="#fdf3e3" stroke="#b45309" stroke-width="1.8"/>
+<line x1='667' y1='227' x2='680' y2='210' stroke='#b45309' stroke-width='3'/>
+<circle cx="680" cy="210" r="7" fill="#fdf3e3" stroke="#b45309" stroke-width="1.8"/>
+<text x='651' y='176' font-family="'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size='21' fill='#b45309' font-weight='bold' text-anchor='middle'>蛋白质</text>
+<text x='656' y='321' font-family="'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size='19' fill='#333333' font-weight='normal' text-anchor='start'>翻译</text>
+<text x='28' y='559' font-family="'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size='22' fill='#186254' font-weight='bold' text-anchor='start'>非编码 RNA 的调控作用与形态</text>
+<line x1='28' y1='575' x2='752' y2='575' stroke='#186254' stroke-width='1.4'/>
+<path d="M 32 626 q 12.9375 -7 25.875 0 t 25.875 0 q 12.9375 -7 25.875 0 t 25.875 0 q 12.9375 -7 25.875 0 t 25.875 0 q 12.9375 -7 25.875 0 t 25.875 0" fill="none" stroke="#186254" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" />
+<path d="M 102 642 L 174 642" fill="none" stroke="#b45309" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" />
+<line x1='106' y1='631' x2='106' y2='638' stroke='#b45309' stroke-width='1.5'/>
+<line x1='115' y1='631' x2='115' y2='638' stroke='#b45309' stroke-width='1.5'/>
+<line x1='124' y1='631' x2='124' y2='638' stroke='#b45309' stroke-width='1.5'/>
+<line x1='133' y1='631' x2='133' y2='638' stroke='#b45309' stroke-width='1.5'/>
+<line x1='142' y1='631' x2='142' y2='638' stroke='#b45309' stroke-width='1.5'/>
+<line x1='151' y1='631' x2='151' y2='638' stroke='#b45309' stroke-width='1.5'/>
+<line x1='160' y1='631' x2='160' y2='638' stroke='#b45309' stroke-width='1.5'/>
+<line x1='169' y1='631' x2='169' y2='638' stroke='#b45309' stroke-width='1.5'/>
+<text x='139' y='682' font-family="'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size='18' fill='#b45309' font-weight='bold' text-anchor='middle'>miRNA / siRNA</text>
+<text x='139' y='714' font-family="'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size='17' fill='#333333' font-weight='normal' text-anchor='middle'>配对识别靶 RNA</text>
+<text x='139' y='740' font-family="'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size='16' fill='#333333' font-weight='normal' text-anchor='middle'>影响稳定性或翻译</text>
+<path d="M 305 646 C 300 604 344 600 348 630 S 376 661 380 627 S 423 600 429 645 C 431 673 390 659 389 641 S 355 629 350 651 S 321 669 305 646" fill="none" stroke="#186254" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" />
+<text x='372' y='699' font-family="'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size='19' fill='#186254' font-weight='bold' text-anchor='middle'>lncRNA</text>
+<text x='372' y='732' font-family="'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size='16' fill='#333333' font-weight='normal' text-anchor='middle'>长链，作用与位置多样</text>
+<path d="M 612 602 C 669 601 683 663 638 678 C 582 697 552 641 587 616 C 595 610 603 605 612 602" fill="none" stroke="#186254" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" />
+<rect x='584' y='607' width='35' height='13' rx='3' fill='#186254' stroke='#186254' stroke-width='1.2'/>
+<text x='620' y='711' font-family="'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size='19' fill='#186254' font-weight='bold' text-anchor='middle'>circRNA</text>
+<text x='620' y='740' font-family="'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size='16' fill='#333333' font-weight='normal' text-anchor='middle'>首尾共价相连的环状 RNA</text>
+<text x='390' y='783' font-family="'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size='15' fill='#333333' font-weight='normal' text-anchor='middle'>形态与作用场景为示意；不同非编码 RNA 的具体功能需要分别验证。</text>
+</svg>

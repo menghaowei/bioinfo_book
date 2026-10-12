@@ -443,6 +443,12 @@ snakemake -c 8 -p
 snakemake --dag -c 8 | dot -Tsvg > dag.svg
 ```
 
+![四样本 RNA-seq 工作流的任务依赖图](../assets/10-snakemake-and-reproducibility/rnaseq-dag.svg){#fig-10-rnaseq-dag}
+
+图注：图由上面的 Snakefile 通过 Snakemake 生成；框内是任务对应的规则名，外框按样本分组。绿色节点属于逐样本任务，琥珀色节点汇总多个样本的结果或日志。图保留了全部 19 个任务和 35 条文件依赖；只解析依赖即可生成，无须先运行完生信分析。可[打开原尺寸 DAG](../assets/10-snakemake-and-reproducibility/rnaseq-dag.svg)查看各条连线。
+
+读 @fig-10-rnaseq-dag 时沿箭头看前置条件：每个样本的 `hisat2_align` 要等待自己的 `cutadapt`；`feature_counts` 要等待四个 BAM；`multiqc` 则汇总质控和分析日志。`fastqc_raw` 与 `cutadapt` 都读取原始 FASTQ，彼此没有依赖，因此允许并行；`samtools_index` 与 `feature_counts` 也都使用已生成的 BAM，后者不需要等索引。图中竖向排在一起只是便于按样本阅读，只有箭头才表示依赖关系；实际同时运行多少任务还受线程和其他资源限制。最下方的 `all` 是最终文件清单，本身不执行分析命令。
+
 四个样本、七条规则，试运行会报告 19 个任务（4 个 fastqc_raw + 4 个 cutadapt + 4 个 hisat2_align + 4 个 samtools_index + feature_counts + multiqc + all）。运行中断后重新执行同样的命令即可：已完成的任务直接跳过，被标记为不完整的输出自动补跑。本章流程的规则、依赖与命令展开在写作时通过了 Snakemake 9.27 的试运行检查；各工具命令与第 5 章实测口径一致。
 
 结果检查沿用第 5 章的口径：`results/counts/featureCounts.txt.summary` 里看 Assigned 比例——落到注释基因上的 read 占比，人类样本通常应有六成以上，明显偏低时先怀疑注释与参考基因组不同源（[5.2 节](05-rna-seq.md#sec-05-02)的混用陷阱）或存在污染；`logs/hisat2/` 里每个样本的总体比对率（人类 RNA-seq 一般应有 80% 以上，多定位 read 通常不超过 10%）；`results/multiqc/multiqc_report.html` 把这些指标汇总在同一页，可以横向比较四个样本，找出异常。计数矩阵 `featureCounts.txt` 的每一列对应 `samples.tsv` 里一个样本，接下来就交回[5.5 节](05-rna-seq.md#sec-05-06)的 DESeq2 做差异分析——本节工作流到计数矩阵为止，R 中的统计分析按相应章节继续。

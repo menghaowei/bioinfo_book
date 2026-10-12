@@ -68,7 +68,7 @@ class Svg:
     def arrow(self, x1, y1, x2, y2, *, stroke=COLOR_PRIMARY, sw=1.6):
         import math
         self.line(x1, y1, x2, y2, stroke=stroke, sw=sw)
-        ang = math.atan2(y2 - y1, x2 - y1)
+        ang = math.atan2(y2 - y1, x2 - x1)
         L, A = 9, 0.45
         for da in (A, -A):
             bx = x2 - L * math.cos(ang + da)
