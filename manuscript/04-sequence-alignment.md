@@ -12,7 +12,7 @@
 
 经过上一章的质控，我们已经有了干净的测序数据（clean reads）。接下来要做的是**把处理后的 clean reads 通过比对放回参考基因组，得到记录每条 read 位置与比对情况的 BAM 文件**。我们先认识参考基因组与常用注释，也就是比对所需的“地图”，再学习双序列比对、BLAST、哈希表与 BWT 等算法。随后根据数据特点选择软件、完成比对，将结果保存成 SAM/BAM 文件，进行排序、过滤与统计，并用 IGV 查看。最后从公共数据库下载数据，作为练习的输入。
 
-![从 FASTQ 经质控和比对生成 SAM，再转换为排序并建立索引的 BAM](../assets/04-quality-control-and-alignment/svg/fastq-to-sam-pipeline.svg){#fig-a-questions-16-20-001}
+![从 FASTQ 到排序并建立索引的 BAM](../assets/04-quality-control-and-alignment/svg/fastq-to-sam-pipeline.svg){#fig-a-questions-16-20-001}
 
 如 @fig-a-questions-16-20-001 所示，从 FASTQ 到 SAM 的每一步都有明确的输入和输出。阅读本章时，可以顺着流程逐步检查：输入的是什么文件，处理后得到什么，又保留了哪些比对信息。
 
@@ -126,7 +126,7 @@ bowtie2-build ./test/chr1.fa ./test/chr1_bowtie2_index
 
 我们的基因在基因组上的结构不是连续的，而是被 exon-intron-exon（exon=外显子，intron=内含子）分隔开的。基因要表达，首先会转录出包含 intron 的 pre-mRNA，再经过可变剪接、加 5' 帽子、3' PolyA 尾巴等加工过程，才形成成熟的 mRNA（ @fig-a-questions-21-25-008 ）。
 
-![通过对外显子（exon）的可变剪接，同一个基因可以形成多种成熟的 mRNA 与蛋白](../assets/a-questions-21-25/008-24-1.jpg){#fig-a-questions-21-25-008}
+![同一基因通过可变剪接产生多种 mRNA 与蛋白](../assets/a-questions-21-25/008-24-1.jpg){#fig-a-questions-21-25-008}
 
 mRNA 由外显子拼接而来，因此转录组比对经常要处理**跨越两个外显子的 reads**：它们对应的基因组序列中间隔着内含子。这时需要基因注释告诉比对软件 exon 和 intron 的位置。基因注释文件记录的主要内容，就是基因、转录本、外显子和编码区在基因组上的坐标，以及这些特征的属性。
 
@@ -145,7 +145,7 @@ chr1	hg19_ncbiRefSeq	CDS	67091530	67091593	0.000000	+	2	gene_id "SGIP1"; transcr
 chr1	hg19_ncbiRefSeq	stop_codon	67208776	67208778	0.000000	+	.	gene_id "SGIP1"; transcript_id "NM_001308203.1";
 ```
 
-![一个标准 GTF 格式文件的内容示例](../assets/a-questions-21-25/009-24-2.jpg){#fig-a-questions-21-25-009}
+![GTF 注释文件示例](../assets/a-questions-21-25/009-24-2.jpg){#fig-a-questions-21-25-009}
 
 下面对照文件，逐列解释各字段的含义：
 
@@ -213,7 +213,7 @@ SAM 文本中的 POS 从 1 开始计数，并且区间两端都包含；BED 通�
 
 针对已经完成基因组测序计划的物种，数据库一般会同时提供参考基因组序列（FASTA）与转录组注释（GTF/GFF）。 @fig-a-questions-21-25-011 是 Ensembl 展示的已公布参考基因组的哺乳动物系统发生树——常用的模式生物（人、小鼠、大鼠、鸡、拟南芥等）都已经有非常好的注释资源，直接到网站上下载即可。下载下来的 FASTA 就是参考基因组（用于建索引），GTF 是转录组注释（一般在计算表达量时提供）。
 
-![Ensembl 展示的已公布参考基因组哺乳动物的系统发生树](../assets/a-questions-21-25/011-25-1.jpg){#fig-a-questions-21-25-011}
+![Ensembl 中已有参考基因组的哺乳动物系统发生树](../assets/a-questions-21-25/011-25-1.jpg){#fig-a-questions-21-25-011}
 
 下载 GTF/GFF 最常用的两个网站是 UCSC Genome Browser（<https://genome.ucsc.edu>）和 Ensembl（<https://www.ensembl.org>）；注意植物要使用 Ensembl 的专门站点 Ensembl Plants（<https://plants.ensembl.org>）。
 
@@ -226,11 +226,11 @@ SAM 文本中的 POS 从 1 开始计数，并且区间两端都包含；BED 通�
 3. 打开 Table Browser 以后，设置需要的内容（ @fig-a-questions-21-25-014 ）：clade 选 Mammal，genome 选 Human，assembly 选 hg19，track 选 RefSeq Genes。hg19 = human genome 19，是常用的 human 参考基因组版本号；RefSeq Genes 是 NCBI RefSeq 维护、经过一定程度人工审核的基因注释。
 4. 点击 get output 即可下载。
 
-![打开 UCSC Genome Browser 网站（2018 年界面）](../assets/a-questions-21-25/012-25-2.jpg){#fig-a-questions-21-25-012}
+![UCSC Genome Browser 首页（2018 年界面）](../assets/a-questions-21-25/012-25-2.jpg){#fig-a-questions-21-25-012}
 
-![在 Tools 里选择 Table Browser（2018 年界面）](../assets/a-questions-21-25/013-25-3.jpg){#fig-a-questions-21-25-013}
+![UCSC Table Browser 入口（2018 年界面）](../assets/a-questions-21-25/013-25-3.jpg){#fig-a-questions-21-25-013}
 
-![在 Table Browser 中设置 clade、genome、assembly 与 track（2018 年界面）](../assets/a-questions-21-25/014-25-4.jpg){#fig-a-questions-21-25-014}
+![UCSC Table Browser 的物种、基因组版本与轨道设置（2018 年界面）](../assets/a-questions-21-25/014-25-4.jpg){#fig-a-questions-21-25-014}
 
 #### 从 Ensembl 下载 human 的 GTF
 
@@ -246,15 +246,15 @@ SAM 文本中的 POS 从 1 开始计数，并且区间两端都包含；BED 通�
 5. 在左边栏选择 FTP download，然后选择下载 GTF 文件（ @fig-a-questions-21-25-018 ）。
 6. 选择注释好的 GTF 进行下载（ @fig-a-questions-21-25-019 ）。
 
-![登录 Ensembl 网站并跳转到 GRCh37（hg19）版本（2018 年界面）](../assets/a-questions-21-25/015-25-5.jpg){#fig-a-questions-21-25-015}
+![Ensembl 的 GRCh37（hg19）版本入口（2018 年界面）](../assets/a-questions-21-25/015-25-5.jpg){#fig-a-questions-21-25-015}
 
-![继续选择跳转到 GRCh37（hg19）版本（2018 年界面）](../assets/a-questions-21-25/016-25-6.jpg){#fig-a-questions-21-25-016}
+![Ensembl 的 GRCh37（hg19）版本跳转页面（2018 年界面）](../assets/a-questions-21-25/016-25-6.jpg){#fig-a-questions-21-25-016}
 
-![在 GRCh37 版本的 Ensembl 界面中选择 download（2018 年界面）](../assets/a-questions-21-25/017-25-7.jpg){#fig-a-questions-21-25-017}
+![Ensembl GRCh37 版本的数据下载入口（2018 年界面）](../assets/a-questions-21-25/017-25-7.jpg){#fig-a-questions-21-25-017}
 
-![在 download 页面选择 FTP download 并选择 GTF 文件（2018 年界面）](../assets/a-questions-21-25/018-25-8.jpg){#fig-a-questions-21-25-018}
+![Ensembl FTP 下载页面中的 GTF 文件入口（2018 年界面）](../assets/a-questions-21-25/018-25-8.jpg){#fig-a-questions-21-25-018}
 
-![选择注释好的 GTF 进行下载（2018 年界面）](../assets/a-questions-21-25/019-25-9.jpg){#fig-a-questions-21-25-019}
+![Ensembl 的 GTF 注释文件下载列表（2018 年界面）](../assets/a-questions-21-25/019-25-9.jpg){#fig-a-questions-21-25-019}
 
 ::::: {.callout-tip .book-example title="示例与练习｜下载并比较 UCSC 与 Ensembl 的 GTF"}
 
@@ -301,7 +301,7 @@ chr1    hg19_ncbiRefSeq exon    66999929        67000051        0.000000        
 
 **参考解答**：并不是非常合理。这种格式虽然包括了注释需要的全部信息，但**同一个基因的不同 elements 分散在不同行**，程序统计一个基因包含哪些元件时，需要逐行循环判断该行是否属于同一个基因，比较耗费 CPU 和内存。如果不选 GTF，而是用 UCSC Table Browser 的“all fields from selected table”文件（ @fig-a-questions-21-25-010 ），它以**一个基因为一行**，把各个元件集中在同一行里，处理起来更便捷——当然代价是丢失了逐行注释的通用性，这也是 GTF 至今仍是标准的原因。
 
-![UCSC Table Browser 提供的另一种以基因为行的注释文件](../assets/a-questions-21-25/010-24-1.jpg){#fig-a-questions-21-25-010}
+![UCSC Table Browser 中每行对应一个基因的注释文件](../assets/a-questions-21-25/010-24-1.jpg){#fig-a-questions-21-25-010}
 
 all fields from selected table 文件内容示例：
 
@@ -369,9 +369,13 @@ chr1	hg19_ncbiRefSeq	exon	67091530	67091593	0.000000	+	.	gene_id "SGIP1"; transc
 
 我们用一个贯穿的小例子把两种算法都算一遍。假设打分规则如 @fig-a-questions-11-15-005 所示：match 得 5 分，mismatch 扣 4 分，空位罚分 $d=-5$（每个空位扣 5 分）；要比对的序列是 seq1 = AAGT 和 seq2 = AGCT，需要填写 @fig-a-questions-11-15-006 的动态规划表格（以全局比对为例，第 0 行/第 0 列先填入空位累计罚分 0、-5、-10……；局部比对的初始化全为 0）。
 
-![双序列比对的评分规则：相同碱基得 5 分，不同碱基扣 4 分，每个空位扣 5 分](../assets/04-quality-control-and-alignment/svg/pairwise-01-scoring-matrix.svg){#fig-a-questions-11-15-005}
+![双序列比对的评分规则](../assets/04-quality-control-and-alignment/svg/pairwise-01-scoring-matrix.svg){#fig-a-questions-11-15-005}
 
-![待填写的动态规划表：列为 seq2（AGCT），行为 seq1（AAGT）；灰格按全局比对初始化，练习局部比对时先将灰格改为 0](../assets/04-quality-control-and-alignment/svg/pairwise-02-empty-grid.svg){#fig-a-questions-11-15-006}
+图注：相同碱基得 5 分，不同碱基扣 4 分，每个空位扣 5 分。
+
+![双序列比对的动态规划表（待填写）](../assets/04-quality-control-and-alignment/svg/pairwise-02-empty-grid.svg){#fig-a-questions-11-15-006}
+
+图注：列为 seq2（AGCT），行为 seq1（AAGT）。灰格按全局比对初始化；练习局部比对时，先将灰格改为 0。
 
 **Needleman-Wunsch（全局比对）**：从左上角出发，第 0 行第 0 列按空位数初始化（0、-5、-10……），其余每格取“对角线+匹配得分、上方−5、左方−5”三者最大值，右下角的值就是全局最优得分。填表结果见 @fig-a-questions-11-15-007 ：最优得分 5，回溯路径（图中箭头）给出最优比对。本例并列两个最优结果（得分都是 5）：
 
@@ -380,7 +384,9 @@ A A G - T        A A G - T
 - A G C T        A - G C T
 ```
 
-![Needleman–Wunsch 全局比对：灰色小箭头为取值来源，绿色连线为回溯；A、B 两种最优比对均为 5 分，B 独有的回溯段用虚线表示](../assets/04-quality-control-and-alignment/svg/pairwise-03-nw-matrix.svg){#fig-a-questions-11-15-007}
+![Needleman–Wunsch 全局比对的两种最优结果](../assets/04-quality-control-and-alignment/svg/pairwise-03-nw-matrix.svg){#fig-a-questions-11-15-007}
+
+图注：灰色小箭头为取值来源，绿色连线为回溯。A、B 两种最优比对均为 5 分；B 独有的回溯段用虚线表示。
 
 **Smith-Waterman（局部比对）**：与全局比对的差别有两点——第 0 行第 0 列全为 0；每个格子算完后如果为负就记 0。填表结果见 @fig-a-questions-11-15-009 ：矩阵最高分是 10，回溯**从得分最高的单元格开始、遇到 0 停止**（注意不是“从第一个非零的格子开始”，那是初学时常见的错误）。本例最高分 10 对应两个并列的最优局部比对：
 
@@ -389,7 +395,9 @@ A G              A G - T
 A G              A G C T
 ```
 
-![Smith–Waterman 局部比对：从两个加框的 10 分格分别回溯，遇到 0 停止；A、B 共用段为实线，B 独有段为虚线，零分格没有来源箭头](../assets/04-quality-control-and-alignment/svg/pairwise-04-sw-matrix.svg){#fig-a-questions-11-15-009}
+![Smith–Waterman 局部比对的回溯路径](../assets/04-quality-control-and-alignment/svg/pairwise-04-sw-matrix.svg){#fig-a-questions-11-15-009}
+
+图注：从两个加框的 10 分格分别回溯，遇到 0 停止。A、B 共用段为实线，B 独有段为虚线；零分格没有来源箭头。
 
 ::::: {.callout-tip .book-example title="示例与练习｜亲手填出 NW 与 SW 两张表"}
 
@@ -423,7 +431,7 @@ $$ {#eq-blast-operation-count}
 
 按单核每秒约 $3\times10^{9}$ 次、20 个核心计算，大约需要 130 分钟（见 @eq-blast-operation-count ）——序列变成 1000bp 就是 1300 分钟。为找一个相似性花两个小时，显然不划算。
 
-![用精确的局部比对在核酸库中检索一条序列的运算量估算](../assets/a-questions-11-15/010-14-1.jpg){#fig-a-questions-11-15-010}
+![用精确局部比对检索核酸库的运算量估算](../assets/a-questions-11-15/010-14-1.jpg){#fig-a-questions-11-15-010}
 
 BLAST 的解法是**启发式的 seed-and-extend**：把查询序列切成短的种子序列（word），用种子在数据库中快速定位候选区域，再只对候选区域做局部比对延伸，从而避免对全库做精确动态规划，把这类任务的运行时间缩短到了 1 分钟以内。
 
@@ -484,9 +492,9 @@ BLAT 的名字与 BLAST 很接近，两者的用途有什么区别？
 
 在线 BLAT 工具地址是 <https://genome.ucsc.edu/cgi-bin/hgBlat>，也可以通过 UCSC Genome Browser 的 Tools 菜单打开（2026 年 10 月核对可访问）。
 
-![UCSC Genome Browser 的 Tools 菜单中可以找到 BLAT 入口（2018 年界面）](../assets/a-questions-11-15/012-15-1.jpg){#fig-a-questions-11-15-012}
+![UCSC Genome Browser 中的 BLAT 入口（2018 年界面）](../assets/a-questions-11-15/012-15-1.jpg){#fig-a-questions-11-15-012}
 
-![BLAT 在线工具的提交页面：选择基因组版本并粘贴 FASTA 序列（2018 年界面）](../assets/a-questions-11-15/013-15-2.jpg){#fig-a-questions-11-15-013}
+![BLAT 的基因组版本与 FASTA 序列输入页面（2018 年界面）](../assets/a-questions-11-15/013-15-2.jpg){#fig-a-questions-11-15-013}
 
 使用很简单：第 1 行选择基因组版本（比如常用的 hg19），下面的白框粘贴标准 FASTA 格式的序列，点 submit 即可。
 
@@ -535,7 +543,7 @@ UCUCGUUUGAUCUCGGAAGCUAAGCAGGGUUGGGCCUGGUUAGUACUUGGAUGGGAAACUU
 
 说回到我们手上的高通量数据，类比 blast 查询：fq 文件就是我们要检索的序列，reference genome 就是我们手上的数据库，要做的事情就是把 fq 里面的序列全部在 reference genome 上找位置。与 BLAST 不同的是，这回面对的是成千上万条序列的检索，而数据库相对小了很多，检索序列也比传统 sanger 读长短得多。按核心算法不同，高通量比对软件大致分成两大阵营：**哈希表（hash-table）**与 **BWT/FM 索引**，本小节讲前者，下一小节讲后者（ @fig-04-quality-control-and-alignment-001 概括了测序技术与比对算法的对应关系，图片引自 Alser 等人的综述[^alser-2020-review]）。
 
-![高通量序列比对原理：不同时代的测序技术催生了不同的比对算法](../assets/04-quality-control-and-alignment/001-illustration.png){#fig-04-quality-control-and-alignment-001}
+![测序技术与高通量序列比对算法的发展](../assets/04-quality-control-and-alignment/001-illustration.png){#fig-04-quality-control-and-alignment-001}
 
 哈希表把关键码值（key value）映射到表中的具体位置，从而加快查询。基于哈希表的比对采用种子序列定位及延伸算法（seed-and-extend algorithm）。
 
@@ -552,7 +560,9 @@ PASS 和 GASSST 根据参考基因组构建哈希表，通过查询短序列在�
 
 DNA 序列由 A、T、C、G 四种碱基排列而成。我们可以用四进制表示序列，再转换为十进制，以此构建生成哈希表关键码值的函数 H（x），编码方式见 @fig-04-quality-control-and-alignment-002 。
 
-![把 A、T、C、G 分别编码为 0、1、2、3，碱基序列就可以按四进制转十进制得到哈希关键码](../assets/04-quality-control-and-alignment/svg/hash-01-base-encoding.svg){#fig-04-quality-control-and-alignment-002}
+![用四进制编码构建序列的哈希关键码](../assets/04-quality-control-and-alignment/svg/hash-01-base-encoding.svg){#fig-04-quality-control-and-alignment-002}
+
+图注：A、T、C、G 分别编码为 0、1、2、3；将序列对应的四进制数转为十进制，得到哈希关键码。
 
 
 
@@ -572,7 +582,9 @@ $$ {#eq-hash-key-function}
   
 把参考基因组中所有 k-mer 的位置存入哈希表（ @fig-04-quality-control-and-alignment-003 以 k=5 为例），就记录了所有 seed 序列的位置。查询输入序列时，先找到种子的比对位置，再通过延伸确定整条序列的位置。
 
-![以 k=5 构建的 k-mer 哈希表：每个 5-mer 作为关键码，指向它在参考基因组中出现的位置](../assets/04-quality-control-and-alignment/svg/hash-02-kmer-table.svg){#fig-04-quality-control-and-alignment-003}
+![k-mer 哈希表与参考基因组位置的对应关系（k = 5）](../assets/04-quality-control-and-alignment/svg/hash-02-kmer-table.svg){#fig-04-quality-control-and-alignment-003}
+
+图注：每个 5-mer 作为关键码，指向它在参考基因组中出现的位置。
 
 
 
@@ -586,7 +598,9 @@ $$ {#eq-hash-key-function}
 
 
 
-![鸽洞原理示意：read（24 nt）分成 4 段、第 2 段含 1 处错配（✗），即使该段无法精确命中，其余 3 段（✓）仍能在哈希表中定位到参考基因组上](../assets/04-quality-control-and-alignment/svg/hash-03-pigeonhole.svg){#fig-04-quality-control-and-alignment-004}
+![鸽洞原理在序列比对中的应用](../assets/04-quality-control-and-alignment/svg/hash-03-pigeonhole.svg){#fig-04-quality-control-and-alignment-004}
+
+图注：24 nt 的 read 分成 4 段，第 2 段含 1 处错配（✗）。即使该段无法精确命中，其余 3 段（✓）仍能在哈希表中定位到参考基因组上。
 
 
 
@@ -605,11 +619,13 @@ BWT（Burrows-Wheeler Transform）原本是一种用于文本压缩的变换，�
 
 (1) 给定一个子序列，譬如：ACAACG，在其末尾加入一个只会出现在结尾的特殊符号 `$`，然后写出它全部 7 个循环旋转（rotation），见 @fig-04-quality-control-and-alignment-005 。每一行都是把原序列 ACAACG$ 循环左移一位得到，$ 只出现在结尾；高亮的第一行就是原序列本身。
 
-![对 `ACAACG$` 写出全部循环旋转，每一行都是原序列的一个循环移位](../assets/04-quality-control-and-alignment/svg/bwt-01-rotations.svg){#fig-04-quality-control-and-alignment-005}
+![`ACAACG$` 的全部循环旋转](../assets/04-quality-control-and-alignment/svg/bwt-01-rotations.svg){#fig-04-quality-control-and-alignment-005}
 
 (2) 将所有旋转按字符顺序（ASCII 顺序，`$` 最小）排序，得到排序后的旋转矩阵，见 @fig-04-quality-control-and-alignment-006 。
 
-![把全部循环旋转按 `$ < A < C < G` 排序，得到排序后的旋转矩阵](../assets/04-quality-control-and-alignment/svg/bwt-02-sorted-matrix.svg){#fig-04-quality-control-and-alignment-006}
+![按字典序排列的循环旋转矩阵](../assets/04-quality-control-and-alignment/svg/bwt-02-sorted-matrix.svg){#fig-04-quality-control-and-alignment-006}
+
+图注：排序规则为 `$ < A < C < G`。
 
 (3) 取排序矩阵每一行的最后一个字符，按行连成一个序列，即得到 BWT = `GC$AAAC`。矩阵第一列记为 F 列（排好序的），最后一列记为 L 列（就是 BWT 本身）。
 
@@ -622,19 +638,27 @@ BWT（Burrows-Wheeler Transform）原本是一种用于文本压缩的变换，�
 
 - 第 1 步（ @fig-04-quality-control-and-alignment-007 ）：确定原序列的最后一个字符是 G，目前的还原结果是 `G`。
 
-![BWT 解码第 1 步：从 `$` 所在行确定原序列以 G 结尾，当前还原结果为 G](../assets/04-quality-control-and-alignment/svg/bwt-03-decode-step1.svg){#fig-04-quality-control-and-alignment-007}
+![BWT 解码第 1 步：确定末尾字符 G](../assets/04-quality-control-and-alignment/svg/bwt-03-decode-step1.svg){#fig-04-quality-control-and-alignment-007}
+
+图注：从 `$` 所在行确定原序列以 G 结尾，当前逆序还原结果为 G。
 
 - 第 2 步（ @fig-04-quality-control-and-alignment-008 ）：沿着 LF 映射走一步，G 的前一个字符是 C，目前的还原结果是 `GC`。
 
-![BWT 解码第 2 步：LF 映射一步，G 前面是 C，当前还原结果为 GC](../assets/04-quality-control-and-alignment/svg/bwt-04-decode-step2.svg){#fig-04-quality-control-and-alignment-008}
+![BWT 解码第 2 步：通过 LF 映射找到 C](../assets/04-quality-control-and-alignment/svg/bwt-04-decode-step2.svg){#fig-04-quality-control-and-alignment-008}
+
+图注：G 前面是 C，当前逆序还原结果为 GC。
 
 - 第 3 步（ @fig-04-quality-control-and-alignment-009 ）：继续沿 LF 映射，C 的前一个字符是 A，目前的还原结果是 `GCA`。
 
-![BWT 解码第 3 步：继续 LF 映射，C 前面是 A，当前还原结果为 GCA](../assets/04-quality-control-and-alignment/svg/bwt-05-decode-step3.svg){#fig-04-quality-control-and-alignment-009}
+![BWT 解码第 3 步：通过 LF 映射找到 A](../assets/04-quality-control-and-alignment/svg/bwt-05-decode-step3.svg){#fig-04-quality-control-and-alignment-009}
+
+图注：C 前面是 A，当前逆序还原结果为 GCA。
 
 - 后面依次类推（ @fig-04-quality-control-and-alignment-010 ），依次得到 `GCAA`、`GCAAC`、`GCAACA`。把 `GCAACA` 反过来读，就是原序列 `ACAACG`，说明解码成功。
 
-![BWT 解码后续步骤：依次得到 GCAA、GCAAC、GCAACA，逆序即原序列 ACAACG](../assets/04-quality-control-and-alignment/svg/bwt-06-decode-steps4-6.svg){#fig-04-quality-control-and-alignment-010}
+![BWT 解码的后续步骤与完整序列](../assets/04-quality-control-and-alignment/svg/bwt-06-decode-steps4-6.svg){#fig-04-quality-control-and-alignment-010}
+
+图注：依次得到 GCAA、GCAAC、GCAACA，逆序即原序列 ACAACG。
 
 有了上面的推导再回头看 4.2.1 的建索引：**目前 BWA、Bowtie、Bowtie 2 的核心用的都是 BWT/FM 索引**——把人类基因组的 BWT 字符串和少量辅助数组存下来，就能既省内存、又以对数级时间完成海量 reads 的定位，这正是它们能“秒级”完成上千万条 reads 比对的底层原因。
 
@@ -662,7 +686,7 @@ BWT（Burrows-Wheeler Transform）原本是一种用于文本压缩的变换，�
 | small RNA（miRNA 等，18–30nt） | Bowtie（v1） | 序列很短，不允许空位的严格全局比对更合适 |
 | 长读长（PacBio/ONT） | minimap2（pbmm2 基于它） | 为长读段错误模式设计 |
 
-: 按数据类型初选比对软件 {#tbl-04-aligner-choices}
+: 不同数据类型的常用比对软件 {#tbl-04-aligner-choices}
 
 本章仅对 BWA、Bowtie 以及 Bowtie 2 做深入比较，方便读者在科研工作中选择。
 
@@ -684,7 +708,7 @@ Bowtie 2 已收录在 conda 的 bioconda channel 中，用 conda 安装最方便
 
 
 
-![在必应搜索 conda cloud，找到 Anaconda Cloud 入口（2019 年前后界面）](../assets/04-quality-control-and-alignment/011-illustration.png){#fig-04-quality-control-and-alignment-011}
+![Anaconda Cloud 的搜索入口（2019 年前后界面）](../assets/04-quality-control-and-alignment/011-illustration.png){#fig-04-quality-control-and-alignment-011}
 
 
 
@@ -692,7 +716,7 @@ Bowtie 2 已收录在 conda 的 bioconda channel 中，用 conda 安装最方便
 
 
 
-![在 Anaconda Cloud 中搜索 Bowtie 2（2019 年前后界面）](../assets/04-quality-control-and-alignment/012-illustration.png){#fig-04-quality-control-and-alignment-012}
+![Anaconda Cloud 中的 Bowtie 2 搜索结果（2019 年前后界面）](../assets/04-quality-control-and-alignment/012-illustration.png){#fig-04-quality-control-and-alignment-012}
 
 
 
@@ -700,7 +724,7 @@ Bowtie 2 已收录在 conda 的 bioconda channel 中，用 conda 安装最方便
 
 
 
-![搜索结果中的 Bowtie 2 软件页面入口（2019 年前后界面）](../assets/04-quality-control-and-alignment/013-illustration.png){#fig-04-quality-control-and-alignment-013}
+![Bowtie 2 软件页面入口（2019 年前后界面）](../assets/04-quality-control-and-alignment/013-illustration.png){#fig-04-quality-control-and-alignment-013}
 
 
 
@@ -708,7 +732,7 @@ Bowtie 2 已收录在 conda 的 bioconda channel 中，用 conda 安装最方便
 
 
 
-![Bowtie 2 软件页面上给出的 conda 安装命令（2019 年前后界面）](../assets/04-quality-control-and-alignment/014-illustration.png){#fig-04-quality-control-and-alignment-014}
+![Bowtie 2 软件页面中的 conda 安装命令（2019 年前后界面）](../assets/04-quality-control-and-alignment/014-illustration.png){#fig-04-quality-control-and-alignment-014}
 
 
 
@@ -720,7 +744,7 @@ conda install -c bioconda bowtie2
 
 
 
-![conda install 安装 Bowtie 2 的完成界面](../assets/04-quality-control-and-alignment/015-illustration.png){#fig-04-quality-control-and-alignment-015}
+![conda 安装 Bowtie 2 完成后的终端输出](../assets/04-quality-control-and-alignment/015-illustration.png){#fig-04-quality-control-and-alignment-015}
 
 
 
@@ -728,7 +752,7 @@ conda install -c bioconda bowtie2
 
 
 
-![命令行中输入 Bowtie 2 后连按 Tab 补齐，可以看到 Bowtie 2 相关的全部命令](../assets/04-quality-control-and-alignment/016-illustration.png){#fig-04-quality-control-and-alignment-016}
+![Bowtie 2 相关命令的 Tab 补全结果](../assets/04-quality-control-and-alignment/016-illustration.png){#fig-04-quality-control-and-alignment-016}
 
 
 
@@ -738,7 +762,7 @@ conda install -c bioconda bowtie2
 
 
 
-![在搜索引擎中搜索 Bowtie 2，进入官方网站](../assets/04-quality-control-and-alignment/017-illustration.png){#fig-04-quality-control-and-alignment-017}
+![搜索引擎中的 Bowtie 2 官网入口](../assets/04-quality-control-and-alignment/017-illustration.png){#fig-04-quality-control-and-alignment-017}
 
 
 
@@ -746,7 +770,7 @@ conda install -c bioconda bowtie2
 
 
 
-![Bowtie 2 官网列出了各版本修复的问题，右下角是 GitHub 源码地址](../assets/04-quality-control-and-alignment/018-illustration.png){#fig-04-quality-control-and-alignment-018}
+![Bowtie 2 官网的版本更新说明与 GitHub 源码入口](../assets/04-quality-control-and-alignment/018-illustration.png){#fig-04-quality-control-and-alignment-018}
 
 
 
@@ -754,7 +778,7 @@ conda install -c bioconda bowtie2
 
 
 
-![GitHub 仓库页面：可下载 zip 或复制 clone 地址](../assets/04-quality-control-and-alignment/019-illustration.png){#fig-04-quality-control-and-alignment-019}
+![GitHub 仓库中的 ZIP 下载与 clone 地址](../assets/04-quality-control-and-alignment/019-illustration.png){#fig-04-quality-control-and-alignment-019}
 
 
 
@@ -765,7 +789,7 @@ git clone https://github.com/BenLangmead/bowtie2.git
 
 
 
-![git clone 下载 Bowtie 2 源码的过程](../assets/04-quality-control-and-alignment/020-illustration.png){#fig-04-quality-control-and-alignment-020}
+![用 git clone 下载 Bowtie 2 源码](../assets/04-quality-control-and-alignment/020-illustration.png){#fig-04-quality-control-and-alignment-020}
 
 
 
@@ -803,7 +827,7 @@ source ~/.bashrc #更新当前环境
 
 
 
-![GitHub 下载页面下方带有 Bowtie 2 的使用简要说明](../assets/04-quality-control-and-alignment/021-illustration.png){#fig-04-quality-control-and-alignment-021}
+![Bowtie 2 GitHub 页面中的使用说明](../assets/04-quality-control-and-alignment/021-illustration.png){#fig-04-quality-control-and-alignment-021}
 
 
 
@@ -828,7 +852,7 @@ bowtie2-build chrX.fa chrX.fa
 
 
 
-![Bowtie 2-build 生成的六个 .bt2 索引文件](../assets/04-quality-control-and-alignment/023-illustration.png){#fig-04-quality-control-and-alignment-023}
+![Bowtie 2 的六个 .bt2 索引文件](../assets/04-quality-control-and-alignment/023-illustration.png){#fig-04-quality-control-and-alignment-023}
 
 
 
@@ -945,9 +969,9 @@ SAM 的全称是 Sequence Alignment Map，设计之初就是为了存储 mapping
 less ERR188245.sam
 ```
 
-![用 less 查看 Bowtie 2 输出的 SAM 文件：@ 开头的头文件与比对结果行](../assets/04-quality-control-and-alignment/024-illustration.png){#fig-04-quality-control-and-alignment-024}
+![用 less 查看 Bowtie 2 输出的 SAM 文件](../assets/04-quality-control-and-alignment/024-illustration.png){#fig-04-quality-control-and-alignment-024}
 
-![一份 SAM 文件的内容：上面几行是 @ 开头的头部，下面是比对结果](../assets/a-questions-16-20/002-17-1.jpg){#fig-a-questions-16-20-002}
+![SAM 文件的头信息与比对记录](../assets/a-questions-16-20/002-17-1.jpg){#fig-a-questions-16-20-002}
 
 头部信息我们已经在图里见过：@HD 说明版本与是否排序（SO:coordinate 表示已按坐标排序），@SQ 列出每条参考序列的名称和长度，@PG 记录产生该文件的程序与命令行。真正承载数据的是头文件下面的比对结果：**每行一条 read，共 11 个必需列**，各列含义汇总见 @tbl-04-sam-columns ，下一小节结合实例逐列展开。
 
@@ -1002,7 +1026,7 @@ $$ {#eq-mapq-definition}
 
 当 MAPQ=255 时，代表该值不可用，只是一个占位符。至于“mapping 出错的概率”怎么算：各软件结合比对情况与碱基测序质量评估——核心思想是低质量碱基若发生错配，很可能是测序错误，不应重罚；低质量碱基即使完美匹配，置信度也不高。
 
-![一份标准 SAM 文件的内容：第 5 列为 MAPQ 值](../assets/a-questions-16-20/006-18-1.jpg){#fig-a-questions-16-20-006}
+![SAM 文件中的 MAPQ 列](../assets/a-questions-16-20/006-18-1.jpg){#fig-a-questions-16-20-006}
 
 下游分析通常会把 MAPQ 过低的 reads 去掉。阈值没有统一规定，按分析目的选择：粗略统计常用 MAPQ≥10，常规过滤常用 MAPQ≥20，寻找 somatic mutation 这类高置信度要求的分析常用 MAPQ≥30。不同软件的 MAPQ 计算体系不同，不能跨软件直接比较（见下面的练习）。
 
@@ -1055,7 +1079,9 @@ CIGAR 用“数字+操作符”串描述一条 read 与参考的比对情况：`
 
  @fig-a-questions-16-20-004 是一份真实 SAM 文件的前 4 列（最前面的行号是截图时加的，不在文件里）。请解释标号 38 那行 FLAG=83 的比对含义。
 
-![SAM 文件中的前 4 列内容（最前面的行号是截图时加上的，不包含在 SAM 文件中）](../assets/a-questions-16-20/004-17-3.jpg){#fig-a-questions-16-20-004}
+![SAM 比对记录的前 4 列](../assets/a-questions-16-20/004-17-3.jpg){#fig-a-questions-16-20-004}
+
+图注：最前面的行号是截图时添加的，不属于 SAM 文件。
 
 **参考解答**：可以手工分解，FLAG 是各二进制位之和：$\mathrm{FLAG}=1+2+16+64=83$。也可以用 Picard 的 [Explain SAM Flags 工具](https://broadinstitute.github.io/Picard/explain-flags.html)（2026 年 10 月核对可访问），输入 83 即可得到分解（ @fig-a-questions-16-20-005 ）。FLAG=83 表示：
 
@@ -1086,7 +1112,7 @@ CIGAR 用“数字+操作符”串描述一条 read 与参考的比对情况：`
 
 **问题 3**：结合 @fig-a-questions-16-20-010 理解 clip 的含义（soft clip 与 hard clip）。该图依据 SAM 规范中的官方示例绘制。
 
-![reads 比对到参考序列的示意：展示了 M、I、N、S、H 等 CIGAR 操作符（依据 SAM 规范官方示例绘制）](../assets/04-quality-control-and-alignment/svg/cigar-alignment-example.svg){#fig-a-questions-16-20-010}
+![CIGAR 操作符 M、I、N、S、H 的含义[^fig04-cigar-source]](../assets/04-quality-control-and-alignment/svg/cigar-alignment-example.svg){#fig-a-questions-16-20-010}
 
 **参考解答**：以 r003 为例，它是嵌合比对（chimeric read），有两条记录：代表比对是 `5S6M`（前 5bp 软剪切），补充比对是 `6H5M`（前 6bp 硬剪切）。两条记录里 SEQ 列的长度分别是 11bp 和 5bp——软剪切时被剪掉的序列仍保留在 BAM 文件中，硬剪切时被剪掉的序列则不会出现在 SEQ 列里。图中 r004 的 `6M14N5M` 演示了跳过（N）内含子区域的 split alignment。
 
@@ -1102,7 +1128,7 @@ CIGAR 用“数字+操作符”串描述一条 read 与参考的比对情况：`
 
  @fig-a-questions-16-20-012 是一份包含 11 列的 SAM 文件截图。第 20 行第 9 列记录了 TLEN 值，请列出算式计算它。
 
-![一份包含 11 列的 SAM 文件截图](../assets/a-questions-16-20/012-20-1.jpg){#fig-a-questions-16-20-012}
+![SAM 比对记录的 11 个必需字段](../assets/a-questions-16-20/012-20-1.jpg){#fig-a-questions-16-20-012}
 
 **参考解答**：第 20 行记录的下游 read 起点为 11123，CIGAR 为 `145M`，因此最后一个比对碱基的坐标为 $11123+145-1=11267$。其 mate 的起点为 10946；按 SAM 的 1-based 闭区间计算，外侧跨度为 $11267-10946+1=322$。等价地可写为 $11123-10946+145=322$；下游 read 的 TLEN 取负值：
 
@@ -1112,7 +1138,9 @@ $$ {#eq-tlen-example}
 
 计算过程见 @fig-a-questions-16-20-014 。
 
-![TLEN 的 IGV 风格示意：左端起点 10946，右端 read 从 11123 起、CIGAR 为 145M，终点 11267；外侧跨度 322 bp，左端 TLEN 为 +322，右端为 −322。左端 read 长度仅作示意](../assets/04-quality-control-and-alignment/svg/tlen-calculation.svg){#fig-a-questions-16-20-014}
+![成对 reads 的 TLEN 计算示意](../assets/04-quality-control-and-alignment/svg/tlen-calculation.svg){#fig-a-questions-16-20-014}
+
+图注：左端起点为 10946；右端 read 从 11123 起，CIGAR 为 145M，终点为 11267。外侧跨度为 322 bp，左端 TLEN 为 +322，右端为 −322。图采用 IGV 风格，左端 read 长度仅作示意。
 
 :::::
 
@@ -1169,7 +1197,7 @@ $$ {#eq-tlen-example}
 ST-E00126:128:HJFLHCCXX:2:2107:22820:18520	99	chr1	11682	1	145M	=	11920	325	GGAGATTCTTATTAGTGATTTCGGCTGGTGCCTGGCCATGTGTATTTTTTTAAATTTCCACTGATGATTTTGCTGCATGGCCGGTGTTGAGAATGACTGCGCAAATTTGCCGGATTTCCTTTGCTGTTCCTGCATGTAGTTTAAA	KKKKAAKKAFFKKKKKKFKFKKKFKKKKKKKKKKFKFKKKKKKKKKKKKKKFKFFKKKKKKFAAKAKKKKKKKKKKKKFFKKKFFFKKFKFFKKKKKKKKFFFFFKKKKKKK7<FFKKKKKKAFK<F<<7<AA,,7AA<7F7AA<	MD:Z:21G6G116	XG:i:0	NM:i:2	XM:i:2	XN:i:0	XO:i:0	AS:i:-12	XS:i:-12	YS:i:-6	YT:Z:CP
 ```
 
-![SAM 文件的 11 列以后的信息截图](../assets/a-questions-21-25/001-21-1.jpg){#fig-a-questions-21-25-001}
+![SAM 比对记录中的可选字段](../assets/a-questions-21-25/001-21-1.jpg){#fig-a-questions-21-25-001}
 
 **参考解答**：
 
@@ -1355,7 +1383,7 @@ samtools bam2fq filter_MAPQ20.bam > filter_MAPQ20.fastq
 
 **参考解答**：查看 header 中的 @PG ID，显示使用的软件是 Bowtie 2；各条染色体的长度见 @fig-a-questions-21-25-003 。
 
-![test.sam 文件 header 中各条染色体的长度](../assets/a-questions-21-25/003-22-1.jpg){#fig-a-questions-21-25-003}
+![test.sam 头信息中的染色体长度](../assets/a-questions-21-25/003-22-1.jpg){#fig-a-questions-21-25-003}
 
 **问题 2**：把 test.sam 转换成 test.bam（保留 header），写出命令并比较两个文件的大小。
 
@@ -1450,7 +1478,9 @@ $$ {#eq-04-quality-control-and-alignment-003}
 因此，我们获得了全基因组各碱基位点的测序深度的概率分布（概率质量分布PMF）估计，如下图（以$\lambda=40$为例）：
 
 
-![测序深度取整数的概率质量分布（以均值 λ=40 的泊松分布为例）](../assets/04-quality-control-and-alignment/038-snp-calling-estimate-depth-distribution.png){#fig-04-quality-control-and-alignment-038}
+![泊松分布下的测序深度概率（λ = 40）](../assets/04-quality-control-and-alignment/038-snp-calling-estimate-depth-distribution.png){#fig-04-quality-control-and-alignment-038}
+
+图注：测序深度取整数，图示为概率质量分布。
 
 
 根据测序深度的概率分布，可以进一步求出深度大于指定阈值 $d$ 的基因组区域比例：
@@ -1465,7 +1495,9 @@ $$ {#eq-04-quality-control-and-alignment-004}
 
 不过实际的基因组测序深度分布与泊松分布并不完全一致：由于GC偏好性等因素的影响，“全基因组各区域来源等概率”的假设并不完全成立，实际分布相对于理论分布存在明显的过度离散（overdispersion，即 $Var(D) > E(D)$）。实测深度分布见 @fig-04-quality-control-and-alignment-039 ：实测分布（柱）比同均值的泊松分布（线）更“胖”，说明有些区域深度远高于预期、有些远低于预期。以 Bentley 等人 2008 年的整基因组测序数据为例，实测方差约为同均值泊松分布的 2.26 倍[^bentley-2008]。
 
-![实测测序深度分布与同均值泊松分布的对比：实测分布过度离散](../assets/04-quality-control-and-alignment/039-snp-calling-possion-overdispersion.png){#fig-04-quality-control-and-alignment-039}
+![实测测序深度与同均值泊松分布的比较](../assets/04-quality-control-and-alignment/039-snp-calling-possion-overdispersion.png){#fig-04-quality-control-and-alignment-039}
+
+图注：实测分布呈现过度离散。
 
 该图引自 Shen 等人 2008 年提出的 SNP 检测方法中的分析[^shen-2008]。
 
@@ -1481,7 +1513,7 @@ $$ {#eq-04-quality-control-and-alignment-004}
 
 duplicate 主要来自建库与测序过程，常见来源有四种，图示见 @fig-04-quality-control-and-alignment-040 。
 
-![GATK 流程中总结的 duplicate 产生原因](../assets/04-quality-control-and-alignment/040-gatk4-pipeline-remove-duplicates-reason-of-duplicates.jpg){#fig-04-quality-control-and-alignment-040}
+![GATK 流程中总结的重复 reads 来源](../assets/04-quality-control-and-alignment/040-gatk4-pipeline-remove-duplicates-reason-of-duplicates.jpg){#fig-04-quality-control-and-alignment-040}
 
 - **PCR duplicates（PCR重复）**：PCR 扩增时，同一个 DNA 片段会产生多个相同的拷贝；测序时，这些来源于同一个模板分子的片段会结合到 Flowcell 的不同位置上，生成序列完全相同的 cluster 被测出来，这些相同的序列就是 duplicate。
 
@@ -1503,7 +1535,7 @@ duplicate 主要来自建库与测序过程，常见来源有四种，图示见 
 
 duplicate 的产生主要是因为 Illumina 建库过程中一般会使用 PCR 来扩增文库：如果 PCR 扩增轮数过大，同一个模板分子就会产生一模一样的若干条序列（来源见上一小节）。FastQC 的“Sequence Duplication Levels”模块（ @fig-a-questions-06-10-010 ）就是用来刻画 duplicate 情况的。
 
-![FastQC 的 Sequence Duplication Levels 模块结果图](../assets/a-questions-06-10/010-9-1.jpg){#fig-a-questions-06-10-010}
+![FastQC 的序列重复水平报告](../assets/a-questions-06-10/010-9-1.jpg){#fig-a-questions-06-10-010}
 
 **问题 1**：图中横坐标、纵坐标分别是什么意思？
 
@@ -1583,7 +1615,7 @@ java -jar picard.jar MarkDuplicates I=ERR188245_chrX.sorted.bam O=ERR188245_chrX
 
 
 
-![GATK4 pipeline remove duplicates 3](../assets/04-quality-control-and-alignment/042-gatk4-pipeline-remove-duplicates-3.png){#fig-04-quality-control-and-alignment-042}
+![SAM 排序与重复 reads 的标记流程](../assets/04-quality-control-and-alignment/042-gatk4-pipeline-remove-duplicates-3.png){#fig-04-quality-control-and-alignment-042}
 
 
 
@@ -1606,7 +1638,7 @@ java -jar picard.jar SortSam \
 
 
 
-![GATK4 pipeline remove duplicates 4](../assets/04-quality-control-and-alignment/043-gatk4-pipeline-remove-duplicates-4.png){#fig-04-quality-control-and-alignment-043}
+![GATK SortSam 的运行输出与排序后的文件（2018 年示例）](../assets/04-quality-control-and-alignment/043-gatk4-pipeline-remove-duplicates-4.png){#fig-04-quality-control-and-alignment-043}
 
 
 
@@ -1664,7 +1696,7 @@ gatk MarkDuplicates -I preprocess/T.chr17.sort.bam -O preprocess/T.chr17.markdup
 
 
 
-![GATK4 pipeline remove duplicates 5](../assets/04-quality-control-and-alignment/044-gatk4-pipeline-remove-duplicates-5.png){#fig-04-quality-control-and-alignment-044}
+![GATK MarkDuplicates 的运行输出与结果文件（2018 年示例）](../assets/04-quality-control-and-alignment/044-gatk4-pipeline-remove-duplicates-5.png){#fig-04-quality-control-and-alignment-044}
 
 
 
@@ -1813,7 +1845,9 @@ $$ {#eq-04-quality-control-and-alignment-019}
 
 3. 对真实的变异，PCR 可能对包含某个等位基因的模板扩增更剧烈（PCR bias）。如果反应体系对含 reference allele 的模板扩增偏向强烈，变异碱基的支持 reads 会变少，从而导致假阴性。
 
-![PCR 重复会抬高表观覆盖：上图中的 6 对同端点 reads 设定为同一个原始片段的 PCR 拷贝；下图标记并过滤重复后保留 1 份。两图使用相同坐标与覆盖度刻度（自绘 IGV 风格示意）](../assets/04-quality-control-and-alignment/svg/pcr-duplicate-pileup.svg){#fig-04-quality-control-and-alignment-041}
+![PCR 重复对表观覆盖度的影响（示意）](../assets/04-quality-control-and-alignment/svg/pcr-duplicate-pileup.svg){#fig-04-quality-control-and-alignment-041}
+
+图注：上图中的 6 对同端点 reads 设定为同一个原始片段的 PCR 拷贝；下图标记并过滤重复后保留 1 份。两图采用 IGV 风格，使用相同坐标与覆盖度刻度。
 
 图中成组的 reads 左右端点一致，提供了识别重复的线索；这些拷贝增加了测序条数，却没有增加独立原始片段数。实际数据中，仅凭堆叠外观不能确定重复来自 PCR，还需要结合建库方式和重复标记结果。Picard 的 MarkDuplicates 默认在 BAM 中标记重复；图中下半部分展示的是随后过滤这些标记后的视图。[^fig-pcr-duplicates]
 
@@ -1841,9 +1875,9 @@ samtools 的 flagstat 或 Qualimap 2 能告诉我们**总体**比对情况。如
 
 在搜索引擎中搜索 IGV 并进入官网（ @fig-04-quality-control-and-alignment-025 ；官网地址 <https://igv.org>，2026 年 10 月核对可访问）。这里使用**桌面版**（ @fig-04-quality-control-and-alignment-026 ），按提示安装即可（ @fig-04-quality-control-and-alignment-027 ）。以下截图摄于 2019 年前后，官网界面可能已有调整，但仍可按相同思路找到桌面版安装包。
 
-![在必应搜索 IGV，进入软件官网（2019 年前后界面）](../assets/04-quality-control-and-alignment/025-illustration.png){#fig-04-quality-control-and-alignment-025}
+![搜索引擎中的 IGV 官网入口（2019 年前后界面）](../assets/04-quality-control-and-alignment/025-illustration.png){#fig-04-quality-control-and-alignment-025}
 
-![IGV 官网的下载入口，本例使用桌面版（2019 年前后界面）](../assets/04-quality-control-and-alignment/026-illustration.png){#fig-04-quality-control-and-alignment-026}
+![IGV 桌面版下载入口（2019 年前后界面）](../assets/04-quality-control-and-alignment/026-illustration.png){#fig-04-quality-control-and-alignment-026}
 
 ![IGV 桌面版的安装界面（2019 年前后界面）](../assets/04-quality-control-and-alignment/027-illustration.png){#fig-04-quality-control-and-alignment-027}
 
@@ -1863,15 +1897,15 @@ samtools index -@ 2 ERR188245_chrX.sorted.bam ERR188245_chrX.sorted.bai
 
 ![IGV 启动后的主界面](../assets/04-quality-control-and-alignment/028-illustration.png){#fig-04-quality-control-and-alignment-028}
 
-![通过 File --> Load from File 导入排序并建立索引的 bam 文件](../assets/04-quality-control-and-alignment/029-illustration.png){#fig-04-quality-control-and-alignment-029}
+![在 IGV 中导入已排序并建立索引的 BAM 文件](../assets/04-quality-control-and-alignment/029-illustration.png){#fig-04-quality-control-and-alignment-029}
 
-![选择要查看的染色体：本例数据只测了 chrX](../assets/04-quality-control-and-alignment/030-illustration.png){#fig-04-quality-control-and-alignment-030}
+![IGV 中的染色体选择（本例为 chrX）](../assets/04-quality-control-and-alignment/030-illustration.png){#fig-04-quality-control-and-alignment-030}
 
 ![IGV 中 chrX 的整体比对视图](../assets/04-quality-control-and-alignment/031-illustration.png){#fig-04-quality-control-and-alignment-031}
 
 不断双击想查看的位置，即可放大到 reads 级视图（ @fig-04-quality-control-and-alignment-032 ）：每条 read 一行，与参考一致的碱基不显示颜色，错配会标出彩色字母，插入缺失也有对应标记。
 
-![不断双击想查看的位置即可放大，reads 级视图可见每条序列与参考的匹配情况](../assets/04-quality-control-and-alignment/032-illustration.png){#fig-04-quality-control-and-alignment-032}
+![IGV 中 reads 与参考序列的匹配情况](../assets/04-quality-control-and-alignment/032-illustration.png){#fig-04-quality-control-and-alignment-032}
 
 ### 使用 IGV 进行截图 {#sec-04-08-screenshot}
 
@@ -1907,3 +1941,5 @@ samtools index -@ 2 ERR188245_chrX.sorted.bam ERR188245_chrX.sorted.bai
 
 
 [^fig-pcr-duplicates]: Broad Institute. [MarkDuplicates (Picard) 官方说明](https://gatk.broadinstitute.org/hc/en-us/articles/360057439771-MarkDuplicates-Picard)：识别并标记 PCR 或测序过程产生的重复，默认标记而非删除。本图为说明原理构造的 read pairs，不是实际 IGV 截图。
+
+[^fig04-cigar-source]: 依据 SAM 规范的官方示例绘制。

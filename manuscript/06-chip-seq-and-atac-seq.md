@@ -84,7 +84,9 @@ ChIP-seq 需要交联和大量细胞，这两点在实践中都常成为瓶颈�
 | 典型信号形态 | 窄而尖的峰 | 宽而平的峰（视修饰而定） | 开放位点处的峰 |
 | 建议测序深度（ENCODE 现行） | 每重复 2000 万可用片段 | 窄峰型 2000 万 / 宽峰型 4500 万 | 每重复 2500 万条去重后非线粒体 reads |
 
-: 三类区域信号实验的对比（深度标准引自 ENCODE 现行标准，见 [6.2 节](#topic-06-depth-reps)） {#tbl-06-three-signals}
+: 转录因子 ChIP-seq、组蛋白 ChIP-seq 与 ATAC-seq 的比较 {#tbl-06-three-signals}
+
+表注：深度标准引自 ENCODE；具体条件见 [6.2 节](#topic-06-depth-reps)。
 
 @tbl-06-three-signals 三列对应本章的三个分析对象：6.2—6.4 节以转录因子 NRF1 的 ChIP-seq 为主线（组蛋白修饰 H3K27ac 作为宽峰对照），6.5 节引入 ATAC-seq 案例，6.6—6.8 节把两类数据汇入同一套统计与解释框架。
 
@@ -161,7 +163,7 @@ ChIP-seq 的特异性完全依赖抗体。系统性评估的结果并不乐观�
 | H3K27AC_CHIP_TKO_2 | GSM1891654 | SRR2500896 | 45,485,455 |
 | NRF1_INPUT_TKO | GSM1891646 | SRR2500888 | 24,937,026 |
 
-: 本章 ChIP-seq 案例使用的 10 个样本（全部为单端测序；编号已于 2026-10 核对） {#tbl-06-chip-seq-and-atac-seq-01}
+: ChIP-seq 案例的 10 个样本（单端测序） {#tbl-06-chip-seq-and-atac-seq-01}
 
 @tbl-06-chip-seq-and-atac-seq-01 可以读出实验设计的对称性：因子（NRF1/H3K27ac）× 基因型（WT/TKO）× 重复，再加两个 input。本章教程实际下载并分析了其中 WT 侧的三个样本（NRF1 两个重复与 input），TKO 侧的分析命令完全同构。
 
@@ -242,7 +244,7 @@ ChIP-seq 的计算分析包括以下步骤：
 6. **重复一致性检验**：IDR（见 [6.6 节](#sec-06-06)）；
 7. **差异分析与下游解释**：统一峰集合、计数、注释与 motif（见 [6.7 节](#sec-06-07)与 [6.8 节](#sec-06-08)）。
 
-![ChIP-seq 与 ATAC-seq 的分析流程总览](../assets/07-chip-seq-and-atac-seq/015-analysis-overview-dual-case.svg){#fig-07-chip-seq-and-atac-seq-003}
+![ChIP-seq 与 ATAC-seq 分析流程](../assets/07-chip-seq-and-atac-seq/015-analysis-overview-dual-case.svg){#fig-07-chip-seq-and-atac-seq-003}
 
 如 @fig-07-chip-seq-and-atac-seq-003 所示，两条主线共用质控与比对，在专属处理环节分叉后汇入同一套统计框架；其中第 1—3 步对所有高通量测序数据都是共通的，本章只讲与 ChIP-seq/ATAC-seq 相关的判断点；第 5 步起才是区域信号分析特有的内容。
 
@@ -325,9 +327,9 @@ fastqc --threads 4 --outdir QC *.clean.fastq.gz
 multiqc .          # 汇总所有报告，输出 multiqc_report.html
 ```
 
-![fastp 的过滤报告](../assets/07-chip-seq-and-atac-seq/010-fastp.png){#fig-07-chip-seq-and-atac-seq-010}
+![fastp 过滤前后的质控报告](../assets/07-chip-seq-and-atac-seq/010-fastp.png){#fig-07-chip-seq-and-atac-seq-010}
 
-![FastQC 复查结果](../assets/07-chip-seq-and-atac-seq/011-fastqc.png){#fig-07-chip-seq-and-atac-seq-011}
+![FastQC 中过滤前后的质量指标对比](../assets/07-chip-seq-and-atac-seq/011-fastqc.png){#fig-07-chip-seq-and-atac-seq-011}
 
 @fig-07-chip-seq-and-atac-seq-011 从上到下：每碱基质量值分布、碱基组成、过表达序列（左：过滤前，右：过滤后）、GC 含量分布（左：过滤前，右：过滤后）。GC 异常与过表达序列常常是同一个来源——接头或引物污染，过滤后一起恢复正常。
 
@@ -353,7 +355,7 @@ bowtie2-build --threads 24 mm10.fa mm10
 
 **比对模式**：Bowtie 2 默认的 end-to-end（全局）模式要求整条 reads 都参与比对，不做修剪；`--local`（局部）模式会把 reads 两端低质量部分剪掉换取更高得分。
 
-![end-to-end 与 local 两种比对模式的区别](../assets/07-chip-seq-and-atac-seq/020-e2e-vs-local.svg){#fig-07-chip-seq-and-atac-seq-012}
+![Bowtie 2 的 end-to-end 与 local 比对模式](../assets/07-chip-seq-and-atac-seq/020-e2e-vs-local.svg){#fig-07-chip-seq-and-atac-seq-012}
 
 如 @fig-07-chip-seq-and-atac-seq-012 所示，同一条 read 在两种模式下会得到不同的比对结果：end-to-end 要求整条 read 参与比对、错配只计罚不剪除；local 允许把两端低质量部分 soft-clip 掉、只保留高分的中段（概念见 [Bowtie 2 手册](http://bowtie-bio.sourceforge.net/bowtie2/manual.shtml)，图为参照该概念自绘）。对随机打断、质量不错的 ChIP-seq 数据，**默认的 end-to-end 即可**；local 更适合 reads 质量差或预期存在融合/重排的场景。
 
@@ -412,7 +414,9 @@ peak calling 的目标，是在全基因组上找出 ChIP 信号相对背景显�
 | 窄峰（narrow） | H3K4me3、H3K27ac、H3K9ac |
 | 宽峰（broad） | H3K27me3、H3K36me3、H3K9me3 |
 
-: 组蛋白修饰的峰类型（整理自 ENCODE 组蛋白 ChIP-seq 标准） {#tbl-06-peak-types}
+: 常见组蛋白修饰的峰类型 {#tbl-06-peak-types}
+
+表注：整理自 ENCODE 组蛋白 ChIP-seq 标准。
 
 窄峰修饰标记活跃的启动子/增强子，宽峰修饰标记大范围的抑制或转录区域——峰形态本身就承载生物学含义。这也直接影响工具与参数的选择：窄峰用点式找峰，宽峰用区域式找峰（MACS 的 `--broad`，见下文）。
 
@@ -540,7 +544,7 @@ grep -v "^chrM" peaks/NRF1_WT1.clean.narrowPeak > peaks/NRF1_WT1.final.narrowPea
 | Irf8−/− rep1 | SRR5852296 | KO | 6,317,121 |
 | Irf8−/− rep2 | SRR5852297 | KO | 13,687,924 |
 
-: ATAC-seq 案例样本（NextSeq 500，双端 2×75） {#tbl-06-atac-samples}
+: ATAC-seq 案例样本（NextSeq 500，双端 2 × 75 bp） {#tbl-06-atac-samples}
 
 下载方式与 6.2 节相同（ENA 直链或 SRA Explorer），双端数据每个样本有 `_1`/`_2` 两个文件：
 
@@ -646,7 +650,7 @@ ENCODE 为 ATAC-seq 定义了一套现行指标（[数据标准页](https://www.
 | 线粒体比例 | chrM reads 占比 | 无硬阈值，越低越好（影响有效深度） |
 | NRF / PBC1 / PBC2 | 文库复杂度与瓶颈 | NRF>0.9、PBC1>0.9、PBC2>3 |
 
-: ATAC-seq 质控指标（ENCODE 现行标准） {#tbl-06-atac-qc}
+: ENCODE 的 ATAC-seq 质控指标 {#tbl-06-atac-qc}
 
 [**ataqv**](https://github.com/ParkerLab/ataqv) 一条命令输出上述全部指标：
 

@@ -42,7 +42,7 @@
 
 真核生物中编码蛋白质的基因由外显子（exon）和内含子（intron）组成；转录后内含子被剪接移除、外显子相连，形成成熟的 mRNA（这一过程在第 5 章转录组建库部分已经介绍）。所有外显子区域的集合称为外显子组（exome）。从检测能力看，外显子组虽小，位置却关键：蛋白质编码基因只占人类基因组约 1%，却集中了约 85% 对疾病性状有较大效应的已知突变[^choi-2009]。外显子长度普遍较短，约 80% 的人类外显子短于 200 bp，平均约 170 bp[^sakharkar-2004]。
 
-![外显子与内含子：同一个基因经可变剪接产生成熟 mRNA（图片来自维基百科 Alternative splicing 条目，同第 5 章图 5.7）](../assets/08-wgs-and-wes/003-alternative-splicing.jpg){#fig-08-wgs-and-wes-003}
+![可变剪接中外显子与内含子的变化[^fig07-splicing-source]](../assets/08-wgs-and-wes/003-alternative-splicing.jpg){#fig-08-wgs-and-wes-003}
 
 @fig-08-wgs-and-wes-003 回顾了外显子、内含子与剪接的关系：内含子在剪接中被移除、外显子相连形成成熟 mRNA，而且外显子的取舍可以不同（可变剪接）。这是理解"WES 测的到底是什么区域"的基础——WES 的目标外显子，正是各转录本外显子集合的并集。
 
@@ -63,7 +63,9 @@ WGS 与 WES 各有所长，实际中应当结合研究课题和实验设计选�
 
 WGS 不经过捕获，还可以构建 PCR-free 文库直接测序，因此覆盖更均匀、深度更稳定，能发现捕获设计之外的区域，SNV 检测灵敏度也不依赖捕获效率[^meynert-2014]。随着测序成本下降（见 @fig-08-wgs-and-wes-005 ），WGS 在科研项目中的比重持续上升；但在需要高深度编码区检测、样本量大或预算有限的场景中，WES 仍然是常规选择。
 
-![不同测序策略的每基因组成本随时间的变化（曲线中还包含多种组合测序策略，本章只讨论 WGS 与 WES 两类）](../assets/08-wgs-and-wes/005-pic3.png){#fig-08-wgs-and-wes-005}
+![不同测序策略的每基因组成本变化](../assets/08-wgs-and-wes/005-pic3.png){#fig-08-wgs-and-wes-005}
+
+图注：图中包含多种组合测序策略；本章只讨论 WGS 与 WES。
 
 在 WGS 与 WES 之外还有第三种常见选择：**靶向 panel 测序（targeted panel sequencing）**，只捕获数十到数百个特定基因或已知致病位点，深度可达数百至上千倍，适合定向检测已知变异、临床快速筛查等场景。它覆盖最窄、成本最低；WES 覆盖较宽、能发现新变异；WGS 覆盖最全。选择时需要同时考虑覆盖范围和成本，不能脱离任务比较优劣。
 
@@ -97,7 +99,9 @@ WES/WGS 检测胚系小变异的典型场景包括：
 | 读长 | 2 × 150 bp |
 | 数据量 | 约 41.9 Gb（约 1.42 亿对 reads） |
 
-: 本章示例数据 SRR8381428 的基本信息（据 ENA 元数据，2026-10 核查） {#tbl-07-example-data}
+: 示例数据 SRR8381428 的基本信息 {#tbl-07-example-data}
+
+表注：数据来源为 ENA 元数据，2026 年 10 月核查。
 
 选择这份数据有三个原因：它是真实的研究级 WES 数据；NA12878 是世界上被测序最充分的人类样本之一，GIAB（Genome in a Bottle）项目为它提供了高置信度真值集，本章 7.8 讨论如何评价检测流程准确性时可以直接对照；数据可从 ENA 以 HTTPS 直链下载并核对官方校验值。下载方式与第 5 章相同（`prefetch`/`fasterq-dump`，或 ENA 直链 `curl`/`wget`），工具安装不再重复。
 
@@ -180,7 +184,7 @@ WES 样本在上机前要经过**捕获（capture）**和**PCR 扩增**两个步
 
 本章变异检测步骤使用经过整理的 BAM 作为输入。从下机 FASTQ 到可以用于分析的 BAM，需要完成以下处理：
 
-![DNA 小变异分析的前处理流程：每一步的输入、输出与目的](../assets/08-wgs-and-wes/preprocessing-overview.svg){#fig-07-preprocessing-overview}
+![DNA 小变异分析的前处理流程](../assets/08-wgs-and-wes/preprocessing-overview.svg){#fig-07-preprocessing-overview}
 
 @fig-07-preprocessing-overview 概括了处理流程，其中的算法与工具在第 4 章已经介绍过。这里进一步讨论：**这些步骤为什么是变异检测的必要条件，而不是可选的整理**。
 
@@ -316,7 +320,7 @@ $$ {#eq-08-wgs-and-wes-005}
 | $k$、$l$ | 比对到该位点的 reads 总数、其中与参考一致的条数 |
 | $S_i$、$d$ | 第 $i$ 条 read 的观察数据；全部 reads 的观察数据 |
 
-: 本节推导使用的符号 {#tbl-07-wgs-and-wes-01}
+: 基因型似然推导中的符号 {#tbl-07-wgs-and-wes-01}
 
 给定基因型 $g$，一条 read 的观察似然为：
 
@@ -343,7 +347,9 @@ $$
 P(S_i \mid g)=P(I_i=1)^{I_i}\cdot P(I_i=0)^{1-I_i}
 $$ {#eq-08-wgs-and-wes-008}
 
-![一个候选位点的 reads 支持计数示意（IGV 风格，G:A = 4:1）](../assets/08-wgs-and-wes/001-reads-support-counts.svg){#fig-08-wgs-and-wes-001}
+![候选位点的 reads 支持计数（示意，G:A = 4:1）](../assets/08-wgs-and-wes/001-reads-support-counts.svg){#fig-08-wgs-and-wes-001}
+
+图注：图采用 IGV 风格。
 
 把单条 read 的似然推广到整个位点：如 @fig-08-wgs-and-wes-001 所示，$k$ 条 reads 比对到该位点，其中 $l$ 条与参考一致、$k - l$ 条不一致，第 $j$ 条 read 的测序错误率为 $\epsilon_j$（由它自己的质量值给出）。将各基因型代入 @eq-08-wgs-and-wes-006 并对全部 reads 连乘：
 
@@ -637,9 +643,9 @@ chr21   9068512  .   C   T   214.64 PASS   DP=13;QD=16.51;SOR=1.609 GT:AD:DP:GQ:
 | 9 | FORMAT | 后续样本列的字段说明 |
 | 10+ | 样本 | 每个 sample 一列，按 FORMAT 顺序给出该样本的基因型与证据 |
 
-: VCF 数据列速查 {#tbl-07-vcf-columns}
+: VCF 文件各列的含义 {#tbl-07-vcf-columns}
 
-![一条 VCF 记录的逐列解剖](../assets/08-wgs-and-wes/vcf-record-anatomy.svg){#fig-07-vcf-anatomy}
+![VCF 记录示例及字段含义](../assets/08-wgs-and-wes/vcf-record-anatomy.svg){#fig-07-vcf-anatomy}
 
 @fig-07-vcf-anatomy 把这条真实记录按列拆开标注，FORMAT 字段的展开见下文。
 
@@ -669,7 +675,9 @@ caller 输出的每条记录都是"候选"，FILTER 列的任务是把证据不�
 | `LowMQRankSum` | `MQRankSum < -12.5` | 替代等位基因的比对质量系统性更低 | 仅杂合位点有值 |
 | `LowReadPosRankSum` | `ReadPosRankSum < -8.0` | 变异只出现在 read 末端 | 末端错误集中的信号 |
 
-: 常用硬过滤参数（起点值，据 GATK 文档；实际阈值应结合自己数据的分布调整） {#tbl-07-hardfilters}
+: 常用变异硬过滤参数的参考值 {#tbl-07-hardfilters}
+
+表注：数值据 GATK 文档列出，作为起点；实际阈值应结合自己数据的分布调整。
 
 ```{.bash .numberLines data-book-role="code"}
 gatk VariantFiltration \
@@ -793,17 +801,17 @@ grep -v "^#" VCF/NA12878.annovar.hg38_multianno.txt | grep "MSH6"
 
 以结直肠癌（colorectal cancer）为例，在 CGC 检索 `colorectal` 能得到相关基因列表；关注其中的 MSH6（DNA 错配修复基因），在 VCF 注释结果里检索到若干变异后，逐条按 7.7.2 的分层去查证——而不是"检出到癌基因 = 与癌症有关"。
 
-![在 COSMIC Cancer Gene Census 中按疾病检索癌症相关基因](../assets/08-wgs-and-wes/008-pic6.png){#fig-08-wgs-and-wes-008}
+![COSMIC Cancer Gene Census 的疾病检索入口](../assets/08-wgs-and-wes/008-pic6.png){#fig-08-wgs-and-wes-008}
 
 @fig-08-wgs-and-wes-008 与 @fig-08-wgs-and-wes-009 是以上操作在 COSMIC 中的对应界面（截图取自 2020 年前后的网站版本，以现行网站布局为准）：在 CGC 页面按关键词过滤基因目录，进入基因页面后可以看到该基因在癌症中的突变概览、分布与文献。
 
-![在 COSMIC 中检索特定疾病的癌症基因结果](../assets/08-wgs-and-wes/009-pic7.png){#fig-08-wgs-and-wes-009}
+![COSMIC 中特定疾病的癌症相关基因检索结果](../assets/08-wgs-and-wes/009-pic7.png){#fig-08-wgs-and-wes-009}
 
 在 COSMIC 的基因页面还能进一步查看编码蛋白质的三维结构：COSMIC-3D（https://cancer.sanger.ac.uk/cosmic3d/ ）提供交互式页面，可以旋转缩放蛋白结构、查看错义突变在结构上的位置分布，并跳转到 PDB 查看原始结构数据——把"突变列表"变成"突变在蛋白上的分布"，是评估功能影响的一个视角（当然，仍属第 2 层证据，不是致病结论）。
 
-![在 COSMIC 数据库中查看基因的突变概览](../assets/08-wgs-and-wes/010-pic8.png){#fig-08-wgs-and-wes-010}
+![COSMIC 中的基因突变概览](../assets/08-wgs-and-wes/010-pic8.png){#fig-08-wgs-and-wes-010}
 
-![用 COSMIC-3D 查看突变位点在蛋白质结构上的分布](../assets/08-wgs-and-wes/011-pic9.png){#fig-08-wgs-and-wes-011}
+![COSMIC-3D 中突变位点在蛋白质结构上的分布](../assets/08-wgs-and-wes/011-pic9.png){#fig-08-wgs-and-wes-011}
 
 ### 通路分析与公共数据验证 {#sec-07-07-pathways-validation}
 
@@ -813,13 +821,13 @@ grep -v "^#" VCF/NA12878.annovar.hg38_multianno.txt | grep "MSH6"
 
 **通路与功能富集。** 第 5 章用 clusterProfiler 做过 GO/KEGG 富集分析，同样的方法适用于变异候选基因列表。KEGG PATHWAY（https://www.genome.jp/kegg/pathway.html ）把基因按代谢与信号通路组织，六大类（细胞过程、环境信息处理、遗传信息处理、人类疾病、新陈代谢、生物体系统）逐级细分；Metascape（https://metascape.org/ ）则一站整合 GO、KEGG、蛋白互作等多类资源，适合对基因列表做快速注释与富集，每月更新其整合的数据库。
 
-![以 MSH6 为例在 KEGG 数据库中搜索相关通路](../assets/08-wgs-and-wes/012-pic11.png){#fig-08-wgs-and-wes-012}
+![KEGG 中与 MSH6 相关的通路检索结果](../assets/08-wgs-and-wes/012-pic11.png){#fig-08-wgs-and-wes-012}
 
-![Metascape 可以同时分析多个基因的注释与富集](../assets/08-wgs-and-wes/013-pic12.png){#fig-08-wgs-and-wes-013}
+![Metascape 的多基因注释与富集分析](../assets/08-wgs-and-wes/013-pic12.png){#fig-08-wgs-and-wes-013}
 
 **公共数据交叉验证。** TCGA（The Cancer Genome Atlas，入口为 NCI 的 GDC Data Portal：https://portal.gdc.cancer.gov/ ）存储大量肿瘤样本的多组学数据（表达、突变、拷贝数、甲基化与临床信息），适合把自己的结果放到同类样本中对比；CCLE（Cancer Cell Line Encyclopedia，https://sites.broadinstitute.org/ccle ）提供上千种癌症细胞系的基因组与药理数据，是体外模型选择的常用参考。使用这类资源时先明确自己的问题属于哪一层——例如胚系分析的结果不能直接与 TCGA 的体细胞突变谱比较口径，队列与过滤标准不同时的"验证"只是参考。
 
-![TCGA 数据通过 GDC Data Portal 访问](../assets/08-wgs-and-wes/014-pic13.png){#fig-08-wgs-and-wes-014}
+![GDC Data Portal 中的 TCGA 数据入口](../assets/08-wgs-and-wes/014-pic13.png){#fig-08-wgs-and-wes-014}
 
 ## IGV复核、基准评价与完整交付 {#sec-07-08}
 
@@ -829,7 +837,9 @@ grep -v "^#" VCF/NA12878.annovar.hg38_multianno.txt | grep "MSH6"
 
 第 4 章已经装好 IGV、载入过 BAM。变异分析的复核动作是：同时载入参考基因组、BAM（`.recal.bam` 及其索引）与 VCF，跳到候选变异位置，查看支持该变异的 reads，重点检查以下内容：
 
-![候选杂合变异的 reads 复核视图（据本章实测数据绘制，IGV 风格）](../assets/08-wgs-and-wes/igv-na12878-review.svg){#fig-07-igv-review}
+![候选杂合变异的 reads 支持情况](../assets/08-wgs-and-wes/igv-na12878-review.svg){#fig-07-igv-review}
+
+图注：依据本章实测数据绘制，采用 IGV 风格。
 
 - **reads 数量与颜色**：支持参考与替代等位基因的 reads 各多少条（对照 VCF 的 AD），有没有明显聚集在一条链上（对照 SOR/FS 过滤器在防的问题）；
 - **碱基质量**：替代等位基因的碱基质量值是否整体偏低（IGV 里低质量碱基显示为暗淡颜色）；
@@ -870,3 +880,5 @@ grep -v "^#" VCF/NA12878.annovar.hg38_multianno.txt | grep "MSH6"
 [^gc-capture]: G、C 碱基之间由 3 个氢键连接，双链更稳定、不易被打断，GC 含量高的区域通常片段偏大；PCR 变性时不易解开，解开后单链也容易自身粘合形成二级结构，聚合酶对高 GC 片段的扩增效率因此下降，高 GC 外显子的测序深度系统性偏低[^meynert-2014]。
 [^likelihood-form]: 统一的形式是 $P(S_i \mid g)=P(I_i{=}1)^{I_i}\cdot P(I_i{=}0)^{1-I_i}$：指数充当"开关"，留下实际发生的那个事件的概率。不同基因型下"观察到参考碱基"的概率不同，最终公式因此不同。
 [^ren-2018-gpu]: Ren S, et al. Efficient Acceleration of the Pair-HMMs Forward Algorithm for GATK HaplotypeCaller on GPU. Cancer Informatics 16:1176934318760543 (2018)。
+
+[^fig07-splicing-source]: 图片来自维基百科 Alternative splicing 条目，与第 5 章 @fig-a-questions-21-25-006 使用同一图片。

@@ -20,7 +20,7 @@
 
 甲基化一旦写上，如何去掉？2009 年之后的研究逐步揭示了这一过程。**TET 蛋白**（TET1/2/3）是一类依赖铁离子和 α-酮戊二酸的加双氧酶，能把 5mC 依次氧化为 **5-羟甲基胞嘧啶（5hmC）**、**5-甲酰胞嘧啶（5fC）**和 **5-羧基胞嘧啶（5caC）**[^tahiliani-2009][^ito-2011]；其中 5fC 和 5caC 可以被 DNA 糖苷酶 TDG 切除，启动碱基切除修复，把这位点换回未修饰的 C——这就是**主动去甲基化**通路[^he-2011-tet]。除了这条主动通路，复制时不加甲基、让甲基化在细胞分裂中被逐步稀释的**被动去甲基化**同样普遍。@fig-08-dna-modification-cycle 概括了这个写入—氧化—切除的完整循环。
 
-![TET1 介导的主动 DNA 去甲基化：DNMT 写入 5mC，TET 逐步氧化为 5hmC、5fC、5caC，经 TDG 与碱基切除修复回到未修饰的胞嘧啶（图源：Biomark Res 2021;9:76，Fig. 2，CC BY 4.0）](../assets/09-base-imbalanced-sequencing/cited/001-tet-demethylation-cycle.jpg){#fig-08-dna-modification-cycle}
+![TET1 介导的主动 DNA 去甲基化[^fig08-tet-source]](../assets/09-base-imbalanced-sequencing/cited/001-tet-demethylation-cycle.jpg){#fig-08-dna-modification-cycle}
 
 把这个家族放在一起看，分析时需要注意一个区别：**"甲基化"不是一个化学状态，而是一族状态**。5hmC 在胚胎干细胞和神经元中相当丰富，并且有自己的功能；一个实验测到的"C 修饰信号"究竟只算 5mC，还是把 5hmC 也混在其中，取决于所用技术能不能把它们分开——这决定了 8.1.3 里各技术的取舍。
 
@@ -30,11 +30,13 @@
 
 第二类证据来自**发育**。哺乳动物一生中有两波全基因组的去甲基化—再甲基化浪潮：受精后，父本基因组的 5mC 被 TET3 快速氧化、连同母本基因组一起大幅去甲基化，在早期胚胎中重建；原始生殖细胞（PGC）发育过程中也经历一轮大范围擦除，随后在配子和着床后重新建立甲基化图谱[^reik-2007][^smith-2012-embryo][^seisenberger-2012]。@fig-08-dev-methylation-waves 把这两波动态画成一条贯穿生命周期的曲线。发育重编程的存在说明甲基化组是**可以整体重置的**，也解释了为什么不同组织、不同发育阶段的甲基化图谱差异巨大——比较任何两组甲基化数据，先确认细胞类型是否可比。
 
-![哺乳动物发育过程中的两波全基因组去甲基化与再甲基化动态（图源：Genes (Basel) 2019;10:257，Fig. 1，CC BY 4.0；原图改编自 Smallwood & Kelsey 2012）](../assets/09-base-imbalanced-sequencing/cited/002-development-methylation-waves.jpg){#fig-08-dev-methylation-waves}
+![哺乳动物发育中的两轮全基因组甲基化重编程[^fig08-dev-source]](../assets/09-base-imbalanced-sequencing/cited/002-development-methylation-waves.jpg){#fig-08-dev-methylation-waves}
 
 第三类是**疾病与转化应用**。癌细胞呈现"全局低甲基化 + 局部 CpG 岛高甲基化"的双重异常图谱（@fig-08-cancer-methylation）：前者伴随基因组不稳定，后者沉默肿瘤抑制基因。此外，甲基化模式在癌变早期就出现、而且稳定存在于循环游离 DNA（cfDNA）中，使它成为**早期诊断标志物**的候选。例如，SEPT9 血浆甲基化检测在前瞻性研究中对结直肠癌的敏感性为 48.2%、特异度 91.5%[^church-2014]，2016 年成为首个获 FDA 批准的基于血液的结直肠癌筛查检测；随后的 cfMeDIP-seq 把多种癌型的 cfDNA 甲基化图谱用于肿瘤检测[^shen-2018]；更大规模的靶向亚硫酸氢盐测序在验证集中做到 99.3% 的特异度和约 67% 的敏感度（12 种癌型 I–III 期）[^liu-2020-galleri]。
 
-![癌细胞中异常的 DNA 甲基化：左侧为启动子 CpG 岛局部高甲基化导致肿瘤抑制基因沉默，右侧为全基因组低甲基化影响癌基因、印迹基因与重复序列（图源：Genes (Basel) 2020;11:922，Fig. 1，CC BY 4.0）](../assets/09-base-imbalanced-sequencing/cited/003-cancer-cgi-hypermethylation.jpg){#fig-08-cancer-methylation}
+![癌细胞的局部高甲基化与全局低甲基化[^fig08-cancer-source]](../assets/09-base-imbalanced-sequencing/cited/003-cancer-cgi-hypermethylation.jpg){#fig-08-cancer-methylation}
+
+图注：左侧为启动子 CpG 岛高甲基化与肿瘤抑制基因沉默；右侧为全基因组低甲基化对癌基因、印迹基因与重复序列的影响。
 
 ::: {.callout-warning .book-warning title="注意｜同一个甲基化信号，位置不同含义不同"}
 
@@ -57,7 +59,7 @@
 | **TAB-seq** | 单碱基 5hmC | β-葡萄糖基转移酶保护 5hmC，TET2 把 5mC 氧化为 5caC 后亚硫酸盐处理[^yu-2012-tab] | 专门测 5hmC |
 | **ONT 直接检测** | 5mC（CpG 语境为主） | 长读长电信号直接识别修饰，无需化学转化（第 3 章 3.4 提过纳米孔的这一能力） | 免转化、长读长；调用精度依赖模型，5hmC 等修饰缺乏独立基准评测 |
 
-: 测 DNA 5mC 家族的主要技术路线 {#tbl-08-dna-methylation-methods}
+: DNA 胞嘧啶修饰的主要检测方法 {#tbl-08-dna-methylation-methods}
 
 注意表里反复出现的一行小字：**WGBS/EM-seq/RRBS 分不开 5mC 与 5hmC**——亚硫酸盐化学对两者都不脱氨，它们的信号都读作"甲基化样的 C"。只有在 5hmC 极少的组织里，"BS-seq 信号 ≈ 5mC"这个近似才安全；胚胎干细胞、神经元这类 5hmC 丰富的样本，要回答"究竟哪种修饰"必须配合 oxBS 或 TAB-seq。选择技术时，需要先确定是否必须区分这两种修饰。
 
@@ -87,13 +89,15 @@ DNA 线的示例数据是 8.1 提到的 Dnmt 三敲（TKO）系列小鼠胚胎�
 | to2i | GSM1891662 / SRR2500904 | WGBS，双端 100 bp | 野生型，2i 培养基（低甲基化状态） |
 | toSerum | GSM1891663 / SRR2500905 | WGBS，双端 100 bp | 野生型，血清培养（高甲基化状态） |
 
-: 本章 DNA 线示例样本（GSE67867，mm10/mm9 坐标见 8.3 说明） {#tbl-08-wgbs-samples}
+: WGBS 示例样本（GSE67867） {#tbl-08-wgbs-samples}
+
+表注：mm10 与 mm9 坐标的使用区别见 8.3 节。
 
 出于运行时间的考虑，本章的命令演示使用 to2i 样本的**教学子集**（前 200 万对 reads，约占全数据的 1%）；全数据约 1.92 亿对 reads、全基因组约 14× 覆盖。与第 7 章相同的提醒：子集上"流程能走通、比例类指标可信，深度类指标不能外推"。参考基因组使用 UCSC mm10（下载与第 7 章 GRCh38 同路）。
 
 @fig-08-bs-pipeline 给出全章 DNA 线的路线图——与第 7 章的流程图一样，每一步标注输入、输出与目的。与 WGS 链逐行对比，你会发现差异集中在两处：比对之前（参考基因组要先转换）与比对之后（从错配里提取甲基化，而不是从一致性里提取变异）。
 
-![BS-seq 分析流程总览：从 FASTQ 到位点计数表的六个步骤，每步给出输出与目的，右侧为检查点（自绘流程图）](../assets/09-base-imbalanced-sequencing/bs-pipeline-overview.svg){#fig-08-bs-pipeline}
+![从 FASTQ 到位点计数表的 BS-seq 分析流程](../assets/09-base-imbalanced-sequencing/bs-pipeline-overview.svg){#fig-08-bs-pipeline}
 
 ### 转化如何写进 reads：质控时看什么 {#sec-08-02-chemistry-in-reads}
 
@@ -101,7 +105,9 @@ DNA 线的示例数据是 8.1 提到的 Dnmt 三敲（TKO）系列小鼠胚胎�
 
 把它推到全基因组尺度——小鼠基因组约 20% 的碱基是 C，其中绝大多数未甲基化——BS-seq 的 reads 相对参考基因组带有**成串的系统性 C→T 错配**，reads 自身的碱基组成也严重偏向 A/T。
 
-![亚硫酸盐处理如何进入测序读数：未甲基化 C 经 U 读作 T，5mC 仍读作 C；下方展示同一参考位点的 C/T 计数。示意假设转化完全、忽略测序错误，仅展示正链；常规 BS-seq 的 C 信号也包含 5hmC（自绘示意图）](../assets/09-base-imbalanced-sequencing/bisulfite-conversion-principle.svg){#fig-08-bisulfite-conversion-principle}
+![亚硫酸盐转化与测序中的 C/T 计数（示意）](../assets/09-base-imbalanced-sequencing/bisulfite-conversion-principle.svg){#fig-08-bisulfite-conversion-principle}
+
+图注：未甲基化 C 经 U 读作 T，5mC 仍读作 C；下方展示同一参考位点的 C/T 计数。本图假设转化完全、忽略测序错误，仅展示正链。常规 BS-seq 的 C 信号也包含 5hmC。
 
 因此第 3 章 FastQC 的常规模块在 BS-seq 上要按新预期解读：
 
@@ -124,7 +130,9 @@ to2i 子集上：R1 有 41.9%、R2 有 44.0% 的 reads 带接头（文库片段�
 
 @fig-08-three-letter-alignment 展示了一个最小的示例：reads `TTTAGTT` 对参考 `CTCAGTC` 有三处成串错配；把两边同时做 C→T 转换后，reads 与"转化参考"完美匹配。**原来的错配仍有甲基化信息；比对时对两边作相同转换，使它们能够对齐**。
 
-![三字母比对原理：Bismark 把参考分别转换为 C→T 与 G→A 两套三字母基因组，reads 同步转换后比对，再映射回原坐标（自绘示意图）](../assets/09-base-imbalanced-sequencing/three-letter-alignment.svg){#fig-08-three-letter-alignment}
+![Bismark 的三字母比对原理](../assets/09-base-imbalanced-sequencing/three-letter-alignment.svg){#fig-08-three-letter-alignment}
+
+图注：参考基因组分别进行 C→T 和 G→A 转换，reads 同步转换后比对，再映射回原坐标。
 
 解决方法主要分为两类：
 
@@ -221,7 +229,9 @@ C methylated in CHH context:     5.2%
 
 M-bias 图检查"甲基化调用是否随 read 位置漂移"（@fig-08-mbias-real）：横轴是 read 内位置，纵轴是该位置所有 C 的平均甲基化率。
 
-![to2i 子集实测的 M-bias 曲线：CpG 与 CHH 两种语境在 R1/R2 的逐位置平均甲基化率，曲线平坦说明无需额外修剪（实测数据绘图）](../assets/09-base-imbalanced-sequencing/mbias-real.png){#fig-08-mbias-real}
+![to2i 子集的 M-bias 曲线](../assets/09-base-imbalanced-sequencing/mbias-real.png){#fig-08-mbias-real}
+
+图注：图示为 CpG 与 CHH 两种语境下，R1/R2 各位置的平均甲基化率；本例曲线平坦，无需额外修剪。
 
 本数据曲线整体平坦（CpG 稳定在 25%–30%，CHH 稳定在 5%–6%），说明没有需要修剪的末端偏差；R2 前两位的体外改写已在命令中排除。如果曲线末端翘起或塌陷，就用 `--ignore` / `--ignore_3prime` 把失真区段剪掉再重新提取——与第 3 章"先看质控图再决定修剪策略"是同一个习惯。
 
@@ -252,7 +262,9 @@ $$\hat{p} = \frac{X}{N}$$ {#eq-08-methy-ratio}
 
 A 图中，$3/5$、$30/50$、$300/500$ 都等于 60%，但区间分别约为 14.7%–94.7%、45.2%–73.6%、55.6%–64.3%。覆盖越高，抽样不确定性越小，估计越精确。B 图则说明为什么“没有观察到 C”不等于“真实比例确定为零”：$0/5$ 的区间仍为 0%–52.2%，$0/30$ 的区间为 0%–11.6%。这些区间只描述二项抽样的不确定性，不包含转化误差或生物学重复之间的差异。
 
-![覆盖深度与比例估计的精确度：A，同为 60% 的估计，覆盖增加时双侧 95% Clopper–Pearson 区间变窄；B，观察到零条 C 时，区间上限仍可明显大于零。圆点表示比例估计，横线表示置信区间（自绘计算图）](../assets/09-base-imbalanced-sequencing/binom-ci-demo.png){#fig-08-binom-ci width="600"}
+![覆盖深度对比例估计置信区间的影响](../assets/09-base-imbalanced-sequencing/binom-ci-demo.png){#fig-08-binom-ci width="600"}
+
+图注：A：比例估计同为 60%，覆盖增加时，双侧 95% Clopper–Pearson 区间变窄。B：观察到零条 C 时，区间上限仍可明显大于零。圆点表示比例估计，横线表示置信区间。
 
 除了抽样噪声，甲基化数据还有一层**下限噪声**：转化不完全的 C 会冒充甲基化。转化率 98% 时，一个真正 0% 甲基化的位点期望仍读到约 2% 的"甲基化"——所以低比例区间的解读要结合转化率（8.3.2 用空白对照实测）。
 
@@ -272,7 +284,9 @@ A 图中，$3/5$、$30/50$、$300/500$ 都等于 60%，但区间分别约为 14.
 
 三个数值反映了不同条件下的甲基化状态（@fig-08-global-methylation 左）：血清培养的胚胎干细胞保持高甲基化；换成 2i 培养基后整体去甲基化（约 68% → 25%，对应 8.1.2 说的发育重编程在体外的重演）；把三个 DNMT 全部敲掉，甲基化几乎归零。右边逐位点的对比图更直观：约 1200 万个两样本共有 CpG 里，大量位点从血清中的高比例降到 2i 中的低比例——**全基因组尺度的去甲基化**，而不是少数位点的事件。
 
-![GSE67867 全局与逐位点甲基化：左，覆盖加权全局 CpG 甲基化；右，约 30 万个共有位点上 toSerum 与 to2i 的比例对比（六边形密度，log 色标）（实测数据绘图）](../assets/09-base-imbalanced-sequencing/global-methylation-real.png){#fig-08-global-methylation}
+![GSE67867 的全局与逐位点 CpG 甲基化水平](../assets/09-base-imbalanced-sequencing/global-methylation-real.png){#fig-08-global-methylation}
+
+图注：左：覆盖加权的全局 CpG 甲基化水平。右：约 30 万个共有位点上 toSerum 与 to2i 的甲基化比例；六边形表示密度，颜色采用 log 色标。
 
 TKO 的 2.9% 还有一个分析学用途：它是**空白对照**。Dnmt 全敲后真实甲基化接近零，残余的 2.9% 主要就是转化不完全等噪声的贡献——这套数据的有效转化率约 97% 或更高（8.2 快速链测到的 CHH 约 5% 偏高，包含了低质量碱基与末端效应的贡献，两个口径合起来把真实转化率夹在 95%–97% 之间）。
 
@@ -336,7 +350,9 @@ DMR direction:  toSerum > to2i:  376231    to2i > toSerum:  6
 
 @fig-08-dmr-example 放大一个具体的 DMR：chr14 上约 260 bp 的区域，8 个 CpG 在血清样本中平滑比例稳定在 96%–97%，2i 样本中降到 5%–7%，差约 91 个百分点。逐位点看，两条曲线的形状高度平行——区域级的"整体下移"，正是区域聚合统计想要捕捉的形态。
 
-![DSS 检出的 DMR 示例（chr14，mm9）：血清样本与 2i 样本在区域内逐位点的平滑甲基化比例，阴影为 callDMR 划定的区域边界（实测数据绘图）](../assets/09-base-imbalanced-sequencing/dmr-example-real.png){#fig-08-dmr-example}
+![DSS 检出的差异甲基化区域（chr14，mm9）](../assets/09-base-imbalanced-sequencing/dmr-example-real.png){#fig-08-dmr-example}
+
+图注：曲线为血清样本与 2i 样本逐位点的平滑甲基化比例；阴影为 callDMR 划定的区域边界。
 
 结果到此，"哪里有差异"有了答案；"差异意味着什么"则要接着问位置——DMR 落在启动子、增强子还是基因体？与第 6 章 NRF1 的结合变化是否吻合？这些注释型问题用第 6 章的区间交集工具（`bedtools intersect` 等）接在本表之后即可，本章不再展开，但 8.6.2 的跨层整合会回到这条链上。
 
@@ -348,7 +364,9 @@ DMR direction:  toSerum > to2i:  376231    to2i > toSerum:  6
 
 转向 RNA 修饰时，需要先注意：**mRNA 上的修饰研究比 DNA 更"年轻"，也更容易被技术假象误导**。认识它们要从化学结构开始——修饰之间的差别往往就是碱基环上的一两个甲基，但位置不同，化学后果完全不同。@fig-08-rna-modification-landscape 沿一条 mRNA 摆放了主要修饰的结构式，请对照它逐个认识。
 
-![真核 mRNA 上的化学修饰：各修饰的碱基结构式沿 mRNA（5′ 帽 → 5′UTR → CDS → 3′UTR → poly(A)）摆放，甲基位置标注在碱基环上（图源：Roundtree et al. 2017，*Cell* 169:1187–1200，Fig. 1）](../assets/09-base-imbalanced-sequencing/cited/004-roundtree-mrna-modifications.jpg){#fig-08-rna-modification-landscape}
+![真核 mRNA 的化学修饰及其位置[^fig08-rna-source]](../assets/09-base-imbalanced-sequencing/cited/004-roundtree-mrna-modifications.jpg){#fig-08-rna-modification-landscape}
+
+图注：各修饰的碱基结构式沿 mRNA 的 5′ 帽、5′UTR、CDS、3′UTR 与 poly(A) 区域摆放，甲基位置标注在碱基环上。
 
 - **m6A（N6-甲基腺嘌呤）**：结构上看，腺嘌呤环**外侧** 6 位氨基上的一个氢被甲基取代（N6 位）。这个位置不参与 Watson–Crick 配对——所以 m6A 不破坏 A:U 配对，却改变了碱基的氢键供体格局，让 YTH 结构域这类"读取器"能够专门识别它。m6A 是 mRNA 上最丰富的内部修饰，约占全部腺苷的 0.2%–0.6%[^roundtree-2017]，几乎只出现在 DRACH 基序（D=A/G/U，R=A/G，H=A/C/U）中，沿转录本富集在终止密码子附近和 3′ 非翻译区[^dominissini-2012][^meyer-2012]。它是本章 RNA 线的主角。
 - **m6Am**：结构上是"双重修饰"——帽子后**第一个转录核苷酸**的腺嘌呤既有 N6 甲基（与 m6A 同位），核糖 2′-O 又有一个甲基（2′-O-甲基化，即 Nm）。它由写入酶 **PCIF1**（又称 CAPAM）催化[^akichika-2019][^sendinc-2019]。离转录起始只有一两个核苷酸，与内部 m6A 的调控语境完全不同；定量研究显示它的修饰比例（化学计量）通常远高于内部 m6A——这一点在 8.5 讨论"修饰比例"时是一个重要对照。它也是 FTO 底物偏好争议的主角（8.4.2）。
@@ -400,7 +418,9 @@ m6A 在 1974 年就已从 mRNA 中被发现[^desrosiers-1974]，此后沉寂了�
 - **亚硝酸盐**在酸性条件下把所有**未修饰的 A 脱氨**为次黄嘌呤 I——PCR 和测序时读作 **G**；
 - 于是 m6A 位点表现为 reads 中**残留的 A**：某个位点上 A 占 (A+G) 的比例，就是该位点 m6A 修饰比例的直接估计。
 
-![GLORI 的化学原理：乙二醛保护 m6A 与 G，亚硝酸盐把未修饰 A 脱氨为 I（读作 G），reads 中残留的 A 即被保护的 m6A 信号（自绘示意图）](../assets/09-base-imbalanced-sequencing/glori-chemistry.svg){#fig-08-glori-chemistry}
+![GLORI 检测 m6A 的化学原理](../assets/09-base-imbalanced-sequencing/glori-chemistry.svg){#fig-08-glori-chemistry}
+
+图注：乙二醛保护 m6A 与 G，亚硝酸盐将未修饰 A 脱氨为 I，测序时读作 G；reads 中残留的 A 对应被保护的 m6A 信号。
 
 GLORI 的未修饰 A 脱氨效率约为 98%，论文自述"概念上与亚硫酸盐定量 DNA 5mC 同构"——把未修饰碱基化学改写掉、让修饰碱基留下来，再从测序错配里读出比例。这正是 8.1 定义过的"碱基不平衡"在 RNA 上的重演：C→T 换成了 **A→G**。后续的低输入版本（GLORI 2.0/3.0）已能从数千甚至数百个细胞做甲基化组[^sun-2025-glori2]。8.5 将沿一条真实的 GLORI 数据走完它的分析链——你会看到三字母比对、转化率、SNP 排除这些 8.2 的思想如何一一复用。
 
@@ -417,7 +437,7 @@ RNA 线的示例数据来自 GLORI 原论文（Liu 等，2023）随文发布的 
 | siMETTL3-1 / siMETTL3-2 | GSM6432607 / GSM6432608 | GLORI（35 bp 读长） | METTL3 敲低，2 个 |
 | Hela-siNC-1 / Hela-siNC-2 | GSM6432627 / GSM6432628 | GLORI（35 bp 读长） | 对照 siRNA，2 个 |
 
-: 本章 RNA 线示例样本（GSE210563，HeLa，hg38 坐标） {#tbl-08-glori-samples}
+: GLORI 示例样本（GSE210563，HeLa，hg38） {#tbl-08-glori-samples}
 
 这组数据与第 5 章构成呼应：第 5 章在 HEK293T 中分析了 METTL3 敲低的**表达层**（RNA-seq 的 counts 与差异表达），本章在 HeLa 的 GLORI 数据中读**同方向干预的修饰层**——写入酶减少后，哪些位点的 m6A 比例下降了。注意口径：两层观测来自不同细胞系的两项研究，是同一生物学问题的平行印证，不是同批样本的两端；结合两层结果，可以更完整地观察干预后的分子变化。
 
@@ -429,7 +449,7 @@ RNA 线的示例数据来自 GLORI 原论文（Liu 等，2023）随文发布的 
 - **位点过滤**：覆盖深度、已知的 A/G SNP 位点排除（8.5.3）；
 - **定量与差异**：组内重复一致性、组间逐位点检验（8.5.4）。
 
-![GLORI 分析流程总览：从 FASTQ 到修饰比例表的六个步骤，与 BS-seq 链一一对应（自绘流程图）](../assets/09-base-imbalanced-sequencing/glori-pipeline-overview.svg){#fig-08-glori-pipeline}
+![从 FASTQ 到修饰比例表的 GLORI 分析流程](../assets/09-base-imbalanced-sequencing/glori-pipeline-overview.svg){#fig-08-glori-pipeline}
 
 这里先说明实际分析范围：本章从论文提供的**位点级处理表**（GEO 随文补充文件，每个样本约 6.2–6.5 万个检出位点）开始做定量与差异分析，这一步是实测运行；从 FASTQ 到位点表的 GLORI-tools 完整流程（STAR 比对、去重、位点统计与过滤）本章按官方文档介绍其步骤与关键参数（文档级演示），没有逐条运行——它需要人类基因组的 STAR 索引与较长机时，而其每一步的输出正是我们手上这张表。对任何公共数据，先看作者提供了哪一级的处理结果、从哪一级接手分析，都是第一个要回答的问题。
 
@@ -437,7 +457,9 @@ RNA 线的示例数据来自 GLORI 原论文（Liu 等，2023）随文发布的 
 
 GLORI 文库的第一眼质控就是第 3 章 FastQC 的"每碱基序列含量"（Per base sequence content）模块——但要带着完全不同的预期去看。取数据集中一个 GLORI 文库（293T 细胞，SRR21356251）的前约 79 万条 reads，逐位置统计四种碱基的比例（@fig-08-glori-basecomp）：
 
-![GLORI 文库实测的逐位置碱基组成：插入序列中 A 坍缩至约 1%、G 升至约 45%，两端为未经脱氨的引物与接头（实测数据绘图）](../assets/09-base-imbalanced-sequencing/glori-basecomp-real.png){#fig-08-glori-basecomp}
+![GLORI 文库的逐位置碱基组成](../assets/09-base-imbalanced-sequencing/glori-basecomp-real.png){#fig-08-glori-basecomp}
+
+图注：插入序列中 A 约占 1%，G 约占 45%；两端为未经脱氨的引物与接头。
 
 - **第 1–9 位**：A 占 33%–58%，四碱基大致正常——这是逆转录引物序列，体外合成的普通 DNA，**不经过脱氨反应**；
 - **第 15–35 位（插入序列）**：A 降到 **0.6%–1.1%**，G 升到 43%–46%——这正是化学转化的直接证据：未修饰的 A 被脱氨成了 I，测序读作 G；残留下来的那一点 A，就是未转化完全的部分加上真正的 m6A；
@@ -458,7 +480,9 @@ GLORI-tools（官方 Python3 流程，GitHub 上开源）把 8.5.1 的中间步�
 - **覆盖深度过滤**：修饰比例是 A/(A+G) 的比值，覆盖太低的位点比值方差极大；
 - **SNP 位点排除**：基因组上本来就该是 G 的位点（A/G 杂合 SNP 中来自 G 等位基因的 reads）会与"脱氨成 G"产生完全相同的数据形态——单靠一个样本无法区分，必须借助 dbSNP 等已知变异数据库把这类位点剔除（@fig-08-snp-confounding）。这不是 GLORI 特有的麻烦：BS-seq 同样要面对 C/T SNP 与甲基化信号的混淆，思路一致——**用独立来源的变异信息给化学信号划界**。
 
-![GLORI 中的 SNP 混杂：A/G SNP 的 G 等位 reads 与未修饰 A 脱氨后的 G reads 同形，单样本无法区分，需要变异位点数据库排除（自绘示意图）](../assets/09-base-imbalanced-sequencing/snp-confounding.svg){#fig-08-snp-confounding}
+![A/G SNP 对 GLORI 检测的干扰](../assets/09-base-imbalanced-sequencing/snp-confounding.svg){#fig-08-snp-confounding}
+
+图注：G 等位基因的 reads 与未修饰 A 脱氨后的 reads 均读作 G。单凭一个样本的 GLORI 读数无法区分二者，需借助变异位点数据库排除。
 
 流程对每个样本输出一张位点表，即我们拿到的处理表。对我们后续分析最要紧的几列如下（@tbl-08-glori-columns，其余辅助列从略）：
 
@@ -517,7 +541,9 @@ m$ratio_nc <- A_nc / (A_nc + G_nc)     # 组内合并的修饰比例
 m$ratio_si <- A_si / (A_si + G_si)
 ```
 
-![GLORI 位点定量实测：左，siNC 两个重复的修饰比例一致性；右，对照与 METTL3 敲低的逐位点比例对比，橙色为显著下降位点（实测数据绘图）](../assets/09-base-imbalanced-sequencing/glori-scatter-real.png){#fig-08-glori-scatter}
+![GLORI 修饰比例的重复一致性与 METTL3 敲低效应](../assets/09-base-imbalanced-sequencing/glori-scatter-real.png){#fig-08-glori-scatter}
+
+图注：左：siNC 两个重复的修饰比例。右：对照与 METTL3 敲低样本的逐位点比例，橙色标出显著下降的位点。
 
 结果如下（@fig-08-glori-scatter 右）：
 
@@ -550,7 +576,9 @@ METTL3 敲低后修饰比例下降的位点，其宿主基因的表达未必变�
 - **位点层面的比例与覆盖是否合理**：比例 100% 但覆盖只有 2 条 read 的位点，统计上几乎无信息；比例接近但覆盖悬殊的两个位点，置信区间完全不同（8.3.1 的直觉）；
 - **抽查"明星位点"**：把统计表格里最显著的几个 DML/DMR 在 IGV 里找到，确认数据形态与结论一致——这是第 7 章"眼见为实"习惯在修饰数据上的延续。
 
-![IGV 风格的真实甲基化轨迹（chr13:73.15 Mb，mm9，GSE67867 官方表）：上为血清样本、下为 2i 样本，每个条形是一个 CpG 位点的甲基化比例、条形下方灰色深度示意覆盖，阴影为 DSS 检出的 DMR（实测数据绘图）](../assets/09-base-imbalanced-sequencing/igv-methylation-real.png){#fig-08-igv-methylation}
+![血清与 2i 样本的 CpG 甲基化轨迹（chr13:73.15 Mb，mm9）](../assets/09-base-imbalanced-sequencing/igv-methylation-real.png){#fig-08-igv-methylation}
+
+图注：依据 GSE67867 官方表绘制，采用 IGV 风格。上方为血清样本，下方为 2i 样本；每个条形表示一个 CpG 位点的甲基化比例。下方灰色深度轨道仅示意覆盖，阴影为 DSS 检出的 DMR。
 
 如果需要 read 层面的证据（某个位点的 reads 里究竟多少条读 C、多少条读 T），加载 Bismark 的 BAM 并结合 `XM` 标签过滤即可；多数场景下位点级轨迹已经足够，read 级抽查留给最关键的结论。
 
@@ -614,3 +642,11 @@ METTL3 敲低后修饰比例下降的位点，其宿主基因的表达未必变�
 [^liu-2023-glori]: Liu C, et al. Absolute quantification of single-base m6A methylation in the mammalian transcriptome using GLORI. *Nat Biotechnol*. 2023;41(3):355–366. [原文链接](https://doi.org/10.1038/s41587-022-01487-9)。
 [^sun-2025-glori2]: Sun H, et al. Mild and ultrafast GLORI enables absolute quantification of m6A methylome from low-input samples. *Nat Methods*. 2025;22(6):1226–1236. [原文链接](https://doi.org/10.1038/s41592-025-02612-x)。
 [^domcke-2015]: Domcke S, et al. Competition between DNA methylation and transcription factors determines binding of NRF1. *Nat Methods*. 2015;12(12):1193–1199. [原文链接](https://doi.org/10.1038/nmeth.3642)。
+
+[^fig08-tet-source]: 图源：Biomark Res 2021;9:76，Fig. 2，CC BY 4.0。
+
+[^fig08-dev-source]: 图源：Genes (Basel) 2019;10:257，Fig. 1，CC BY 4.0；原图改编自 Smallwood & Kelsey 2012。
+
+[^fig08-cancer-source]: 图源：Genes (Basel) 2020;11:922，Fig. 1，CC BY 4.0。
+
+[^fig08-rna-source]: 图源：Roundtree et al. 2017，*Cell* 169:1187–1200，Fig. 1。

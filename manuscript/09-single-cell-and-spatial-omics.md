@@ -46,7 +46,7 @@ BD Rhapsody 采用蜂窝板（微孔板）完成单细胞分离和捕获：
 
 两种方法的共同点是：都是"把一个细胞和一个条形码载体关进一个小空间"，后续建库和测序流程几乎一致。通量上两家处于同一量级：10x 标准试剂盒每个通道的目标回收量约为 500–10,000 个细胞（更高通量的试剂盒可达数万），BD Rhapsody 单筒典型捕获约一万个细胞。值得注意的是，**捕获的细胞越多，一个反应空间里挤进两个细胞的概率也越高**——这就是后面要处理的双细胞问题，10x 官方与原始文献的数据都显示双细胞率大约随回收细胞数线性上升（约每回收 1,000 个细胞增加 1%）[^rna-ref-12]。
 
-![10x Genomics 与 BD Rhapsody 单细胞捕获流程对比：液滴法（左）与微孔板法（右）殊途同归（重绘自课程原图）](../assets/09-single-cell-and-spatial-omics/008-10x-bd-platforms.svg){#fig-06-rna-seq-002}
+![10x Genomics 与 BD Rhapsody 的单细胞捕获流程](../assets/09-single-cell-and-spatial-omics/008-10x-bd-platforms.svg){#fig-06-rna-seq-002}
 
 ::: {.callout-note .book-core title="核心知识｜barcode 归细胞，UMI 归分子"}
 
@@ -62,7 +62,9 @@ BD Rhapsody 采用蜂窝板（微孔板）完成单细胞分离和捕获：
 
 从数据结构看，单细胞矩阵和第 5 章的基因×样本计数矩阵形状相同、语义不同：一列不再是"一个样本的文库"，而是"一个细胞"；矩阵极度稀疏（单个细胞只测得到一两千个基因非零），而且每个细胞的总计数（相当于"文库大小"）差异很大——这两点是后面归一化和质控设计的出发点。
 
-![barcode、UMI 与计数矩阵的对应关系（示意图，序列未按实际长度绘制）](../assets/09-single-cell-and-spatial-omics/002-bc-umi-matrix.svg){#fig-09-bc-umi}
+![barcode、UMI 与计数矩阵的对应关系（示意）](../assets/09-single-cell-and-spatial-omics/002-bc-umi-matrix.svg){#fig-09-bc-umi}
+
+图注：序列未按实际长度绘制。
 
 @fig-09-bc-umi 把这套对应关系画在一起：三条 read 带着同一个细胞 barcode，其中前两条的 UMI 相同——它们是同一个 mRNA 分子经 PCR 扩增出来的重复，按 UMI 去重后只计 1 个分子；第三条 UMI 不同，是另一个分子。计数矩阵里那一列的每个数字，就是这样一条条数出来的"分子数"。
 
@@ -76,7 +78,7 @@ BD Rhapsody 采用蜂窝板（微孔板）完成单细胞分离和捕获：
 
 本章主线示例采用 10x 官方发布的 **pbmc3k** 数据集：一份人外周血单个核细胞（PBMC）的 Cell Ranger 输出矩阵，2,700 个细胞、32,738 个基因，体积只有几 MB，适合作为第一个跑通全流程的数据。学到多样本比较时（9.5 节），换用 Kang 等人发表的干扰素刺激实验数据 ifnb：IFN-β 刺激组与未刺激对照组的 PBMC[^ch09-kang-ifnb]。空间部分（9.6–9.7 节）用 10x 官方的 Visium 小鼠脑矢状切面数据。
 
-![本章分析路线：单细胞线（左）与空间线（右）并行，底部汇合；每步附检查点（自绘流程图）](../assets/09-single-cell-and-spatial-omics/001-ch09-route.svg){#fig-06-rna-seq-009}
+![单细胞与空间转录组分析流程](../assets/09-single-cell-and-spatial-omics/001-ch09-route.svg){#fig-06-rna-seq-009}
 
 如 @fig-06-rna-seq-009 所示，单细胞线从计数矩阵出发，依次经过质控、归一化与特征选择、降维聚类、注释、多样本比较；空间线平行展开，最后两线在去卷积与参考映射处汇合。图中每一步都附了一个"检查"——那是判断这一步做得对不对的可观察依据，9.8 节的检查点清单就是从这些检查汇总的。下面先分析单细胞数据。
 
@@ -115,7 +117,7 @@ VlnPlot(pbmc, features = c("nFeature_RNA", "nCount_RNA", "percent.mt"), ncol = 3
 FeatureScatter(pbmc, feature1 = "nCount_RNA", feature2 = "nFeature_RNA")
 ```
 
-![pbmc3k 质控指标分布（Seurat 实跑）](../assets/09-single-cell-and-spatial-omics/003-pbmc-qc.png){#fig-09-qc-violin}
+![pbmc3k 的质控指标分布](../assets/09-single-cell-and-spatial-omics/003-pbmc-qc.png){#fig-09-qc-violin}
 
 @fig-09-qc-violin 是本章数据实跑的结果：`nFeature_RNA` 中位数 816（范围 212–3,400），`percent.mt` 中位数约 2%，但右侧拖着一条到 22.6% 的尾巴——这条尾巴就是要过滤的对象。按经典教学阈值过滤：
 
@@ -226,7 +228,9 @@ DimPlot(pbmc, reduction = "umap", label = TRUE)
 
 每一行做一件事：归一化 → 选高变基因 → 缩放 → PCA → UMAP → kNN 图 → 聚类 → 画图。跑完这段代码，你就得到了 @fig-09-umap-clusters 那样的图——但到这一步为止，图上的每个簇还只是一个编号，下一节将根据 marker 判断它们是什么细胞。
 
-![pbmc3k 聚类结果 UMAP（Seurat 实跑，分辨率 0.5，9 个簇）](../assets/09-single-cell-and-spatial-omics/004-pbmc-umap.png){#fig-09-umap-clusters}
+![pbmc3k 聚类结果的 UMAP 展示](../assets/09-single-cell-and-spatial-omics/004-pbmc-umap.png){#fig-09-umap-clusters}
+
+图注：聚类分辨率为 0.5，共得到 9 个簇。
 
 ## 细胞类型注释与证据核查 {#sec-09-04}
 
@@ -259,7 +263,7 @@ markers <- FindAllMarkers(pbmc, test.use = "wilcox", only.pos = TRUE,
 | 7 | FCER1A、CLEC10A | 树突状细胞 | 32 |
 | 8 | PPBP、ITGA2B | 血小板 | 13 |
 
-: pbmc3k 九个簇的经典 marker 注释（结果来自本章实跑） {#tbl-09-cluster-annotation}
+: pbmc3k 九个簇的细胞类型与经典 marker {#tbl-09-cluster-annotation}
 
 点图（DotPlot）把整套 marker 与所有簇的对应关系画在一张图里：点的颜色表示平均表达量，点的大小表示表达的细胞比例：
 
@@ -268,7 +272,7 @@ DotPlot(pbmc, features = c("IL7R", "CCR7", "CD14", "LYZ", "MS4A1", "CD79A",
                            "CD8A", "FCGR3A", "GNLY", "NKG7", "FCER1A", "PPBP"))
 ```
 
-![pbmc3k 经典 marker 点图（Seurat 实跑）](../assets/09-single-cell-and-spatial-omics/005-pbmc-marker-dot.png){#fig-09-marker-dot}
+![pbmc3k 的经典 marker 表达点图](../assets/09-single-cell-and-spatial-omics/005-pbmc-marker-dot.png){#fig-09-marker-dot}
 
 读 @fig-09-marker-dot 的方法：看每个 marker 只在哪一列"又大又深"。`MS4A1` 只在 B 细胞簇深、`CD14` 只在单核细胞簇深——这些只在某一列明显表达的基因，是注释该细胞类型的依据；而 `IL7R`、`CCL5` 在 T 细胞的几列都亮，提示它们标记的是 T 细胞这个大类，区分 naive/记忆/CD8 还要靠 CCR7、GZMK 等更细的行。
 
@@ -311,7 +315,9 @@ ifnb <- RunUMAP(ifnb, dims = 1:30, reduction = "pca",
 DimPlot(ifnb, reduction = "umap.unintegrated", group.by = "stim")
 ```
 
-![ifnb 整合前（左，按条件着色）与 Harmony 整合后（右，按细胞类型着色）的对比（Seurat 实跑）](../assets/09-single-cell-and-spatial-omics/006-ifnb-integration.png){#fig-09-ifnb-umap}
+![ifnb 数据在 Harmony 整合前后的分布](../assets/09-single-cell-and-spatial-omics/006-ifnb-integration.png){#fig-09-ifnb-umap}
+
+图注：左图为整合前，按条件着色；右图为整合后，按细胞类型着色。
 
 @fig-09-ifnb-umap 左图显示，未整合时两组细胞大面积分开——这里主导的是**干扰素刺激这个生物学条件**（IFN 响应基因被诱导，刺激组细胞整体"变形"），不是技术批次。这个例子故意选了"条件效应"：它提醒我们，整合算法分不清"批次"和"条件"，它只是把指定的分组拉到一起。哪些差异该保留、哪些该去除，必须由分析者依据实验设计决定。
 
@@ -396,7 +402,7 @@ dds <- DESeq(dds)
 | 原位杂交（靶向） | MERFISH、Xenium | 单分子、亚细胞 | 数百至数千个靶基因 | 大片组织 |
 | 高分辨率捕获 | Visium HD | 2 µm 网格（多 bin 合并使用） | 全转录组 | 单张大区域 |
 
-: 三类空间转录组技术的取舍（规格为 2026-10 官方口径） {#tbl-09-spatial-tech}
+: 三类空间转录组技术的特点与限制（2026 年 10 月官方规格） {#tbl-09-spatial-tech}
 
 @tbl-09-spatial-tech 的三行代表三种取舍：**全转录组与分辨率不可兼得**——Visium 测所有基因但每点多细胞；MERFISH/Xenium 定位到单分子却只能测预先选好的几百到几千个基因[^ch09-merfish]；Visium HD 把捕获网格推到 2 µm，又带来数据量与统计单位（bin 怎么合并）的新问题[^ch09-visium-specs]。选型时先回答：关心的是"哪些基因在哪里"（全转录组优先），还是"已知分子定位到亚细胞"（靶向高分辨优先）。
 
@@ -425,7 +431,7 @@ brain <- Load10X_Spatial(data.dir = ".",
 SpatialPlot(brain, features = c("Hpca", "Plp1", "Rorb", "Cux2"))
 ```
 
-![Visium 小鼠脑矢状切面：区域 marker 基因的空间分布（Seurat 实跑）](../assets/09-single-cell-and-spatial-omics/007-visium-regions.png){#fig-09-visium-regions}
+![Visium 小鼠脑矢状切面中区域 marker 基因的空间分布](../assets/09-single-cell-and-spatial-omics/007-visium-regions.png){#fig-09-visium-regions}
 
 @fig-09-visium-regions 里每个小图都是"基因表达 × 组织位置"的叠加：`Hpca` 富集在海马，`Plp1`（髓鞘蛋白）勾勒白质纤维束，`Rorb` 与 `Cux2` 分别标记皮层深层与浅层——它们的空间分布与相应的神经解剖学结构一致。判读空间图的要点是**把表达模式与可辨认的解剖结构对上**：解释空间图时，需要核对表达分布与组织学结构是否一致，不能只看颜色深浅。
 

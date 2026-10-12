@@ -20,7 +20,7 @@
 | [Oxford Nanopore 技术说明](https://nanoporetech.com/platform/technology) | 纳米孔电流信号 |
 | [PacBio RNA 测序](https://www.pacb.com/products-and-services/applications/rna-sequencing/) | 全长 cDNA 与 Iso-Seq |
 
-: 表题待补 {#tbl-a-references-and-materials-01}
+: 生物信息学参考资料及用途 {#tbl-a-references-and-materials-01}
 
 ## 待完善的引用与素材
 

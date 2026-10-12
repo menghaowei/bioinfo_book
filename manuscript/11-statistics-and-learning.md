@@ -31,7 +31,7 @@
 
 @fig-11-learning-map 把这张地图画在了一起。学习路线就是从上往下：先会用描述统计和分布的直觉，再掌握检验与线性模型这条差异分析主线，然后把降维聚类当作探索工具用熟；有监督方法等有了完整项目再学不迟。
 
-![生信分析中的统计问题地图：问题类型、常用方法、数学基础与本书章节的对应关系。](../assets/11-statistics-and-learning/fig-11-01-learning-map.svg){#fig-11-learning-map}
+![生信统计问题、分析方法与学习内容的对应关系](../assets/11-statistics-and-learning/fig-11-01-learning-map.svg){#fig-11-learning-map}
 
 ::::: {.callout-note .book-core title="核心知识｜学统计的顺序不是按数学课本的目录"}
 
@@ -125,7 +125,9 @@ c(mean = mean(nb),   var = var(nb))         # 20.09  72.49
 
 @fig-11-count-dist 展示两组模拟计数：均值相同，负二项明显更散。这正是 [第 5 章](05-rna-seq.md#src-0050-RNA-seq-793) 差异分析不用普通 t 检验、而用 DESeq2/edgeR 这类负二项模型的原因——数据的产生机制决定了模型的选择。
 
-![同样的均值、不同的离散程度（模拟数据）。泊松分布（上）方差等于均值；负二项分布（下）在测序计数中更常见。](../assets/11-statistics-and-learning/fig-11-02-count-dist.png){#fig-11-count-dist}
+![相同均值下泊松分布与负二项分布的离散程度（模拟数据）](../assets/11-statistics-and-learning/fig-11-02-count-dist.png){#fig-11-count-dist}
+
+图注：上图为泊松分布，方差等于均值；下图为负二项分布，在测序计数中更常见。
 
 ### 正态分布、t 分布与对数变换 {#topic-11-normal-t}
 
@@ -162,7 +164,9 @@ mean of x mean of y
 
 结果逐项读：t = 27.25，组间差异远大于组内波动；两组均值差 6.50（log2 尺度，即约 90 倍），95% 置信区间 [6.00, 7.00] 不含 0；p 值 5.9×10⁻¹⁶。@fig-11-alb-ttest 把两组原始点和均值画在一起——检验做的比较，就是图上“组间距离 vs 组内散布”。
 
-![ALB 在 GTEx 肝与胰腺样本中的表达（各 10 个样本，点为样本，横线为组均值）。组间差异与组内波动的对比一目了然。](../assets/11-statistics-and-learning/fig-11-03-alb-ttest.png){#fig-11-alb-ttest}
+![GTEx 肝与胰腺样本中的 ALB 表达](../assets/11-statistics-and-learning/fig-11-03-alb-ttest.png){#fig-11-alb-ttest}
+
+图注：每组 10 个样本；点表示样本，横线表示组均值。
 
 t 检验的前提：样本相互独立、数据近似正态（或样本量足够大）、两组方差可比。`t.test()` 默认用 Welch 版本，不要求方差相等——这就是输出里 df = 17.79 而不是 18 的原因。前提明显不满足时（比如严重偏态的计数），换 Wilcoxon 秩和检验或按 [11.3](#sec-11-03) 的思路换模型。
 
@@ -273,7 +277,9 @@ round(coef(fit), 3)
 - **对照水平决定符号**。R 按因子水平的字母序选第一个水平当截距：Liver 在前，所以系数是“胰腺减肝”。要反过来，用 `factor(tissue, levels = c(“Pancreas”, “Liver”))` 或 `relevel()`。[第 5 章](05-rna-seq.md#topic-05-sample-design)特意提醒“注意分组方向”，因为 log2FC 的正负号完全由它决定——表格里上调下调写反，多半是这一步错了。
 - **比较方向与检验方向**。contrast 是“谁减谁”的问题，不是“谁比谁高”的问题：写清楚方向，讨论“上调/下调”时才能正确对应比较的两组。
 
-![设计公式如何变成模型矩阵：`alb ~ tissue` 中分类型变量被展开为 0/1 哑变量列，回归系数一一对应（示意图，数值取自正文例子）。](../assets/11-statistics-and-learning/fig-11-04-design-matrix.svg){#fig-11-design-matrix}
+![从设计公式 `alb ~ tissue` 到模型矩阵（示意）](../assets/11-statistics-and-learning/fig-11-04-design-matrix.svg){#fig-11-design-matrix}
+
+图注：分类型变量展开为 0/1 哑变量列，各列与回归系数对应。数值取自正文例子。
 
 ### 从线性模型到 DESeq2 的真实模型 {#topic-11-glm}
 
@@ -311,7 +317,9 @@ round(coef(fit), 3)
 
 **主坐标分析（PCoA）**是 PCA 的推广：不要求原始坐标，只要有样本间的距离矩阵就能做（PCA 只用欧氏距离）。扩增子分析常用 Bray–Curtis 距离加 PCoA，单细胞用其他距离的场合同理——先定义距离，再找最能代表距离结构的低维坐标。
 
-![PCA 的直觉：两个基因维度上找方差最大的投影方向。PC1 是样本最分散的方向，PC2 垂直于 PC1；每个样本在新轴上的位置就是它的主成分得分（示意数据）。](../assets/11-statistics-and-learning/fig-11-05-pca-principle.svg){#fig-11-pca-principle}
+![两个基因维度上的 PCA 投影（示意数据）](../assets/11-statistics-and-learning/fig-11-05-pca-principle.svg){#fig-11-pca-principle}
+
+图注：PC1 为样本投影方差最大的方向，PC2 与 PC1 垂直。样本在新轴上的位置就是它的主成分得分。
 
 ### 非线性降维：t-SNE 与 UMAP {#src-0080-statistics-13}
 
@@ -319,7 +327,9 @@ round(coef(fit), 3)
 
 PCA 只能表达线性结构。当数据的真实结构“弯”在高维空间里——单细胞分化过程中的连续状态就是典型——线性投影会把不相近的细胞压到一起。这类数据需要**流形学习**：数据的高维分布近似躺在一个低维“流形”上，经典比喻是“瑞士卷”（@fig-11-swiss-roll）：三维的点其实排在一张二维曲面上，卷曲让欧氏距离失真（两黑点在纸面上的距离是红线，直线穿过去的欧氏距离却短得多）。t-SNE 和 UMAP 都试图把这张曲面“摊开”到二维。
 
-![瑞士卷：数据是三维的，本质是二维流形。直接用欧氏距离（穿过卷内部的直线）会低估流形上两点的真实距离（红色曲线）。](../assets/05-statistics-and-exploration/003-illustration.png){#fig-11-swiss-roll}
+![瑞士卷中的欧氏距离与流形距离](../assets/05-statistics-and-exploration/003-illustration.png){#fig-11-swiss-roll}
+
+图注：瑞士卷位于三维空间，其本质为二维流形。穿过卷内部的直线表示欧氏距离，红色曲线表示沿流形的距离；前者会低估后者。
 
 []{#src-0080-statistics-19}
 
@@ -369,7 +379,9 @@ $$ {#eq-lowdim-q}
 
 t 分布的重尾巴解决了**拥挤问题**：高维里挤在一起的近邻，在低维里仍可以摊开；高维里中等的距离在低维里被推得更远（@fig-11-t-vs-normal）。代价是 t-SNE 图上**簇间距离和簇大小基本不可解读**——它保留的是局部邻接，不是全局几何（这也是单细胞领域后来更多用 UMAP 的原因之一）。[11.8](#sec-11-08) 会用真实数据展示困惑度和随机种子的影响。
 
-![正态分布与自由度为 1 的 t 分布：t 分布尾巴更重。同一概率值下，近处（dis₁ < dis₂）t 分布对应的距离更近、远处（dis₃ > dis₄）更远——“近的更近、远的更远”。](../assets/05-statistics-and-exploration/004-distribution.png){#fig-11-t-vs-normal}
+![正态分布与自由度为 1 的 t 分布](../assets/05-statistics-and-exploration/004-distribution.png){#fig-11-t-vs-normal}
+
+图注：t 分布的尾部更重。图中在相同概率值下，近处满足 dis₁ < dis₂，远处满足 dis₃ > dis₄；t 分布对应的距离在近处更小、远处更大。
 
 ::::: {.callout-note .book-extension title="拓展阅读｜SNE 的逐步推导（4×4 表达矩阵示例）" collapse="true"}
 
@@ -443,9 +455,13 @@ plot(pca$x[, 1], pca$x[, 2], col = factor(samples$SMTS))  # 简图；书用 ggpl
 
 @fig-11-gtex-pca 是结果：PC1 解释 19.9%、PC2 解释 17.5%，十个组织几乎完全按组织分开——脑、肌肉、心、肝各自成簇，位置与生理功能对应（高代谢的器官在 PC1 一侧、免疫相关的全血在另一侧）。@fig-11-gtex-scree 的碎石图显示前五个主成分合计约 72%，二维图虽然只切了一个截面，主结构已经清楚。这与 [第 5 章](05-rna-seq.md#topic-05-sample-qc) 差异分析前的 PCA 检查是同一个方法、同一个读法：**样本该聚的聚了，才轮得到下游分析；若有样本落错了簇，先查标签和批次，再谈结论**。
 
-![GTEx 十组织样本的 PCA（100 个样本、top 3000 高变基因）。样本按组织成簇，PC1 解释 19.9%、PC2 解释 17.5%。](../assets/11-statistics-and-learning/fig-11-06a-gtex-pca.png){#fig-11-gtex-pca}
+![GTEx 十种组织样本的 PCA](../assets/11-statistics-and-learning/fig-11-06a-gtex-pca.png){#fig-11-gtex-pca}
 
-![前 10 个主成分的方差解释比例（碎石图）：PC1—PC5 合计约 72%，其后趋于平缓。](../assets/11-statistics-and-learning/fig-11-06b-gtex-scree.png){#fig-11-gtex-scree}
+图注：使用 100 个样本与变异最大的 3000 个基因。样本按组织成簇；PC1 与 PC2 分别解释 19.9% 和 17.5% 的方差。
+
+![GTEx 数据前 10 个主成分的方差解释比例](../assets/11-statistics-and-learning/fig-11-06b-gtex-scree.png){#fig-11-gtex-scree}
+
+图注：PC1—PC5 合计解释约 72% 的方差，其后趋于平缓。
 
 ### t-SNE：perplexity 与随机种子 {#topic-11-gtex-tsne}
 
@@ -459,9 +475,13 @@ plot(tsne$Y, col = factor(samples$SMTS))
 
 @fig-11-gtex-tsne-perp 把困惑度设为 5、15、30 各跑一遍：5 时图碎成小团（每个点只认 5 个邻居，局部噪声被放大），30 时组织块更连贯。注意 Rtsne 要求困惑度小于 (n−1)/3——100 个样本的演示里 30 已接近上限，这也是“困惑度上限随样本量增长”的直观体现。@fig-11-gtex-tsne-seed 则固定困惑度换两个随机种子：组织成员基本稳定，但簇的形状和相对位置明显变化——**t-SNE 图的簇间距离与簇大小不能解读**。
 
-![t-SNE 困惑度的影响（perplexity = 5 / 15 / 30，同一随机种子）。困惑度过小会把数据打成碎片，加大后组织块更连贯。](../assets/11-statistics-and-learning/fig-11-07a-gtex-tsne-perp.png){#fig-11-gtex-tsne-perp}
+![困惑度对 t-SNE 结果的影响](../assets/11-statistics-and-learning/fig-11-07a-gtex-tsne-perp.png){#fig-11-gtex-tsne-perp}
 
-![t-SNE 随机种子的影响（perplexity = 30，两个不同种子）。点的归属大体稳定，但簇的形状与相对位置不同——t-SNE 图上的距离没有直接含义。](../assets/11-statistics-and-learning/fig-11-07b-gtex-tsne-seed.png){#fig-11-gtex-tsne-seed}
+图注：固定随机种子，比较 perplexity = 5、15、30。图中困惑度较小时样本簇更分散，增大后同一组织的样本更集中。
+
+![随机种子对 t-SNE 结果的影响](../assets/11-statistics-and-learning/fig-11-07b-gtex-tsne-seed.png){#fig-11-gtex-tsne-seed}
+
+图注：固定 perplexity = 30，比较两个随机种子。样本归属大体稳定，簇的形状与相对位置有所变化；簇间距离不宜直接解释为原始数据中的距离。
 
 ### UMAP：n_neighbors 与 min_dist {#topic-11-gtex-umap}
 
@@ -475,9 +495,13 @@ plot(emb, col = factor(samples$SMTS))
 
 @fig-11-gtex-umap-nn 展示 `n_neighbors` = 5 / 15 / 50：小值突出局部小团、图更零碎；50 时（100 个样本的一半）整图被“拉通”，局部细节换成了全局布局。@fig-11-gtex-umap-md 展示 `min_dist` = 0.0 / 0.1 / 1.0：0.0 时点挤成密块，1.0 时整体摊开、簇内结构变模糊。与 t-SNE 相比，UMAP 跑得快、多数情况下簇间相对位置更稳定，但同样要固定种子、同样不能拿图上距离当真实距离。
 
-![UMAP 中 n_neighbors 的影响（5 / 15 / 50，min_dist = 0.1）：小值只顾局部，大值纳入全局布局。](../assets/11-statistics-and-learning/fig-11-08a-gtex-umap-nn.png){#fig-11-gtex-umap-nn}
+![n_neighbors 对 UMAP 结果的影响](../assets/11-statistics-and-learning/fig-11-08a-gtex-umap-nn.png){#fig-11-gtex-umap-nn}
 
-![UMAP 中 min_dist 的影响（0.0 / 0.1 / 1.0，n_neighbors = 15）：控制低维图上点的最小间距，小值挤成密块，大值摊松。](../assets/11-statistics-and-learning/fig-11-08b-gtex-umap-md.png){#fig-11-gtex-umap-md}
+图注：固定 min_dist = 0.1，比较 n_neighbors = 5、15、50。较小值侧重局部结构，较大值纳入更大范围的结构。
+
+![min_dist 对 UMAP 结果的影响](../assets/11-statistics-and-learning/fig-11-08b-gtex-umap-md.png){#fig-11-gtex-umap-md}
+
+图注：固定 n_neighbors = 15，比较 min_dist = 0.0、0.1、1.0。该参数影响低维图上点的间距；较小值使点更紧密，较大值使点更分散。
 
 ### 三种方法怎么选 {#topic-11-dimred-choice}
 
@@ -487,7 +511,7 @@ plot(emb, col = factor(samples$SMTS))
 | t-SNE | 局部邻接 | 可视化、发现簇 | 簇间距离/簇大小不可解读；对困惑度和种子敏感；慢 |
 | UMAP | 局部为主、兼顾一定全局 | 可视化、大数据集 | 距离仍不可当真值；对 n_neighbors、min_dist、种子敏感 |
 
-: 三种降维方法的选择要点 {#tbl-11-dimred-compare}
+: PCA、t-SNE 与 UMAP 的适用场景 {#tbl-11-dimred-compare}
 
 实践上的默认次序：**先 PCA 看主结构与离群样本，需要展示局部结构再用 t-SNE 或 UMAP**；无论用哪个，报告参数与种子（[第 10 章](10-snakemake-and-reproducibility.md#sec-ch10)的可复现原则在这里同样适用），重要的结论不建立在任何一张降维图上。
 

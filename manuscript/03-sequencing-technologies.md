@@ -109,7 +109,7 @@ Sanger 测序的读长可达 500—1000 bp，单条序列的准确率很高，�
 
 单分子发出的荧光太弱，无法直接检测，因此测序前要先在流动槽表面把每个模板扩增成“簇”。将调整到合适浓度的 DNA 文库加入 flowcell，文库片段末端的 adapter 与流动槽表面固定的寡核苷酸互补配对，通过共价连接固定。随后开始桥式 PCR：第一轮扩增把单链补成双链；加入 NaOH 碱性溶液变性、洗脱——由于最初的连接是共价键，模板不会被洗掉；再加入缓冲液，序列自由端与表面相邻的寡核苷酸配对，弯成“桥”状进行一轮扩增。如此循环，每个原始分子就扩增成一个由完全相同序列组成的簇（cluster）。
 
-![cluster 模式图](../assets/03-sequencing-and-data-formats/004-pic-04-cluster.jpg){#fig-03-sequencing-and-data-formats-004}
+![测序簇（cluster）示意图](../assets/03-sequencing-and-data-formats/004-pic-04-cluster.jpg){#fig-03-sequencing-and-data-formats-004}
 
 ![桥式 PCR 流程](../assets/03-sequencing-and-data-formats/005-pic-05-pcr.jpg){#fig-03-sequencing-and-data-formats-005}
 
@@ -131,11 +131,11 @@ Sanger 测序的读长可达 500—1000 bp，单条序列的准确率很高，�
 
 Illumina 边合成边测序（Sequencing by Synthesis，SBS）使用的关键分子是**可逆终止子核苷酸**。它有两处修饰：碱基通过可切除连接子带上荧光染料，脱氧核糖的 3′ 羟基被叠氮甲基（–CH₂–N₃）封闭，保证每轮反应只能延伸一个碱基。可以先看下面的示意图；精确的化学结构见本节末的拓展阅读框。
 
-![base带有荧光基团（示意，图片来源 oezratty.net）](../assets/03-sequencing-and-data-formats/006-pic-06-base.jpg){#fig-03-sequencing-and-data-formats-006}
+![带荧光基团的碱基示意[^fig03-base-source]](../assets/03-sequencing-and-data-formats/006-pic-06-base.jpg){#fig-03-sequencing-and-data-formats-006}
 
 每轮循环包含三步：聚合酶掺入一个带荧光的可逆终止子，仪器扫描并记录整个 cluster 的荧光颜色，随后用化学试剂（TCEP）一步完成两件事——3′ 封闭基团完全恢复为羟基、碱基上的染料被切除（切除后在碱基上残留一小段连接子）——再进入下一轮。因为一个 cluster 中所有序列都是同一条模板的拷贝，理论上每轮整个 cluster 发出同一颜色的荧光；逐 tile 扫描、把信号序列转换成碱基序列，就完成了测序。
 
-![测序过程中不同碱基激发出不同波长的荧光](../assets/03-sequencing-and-data-formats/007-pic-07-color.jpg){#fig-03-sequencing-and-data-formats-007}
+![测序中用于区分碱基的荧光信号](../assets/03-sequencing-and-data-formats/007-pic-07-color.jpg){#fig-03-sequencing-and-data-formats-007}
 
 ![边合成边测序示意图](../assets/03-sequencing-and-data-formats/008-pic-08-seq-color.jpg){#fig-03-sequencing-and-data-formats-008}
 
@@ -143,7 +143,7 @@ Illumina 边合成边测序（Sequencing by Synthesis，SBS）使用的关键分
 
 下图是 3′-O-叠氮甲基-dCTP 的精确结构：A 面板为完整分子，B、C 面板放大两个关键修饰位点，供希望深入理解化学原理的读者参考。
 
-![Illumina 可逆终止子核苷酸的化学结构（依据 Guo et al. 2008, PNAS 与 Illumina 专利 US 7,541,444 绘制）](../assets/03-sequencing-and-data-formats/010-nucleotide-reversible-terminator.png){#fig-03-nucleotide-reversible-terminator}
+![Illumina 可逆终止子核苷酸的化学结构[^fig03-terminator-source]](../assets/03-sequencing-and-data-formats/010-nucleotide-reversible-terminator.png){#fig-03-nucleotide-reversible-terminator}
 
 - **3′-O-叠氮甲基（–O–CH₂–N₃，B 面板）**：3′ 羟基被“叠氮甲基”以醚键封闭，聚合酶无法继续延伸。它本质上是半缩醛的保护形式：TCEP（水溶性膦试剂）对叠氮基发生 Staudinger 型还原，产物不稳定、随即水解释落，干净地恢复 3′-OH——掺入链的糖环上不留任何残基。注意名称与写法：是 3′-**O**-叠氮甲基（N₃，三个氮），不是“3′-叠氮”，更不是 N₂。
 - **碱基上的可切除染料（C 面板）**：荧光染料通过连接子接在碱基上——嘧啶接 C5，嘌呤接 C7（且必须画成 7-脱氮嘌呤才能带 C7 取代基）；先经炔丙胺（–C≡C–CH₂–NH–）连接，再经可断裂连接子（早期商业化学为二硫键）连到染料。同一步 TCEP 处理把染料切除，但连接子会有一小段残留在碱基上（所谓“scar”）：掺入的碱基与天然碱基并不完全相同，只是不影响后续轮次的碱基判读。
@@ -182,7 +182,7 @@ MGI 是另一个主流短读长平台。我们来看它怎样生成信号并读�
 
 测序采用 **cPAS**（联合探针锚定聚合测序）：每轮反应中加入带荧光的可逆终止 dNTP，在锚定探针和聚合酶的作用下延伸一个碱基并成像，随后清除荧光、解除终止进入下一轮。reads 输出同样是 FASTQ 格式，与 Illumina 数据的下游分析流程高度兼容。
 
-![DNBSEQ 的文库构建与测序流程：环化、滚环复制生成 DNA 纳米球、规则阵列上机与测序（图片来源：Huang J. et al. 2017, GigaScience 6(5), doi:10.1093/gigascience/gix024，CC BY 4.0）](../assets/03-sequencing-and-data-formats/011-dnbseq-workflow.jpg){#fig-03-dnbseq-workflow}
+![DNBSEQ 的文库构建与测序流程[^fig03-dnbseq-source]](../assets/03-sequencing-and-data-formats/011-dnbseq-workflow.jpg){#fig-03-dnbseq-workflow}
 
 常见机型覆盖不同通量：DNBSEQ-T7 与 T20×2 面向超大人群测序，MGISEQ-2000/DNBSEQ-G400 等常用于科研与临床。选型时同样应查对应型号的实际参数，而不是凭印象套用其他平台的数字。
 
@@ -196,7 +196,7 @@ MGI 是另一个主流短读长平台。我们来看它怎样生成信号并读�
 
 PacBio 的 SMRT（Single Molecule Real-Time）测序把单个聚合酶固定在零模波导孔（ZMW）底部，四种带不同荧光染料的 dNTP（染料标记在磷酸链上，掺入后自动脱离，因此不需要可逆终止）逐个掺入，实时记录荧光脉冲序列（ @fig-03-smrt-zmw ）。聚合酶可以连续合成，单条读长可达数十 kb。
 
-![零模波导孔（ZMW）的结构：底部固定的聚合酶与实时荧光检测（图片来源：Wang Y. et al. 2025, Biosensors 15(1):4, doi:10.3390/bios15010004，CC BY 4.0）](../assets/03-sequencing-and-data-formats/012-smrt-zmw.jpg){#fig-03-smrt-zmw}
+![零模波导孔（ZMW）中的聚合酶与荧光检测[^fig03-smrt-source]](../assets/03-sequencing-and-data-formats/012-smrt-zmw.jpg){#fig-03-smrt-zmw}
 
 SMRT 的单遍错误率较高（约 10% 量级），但错误基本随机分布。HiFi 测序利用这一点：把同一分子环化后反复读取（至少 3 遍），对多次读取取一致序列，得到既长（15—25 kb）又准（Q30 以上）的 HiFi reads。PacBio 适合解决结构变异、高度重复或复杂区域，以及通过 Iso-Seq 获得全长转录本。
 
@@ -204,7 +204,7 @@ SMRT 的单遍错误率较高（约 10% 量级），但错误基本随机分布�
 
 Oxford Nanopore 的原理完全不同：马达蛋白牵引单链 DNA（或 RNA）穿过嵌在膜上的纳米孔，不同碱基组合对孔道电流的阻滞不同，仪器连续记录电流变化，再由碱基识别算法（basecalling）把电信号翻译成序列（ @fig-03-nanopore-principle ）。它不依赖合成反应，读长理论上只受样品 DNA 长度限制，可达数百 kb 至 Mb 级；设备从掌上 MinION 到高通量台式机都有，可以现场快速测序。
 
-![纳米孔测序原理：马达蛋白牵引 DNA 穿过膜上纳米孔并检测电流变化（研究用 MspA 孔示意；图片来源：Nova I.C. et al. 2017, PLoS ONE 12(7):e0181599，CC BY 4.0，经 Wikimedia Commons）](../assets/03-sequencing-and-data-formats/013-nanopore-principle.png){#fig-03-nanopore-principle}
+![纳米孔测序原理（研究用 MspA 孔示意）[^fig03-nanopore-source]](../assets/03-sequencing-and-data-formats/013-nanopore-principle.png){#fig-03-nanopore-principle}
 
 纳米孔的单遍错误率历史上约 5%—10%，且存在非随机的系统偏差；随着化学体系与识别算法改进（如 Q20 化学和新版 basecaller），精度持续提升。它还能对 RNA 直接测序（不经过逆转录），保留碱基修饰信息，这是其他平台做不到的。
 
@@ -302,7 +302,7 @@ FASTQ 文件每 4 行记录一条 read：
 
 : Illumina read 名称行的字段含义 {#tbl-03-fastq-header}
 
-![FASTQ 标题行各字段的含义示意](../assets/a-questions-11-15/001-11-1.jpg){#fig-a-questions-11-15-001}
+![FASTQ 序列名称行各字段的含义](../assets/a-questions-11-15/001-11-1.jpg){#fig-a-questions-11-15-001}
 
 实际拿到手的 Illumina 数据通常是 `.fastq.gz`：`gz` 表示用 gzip 压缩，`fastq` 表示用 FASTQ 格式存储。双端测序每个样本会有 R1、R2 两个文件（可能还有 index 文件），两者中同名 read 互为配对。
 
@@ -460,7 +460,7 @@ fastqc -t 4 -o fastqc_result sample_R1.fastq.gz sample_R2.fastq.gz
 
 FastQC 会对每一个输入文件生成一个 html 网页和一个 zip 压缩包（内含网页中的图片），日常只需要看网页里整理好的内容。它对碱基质量、接头序列、重复序列、GC 含量、N 含量、长度分布等逐项统计，并给出模块级别的判定：
 
-![FastQC 网站](../assets/04-quality-control-and-alignment/033-fastqc1.jpg){#fig-04-quality-control-and-alignment-033}
+![FastQC 官方网站](../assets/04-quality-control-and-alignment/033-fastqc1.jpg){#fig-04-quality-control-and-alignment-033}
 
 1. 基本统计（Basic Statistics）
 2. 每个位置的碱基质量（Per base sequence quality）
@@ -478,7 +478,7 @@ FastQC 会对每一个输入文件生成一个 html 网页和一个 zip 压缩�
 
 基本统计模块汇总文件类型、编码方式、总 read 数、GC 含量和序列长度等，能最快了解样本概况（ @fig-04-quality-control-and-alignment-037 ）。
 
-![FastQC 对 RNA 测序样本基本信息统计](../assets/04-quality-control-and-alignment/037-fastqc3.jpg){#fig-04-quality-control-and-alignment-037}
+![FastQC 中 RNA-seq 样本的基本信息](../assets/04-quality-control-and-alignment/037-fastqc3.jpg){#fig-04-quality-control-and-alignment-037}
 
 ![FastQC 报告中重点关注的质控模块（红框标出）](../assets/a-questions-06-10/003-7-0.jpg){#fig-a-questions-06-10-003}
 
@@ -490,15 +490,15 @@ FastQC 会对每一个输入文件生成一个 html 网页和一个 zip 压缩�
 
 横轴是 read 中的位置（第 1 到第 150 个碱基），纵轴是每个位置所有碱基的质量值（ @fig-04-quality-control-and-alignment-034 ）。每个位置画一个箱线图：上下横线分别是 90% 和 10% 分位数，箱体上下缘是 75% 和 25% 分位数，箱中横线是中位数；蓝色细线连接各位置的平均质量。分位数的直观解释：若一组数的 25% 分位数是 a，意味着 a 超过了这组数中 25% 的值。判读阈值：任一位置的下四分位数低于 10 或中位数低于 25 时评估为 warn；低于 5 或 20 时评估为 fail。
 
-![FastQC 对 RNA 测序样本的逐碱基质量](../assets/04-quality-control-and-alignment/034-fastqc4.jpg){#fig-04-quality-control-and-alignment-034}
+![RNA-seq 样本的逐碱基质量分布](../assets/04-quality-control-and-alignment/034-fastqc4.jpg){#fig-04-quality-control-and-alignment-034}
 
 []{#question-06-35}
 
 双端数据要把 R1 与 R2 分开看。下面两张图来自同一次测序（ @fig-a-questions-06-10-001 与 @fig-a-questions-06-10-002 ），reads2 的质量均匀性明显差于 reads1。结合本章 3.3 节的原理来看：reads1 的 150bp 测序完成后，要先重新合成互补链，再对 reads2 进行荧光测序。此时合成酶经过长时间反应，活性已经下降，部分链加不上碱基，cluster 内的同步性变差，主要表现为 phasing 错误累积、箱体整体下移、离群点增多。
 
-![Illumina 测序结果 reads1 的逐碱基质量箱线图](../assets/a-questions-06-10/001-6-1.jpg){#fig-a-questions-06-10-001}
+![Illumina 测序 R1 的逐碱基质量分布](../assets/a-questions-06-10/001-6-1.jpg){#fig-a-questions-06-10-001}
 
-![Illumina 测序结果 reads2 的逐碱基质量箱线图](../assets/a-questions-06-10/002-6-2.jpg){#fig-a-questions-06-10-002}
+![Illumina 测序 R2 的逐碱基质量分布](../assets/a-questions-06-10/002-6-2.jpg){#fig-a-questions-06-10-002}
 
 []{#question-06-79}
 
@@ -506,7 +506,7 @@ FastQC 会对每一个输入文件生成一个 html 网页和一个 zip 压缩�
 
 横轴同样是 read 中的位置，纵轴是每个位置 A、T、C、G 各自的百分比（ @fig-04-quality-control-and-alignment-035 ）。随机文库中每个位置四种碱基的比例应大致相等（Chargaff 法则），四条线应当平行地贴着 25%。判读阈值：任一位置 A 与 T 的比例之差、或 G 与 C 的比例之差超过 10% 评估为 warn，超过 20% 评估为 fail——比较的是互补碱基之间的差值，而不是 A/T 与 G/C 两个比值之间的差。
 
-![FastQC 对小 RNA 测序样本的碱基组成](../assets/04-quality-control-and-alignment/035-fastqc5.jpg){#fig-04-quality-control-and-alignment-035}
+![小 RNA 测序样本的碱基组成](../assets/04-quality-control-and-alignment/035-fastqc5.jpg){#fig-04-quality-control-and-alignment-035}
 
 []{#question-06-109}
 
@@ -514,11 +514,11 @@ FastQC 会对每一个输入文件生成一个 html 网页和一个 zip 压缩�
 
 DNA 全基因组测序样本通常呈现“前 10bp 左右波动、之后四线平稳”的形态（ @fig-a-questions-06-10-004 ），平稳区的四条线可以用来读出该物种的 GC 含量——图中 GC 合计约 42%，与人类基因组的已知值一致。GC 含量在同一物种内是相当稳定的量，不同物种间通常不同。
 
-![DNA 全基因组测序样本的碱基组成（前 10bp 波动）](../assets/a-questions-06-10/004-7-1.jpg){#fig-a-questions-06-10-004}
+![全基因组测序样本的碱基组成（前 10 bp 波动）](../assets/a-questions-06-10/004-7-1.jpg){#fig-a-questions-06-10-004}
 
 如果四条线全程剧烈波动（ @fig-a-questions-06-10-005 ），说明文库测到的分子群体碱基组成不随机——例如特殊建库富集的 RNA 群体。再如 @fig-04-quality-control-and-alignment-035 的小 RNA 样本：文库测到的是 miRNA 等特定的小 RNA 分子，其群体碱基组成本身不随机（例如 miRNA 的第 1 位碱基多为 U），四线不平行、AT 占比偏高属于正常现象。
 
-![特殊 RNA 建库样本的碱基组成（四线全程波动）](../assets/a-questions-06-10/005-7-2.jpg){#fig-a-questions-06-10-005}
+![特殊 RNA 建库样本中四种碱基占比的波动](../assets/a-questions-06-10/005-7-2.jpg){#fig-a-questions-06-10-005}
 
 []{#question-06-136}
 
@@ -528,11 +528,11 @@ DNA 全基因组测序样本通常呈现“前 10bp 左右波动、之后四线�
 
 这个模块换了一个视角：对每条 read 计算整体 GC 含量，画所有 reads 的分布曲线（ @fig-a-questions-06-10-007 ）。横轴是 GC 含量（0—100%），纵轴是具有相应 GC 含量的 reads 数量；蓝色虚线是根据数据拟合的理论正态分布。随机文库的曲线应是与蓝线基本重合的单峰，峰的位置就是该物种基因组的 GC 含量。
 
-![human 全基因组测序的每序列 GC 含量分布](../assets/a-questions-06-10/007-8-1-1.jpg){#fig-a-questions-06-10-007}
+![人类全基因组测序样本中各条 read 的 GC 含量分布](../assets/a-questions-06-10/007-8-1-1.jpg){#fig-a-questions-06-10-007}
 
 当曲线出现异常形态时需要追问原因。 @fig-a-questions-06-10-008 的曲线出现双峰且偏离理论分布，最常见的解释是混入了其他物种的 DNA（污染），也可能是 rRNA、接头序列或 PCR 过度扩增等造成。
 
-![出现双峰的每序列 GC 含量分布](../assets/a-questions-06-10/008-8-1-2.jpg){#fig-a-questions-06-10-008}
+![呈双峰的 read GC 含量分布](../assets/a-questions-06-10/008-8-1-2.jpg){#fig-a-questions-06-10-008}
 
 ::: {.callout-tip .book-example title="示例与练习｜GC 双峰的处理"}
 
@@ -549,7 +549,7 @@ DNA 全基因组测序样本通常呈现“前 10bp 左右波动、之后四线�
 
 横轴是序列长度，纵轴是相应长度 reads 的数量（ @fig-a-questions-06-10-009 ）。刚下机的 Illumina 数据所有 reads 长度一致（如双端 150bp），因为测序循环数固定，图中应是一个尖峰。经过 cutadapt 等工具去除接头后，reads 的长度就会有所不同：有些 insert 被测穿，有些没有，被切掉的长度也不相同。因此，处理后的数据出现长短不一的 reads，通常是正常现象。
 
-![刚下机数据的序列长度分布](../assets/a-questions-06-10/009-8-2-1.jpg){#fig-a-questions-06-10-009}
+![原始测序数据的序列长度分布](../assets/a-questions-06-10/009-8-2-1.jpg){#fig-a-questions-06-10-009}
 
 #### 重复序列水平（Sequence Duplication Levels） {#question-09-duplication}
 
@@ -565,9 +565,9 @@ DNA 全基因组测序样本通常呈现“前 10bp 左右波动、之后四线�
 
 横轴是 read 中的位置，纵轴是相应位置含某种接头序列的 reads 百分比，不同颜色对应不同的通用接头（ @fig-a-questions-06-10-011 、 @fig-a-questions-06-10-012 ）。正常文库只有少量 reads 在 3′ 端测穿进入接头；如果 read 后半段接头比例很高（如 @fig-a-questions-06-10-012 ），说明文库插入片段普遍偏短或存在建库问题，必须去除接头才能比对。
 
-![一个正常的接头含量报告](../assets/a-questions-06-10/011-10-1-1.jpg){#fig-a-questions-06-10-011}
+![接头含量较低的 FastQC 报告](../assets/a-questions-06-10/011-10-1-1.jpg){#fig-a-questions-06-10-011}
 
-![一个接头污染严重的 RNA-Seq 接头含量报告](../assets/a-questions-06-10/012-10-1-2.jpg){#fig-a-questions-06-10-012}
+![接头污染严重的 RNA-seq 样本报告](../assets/a-questions-06-10/012-10-1-2.jpg){#fig-a-questions-06-10-012}
 
 ![FastQC 的 Adapter Content 模块示例](../assets/a-questions-11-15/002-11-2.jpg){#fig-a-questions-11-15-002}
 
@@ -594,13 +594,13 @@ Bottom adapter
 
 k-mer 指定长的短序列，例如 AATTCCGG 是一个 8-mer。该模块统计每个 7-mer 在 read 各位置的出现频率：横轴是 read 中的位置，纵轴是在对应位置含有该 k-mer 的 reads 百分比，每条线代表一个出现富集的 k-mer（ @fig-a-questions-06-10-013 ）。正常文库的短序列不应偏好特定位置；某条线在固定位置明显抬升，说明存在系统性来源——接头、随机引物偏好，或建库时加入的固定序列。
 
-![正常的 RNA-Seq 建库 kmer 统计](../assets/a-questions-06-10/013-10-2-1.jpg){#fig-a-questions-06-10-013}
+![常规 RNA-seq 文库的 k-mer 统计](../assets/a-questions-06-10/013-10-2-1.jpg){#fig-a-questions-06-10-013}
 
 @fig-a-questions-06-10-014 中 kmer 在 read 开头集中富集，原因是建库时在 5′ 端加入了约 10bp 的 random barcode（UMI）——这段固定位置的随机序列本身造成了 kmer 富集，与 @fig-a-questions-06-10-015 的统计表互相印证。表中各列依次是：kmer 序列、该 kmer 在整个文库中被观测到的总次数（Count）、二项分布检验的 P 值、观察值与期望值之比的最大值（Obs/Exp Max）、以及该最大值出现的位置（Max Position）。FastQC 采样约 2% 的 reads 进行统计，序列超过 500bp 时只分析前 500bp。
 
-![加入 random barcode 的 RNA-Seq 建库 kmer 统计](../assets/a-questions-06-10/014-10-2-2.jpg){#fig-a-questions-06-10-014}
+![含随机条形码的 RNA-seq 文库的 k-mer 统计](../assets/a-questions-06-10/014-10-2-2.jpg){#fig-a-questions-06-10-014}
 
-![kmer 的统计显著性分析](../assets/a-questions-06-10/015-10-2-3.jpg){#fig-a-questions-06-10-015}
+![k-mer 富集的统计显著性](../assets/a-questions-06-10/015-10-2-3.jpg){#fig-a-questions-06-10-015}
 
 ![FastQC 的 Kmer Content 模块示例（WARN）](../assets/a-questions-11-15/003-12-1.jpg){#fig-a-questions-11-15-003}
 
@@ -815,4 +815,14 @@ zcat input_cutadapt.fq.gz | fastx_trimmer \
 
 ::::
 
-![Human RNA-Seq 样本的接头含量分布（练习背景图）](../assets/a-questions-11-15/004-12-2.jpg){#fig-a-questions-11-15-004}
+![人类 RNA-seq 样本的接头含量分布（练习用图）](../assets/a-questions-11-15/004-12-2.jpg){#fig-a-questions-11-15-004}
+
+[^fig03-base-source]: 图片来源：oezratty.net。沿用原稿的来源标注。
+
+[^fig03-terminator-source]: 依据 Guo et al. 2008, PNAS 与 Illumina 专利 US 7,541,444 绘制。
+
+[^fig03-dnbseq-source]: 图片来源：Huang J. et al. 2017, GigaScience 6(5), doi:10.1093/gigascience/gix024，CC BY 4.0。
+
+[^fig03-smrt-source]: 图片来源：Wang Y. et al. 2025, Biosensors 15(1):4, doi:10.3390/bios15010004，CC BY 4.0。
+
+[^fig03-nanopore-source]: 图片来源：Nova I.C. et al. 2017, PLoS ONE 12(7):e0181599，CC BY 4.0，经 Wikimedia Commons。

@@ -20,7 +20,7 @@
 RNA 测序（RNA sequencing，RNA-Seq）是研究转录组的成熟技术，也是使用最广泛的高通量测序技术之一。一个细胞中的全部遗传物质（DNA）称为基因组。根据中心法则[^rna-ref-1]，遗传信息由 DNA 经转录流向 RNA，这些 RNA 的总和称为转录组（transcriptome），研究转录组的方法及相关技术则称为转录组学（transcriptomics）。转录组测序可以用来寻找实验组与对照组之间的差异表达基因，也可以研究基因表达在发育或其他生物学过程中的时序变化。
 RNA可以分为能够编码蛋白基因的信使RNA（mRNA）[^rna-ref-2]和非蛋白编码RNA （non-coding RNA, ncRNA），例如人类基因组，含有约20000个蛋白编码基因和7000个非蛋白编码RNA基因。随着研究的深入，生命科学研究者对RNA的认识逐渐全面，陆续发现了生物体中多种类型的非编码RNA，有持家非编码RNA（house-keeping non-coding RNA）：在翻译过程中起转运作用的tRNA[^rna-ref-3]、核糖体的组成成分rRNA[^rna-ref-4] 、参与mRNA剪接的snRNA（small nuclear RNA）[^rna-ref-5]等；还有能够起到调控作用的非编码RNA：长非编码RNA（long non-coding RNA, lncRNA）、miRNA（microRNA）[^rna-ref-6]、小干扰RNA（small interfering RNA, siRNA）和环状RNA（circRNA）等。RNA 家族的种类与分工见 @fig-05-rna-classes ：编码蛋白的 mRNA 之外，其余都是非编码 RNA，各自在中心法则的不同环节工作。
 
-![RNA 的主要类型及其在中心法则中的位置（图片来自维基百科 Non-coding RNA 条目，作者 Ppgardne，GFDL 许可[^rna-ref-fig-license]）](../assets/06-rna-seq/cited/ncrnas-central-dogma.svg){#fig-05-rna-classes}
+![RNA 的主要类型及其在中心法则中的位置[^rna-ref-fig-license]](../assets/06-rna-seq/cited/ncrnas-central-dogma.svg){#fig-05-rna-classes}
 
 ::::: {.callout-note .book-core title="核心知识｜转录组与基因组的关系"}
 
@@ -28,7 +28,7 @@ RNA可以分为能够编码蛋白基因的信使RNA（mRNA）[^rna-ref-2]和非�
 
 :::::
 
-![不同细胞类型的转录组：神经、肌肉与上皮细胞包含不同的 RNA 集合（NHGRI 原图，Courtesy: National Human Genome Research Institute[^rna-fig-nhgri]）](../assets/06-rna-seq/cited/nhgri-different-cells-different-rnas.jpg){#fig-05-genome-transcriptome width="620"}
+![神经、肌肉与上皮细胞的转录组[^rna-fig-nhgri]](../assets/06-rna-seq/cited/nhgri-different-cells-different-rnas.jpg){#fig-05-genome-transcriptome width="620"}
 
 图上方为神经细胞，左下为肌肉细胞，右下为上皮细胞。彩色曲线示意不同的 RNA，并非定量测量值。读图时关注的是：同一生物体中这些细胞的基因组基本相同，但各自使用的基因不同，因此具有不同的转录组；同一类型的细胞在不同条件下，RNA 的种类和丰度也可以发生变化。
 
@@ -37,7 +37,7 @@ RNA可以分为能够编码蛋白基因的信使RNA（mRNA）[^rna-ref-2]和非�
 研究人员通常关注 mRNA 和一些具有调控作用的非编码 RNA。针对不同类型的 RNA，测序方法也有区别，主要体现在建库策略上。测序仪通常只能读取 DNA，因此测序前需要处理样品中的目标 RNA，这个过程称为“文库的制备”，简称建库（@fig-06-rna-seq-001 ）。
 	
 
-![从总 RNA 到测序文库：四种主要建库策略（重绘自原稿示意图）](../assets/06-rna-seq/svg/lib-tree.svg){#fig-06-rna-seq-001}
+![四种 RNA 测序建库策略](../assets/06-rna-seq/svg/lib-tree.svg){#fig-06-rna-seq-001}
 
 富集 polyA 可以获得 mRNA 和部分 lncRNA（含有 polyA 的 lncRNA）的表达信息；去 rRNA 建库可以检测 mRNA、全部 lncRNA 和 circRNA；去线性 RNA 建库专门用于检测 circRNA；短片段建库则主要获得 miRNA 等小 RNA 的表达信息。本节先介绍最常用的富集 poly(A) 与去 rRNA 两种方式（@fig-05-lib-compare），小 RNA 和环状 RNA 文库放在下一小节。
 
@@ -71,7 +71,9 @@ lncRNA 发挥多种调控功能，扮演信号分子、诱导因子、引导分�
 
 研究蛋白编码基因且样本质量较好时，可以选择富集 poly(A)；需要覆盖非编码 RNA、circRNA，或样本已经降解时，可以选择去 rRNA。
 
-![富集 poly(A)（mRNA 文库）与去 rRNA（total RNA 文库）两条建库路线（图片来自 Illumina 技术文档，仅作教学示意）](../assets/06-rna-seq/cited/illumina-workflows.jpg){#fig-05-lib-compare}
+![富集 poly(A) 与去 rRNA 的建库流程[^fig05-library-source]](../assets/06-rna-seq/cited/illumina-workflows.jpg){#fig-05-lib-compare}
+
+图注：富集 poly(A) 对应 mRNA 文库，去 rRNA 对应 total RNA 文库。
 
 ### 其他 RNA 文库 {#topic-05-other-rna-lib}
 
@@ -118,7 +120,7 @@ microRNA 广泛存在于动植物中，是一类长度约为 22nt 的小非编�
 
 以上建库流程都没有保留“RNA 来自基因组哪条链”的信息：随机引物反转录出的 cDNA 双链，看不出原来那条 RNA 是正链基因还是反义转录本转录来的。链特异性建库（stranded library prep）在常规流程里加了一步标记，最常用的是 dUTP 法：合成第二链 cDNA 时用 dUTP 替代 dTTP，接头连接后再用专门识别含尿嘧啶 DNA 的酶（如 USER）把第二链降解掉，只留下与原始 RNA 互补的第一链进入 PCR（@fig-05-stranded-lib）[^rnaseq-stranded-dutp]。这样每条 read 相对原始转录本的方向是确定的，比对回基因组后能唯一归属到正链或负链。
 
-![非链特异与 dUTP 链特异性建库流程对比：第二链掺入 dUTP 并被选择性降解，保留链方向信息（图片来自 GENEWIZ 技术博客，仅作教学示意）](../assets/06-rna-seq/cited/stranded-vs-unstranded.png){#fig-05-stranded-lib}
+![非链特异性与 dUTP 链特异性建库流程[^fig05-stranded-source]](../assets/06-rna-seq/cited/stranded-vs-unstranded.png){#fig-05-stranded-lib}
 
 为什么需要它？基因组上大量座位同时存在反义转录本，普通文库里正反两个方向的 read 混在一起，计数会互相污染；链特异性文库把 read 归属到正确的链，反义 lncRNA 的定量、重叠基因的分辨都依赖这一点。分析端的对应参数是 htseq-count 的 `-s` 与 featureCounts 的 `-s`（见 5.4 节）。
 
@@ -148,7 +150,7 @@ microRNA 广泛存在于动植物中，是一类长度约为 22nt 的小非编�
 | GSM1502502 | SRR1573498 | METTL3 敲降 rep1 | HEK293T | 同上 |
 | GSM1502503 | SRR1573499 | METTL3 敲降 rep2 | HEK293T | 同上 |
 
-: 本章示例数据的样本信息 {#tbl-05-samples}
+: METTL3 敲低 RNA-seq 示例数据的样本信息 {#tbl-05-samples}
 
 这套数据来自链特异性 mRNA 文库，后续选择分析参数时要记住这一点，尤其是 5.4 节 htseq-count 的 `-s` 参数；相关建库原理见 5.1 节。命令中的 `test_R1/test_R2` 对应这套数据经质控过滤后的双端 FASTQ 文件。
 
@@ -205,7 +207,7 @@ fasterq-dump SRR1573494 --split-files --outdir raw.fastq/
 | Ensembl | EMBL-EBI | ENSG/ENST | 基因组注释与版本发布频繁，覆盖物种最广 |
 | GENCODE | Ensembl/GENCODE 联盟 | 与 Ensembl 同（ENSG/ENST） | 人类/小鼠的深度注释，RNA-seq 常用 M 系列版本 |
 
-: 三个参考注释来源的对比 {#tbl-05-annotation-sources}
+: RefSeq、Ensembl 与 GENCODE 注释的比较 {#tbl-05-annotation-sources}
 
 UCSC Table Browser 提供的是以上注释的镜像（knownGene 是 UCSC 自建集），下载格式常为 bed/gtf。本章命令里的 GTF 文件名 `hg38_refseq_from_ucsc.rm_XM_XR.fix_name.gtf` 就体现了实际项目里常见的两步处理：从 UCSC 取 RefSeq 注释、再把 `XM_/XR_` 预测模型剔除，只留人工核对转录本。
 
@@ -219,7 +221,7 @@ UCSC Table Browser 提供的是以上注释的镜像（knownGene 是 UCSC 自建
 
 有参考基因组的转录组分析一般包括测序数据质控、构建参考基因组索引、将 reads 比对到参考基因组、拼接新转录本（可选）、表达定量、差异表达分析，以及目标基因集的注释与富集分析（@fig-06-rna-seq-003 ）。
 
-![有参考基因组的 RNA-seq 分析流程（重绘自原稿示意图）](../assets/06-rna-seq/svg/rnaseq-workflow.svg){#fig-06-rna-seq-003}
+![有参考基因组的 RNA-seq 分析流程](../assets/06-rna-seq/svg/rnaseq-workflow.svg){#fig-06-rna-seq-003}
 
 全书链接与工具版本均于 2026 年 10 月核对。各分析阶段常用的软件与本章用法汇总见 @tbl-05-tool-map ，后续小节将依次展开：[质控与比对](#sec-05-03)、[定量](#sec-05-04)、[差异分析](#sec-05-06)、[富集与展示](#sec-05-07)。
 
@@ -284,7 +286,7 @@ RNA 的情况不同。真核生物的 RNA 需要经过复杂加工，其调控�
 
 对我们mapping影响最大的因素是：真核生物转录出来的初步的mRNA都是带有intron（内含子）的，随后都需要在co-transcription（转录的同时） 或post-transcription（转录以后）阶段通过：1. alternative splicing（可变剪切）剪切掉intron；2.polyA尾巴； 3.加5'的帽子结构。这3个步骤，将不成熟的mRNA变为最终成熟的mRNA再转运出核，行使功能。
 
-![同一个基因经可变剪切产生多种 mRNA 与蛋白（图片来自维基百科 [Alternative splicing](https://en.wikipedia.org/wiki/Alternative_splicing) 条目）](../assets/a-questions-21-25/006-23-1.jpg){#fig-a-questions-21-25-006}
+![同一基因通过可变剪接产生多种 mRNA 与蛋白[^fig05-splicing-source]](../assets/a-questions-21-25/006-23-1.jpg){#fig-a-questions-21-25-006}
 
 ::::: {.callout-note .book-core title="核心知识｜为什么比对软件需要针对可变剪接问题特殊优化？"}
 
@@ -795,7 +797,7 @@ RNA-seq 的定量有时也会失败。例如，部分跨样本归一化方法依
 | 与旧文献/旧结果对照 | FPKM/RPKM | 历史结果的标准格式 |
 | 质控粗看文库构成 | RPM/CPM | 只校正测序深度，计算最简单 |
 
-: 定量值的选择 {#tbl-05-quant-choice}
+: RNA-seq 表达定量指标的适用范围 {#tbl-05-quant-choice}
 
 ## 基因的差异表达分析 {#sec-05-06}
 
@@ -1213,7 +1215,7 @@ barplot(erich.kegg.res)
 
 火山图横轴是 log2 倍数变化、纵轴是 -log10(p)，每个点是一个基因（@fig-05-volcano-demo）。
 
-![火山图的读法（演示数据，R 真实绘制）](../assets/06-rna-seq/svg/volcano-demo-r.svg){#fig-05-volcano-demo}
+![火山图的读法（演示数据）](../assets/06-rna-seq/svg/volcano-demo-r.svg){#fig-05-volcano-demo}
 
 用 ggplot2 绘制火山图：
 
@@ -1267,7 +1269,9 @@ log2	pvalue
 
 聚类热图把显著基因按行标准化后着色（红＝高、白＝中、蓝＝低），样本列按层次聚类的结果排列，质量良好的重复样本会相邻出现（@fig-05-heatmap-demo）。
 
-![聚类热图的读法（演示数据，R 真实绘制；红＝高、白＝中、蓝＝低）](../assets/06-rna-seq/svg/heatmap-demo-r.svg){#fig-05-heatmap-demo}
+![聚类热图的读法（演示数据）](../assets/06-rna-seq/svg/heatmap-demo-r.svg){#fig-05-heatmap-demo}
+
+图注：红色、白色、蓝色分别表示高、中、低水平。
 
 用 gplots 的 `heatmap.2` 绘制聚类热图：
 
@@ -1309,7 +1313,7 @@ hsa-miR-6090	5.80658	4.459086667
 
 富集结果的气泡图（如 clusterProfiler 的 `dotplot`）把每个通路画成一个气泡：横轴是基因比例（显著基因中注释到该通路的占比），纵轴按富集程度排序的通路名，气泡大小代表显著基因个数，颜色代表 p 值（或 padj）。
 
-![富集分析气泡图的读法（演示数据，R 真实绘制）](../assets/06-rna-seq/svg/bubble-demo-r.svg){#fig-05-bubble-demo}
+![富集分析气泡图的读法（演示数据）](../assets/06-rna-seq/svg/bubble-demo-r.svg){#fig-05-bubble-demo}
 
 读图先看颜色最深、气泡最大的右上角条目：它们是基因比例高、p 值小、贡献基因多的通路，构成差异结果的主要生物学线索；再看顶部细小的条目，谨慎解读——基因数少的条目统计上不稳定。`enrichGO` 代码里的 `dotplot()` 调用即可生成此图。
 
@@ -1325,7 +1329,7 @@ hsa-miR-6090	5.80658	4.459086667
 
 已知lncRNA的分析与mRNA是类似的，可以从基因组注释文件中获取已知lncRNA。也可以通过与长非编码RNA数据库比较，获得已知的lncRNA转录本。常用数据库有 NONCODE、LNCipedia、lncRNAdb 与 NRED 等：[NONCODE](http://www.noncode.org/) 是综合的 ncRNA 注释数据库，[LNCipedia](https://lncipedia.org/) 提供人类 lncRNA 的序列与结构注释（两者均于 2026 年 10 月核对），lncRNAdb 与 NRED 收录实验验证或人鼠长非编码 RNA 数据，网站近年已不稳定，需要时可经原始论文检索其数据。
 
-![lncRNA 测序分析流程：已知注释与新转录本预测并行（重绘自原稿示意图）](../assets/06-rna-seq/svg/lncrna-workflow.svg){#fig-06-rna-seq-005}
+![lncRNA 测序分析流程](../assets/06-rna-seq/svg/lncrna-workflow.svg){#fig-06-rna-seq-005}
 
 预测新的 lncRNA，需要评估转录本的编码潜能和序列同源性等指标，主要步骤包括：
 1. 在拼接好的转录本中提取长度大于200nt的转录本；
@@ -1349,7 +1353,7 @@ lncRNA 的表达定量和差异表达分析与 mRNA 类似，但功能注释不�
 
 small RNA-seq一般是为了获取miRNA的表达信息，miRNA 广泛存在于动植物中，通过抑制翻译或降解 mRNA 发挥调控作用。
 
-![small RNA 测序分析流程：从长度筛选到靶基因预测（重绘自原稿示意图）](../assets/06-rna-seq/svg/smallrna-workflow.svg){#fig-06-rna-seq-006}
+![small RNA 测序分析流程](../assets/06-rna-seq/svg/smallrna-workflow.svg){#fig-06-rna-seq-006}
 
 small RNA-seq原始数据的处理与RNA-seq有所不同：
 1. 在对原始数据进行质量控制后，基于miRNA的长度特性，利用Fastx-toolkit等工具对reads进行长度筛选；
@@ -1364,7 +1368,7 @@ small RNA-seq原始数据的处理与RNA-seq有所不同：
 
 circRNA 由 mRNA 前体的反向剪接（back-splicing）产生：一个外显子的 3′ 端与另一个外显子的 5′ 端首尾相连成环。来自连接点的 read 在参考基因组上找不到连续的对应位置——它两端对应的序列在基因组上并不相邻，这正是鉴定 circRNA 的特征信号。常用鉴定工具如 find_circ（利用 STAR 的嵌合比对结果）和 CIRI（在 BWA 比对结果上扫描候选连接点）都围绕这一信号工作[^rnaseq-find-circ][^rnaseq-ciri]。
 
-![circRNA 测序分析流程：已知注释与新 circRNA 预测并行（重绘自原稿示意图）](../assets/06-rna-seq/svg/circrna-workflow.svg){#fig-06-rna-seq-007}
+![circRNA 测序分析流程](../assets/06-rna-seq/svg/circrna-workflow.svg){#fig-06-rna-seq-007}
 
 [circBase](http://www.circbase.org/) 收集整合已发表的 circRNA 数据，覆盖人（hg19）、小鼠（mm9）、秀丽线虫（ce6）、黑腹果蝇（dm3）与腔棘鱼（latCha1、latMen2）六个物种（2026 年 10 月核对）。CIRCpedia 系列对人和小鼠组织中 circRNA 的可变反向剪接进行了归类，旧版网址已下线，可经其论文（CIRCpedia v2，2018）检索最新版本；circRNADb 的原始网址（高校 IP 直连）现已不可访问。
 
@@ -1378,7 +1382,9 @@ ceRNA（competing endogenous RNA，内源竞争性 RNA）不是一类新的 RNA 
 
 :::::
 
-![ceRNA 假说的机制：mRNA、lncRNA 与 circRNA 都带有 miRNA 应答元件（MRE），像海绵一样竞争结合同一批 miRNA；某个转录本把 miRNA"吸附"走之后，miRNA 对其他靶 mRNA 的降解与翻译抑制随之减弱（图片来自 Aria H 等 2024 年 Heliyon 综述图 1，CC BY 4.0，仅作教学示意[^cerna-fig-license]）](../assets/06-rna-seq/cited/cerna-mechanism.jpg){#fig-06-rna-seq-008}
+![ceRNA 假说中的 RNA 竞争关系（示意）[^cerna-fig-license]](../assets/06-rna-seq/cited/cerna-mechanism.jpg){#fig-06-rna-seq-008}
+
+图注：mRNA、lncRNA 与 circRNA 上的 miRNA 应答元件（MRE）可以结合 miRNA。在这一假说中，转录本之间竞争同一批 miRNA，从而影响 miRNA 对其他靶 mRNA 的降解与翻译抑制。
 
 1. miRNA 是内源竞争 RNA 争夺的目标。除 mRNA 与 circRNA 外，具有类 mRNA 结构的 lncRNA 也能通过 3′ 非翻译区与 miRNA 结合，作用方式类似 miRNA 与 mRNA。miRcode 曾提供全转录组水平的 lncRNA miRNA 结合位点预测，其网站现已下线，可经原始论文检索数据。
 2. lncRNA 与基因之间还存在 cis 调控与 trans 作用等关系；circRNA 除结合 miRNA 外，与宿主基因的表达也存在关联——它的序列本就来自宿主基因的外显子。
@@ -1437,7 +1443,7 @@ ceRNA（competing endogenous RNA，内源竞争性 RNA）不是一类新的 RNA 
 
 [^rna-ref-abundance]: 总 RNA 构成取常用教学口径：rRNA 约 80%–90%、tRNA 约 10%–15%、mRNA 约 3%–7%（数量级因细胞类型与生长状态而异）。
 
-[^rna-ref-fig-license]: GFDL 许可原文见 [GNU Free Documentation License](https://commons.wikimedia.org/wiki/Commons:GNU_Free_Documentation_License)（2026 年 10 月核对）。本章引用的外部图片均在图注注明出处，仅作教学示意，版权归原作者所有。
+[^rna-ref-fig-license]: 图片来自维基百科 Non-coding RNA 条目，作者 Ppgardne，GFDL 许可。GFDL 许可原文见 [GNU Free Documentation License](https://commons.wikimedia.org/wiki/Commons:GNU_Free_Documentation_License)（2026 年 10 月核对）。本章引用的外部图片均随图标明出处，仅作教学示意，版权归原作者所有。
 
 [^cerna-fig-license]: Aria H, Azizi M, Nazem S, et al. [Competing endogenous RNAs regulatory crosstalk networks: The messages from the RNA world to signaling pathways directing cancer stem cell development](https://doi.org/10.1016/j.heliyon.2024.e35208). *Heliyon*, 2024（图 1，CC BY 4.0 许可，2026 年 10 月核对）。
 
@@ -1449,3 +1455,9 @@ ceRNA（competing endogenous RNA，内源竞争性 RNA）不是一类新的 RNA 
 
 
 [^rna-fig-nhgri]: National Human Genome Research Institute. [Ribonucleic Acid (RNA) Fact Sheet](https://www.genome.gov/about-genomics/educational-resources/fact-sheets/ribonucleic-acid-fact-sheet)，2024-05-24 更新，“Different cells with Different RNA”原始插图。[NHGRI 版权政策](https://www.genome.gov/about-nhgri/Policies-Guidance/Copyright)规定，未另行注明的图文属于公共领域；本图保留原貌并注明来源，2026-10-11 核对。
+
+[^fig05-library-source]: 图片来自 Illumina 技术文档，仅作教学示意。
+
+[^fig05-stranded-source]: 图片来自 GENEWIZ 技术博客，仅作教学示意。
+
+[^fig05-splicing-source]: 图片来自维基百科 [Alternative splicing](https://en.wikipedia.org/wiki/Alternative_splicing) 条目。

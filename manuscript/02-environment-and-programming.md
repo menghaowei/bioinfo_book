@@ -82,7 +82,7 @@ wsl --set-default-version 2
 访问[Microsoft Store的Linux发行版页面](https://aka.ms/wslstore)，选择你想使用的发行版；在应用商店搜索 `Linux`，还可以找到更多选择。也可以按上一小节的方法，用 `wsl --install -d 发行版名称` 在命令行直接安装。
 
 
-![Microsoft Store 中的 Linux 分发版的视图](../assets/02-computing-and-programming/010-store.png){#fig-02-computing-and-programming-010}
+![Microsoft Store 中的 Linux 发行版列表](../assets/02-computing-and-programming/010-store.png){#fig-02-computing-and-programming-010}
 
 
 ##### 创建账户和密码 {#src-0090-build-up-bioinfo-platform-183}
@@ -90,7 +90,7 @@ wsl --set-default-version 2
 发行版安装完成后，首次启动时会要求你创建用户名和密码。
 
 
-![Windows 控制台中的 Ubuntu 解包](../assets/02-computing-and-programming/011-ubuntuinstall.png){#fig-02-computing-and-programming-011}
+![Ubuntu 首次启动时的解包过程](../assets/02-computing-and-programming/011-ubuntuinstall.png){#fig-02-computing-and-programming-011}
 
 
 #### Windows Terminal {#src-0090-build-up-bioinfo-platform-189}
@@ -100,7 +100,7 @@ wsl --set-default-version 2
 在应用商店搜索`Windows Terminal`后安装即可。
 
 
-![Windows Terminal：可在同一窗口管理 PowerShell、命令提示符与 WSL 等多种会话](../assets/02-computing-and-programming/012-ce36916b-bbee-4d15-8a3e-193a0e1ae26e.png){#fig-02-computing-and-programming-012}
+![Windows Terminal 中的多种终端会话](../assets/02-computing-and-programming/012-ce36916b-bbee-4d15-8a3e-193a0e1ae26e.png){#fig-02-computing-and-programming-012}
 
 ### mac系统的基础配置 {#topic-02-macos-setup}
 
@@ -115,7 +115,7 @@ wsl --set-default-version 2
 SSH 是连接服务器的重要工具。Linux 和 macOS 都自带 `ssh` 命令；Windows 长期以来没有自带 SSH 命令，从 Windows 10 开始情况有所改善。较新的 Windows 10 和 Windows 11 已经预装 OpenSSH 客户端，在 PowerShell 中直接运行 `ssh` 即可。OpenSSH 服务器端仍需手动安装：在任务栏搜索“可选功能”，点击结果中的“添加可选功能”；也可以从“Windows设置→应用→可选功能”进入。
 
 
-![Windows“管理可选功能”页面：已安装功能列表与“添加功能”入口](../assets/02-computing-and-programming/013-c575c9fa-1e74-4fc5-99e4-465792565047.png){#fig-02-computing-and-programming-013 width=75%}
+![Windows 的可选功能管理页面](../assets/02-computing-and-programming/013-c575c9fa-1e74-4fc5-99e4-465792565047.png){#fig-02-computing-and-programming-013 width=75%}
 
 点击“添加功能”，选择需要的组件（例如“OpenSSH 服务器”；较早系统上未预装客户端时，也可在此安装“OpenSSH 客户端”），再点击“安装”，稍等即可完成。
 
@@ -457,14 +457,14 @@ R --version
 | apt search | apt-cache search | 搜索应用程序 |
 | apt show | apt-cache show | 显示包的详细信息 |
 
-: apt 取代的 apt-get 系列命令 {#tbl-02-environment-and-programming-01}
+: apt 与 apt-get、apt-cache 命令对照 {#tbl-02-environment-and-programming-01}
 
 | 新的apt命令 | 命令的功能 |
 | ----- | ----- |
 | apt list | 列出包含条件的包（已安装，可升级等） |
 | apt edit-sources | 编辑源列表 |
 
-: 新的 apt 命令 {#tbl-02-environment-and-programming-02}
+: apt 的软件包查询与软件源编辑命令 {#tbl-02-environment-and-programming-02}
 
 
 #### apt镜像设置 {#topic-02-56}
@@ -474,7 +474,7 @@ apt默认的镜像在国内的访问速度是较慢的，所以设置一个国�
 在帮助文档中选择你使用的 Ubuntu 版本，获取对应的软件源地址。先备份原配置文件，再按文档修改；完成后执行 `sudo apt update` 刷新索引，让新配置生效。
 
 
-![北外镜像站的 Ubuntu 软件源帮助页面：选择系统版本后即可获得对应的 `sources.list` 配置](../assets/02-computing-and-programming/001-4bcc5c9c-49e7-465a-91f8-4e1ed8512e7c.png){#fig-02-computing-and-programming-001}
+![北外镜像站的 Ubuntu 软件源配置页面](../assets/02-computing-and-programming/001-4bcc5c9c-49e7-465a-91f8-4e1ed8512e7c.png){#fig-02-computing-and-programming-001}
 
 ## conda 与 Bioconda {#sec-02-conda}
 
@@ -608,11 +608,11 @@ R 是生信分析中一种很重要的编程语言。官方软件源 CRAN 收录
 R-base 安装包可以从 CRAN 镜像站点获取，这里推荐[北外的CRAN镜像](https://mirrors.bfsu.edu.cn/CRAN/)。Windows 和 macOS 用户点击各自操作系统的链接，就能进入二进制安装包的下载页面。
 
 
-![CRAN 的 R 下载页面：按操作系统选择安装入口](../assets/02-computing-and-programming/015-68cfe7a0-c604-448b-ba4e-b5d4d7662919.png){#fig-02-computing-and-programming-015}
+![CRAN 的 R 安装包下载入口](../assets/02-computing-and-programming/015-68cfe7a0-c604-448b-ba4e-b5d4d7662919.png){#fig-02-computing-and-programming-015}
 
-![“R for Windows”页面：`base` 子目录提供 R 的基础安装包](../assets/02-computing-and-programming/016-5ec3d53f-9a6b-46f4-978c-25d005b35ea4.png){#fig-02-computing-and-programming-016}
+![R for Windows 的基础安装包入口](../assets/02-computing-and-programming/016-5ec3d53f-9a6b-46f4-978c-25d005b35ea4.png){#fig-02-computing-and-programming-016}
 
-![“R for macOS”页面：提供当前版本签名公证过的 .pkg 安装包](../assets/02-computing-and-programming/019-e67610e2-b16a-4c9d-ae9d-e8bbd0698714.png){#fig-02-computing-and-programming-019}
+![R for macOS 的安装包下载页面](../assets/02-computing-and-programming/019-e67610e2-b16a-4c9d-ae9d-e8bbd0698714.png){#fig-02-computing-and-programming-019}
 
 
 Linux 用户有管理员权限时，建议用系统包管理器安装；没有管理员权限时，可以用 Anaconda，执行 `conda install -c conda-forge r-base` 即可安装 R-base。
@@ -632,7 +632,7 @@ Bioconductor 和 CRAN 上的绝大部分 R 包都提供 Windows 二进制包，�
 访问[Rtools页面](https://cran.r-project.org/bin/windows/Rtools/)即可获得安装包。Rtools与R的版本配套更新，页面最上方始终提供当前R版本对应的安装包（写作本节时为Rtools45，配套R 4.5及更新版本），且只提供64位版本。如果你使用较老的R版本，可以访问[历史版本页面](https://cran.r-project.org/bin/windows/Rtools/history.html)下载对应的Rtools。
 
 
-![Rtools 官方页面：最上方提供当前 R 版本对应的安装包](../assets/02-computing-and-programming/020-d3b3bee0-3edf-4c48-b876-19fce8883633.png){#fig-02-computing-and-programming-020}
+![Rtools 安装包下载页面](../assets/02-computing-and-programming/020-d3b3bee0-3edf-4c48-b876-19fce8883633.png){#fig-02-computing-and-programming-020}
 
 
 从R 4.2起，Windows上的R会根据安装时写入的注册信息自动发现Rtools，安装后无需配置即可在需要时调用相关编译器。只有使用R 4.1及更早版本搭配Rtools40等旧版Rtools时，才需要按下述旧方法手工配置路径：参照上一节中的`path.expand("~")`获取R的用户home目录，然后在该目录下编辑`.Renviron`文件，添加下面的内容。
@@ -977,7 +977,7 @@ results/
 
 下图给出四步排查的顺序。每一步都可能解决问题：解决了，就从右侧出口转到记录收尾；没有解决，再进入下一步。
 
-![排错的基本流程：四步递进排查，任一步解决即记录收尾](../assets/02-computing-and-programming/svg/troubleshooting-flow.svg){#fig-02-computing-and-programming-026}
+![排错的基本流程](../assets/02-computing-and-programming/svg/troubleshooting-flow.svg){#fig-02-computing-and-programming-026}
 
 第一，读报错。从输出里找 `error` 而不是 `warning`——`warning` 是提醒，`error` 才是失败原因。程序崩掉时，最后几行通常就是关键信息；找不到就把整段输出从头读，第一条 error 之后的内容往往是连锁反应，修好它，后面自然消失。把报错原文复制下来，不要凭印象转述。
 
