@@ -892,7 +892,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
 <h1 class="title"><span id="sec-ch12" class="quarto-section-identifier"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">拥抱大语言模型</span></span></h1>
-<p class="chapter-last-modified"><time datetime="2026-10-12T13:46:45+08:00" title="本章书稿最后修改时间（北京时间，UTC+08:00）">最后修改：2026-10-12 13:46（北京时间）</time></p>
+<p class="chapter-last-modified"><time datetime="2026-10-12T14:30:32+08:00" title="本章书稿最后修改时间（北京时间，UTC+08:00）">最后修改：2026-10-12 14:30（北京时间）</time></p>
 </div>
 
 
@@ -934,10 +934,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <img src="../assets/12-ai-learning-and-practice/001-llm-timeline.svg" class="img-fluid figure-img">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-12-llm-timeline-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-图&nbsp;12.1: 从自然语言处理到大语言模型的关键节点（2025 年前的关键事件按时间排列；每个节点标注当年能力的主要来源）
+图&nbsp;12.1: 从自然语言处理到大语言模型的发展节点
 </figcaption>
 </figure>
 </div>
+<p>图注：图中按时间排列 2025 年前的关键事件，并标注各阶段能力的主要来源。</p>
 </section>
 <section id="topic-12-emergence" class="level3">
 <h3 class="anchored" data-anchor-id="topic-12-emergence">涌现的”智能”与它的边界</h3>
@@ -1000,7 +1001,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div id="tbl-12-two-difficulties" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-tbl figure">
 <figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-12-two-difficulties-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-表&nbsp;12.1: 两种难的判断框架（对应布鲁克斯”偶然—本质”复杂度之分）
+表&nbsp;12.1: 技术性困难与本质性困难的区别
 </figcaption>
 <div aria-describedby="tbl-12-two-difficulties-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <div class="book-table-scroll" role="region" aria-label="表格，可横向滚动" tabindex="0"><table class="caption-top table">
@@ -1047,6 +1048,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </figure>
 </div>
+<p>表注：对应布鲁克斯对“偶然复杂度”与“本质复杂度”的区分。</p>
 <p>遇到一个任务，先问一句：<strong>这个任务的瓶颈是信息与操作，还是知识与判断？</strong> 前者可以交给模型处理，后者仍需要你主导判断。这里仍需注意：“能运行”从来不等于”能得出正确的结论”，工具跑通了，结论的边界仍然要由理解数据的人来划定。第 11 章结尾留下的那道题——“AI 给出的统计方案如何核查”——答案就在这张表里：把它的方案拆开，逐项问哪些只是技术上的顺手，哪些悄悄替你做了本质的判断。</p>
 </section>
 </section>
@@ -1062,10 +1064,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <img src="../assets/12-ai-learning-and-practice/003-three-stages.svg" class="img-fluid figure-img">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-12-three-stages-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-图&nbsp;12.2: 用好大语言模型的三个阶段（外层阶段包含内层阶段；每一层标注使用者提供什么、模型获得什么）
+图&nbsp;12.2: 提示词工程、上下文工程与 Harness 工程的关系
 </figcaption>
 </figure>
 </div>
+<p>图注：外层阶段包含内层阶段；各层标注使用者提供什么、模型获得什么。</p>
 <p><strong>提示词工程</strong>（prompt engineering）流行于 2022 年前后：把任务说明写得清楚——给角色、给例子、分步骤、定输出格式。它解决的问题是”任务没说清”。</p>
 <p><strong>上下文工程</strong>（context engineering）在 2025 年由 Karpathy 的一篇帖子推广开来，他把它定义为”为下一步在上下文窗口里放进恰好正确的信息的精密艺术与科学”<a href="#fn7" class="footnote-ref" id="fnref7" role="doc-noteref"><sup>7</sup></a>。它解决的问题是”材料没给全”：模型只知道你提供给它的上下文，报错要贴原文、版本要交代、文件要给到，同时窗口有限，塞什么、不塞什么本身就是设计。</p>
 <p><strong>Harness 工程</strong>（harness engineering，harness 原意是”挽具”，这里指模型的运行环境）在 2025 年底到 2026 年初进入主流<a href="#fn8" class="footnote-ref" id="fnref8" role="doc-noteref"><sup>8</sup></a>。它解决的问题是”模型不能动手”：给模型装上工具——读写文件、执行命令、检索网络——再配上规则与循环，让它自己完成多步骤任务。</p>
@@ -1087,7 +1090,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div id="tbl-12-three-stages" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-tbl figure">
 <figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-12-three-stages-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-表&nbsp;12.2: 用好大语言模型的三个阶段（阶段相互叠加，后一阶段包含前一阶段）
+表&nbsp;12.2: 提示词工程、上下文工程与 Harness 工程的比较
 </figcaption>
 <div aria-describedby="tbl-12-three-stages-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <div class="book-table-scroll" role="region" aria-label="表格，可横向滚动" tabindex="0"><table class="caption-top table">
@@ -1129,6 +1132,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </figure>
 </div>
+<p>表注：三个阶段相互叠加，后一阶段包含前一阶段。</p>
 </section>
 <section id="topic-12-prompt" class="level3">
 <h3 class="anchored" data-anchor-id="topic-12-prompt">提示词工程：把任务讲清楚</h3>
@@ -1400,7 +1404,7 @@ OK</code></pre>
 
 </main> <!-- /main -->
 <div class="book-toolbar" role="navigation" aria-label="阅读工具">
-  <div class="book-brand"><span class="book-brand-name">AI时代生信入门</span><time class="book-last-modified" datetime="2026-10-12T13:46:45+08:00" title="最后修改时间（北京时间，UTC+08:00）">最后修改 2026-10-12 13:46</time></div>
+  <div class="book-brand"><span class="book-brand-name">AI时代生信入门</span><time class="book-last-modified" datetime="2026-10-12T14:30:32+08:00" title="最后修改时间（北京时间，UTC+08:00）">最后修改 2026-10-12 14:30</time></div>
   <button class="book-menu-button" type="button" aria-controls="quarto-sidebar" aria-expanded="false">目录</button>
   <button class="book-search-button" type="button">搜索</button>
 </div>

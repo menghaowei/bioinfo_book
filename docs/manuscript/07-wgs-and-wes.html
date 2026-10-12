@@ -921,7 +921,7 @@ window.Quarto = {
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
 <h1 class="title"><span id="sec-ch07" class="quarto-section-identifier"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">WGS与WES：从测序数据到可信的小变异</span></span></h1>
-<p class="chapter-last-modified"><time datetime="2026-10-12T13:46:45+08:00" title="本章书稿最后修改时间（北京时间，UTC+08:00）">最后修改：2026-10-12 13:46（北京时间）</time></p>
+<p class="chapter-last-modified"><time datetime="2026-10-12T14:30:32+08:00" title="本章书稿最后修改时间（北京时间，UTC+08:00）">最后修改：2026-10-12 14:30（北京时间）</time></p>
 </div>
 
 
@@ -984,12 +984,12 @@ window.Quarto = {
 <img src="../assets/08-wgs-and-wes/003-alternative-splicing.jpg" class="img-fluid figure-img">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-08-wgs-and-wes-003-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-图&nbsp;7.2: 外显子与内含子：同一个基因经可变剪接产生成熟 mRNA（图片来自维基百科 Alternative splicing 条目，同第 5 章图 5.7）
+图&nbsp;7.2: 可变剪接中外显子与内含子的变化<a href="#fn3" class="footnote-ref" id="fnref3" role="doc-noteref"><sup>3</sup></a>
 </figcaption>
 </figure>
 </div>
 <p><a href="#fig-08-wgs-and-wes-003" class="quarto-xref">图&nbsp;<span>7.2</span></a> 回顾了外显子、内含子与剪接的关系：内含子在剪接中被移除、外显子相连形成成熟 mRNA，而且外显子的取舍可以不同（可变剪接）。这是理解”WES 测的到底是什么区域”的基础——WES 的目标外显子，正是各转录本外显子集合的并集。</p>
-<p>WGS 与 WES 各有所长，实际中应当结合研究课题和实验设计选择最合适的测序方案<a href="#fn3" class="footnote-ref" id="fnref3" role="doc-noteref"><sup>3</sup></a>。</p>
+<p>WGS 与 WES 各有所长，实际中应当结合研究课题和实验设计选择最合适的测序方案<a href="#fn4" class="footnote-ref" id="fnref4" role="doc-noteref"><sup>4</sup></a>。</p>
 <p><strong>WES 的优点：</strong></p>
 <ul>
 <li>深度高：外显子组的测序深度一般达到 50–100×，而 WGS 一般为 30× 左右——同样的测序量集中在了小得多的区域；</li>
@@ -1003,17 +1003,18 @@ window.Quarto = {
 <li>实际产出的序列只有约 65%–75% 落在目标区域，其余为脱靶序列，需要靠提高整体深度弥补有效深度不足；</li>
 <li>阴性结果要谨慎解读（见下一小节）。</li>
 </ul>
-<p>WGS 不经过捕获，还可以构建 PCR-free 文库直接测序，因此覆盖更均匀、深度更稳定，能发现捕获设计之外的区域，SNV 检测灵敏度也不依赖捕获效率<a href="#fn4" class="footnote-ref" id="fnref4" role="doc-noteref"><sup>4</sup></a>。随着测序成本下降（见 <a href="#fig-08-wgs-and-wes-005" class="quarto-xref">图&nbsp;<span>7.3</span></a> ），WGS 在科研项目中的比重持续上升；但在需要高深度编码区检测、样本量大或预算有限的场景中，WES 仍然是常规选择。</p>
+<p>WGS 不经过捕获，还可以构建 PCR-free 文库直接测序，因此覆盖更均匀、深度更稳定，能发现捕获设计之外的区域，SNV 检测灵敏度也不依赖捕获效率<a href="#fn5" class="footnote-ref" id="fnref5" role="doc-noteref"><sup>5</sup></a>。随着测序成本下降（见 <a href="#fig-08-wgs-and-wes-005" class="quarto-xref">图&nbsp;<span>7.3</span></a> ），WGS 在科研项目中的比重持续上升；但在需要高深度编码区检测、样本量大或预算有限的场景中，WES 仍然是常规选择。</p>
 <div id="fig-08-wgs-and-wes-005" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-08-wgs-and-wes-005-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <img src="../assets/08-wgs-and-wes/005-pic3.png" class="img-fluid figure-img">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-08-wgs-and-wes-005-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-图&nbsp;7.3: 不同测序策略的每基因组成本随时间的变化（曲线中还包含多种组合测序策略，本章只讨论 WGS 与 WES 两类）
+图&nbsp;7.3: 不同测序策略的每基因组成本变化
 </figcaption>
 </figure>
 </div>
+<p>图注：图中包含多种组合测序策略；本章只讨论 WGS 与 WES。</p>
 <p>在 WGS 与 WES 之外还有第三种常见选择：<strong>靶向 panel 测序（targeted panel sequencing）</strong>，只捕获数十到数百个特定基因或已知致病位点，深度可达数百至上千倍，适合定向检测已知变异、临床快速筛查等场景。它覆盖最窄、成本最低；WES 覆盖较宽、能发现新变异；WGS 覆盖最全。选择时需要同时考虑覆盖范围和成本，不能脱离任务比较优劣。</p>
 </section>
 <section id="sec-07-01-applications" class="level3">
@@ -1021,7 +1022,7 @@ window.Quarto = {
 <p><span id="src-0070-WGS-5"></span> <span id="src-0070-WGS-7"></span></p>
 <p>WES/WGS 检测胚系小变异的典型场景包括：</p>
 <ul>
-<li><strong>罕见病与孟德尔疾病的诊断</strong>：对外显子组进行测序分析、寻找致病的罕见变异，是临床遗传病和罕见病的常规检测方法之一。对超声发现结构异常、疑似单基因病的胎儿，产前外显子组测序可以显著提高诊断率，帮助家庭在围产期做出更明确的决策<a href="#fn5" class="footnote-ref" id="fnref5" role="doc-noteref"><sup>5</sup></a>。WES 首次成功定位孟德尔疾病致病基因（Miller 综合征）正是这一应用路线的里程碑<a href="#fn6" class="footnote-ref" id="fnref6" role="doc-noteref"><sup>6</sup></a>。</li>
+<li><strong>罕见病与孟德尔疾病的诊断</strong>：对外显子组进行测序分析、寻找致病的罕见变异，是临床遗传病和罕见病的常规检测方法之一。对超声发现结构异常、疑似单基因病的胎儿，产前外显子组测序可以显著提高诊断率，帮助家庭在围产期做出更明确的决策<a href="#fn6" class="footnote-ref" id="fnref6" role="doc-noteref"><sup>6</sup></a>。WES 首次成功定位孟德尔疾病致病基因（Miller 综合征）正是这一应用路线的里程碑<a href="#fn7" class="footnote-ref" id="fnref7" role="doc-noteref"><sup>7</sup></a>。</li>
 <li><strong>肿瘤研究中的胚系分析</strong>：肿瘤患者的遗传风险评估（如 BRCA1/2 胚系突变）使用的是胚系检测流程；肿瘤组织相对正常组织的体细胞突变检测则是另一套流程，本章不展开。</li>
 <li><strong>个人基因组与健康风险</strong>：分析个人基因组数据，评估部分疾病的携带状态与用药参考。这类分析要特别注意区分”检测到的变异”与”能解释的变异”——绝大多数常见病风险并不能由外显子组的数据可靠预测。</li>
 </ul>
@@ -1038,7 +1039,7 @@ window.Quarto = {
 <div id="tbl-07-example-data" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-tbl figure">
 <figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-07-example-data-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-表&nbsp;7.1: 本章示例数据 SRR8381428 的基本信息（据 ENA 元数据，2026-10 核查）
+表&nbsp;7.1: 示例数据 SRR8381428 的基本信息
 </figcaption>
 <div aria-describedby="tbl-07-example-data-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <div class="book-table-scroll" role="region" aria-label="表格，可横向滚动" tabindex="0"><table class="caption-top table">
@@ -1074,6 +1075,7 @@ window.Quarto = {
 </div>
 </figure>
 </div>
+<p>表注：数据来源为 ENA 元数据，2026 年 10 月核查。</p>
 <p>选择这份数据有三个原因：它是真实的研究级 WES 数据；NA12878 是世界上被测序最充分的人类样本之一，GIAB（Genome in a Bottle）项目为它提供了高置信度真值集，本章 7.8 讨论如何评价检测流程准确性时可以直接对照；数据可从 ENA 以 HTTPS 直链下载并核对官方校验值。下载方式与第 5 章相同（<code>prefetch</code>/<code>fasterq-dump</code>，或 ENA 直链 <code>curl</code>/<code>wget</code>），工具安装不再重复。</p>
 <p>出于运行时间的考虑，本章的命令演示使用这份文件的<strong>教学子集</strong>（前 100 万对 reads）；你可以用相同命令处理完整数据，检查方法也一致。但要记住子集的局限：它只覆盖基因组的一部分区域，深度等指标不能外推到完整数据的水平。</p>
 </section>
@@ -1120,7 +1122,7 @@ window.Quarto = {
 <p>第 4 章已经定义了测序深度（depth，每个位置被 reads 覆盖的次数）与覆盖度（coverage，被测到的区域比例）。WES 的特殊之处在于：除了整体深度足够，还要<strong>在捕获区域内部足够均匀</strong>，因为判断每个外显子里有没有变异，依赖的是那个区域自己的深度。</p>
 <p>WES 样本在上机前要经过<strong>捕获（capture）</strong>和<strong>PCR 扩增</strong>两个步骤，不同区域的效率差别会直接转化为深度的不均匀：</p>
 <ul>
-<li>GC 含量高的区域在捕获、扩增和测序中都受影响<a href="#fn7" class="footnote-ref" id="fnref7" role="doc-noteref"><sup>7</sup></a>；</li>
+<li>GC 含量高的区域在捕获、扩增和测序中都受影响<a href="#fn8" class="footnote-ref" id="fnref8" role="doc-noteref"><sup>8</sup></a>；</li>
 <li>低复杂度片段（如重复区域）和含模糊碱基的区域捕获效率偏低；</li>
 <li>文库片段长度偏离扩增的最佳范围（约 70–200 bp 之外）的片段回收差；</li>
 <li>假基因与真实基因高度相似，影响 reads 比对到正确位置的程度，进而影响该区域的深度计算；</li>
@@ -1137,7 +1139,7 @@ window.Quarto = {
 </figcaption>
 </figure>
 </div>
-<p><a href="#fig-08-wgs-and-wes-006" class="quarto-xref">图&nbsp;<span>7.4</span></a> 用同一批样本比较了 WES、经 PCR 的 WGS 与 PCR-free WGS：面板 a 显示编码外显子的平均深度随 GC 含量明显波动，WES 的波动最剧烈；面板 b 显示 WES 的覆盖集中在捕获目标区域，而 WGS 在各类区域上覆盖更完整。这组对比也提醒我们：<strong>PCR-free 文库能显著减弱 GC 偏差</strong>，这是高质量 WGS 的优势之一<a href="#fn8" class="footnote-ref" id="fnref8" role="doc-noteref"><sup>8</sup></a>。</p>
+<p><a href="#fig-08-wgs-and-wes-006" class="quarto-xref">图&nbsp;<span>7.4</span></a> 用同一批样本比较了 WES、经 PCR 的 WGS 与 PCR-free WGS：面板 a 显示编码外显子的平均深度随 GC 含量明显波动，WES 的波动最剧烈；面板 b 显示 WES 的覆盖集中在捕获目标区域，而 WGS 在各类区域上覆盖更完整。这组对比也提醒我们：<strong>PCR-free 文库能显著减弱 GC 偏差</strong>，这是高质量 WGS 的优势之一<a href="#fn9" class="footnote-ref" id="fnref9" role="doc-noteref"><sup>9</sup></a>。</p>
 <p>捕获探针可以购买商品化产品，也可以自行设计：在感兴趣的区域增加探针、在难捕获区域提高探针密度。评估一个捕获设计的常用指标有：</p>
 <ul>
 <li><strong>中靶率（on-target rate）</strong>：落在目标区域内的序列占比；</li>
@@ -1160,7 +1162,7 @@ window.Quarto = {
 <img src="../assets/08-wgs-and-wes/preprocessing-overview.svg" class="img-fluid figure-img">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-07-preprocessing-overview-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-图&nbsp;7.5: DNA 小变异分析的前处理流程：每一步的输入、输出与目的
+图&nbsp;7.5: DNA 小变异分析的前处理流程
 </figcaption>
 </figure>
 </div>
@@ -1278,7 +1280,7 @@ P(S|G_i)=\prod_i P(S_i | G_i)
 <div id="tbl-07-wgs-and-wes-01" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-tbl figure">
 <figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-07-wgs-and-wes-01-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-表&nbsp;7.2: 本节推导使用的符号
+表&nbsp;7.2: 基因型似然推导中的符号
 </figcaption>
 <div aria-describedby="tbl-07-wgs-and-wes-01-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <div class="book-table-scroll" role="region" aria-label="表格，可横向滚动" tabindex="0"><table class="caption-top table">
@@ -1328,7 +1330,7 @@ P(S_i \mid g) = \left[\frac{g}{2}(1-\epsilon_i) + \frac{2-g}{2}\epsilon_i\right]
   \end{array}
 \right.
 \]</span></span><a class="equation-label" href="#eq-08-wgs-and-wes-007" aria-label="公式（7.7）">(7.7)</a></span></p>
-<p>杂合（<span class="math inline">\(g{=}1\)</span>）时无论读到什么碱基，似然都是 <span class="math inline">\(\frac{1}{2}\)</span>；纯合时似然取决于观察方向与错误方向的匹配。三个式子都来自同一形式<a href="#fn9" class="footnote-ref" id="fnref9" role="doc-noteref"><sup>9</sup></a>：</p>
+<p>杂合（<span class="math inline">\(g{=}1\)</span>）时无论读到什么碱基，似然都是 <span class="math inline">\(\frac{1}{2}\)</span>；纯合时似然取决于观察方向与错误方向的匹配。三个式子都来自同一形式<a href="#fn10" class="footnote-ref" id="fnref10" role="doc-noteref"><sup>10</sup></a>：</p>
 <p><span id="eq-08-wgs-and-wes-008" class="book-equation"><span class="equation-scroll" tabindex="0" role="region" aria-label="公式 7.8"><span class="math display">\[
 P(S_i \mid g)=P(I_i=1)^{I_i}\cdot P(I_i=0)^{1-I_i}
 \]</span></span><a class="equation-label" href="#eq-08-wgs-and-wes-008" aria-label="公式（7.8）">(7.8)</a></span></p>
@@ -1338,10 +1340,11 @@ P(S_i \mid g)=P(I_i=1)^{I_i}\cdot P(I_i=0)^{1-I_i}
 <img src="../assets/08-wgs-and-wes/001-reads-support-counts.svg" class="img-fluid figure-img">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-08-wgs-and-wes-001-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-图&nbsp;7.6: 一个候选位点的 reads 支持计数示意（IGV 风格，G:A = 4:1）
+图&nbsp;7.6: 候选位点的 reads 支持计数（示意，G:A = 4:1）
 </figcaption>
 </figure>
 </div>
+<p>图注：图采用 IGV 风格。</p>
 <p>把单条 read 的似然推广到整个位点：如 <a href="#fig-08-wgs-and-wes-001" class="quarto-xref">图&nbsp;<span>7.6</span></a> 所示，<span class="math inline">\(k\)</span> 条 reads 比对到该位点，其中 <span class="math inline">\(l\)</span> 条与参考一致、<span class="math inline">\(k - l\)</span> 条不一致，第 <span class="math inline">\(j\)</span> 条 read 的测序错误率为 <span class="math inline">\(\epsilon_j\)</span>（由它自己的质量值给出）。将各基因型代入 <a href="#eq-08-wgs-and-wes-006" class="quarto-xref">公式&nbsp;<span>7.6</span></a> 并对全部 reads 连乘：</p>
 <p><span id="eq-08-wgs-and-wes-009" class="book-equation"><span class="equation-scroll" tabindex="0" role="region" aria-label="公式 7.9"><span class="math display">\[
 \begin{aligned}
@@ -1422,7 +1425,7 @@ r_n &amp; a_{n1} &amp; a_{n2} &amp; .. &amp; a_{nm} \\
 <p>这个矩阵描述每条 read 在每个候选单倍型条件下的似然。软件随后把单倍型层面的证据映射到候选等位基因，并计算基因型似然。不能把跨 reads 的似然直接相加当成单倍型的概率；下面在条件独立假设下使用似然乘积进行教学推导，具体聚合规则以所使用的 GATK 版本实现为准。</p>
 </div>
 </div>
-<p>PairHMM 是整个流程中计算量最大的部分，GATK 的性能优化常常以此为突破口——GPU 加速、把 Pair-HMM 模块烧录到 FPGA 芯片，也有从算法出发的加速工作<a href="#fn10" class="footnote-ref" id="fnref10" role="doc-noteref"><sup>10</sup></a>。</p>
+<p>PairHMM 是整个流程中计算量最大的部分，GATK 的性能优化常常以此为突破口——GPU 加速、把 Pair-HMM 模块烧录到 FPGA 芯片，也有从算法出发的加速工作<a href="#fn11" class="footnote-ref" id="fnref11" role="doc-noteref"><sup>11</sup></a>。</p>
 <p><strong>4. 计算候选位点的基因型后验。</strong> 在步骤 3 的基础上，我们已经知道每条 read 对每种单倍型的支持程度。最后一步回到贝叶斯框架，计算候选位点上每种基因型的后验概率，选择最高的作为结果输出到 VCF。样本基因型 <span class="math inline">\(G\)</span> 的后验为：</p>
 <p><span id="eq-08-wgs-and-wes-013" class="book-equation"><span class="equation-scroll" tabindex="0" role="region" aria-label="公式 7.13"><span class="math display">\[
 P(G \mid D) = \frac{P(G)P(D \mid G)}{\sum_i P(G_i)P(D \mid G_i)}
@@ -1572,7 +1575,7 @@ chr21   9068512  .   C   T   214.64 PASS   DP=13;QD=16.51;SOR=1.609 GT:AD:DP:GQ:
 <div id="tbl-07-vcf-columns" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-tbl figure">
 <figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-07-vcf-columns-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-表&nbsp;7.3: VCF 数据列速查
+表&nbsp;7.3: VCF 文件各列的含义
 </figcaption>
 <div aria-describedby="tbl-07-vcf-columns-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <div class="book-table-scroll" role="region" aria-label="表格，可横向滚动" tabindex="0"><table class="caption-top table">
@@ -1650,7 +1653,7 @@ chr21   9068512  .   C   T   214.64 PASS   DP=13;QD=16.51;SOR=1.609 GT:AD:DP:GQ:
 <img src="../assets/08-wgs-and-wes/vcf-record-anatomy.svg" class="img-fluid figure-img">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-07-vcf-anatomy-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-图&nbsp;7.8: 一条 VCF 记录的逐列解剖
+图&nbsp;7.8: VCF 记录示例及字段含义
 </figcaption>
 </figure>
 </div>
@@ -1672,7 +1675,7 @@ chr21   9068512  .   C   T   214.64 PASS   DP=13;QD=16.51;SOR=1.609 GT:AD:DP:GQ:
 <div id="tbl-07-hardfilters" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-tbl figure">
 <figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-07-hardfilters-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-表&nbsp;7.4: 常用硬过滤参数（起点值，据 GATK 文档；实际阈值应结合自己数据的分布调整）
+表&nbsp;7.4: 常用变异硬过滤参数的参考值
 </figcaption>
 <div aria-describedby="tbl-07-hardfilters-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <div class="book-table-scroll" role="region" aria-label="表格，可横向滚动" tabindex="0"><table class="caption-top table">
@@ -1738,6 +1741,7 @@ chr21   9068512  .   C   T   214.64 PASS   DP=13;QD=16.51;SOR=1.609 GT:AD:DP:GQ:
 </div>
 </figure>
 </div>
+<p>表注：数值据 GATK 文档列出，作为起点；实际阈值应结合自己数据的分布调整。</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb16" data-book-role="code"><pre data-code-text="&quot;gatk VariantFiltration \\\n  -R ref/GRCh38.fa \\\n  -V VCF/${sample}.raw.vcf.gz \\\n  --filter-expression \&quot;QD &lt; 2.0\&quot; --filter-name \&quot;LowQD\&quot; \\\n  --filter-expression \&quot;QUAL &lt; 30.0\&quot; --filter-name \&quot;LowQUAL\&quot; \\\n  --filter-expression \&quot;SOR &gt; 3.0\&quot; --filter-name \&quot;HighSOR\&quot; \\\n  --filter-expression \&quot;FS &gt; 60.0\&quot; --filter-name \&quot;HighFS\&quot; \\\n  --filter-expression \&quot;MQ &lt; 40.0\&quot; --filter-name \&quot;LowMQ\&quot; \\\n  --filter-expression \&quot;MQRankSum &lt; -12.5\&quot; --filter-name \&quot;LowMQRankSum\&quot; \\\n  --filter-expression \&quot;ReadPosRankSum &lt; -8.0\&quot; --filter-name \&quot;LowReadPosRankSum\&quot; \\\n  -O VCF/${sample}.filtered.vcf.gz&quot;" class="sourceCode numberSource bash numberLines code-with-copy"><code class="sourceCode bash"><span id="cb16-1"><a href="#cb16-1"></a><span class="ex">gatk</span> VariantFiltration <span class="dt">\</span></span>
 <span id="cb16-2"><a href="#cb16-2"></a>  <span class="at">-R</span> ref/GRCh38.fa <span class="dt">\</span></span>
 <span id="cb16-3"><a href="#cb16-3"></a>  <span class="at">-V</span> VCF/<span class="va">${sample}</span>.raw.vcf.gz <span class="dt">\</span></span>
@@ -1845,7 +1849,7 @@ SN    0  number of SNPs:      570</code></pre>
 <img src="../assets/08-wgs-and-wes/008-pic6.png" class="img-fluid figure-img">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-08-wgs-and-wes-008-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-图&nbsp;7.10: 在 COSMIC Cancer Gene Census 中按疾病检索癌症相关基因
+图&nbsp;7.10: COSMIC Cancer Gene Census 的疾病检索入口
 </figcaption>
 </figure>
 </div>
@@ -1856,7 +1860,7 @@ SN    0  number of SNPs:      570</code></pre>
 <img src="../assets/08-wgs-and-wes/009-pic7.png" class="img-fluid figure-img">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-08-wgs-and-wes-009-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-图&nbsp;7.11: 在 COSMIC 中检索特定疾病的癌症基因结果
+图&nbsp;7.11: COSMIC 中特定疾病的癌症相关基因检索结果
 </figcaption>
 </figure>
 </div>
@@ -1867,7 +1871,7 @@ SN    0  number of SNPs:      570</code></pre>
 <img src="../assets/08-wgs-and-wes/010-pic8.png" class="img-fluid figure-img">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-08-wgs-and-wes-010-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-图&nbsp;7.12: 在 COSMIC 数据库中查看基因的突变概览
+图&nbsp;7.12: COSMIC 中的基因突变概览
 </figcaption>
 </figure>
 </div>
@@ -1877,7 +1881,7 @@ SN    0  number of SNPs:      570</code></pre>
 <img src="../assets/08-wgs-and-wes/011-pic9.png" class="img-fluid figure-img">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-08-wgs-and-wes-011-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-图&nbsp;7.13: 用 COSMIC-3D 查看突变位点在蛋白质结构上的分布
+图&nbsp;7.13: COSMIC-3D 中突变位点在蛋白质结构上的分布
 </figcaption>
 </figure>
 </div>
@@ -1893,7 +1897,7 @@ SN    0  number of SNPs:      570</code></pre>
 <img src="../assets/08-wgs-and-wes/012-pic11.png" class="img-fluid figure-img">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-08-wgs-and-wes-012-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-图&nbsp;7.14: 以 MSH6 为例在 KEGG 数据库中搜索相关通路
+图&nbsp;7.14: KEGG 中与 MSH6 相关的通路检索结果
 </figcaption>
 </figure>
 </div>
@@ -1903,7 +1907,7 @@ SN    0  number of SNPs:      570</code></pre>
 <img src="../assets/08-wgs-and-wes/013-pic12.png" class="img-fluid figure-img">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-08-wgs-and-wes-013-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-图&nbsp;7.15: Metascape 可以同时分析多个基因的注释与富集
+图&nbsp;7.15: Metascape 的多基因注释与富集分析
 </figcaption>
 </figure>
 </div>
@@ -1914,7 +1918,7 @@ SN    0  number of SNPs:      570</code></pre>
 <img src="../assets/08-wgs-and-wes/014-pic13.png" class="img-fluid figure-img">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-08-wgs-and-wes-014-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-图&nbsp;7.16: TCGA 数据通过 GDC Data Portal 访问
+图&nbsp;7.16: GDC Data Portal 中的 TCGA 数据入口
 </figcaption>
 </figure>
 </div>
@@ -1932,10 +1936,11 @@ SN    0  number of SNPs:      570</code></pre>
 <img src="../assets/08-wgs-and-wes/igv-na12878-review.svg" class="img-fluid figure-img">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-07-igv-review-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-图&nbsp;7.17: 候选杂合变异的 reads 复核视图（据本章实测数据绘制，IGV 风格）
+图&nbsp;7.17: 候选杂合变异的 reads 支持情况
 </figcaption>
 </figure>
 </div>
+<p>图注：依据本章实测数据绘制，采用 IGV 风格。</p>
 <ul>
 <li><strong>reads 数量与颜色</strong>：支持参考与替代等位基因的 reads 各多少条（对照 VCF 的 AD），有没有明显聚集在一条链上（对照 SOR/FS 过滤器在防的问题）；</li>
 <li><strong>碱基质量</strong>：替代等位基因的碱基质量值是否整体偏低（IGV 里低质量碱基显示为暗淡颜色）；</li>
@@ -1975,20 +1980,21 @@ SN    0  number of SNPs:      570</code></pre>
 <ol>
 <li id="fn1"><p>Choi M, Scholl UI, Ji W, et al.&nbsp;Genetic diagnosis by whole exome capture and massively parallel DNA sequencing. PNAS 106(45):19096–19101 (2009). doi:10.1073/pnas.0910672106。<a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
 <li id="fn2"><p>Sakharkar MK, et al.&nbsp;Distributions of Exons and Introns in the Human Genome. In Silico Biology 4:387–393 (2004)。<a href="#fnref2" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
-<li id="fn3"><p>Goodwin S, McPherson JD, McCombie WR. Coming of age: ten years of next-generation sequencing technologies. Nature Reviews Genetics 17:333–351 (2016)。<a href="#fnref3" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
-<li id="fn4"><p>Meynert AM, Ansari M, FitzPatrick DR, Taylor MS. Variant detection sensitivity and biases in whole genome and exome sequencing. BMC Bioinformatics 15:247 (2014). doi:10.1186/1471-2105-15-247。<a href="#fnref4" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
-<li id="fn5"><p>Lord J, et al.&nbsp;Prenatal exome sequencing analysis in fetal structural anomalies detected by ultrasonography (SHAPE study). New England Journal of Medicine 380:2468–2475 (2019)。<a href="#fnref5" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
-<li id="fn6"><p>Ng SB, et al.&nbsp;Exome sequencing identifies the cause of a mendelian disorder. Nature Genetics 42(1):30–35 (2010). doi:10.1038/ng.499。<a href="#fnref6" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
-<li id="fn7"><p>G、C 碱基之间由 3 个氢键连接，双链更稳定、不易被打断，GC 含量高的区域通常片段偏大；PCR 变性时不易解开，解开后单链也容易自身粘合形成二级结构，聚合酶对高 GC 片段的扩增效率因此下降，高 GC 外显子的测序深度系统性偏低[^meynert-2014]。<a href="#fnref7" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
-<li id="fn8"><p>Meynert AM, Ansari M, FitzPatrick DR, Taylor MS. Variant detection sensitivity and biases in whole genome and exome sequencing. BMC Bioinformatics 15:247 (2014). doi:10.1186/1471-2105-15-247。<a href="#fnref8" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
-<li id="fn9"><p>统一的形式是 <span class="math inline">\(P(S_i \mid g)=P(I_i{=}1)^{I_i}\cdot P(I_i{=}0)^{1-I_i}\)</span>：指数充当”开关”，留下实际发生的那个事件的概率。不同基因型下”观察到参考碱基”的概率不同，最终公式因此不同。<a href="#fnref9" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
-<li id="fn10"><p>Ren S, et al.&nbsp;Efficient Acceleration of the Pair-HMMs Forward Algorithm for GATK HaplotypeCaller on GPU. Cancer Informatics 16:1176934318760543 (2018)。<a href="#fnref10" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn3"><p>图片来自维基百科 Alternative splicing 条目，与第 5 章 <a href="05-rna-seq.html#fig-a-questions-21-25-006" class="quarto-xref">图&nbsp;<span>5.7</span></a> 使用同一图片。<a href="#fnref3" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn4"><p>Goodwin S, McPherson JD, McCombie WR. Coming of age: ten years of next-generation sequencing technologies. Nature Reviews Genetics 17:333–351 (2016)。<a href="#fnref4" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn5"><p>Meynert AM, Ansari M, FitzPatrick DR, Taylor MS. Variant detection sensitivity and biases in whole genome and exome sequencing. BMC Bioinformatics 15:247 (2014). doi:10.1186/1471-2105-15-247。<a href="#fnref5" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn6"><p>Lord J, et al.&nbsp;Prenatal exome sequencing analysis in fetal structural anomalies detected by ultrasonography (SHAPE study). New England Journal of Medicine 380:2468–2475 (2019)。<a href="#fnref6" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn7"><p>Ng SB, et al.&nbsp;Exome sequencing identifies the cause of a mendelian disorder. Nature Genetics 42(1):30–35 (2010). doi:10.1038/ng.499。<a href="#fnref7" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn8"><p>G、C 碱基之间由 3 个氢键连接，双链更稳定、不易被打断，GC 含量高的区域通常片段偏大；PCR 变性时不易解开，解开后单链也容易自身粘合形成二级结构，聚合酶对高 GC 片段的扩增效率因此下降，高 GC 外显子的测序深度系统性偏低[^meynert-2014]。<a href="#fnref8" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn9"><p>Meynert AM, Ansari M, FitzPatrick DR, Taylor MS. Variant detection sensitivity and biases in whole genome and exome sequencing. BMC Bioinformatics 15:247 (2014). doi:10.1186/1471-2105-15-247。<a href="#fnref9" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn10"><p>统一的形式是 <span class="math inline">\(P(S_i \mid g)=P(I_i{=}1)^{I_i}\cdot P(I_i{=}0)^{1-I_i}\)</span>：指数充当”开关”，留下实际发生的那个事件的概率。不同基因型下”观察到参考碱基”的概率不同，最终公式因此不同。<a href="#fnref10" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn11"><p>Ren S, et al.&nbsp;Efficient Acceleration of the Pair-HMMs Forward Algorithm for GATK HaplotypeCaller on GPU. Cancer Informatics 16:1176934318760543 (2018)。<a href="#fnref11" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
 </ol>
 </section>
 
 </main> <!-- /main -->
 <div class="book-toolbar" role="navigation" aria-label="阅读工具">
-  <div class="book-brand"><span class="book-brand-name">AI时代生信入门</span><time class="book-last-modified" datetime="2026-10-12T13:46:45+08:00" title="最后修改时间（北京时间，UTC+08:00）">最后修改 2026-10-12 13:46</time></div>
+  <div class="book-brand"><span class="book-brand-name">AI时代生信入门</span><time class="book-last-modified" datetime="2026-10-12T14:30:32+08:00" title="最后修改时间（北京时间，UTC+08:00）">最后修改 2026-10-12 14:30</time></div>
   <button class="book-menu-button" type="button" aria-controls="quarto-sidebar" aria-expanded="false">目录</button>
   <button class="book-search-button" type="button">搜索</button>
 </div>

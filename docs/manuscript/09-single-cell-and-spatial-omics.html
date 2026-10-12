@@ -921,7 +921,7 @@ window.Quarto = {
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
 <h1 class="title"><span id="sec-ch09" class="quarto-section-identifier"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">单细胞与空间组学</span></span></h1>
-<p class="chapter-last-modified"><time datetime="2026-10-12T13:46:45+08:00" title="本章书稿最后修改时间（北京时间，UTC+08:00）">最后修改：2026-10-12 13:46（北京时间）</time></p>
+<p class="chapter-last-modified"><time datetime="2026-10-12T14:30:32+08:00" title="本章书稿最后修改时间（北京时间，UTC+08:00）">最后修改：2026-10-12 14:30（北京时间）</time></p>
 </div>
 
 
@@ -980,7 +980,7 @@ window.Quarto = {
 <img src="../assets/09-single-cell-and-spatial-omics/008-10x-bd-platforms.svg" class="img-fluid figure-img">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-06-rna-seq-002-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-图&nbsp;9.1: 10x Genomics 与 BD Rhapsody 单细胞捕获流程对比：液滴法（左）与微孔板法（右）殊途同归（重绘自课程原图）
+图&nbsp;9.1: 10x Genomics 与 BD Rhapsody 的单细胞捕获流程
 </figcaption>
 </figure>
 </div>
@@ -1009,10 +1009,11 @@ window.Quarto = {
 <img src="../assets/09-single-cell-and-spatial-omics/002-bc-umi-matrix.svg" class="img-fluid figure-img">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-09-bc-umi-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-图&nbsp;9.2: barcode、UMI 与计数矩阵的对应关系（示意图，序列未按实际长度绘制）
+图&nbsp;9.2: barcode、UMI 与计数矩阵的对应关系（示意）
 </figcaption>
 </figure>
 </div>
+<p>图注：序列未按实际长度绘制。</p>
 <p><a href="#fig-09-bc-umi" class="quarto-xref">图&nbsp;<span>9.2</span></a> 把这套对应关系画在一起：三条 read 带着同一个细胞 barcode，其中前两条的 UMI 相同——它们是同一个 mRNA 分子经 PCR 扩增出来的重复，按 UMI 去重后只计 1 个分子；第三条 UMI 不同，是另一个分子。计数矩阵里那一列的每个数字，就是这样一条条数出来的”分子数”。</p>
 </section>
 <section id="topic-09-multimics" class="level3">
@@ -1029,7 +1030,7 @@ window.Quarto = {
 <img src="../assets/09-single-cell-and-spatial-omics/001-ch09-route.svg" class="img-fluid figure-img">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-06-rna-seq-009-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-图&nbsp;9.3: 本章分析路线：单细胞线（左）与空间线（右）并行，底部汇合；每步附检查点（自绘流程图）
+图&nbsp;9.3: 单细胞与空间转录组分析流程
 </figcaption>
 </figure>
 </div>
@@ -1068,7 +1069,7 @@ window.Quarto = {
 <img src="../assets/09-single-cell-and-spatial-omics/003-pbmc-qc.png" class="img-fluid figure-img">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-09-qc-violin-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-图&nbsp;9.4: pbmc3k 质控指标分布（Seurat 实跑）
+图&nbsp;9.4: pbmc3k 的质控指标分布
 </figcaption>
 </figure>
 </div>
@@ -1167,10 +1168,11 @@ window.Quarto = {
 <img src="../assets/09-single-cell-and-spatial-omics/004-pbmc-umap.png" class="img-fluid figure-img">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-09-umap-clusters-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-图&nbsp;9.5: pbmc3k 聚类结果 UMAP（Seurat 实跑，分辨率 0.5，9 个簇）
+图&nbsp;9.5: pbmc3k 聚类结果的 UMAP 展示
 </figcaption>
 </figure>
 </div>
+<p>图注：聚类分辨率为 0.5，共得到 9 个簇。</p>
 </section>
 </section>
 <section id="sec-09-04" class="level2" data-number="9.4">
@@ -1189,7 +1191,7 @@ window.Quarto = {
 <div id="tbl-09-cluster-annotation" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-tbl figure">
 <figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-09-cluster-annotation-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-表&nbsp;9.1: pbmc3k 九个簇的经典 marker 注释（结果来自本章实跑）
+表&nbsp;9.1: pbmc3k 九个簇的细胞类型与经典 marker
 </figcaption>
 <div aria-describedby="tbl-09-cluster-annotation-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <div class="book-table-scroll" role="region" aria-label="表格，可横向滚动" tabindex="0"><table class="caption-top table">
@@ -1270,7 +1272,7 @@ window.Quarto = {
 <img src="../assets/09-single-cell-and-spatial-omics/005-pbmc-marker-dot.png" class="img-fluid figure-img">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-09-marker-dot-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-图&nbsp;9.6: pbmc3k 经典 marker 点图（Seurat 实跑）
+图&nbsp;9.6: pbmc3k 的经典 marker 表达点图
 </figcaption>
 </figure>
 </div>
@@ -1324,10 +1326,11 @@ window.Quarto = {
 <img src="../assets/09-single-cell-and-spatial-omics/006-ifnb-integration.png" class="img-fluid figure-img">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-09-ifnb-umap-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-图&nbsp;9.7: ifnb 整合前（左，按条件着色）与 Harmony 整合后（右，按细胞类型着色）的对比（Seurat 实跑）
+图&nbsp;9.7: ifnb 数据在 Harmony 整合前后的分布
 </figcaption>
 </figure>
 </div>
+<p>图注：左图为整合前，按条件着色；右图为整合后，按细胞类型着色。</p>
 <p><a href="#fig-09-ifnb-umap" class="quarto-xref">图&nbsp;<span>9.7</span></a> 左图显示，未整合时两组细胞大面积分开——这里主导的是<strong>干扰素刺激这个生物学条件</strong>（IFN 响应基因被诱导，刺激组细胞整体”变形”），不是技术批次。这个例子故意选了”条件效应”：它提醒我们，整合算法分不清”批次”和”条件”，它只是把指定的分组拉到一起。哪些差异该保留、哪些该去除，必须由分析者依据实验设计决定。</p>
 </section>
 <section id="topic-09-integration" class="level3">
@@ -1408,7 +1411,7 @@ window.Quarto = {
 <div id="tbl-09-spatial-tech" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-tbl figure">
 <figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-09-spatial-tech-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-表&nbsp;9.2: 三类空间转录组技术的取舍（规格为 2026-10 官方口径）
+表&nbsp;9.2: 三类空间转录组技术的特点与限制（2026 年 10 月官方规格）
 </figcaption>
 <div aria-describedby="tbl-09-spatial-tech-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <div class="book-table-scroll" role="region" aria-label="表格，可横向滚动" tabindex="0"><table class="caption-top table">
@@ -1480,7 +1483,7 @@ nFeature_Spatial 中位数 4,772（范围 28–9,476）</code></pre>
 <img src="../assets/09-single-cell-and-spatial-omics/007-visium-regions.png" class="img-fluid figure-img">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-09-visium-regions-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-图&nbsp;9.8: Visium 小鼠脑矢状切面：区域 marker 基因的空间分布（Seurat 实跑）
+图&nbsp;9.8: Visium 小鼠脑矢状切面中区域 marker 基因的空间分布
 </figcaption>
 </figure>
 </div>
@@ -1672,7 +1675,7 @@ nFeature_Spatial 中位数 4,772（范围 28–9,476）</code></pre>
 
 </main> <!-- /main -->
 <div class="book-toolbar" role="navigation" aria-label="阅读工具">
-  <div class="book-brand"><span class="book-brand-name">AI时代生信入门</span><time class="book-last-modified" datetime="2026-10-12T13:46:45+08:00" title="最后修改时间（北京时间，UTC+08:00）">最后修改 2026-10-12 13:46</time></div>
+  <div class="book-brand"><span class="book-brand-name">AI时代生信入门</span><time class="book-last-modified" datetime="2026-10-12T14:30:32+08:00" title="最后修改时间（北京时间，UTC+08:00）">最后修改 2026-10-12 14:30</time></div>
   <button class="book-menu-button" type="button" aria-controls="quarto-sidebar" aria-expanded="false">目录</button>
   <button class="book-search-button" type="button">搜索</button>
 </div>

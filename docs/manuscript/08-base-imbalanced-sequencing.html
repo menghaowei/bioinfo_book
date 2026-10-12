@@ -921,7 +921,7 @@ window.Quarto = {
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
 <h1 class="title"><span id="sec-ch08" class="quarto-section-identifier"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">碱基不平衡测序数据的分析</span></span></h1>
-<p class="chapter-last-modified"><time datetime="2026-10-12T13:46:45+08:00" title="本章书稿最后修改时间（北京时间，UTC+08:00）">最后修改：2026-10-12 13:46（北京时间）</time></p>
+<p class="chapter-last-modified"><time datetime="2026-10-12T14:30:32+08:00" title="本章书稿最后修改时间（北京时间，UTC+08:00）">最后修改：2026-10-12 14:30（北京时间）</time></p>
 </div>
 
 
@@ -956,7 +956,7 @@ window.Quarto = {
 <img src="../assets/09-base-imbalanced-sequencing/cited/001-tet-demethylation-cycle.jpg" class="img-fluid figure-img">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-08-dna-modification-cycle-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-图&nbsp;8.1: TET1 介导的主动 DNA 去甲基化：DNMT 写入 5mC，TET 逐步氧化为 5hmC、5fC、5caC，经 TDG 与碱基切除修复回到未修饰的胞嘧啶（图源：Biomark Res 2021;9:76，Fig. 2，CC BY 4.0）
+图&nbsp;8.1: TET1 介导的主动 DNA 去甲基化<a href="#fn6" class="footnote-ref" id="fnref6" role="doc-noteref"><sup>6</sup></a>
 </figcaption>
 </figure>
 </div>
@@ -964,29 +964,30 @@ window.Quarto = {
 </section>
 <section id="sec-08-01-functions" class="level3">
 <h3 class="anchored" data-anchor-id="sec-08-01-functions">5mC 的生物学功能：沉默、发育与疾病</h3>
-<p>甲基化在基因组里做什么？最经典的关联是<strong>启动子 CpG 岛的高甲基化与基因沉默</strong>。CpG 岛（CpG island，CGI）是 CpG 密度高于基因组平均的短区域，约 60%–70% 的人类基因启动子带有 CpG 岛；管家基因的启动子 CpG 岛在正常细胞中通常保持未甲基化，而肿瘤抑制基因启动子 CpG 岛的异常高甲基化与转录失活高度相关<a href="#fn6" class="footnote-ref" id="fnref6" role="doc-noteref"><sup>6</sup></a>。注意这里的因果方向：甲基化与沉默”认同”，未必每次都是甲基化导致沉默——沉默的染色质有时反而招来甲基化。这一点在 8.6.2 讨论证据分层时还会回来。</p>
-<p>第二类证据来自<strong>发育</strong>。哺乳动物一生中有两波全基因组的去甲基化—再甲基化浪潮：受精后，父本基因组的 5mC 被 TET3 快速氧化、连同母本基因组一起大幅去甲基化，在早期胚胎中重建；原始生殖细胞（PGC）发育过程中也经历一轮大范围擦除，随后在配子和着床后重新建立甲基化图谱<a href="#fn7" class="footnote-ref" id="fnref7" role="doc-noteref"><sup>7</sup></a><a href="#fn8" class="footnote-ref" id="fnref8" role="doc-noteref"><sup>8</sup></a><a href="#fn9" class="footnote-ref" id="fnref9" role="doc-noteref"><sup>9</sup></a>。<a href="#fig-08-dev-methylation-waves" class="quarto-xref">图&nbsp;<span>8.2</span></a> 把这两波动态画成一条贯穿生命周期的曲线。发育重编程的存在说明甲基化组是<strong>可以整体重置的</strong>，也解释了为什么不同组织、不同发育阶段的甲基化图谱差异巨大——比较任何两组甲基化数据，先确认细胞类型是否可比。</p>
+<p>甲基化在基因组里做什么？最经典的关联是<strong>启动子 CpG 岛的高甲基化与基因沉默</strong>。CpG 岛（CpG island，CGI）是 CpG 密度高于基因组平均的短区域，约 60%–70% 的人类基因启动子带有 CpG 岛；管家基因的启动子 CpG 岛在正常细胞中通常保持未甲基化，而肿瘤抑制基因启动子 CpG 岛的异常高甲基化与转录失活高度相关<a href="#fn7" class="footnote-ref" id="fnref7" role="doc-noteref"><sup>7</sup></a>。注意这里的因果方向：甲基化与沉默”认同”，未必每次都是甲基化导致沉默——沉默的染色质有时反而招来甲基化。这一点在 8.6.2 讨论证据分层时还会回来。</p>
+<p>第二类证据来自<strong>发育</strong>。哺乳动物一生中有两波全基因组的去甲基化—再甲基化浪潮：受精后，父本基因组的 5mC 被 TET3 快速氧化、连同母本基因组一起大幅去甲基化，在早期胚胎中重建；原始生殖细胞（PGC）发育过程中也经历一轮大范围擦除，随后在配子和着床后重新建立甲基化图谱<a href="#fn8" class="footnote-ref" id="fnref8" role="doc-noteref"><sup>8</sup></a><a href="#fn9" class="footnote-ref" id="fnref9" role="doc-noteref"><sup>9</sup></a><a href="#fn10" class="footnote-ref" id="fnref10" role="doc-noteref"><sup>10</sup></a>。<a href="#fig-08-dev-methylation-waves" class="quarto-xref">图&nbsp;<span>8.2</span></a> 把这两波动态画成一条贯穿生命周期的曲线。发育重编程的存在说明甲基化组是<strong>可以整体重置的</strong>，也解释了为什么不同组织、不同发育阶段的甲基化图谱差异巨大——比较任何两组甲基化数据，先确认细胞类型是否可比。</p>
 <div id="fig-08-dev-methylation-waves" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-08-dev-methylation-waves-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <img src="../assets/09-base-imbalanced-sequencing/cited/002-development-methylation-waves.jpg" class="img-fluid figure-img">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-08-dev-methylation-waves-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-图&nbsp;8.2: 哺乳动物发育过程中的两波全基因组去甲基化与再甲基化动态（图源：Genes (Basel) 2019;10:257，Fig. 1，CC BY 4.0；原图改编自 Smallwood &amp; Kelsey 2012）
+图&nbsp;8.2: 哺乳动物发育中的两轮全基因组甲基化重编程<a href="#fn11" class="footnote-ref" id="fnref11" role="doc-noteref"><sup>11</sup></a>
 </figcaption>
 </figure>
 </div>
-<p>第三类是<strong>疾病与转化应用</strong>。癌细胞呈现”全局低甲基化 + 局部 CpG 岛高甲基化”的双重异常图谱（<a href="#fig-08-cancer-methylation" class="quarto-xref">图&nbsp;<span>8.3</span></a>）：前者伴随基因组不稳定，后者沉默肿瘤抑制基因。此外，甲基化模式在癌变早期就出现、而且稳定存在于循环游离 DNA（cfDNA）中，使它成为<strong>早期诊断标志物</strong>的候选。例如，SEPT9 血浆甲基化检测在前瞻性研究中对结直肠癌的敏感性为 48.2%、特异度 91.5%<a href="#fn10" class="footnote-ref" id="fnref10" role="doc-noteref"><sup>10</sup></a>，2016 年成为首个获 FDA 批准的基于血液的结直肠癌筛查检测；随后的 cfMeDIP-seq 把多种癌型的 cfDNA 甲基化图谱用于肿瘤检测<a href="#fn11" class="footnote-ref" id="fnref11" role="doc-noteref"><sup>11</sup></a>；更大规模的靶向亚硫酸氢盐测序在验证集中做到 99.3% 的特异度和约 67% 的敏感度（12 种癌型 I–III 期）<a href="#fn12" class="footnote-ref" id="fnref12" role="doc-noteref"><sup>12</sup></a>。</p>
+<p>第三类是<strong>疾病与转化应用</strong>。癌细胞呈现”全局低甲基化 + 局部 CpG 岛高甲基化”的双重异常图谱（<a href="#fig-08-cancer-methylation" class="quarto-xref">图&nbsp;<span>8.3</span></a>）：前者伴随基因组不稳定，后者沉默肿瘤抑制基因。此外，甲基化模式在癌变早期就出现、而且稳定存在于循环游离 DNA（cfDNA）中，使它成为<strong>早期诊断标志物</strong>的候选。例如，SEPT9 血浆甲基化检测在前瞻性研究中对结直肠癌的敏感性为 48.2%、特异度 91.5%<a href="#fn12" class="footnote-ref" id="fnref12" role="doc-noteref"><sup>12</sup></a>，2016 年成为首个获 FDA 批准的基于血液的结直肠癌筛查检测；随后的 cfMeDIP-seq 把多种癌型的 cfDNA 甲基化图谱用于肿瘤检测<a href="#fn13" class="footnote-ref" id="fnref13" role="doc-noteref"><sup>13</sup></a>；更大规模的靶向亚硫酸氢盐测序在验证集中做到 99.3% 的特异度和约 67% 的敏感度（12 种癌型 I–III 期）<a href="#fn14" class="footnote-ref" id="fnref14" role="doc-noteref"><sup>14</sup></a>。</p>
 <div id="fig-08-cancer-methylation" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-08-cancer-methylation-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <img src="../assets/09-base-imbalanced-sequencing/cited/003-cancer-cgi-hypermethylation.jpg" class="img-fluid figure-img">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-08-cancer-methylation-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-图&nbsp;8.3: 癌细胞中异常的 DNA 甲基化：左侧为启动子 CpG 岛局部高甲基化导致肿瘤抑制基因沉默，右侧为全基因组低甲基化影响癌基因、印迹基因与重复序列（图源：Genes (Basel) 2020;11:922，Fig. 1，CC BY 4.0）
+图&nbsp;8.3: 癌细胞的局部高甲基化与全局低甲基化<a href="#fn15" class="footnote-ref" id="fnref15" role="doc-noteref"><sup>15</sup></a>
 </figcaption>
 </figure>
 </div>
+<p>图注：左侧为启动子 CpG 岛高甲基化与肿瘤抑制基因沉默；右侧为全基因组低甲基化对癌基因、印迹基因与重复序列的影响。</p>
 <div class="book-warning callout callout-style-default callout-warning callout-titled" title="注意｜同一个甲基化信号，位置不同含义不同">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -1003,12 +1004,12 @@ window.Quarto = {
 </section>
 <section id="sec-08-01-technologies" class="level3">
 <h3 class="anchored" data-anchor-id="sec-08-01-technologies">测 5mC 的技术路线与 BS-seq 的地位</h3>
-<p>明确了要测什么，下一个问题是拿什么测。让 5mC 在测序数据里”现形”的关键技术出现于 1992 年：<strong>亚硫酸氢盐（bisulfite）处理</strong>。单链 DNA 经亚硫酸氢盐处理后，未甲基化的胞嘧啶 C 被化学脱氨变成 U（PCR 扩增后读作 T），而 5mC 由于甲基的保护几乎不发生反应、仍然读作 C<a href="#fn13" class="footnote-ref" id="fnref13" role="doc-noteref"><sup>13</sup></a>。于是测序 reads 里的 C/T 比例直接编码了每个位点的甲基化状态——原文标题称之为”阳性显示 5mC”。基于这一化学反应的测序统称 <strong>BS-seq</strong>（bisulfite sequencing），全基因组版本就是 <strong>WGBS</strong>。</p>
+<p>明确了要测什么，下一个问题是拿什么测。让 5mC 在测序数据里”现形”的关键技术出现于 1992 年：<strong>亚硫酸氢盐（bisulfite）处理</strong>。单链 DNA 经亚硫酸氢盐处理后，未甲基化的胞嘧啶 C 被化学脱氨变成 U（PCR 扩增后读作 T），而 5mC 由于甲基的保护几乎不发生反应、仍然读作 C<a href="#fn16" class="footnote-ref" id="fnref16" role="doc-noteref"><sup>16</sup></a>。于是测序 reads 里的 C/T 比例直接编码了每个位点的甲基化状态——原文标题称之为”阳性显示 5mC”。基于这一化学反应的测序统称 <strong>BS-seq</strong>（bisulfite sequencing），全基因组版本就是 <strong>WGBS</strong>。</p>
 <p><a href="#tbl-08-dna-methylation-methods" class="quarto-xref">表&nbsp;<span>8.1</span></a> 把测 5mC 家族的主要技术放在一起比较。</p>
 <div id="tbl-08-dna-methylation-methods" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-tbl figure">
 <figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-08-dna-methylation-methods-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-表&nbsp;8.1: 测 DNA 5mC 家族的主要技术路线
+表&nbsp;8.1: DNA 胞嘧啶修饰的主要检测方法
 </figcaption>
 <div aria-describedby="tbl-08-dna-methylation-methods-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <div class="book-table-scroll" role="region" aria-label="表格，可横向滚动" tabindex="0"><table class="caption-top table">
@@ -1030,25 +1031,25 @@ window.Quarto = {
 <tr class="even">
 <td style="text-align: left;"><strong>RRBS</strong>（简化代表性亚硫酸盐测序）</td>
 <td style="text-align: left;">CpG 岛及附近区域</td>
-<td style="text-align: left;">MspI 酶切富集 CpG 岛片段后转化；约 5% 的测序量覆盖约 90% 的 CpG 岛<a href="#fn14" class="footnote-ref" id="fnref14" role="doc-noteref"><sup>14</sup></a></td>
+<td style="text-align: left;">MspI 酶切富集 CpG 岛片段后转化；约 5% 的测序量覆盖约 90% 的 CpG 岛<a href="#fn17" class="footnote-ref" id="fnref17" role="doc-noteref"><sup>17</sup></a></td>
 <td style="text-align: left;">大队列/profile 首选；只看酶切位点附近</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;"><strong>EM-seq</strong>（酶法甲基测序）</td>
 <td style="text-align: left;">与 WGBS 相同的信号类型</td>
-<td style="text-align: left;">TET2+T4-BGT 保护 5mC/5hmC，APOBEC3A 酶法脱氨其余 C；避免亚硫酸盐对 DNA 的断裂损伤，低输入低深度时覆盖更均匀<a href="#fn15" class="footnote-ref" id="fnref15" role="doc-noteref"><sup>15</sup></a></td>
+<td style="text-align: left;">TET2+T4-BGT 保护 5mC/5hmC，APOBEC3A 酶法脱氨其余 C；避免亚硫酸盐对 DNA 的断裂损伤，低输入低深度时覆盖更均匀<a href="#fn18" class="footnote-ref" id="fnref18" role="doc-noteref"><sup>18</sup></a></td>
 <td style="text-align: left;">样品量少、质量差时优于 WGBS</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;"><strong>oxBS</strong></td>
 <td style="text-align: left;">区分 5mC 与 5hmC</td>
-<td style="text-align: left;">KRuO4 把 5hmC 氧化为 5fC（亚硫酸盐处理后读作 T），与普通 BS 文库对照可拆开两种修饰<a href="#fn16" class="footnote-ref" id="fnref16" role="doc-noteref"><sup>16</sup></a></td>
+<td style="text-align: left;">KRuO4 把 5hmC 氧化为 5fC（亚硫酸盐处理后读作 T），与普通 BS 文库对照可拆开两种修饰<a href="#fn19" class="footnote-ref" id="fnref19" role="doc-noteref"><sup>19</sup></a></td>
 <td style="text-align: left;">需要成对文库；关心 5hmC 时使用</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;"><strong>TAB-seq</strong></td>
 <td style="text-align: left;">单碱基 5hmC</td>
-<td style="text-align: left;">β-葡萄糖基转移酶保护 5hmC，TET2 把 5mC 氧化为 5caC 后亚硫酸盐处理<a href="#fn17" class="footnote-ref" id="fnref17" role="doc-noteref"><sup>17</sup></a></td>
+<td style="text-align: left;">β-葡萄糖基转移酶保护 5hmC，TET2 把 5mC 氧化为 5caC 后亚硫酸盐处理<a href="#fn20" class="footnote-ref" id="fnref20" role="doc-noteref"><sup>20</sup></a></td>
 <td style="text-align: left;">专门测 5hmC</td>
 </tr>
 <tr class="even">
@@ -1099,11 +1100,11 @@ window.Quarto = {
 <p>分析顺序与第 5、7 章相同：明确数据 → 质控 → 比对 → 前处理 → 逐位点计数，只是每一步都要重新考虑”化学转化改变了什么”。</p>
 <section id="sec-08-02-example-data" class="level3">
 <h3 class="anchored" data-anchor-id="sec-08-02-example-data">示例数据与路线总览</h3>
-<p>DNA 线的示例数据是 8.1 提到的 Dnmt 三敲（TKO）系列小鼠胚胎干细胞 WGBS，来自 GEO 数据集 <strong>GSE67867</strong>（Domcke 等，2015）<a href="#fn18" class="footnote-ref" id="fnref18" role="doc-noteref"><sup>18</sup></a>——正是第 6 章 NRF1 竞争实验所用的同一批细胞系。三个样本覆盖了”几乎无甲基化 → 低甲基化 → 高甲基化”的完整谱系（<a href="#tbl-08-wgbs-samples" class="quarto-xref">表&nbsp;<span>8.2</span></a>）：</p>
+<p>DNA 线的示例数据是 8.1 提到的 Dnmt 三敲（TKO）系列小鼠胚胎干细胞 WGBS，来自 GEO 数据集 <strong>GSE67867</strong>（Domcke 等，2015）<a href="#fn21" class="footnote-ref" id="fnref21" role="doc-noteref"><sup>21</sup></a>——正是第 6 章 NRF1 竞争实验所用的同一批细胞系。三个样本覆盖了”几乎无甲基化 → 低甲基化 → 高甲基化”的完整谱系（<a href="#tbl-08-wgbs-samples" class="quarto-xref">表&nbsp;<span>8.2</span></a>）：</p>
 <div id="tbl-08-wgbs-samples" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-tbl figure">
 <figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-08-wgbs-samples-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-表&nbsp;8.2: 本章 DNA 线示例样本（GSE67867，mm10/mm9 坐标见 8.3 说明）
+表&nbsp;8.2: WGBS 示例样本（GSE67867）
 </figcaption>
 <div aria-describedby="tbl-08-wgbs-samples-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <div class="book-table-scroll" role="region" aria-label="表格，可横向滚动" tabindex="0"><table class="caption-top table">
@@ -1145,6 +1146,7 @@ window.Quarto = {
 </div>
 </figure>
 </div>
+<p>表注：mm10 与 mm9 坐标的使用区别见 8.3 节。</p>
 <p>出于运行时间的考虑，本章的命令演示使用 to2i 样本的<strong>教学子集</strong>（前 200 万对 reads，约占全数据的 1%）；全数据约 1.92 亿对 reads、全基因组约 14× 覆盖。与第 7 章相同的提醒：子集上”流程能走通、比例类指标可信，深度类指标不能外推”。参考基因组使用 UCSC mm10（下载与第 7 章 GRCh38 同路）。</p>
 <p><a href="#fig-08-bs-pipeline" class="quarto-xref">图&nbsp;<span>8.4</span></a> 给出全章 DNA 线的路线图——与第 7 章的流程图一样，每一步标注输入、输出与目的。与 WGS 链逐行对比，你会发现差异集中在两处：比对之前（参考基因组要先转换）与比对之后（从错配里提取甲基化，而不是从一致性里提取变异）。</p>
 <div id="fig-08-bs-pipeline" class="quarto-float quarto-figure quarto-figure-center anchored">
@@ -1153,7 +1155,7 @@ window.Quarto = {
 <img src="../assets/09-base-imbalanced-sequencing/bs-pipeline-overview.svg" class="img-fluid figure-img">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-08-bs-pipeline-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-图&nbsp;8.4: BS-seq 分析流程总览：从 FASTQ 到位点计数表的六个步骤，每步给出输出与目的，右侧为检查点（自绘流程图）
+图&nbsp;8.4: 从 FASTQ 到位点计数表的 BS-seq 分析流程
 </figcaption>
 </figure>
 </div>
@@ -1168,10 +1170,11 @@ window.Quarto = {
 <img src="../assets/09-base-imbalanced-sequencing/bisulfite-conversion-principle.svg" class="img-fluid figure-img">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-08-bisulfite-conversion-principle-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-图&nbsp;8.5: 亚硫酸盐处理如何进入测序读数：未甲基化 C 经 U 读作 T，5mC 仍读作 C；下方展示同一参考位点的 C/T 计数。示意假设转化完全、忽略测序错误，仅展示正链；常规 BS-seq 的 C 信号也包含 5hmC（自绘示意图）
+图&nbsp;8.5: 亚硫酸盐转化与测序中的 C/T 计数（示意）
 </figcaption>
 </figure>
 </div>
+<p>图注：未甲基化 C 经 U 读作 T，5mC 仍读作 C；下方展示同一参考位点的 C/T 计数。本图假设转化完全、忽略测序错误，仅展示正链。常规 BS-seq 的 C 信号也包含 5hmC。</p>
 <p>因此第 3 章 FastQC 的常规模块在 BS-seq 上要按新预期解读：</p>
 <ul>
 <li><strong>每碱基序列含量（Per base sequence content）</strong>：四条线不再互相平行，T 显著高于 C——这是转化成功的表现，不是污染警报；反倒是 C 正常、T 不高的文库值得怀疑（转化失败）。</li>
@@ -1193,10 +1196,11 @@ window.Quarto = {
 <img src="../assets/09-base-imbalanced-sequencing/three-letter-alignment.svg" class="img-fluid figure-img">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-08-three-letter-alignment-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-图&nbsp;8.6: 三字母比对原理：Bismark 把参考分别转换为 C→T 与 G→A 两套三字母基因组，reads 同步转换后比对，再映射回原坐标（自绘示意图）
+图&nbsp;8.6: Bismark 的三字母比对原理
 </figcaption>
 </figure>
 </div>
+<p>图注：参考基因组分别进行 C→T 和 G→A 转换，reads 同步转换后比对，再映射回原坐标。</p>
 <p>解决方法主要分为两类：</p>
 <ul>
 <li><strong>双参考三字母比对</strong>：预先把参考基因组转换成两套”三字母基因组”（C→T 一套、G→A 一套，A/T/G 只剩三个字母），reads 也按方向转换后用 bowtie2 比对，比对结果映射回原坐标。Bismark 是这一族的代表，也是本章主线。</li>
@@ -1287,10 +1291,11 @@ C methylated in CHH context:     5.2%</code></pre>
 <img src="../assets/09-base-imbalanced-sequencing/mbias-real.png" class="img-fluid figure-img">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-08-mbias-real-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-图&nbsp;8.7: to2i 子集实测的 M-bias 曲线：CpG 与 CHH 两种语境在 R1/R2 的逐位置平均甲基化率，曲线平坦说明无需额外修剪（实测数据绘图）
+图&nbsp;8.7: to2i 子集的 M-bias 曲线
 </figcaption>
 </figure>
 </div>
+<p>图注：图示为 CpG 与 CHH 两种语境下，R1/R2 各位置的平均甲基化率；本例曲线平坦，无需额外修剪。</p>
 <p>本数据曲线整体平坦（CpG 稳定在 25%–30%，CHH 稳定在 5%–6%），说明没有需要修剪的末端偏差；R2 前两位的体外改写已在命令中排除。如果曲线末端翘起或塌陷，就用 <code>--ignore</code> / <code>--ignore_3prime</code> 把失真区段剪掉再重新提取——与第 3 章”先看质控图再决定修剪策略”是同一个习惯。</p>
 <p>meth_extract/ 目录下的输出用途不同，后续分析都会用到：</p>
 <div class="book-table-scroll" role="region" aria-label="表格，可横向滚动" tabindex="0"><table class="caption-top table">
@@ -1357,10 +1362,11 @@ C methylated in CHH context:     5.2%</code></pre>
 <img src="../assets/09-base-imbalanced-sequencing/binom-ci-demo.png" class="img-fluid figure-img" width="600">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-08-binom-ci-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-图&nbsp;8.8: 覆盖深度与比例估计的精确度：A，同为 60% 的估计，覆盖增加时双侧 95% Clopper–Pearson 区间变窄；B，观察到零条 C 时，区间上限仍可明显大于零。圆点表示比例估计，横线表示置信区间（自绘计算图）
+图&nbsp;8.8: 覆盖深度对比例估计置信区间的影响
 </figcaption>
 </figure>
 </div>
+<p>图注：A：比例估计同为 60%，覆盖增加时，双侧 95% Clopper–Pearson 区间变窄。B：观察到零条 C 时，区间上限仍可明显大于零。圆点表示比例估计，横线表示置信区间。</p>
 <p>除了抽样噪声，甲基化数据还有一层<strong>下限噪声</strong>：转化不完全的 C 会冒充甲基化。转化率 98% 时，一个真正 0% 甲基化的位点期望仍读到约 2% 的”甲基化”——所以低比例区间的解读要结合转化率（8.3.2 用空白对照实测）。</p>
 <p>实践上由此得到两条过滤规则：<strong>覆盖阈值</strong>（常用 <span class="math inline">\(N \geq 5\)</span> 或 <span class="math inline">\(\geq 10\)</span>，教学与正式分析按精度需求定）；<strong>比例解读阈值</strong>（低于转化残留下限的读数一律不当作信号）。本章后续分析取 <span class="math inline">\(N \geq 5\)</span>。</p>
 </section>
@@ -1405,10 +1411,11 @@ C methylated in CHH context:     5.2%</code></pre>
 <img src="../assets/09-base-imbalanced-sequencing/global-methylation-real.png" class="img-fluid figure-img">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-08-global-methylation-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-图&nbsp;8.9: GSE67867 全局与逐位点甲基化：左，覆盖加权全局 CpG 甲基化；右，约 30 万个共有位点上 toSerum 与 to2i 的比例对比（六边形密度，log 色标）（实测数据绘图）
+图&nbsp;8.9: GSE67867 的全局与逐位点 CpG 甲基化水平
 </figcaption>
 </figure>
 </div>
+<p>图注：左：覆盖加权的全局 CpG 甲基化水平。右：约 30 万个共有位点上 toSerum 与 to2i 的甲基化比例；六边形表示密度，颜色采用 log 色标。</p>
 <p>TKO 的 2.9% 还有一个分析学用途：它是<strong>空白对照</strong>。Dnmt 全敲后真实甲基化接近零，残余的 2.9% 主要就是转化不完全等噪声的贡献——这套数据的有效转化率约 97% 或更高（8.2 快速链测到的 CHH 约 5% 偏高，包含了低质量碱基与末端效应的贡献，两个口径合起来把真实转化率夹在 95%–97% 之间）。</p>
 <div class="book-warning callout callout-style-default callout-warning callout-titled" title="注意｜先查 Genome_build，再碰公共数据">
 <div class="callout-header d-flex align-content-center">
@@ -1469,10 +1476,11 @@ DMR direction:  toSerum &gt; to2i:  376231    to2i &gt; toSerum:  6</code></pre>
 <img src="../assets/09-base-imbalanced-sequencing/dmr-example-real.png" class="img-fluid figure-img">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-08-dmr-example-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-图&nbsp;8.10: DSS 检出的 DMR 示例（chr14，mm9）：血清样本与 2i 样本在区域内逐位点的平滑甲基化比例，阴影为 callDMR 划定的区域边界（实测数据绘图）
+图&nbsp;8.10: DSS 检出的差异甲基化区域（chr14，mm9）
 </figcaption>
 </figure>
 </div>
+<p>图注：曲线为血清样本与 2i 样本逐位点的平滑甲基化比例；阴影为 callDMR 划定的区域边界。</p>
 <p>结果到此，“哪里有差异”有了答案；“差异意味着什么”则要接着问位置——DMR 落在启动子、增强子还是基因体？与第 6 章 NRF1 的结合变化是否吻合？这些注释型问题用第 6 章的区间交集工具（<code>bedtools intersect</code> 等）接在本表之后即可，本章不再展开，但 8.6.2 的跨层整合会回到这条链上。</p>
 </section>
 </section>
@@ -1488,15 +1496,16 @@ DMR direction:  toSerum &gt; to2i:  376231    to2i &gt; toSerum:  6</code></pre>
 <img src="../assets/09-base-imbalanced-sequencing/cited/004-roundtree-mrna-modifications.jpg" class="img-fluid figure-img">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-08-rna-modification-landscape-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-图&nbsp;8.11: 真核 mRNA 上的化学修饰：各修饰的碱基结构式沿 mRNA（5′ 帽 → 5′UTR → CDS → 3′UTR → poly(A)）摆放，甲基位置标注在碱基环上（图源：Roundtree et al.&nbsp;2017，<em>Cell</em> 169:1187–1200，Fig. 1）
+图&nbsp;8.11: 真核 mRNA 的化学修饰及其位置<a href="#fn22" class="footnote-ref" id="fnref22" role="doc-noteref"><sup>22</sup></a>
 </figcaption>
 </figure>
 </div>
+<p>图注：各修饰的碱基结构式沿 mRNA 的 5′ 帽、5′UTR、CDS、3′UTR 与 poly(A) 区域摆放，甲基位置标注在碱基环上。</p>
 <ul>
-<li><strong>m6A（N6-甲基腺嘌呤）</strong>：结构上看，腺嘌呤环<strong>外侧</strong> 6 位氨基上的一个氢被甲基取代（N6 位）。这个位置不参与 Watson–Crick 配对——所以 m6A 不破坏 A:U 配对，却改变了碱基的氢键供体格局，让 YTH 结构域这类”读取器”能够专门识别它。m6A 是 mRNA 上最丰富的内部修饰，约占全部腺苷的 0.2%–0.6%<a href="#fn19" class="footnote-ref" id="fnref19" role="doc-noteref"><sup>19</sup></a>，几乎只出现在 DRACH 基序（D=A/G/U，R=A/G，H=A/C/U）中，沿转录本富集在终止密码子附近和 3′ 非翻译区<a href="#fn20" class="footnote-ref" id="fnref20" role="doc-noteref"><sup>20</sup></a><a href="#fn21" class="footnote-ref" id="fnref21" role="doc-noteref"><sup>21</sup></a>。它是本章 RNA 线的主角。</li>
-<li><strong>m6Am</strong>：结构上是”双重修饰”——帽子后<strong>第一个转录核苷酸</strong>的腺嘌呤既有 N6 甲基（与 m6A 同位），核糖 2′-O 又有一个甲基（2′-O-甲基化，即 Nm）。它由写入酶 <strong>PCIF1</strong>（又称 CAPAM）催化<a href="#fn22" class="footnote-ref" id="fnref22" role="doc-noteref"><sup>22</sup></a><a href="#fn23" class="footnote-ref" id="fnref23" role="doc-noteref"><sup>23</sup></a>。离转录起始只有一两个核苷酸，与内部 m6A 的调控语境完全不同；定量研究显示它的修饰比例（化学计量）通常远高于内部 m6A——这一点在 8.5 讨论”修饰比例”时是一个重要对照。它也是 FTO 底物偏好争议的主角（8.4.2）。</li>
-<li><strong>m1A（N1-甲基腺嘌呤）</strong>：甲基加在腺嘌呤环<strong>内侧</strong>的 N1 位——这个位置恰好参与 Watson–Crick 配对，所以 m1A 会干扰配对、拖慢翻译和逆转录。这一化学性质直接关联它的检测争议：mRNA 上是否存在丰富、动态的 m1A 曾引起很大争论——2016 年有研究宣称 5′UTR 区域存在大量动态 m1A，随后的单碱基图谱显示胞质 mRNA 中 m1A 稀少、主要见于线粒体 mRNA<a href="#fn24" class="footnote-ref" id="fnref24" role="doc-noteref"><sup>24</sup></a>，而 5′UTR 的”m1A 信号”大部分被证明是<strong>抗体交叉反应造成的假象</strong><a href="#fn25" class="footnote-ref" id="fnref25" role="doc-noteref"><sup>25</sup></a>。</li>
-<li><strong>m5C（5-甲基胞嘧啶）</strong>：结构与 DNA 的 5mC 相同——胞嘧啶环 5 位碳上的甲基。这决定了它的检测方式：RNA 的 m5C 恰好可以用与 DNA 完全相同的亚硫酸盐化学来测，是”碱基不平衡”思想最早的 RNA 应用。它在 mRNA 上含量很低，在 tRNA 中则非常丰富<a href="#fn26" class="footnote-ref" id="fnref26" role="doc-noteref"><sup>26</sup></a>。</li>
+<li><strong>m6A（N6-甲基腺嘌呤）</strong>：结构上看，腺嘌呤环<strong>外侧</strong> 6 位氨基上的一个氢被甲基取代（N6 位）。这个位置不参与 Watson–Crick 配对——所以 m6A 不破坏 A:U 配对，却改变了碱基的氢键供体格局，让 YTH 结构域这类”读取器”能够专门识别它。m6A 是 mRNA 上最丰富的内部修饰，约占全部腺苷的 0.2%–0.6%<a href="#fn23" class="footnote-ref" id="fnref23" role="doc-noteref"><sup>23</sup></a>，几乎只出现在 DRACH 基序（D=A/G/U，R=A/G，H=A/C/U）中，沿转录本富集在终止密码子附近和 3′ 非翻译区<a href="#fn24" class="footnote-ref" id="fnref24" role="doc-noteref"><sup>24</sup></a><a href="#fn25" class="footnote-ref" id="fnref25" role="doc-noteref"><sup>25</sup></a>。它是本章 RNA 线的主角。</li>
+<li><strong>m6Am</strong>：结构上是”双重修饰”——帽子后<strong>第一个转录核苷酸</strong>的腺嘌呤既有 N6 甲基（与 m6A 同位），核糖 2′-O 又有一个甲基（2′-O-甲基化，即 Nm）。它由写入酶 <strong>PCIF1</strong>（又称 CAPAM）催化<a href="#fn26" class="footnote-ref" id="fnref26" role="doc-noteref"><sup>26</sup></a><a href="#fn27" class="footnote-ref" id="fnref27" role="doc-noteref"><sup>27</sup></a>。离转录起始只有一两个核苷酸，与内部 m6A 的调控语境完全不同；定量研究显示它的修饰比例（化学计量）通常远高于内部 m6A——这一点在 8.5 讨论”修饰比例”时是一个重要对照。它也是 FTO 底物偏好争议的主角（8.4.2）。</li>
+<li><strong>m1A（N1-甲基腺嘌呤）</strong>：甲基加在腺嘌呤环<strong>内侧</strong>的 N1 位——这个位置恰好参与 Watson–Crick 配对，所以 m1A 会干扰配对、拖慢翻译和逆转录。这一化学性质直接关联它的检测争议：mRNA 上是否存在丰富、动态的 m1A 曾引起很大争论——2016 年有研究宣称 5′UTR 区域存在大量动态 m1A，随后的单碱基图谱显示胞质 mRNA 中 m1A 稀少、主要见于线粒体 mRNA<a href="#fn28" class="footnote-ref" id="fnref28" role="doc-noteref"><sup>28</sup></a>，而 5′UTR 的”m1A 信号”大部分被证明是<strong>抗体交叉反应造成的假象</strong><a href="#fn29" class="footnote-ref" id="fnref29" role="doc-noteref"><sup>29</sup></a>。</li>
+<li><strong>m5C（5-甲基胞嘧啶）</strong>：结构与 DNA 的 5mC 相同——胞嘧啶环 5 位碳上的甲基。这决定了它的检测方式：RNA 的 m5C 恰好可以用与 DNA 完全相同的亚硫酸盐化学来测，是”碱基不平衡”思想最早的 RNA 应用。它在 mRNA 上含量很低，在 tRNA 中则非常丰富<a href="#fn30" class="footnote-ref" id="fnref30" role="doc-noteref"><sup>30</sup></a>。</li>
 </ul>
 <div class="book-warning callout callout-style-default callout-warning callout-titled" title="注意｜抗体是把双刃剑">
 <div class="callout-header d-flex align-content-center">
@@ -1508,18 +1517,18 @@ DMR direction:  toSerum &gt; to2i:  376231    to2i &gt; toSerum:  6</code></pre>
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>m1A 的争议提示我们：<strong>抗体免疫沉淀类方法给出的是”富集信号”，不是化学鉴定</strong>。抗体可能在结构相似的修饰之间交叉反应，甚至与非特异 RNA 结合；把 IP 富集峰直接解读为某种修饰的存在，在多个修饰领域都曾导致错误判断。用无抗体的化学转化法（如 GLORI）或用合成 RNA 对照做系统性校准，是避免这类错误的两条路<a href="#fn27" class="footnote-ref" id="fnref27" role="doc-noteref"><sup>27</sup></a>。</p>
+<p>m1A 的争议提示我们：<strong>抗体免疫沉淀类方法给出的是”富集信号”，不是化学鉴定</strong>。抗体可能在结构相似的修饰之间交叉反应，甚至与非特异 RNA 结合；把 IP 富集峰直接解读为某种修饰的存在，在多个修饰领域都曾导致错误判断。用无抗体的化学转化法（如 GLORI）或用合成 RNA 对照做系统性校准，是避免这类错误的两条路<a href="#fn31" class="footnote-ref" id="fnref31" role="doc-noteref"><sup>31</sup></a>。</p>
 </div>
 </div>
 </section>
 <section id="sec-08-04-m6a-biology" class="level3">
 <h3 class="anchored" data-anchor-id="sec-08-04-m6a-biology">m6A：含量最丰富、研究最热的修饰</h3>
-<p>m6A 在 1974 年就已从 mRNA 中被发现<a href="#fn28" class="footnote-ref" id="fnref28" role="doc-noteref"><sup>28</sup></a>，此后沉寂了近四十年——已知存在、不知意义，因为没有人知道这个修饰能不能被动态调控。转折点来自华人科学家何川实验室：2010 年他提出”RNA 表观遗传学”（RNA epigenetics）的概念框架<a href="#fn29" class="footnote-ref" id="fnref29" role="doc-noteref"><sup>29</sup></a>；2011 年，贾桂鑫等发现肥胖风险蛋白 <strong>FTO 对 RNA 中的 m6A 具有去甲基化活性</strong><a href="#fn30" class="footnote-ref" id="fnref30" role="doc-noteref"><sup>30</sup></a>——甲基化可以被”擦除”，说明它是一个可逆的、有调控潜力的标记，而不只是化学惰性的装饰。这项开创性工作推动了表观转录组学的发展。（后续研究又补充了这一认识：后来研究发现 FTO 对帽子区的 m6Am 活性其实更高<a href="#fn31" class="footnote-ref" id="fnref31" role="doc-noteref"><sup>31</sup></a>，但它确立的”RNA 甲基化可逆”的概念已经成为领域基石。）2012 年，两个团队独立绘制了首张转录组范围的 m6A 图谱：Dominissini 等与 Meyer 等分别以抗体免疫沉淀加测序（m6A-seq / MeRIP-seq）发现 m6A 富集于数千个转录本的终止密码子附近与 3′UTR<a href="#fn32" class="footnote-ref" id="fnref32" role="doc-noteref"><sup>32</sup></a><a href="#fn33" class="footnote-ref" id="fnref33" role="doc-noteref"><sup>33</sup></a>。</p>
+<p>m6A 在 1974 年就已从 mRNA 中被发现<a href="#fn32" class="footnote-ref" id="fnref32" role="doc-noteref"><sup>32</sup></a>，此后沉寂了近四十年——已知存在、不知意义，因为没有人知道这个修饰能不能被动态调控。转折点来自华人科学家何川实验室：2010 年他提出”RNA 表观遗传学”（RNA epigenetics）的概念框架<a href="#fn33" class="footnote-ref" id="fnref33" role="doc-noteref"><sup>33</sup></a>；2011 年，贾桂鑫等发现肥胖风险蛋白 <strong>FTO 对 RNA 中的 m6A 具有去甲基化活性</strong><a href="#fn34" class="footnote-ref" id="fnref34" role="doc-noteref"><sup>34</sup></a>——甲基化可以被”擦除”，说明它是一个可逆的、有调控潜力的标记，而不只是化学惰性的装饰。这项开创性工作推动了表观转录组学的发展。（后续研究又补充了这一认识：后来研究发现 FTO 对帽子区的 m6Am 活性其实更高<a href="#fn35" class="footnote-ref" id="fnref35" role="doc-noteref"><sup>35</sup></a>，但它确立的”RNA 甲基化可逆”的概念已经成为领域基石。）2012 年，两个团队独立绘制了首张转录组范围的 m6A 图谱：Dominissini 等与 Meyer 等分别以抗体免疫沉淀加测序（m6A-seq / MeRIP-seq）发现 m6A 富集于数千个转录本的终止密码子附近与 3′UTR<a href="#fn36" class="footnote-ref" id="fnref36" role="doc-noteref"><sup>36</sup></a><a href="#fn37" class="footnote-ref" id="fnref37" role="doc-noteref"><sup>37</sup></a>。</p>
 <p>此后，参与 m6A 调控的分子机制逐渐明确，习惯上用三个角色概括：</p>
 <ul>
-<li><strong>写入器（writer）</strong>：METTL3–METTL14–WTAP 等组成的甲基转移酶复合体，伴随转录在核内给 DRACH 基序加甲基；<strong>只有 METTL3 具有催化活性</strong>，METTL14 起结构支撑与底物识别作用<a href="#fn34" class="footnote-ref" id="fnref34" role="doc-noteref"><sup>34</sup></a>。</li>
+<li><strong>写入器（writer）</strong>：METTL3–METTL14–WTAP 等组成的甲基转移酶复合体，伴随转录在核内给 DRACH 基序加甲基；<strong>只有 METTL3 具有催化活性</strong>，METTL14 起结构支撑与底物识别作用<a href="#fn38" class="footnote-ref" id="fnref38" role="doc-noteref"><sup>38</sup></a>。</li>
 <li><strong>擦除器（eraser）</strong>：FTO 和 ALKBH5 两个去甲基化酶（上文提到的 FTO 即其一）。</li>
-<li><strong>读取器（reader）</strong>：YTH 结构域家族蛋白（YTHDF1/2/3、YTHDC1/2 等）识别 m6A 并决定下游命运——影响翻译效率、mRNA 稳定性或剪接输出<a href="#fn35" class="footnote-ref" id="fnref35" role="doc-noteref"><sup>35</sup></a>。</li>
+<li><strong>读取器（reader）</strong>：YTH 结构域家族蛋白（YTHDF1/2/3、YTHDC1/2 等）识别 m6A 并决定下游命运——影响翻译效率、mRNA 稳定性或剪接输出<a href="#fn39" class="footnote-ref" id="fnref39" role="doc-noteref"><sup>39</sup></a>。</li>
 </ul>
 <div class="book-core callout callout-style-default callout-note callout-titled" title="核心知识｜写入—擦除—读取">
 <div class="callout-header d-flex align-content-center">
@@ -1561,49 +1570,49 @@ DMR direction:  toSerum &gt; to2i:  376231    to2i &gt; toSerum:  6</code></pre>
 <td style="text-align: left;">m6A 抗体免疫沉淀富集片段，测 IP/Input 富集</td>
 <td style="text-align: left;">约 100–200 nt</td>
 <td style="text-align: left;">不能，只给”哪里富集”</td>
-<td style="text-align: left;">抗体依赖；分辨率受限<a href="#fn36" class="footnote-ref" id="fnref36" role="doc-noteref"><sup>36</sup></a><a href="#fn37" class="footnote-ref" id="fnref37" role="doc-noteref"><sup>37</sup></a></td>
+<td style="text-align: left;">抗体依赖；分辨率受限<a href="#fn40" class="footnote-ref" id="fnref40" role="doc-noteref"><sup>40</sup></a><a href="#fn41" class="footnote-ref" id="fnref41" role="doc-noteref"><sup>41</sup></a></td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">miCLIP（2015）</td>
 <td style="text-align: left;">抗体交联诱导截断/突变定位</td>
 <td style="text-align: left;">名义单碱基</td>
 <td style="text-align: left;">难以给出计量</td>
-<td style="text-align: left;">抗体依赖、位点偏置<a href="#fn38" class="footnote-ref" id="fnref38" role="doc-noteref"><sup>38</sup></a></td>
+<td style="text-align: left;">抗体依赖、位点偏置<a href="#fn42" class="footnote-ref" id="fnref42" role="doc-noteref"><sup>42</sup></a></td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;">DART-seq（2019）</td>
 <td style="text-align: left;">APOBEC1–YTH 融合蛋白在 m6A 附近诱导 C→U 编辑，无需抗体</td>
 <td style="text-align: left;">簇级/近单碱基</td>
 <td style="text-align: left;">不能直接定量</td>
-<td style="text-align: left;">融合蛋白表达与编辑效率影响信号<a href="#fn39" class="footnote-ref" id="fnref39" role="doc-noteref"><sup>39</sup></a></td>
+<td style="text-align: left;">融合蛋白表达与编辑效率影响信号<a href="#fn43" class="footnote-ref" id="fnref43" role="doc-noteref"><sup>43</sup></a></td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">m6A-REF-seq / MAZTER-seq（2019）</td>
 <td style="text-align: left;">MazF 核酸酶在 ACA 位点的切割被 m6A 阻碍</td>
 <td style="text-align: left;">单碱基</td>
 <td style="text-align: left;">可相对定量</td>
-<td style="text-align: left;">只覆盖 ACA 基序中的 m6A<a href="#fn40" class="footnote-ref" id="fnref40" role="doc-noteref"><sup>40</sup></a></td>
+<td style="text-align: left;">只覆盖 ACA 基序中的 m6A<a href="#fn44" class="footnote-ref" id="fnref44" role="doc-noteref"><sup>44</sup></a></td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;">eTAM-seq（2023）</td>
 <td style="text-align: left;">进化 TadA 脱氨酶把未修饰 A 转为 I</td>
 <td style="text-align: left;">单碱基</td>
 <td style="text-align: left;">部分 A 位点可定量</td>
-<td style="text-align: left;">脱氨不完全，计量需校正<a href="#fn41" class="footnote-ref" id="fnref41" role="doc-noteref"><sup>41</sup></a></td>
+<td style="text-align: left;">脱氨不完全，计量需校正<a href="#fn45" class="footnote-ref" id="fnref45" role="doc-noteref"><sup>45</sup></a></td>
 </tr>
 <tr class="even">
 <td style="text-align: left;"><strong>GLORI（2022/2023）</strong></td>
 <td style="text-align: left;">乙二醛+亚硝酸盐化学脱氨（见下文）</td>
 <td style="text-align: left;"><strong>单碱基</strong></td>
 <td style="text-align: left;"><strong>绝对定量</strong></td>
-<td style="text-align: left;">需要高深度；SNP 混杂必须排除<a href="#fn42" class="footnote-ref" id="fnref42" role="doc-noteref"><sup>42</sup></a></td>
+<td style="text-align: left;">需要高深度；SNP 混杂必须排除<a href="#fn46" class="footnote-ref" id="fnref46" role="doc-noteref"><sup>46</sup></a></td>
 </tr>
 </tbody>
 </table></div>
 </div>
 </figure>
 </div>
-<p>富集法只回答”哪里有”，回答不了”有多少”——IP 富集倍数取决于抗体亲和力、片段长度和表达量，换算不出修饰比例。真正做到<strong>单碱基分辨 + 绝对定量</strong>的是北大伊成器、王晶团队合作发展的 <strong>GLORI</strong>（GlyoxaL and nitrIte-mediated deamination）<a href="#fn43" class="footnote-ref" id="fnref43" role="doc-noteref"><sup>43</sup></a>，它的化学原理（<a href="#fig-08-glori-chemistry" class="quarto-xref">图&nbsp;<span>8.12</span></a>）与前文介绍的转化思路相近：</p>
+<p>富集法只回答”哪里有”，回答不了”有多少”——IP 富集倍数取决于抗体亲和力、片段长度和表达量，换算不出修饰比例。真正做到<strong>单碱基分辨 + 绝对定量</strong>的是北大伊成器、王晶团队合作发展的 <strong>GLORI</strong>（GlyoxaL and nitrIte-mediated deamination）<a href="#fn47" class="footnote-ref" id="fnref47" role="doc-noteref"><sup>47</sup></a>，它的化学原理（<a href="#fig-08-glori-chemistry" class="quarto-xref">图&nbsp;<span>8.12</span></a>）与前文介绍的转化思路相近：</p>
 <ul>
 <li><strong>乙二醛（glyoxal）</strong>先与 m6A（以及鸟嘌呤 G）形成稳定的环状加合物，<strong>保护</strong>它们不被后续反应破坏；</li>
 <li><strong>亚硝酸盐</strong>在酸性条件下把所有<strong>未修饰的 A 脱氨</strong>为次黄嘌呤 I——PCR 和测序时读作 <strong>G</strong>；</li>
@@ -1615,11 +1624,12 @@ DMR direction:  toSerum &gt; to2i:  376231    to2i &gt; toSerum:  6</code></pre>
 <img src="../assets/09-base-imbalanced-sequencing/glori-chemistry.svg" class="img-fluid figure-img">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-08-glori-chemistry-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-图&nbsp;8.12: GLORI 的化学原理：乙二醛保护 m6A 与 G，亚硝酸盐把未修饰 A 脱氨为 I（读作 G），reads 中残留的 A 即被保护的 m6A 信号（自绘示意图）
+图&nbsp;8.12: GLORI 检测 m6A 的化学原理
 </figcaption>
 </figure>
 </div>
-<p>GLORI 的未修饰 A 脱氨效率约为 98%，论文自述”概念上与亚硫酸盐定量 DNA 5mC 同构”——把未修饰碱基化学改写掉、让修饰碱基留下来，再从测序错配里读出比例。这正是 8.1 定义过的”碱基不平衡”在 RNA 上的重演：C→T 换成了 <strong>A→G</strong>。后续的低输入版本（GLORI 2.0/3.0）已能从数千甚至数百个细胞做甲基化组<a href="#fn44" class="footnote-ref" id="fnref44" role="doc-noteref"><sup>44</sup></a>。8.5 将沿一条真实的 GLORI 数据走完它的分析链——你会看到三字母比对、转化率、SNP 排除这些 8.2 的思想如何一一复用。</p>
+<p>图注：乙二醛保护 m6A 与 G，亚硝酸盐将未修饰 A 脱氨为 I，测序时读作 G；reads 中残留的 A 对应被保护的 m6A 信号。</p>
+<p>GLORI 的未修饰 A 脱氨效率约为 98%，论文自述”概念上与亚硫酸盐定量 DNA 5mC 同构”——把未修饰碱基化学改写掉、让修饰碱基留下来，再从测序错配里读出比例。这正是 8.1 定义过的”碱基不平衡”在 RNA 上的重演：C→T 换成了 <strong>A→G</strong>。后续的低输入版本（GLORI 2.0/3.0）已能从数千甚至数百个细胞做甲基化组<a href="#fn48" class="footnote-ref" id="fnref48" role="doc-noteref"><sup>48</sup></a>。8.5 将沿一条真实的 GLORI 数据走完它的分析链——你会看到三字母比对、转化率、SNP 排除这些 8.2 的思想如何一一复用。</p>
 </section>
 </section>
 <section id="sec-08-05" class="level2" data-number="8.5">
@@ -1627,11 +1637,11 @@ DMR direction:  toSerum &gt; to2i:  376231    to2i &gt; toSerum:  6</code></pre>
 <p>沿用 8.2 节的分析思路，先了解 RNA 数据的特点，再进行质控、定量、差异分析和结果解读。</p>
 <section id="sec-08-05-example-data" class="level3">
 <h3 class="anchored" data-anchor-id="sec-08-05-example-data">示例数据与整体路线</h3>
-<p>RNA 线的示例数据来自 GLORI 原论文（Liu 等，2023）随文发布的 GEO 数据集 <strong>GSE210563</strong><a href="#fn45" class="footnote-ref" id="fnref45" role="doc-noteref"><sup>45</sup></a>。论文在多个细胞系与处理条件下做了 GLORI 文库；本章选取其中一组设计完整的敲低实验：HeLa 细胞中用 siRNA 敲低写入酶 <strong>METTL3</strong>，与转对照 siRNA 的对照相比，各两个生物学重复（<a href="#tbl-08-glori-samples" class="quarto-xref">表&nbsp;<span>8.5</span></a>）。</p>
+<p>RNA 线的示例数据来自 GLORI 原论文（Liu 等，2023）随文发布的 GEO 数据集 <strong>GSE210563</strong><a href="#fn49" class="footnote-ref" id="fnref49" role="doc-noteref"><sup>49</sup></a>。论文在多个细胞系与处理条件下做了 GLORI 文库；本章选取其中一组设计完整的敲低实验：HeLa 细胞中用 siRNA 敲低写入酶 <strong>METTL3</strong>，与转对照 siRNA 的对照相比，各两个生物学重复（<a href="#tbl-08-glori-samples" class="quarto-xref">表&nbsp;<span>8.5</span></a>）。</p>
 <div id="tbl-08-glori-samples" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-tbl figure">
 <figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-08-glori-samples-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-表&nbsp;8.5: 本章 RNA 线示例样本（GSE210563，HeLa，hg38 坐标）
+表&nbsp;8.5: GLORI 示例样本（GSE210563，HeLa，hg38）
 </figcaption>
 <div aria-describedby="tbl-08-glori-samples-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <div class="book-table-scroll" role="region" aria-label="表格，可横向滚动" tabindex="0"><table class="caption-top table">
@@ -1682,7 +1692,7 @@ DMR direction:  toSerum &gt; to2i:  376231    to2i &gt; toSerum:  6</code></pre>
 <img src="../assets/09-base-imbalanced-sequencing/glori-pipeline-overview.svg" class="img-fluid figure-img">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-08-glori-pipeline-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-图&nbsp;8.13: GLORI 分析流程总览：从 FASTQ 到修饰比例表的六个步骤，与 BS-seq 链一一对应（自绘流程图）
+图&nbsp;8.13: 从 FASTQ 到修饰比例表的 GLORI 分析流程
 </figcaption>
 </figure>
 </div>
@@ -1697,10 +1707,11 @@ DMR direction:  toSerum &gt; to2i:  376231    to2i &gt; toSerum:  6</code></pre>
 <img src="../assets/09-base-imbalanced-sequencing/glori-basecomp-real.png" class="img-fluid figure-img">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-08-glori-basecomp-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-图&nbsp;8.14: GLORI 文库实测的逐位置碱基组成：插入序列中 A 坍缩至约 1%、G 升至约 45%，两端为未经脱氨的引物与接头（实测数据绘图）
+图&nbsp;8.14: GLORI 文库的逐位置碱基组成
 </figcaption>
 </figure>
 </div>
+<p>图注：插入序列中 A 约占 1%，G 约占 45%；两端为未经脱氨的引物与接头。</p>
 <ul>
 <li><strong>第 1–9 位</strong>：A 占 33%–58%，四碱基大致正常——这是逆转录引物序列，体外合成的普通 DNA，<strong>不经过脱氨反应</strong>；</li>
 <li><strong>第 15–35 位（插入序列）</strong>：A 降到 <strong>0.6%–1.1%</strong>，G 升到 43%–46%——这正是化学转化的直接证据：未修饰的 A 被脱氨成了 I，测序读作 G；残留下来的那一点 A，就是未转化完全的部分加上真正的 m6A；</li>
@@ -1734,10 +1745,11 @@ DMR direction:  toSerum &gt; to2i:  376231    to2i &gt; toSerum:  6</code></pre>
 <img src="../assets/09-base-imbalanced-sequencing/snp-confounding.svg" class="img-fluid figure-img">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-08-snp-confounding-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-图&nbsp;8.15: GLORI 中的 SNP 混杂：A/G SNP 的 G 等位 reads 与未修饰 A 脱氨后的 G reads 同形，单样本无法区分，需要变异位点数据库排除（自绘示意图）
+图&nbsp;8.15: A/G SNP 对 GLORI 检测的干扰
 </figcaption>
 </figure>
 </div>
+<p>图注：G 等位基因的 reads 与未修饰 A 脱氨后的 reads 均读作 G。单凭一个样本的 GLORI 读数无法区分二者，需借助变异位点数据库排除。</p>
 <p>流程对每个样本输出一张位点表，即我们拿到的处理表。对我们后续分析最要紧的几列如下（<a href="#tbl-08-glori-columns" class="quarto-xref">表&nbsp;<span>8.6</span></a>，其余辅助列从略）：</p>
 <div id="tbl-08-glori-columns" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-tbl figure">
@@ -1827,10 +1839,11 @@ DMR direction:  toSerum &gt; to2i:  376231    to2i &gt; toSerum:  6</code></pre>
 <img src="../assets/09-base-imbalanced-sequencing/glori-scatter-real.png" class="img-fluid figure-img">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-08-glori-scatter-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-图&nbsp;8.16: GLORI 位点定量实测：左，siNC 两个重复的修饰比例一致性；右，对照与 METTL3 敲低的逐位点比例对比，橙色为显著下降位点（实测数据绘图）
+图&nbsp;8.16: GLORI 修饰比例的重复一致性与 METTL3 敲低效应
 </figcaption>
 </figure>
 </div>
+<p>图注：左：siNC 两个重复的修饰比例。右：对照与 METTL3 敲低样本的逐位点比例，橙色标出显著下降的位点。</p>
 <p>结果如下（<a href="#fig-08-glori-scatter" class="quarto-xref">图&nbsp;<span>8.16</span></a> 右）：</p>
 <ul>
 <li><strong>4,449 个位点</strong>在敲低后修饰比例显著下降（FDR &lt; 0.05 且降为对照的一半以下），而显著上升的只有 <strong>16 个</strong>——接近检验噪声的背景水平。写入酶被拿掉，修饰几乎只朝一个方向变化，这本身就是”信号真实”的旁证；</li>
@@ -1872,10 +1885,11 @@ MNT    chr17:2386699 (−)   0.591  0.682   0.127   0.119   3e-09</code></pre>
 <img src="../assets/09-base-imbalanced-sequencing/igv-methylation-real.png" class="img-fluid figure-img">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-08-igv-methylation-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-图&nbsp;8.17: IGV 风格的真实甲基化轨迹（chr13:73.15 Mb，mm9，GSE67867 官方表）：上为血清样本、下为 2i 样本，每个条形是一个 CpG 位点的甲基化比例、条形下方灰色深度示意覆盖，阴影为 DSS 检出的 DMR（实测数据绘图）
+图&nbsp;8.17: 血清与 2i 样本的 CpG 甲基化轨迹（chr13:73.15 Mb，mm9）
 </figcaption>
 </figure>
 </div>
+<p>图注：依据 GSE67867 官方表绘制，采用 IGV 风格。上方为血清样本，下方为 2i 样本；每个条形表示一个 CpG 位点的甲基化比例。下方灰色深度轨道仅示意覆盖，阴影为 DSS 检出的 DMR。</p>
 <p>如果需要 read 层面的证据（某个位点的 reads 里究竟多少条读 C、多少条读 T），加载 Bismark 的 BAM 并结合 <code>XM</code> 标签过滤即可；多数场景下位点级轨迹已经足够，read 级抽查留给最关键的结论。</p>
 </section>
 <section id="sec-08-06-integration" class="level3">
@@ -1907,52 +1921,56 @@ MNT    chr17:2386699 (−)   0.591  0.682   0.127   0.119   3e-09</code></pre>
 <li id="fn3"><p>Tahiliani M, et al.&nbsp;Conversion of 5-methylcytosine to 5-hydroxymethylcytosine in mammalian DNA by MLL partner TET1. <em>Science</em>. 2009;324(5929):930–935. <a href="https://doi.org/10.1126/science.1170116">原文链接</a>。<a href="#fnref3" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
 <li id="fn4"><p>Ito S, et al.&nbsp;Tet proteins can convert 5-methylcytosine to 5-formylcytosine and 5-carboxylcytosine. <em>Science</em>. 2011;333(6047):1300–1303. <a href="https://doi.org/10.1126/science.1210597">原文链接</a>。<a href="#fnref4" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
 <li id="fn5"><p>He YF, et al.&nbsp;Tet-mediated formation of 5-carboxylcytosine and its excision by TDG in mammalian DNA. <em>Science</em>. 2011;333(6047):1303–1307. <a href="https://doi.org/10.1126/science.1210944">原文链接</a>。<a href="#fnref5" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
-<li id="fn6"><p>Deaton AM, Bird A. CpG islands and the regulation of transcription. <em>Genes Dev</em>. 2011;25(10):1010–1022. <a href="https://doi.org/10.1101/gad.2037511">原文链接</a>。<a href="#fnref6" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
-<li id="fn7"><p>Reik W. Stability and flexibility of epigenetic gene regulation in mammalian development. <em>Nature</em>. 2007;447(7143):425–432. <a href="https://doi.org/10.1038/nature05918">原文链接</a>。<a href="#fnref7" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
-<li id="fn8"><p>Smith ZD, et al.&nbsp;A unique regulatory phase of DNA methylation in the early mammalian embryo. <em>Nature</em>. 2012;484(7394):339–344. <a href="https://doi.org/10.1038/nature10960">原文链接</a>。<a href="#fnref8" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
-<li id="fn9"><p>Seisenberger M, et al.&nbsp;The dynamics of genome-wide DNA methylation reprogramming in mouse primordial germ cells. <em>Mol Cell</em>. 2012;48(6):849–862. <a href="https://doi.org/10.1016/j.molcel.2012.11.001">原文链接</a>。<a href="#fnref9" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
-<li id="fn10"><p>Church TR, et al.&nbsp;Prospective evaluation of methylated SEPT9 in plasma for detection of asymptomatic colorectal cancer. <em>Gut</em>. 2014;63(2):317–325. <a href="https://doi.org/10.1136/gutjnl-2012-304149">原文链接</a>。<a href="#fnref10" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
-<li id="fn11"><p>Shen SY, et al.&nbsp;Sensitive tumour detection and classification using plasma cell-free DNA methylomes. <em>Nature</em>. 2018;563(7732):579–583. <a href="https://doi.org/10.1038/s41586-018-0703-0">原文链接</a>。<a href="#fnref11" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
-<li id="fn12"><p>Liu MC, et al.&nbsp;Sensitive and specific multi-cancer detection and localization using methylation signatures in cell-free DNA. <em>Ann Oncol</em>. 2020;31(6):745–759. <a href="https://doi.org/10.1016/j.annonc.2020.02.011">原文链接</a>。<a href="#fnref12" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
-<li id="fn13"><p>Frommer M, et al.&nbsp;A genomic sequencing protocol that yields a positive display of 5-methylcytosine residues in individual DNA strands. <em>Proc Natl Acad Sci USA</em>. 1992;89(5):1827–1831. <a href="https://doi.org/10.1073/pnas.89.5.1827">原文链接</a>。<a href="#fnref13" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
-<li id="fn14"><p>Meissner A, et al.&nbsp;Genome-scale DNA methylation maps of pluripotent and differentiated cells. <em>Nature</em>. 2008;454(7205):766–770. <a href="https://doi.org/10.1038/nature07107">原文链接</a>。<a href="#fnref14" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
-<li id="fn15"><p>Vaisvila R, et al.&nbsp;Enzymatic methyl sequencing detects DNA methylation genome-wide at single-base resolution. <em>Genome Res</em>. 2021;31(7):1280–1289. <a href="https://doi.org/10.1101/gr.266551.120">原文链接</a>。<a href="#fnref15" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
-<li id="fn16"><p>Booth MJ, et al.&nbsp;Quantitative sequencing of 5-methylcytosine and 5-hydroxymethylcytosine at single-base resolution. <em>Science</em>. 2012;336(6083):934–937. <a href="https://doi.org/10.1126/science.1220671">原文链接</a>。<a href="#fnref16" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
-<li id="fn17"><p>Yu M, et al.&nbsp;Base-resolution analysis of 5-hydroxymethylcytosine in the mammalian genome. <em>Cell</em>. 2012;149(6):1368–1380. <a href="https://doi.org/10.1016/j.cell.2012.04.027">原文链接</a>。<a href="#fnref17" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
-<li id="fn18"><p>Domcke S, et al.&nbsp;Competition between DNA methylation and transcription factors determines binding of NRF1. <em>Nat Methods</em>. 2015;12(12):1193–1199. <a href="https://doi.org/10.1038/nmeth.3642">原文链接</a>。<a href="#fnref18" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
-<li id="fn19"><p>Roundtree IA, et al.&nbsp;Dynamic RNA modifications in gene expression regulation. <em>Cell</em>. 2017;169(7):1187–1200. <a href="https://doi.org/10.1016/j.cell.2017.05.045">原文链接</a>。<a href="#fnref19" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
-<li id="fn20"><p>Dominissini D, et al.&nbsp;Topology of the human and mouse m6A RNA methylomes revealed by m6A-seq. <em>Nature</em>. 2012;485(7397):201–206. <a href="https://doi.org/10.1038/nature11112">原文链接</a>。<a href="#fnref20" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
-<li id="fn21"><p>Meyer KD, et al.&nbsp;Comprehensive analysis of mRNA methylation reveals enrichment in 3′ UTRs and near stop codons. <em>Cell</em>. 2012;149(7):1635–1646. <a href="https://doi.org/10.1016/j.cell.2012.05.003">原文链接</a>。<a href="#fnref21" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
-<li id="fn22"><p>Akichika S, et al.&nbsp;Cap-specific terminal N(6)-methylation of RNA by an RNA polymerase II-associated methyltransferase. <em>Science</em>. 2019;363(6423):eaav0080. <a href="https://doi.org/10.1126/science.aav0080">原文链接</a>。<a href="#fnref22" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
-<li id="fn23"><p>Sendinc E, et al.&nbsp;PCIF1 catalyzes m6Am mRNA methylation to regulate gene expression. <em>Mol Cell</em>. 2019;75(3):620–630.e9. <a href="https://doi.org/10.1016/j.molcel.2019.05.021">原文链接</a>。<a href="#fnref23" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
-<li id="fn24"><p>Safra M, et al.&nbsp;The m1A landscape in cytosolic and mitochondrial mRNA at base resolution. <em>Nature</em>. 2017;551(7679):251–255. <a href="https://doi.org/10.1038/nature24456">原文链接</a>。<a href="#fnref24" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
-<li id="fn25"><p>Grozhik AV, et al.&nbsp;Antibody cross-reactivity accounts for widespread appearance of m1A in 5′UTRs. <em>Nat Commun</em>. 2019;10:5126. <a href="https://doi.org/10.1038/s41467-019-13146-w">原文链接</a>。<a href="#fnref25" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
-<li id="fn26"><p>Squires JE, et al.&nbsp;Widespread occurrence of 5-methylcytosine in human coding and non-coding RNA. <em>Nucleic Acids Res</em>. 2012;40(11):5023–5033. <a href="https://doi.org/10.1093/nar/gks144">原文链接</a>。<a href="#fnref26" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
-<li id="fn27"><p>Zhang Z, et al.&nbsp;Systematic calibration of epitranscriptomic maps using a synthetic modification-free RNA library. <em>Nat Methods</em>. 2021;18(10):1213–1222. <a href="https://doi.org/10.1038/s41592-021-01280-7">原文链接</a>。<a href="#fnref27" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
-<li id="fn28"><p>Desrosiers R, et al.&nbsp;Identification of methylated nucleosides in messenger RNA from Novikoff hepatoma cells. <em>Proc Natl Acad Sci USA</em>. 1974;71(10):3971–3975. <a href="https://doi.org/10.1073/pnas.71.10.3971">原文链接</a>。<a href="#fnref28" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
-<li id="fn29"><p>He C. Grand challenge commentary: RNA epigenetics? <em>Nat Chem Biol</em>. 2010;6(12):863–865. <a href="https://doi.org/10.1038/nchembio.482">原文链接</a>。<a href="#fnref29" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
-<li id="fn30"><p>Jia G, et al.&nbsp;N6-methyladenosine in nuclear RNA is a major substrate of the obesity-associated FTO. <em>Nat Chem Biol</em>. 2011;7(12):885–887. <a href="https://doi.org/10.1038/nchembio.687">原文链接</a>。<a href="#fnref30" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
-<li id="fn31"><p>Grozhik AV, et al.&nbsp;FTO demethylates m6Am in RNA in an activity-dependent manner. <em>Nature</em>. 2017;551(7702):559–562. <a href="https://doi.org/10.1038/nature25469">原文链接</a>。<a href="#fnref31" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
-<li id="fn32"><p>Dominissini D, et al.&nbsp;Topology of the human and mouse m6A RNA methylomes revealed by m6A-seq. <em>Nature</em>. 2012;485(7397):201–206. <a href="https://doi.org/10.1038/nature11112">原文链接</a>。<a href="#fnref32" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
-<li id="fn33"><p>Meyer KD, et al.&nbsp;Comprehensive analysis of mRNA methylation reveals enrichment in 3′ UTRs and near stop codons. <em>Cell</em>. 2012;149(7):1635–1646. <a href="https://doi.org/10.1016/j.cell.2012.05.003">原文链接</a>。<a href="#fnref33" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
-<li id="fn34"><p>Roundtree IA, et al.&nbsp;Dynamic RNA modifications in gene expression regulation. <em>Cell</em>. 2017;169(7):1187–1200. <a href="https://doi.org/10.1016/j.cell.2017.05.045">原文链接</a>。<a href="#fnref34" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
-<li id="fn35"><p>Zaccara S, et al.&nbsp;Reading, writing and erasing mRNA methylation. <em>Nat Rev Mol Cell Biol</em>. 2019;20(10):608–624. <a href="https://doi.org/10.1038/s41580-019-0168-5">原文链接</a>。<a href="#fnref35" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn6"><p>图源：Biomark Res 2021;9:76，Fig. 2，CC BY 4.0。<a href="#fnref6" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn7"><p>Deaton AM, Bird A. CpG islands and the regulation of transcription. <em>Genes Dev</em>. 2011;25(10):1010–1022. <a href="https://doi.org/10.1101/gad.2037511">原文链接</a>。<a href="#fnref7" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn8"><p>Reik W. Stability and flexibility of epigenetic gene regulation in mammalian development. <em>Nature</em>. 2007;447(7143):425–432. <a href="https://doi.org/10.1038/nature05918">原文链接</a>。<a href="#fnref8" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn9"><p>Smith ZD, et al.&nbsp;A unique regulatory phase of DNA methylation in the early mammalian embryo. <em>Nature</em>. 2012;484(7394):339–344. <a href="https://doi.org/10.1038/nature10960">原文链接</a>。<a href="#fnref9" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn10"><p>Seisenberger M, et al.&nbsp;The dynamics of genome-wide DNA methylation reprogramming in mouse primordial germ cells. <em>Mol Cell</em>. 2012;48(6):849–862. <a href="https://doi.org/10.1016/j.molcel.2012.11.001">原文链接</a>。<a href="#fnref10" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn11"><p>图源：Genes (Basel) 2019;10:257，Fig. 1，CC BY 4.0；原图改编自 Smallwood &amp; Kelsey 2012。<a href="#fnref11" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn12"><p>Church TR, et al.&nbsp;Prospective evaluation of methylated SEPT9 in plasma for detection of asymptomatic colorectal cancer. <em>Gut</em>. 2014;63(2):317–325. <a href="https://doi.org/10.1136/gutjnl-2012-304149">原文链接</a>。<a href="#fnref12" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn13"><p>Shen SY, et al.&nbsp;Sensitive tumour detection and classification using plasma cell-free DNA methylomes. <em>Nature</em>. 2018;563(7732):579–583. <a href="https://doi.org/10.1038/s41586-018-0703-0">原文链接</a>。<a href="#fnref13" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn14"><p>Liu MC, et al.&nbsp;Sensitive and specific multi-cancer detection and localization using methylation signatures in cell-free DNA. <em>Ann Oncol</em>. 2020;31(6):745–759. <a href="https://doi.org/10.1016/j.annonc.2020.02.011">原文链接</a>。<a href="#fnref14" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn15"><p>图源：Genes (Basel) 2020;11:922，Fig. 1，CC BY 4.0。<a href="#fnref15" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn16"><p>Frommer M, et al.&nbsp;A genomic sequencing protocol that yields a positive display of 5-methylcytosine residues in individual DNA strands. <em>Proc Natl Acad Sci USA</em>. 1992;89(5):1827–1831. <a href="https://doi.org/10.1073/pnas.89.5.1827">原文链接</a>。<a href="#fnref16" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn17"><p>Meissner A, et al.&nbsp;Genome-scale DNA methylation maps of pluripotent and differentiated cells. <em>Nature</em>. 2008;454(7205):766–770. <a href="https://doi.org/10.1038/nature07107">原文链接</a>。<a href="#fnref17" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn18"><p>Vaisvila R, et al.&nbsp;Enzymatic methyl sequencing detects DNA methylation genome-wide at single-base resolution. <em>Genome Res</em>. 2021;31(7):1280–1289. <a href="https://doi.org/10.1101/gr.266551.120">原文链接</a>。<a href="#fnref18" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn19"><p>Booth MJ, et al.&nbsp;Quantitative sequencing of 5-methylcytosine and 5-hydroxymethylcytosine at single-base resolution. <em>Science</em>. 2012;336(6083):934–937. <a href="https://doi.org/10.1126/science.1220671">原文链接</a>。<a href="#fnref19" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn20"><p>Yu M, et al.&nbsp;Base-resolution analysis of 5-hydroxymethylcytosine in the mammalian genome. <em>Cell</em>. 2012;149(6):1368–1380. <a href="https://doi.org/10.1016/j.cell.2012.04.027">原文链接</a>。<a href="#fnref20" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn21"><p>Domcke S, et al.&nbsp;Competition between DNA methylation and transcription factors determines binding of NRF1. <em>Nat Methods</em>. 2015;12(12):1193–1199. <a href="https://doi.org/10.1038/nmeth.3642">原文链接</a>。<a href="#fnref21" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn22"><p>图源：Roundtree et al.&nbsp;2017，<em>Cell</em> 169:1187–1200，Fig. 1。<a href="#fnref22" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn23"><p>Roundtree IA, et al.&nbsp;Dynamic RNA modifications in gene expression regulation. <em>Cell</em>. 2017;169(7):1187–1200. <a href="https://doi.org/10.1016/j.cell.2017.05.045">原文链接</a>。<a href="#fnref23" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn24"><p>Dominissini D, et al.&nbsp;Topology of the human and mouse m6A RNA methylomes revealed by m6A-seq. <em>Nature</em>. 2012;485(7397):201–206. <a href="https://doi.org/10.1038/nature11112">原文链接</a>。<a href="#fnref24" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn25"><p>Meyer KD, et al.&nbsp;Comprehensive analysis of mRNA methylation reveals enrichment in 3′ UTRs and near stop codons. <em>Cell</em>. 2012;149(7):1635–1646. <a href="https://doi.org/10.1016/j.cell.2012.05.003">原文链接</a>。<a href="#fnref25" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn26"><p>Akichika S, et al.&nbsp;Cap-specific terminal N(6)-methylation of RNA by an RNA polymerase II-associated methyltransferase. <em>Science</em>. 2019;363(6423):eaav0080. <a href="https://doi.org/10.1126/science.aav0080">原文链接</a>。<a href="#fnref26" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn27"><p>Sendinc E, et al.&nbsp;PCIF1 catalyzes m6Am mRNA methylation to regulate gene expression. <em>Mol Cell</em>. 2019;75(3):620–630.e9. <a href="https://doi.org/10.1016/j.molcel.2019.05.021">原文链接</a>。<a href="#fnref27" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn28"><p>Safra M, et al.&nbsp;The m1A landscape in cytosolic and mitochondrial mRNA at base resolution. <em>Nature</em>. 2017;551(7679):251–255. <a href="https://doi.org/10.1038/nature24456">原文链接</a>。<a href="#fnref28" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn29"><p>Grozhik AV, et al.&nbsp;Antibody cross-reactivity accounts for widespread appearance of m1A in 5′UTRs. <em>Nat Commun</em>. 2019;10:5126. <a href="https://doi.org/10.1038/s41467-019-13146-w">原文链接</a>。<a href="#fnref29" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn30"><p>Squires JE, et al.&nbsp;Widespread occurrence of 5-methylcytosine in human coding and non-coding RNA. <em>Nucleic Acids Res</em>. 2012;40(11):5023–5033. <a href="https://doi.org/10.1093/nar/gks144">原文链接</a>。<a href="#fnref30" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn31"><p>Zhang Z, et al.&nbsp;Systematic calibration of epitranscriptomic maps using a synthetic modification-free RNA library. <em>Nat Methods</em>. 2021;18(10):1213–1222. <a href="https://doi.org/10.1038/s41592-021-01280-7">原文链接</a>。<a href="#fnref31" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn32"><p>Desrosiers R, et al.&nbsp;Identification of methylated nucleosides in messenger RNA from Novikoff hepatoma cells. <em>Proc Natl Acad Sci USA</em>. 1974;71(10):3971–3975. <a href="https://doi.org/10.1073/pnas.71.10.3971">原文链接</a>。<a href="#fnref32" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn33"><p>He C. Grand challenge commentary: RNA epigenetics? <em>Nat Chem Biol</em>. 2010;6(12):863–865. <a href="https://doi.org/10.1038/nchembio.482">原文链接</a>。<a href="#fnref33" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn34"><p>Jia G, et al.&nbsp;N6-methyladenosine in nuclear RNA is a major substrate of the obesity-associated FTO. <em>Nat Chem Biol</em>. 2011;7(12):885–887. <a href="https://doi.org/10.1038/nchembio.687">原文链接</a>。<a href="#fnref34" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn35"><p>Grozhik AV, et al.&nbsp;FTO demethylates m6Am in RNA in an activity-dependent manner. <em>Nature</em>. 2017;551(7702):559–562. <a href="https://doi.org/10.1038/nature25469">原文链接</a>。<a href="#fnref35" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
 <li id="fn36"><p>Dominissini D, et al.&nbsp;Topology of the human and mouse m6A RNA methylomes revealed by m6A-seq. <em>Nature</em>. 2012;485(7397):201–206. <a href="https://doi.org/10.1038/nature11112">原文链接</a>。<a href="#fnref36" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
 <li id="fn37"><p>Meyer KD, et al.&nbsp;Comprehensive analysis of mRNA methylation reveals enrichment in 3′ UTRs and near stop codons. <em>Cell</em>. 2012;149(7):1635–1646. <a href="https://doi.org/10.1016/j.cell.2012.05.003">原文链接</a>。<a href="#fnref37" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
-<li id="fn38"><p>Linder B, et al.&nbsp;Single-nucleotide-resolution mapping of m6A and m6Am throughout the transcriptome. <em>Nat Methods</em>. 2015;12(8):767–772. <a href="https://doi.org/10.1038/nmeth.3453">原文链接</a>。<a href="#fnref38" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
-<li id="fn39"><p>Meyer KD. DART-seq: an antibody-free method for global m6A detection. <em>Nat Methods</em>. 2019;16(12):1275–1280. <a href="https://doi.org/10.1038/s41592-019-0596-9">原文链接</a>。<a href="#fnref39" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
-<li id="fn40"><p>Zhang Z, et al.&nbsp;Single-base mapping of m6A by an antibody-independent method. <em>Sci Adv</em>. 2019;5(7):eaax0250. <a href="https://doi.org/10.1126/sciadv.aax0250">原文链接</a>。<a href="#fnref40" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
-<li id="fn41"><p>Xiao YL, et al.&nbsp;Transcriptome-wide profiling and quantification of N6-methyladenosine by enzyme-assisted adenosine deamination. <em>Nat Biotechnol</em>. 2023;41(7):993–1003. <a href="https://doi.org/10.1038/s41587-022-01587-6">原文链接</a>。<a href="#fnref41" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
-<li id="fn42"><p>Liu C, et al.&nbsp;Absolute quantification of single-base m6A methylation in the mammalian transcriptome using GLORI. <em>Nat Biotechnol</em>. 2023;41(3):355–366. <a href="https://doi.org/10.1038/s41587-022-01487-9">原文链接</a>。<a href="#fnref42" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
-<li id="fn43"><p>Liu C, et al.&nbsp;Absolute quantification of single-base m6A methylation in the mammalian transcriptome using GLORI. <em>Nat Biotechnol</em>. 2023;41(3):355–366. <a href="https://doi.org/10.1038/s41587-022-01487-9">原文链接</a>。<a href="#fnref43" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
-<li id="fn44"><p>Sun H, et al.&nbsp;Mild and ultrafast GLORI enables absolute quantification of m6A methylome from low-input samples. <em>Nat Methods</em>. 2025;22(6):1226–1236. <a href="https://doi.org/10.1038/s41592-025-02612-x">原文链接</a>。<a href="#fnref44" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
-<li id="fn45"><p>Liu C, et al.&nbsp;Absolute quantification of single-base m6A methylation in the mammalian transcriptome using GLORI. <em>Nat Biotechnol</em>. 2023;41(3):355–366. <a href="https://doi.org/10.1038/s41587-022-01487-9">原文链接</a>。<a href="#fnref45" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn38"><p>Roundtree IA, et al.&nbsp;Dynamic RNA modifications in gene expression regulation. <em>Cell</em>. 2017;169(7):1187–1200. <a href="https://doi.org/10.1016/j.cell.2017.05.045">原文链接</a>。<a href="#fnref38" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn39"><p>Zaccara S, et al.&nbsp;Reading, writing and erasing mRNA methylation. <em>Nat Rev Mol Cell Biol</em>. 2019;20(10):608–624. <a href="https://doi.org/10.1038/s41580-019-0168-5">原文链接</a>。<a href="#fnref39" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn40"><p>Dominissini D, et al.&nbsp;Topology of the human and mouse m6A RNA methylomes revealed by m6A-seq. <em>Nature</em>. 2012;485(7397):201–206. <a href="https://doi.org/10.1038/nature11112">原文链接</a>。<a href="#fnref40" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn41"><p>Meyer KD, et al.&nbsp;Comprehensive analysis of mRNA methylation reveals enrichment in 3′ UTRs and near stop codons. <em>Cell</em>. 2012;149(7):1635–1646. <a href="https://doi.org/10.1016/j.cell.2012.05.003">原文链接</a>。<a href="#fnref41" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn42"><p>Linder B, et al.&nbsp;Single-nucleotide-resolution mapping of m6A and m6Am throughout the transcriptome. <em>Nat Methods</em>. 2015;12(8):767–772. <a href="https://doi.org/10.1038/nmeth.3453">原文链接</a>。<a href="#fnref42" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn43"><p>Meyer KD. DART-seq: an antibody-free method for global m6A detection. <em>Nat Methods</em>. 2019;16(12):1275–1280. <a href="https://doi.org/10.1038/s41592-019-0596-9">原文链接</a>。<a href="#fnref43" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn44"><p>Zhang Z, et al.&nbsp;Single-base mapping of m6A by an antibody-independent method. <em>Sci Adv</em>. 2019;5(7):eaax0250. <a href="https://doi.org/10.1126/sciadv.aax0250">原文链接</a>。<a href="#fnref44" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn45"><p>Xiao YL, et al.&nbsp;Transcriptome-wide profiling and quantification of N6-methyladenosine by enzyme-assisted adenosine deamination. <em>Nat Biotechnol</em>. 2023;41(7):993–1003. <a href="https://doi.org/10.1038/s41587-022-01587-6">原文链接</a>。<a href="#fnref45" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn46"><p>Liu C, et al.&nbsp;Absolute quantification of single-base m6A methylation in the mammalian transcriptome using GLORI. <em>Nat Biotechnol</em>. 2023;41(3):355–366. <a href="https://doi.org/10.1038/s41587-022-01487-9">原文链接</a>。<a href="#fnref46" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn47"><p>Liu C, et al.&nbsp;Absolute quantification of single-base m6A methylation in the mammalian transcriptome using GLORI. <em>Nat Biotechnol</em>. 2023;41(3):355–366. <a href="https://doi.org/10.1038/s41587-022-01487-9">原文链接</a>。<a href="#fnref47" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn48"><p>Sun H, et al.&nbsp;Mild and ultrafast GLORI enables absolute quantification of m6A methylome from low-input samples. <em>Nat Methods</em>. 2025;22(6):1226–1236. <a href="https://doi.org/10.1038/s41592-025-02612-x">原文链接</a>。<a href="#fnref48" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn49"><p>Liu C, et al.&nbsp;Absolute quantification of single-base m6A methylation in the mammalian transcriptome using GLORI. <em>Nat Biotechnol</em>. 2023;41(3):355–366. <a href="https://doi.org/10.1038/s41587-022-01487-9">原文链接</a>。<a href="#fnref49" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
 </ol>
 </section>
 
 </main> <!-- /main -->
 <div class="book-toolbar" role="navigation" aria-label="阅读工具">
-  <div class="book-brand"><span class="book-brand-name">AI时代生信入门</span><time class="book-last-modified" datetime="2026-10-12T13:46:45+08:00" title="最后修改时间（北京时间，UTC+08:00）">最后修改 2026-10-12 13:46</time></div>
+  <div class="book-brand"><span class="book-brand-name">AI时代生信入门</span><time class="book-last-modified" datetime="2026-10-12T14:30:32+08:00" title="最后修改时间（北京时间，UTC+08:00）">最后修改 2026-10-12 14:30</time></div>
   <button class="book-menu-button" type="button" aria-controls="quarto-sidebar" aria-expanded="false">目录</button>
   <button class="book-search-button" type="button">搜索</button>
 </div>

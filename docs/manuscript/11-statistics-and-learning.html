@@ -921,7 +921,7 @@ window.Quarto = {
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
 <h1 class="title"><span id="sec-ch11" class="quarto-section-identifier"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">统计相关知识学习路线及实践</span></span></h1>
-<p class="chapter-last-modified"><time datetime="2026-10-12T13:46:45+08:00" title="本章书稿最后修改时间（北京时间，UTC+08:00）">最后修改：2026-10-12 13:46（北京时间）</time></p>
+<p class="chapter-last-modified"><time datetime="2026-10-12T14:30:32+08:00" title="本章书稿最后修改时间（北京时间，UTC+08:00）">最后修改：2026-10-12 14:30（北京时间）</time></p>
 </div>
 
 
@@ -968,7 +968,7 @@ window.Quarto = {
 <img src="../assets/11-statistics-and-learning/fig-11-01-learning-map.svg" class="img-fluid figure-img">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-11-learning-map-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-图&nbsp;11.1: 生信分析中的统计问题地图：问题类型、常用方法、数学基础与本书章节的对应关系。
+图&nbsp;11.1: 生信统计问题、分析方法与学习内容的对应关系
 </figcaption>
 </figure>
 </div>
@@ -1068,10 +1068,11 @@ SE = \frac{SD}{\sqrt{n}}
 <img src="../assets/11-statistics-and-learning/fig-11-02-count-dist.png" class="img-fluid figure-img">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-11-count-dist-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-图&nbsp;11.2: 同样的均值、不同的离散程度（模拟数据）。泊松分布（上）方差等于均值；负二项分布（下）在测序计数中更常见。
+图&nbsp;11.2: 相同均值下泊松分布与负二项分布的离散程度（模拟数据）
 </figcaption>
 </figure>
 </div>
+<p>图注：上图为泊松分布，方差等于均值；下图为负二项分布，在测序计数中更常见。</p>
 </section>
 <section id="topic-11-normal-t" class="level3">
 <h3 class="anchored" data-anchor-id="topic-11-normal-t">正态分布、t 分布与对数变换</h3>
@@ -1105,10 +1106,11 @@ mean of x mean of y
 <img src="../assets/11-statistics-and-learning/fig-11-03-alb-ttest.png" class="img-fluid figure-img">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-11-alb-ttest-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-图&nbsp;11.3: ALB 在 GTEx 肝与胰腺样本中的表达（各 10 个样本，点为样本，横线为组均值）。组间差异与组内波动的对比一目了然。
+图&nbsp;11.3: GTEx 肝与胰腺样本中的 ALB 表达
 </figcaption>
 </figure>
 </div>
+<p>图注：每组 10 个样本；点表示样本，横线表示组均值。</p>
 <p>t 检验的前提：样本相互独立、数据近似正态（或样本量足够大）、两组方差可比。<code>t.test()</code> 默认用 Welch 版本，不要求方差相等——这就是输出里 df = 17.79 而不是 18 的原因。前提明显不满足时（比如严重偏态的计数），换 Wilcoxon 秩和检验或按 <a href="#sec-11-03">11.3</a> 的思路换模型。</p>
 <div class="book-example callout callout-style-default callout-tip callout-titled" title="示例与练习｜2×2 设计为什么弱">
 <div class="callout-header d-flex align-content-center">
@@ -1227,10 +1229,11 @@ mean of x mean of y
 <img src="../assets/11-statistics-and-learning/fig-11-04-design-matrix.svg" class="img-fluid figure-img">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-11-design-matrix-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-图&nbsp;11.4: 设计公式如何变成模型矩阵：<code>alb ~ tissue</code> 中分类型变量被展开为 0/1 哑变量列，回归系数一一对应（示意图，数值取自正文例子）。
+图&nbsp;11.4: 从设计公式 <code>alb ~ tissue</code> 到模型矩阵（示意）
 </figcaption>
 </figure>
 </div>
+<p>图注：分类型变量展开为 0/1 哑变量列，各列与回归系数对应。数值取自正文例子。</p>
 </section>
 <section id="topic-11-glm" class="level3">
 <h3 class="anchored" data-anchor-id="topic-11-glm">从线性模型到 DESeq2 的真实模型</h3>
@@ -1269,10 +1272,11 @@ mean of x mean of y
 <img src="../assets/11-statistics-and-learning/fig-11-05-pca-principle.svg" class="img-fluid figure-img">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-11-pca-principle-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-图&nbsp;11.5: PCA 的直觉：两个基因维度上找方差最大的投影方向。PC1 是样本最分散的方向，PC2 垂直于 PC1；每个样本在新轴上的位置就是它的主成分得分（示意数据）。
+图&nbsp;11.5: 两个基因维度上的 PCA 投影（示意数据）
 </figcaption>
 </figure>
 </div>
+<p>图注：PC1 为样本投影方差最大的方向，PC2 与 PC1 垂直。样本在新轴上的位置就是它的主成分得分。</p>
 </section>
 <section id="src-0080-statistics-13" class="level3">
 <h3 class="anchored" data-anchor-id="src-0080-statistics-13">非线性降维：t-SNE 与 UMAP</h3>
@@ -1284,10 +1288,11 @@ mean of x mean of y
 <img src="../assets/05-statistics-and-exploration/003-illustration.png" class="img-fluid figure-img">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-11-swiss-roll-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-图&nbsp;11.6: 瑞士卷：数据是三维的，本质是二维流形。直接用欧氏距离（穿过卷内部的直线）会低估流形上两点的真实距离（红色曲线）。
+图&nbsp;11.6: 瑞士卷中的欧氏距离与流形距离
 </figcaption>
 </figure>
 </div>
+<p>图注：瑞士卷位于三维空间，其本质为二维流形。穿过卷内部的直线表示欧氏距离，红色曲线表示沿流形的距离；前者会低估后者。</p>
 <p><span id="src-0080-statistics-19"></span></p>
 <section id="topic-11-entropy-kl" class="level4">
 <h4 class="anchored" data-anchor-id="topic-11-entropy-kl">信息熵与 KL 散度：t-SNE 的两块基石</h4>
@@ -1325,10 +1330,11 @@ q_{ij} = \frac{\left(1 + \|y_i - y_j\|^2\right)^{-1}}{\sum_{k \neq l} \left(1 + 
 <img src="../assets/05-statistics-and-exploration/004-distribution.png" class="img-fluid figure-img">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-11-t-vs-normal-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-图&nbsp;11.7: 正态分布与自由度为 1 的 t 分布：t 分布尾巴更重。同一概率值下，近处（dis₁ &lt; dis₂）t 分布对应的距离更近、远处（dis₃ &gt; dis₄）更远——“近的更近、远的更远”。
+图&nbsp;11.7: 正态分布与自由度为 1 的 t 分布
 </figcaption>
 </figure>
 </div>
+<p>图注：t 分布的尾部更重。图中在相同概率值下，近处满足 dis₁ &lt; dis₂，远处满足 dis₃ &gt; dis₄；t 分布对应的距离在近处更小、远处更大。</p>
 <div class="book-extension callout callout-style-default callout-note callout-titled" title="拓展阅读｜SNE 的逐步推导（4×4 表达矩阵示例）">
 <div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-5-contents" aria-controls="callout-5" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
@@ -1402,20 +1408,22 @@ q_{ij} = \frac{\left(1 + \|y_i - y_j\|^2\right)^{-1}}{\sum_{k \neq l} \left(1 + 
 <img src="../assets/11-statistics-and-learning/fig-11-06a-gtex-pca.png" class="img-fluid figure-img">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-11-gtex-pca-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-图&nbsp;11.8: GTEx 十组织样本的 PCA（100 个样本、top 3000 高变基因）。样本按组织成簇，PC1 解释 19.9%、PC2 解释 17.5%。
+图&nbsp;11.8: GTEx 十种组织样本的 PCA
 </figcaption>
 </figure>
 </div>
+<p>图注：使用 100 个样本与变异最大的 3000 个基因。样本按组织成簇；PC1 与 PC2 分别解释 19.9% 和 17.5% 的方差。</p>
 <div id="fig-11-gtex-scree" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-11-gtex-scree-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <img src="../assets/11-statistics-and-learning/fig-11-06b-gtex-scree.png" class="img-fluid figure-img">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-11-gtex-scree-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-图&nbsp;11.9: 前 10 个主成分的方差解释比例（碎石图）：PC1—PC5 合计约 72%，其后趋于平缓。
+图&nbsp;11.9: GTEx 数据前 10 个主成分的方差解释比例
 </figcaption>
 </figure>
 </div>
+<p>图注：PC1—PC5 合计解释约 72% 的方差，其后趋于平缓。</p>
 </section>
 <section id="topic-11-gtex-tsne" class="level3">
 <h3 class="anchored" data-anchor-id="topic-11-gtex-tsne">t-SNE：perplexity 与随机种子</h3>
@@ -1431,20 +1439,22 @@ q_{ij} = \frac{\left(1 + \|y_i - y_j\|^2\right)^{-1}}{\sum_{k \neq l} \left(1 + 
 <img src="../assets/11-statistics-and-learning/fig-11-07a-gtex-tsne-perp.png" class="img-fluid figure-img">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-11-gtex-tsne-perp-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-图&nbsp;11.10: t-SNE 困惑度的影响（perplexity = 5 / 15 / 30，同一随机种子）。困惑度过小会把数据打成碎片，加大后组织块更连贯。
+图&nbsp;11.10: 困惑度对 t-SNE 结果的影响
 </figcaption>
 </figure>
 </div>
+<p>图注：固定随机种子，比较 perplexity = 5、15、30。图中困惑度较小时样本簇更分散，增大后同一组织的样本更集中。</p>
 <div id="fig-11-gtex-tsne-seed" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-11-gtex-tsne-seed-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <img src="../assets/11-statistics-and-learning/fig-11-07b-gtex-tsne-seed.png" class="img-fluid figure-img">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-11-gtex-tsne-seed-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-图&nbsp;11.11: t-SNE 随机种子的影响（perplexity = 30，两个不同种子）。点的归属大体稳定，但簇的形状与相对位置不同——t-SNE 图上的距离没有直接含义。
+图&nbsp;11.11: 随机种子对 t-SNE 结果的影响
 </figcaption>
 </figure>
 </div>
+<p>图注：固定 perplexity = 30，比较两个随机种子。样本归属大体稳定，簇的形状与相对位置有所变化；簇间距离不宜直接解释为原始数据中的距离。</p>
 </section>
 <section id="topic-11-gtex-umap" class="level3">
 <h3 class="anchored" data-anchor-id="topic-11-gtex-umap">UMAP：n_neighbors 与 min_dist</h3>
@@ -1460,27 +1470,29 @@ q_{ij} = \frac{\left(1 + \|y_i - y_j\|^2\right)^{-1}}{\sum_{k \neq l} \left(1 + 
 <img src="../assets/11-statistics-and-learning/fig-11-08a-gtex-umap-nn.png" class="img-fluid figure-img">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-11-gtex-umap-nn-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-图&nbsp;11.12: UMAP 中 n_neighbors 的影响（5 / 15 / 50，min_dist = 0.1）：小值只顾局部，大值纳入全局布局。
+图&nbsp;11.12: n_neighbors 对 UMAP 结果的影响
 </figcaption>
 </figure>
 </div>
+<p>图注：固定 min_dist = 0.1，比较 n_neighbors = 5、15、50。较小值侧重局部结构，较大值纳入更大范围的结构。</p>
 <div id="fig-11-gtex-umap-md" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-11-gtex-umap-md-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <img src="../assets/11-statistics-and-learning/fig-11-08b-gtex-umap-md.png" class="img-fluid figure-img">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-11-gtex-umap-md-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-图&nbsp;11.13: UMAP 中 min_dist 的影响（0.0 / 0.1 / 1.0，n_neighbors = 15）：控制低维图上点的最小间距，小值挤成密块，大值摊松。
+图&nbsp;11.13: min_dist 对 UMAP 结果的影响
 </figcaption>
 </figure>
 </div>
+<p>图注：固定 n_neighbors = 15，比较 min_dist = 0.0、0.1、1.0。该参数影响低维图上点的间距；较小值使点更紧密，较大值使点更分散。</p>
 </section>
 <section id="topic-11-dimred-choice" class="level3">
 <h3 class="anchored" data-anchor-id="topic-11-dimred-choice">三种方法怎么选</h3>
 <div id="tbl-11-dimred-compare" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-tbl figure">
 <figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-11-dimred-compare-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-表&nbsp;11.1: 三种降维方法的选择要点
+表&nbsp;11.1: PCA、t-SNE 与 UMAP 的适用场景
 </figcaption>
 <div aria-describedby="tbl-11-dimred-compare-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <div class="book-table-scroll" role="region" aria-label="表格，可横向滚动" tabindex="0"><table class="caption-top table">
@@ -1560,7 +1572,7 @@ q_{ij} = \frac{\left(1 + \|y_i - y_j\|^2\right)^{-1}}{\sum_{k \neq l} \left(1 + 
 
 </main> <!-- /main -->
 <div class="book-toolbar" role="navigation" aria-label="阅读工具">
-  <div class="book-brand"><span class="book-brand-name">AI时代生信入门</span><time class="book-last-modified" datetime="2026-10-12T13:46:45+08:00" title="最后修改时间（北京时间，UTC+08:00）">最后修改 2026-10-12 13:46</time></div>
+  <div class="book-brand"><span class="book-brand-name">AI时代生信入门</span><time class="book-last-modified" datetime="2026-10-12T14:30:32+08:00" title="最后修改时间（北京时间，UTC+08:00）">最后修改 2026-10-12 14:30</time></div>
   <button class="book-menu-button" type="button" aria-controls="quarto-sidebar" aria-expanded="false">目录</button>
   <button class="book-search-button" type="button">搜索</button>
 </div>
