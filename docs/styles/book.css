@@ -72,6 +72,10 @@ main.content section.level5 > h5 { margin-top:1.4rem; margin-bottom:.6rem; font-
 .hero-book p, .hero-book a { color:#f3f8f5; }
 figure { margin:1.8rem auto; }
 figure img { max-width:100%; height:auto; border-radius:4px; }
+/* Cap the image itself: Quarto also copies image styles to the figure wrapper. */
+img.book-image-width-cap, .book-image-width-cap img {
+  max-width:var(--book-image-max-width, 100%);
+}
 figcaption { color:#4c6257; line-height:1.65; font-size:.85rem; }
 main.content .quarto-figure > figure > figcaption { text-align:center; overflow-wrap:anywhere; }
 main.content .footnotes { margin-top:2.4rem; font-size:16px; line-height:1.65; }

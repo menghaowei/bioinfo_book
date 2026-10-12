@@ -921,7 +921,7 @@ window.Quarto = {
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
 <h1 class="title"><span id="sec-ch05" class="quarto-section-identifier"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">RNA-seq：从表达定量到差异表达</span></span></h1>
-<p class="chapter-last-modified"><time datetime="2026-10-12T14:30:32+08:00" title="本章书稿最后修改时间（北京时间，UTC+08:00）">最后修改：2026-10-12 14:30（北京时间）</time></p>
+<p class="chapter-last-modified"><time datetime="2026-10-12T15:17:48+08:00" title="本章书稿最后修改时间（北京时间，UTC+08:00）">最后修改：2026-10-12 15:17（北京时间）</time></p>
 </div>
 
 
@@ -948,14 +948,14 @@ window.Quarto = {
 <section id="src-0050-RNA-seq-1" class="level3">
 <h3 class="anchored" data-anchor-id="src-0050-RNA-seq-1">转录组与 RNA 的种类</h3>
 <p><span id="src-0050-RNA-seq-5"></span> <span id="RNA_Seq"></span></p>
-<p>RNA 测序（RNA sequencing，RNA-Seq）是研究转录组的成熟技术，也是使用最广泛的高通量测序技术之一。一个细胞中的全部遗传物质（DNA）称为基因组。根据中心法则<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a>，遗传信息由 DNA 经转录流向 RNA，这些 RNA 的总和称为转录组（transcriptome），研究转录组的方法及相关技术则称为转录组学（transcriptomics）。转录组测序可以用来寻找实验组与对照组之间的差异表达基因，也可以研究基因表达在发育或其他生物学过程中的时序变化。 RNA可以分为能够编码蛋白基因的信使RNA（mRNA）<a href="#fn2" class="footnote-ref" id="fnref2" role="doc-noteref"><sup>2</sup></a>和非蛋白编码RNA （non-coding RNA, ncRNA），例如人类基因组，含有约20000个蛋白编码基因和7000个非蛋白编码RNA基因。随着研究的深入，生命科学研究者对RNA的认识逐渐全面，陆续发现了生物体中多种类型的非编码RNA，有持家非编码RNA（house-keeping non-coding RNA）：在翻译过程中起转运作用的tRNA<a href="#fn3" class="footnote-ref" id="fnref3" role="doc-noteref"><sup>3</sup></a>、核糖体的组成成分rRNA<a href="#fn4" class="footnote-ref" id="fnref4" role="doc-noteref"><sup>4</sup></a> 、参与mRNA剪接的snRNA（small nuclear RNA）<a href="#fn5" class="footnote-ref" id="fnref5" role="doc-noteref"><sup>5</sup></a>等；还有能够起到调控作用的非编码RNA：长非编码RNA（long non-coding RNA, lncRNA）、miRNA（microRNA）<a href="#fn6" class="footnote-ref" id="fnref6" role="doc-noteref"><sup>6</sup></a>、小干扰RNA（small interfering RNA, siRNA）和环状RNA（circRNA）等。RNA 家族的种类与分工见 <a href="#fig-05-rna-classes" class="quarto-xref">图&nbsp;<span>5.1</span></a> ：编码蛋白的 mRNA 之外，其余都是非编码 RNA，各自在中心法则的不同环节工作。</p>
+<p>RNA 测序（RNA sequencing，RNA-Seq）是研究转录组的成熟技术，也是使用最广泛的高通量测序技术之一。一个细胞中的全部遗传物质（DNA）称为基因组。根据中心法则<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a>，遗传信息由 DNA 经转录流向 RNA，这些 RNA 的总和称为转录组（transcriptome），研究转录组的方法及相关技术则称为转录组学（transcriptomics）。转录组测序可以用来寻找实验组与对照组之间的差异表达基因，也可以研究基因表达在发育或其他生物学过程中的时序变化。 RNA可以分为能够编码蛋白基因的信使RNA（mRNA）<a href="#fn2" class="footnote-ref" id="fnref2" role="doc-noteref"><sup>2</sup></a>和非蛋白编码RNA （non-coding RNA, ncRNA），例如人类基因组，含有约20000个蛋白编码基因和7000个非蛋白编码RNA基因。随着研究的深入，生命科学研究者对RNA的认识逐渐全面，陆续发现了生物体中多种类型的非编码RNA，有持家非编码RNA（house-keeping non-coding RNA）：在翻译过程中起转运作用的tRNA<a href="#fn3" class="footnote-ref" id="fnref3" role="doc-noteref"><sup>3</sup></a>、核糖体的组成成分rRNA<a href="#fn4" class="footnote-ref" id="fnref4" role="doc-noteref"><sup>4</sup></a> 、参与mRNA剪接的snRNA（small nuclear RNA）<a href="#fn5" class="footnote-ref" id="fnref5" role="doc-noteref"><sup>5</sup></a>等；还有能够起到调控作用的非编码RNA：长非编码RNA（long non-coding RNA, lncRNA）、miRNA（microRNA）<a href="#fn6" class="footnote-ref" id="fnref6" role="doc-noteref"><sup>6</sup></a>、小干扰RNA（small interfering RNA, siRNA）和环状RNA（circRNA）等。RNA 的代表性形态与分工见 <a href="#fig-05-rna-classes" class="quarto-xref">图&nbsp;<span>5.1</span></a> 。先沿着 DNA、mRNA、蛋白质看转录和翻译的主线，再看参与剪接、翻译及调控的其他 RNA；RNA 的作用并不只是充当蛋白质合成的中间体。</p>
 <div id="fig-05-rna-classes" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-05-rna-classes-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="../assets/06-rna-seq/cited/ncrnas-central-dogma.svg" class="img-fluid figure-img">
+<img src="../assets/06-rna-seq/svg/rna-classes-mechanism.svg" class="img-fluid figure-img">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-05-rna-classes-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-图&nbsp;5.1: RNA 的主要类型及其在中心法则中的位置<a href="#fn7" class="footnote-ref" id="fnref7" role="doc-noteref"><sup>7</sup></a>
+图&nbsp;5.1: RNA 的主要类型与分工<a href="#fn7" class="footnote-ref" id="fnref7" role="doc-noteref"><sup>7</sup></a>
 </figcaption>
 </figure>
 </div>
@@ -975,14 +975,14 @@ window.Quarto = {
 <div id="fig-05-genome-transcriptome" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-05-genome-transcriptome-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="../assets/06-rna-seq/cited/nhgri-different-cells-different-rnas.jpg" class="img-fluid figure-img" width="620">
+<img src="../assets/06-rna-seq/svg/cell-transcriptomes.svg" class="img-fluid figure-img">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-05-genome-transcriptome-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-图&nbsp;5.2: 神经、肌肉与上皮细胞的转录组<a href="#fn8" class="footnote-ref" id="fnref8" role="doc-noteref"><sup>8</sup></a>
+图&nbsp;5.2: 相同基因组与不同细胞的 RNA 丰度<a href="#fn8" class="footnote-ref" id="fnref8" role="doc-noteref"><sup>8</sup></a>
 </figcaption>
 </figure>
 </div>
-<p>图上方为神经细胞，左下为肌肉细胞，右下为上皮细胞。彩色曲线示意不同的 RNA，并非定量测量值。读图时关注的是：同一生物体中这些细胞的基因组基本相同，但各自使用的基因不同，因此具有不同的转录组；同一类型的细胞在不同条件下，RNA 的种类和丰度也可以发生变化。</p>
+<p>图中三类细胞都保留同一组示意基因 A–D，下面的波浪线表示对应的 RNA。A 在三类细胞中都有表达，B、C、D 则分别在不同细胞中较多。读图时横向比较同一行：不同转录组既可能表现为某些 RNA 的有无，也可能表现为共有 RNA 的丰度差异，并不意味着每类细胞只表达一套互不重叠的基因。同一类细胞在不同条件下也会改变这些 RNA 的丰度组合。分子数和条形长度仅用于说明概念，不是实测结果。</p>
 </section>
 <section id="topic-05-lib-strategies" class="level3">
 <h3 class="anchored" data-anchor-id="topic-05-lib-strategies">mRNA 与全转录组建库</h3>
@@ -2615,46 +2615,101 @@ window.Quarto = {
 </section>
 <section id="src-0050-RNA-seq-979" class="level4">
 <h4 class="anchored" data-anchor-id="src-0050-RNA-seq-979">聚类热图</h4>
-<p>聚类热图把显著基因按行标准化后着色（红＝高、白＝中、蓝＝低），样本列按层次聚类的结果排列，质量良好的重复样本会相邻出现（<a href="#fig-05-heatmap-demo" class="quarto-xref">图&nbsp;<span>5.10</span></a>）。</p>
+<p>聚类热图可以把一组基因在不同样本中的表达模式放在一起看。<a href="#fig-05-heatmap-demo" class="quarto-xref">图&nbsp;<span>5.10</span></a> 使用本章 METTL3 敲降案例的四个真实样本：GSM1502498、GSM1502499 为对照，GSM1502502、GSM1502503 为敲降。输入来自 NCBI 按 GRCh38.p13 统一重算的基因 counts，并非前文自建流程输出文件的副本；参考注释和处理流程不同，结果也可能有所差别。<a href="#fn33" class="footnote-ref" id="fnref33" role="doc-noteref"><sup>33</sup></a></p>
+<p>本例先保留至少在两个样本中 counts ≥ 10 的基因，用 DESeq2 比较敲降与对照，再从 <code>padj &lt; 0.05</code> 且 <code>|log2FoldChange| &gt; 1</code> 的差异基因中选取校正后 p 值最小的 30 个（并列时按 GeneID 排序）。用于检验的是 counts；用于画图的数值则经过方差稳定化变换（VST），再对每个基因单独计算 Z 分数：减去该基因在四个样本中的均值，除以其标准差。<a href="#fn34" class="footnote-ref" id="fnref34" role="doc-noteref"><sup>34</sup></a></p>
 <div id="fig-05-heatmap-demo" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-05-heatmap-demo-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="../assets/06-rna-seq/svg/heatmap-demo-r.svg" class="img-fluid figure-img">
+<img src="../assets/06-rna-seq/svg/heatmap-gse56010.svg" class="img-fluid figure-img">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-05-heatmap-demo-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-图&nbsp;5.10: 聚类热图的读法（演示数据）
+图&nbsp;5.10: METTL3 敲降样本中 30 个差异基因的表达与聚类<a href="#fn35" class="footnote-ref" id="fnref35" role="doc-noteref"><sup>35</sup></a>
 </figcaption>
 </figure>
 </div>
-<p>图注：红色、白色、蓝色分别表示高、中、低水平。</p>
-<p>用 gplots 的 <code>heatmap.2</code> 绘制聚类热图：</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb36" data-book-role="code"><pre data-code-text="&quot;library(\&quot;gplots\&quot;)\n\nest &lt;- read.table(file = \&quot;DEgene.txt\&quot;, header = T, row.names=1)\ntiff(\&quot;DEgene.tiff\&quot;, width = 1000, height = 1000, units = \&quot;px\&quot;, res=80)\nheatmap.2(as.matrix(est),  margins = c(13, 13),col=redgreen(100), scale = \&quot;row\&quot;, dendrogram = \&quot;column\&quot;,\n         key = T, keysize=0.8, symkey = T, density.info = \&quot;none\&quot;, trace = \&quot;none\&quot;)\ndev.off()\n\nest &lt;- read.table(file = \&quot;heatmap.txt\&quot;, header = T, row.names=1)\nsvg(file=\&quot;e3.svg\&quot;, width = 100, height = 100)\nheatmap.2(as.matrix(est),  margins = c(13, 13),col=redgreen(100), scale = \&quot;row\&quot;, dendrogram = \&quot;column\&quot;,\n          key = T, keysize=0.8, symkey = T, density.info = \&quot;none\&quot;, trace = \&quot;none\&quot;)\ndev.off()&quot;" class="sourceCode numberSource r numberLines code-with-copy"><code class="sourceCode r"><span id="cb36-1"><a href="#cb36-1"></a><span class="fu">library</span>(<span class="st">"gplots"</span>)</span>
-<span id="cb36-2"><a href="#cb36-2"></a></span>
-<span id="cb36-3"><a href="#cb36-3"></a>est <span class="ot">&lt;-</span> <span class="fu">read.table</span>(<span class="at">file =</span> <span class="st">"DEgene.txt"</span>, <span class="at">header =</span> T, <span class="at">row.names=</span><span class="dv">1</span>)</span>
-<span id="cb36-4"><a href="#cb36-4"></a><span class="fu">tiff</span>(<span class="st">"DEgene.tiff"</span>, <span class="at">width =</span> <span class="dv">1000</span>, <span class="at">height =</span> <span class="dv">1000</span>, <span class="at">units =</span> <span class="st">"px"</span>, <span class="at">res=</span><span class="dv">80</span>)</span>
-<span id="cb36-5"><a href="#cb36-5"></a><span class="fu">heatmap.2</span>(<span class="fu">as.matrix</span>(est),  <span class="at">margins =</span> <span class="fu">c</span>(<span class="dv">13</span>, <span class="dv">13</span>),<span class="at">col=</span><span class="fu">redgreen</span>(<span class="dv">100</span>), <span class="at">scale =</span> <span class="st">"row"</span>, <span class="at">dendrogram =</span> <span class="st">"column"</span>,</span>
-<span id="cb36-6"><a href="#cb36-6"></a>         <span class="at">key =</span> T, <span class="at">keysize=</span><span class="fl">0.8</span>, <span class="at">symkey =</span> T, <span class="at">density.info =</span> <span class="st">"none"</span>, <span class="at">trace =</span> <span class="st">"none"</span>)</span>
-<span id="cb36-7"><a href="#cb36-7"></a><span class="fu">dev.off</span>()</span>
-<span id="cb36-8"><a href="#cb36-8"></a></span>
-<span id="cb36-9"><a href="#cb36-9"></a>est <span class="ot">&lt;-</span> <span class="fu">read.table</span>(<span class="at">file =</span> <span class="st">"heatmap.txt"</span>, <span class="at">header =</span> T, <span class="at">row.names=</span><span class="dv">1</span>)</span>
-<span id="cb36-10"><a href="#cb36-10"></a><span class="fu">svg</span>(<span class="at">file=</span><span class="st">"e3.svg"</span>, <span class="at">width =</span> <span class="dv">100</span>, <span class="at">height =</span> <span class="dv">100</span>)</span>
-<span id="cb36-11"><a href="#cb36-11"></a><span class="fu">heatmap.2</span>(<span class="fu">as.matrix</span>(est),  <span class="at">margins =</span> <span class="fu">c</span>(<span class="dv">13</span>, <span class="dv">13</span>),<span class="at">col=</span><span class="fu">redgreen</span>(<span class="dv">100</span>), <span class="at">scale =</span> <span class="st">"row"</span>, <span class="at">dendrogram =</span> <span class="st">"column"</span>,</span>
-<span id="cb36-12"><a href="#cb36-12"></a>          <span class="at">key =</span> T, <span class="at">keysize=</span><span class="fl">0.8</span>, <span class="at">symkey =</span> T, <span class="at">density.info =</span> <span class="st">"none"</span>, <span class="at">trace =</span> <span class="st">"none"</span>)</span>
-<span id="cb36-13"><a href="#cb36-13"></a><span class="fu">dev.off</span>()</span></code></pre></div><button title="复制到剪贴板" class="code-copy-button"><i class="bi"></i></button></div>
-<p>输入文件格式为：</p>
-<pre data-code-text="&quot;hsa-miR-6087\t4.835286667\t2.680141333\nhsa-miR-663a\t5.537003333\t3.407306667\nhsa-miR-6821-5p\t3.699006667\t2.02985\nhsa-miR-1469\t6.229766667\t4.79053\nhsa-miR-3665\t4.710016667\t3.276396667\nhsa-miR-2861\t4.070266667\t2.670983333\nhsa-miR-4466\t3.904726667\t2.54759\nhsa-miR-1915-3p\t3.367876667\t2.018898\nhsa-miR-6090\t5.80658\t4.459086667\n...\t...\t...\n...\t...\t...\n...\t...\t...&quot;" class="text" data-book-role="data"><code>hsa-miR-6087    4.835286667 2.680141333
-hsa-miR-663a    5.537003333 3.407306667
-hsa-miR-6821-5p 3.699006667 2.02985
-hsa-miR-1469    6.229766667 4.79053
-hsa-miR-3665    4.710016667 3.276396667
-hsa-miR-2861    4.070266667 2.670983333
-hsa-miR-4466    3.904726667 2.54759
-hsa-miR-1915-3p 3.367876667 2.018898
-hsa-miR-6090    5.80658 4.459086667
-... ... ...
-... ... ...
-... ... ...
-</code></pre>
+<p>图注：每行一个基因，每列一个样本；红色表示高于该基因自身的平均水平，蓝色表示低于平均水平，白色接近平均水平。顶部色条标记分组，两侧树状图分别对样本和基因作层次聚类，采用欧氏距离与完全连接法（complete linkage）。可<a href="../assets/06-rna-seq/svg/heatmap-gse56010.svg">打开原尺寸热图</a>查看标签，或下载<a href="../assets/06-rna-seq/data/GSE56010_heatmap_values.tsv">该图的基因、差异统计量和 Z 分数</a>。</p>
+<p>读图时先横向看一行，例如 METTL3 在两个敲降样本中均呈蓝色、两个对照中呈红色；再看顶部树，两个敲降样本彼此相邻，两个对照也彼此相邻。这里显示的是所选差异基因的表达模式：筛选基因时已经使用了分组信息，所以这张图不能再作为“分组正确”或“样本质量良好”的独立证据。行标准化也意味着不能用两个不同行的红色深浅比较这两个基因的绝对表达量。</p>
+<p>下面的代码可以从这两份小文件开始重现图形。首次运行会下载<a href="../assets/06-rna-seq/data/GSE56010_raw_counts_GRCh38.p13_NCBI.tsv.gz">NCBI 计数矩阵</a>和<a href="../assets/06-rna-seq/data/GSE56010_gene_symbols.tsv.gz">GeneID—基因符号对照表</a>，保存在当前工作目录的 <code>heatmap-data/</code> 中；后者是从 NCBI Gene 名称表中提取的教学快照。环境需安装 DESeq2、pheatmap 和 svglite，生成的 <code>heatmap-gse56010.svg</code> 位于当前工作目录。</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb36" data-book-role="code"><pre data-code-text="&quot;suppressPackageStartupMessages({\n  library(DESeq2)\n  library(pheatmap)\n  library(svglite)\n})\n\ndata_dir &lt;- \&quot;heatmap-data\&quot;\nout_dir &lt;- \&quot;.\&quot;\ndir.create(data_dir, recursive = TRUE, showWarnings = FALSE)\ncount_file &lt;- \&quot;GSE56010_raw_counts_GRCh38.p13_NCBI.tsv.gz\&quot;\nsymbol_file &lt;- \&quot;GSE56010_gene_symbols.tsv.gz\&quot;\ncount_url &lt;- paste0(\&quot;https://www.ncbi.nlm.nih.gov/geo/download/?format=file&amp;\&quot;,\n                    \&quot;type=rnaseq_counts&amp;acc=GSE56010&amp;file=\&quot;, count_file)\nsymbol_url &lt;- paste0(\&quot;https://book.bioinfo.info/assets/06-rna-seq/data/\&quot;, symbol_file)\nif (!file.exists(file.path(data_dir, count_file)))\n  download.file(count_url, file.path(data_dir, count_file), mode = \&quot;wb\&quot;)\nif (!file.exists(file.path(data_dir, symbol_file)))\n  download.file(symbol_url, file.path(data_dir, symbol_file), mode = \&quot;wb\&quot;)\ncts &lt;- read.delim(gzfile(file.path(data_dir,\n  \&quot;GSE56010_raw_counts_GRCh38.p13_NCBI.tsv.gz\&quot;)), row.names = 1,\n  check.names = FALSE)\nsymbols &lt;- read.delim(gzfile(file.path(data_dir,\n  \&quot;GSE56010_gene_symbols.tsv.gz\&quot;)), colClasses = \&quot;character\&quot;)\n\nsamples &lt;- data.frame(\n  row.names = c(\&quot;GSM1502498\&quot;, \&quot;GSM1502499\&quot;, \&quot;GSM1502502\&quot;, \&quot;GSM1502503\&quot;),\n  condition = factor(c(\&quot;Control\&quot;, \&quot;Control\&quot;, \&quot;METTL3_KD\&quot;, \&quot;METTL3_KD\&quot;),\n                     levels = c(\&quot;Control\&quot;, \&quot;METTL3_KD\&quot;))\n)\ncts &lt;- as.matrix(cts[, rownames(samples)])\nstopifnot(identical(colnames(cts), rownames(samples)),\n          all(is.finite(cts)), all(cts &gt;= 0), all(cts == round(cts)))\n\n# Keep genes with at least 10 counts in at least two samples.\ndds &lt;- DESeqDataSetFromMatrix(cts, samples, design = ~ condition)\ndds &lt;- dds[rowSums(counts(dds) &gt;= 10) &gt;= 2, ]\ndds &lt;- DESeq(dds)\nres &lt;- results(dds, contrast = c(\&quot;condition\&quot;, \&quot;METTL3_KD\&quot;, \&quot;Control\&quot;),\n               alpha = 0.05)\n\n# The gene selection uses the group labels; this is a display of DE patterns.\nde &lt;- which(!is.na(res$padj) &amp; res$padj &lt; 0.05 &amp; abs(res$log2FoldChange) &gt; 1)\nstopifnot(length(de) &gt;= 30)\nde &lt;- de[order(res$padj[de], rownames(res)[de])]\ngene_ids &lt;- rownames(res)[de[seq_len(30)]]\n\n# The statistical test uses counts; only the visualization uses VST and Z scores.\nvsd &lt;- vst(dds, blind = FALSE)\nmat &lt;- assay(vsd)[gene_ids, , drop = FALSE]\nz &lt;- t(scale(t(mat)))\nstopifnot(all(is.finite(z)), max(abs(rowMeans(z))) &lt; 1e-10)\ngene_names &lt;- symbols$Symbol[match(gene_ids, symbols$GeneID)]\nmissing &lt;- is.na(gene_names) | gene_names == \&quot;\&quot;\ngene_names[missing] &lt;- paste0(\&quot;GeneID:\&quot;, gene_ids[missing])\ngene_names &lt;- make.unique(gene_names)\nannotation &lt;- data.frame(Condition = samples$condition,\n                         row.names = rownames(samples))\n\n# Euclidean distance and complete linkage are specified for both dendrograms.\nrow_tree &lt;- hclust(dist(z), method = \&quot;complete\&quot;)\ncol_tree &lt;- hclust(dist(t(z)), method = \&quot;complete\&quot;)\npalette &lt;- colorRampPalette(c(\&quot;#2166AC\&quot;, \&quot;#FFFFFF\&quot;, \&quot;#B2182B\&quot;))(101)\nsvglite(file.path(out_dir, \&quot;heatmap-gse56010.svg\&quot;), width = 7.4, height = 8.1)\nhm &lt;- pheatmap(z, color = palette, breaks = seq(-2, 2, length.out = 102),\n  cluster_rows = row_tree, cluster_cols = col_tree,\n  labels_row = gene_names, annotation_col = annotation,\n  annotation_colors = list(Condition = c(Control = \&quot;#186254\&quot;, METTL3_KD = \&quot;#B45309\&quot;)),\n  border_color = NA, fontsize = 11, fontsize_row = 10, fontsize_col = 10,\n  angle_col = 45, treeheight_row = 65, treeheight_col = 55,\n  main = \&quot;METTL3 knockdown: 30 DE genes\\nVST expression, row Z score\&quot;)\ndev.off()\n# Add a short text alternative without changing the plotted values.\nsvg_file &lt;- file.path(out_dir, \&quot;heatmap-gse56010.svg\&quot;)\nsvg_text &lt;- paste(readLines(svg_file), collapse = \&quot;\\n\&quot;)\nsvg_text &lt;- sub(\&quot;(&lt;svg[^&gt;]*&gt;)\&quot;, paste0(\&quot;\\\\1\&quot;,\n  \&quot;&lt;title&gt;METTL3 knockdown: 30 differentially expressed genes&lt;/title&gt;\&quot;,\n  \&quot;&lt;desc&gt;Four GSE56010 samples; gene and sample dendrograms use Euclidean \&quot;,\n  \&quot;distance with complete linkage on row-standardized VST expression. \&quot;,\n  \&quot;Red is above and blue below each gene&#x27;s mean.&lt;/desc&gt;\&quot;), svg_text, perl = TRUE)\nwriteLines(svg_text, svg_file)&quot;" class="sourceCode numberSource r numberLines code-with-copy"><code class="sourceCode r"><span id="cb36-1"><a href="#cb36-1"></a><span class="fu">suppressPackageStartupMessages</span>({</span>
+<span id="cb36-2"><a href="#cb36-2"></a>  <span class="fu">library</span>(DESeq2)</span>
+<span id="cb36-3"><a href="#cb36-3"></a>  <span class="fu">library</span>(pheatmap)</span>
+<span id="cb36-4"><a href="#cb36-4"></a>  <span class="fu">library</span>(svglite)</span>
+<span id="cb36-5"><a href="#cb36-5"></a>})</span>
+<span id="cb36-6"><a href="#cb36-6"></a></span>
+<span id="cb36-7"><a href="#cb36-7"></a>data_dir <span class="ot">&lt;-</span> <span class="st">"heatmap-data"</span></span>
+<span id="cb36-8"><a href="#cb36-8"></a>out_dir <span class="ot">&lt;-</span> <span class="st">"."</span></span>
+<span id="cb36-9"><a href="#cb36-9"></a><span class="fu">dir.create</span>(data_dir, <span class="at">recursive =</span> <span class="cn">TRUE</span>, <span class="at">showWarnings =</span> <span class="cn">FALSE</span>)</span>
+<span id="cb36-10"><a href="#cb36-10"></a>count_file <span class="ot">&lt;-</span> <span class="st">"GSE56010_raw_counts_GRCh38.p13_NCBI.tsv.gz"</span></span>
+<span id="cb36-11"><a href="#cb36-11"></a>symbol_file <span class="ot">&lt;-</span> <span class="st">"GSE56010_gene_symbols.tsv.gz"</span></span>
+<span id="cb36-12"><a href="#cb36-12"></a>count_url <span class="ot">&lt;-</span> <span class="fu">paste0</span>(<span class="st">"https://www.ncbi.nlm.nih.gov/geo/download/?format=file&amp;"</span>,</span>
+<span id="cb36-13"><a href="#cb36-13"></a>                    <span class="st">"type=rnaseq_counts&amp;acc=GSE56010&amp;file="</span>, count_file)</span>
+<span id="cb36-14"><a href="#cb36-14"></a>symbol_url <span class="ot">&lt;-</span> <span class="fu">paste0</span>(<span class="st">"https://book.bioinfo.info/assets/06-rna-seq/data/"</span>, symbol_file)</span>
+<span id="cb36-15"><a href="#cb36-15"></a><span class="cf">if</span> (<span class="sc">!</span><span class="fu">file.exists</span>(<span class="fu">file.path</span>(data_dir, count_file)))</span>
+<span id="cb36-16"><a href="#cb36-16"></a>  <span class="fu">download.file</span>(count_url, <span class="fu">file.path</span>(data_dir, count_file), <span class="at">mode =</span> <span class="st">"wb"</span>)</span>
+<span id="cb36-17"><a href="#cb36-17"></a><span class="cf">if</span> (<span class="sc">!</span><span class="fu">file.exists</span>(<span class="fu">file.path</span>(data_dir, symbol_file)))</span>
+<span id="cb36-18"><a href="#cb36-18"></a>  <span class="fu">download.file</span>(symbol_url, <span class="fu">file.path</span>(data_dir, symbol_file), <span class="at">mode =</span> <span class="st">"wb"</span>)</span>
+<span id="cb36-19"><a href="#cb36-19"></a>cts <span class="ot">&lt;-</span> <span class="fu">read.delim</span>(<span class="fu">gzfile</span>(<span class="fu">file.path</span>(data_dir,</span>
+<span id="cb36-20"><a href="#cb36-20"></a>  <span class="st">"GSE56010_raw_counts_GRCh38.p13_NCBI.tsv.gz"</span>)), <span class="at">row.names =</span> <span class="dv">1</span>,</span>
+<span id="cb36-21"><a href="#cb36-21"></a>  <span class="at">check.names =</span> <span class="cn">FALSE</span>)</span>
+<span id="cb36-22"><a href="#cb36-22"></a>symbols <span class="ot">&lt;-</span> <span class="fu">read.delim</span>(<span class="fu">gzfile</span>(<span class="fu">file.path</span>(data_dir,</span>
+<span id="cb36-23"><a href="#cb36-23"></a>  <span class="st">"GSE56010_gene_symbols.tsv.gz"</span>)), <span class="at">colClasses =</span> <span class="st">"character"</span>)</span>
+<span id="cb36-24"><a href="#cb36-24"></a></span>
+<span id="cb36-25"><a href="#cb36-25"></a>samples <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
+<span id="cb36-26"><a href="#cb36-26"></a>  <span class="at">row.names =</span> <span class="fu">c</span>(<span class="st">"GSM1502498"</span>, <span class="st">"GSM1502499"</span>, <span class="st">"GSM1502502"</span>, <span class="st">"GSM1502503"</span>),</span>
+<span id="cb36-27"><a href="#cb36-27"></a>  <span class="at">condition =</span> <span class="fu">factor</span>(<span class="fu">c</span>(<span class="st">"Control"</span>, <span class="st">"Control"</span>, <span class="st">"METTL3_KD"</span>, <span class="st">"METTL3_KD"</span>),</span>
+<span id="cb36-28"><a href="#cb36-28"></a>                     <span class="at">levels =</span> <span class="fu">c</span>(<span class="st">"Control"</span>, <span class="st">"METTL3_KD"</span>))</span>
+<span id="cb36-29"><a href="#cb36-29"></a>)</span>
+<span id="cb36-30"><a href="#cb36-30"></a>cts <span class="ot">&lt;-</span> <span class="fu">as.matrix</span>(cts[, <span class="fu">rownames</span>(samples)])</span>
+<span id="cb36-31"><a href="#cb36-31"></a><span class="fu">stopifnot</span>(<span class="fu">identical</span>(<span class="fu">colnames</span>(cts), <span class="fu">rownames</span>(samples)),</span>
+<span id="cb36-32"><a href="#cb36-32"></a>          <span class="fu">all</span>(<span class="fu">is.finite</span>(cts)), <span class="fu">all</span>(cts <span class="sc">&gt;=</span> <span class="dv">0</span>), <span class="fu">all</span>(cts <span class="sc">==</span> <span class="fu">round</span>(cts)))</span>
+<span id="cb36-33"><a href="#cb36-33"></a></span>
+<span id="cb36-34"><a href="#cb36-34"></a><span class="co"># Keep genes with at least 10 counts in at least two samples.</span></span>
+<span id="cb36-35"><a href="#cb36-35"></a>dds <span class="ot">&lt;-</span> <span class="fu">DESeqDataSetFromMatrix</span>(cts, samples, <span class="at">design =</span> <span class="sc">~</span> condition)</span>
+<span id="cb36-36"><a href="#cb36-36"></a>dds <span class="ot">&lt;-</span> dds[<span class="fu">rowSums</span>(<span class="fu">counts</span>(dds) <span class="sc">&gt;=</span> <span class="dv">10</span>) <span class="sc">&gt;=</span> <span class="dv">2</span>, ]</span>
+<span id="cb36-37"><a href="#cb36-37"></a>dds <span class="ot">&lt;-</span> <span class="fu">DESeq</span>(dds)</span>
+<span id="cb36-38"><a href="#cb36-38"></a>res <span class="ot">&lt;-</span> <span class="fu">results</span>(dds, <span class="at">contrast =</span> <span class="fu">c</span>(<span class="st">"condition"</span>, <span class="st">"METTL3_KD"</span>, <span class="st">"Control"</span>),</span>
+<span id="cb36-39"><a href="#cb36-39"></a>               <span class="at">alpha =</span> <span class="fl">0.05</span>)</span>
+<span id="cb36-40"><a href="#cb36-40"></a></span>
+<span id="cb36-41"><a href="#cb36-41"></a><span class="co"># The gene selection uses the group labels; this is a display of DE patterns.</span></span>
+<span id="cb36-42"><a href="#cb36-42"></a>de <span class="ot">&lt;-</span> <span class="fu">which</span>(<span class="sc">!</span><span class="fu">is.na</span>(res<span class="sc">$</span>padj) <span class="sc">&amp;</span> res<span class="sc">$</span>padj <span class="sc">&lt;</span> <span class="fl">0.05</span> <span class="sc">&amp;</span> <span class="fu">abs</span>(res<span class="sc">$</span>log2FoldChange) <span class="sc">&gt;</span> <span class="dv">1</span>)</span>
+<span id="cb36-43"><a href="#cb36-43"></a><span class="fu">stopifnot</span>(<span class="fu">length</span>(de) <span class="sc">&gt;=</span> <span class="dv">30</span>)</span>
+<span id="cb36-44"><a href="#cb36-44"></a>de <span class="ot">&lt;-</span> de[<span class="fu">order</span>(res<span class="sc">$</span>padj[de], <span class="fu">rownames</span>(res)[de])]</span>
+<span id="cb36-45"><a href="#cb36-45"></a>gene_ids <span class="ot">&lt;-</span> <span class="fu">rownames</span>(res)[de[<span class="fu">seq_len</span>(<span class="dv">30</span>)]]</span>
+<span id="cb36-46"><a href="#cb36-46"></a></span>
+<span id="cb36-47"><a href="#cb36-47"></a><span class="co"># The statistical test uses counts; only the visualization uses VST and Z scores.</span></span>
+<span id="cb36-48"><a href="#cb36-48"></a>vsd <span class="ot">&lt;-</span> <span class="fu">vst</span>(dds, <span class="at">blind =</span> <span class="cn">FALSE</span>)</span>
+<span id="cb36-49"><a href="#cb36-49"></a>mat <span class="ot">&lt;-</span> <span class="fu">assay</span>(vsd)[gene_ids, , drop <span class="ot">=</span> <span class="cn">FALSE</span>]</span>
+<span id="cb36-50"><a href="#cb36-50"></a>z <span class="ot">&lt;-</span> <span class="fu">t</span>(<span class="fu">scale</span>(<span class="fu">t</span>(mat)))</span>
+<span id="cb36-51"><a href="#cb36-51"></a><span class="fu">stopifnot</span>(<span class="fu">all</span>(<span class="fu">is.finite</span>(z)), <span class="fu">max</span>(<span class="fu">abs</span>(<span class="fu">rowMeans</span>(z))) <span class="sc">&lt;</span> <span class="fl">1e-10</span>)</span>
+<span id="cb36-52"><a href="#cb36-52"></a>gene_names <span class="ot">&lt;-</span> symbols<span class="sc">$</span>Symbol[<span class="fu">match</span>(gene_ids, symbols<span class="sc">$</span>GeneID)]</span>
+<span id="cb36-53"><a href="#cb36-53"></a>missing <span class="ot">&lt;-</span> <span class="fu">is.na</span>(gene_names) <span class="sc">|</span> gene_names <span class="sc">==</span> <span class="st">""</span></span>
+<span id="cb36-54"><a href="#cb36-54"></a>gene_names[missing] <span class="ot">&lt;-</span> <span class="fu">paste0</span>(<span class="st">"GeneID:"</span>, gene_ids[missing])</span>
+<span id="cb36-55"><a href="#cb36-55"></a>gene_names <span class="ot">&lt;-</span> <span class="fu">make.unique</span>(gene_names)</span>
+<span id="cb36-56"><a href="#cb36-56"></a>annotation <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">Condition =</span> samples<span class="sc">$</span>condition,</span>
+<span id="cb36-57"><a href="#cb36-57"></a>                         <span class="at">row.names =</span> <span class="fu">rownames</span>(samples))</span>
+<span id="cb36-58"><a href="#cb36-58"></a></span>
+<span id="cb36-59"><a href="#cb36-59"></a><span class="co"># Euclidean distance and complete linkage are specified for both dendrograms.</span></span>
+<span id="cb36-60"><a href="#cb36-60"></a>row_tree <span class="ot">&lt;-</span> <span class="fu">hclust</span>(<span class="fu">dist</span>(z), <span class="at">method =</span> <span class="st">"complete"</span>)</span>
+<span id="cb36-61"><a href="#cb36-61"></a>col_tree <span class="ot">&lt;-</span> <span class="fu">hclust</span>(<span class="fu">dist</span>(<span class="fu">t</span>(z)), <span class="at">method =</span> <span class="st">"complete"</span>)</span>
+<span id="cb36-62"><a href="#cb36-62"></a>palette <span class="ot">&lt;-</span> <span class="fu">colorRampPalette</span>(<span class="fu">c</span>(<span class="st">"#2166AC"</span>, <span class="st">"#FFFFFF"</span>, <span class="st">"#B2182B"</span>))(<span class="dv">101</span>)</span>
+<span id="cb36-63"><a href="#cb36-63"></a><span class="fu">svglite</span>(<span class="fu">file.path</span>(out_dir, <span class="st">"heatmap-gse56010.svg"</span>), <span class="at">width =</span> <span class="fl">7.4</span>, <span class="at">height =</span> <span class="fl">8.1</span>)</span>
+<span id="cb36-64"><a href="#cb36-64"></a>hm <span class="ot">&lt;-</span> <span class="fu">pheatmap</span>(z, <span class="at">color =</span> palette, <span class="at">breaks =</span> <span class="fu">seq</span>(<span class="sc">-</span><span class="dv">2</span>, <span class="dv">2</span>, <span class="at">length.out =</span> <span class="dv">102</span>),</span>
+<span id="cb36-65"><a href="#cb36-65"></a>  <span class="at">cluster_rows =</span> row_tree, <span class="at">cluster_cols =</span> col_tree,</span>
+<span id="cb36-66"><a href="#cb36-66"></a>  <span class="at">labels_row =</span> gene_names, <span class="at">annotation_col =</span> annotation,</span>
+<span id="cb36-67"><a href="#cb36-67"></a>  <span class="at">annotation_colors =</span> <span class="fu">list</span>(<span class="at">Condition =</span> <span class="fu">c</span>(<span class="at">Control =</span> <span class="st">"#186254"</span>, <span class="at">METTL3_KD =</span> <span class="st">"#B45309"</span>)),</span>
+<span id="cb36-68"><a href="#cb36-68"></a>  <span class="at">border_color =</span> <span class="cn">NA</span>, <span class="at">fontsize =</span> <span class="dv">11</span>, <span class="at">fontsize_row =</span> <span class="dv">10</span>, <span class="at">fontsize_col =</span> <span class="dv">10</span>,</span>
+<span id="cb36-69"><a href="#cb36-69"></a>  <span class="at">angle_col =</span> <span class="dv">45</span>, <span class="at">treeheight_row =</span> <span class="dv">65</span>, <span class="at">treeheight_col =</span> <span class="dv">55</span>,</span>
+<span id="cb36-70"><a href="#cb36-70"></a>  <span class="at">main =</span> <span class="st">"METTL3 knockdown: 30 DE genes</span><span class="sc">\n</span><span class="st">VST expression, row Z score"</span>)</span>
+<span id="cb36-71"><a href="#cb36-71"></a><span class="fu">dev.off</span>()</span>
+<span id="cb36-72"><a href="#cb36-72"></a><span class="co"># Add a short text alternative without changing the plotted values.</span></span>
+<span id="cb36-73"><a href="#cb36-73"></a>svg_file <span class="ot">&lt;-</span> <span class="fu">file.path</span>(out_dir, <span class="st">"heatmap-gse56010.svg"</span>)</span>
+<span id="cb36-74"><a href="#cb36-74"></a>svg_text <span class="ot">&lt;-</span> <span class="fu">paste</span>(<span class="fu">readLines</span>(svg_file), <span class="at">collapse =</span> <span class="st">"</span><span class="sc">\n</span><span class="st">"</span>)</span>
+<span id="cb36-75"><a href="#cb36-75"></a>svg_text <span class="ot">&lt;-</span> <span class="fu">sub</span>(<span class="st">"(&lt;svg[^&gt;]*&gt;)"</span>, <span class="fu">paste0</span>(<span class="st">"</span><span class="sc">\\</span><span class="st">1"</span>,</span>
+<span id="cb36-76"><a href="#cb36-76"></a>  <span class="st">"&lt;title&gt;METTL3 knockdown: 30 differentially expressed genes&lt;/title&gt;"</span>,</span>
+<span id="cb36-77"><a href="#cb36-77"></a>  <span class="st">"&lt;desc&gt;Four GSE56010 samples; gene and sample dendrograms use Euclidean "</span>,</span>
+<span id="cb36-78"><a href="#cb36-78"></a>  <span class="st">"distance with complete linkage on row-standardized VST expression. "</span>,</span>
+<span id="cb36-79"><a href="#cb36-79"></a>  <span class="st">"Red is above and blue below each gene's mean.&lt;/desc&gt;"</span>), svg_text, <span class="at">perl =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb36-80"><a href="#cb36-80"></a><span class="fu">writeLines</span>(svg_text, svg_file)</span></code></pre></div><button title="复制到剪贴板" class="code-copy-button"><i class="bi"></i></button></div>
 </section>
 <section id="topic-05-bubble-plot" class="level4">
 <h4 class="anchored" data-anchor-id="topic-05-bubble-plot">富集气泡图</h4>
@@ -2731,7 +2786,7 @@ hsa-miR-6090    5.80658 4.459086667
 </section>
 <section id="src-0050-RNA-seq-1163" class="level3">
 <h3 class="anchored" data-anchor-id="src-0050-RNA-seq-1163">circRNA 测序分析</h3>
-<p>circRNA 由 mRNA 前体的反向剪接（back-splicing）产生：一个外显子的 3′ 端与另一个外显子的 5′ 端首尾相连成环。来自连接点的 read 在参考基因组上找不到连续的对应位置——它两端对应的序列在基因组上并不相邻，这正是鉴定 circRNA 的特征信号。常用鉴定工具如 find_circ（利用 STAR 的嵌合比对结果）和 CIRI（在 BWA 比对结果上扫描候选连接点）都围绕这一信号工作<a href="#fn33" class="footnote-ref" id="fnref33" role="doc-noteref"><sup>33</sup></a><a href="#fn34" class="footnote-ref" id="fnref34" role="doc-noteref"><sup>34</sup></a>。</p>
+<p>circRNA 由 mRNA 前体的反向剪接（back-splicing）产生：一个外显子的 3′ 端与另一个外显子的 5′ 端首尾相连成环。来自连接点的 read 在参考基因组上找不到连续的对应位置——它两端对应的序列在基因组上并不相邻，这正是鉴定 circRNA 的特征信号。常用鉴定工具如 find_circ（利用 STAR 的嵌合比对结果）和 CIRI（在 BWA 比对结果上扫描候选连接点）都围绕这一信号工作<a href="#fn36" class="footnote-ref" id="fnref36" role="doc-noteref"><sup>36</sup></a><a href="#fn37" class="footnote-ref" id="fnref37" role="doc-noteref"><sup>37</sup></a>。</p>
 <div id="fig-06-rna-seq-007" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-06-rna-seq-007-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
@@ -2766,7 +2821,7 @@ hsa-miR-6090    5.80658 4.459086667
 <img src="../assets/06-rna-seq/cited/cerna-mechanism.jpg" class="img-fluid figure-img">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-06-rna-seq-008-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-图&nbsp;5.15: ceRNA 假说中的 RNA 竞争关系（示意）<a href="#fn35" class="footnote-ref" id="fnref35" role="doc-noteref"><sup>35</sup></a>
+图&nbsp;5.15: ceRNA 假说中的 RNA 竞争关系（示意）<a href="#fn38" class="footnote-ref" id="fnref38" role="doc-noteref"><sup>38</sup></a>
 </figcaption>
 </figure>
 </div>
@@ -2789,8 +2844,8 @@ hsa-miR-6090    5.80658 4.459086667
 <li id="fn4"><p>Ban N 等. <a href="https://pubmed.ncbi.nlm.nih.gov/10992104/">The complete atomic structure of the large ribosomal subunit at 2.4 Å resolution</a>. Science, 2000.<a href="#fnref4" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
 <li id="fn5"><p>Will CL, Lührmann R. <a href="https://pubmed.ncbi.nlm.nih.gov/21441581/">Spliceosome structure and function</a>. Cold Spring Harbor Perspectives in Biology, 2011.<a href="#fnref5" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
 <li id="fn6"><p>Lee RC, Feinbaum RL, Ambros V. <a href="https://pubmed.ncbi.nlm.nih.gov/8252621/">The C. elegans heterochronic gene lin-4 encodes small RNAs with antisense complementarity to lin-14</a>. Cell, 1993.<a href="#fnref6" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
-<li id="fn7"><p>图片来自维基百科 Non-coding RNA 条目，作者 Ppgardne，GFDL 许可。GFDL 许可原文见 <a href="https://commons.wikimedia.org/wiki/Commons:GNU_Free_Documentation_License">GNU Free Documentation License</a>（2026 年 10 月核对）。本章引用的外部图片均随图标明出处，仅作教学示意，版权归原作者所有。<a href="#fnref7" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
-<li id="fn8"><p>National Human Genome Research Institute. <a href="https://www.genome.gov/about-genomics/educational-resources/fact-sheets/ribonucleic-acid-fact-sheet">Ribonucleic Acid (RNA) Fact Sheet</a>，2024-05-24 更新，“Different cells with Different RNA”原始插图。<a href="https://www.genome.gov/about-nhgri/Policies-Guidance/Copyright">NHGRI 版权政策</a>规定，未另行注明的图文属于公共领域；本图保留原貌并注明来源，2026-10-11 核对。<a href="#fnref8" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn7"><p>RNA 类别与分工的参考资料：<a href="https://www.genome.gov/about-genomics/educational-resources/fact-sheets/ribonucleic-acid-fact-sheet">NHGRI RNA Fact Sheet</a>；<a href="https://openstax.org/books/microbiology/pages/10-3-structure-and-function-of-rna">OpenStax，Structure and Function of RNA</a>。图中为代表性形态和作用场景，具体 RNA 的分布、作用机制与功能证据需要分别判断。<a href="#fnref7" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn8"><p>基因组与转录组关系的概念依据：<a href="https://www.genome.gov/about-genomics/educational-resources/fact-sheets/ribonucleic-acid-fact-sheet">NHGRI，Ribonucleic Acid (RNA) Fact Sheet</a>。图中的 A–D 为示意标签，不对应真实基因或测量值。<a href="#fnref8" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
 <li id="fn9"><p>Rinn JL, Chang HY. <a href="https://pubmed.ncbi.nlm.nih.gov/22655235/">Genome regulation by long noncoding RNAs</a>. Annual Review of Biochemistry, 2012.<a href="#fnref9" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
 <li id="fn10"><p>Wang KC, Chang HY. <a href="https://pubmed.ncbi.nlm.nih.gov/22164030/">Molecular mechanisms of long noncoding RNAs</a>. Molecular Cell, 2011（信号、诱饵、引导、支架四角色框架）。<a href="#fnref10" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
 <li id="fn11"><p>图片来自 Illumina 技术文档，仅作教学示意。<a href="#fnref11" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
@@ -2815,15 +2870,18 @@ hsa-miR-6090    5.80658 4.459086667
 <li id="fn30"><p><a href="https://pubmed.ncbi.nlm.nih.gov/17728317/">Small-sample estimation of negative binomial dispersion, with applications to SAGE data</a>. 2008.<a href="#fnref30" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
 <li id="fn31"><p><a href="https://pubmed.ncbi.nlm.nih.gov/19910308/">edgeR: a Bioconductor package for differential expression analysis of digital gene expression data</a>. 2010.<a href="#fnref31" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
 <li id="fn32"><p><a href="https://pubmed.ncbi.nlm.nih.gov/24485249/">voom: Precision weights unlock linear model analysis tools for RNA-seq read counts</a>. 2014.<a href="#fnref32" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
-<li id="fn33"><p>Memczak S. 等. <a href="https://pubmed.ncbi.nlm.nih.gov/23446348/">Circular RNAs are a large class of animal RNAs with regulatory potency</a>. Nature, 2013.<a href="#fnref33" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
-<li id="fn34"><p>Gao Y. 等. <a href="https://pubmed.ncbi.nlm.nih.gov/25402085/">CIRI: an efficient and unbiased algorithm for de novo circular RNA identification</a>. Genome Biology, 2015.<a href="#fnref34" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
-<li id="fn35"><p>Aria H, Azizi M, Nazem S, et al.&nbsp;<a href="https://doi.org/10.1016/j.heliyon.2024.e35208">Competing endogenous RNAs regulatory crosstalk networks: The messages from the RNA world to signaling pathways directing cancer stem cell development</a>. <em>Heliyon</em>, 2024（图 1，CC BY 4.0 许可，2026 年 10 月核对）。<a href="#fnref35" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn33"><p>数据集 <a href="https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE56010">GSE56010</a>；文件 <code>GSE56010_raw_counts_GRCh38.p13_NCBI.tsv.gz</code>，原表含 39,376 个 GeneID 和 8 个样本，本例只使用样本表中的四列。<a href="https://www.ncbi.nlm.nih.gov/geo/info/rnaseqcounts.html">NCBI 重算 counts 说明</a>。名称对照提取自 <a href="https://ftp.ncbi.nlm.nih.gov/gene/DATA/GENE_INFO/Mammalia/Homo_sapiens.gene_info.gz">NCBI 人类 gene_info</a>，2026-10-12 下载；保留 GeneID 以便追溯。<a href="#fnref33" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn34"><p><a href="https://bioconductor.org/packages/release/bioc/vignettes/DESeq2/inst/doc/DESeq2.html#data-transformations-and-visualization">DESeq2 官方指南：Data transformations and visualization</a>。该变换用于可视化，不能把 VST 或 Z 分数重新当成原始 counts 输入差异检验。<a href="#fnref34" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn35"><p>数据集 <a href="https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE56010">GSE56010</a>；文件 <code>GSE56010_raw_counts_GRCh38.p13_NCBI.tsv.gz</code>，原表含 39,376 个 GeneID 和 8 个样本，本例只使用样本表中的四列。<a href="https://www.ncbi.nlm.nih.gov/geo/info/rnaseqcounts.html">NCBI 重算 counts 说明</a>。名称对照提取自 <a href="https://ftp.ncbi.nlm.nih.gov/gene/DATA/GENE_INFO/Mammalia/Homo_sapiens.gene_info.gz">NCBI 人类 gene_info</a>，2026-10-12 下载；保留 GeneID 以便追溯。<a href="#fnref35" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn36"><p>Memczak S. 等. <a href="https://pubmed.ncbi.nlm.nih.gov/23446348/">Circular RNAs are a large class of animal RNAs with regulatory potency</a>. Nature, 2013.<a href="#fnref36" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn37"><p>Gao Y. 等. <a href="https://pubmed.ncbi.nlm.nih.gov/25402085/">CIRI: an efficient and unbiased algorithm for de novo circular RNA identification</a>. Genome Biology, 2015.<a href="#fnref37" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn38"><p>Aria H, Azizi M, Nazem S, et al.&nbsp;<a href="https://doi.org/10.1016/j.heliyon.2024.e35208">Competing endogenous RNAs regulatory crosstalk networks: The messages from the RNA world to signaling pathways directing cancer stem cell development</a>. <em>Heliyon</em>, 2024（图 1，CC BY 4.0 许可，2026 年 10 月核对）。<a href="#fnref38" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
 </ol>
 </section>
 
 </main> <!-- /main -->
 <div class="book-toolbar" role="navigation" aria-label="阅读工具">
-  <div class="book-brand"><span class="book-brand-name">AI时代生信入门</span><time class="book-last-modified" datetime="2026-10-12T14:30:32+08:00" title="最后修改时间（北京时间，UTC+08:00）">最后修改 2026-10-12 14:30</time></div>
+  <div class="book-brand"><span class="book-brand-name">AI时代生信入门</span><time class="book-last-modified" datetime="2026-10-12T15:17:48+08:00" title="最后修改时间（北京时间，UTC+08:00）">最后修改 2026-10-12 15:17</time></div>
   <button class="book-menu-button" type="button" aria-controls="quarto-sidebar" aria-expanded="false">目录</button>
   <button class="book-search-button" type="button">搜索</button>
 </div>

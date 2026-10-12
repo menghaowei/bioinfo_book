@@ -1,0 +1,75 @@
+digraph snakemake_dag {
+graph [rankdir=TB, bgcolor="transparent", ranksep=0.50, nodesep=0.20, margin=0.08, compound=true];
+node [shape=box, style="rounded,filled", fillcolor="#e8f4f1", color="#186254", fontcolor="#333333", fontname="Arial", fontsize=15, margin="0.13,0.13", penwidth=1.4];
+edge [color="#6b7280", penwidth=1.1, arrowsize=0.6];
+subgraph cluster_SRR1573494 { label="SRR1573494"; fontname="Arial"; fontsize=17; color="#9ca3af"; style=rounded;
+2 [label="hisat2_align"];
+3 [label="cutadapt"];
+10 [label="samtools_index"];
+15 [label="fastqc_raw"];
+15 -> 3 [style=invis, weight=20];
+}
+subgraph cluster_SRR1573495 { label="SRR1573495"; fontname="Arial"; fontsize=17; color="#9ca3af"; style=rounded;
+4 [label="hisat2_align"];
+5 [label="cutadapt"];
+11 [label="samtools_index"];
+16 [label="fastqc_raw"];
+16 -> 5 [style=invis, weight=20];
+}
+subgraph cluster_SRR1573498 { label="SRR1573498"; fontname="Arial"; fontsize=17; color="#9ca3af"; style=rounded;
+6 [label="hisat2_align"];
+7 [label="cutadapt"];
+12 [label="samtools_index"];
+17 [label="fastqc_raw"];
+17 -> 7 [style=invis, weight=20];
+}
+subgraph cluster_SRR1573499 { label="SRR1573499"; fontname="Arial"; fontsize=17; color="#9ca3af"; style=rounded;
+8 [label="hisat2_align"];
+9 [label="cutadapt"];
+13 [label="samtools_index"];
+18 [label="fastqc_raw"];
+18 -> 9 [style=invis, weight=20];
+}
+0 [label="all", fillcolor="#fdf3e3", color="#b45309"];
+1 [label="feature_counts", fillcolor="#fdf3e3", color="#b45309"];
+14 [label="multiqc", fillcolor="#fdf3e3", color="#b45309"];
+10 -> 1 [style=invis, weight=20];
+11 -> 1 [style=invis, weight=20];
+12 -> 1 [style=invis, weight=20];
+13 -> 1 [style=invis, weight=20];
+1 -> 0;
+2 -> 0;
+4 -> 0;
+6 -> 0;
+8 -> 0;
+10 -> 0;
+11 -> 0;
+12 -> 0;
+13 -> 0;
+14 -> 0;
+2 -> 1;
+4 -> 1;
+6 -> 1;
+8 -> 1;
+3 -> 2;
+5 -> 4;
+7 -> 6;
+9 -> 8;
+2 -> 10;
+4 -> 11;
+6 -> 12;
+8 -> 13;
+15 -> 14;
+16 -> 14;
+17 -> 14;
+18 -> 14;
+3 -> 14;
+5 -> 14;
+7 -> 14;
+9 -> 14;
+2 -> 14;
+4 -> 14;
+6 -> 14;
+8 -> 14;
+1 -> 14;
+}

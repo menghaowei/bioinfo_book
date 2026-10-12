@@ -892,7 +892,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
 <h1 class="title"><span id="sec-ch10" class="quarto-section-identifier"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Snakemake与可复现分析工作流</span></span></h1>
-<p class="chapter-last-modified"><time datetime="2026-10-12T14:30:32+08:00" title="本章书稿最后修改时间（北京时间，UTC+08:00）">最后修改：2026-10-12 14:30（北京时间）</time></p>
+<p class="chapter-last-modified"><time datetime="2026-10-12T15:17:48+08:00" title="本章书稿最后修改时间（北京时间，UTC+08:00）">最后修改：2026-10-12 15:17（北京时间）</time></p>
 </div>
 
 
@@ -1330,6 +1330,18 @@ SRR1573499  METTL3_kd</code></pre>
 <span id="cb19-8"><a href="#cb19-8"></a></span>
 <span id="cb19-9"><a href="#cb19-9"></a><span class="co"># 3. 依赖图存档（可选）</span></span>
 <span id="cb19-10"><a href="#cb19-10"></a><span class="ex">snakemake</span> <span class="at">--dag</span> <span class="at">-c</span> 8 <span class="kw">|</span> <span class="ex">dot</span> <span class="at">-Tsvg</span> <span class="op">&gt;</span> dag.svg</span></code></pre></div><button title="复制到剪贴板" class="code-copy-button"><i class="bi"></i></button></div>
+<div id="fig-10-rnaseq-dag" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-10-rnaseq-dag-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="../assets/10-snakemake-and-reproducibility/rnaseq-dag.svg" class="img-fluid figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-10-rnaseq-dag-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+图&nbsp;10.1: 四样本 RNA-seq 工作流的任务依赖图
+</figcaption>
+</figure>
+</div>
+<p>图注：图由上面的 Snakefile 通过 Snakemake 生成；框内是任务对应的规则名，外框按样本分组。绿色节点属于逐样本任务，琥珀色节点汇总多个样本的结果或日志。图保留了全部 19 个任务和 35 条文件依赖；只解析依赖即可生成，无须先运行完生信分析。可<a href="../assets/10-snakemake-and-reproducibility/rnaseq-dag.svg">打开原尺寸 DAG</a>查看各条连线。</p>
+<p>读 <a href="#fig-10-rnaseq-dag" class="quarto-xref">图&nbsp;<span>10.1</span></a> 时沿箭头看前置条件：每个样本的 <code>hisat2_align</code> 要等待自己的 <code>cutadapt</code>；<code>feature_counts</code> 要等待四个 BAM；<code>multiqc</code> 则汇总质控和分析日志。<code>fastqc_raw</code> 与 <code>cutadapt</code> 都读取原始 FASTQ，彼此没有依赖，因此允许并行；<code>samtools_index</code> 与 <code>feature_counts</code> 也都使用已生成的 BAM，后者不需要等索引。图中竖向排在一起只是便于按样本阅读，只有箭头才表示依赖关系；实际同时运行多少任务还受线程和其他资源限制。最下方的 <code>all</code> 是最终文件清单，本身不执行分析命令。</p>
 <p>四个样本、七条规则，试运行会报告 19 个任务（4 个 fastqc_raw + 4 个 cutadapt + 4 个 hisat2_align + 4 个 samtools_index + feature_counts + multiqc + all）。运行中断后重新执行同样的命令即可：已完成的任务直接跳过，被标记为不完整的输出自动补跑。本章流程的规则、依赖与命令展开在写作时通过了 Snakemake 9.27 的试运行检查；各工具命令与第 5 章实测口径一致。</p>
 <p>结果检查沿用第 5 章的口径：<code>results/counts/featureCounts.txt.summary</code> 里看 Assigned 比例——落到注释基因上的 read 占比，人类样本通常应有六成以上，明显偏低时先怀疑注释与参考基因组不同源（<a href="../manuscript/05-rna-seq.html#sec-05-02">5.2 节</a>的混用陷阱）或存在污染；<code>logs/hisat2/</code> 里每个样本的总体比对率（人类 RNA-seq 一般应有 80% 以上，多定位 read 通常不超过 10%）；<code>results/multiqc/multiqc_report.html</code> 把这些指标汇总在同一页，可以横向比较四个样本，找出异常。计数矩阵 <code>featureCounts.txt</code> 的每一列对应 <code>samples.tsv</code> 里一个样本，接下来就交回<a href="../manuscript/05-rna-seq.html#sec-05-06">5.5 节</a>的 DESeq2 做差异分析——本节工作流到计数矩阵为止，R 中的统计分析按相应章节继续。</p>
 <div class="book-warning callout callout-style-default callout-warning callout-titled" title="注意｜换数据先核对口径，再跑流程">
@@ -1625,7 +1637,7 @@ SRR5852297  KO</code></pre>
 
 </main> <!-- /main -->
 <div class="book-toolbar" role="navigation" aria-label="阅读工具">
-  <div class="book-brand"><span class="book-brand-name">AI时代生信入门</span><time class="book-last-modified" datetime="2026-10-12T14:30:32+08:00" title="最后修改时间（北京时间，UTC+08:00）">最后修改 2026-10-12 14:30</time></div>
+  <div class="book-brand"><span class="book-brand-name">AI时代生信入门</span><time class="book-last-modified" datetime="2026-10-12T15:17:48+08:00" title="最后修改时间（北京时间，UTC+08:00）">最后修改 2026-10-12 15:17</time></div>
   <button class="book-menu-button" type="button" aria-controls="quarto-sidebar" aria-expanded="false">目录</button>
   <button class="book-search-button" type="button">搜索</button>
 </div>

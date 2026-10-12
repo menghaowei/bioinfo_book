@@ -921,7 +921,7 @@ window.Quarto = {
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
 <h1 class="title"><span id="sec-ch09" class="quarto-section-identifier"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">单细胞与空间组学</span></span></h1>
-<p class="chapter-last-modified"><time datetime="2026-10-12T14:30:32+08:00" title="本章书稿最后修改时间（北京时间，UTC+08:00）">最后修改：2026-10-12 14:30（北京时间）</time></p>
+<p class="chapter-last-modified"><time datetime="2026-10-12T15:17:48+08:00" title="本章书稿最后修改时间（北京时间，UTC+08:00）">最后修改：2026-10-12 15:17（北京时间）</time></p>
 </div>
 
 
@@ -971,19 +971,21 @@ window.Quarto = {
 <ol type="1">
 <li>单细胞悬液流过含有数十万个微孔的蜂窝板，细胞靠重力落入微孔，理想情况下一孔一细胞；</li>
 <li>带寡核苷酸的磁珠铺到板上，落入微孔与细胞配对；</li>
-<li>在微孔内完成细胞裂解、反转录、扩增。</li>
+<li>在微孔内裂解细胞，使释放的 mRNA 被同孔磁珠表面的 oligo-dT 引物捕获；</li>
+<li>回收并清洗磁珠，然后在管中完成反转录，再进行后续扩增和建库。与 10x 的可溶凝胶珠不同，BD 的捕获磁珠在这一过程中保持完整。<a href="#fn9" class="footnote-ref" id="fnref9" role="doc-noteref"><sup>9</sup></a></li>
 </ol>
-<p>两种方法的共同点是：都是”把一个细胞和一个条形码载体关进一个小空间”，后续建库和测序流程几乎一致。通量上两家处于同一量级：10x 标准试剂盒每个通道的目标回收量约为 500–10,000 个细胞（更高通量的试剂盒可达数万），BD Rhapsody 单筒典型捕获约一万个细胞。值得注意的是，<strong>捕获的细胞越多，一个反应空间里挤进两个细胞的概率也越高</strong>——这就是后面要处理的双细胞问题，10x 官方与原始文献的数据都显示双细胞率大约随回收细胞数线性上升（约每回收 1,000 个细胞增加 1%）<a href="#fn9" class="footnote-ref" id="fnref9" role="doc-noteref"><sup>9</sup></a>。</p>
+<p>两种方法都利用小空间把细胞与条形码载体配对，但 RNA 捕获、反转录和回收的位置不同。10x 在液滴内完成反转录后破乳，BD 则先在微孔中捕获 RNA，再回收磁珠进行反转录；之后分别按各自的平台流程建库和测序。通量上两家处于同一量级：10x 标准试剂盒每个通道的目标回收量约为 500–10,000 个细胞（更高通量的试剂盒可达数万），BD Rhapsody 单筒典型捕获约一万个细胞。值得注意的是，<strong>捕获的细胞越多，一个反应空间里挤进两个细胞的概率也越高</strong>——这就是后面要处理的双细胞问题，10x 官方与原始文献的数据都显示双细胞率大约随回收细胞数线性上升（约每回收 1,000 个细胞增加 1%）<a href="#fn10" class="footnote-ref" id="fnref10" role="doc-noteref"><sup>10</sup></a>。</p>
 <div id="fig-06-rna-seq-002" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-06-rna-seq-002-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <img src="../assets/09-single-cell-and-spatial-omics/008-10x-bd-platforms.svg" class="img-fluid figure-img">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-06-rna-seq-002-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-图&nbsp;9.1: 10x Genomics 与 BD Rhapsody 的单细胞捕获流程
+图&nbsp;9.1: 10x Genomics 与 BD Rhapsody 的单细胞捕获流程<a href="#fn11" class="footnote-ref" id="fnref11" role="doc-noteref"><sup>11</sup></a>
 </figcaption>
 </figure>
 </div>
+<p>图注：左侧显示微流控通道形成液滴，右侧显示固态微孔的侧面剖面；图中为理想的一细胞一珠捕获单元，未按实际尺寸与捕获比例绘制。观察两条路线中 RNA 被捕获的位置，以及反转录发生在回收之前还是之后。</p>
 <div class="book-core callout callout-style-default callout-note callout-titled" title="核心知识｜barcode 归细胞，UMI 归分子">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -1000,7 +1002,7 @@ window.Quarto = {
 </section>
 <section id="topic-09-barcode-umi" class="level3">
 <h3 class="anchored" data-anchor-id="topic-09-barcode-umi">barcode、UMI 与细胞×基因计数矩阵</h3>
-<p>把上一步的测序结果整理一下，就得到本章分析的全部输入：一个<strong>细胞×基因计数矩阵</strong>。矩阵里每个数字的含义是——某个 barcode 对应的细胞里，某个基因被捕获并计数到多少个 UMI。barcode 的长度只有十几个碱基（不同化学版本的长度不同，例如 10x 早期版本为 14 bp barcode＋10 bp UMI，都从大约 75 万种设计中分配），碱基数虽少，足够给每个反应载体一个独立身份<a href="#fn10" class="footnote-ref" id="fnref10" role="doc-noteref"><sup>10</sup></a>。</p>
+<p>把上一步的测序结果整理一下，就得到本章分析的全部输入：一个<strong>细胞×基因计数矩阵</strong>。矩阵里每个数字的含义是——某个 barcode 对应的细胞里，某个基因被捕获并计数到多少个 UMI。barcode 的长度只有十几个碱基（不同化学版本的长度不同，例如 10x 早期版本为 14 bp barcode＋10 bp UMI，都从大约 75 万种设计中分配），碱基数虽少，足够给每个反应载体一个独立身份<a href="#fn12" class="footnote-ref" id="fnref12" role="doc-noteref"><sup>12</sup></a>。</p>
 <p>10x 平台把从 FASTQ 到这个矩阵的中间步骤交给了官方软件 <strong>Cell Ranger</strong>：它把 read 比对到参考基因组（内部调用 STAR）、校正测序错误造成的 barcode/UMI 偏差、按 UMI 去重、把分子归属到基因，最后输出标准的三件套文件——<code>matrix.mtx</code>（稀疏矩阵）、<code>barcodes.tsv</code>（每行一个细胞 barcode）、<code>features.tsv</code>（每行一个基因）。这个三件套是 Seurat、Scanpy 等几乎所有下游分析工具的通用输入。</p>
 <p>从数据结构看，单细胞矩阵和第 5 章的基因×样本计数矩阵形状相同、语义不同：一列不再是”一个样本的文库”，而是”一个细胞”；矩阵极度稀疏（单个细胞只测得到一两千个基因非零），而且每个细胞的总计数（相当于”文库大小”）差异很大——这两点是后面归一化和质控设计的出发点。</p>
 <div id="fig-09-bc-umi" class="quarto-float quarto-figure quarto-figure-center anchored">
@@ -1019,11 +1021,11 @@ window.Quarto = {
 <section id="topic-09-multimics" class="level3">
 <h3 class="anchored" data-anchor-id="topic-09-multimics">单细胞多组学全景与本章边界</h3>
 <p>单细胞分辨并不局限于转录组。同一个细胞还可以同时测<strong>基因组</strong>（拷贝数变异、突变）、<strong>DNA 甲基化</strong>（汤富酬团队的 scTrio-seq 即属此类）、<strong>染色质开放性</strong>（scATAC-seq）或<strong>细胞表面蛋白</strong>（CITE-seq 类抗体偶联技术）；把转录组与表观组配对的商品化平台（如 10x Multiome）也已普及。这些多组学技术在原理上仍是”给单细胞加条形码”的思路，但数据处理各有专门方法。</p>
-<p>本书作为入门教材，本章只深入<strong>单细胞转录组</strong>这一条主线：它最常用、方法最成熟，也是理解其他单细胞组学的入口。scATAC-seq 等多组学的分析思路，推荐在掌握本章之后阅读进阶资料——本书作者之一刘雨婷整理的单细胞多组学分析教程系统地覆盖了 Seurat 预处理到 ArchR 分析 scATAC 的完整流程，可作为继续学习的路线图<a href="#fn11" class="footnote-ref" id="fnref11" role="doc-noteref"><sup>11</sup></a>。</p>
+<p>本书作为入门教材，本章只深入<strong>单细胞转录组</strong>这一条主线：它最常用、方法最成熟，也是理解其他单细胞组学的入口。scATAC-seq 等多组学的分析思路，推荐在掌握本章之后阅读进阶资料——本书作者之一刘雨婷整理的单细胞多组学分析教程系统地覆盖了 Seurat 预处理到 ArchR 分析 scATAC 的完整流程，可作为继续学习的路线图<a href="#fn13" class="footnote-ref" id="fnref13" role="doc-noteref"><sup>13</sup></a>。</p>
 </section>
 <section id="topic-09-data-route" class="level3">
 <h3 class="anchored" data-anchor-id="topic-09-data-route">本章示例数据与分析路线</h3>
-<p>本章主线示例采用 10x 官方发布的 <strong>pbmc3k</strong> 数据集：一份人外周血单个核细胞（PBMC）的 Cell Ranger 输出矩阵，2,700 个细胞、32,738 个基因，体积只有几 MB，适合作为第一个跑通全流程的数据。学到多样本比较时（9.5 节），换用 Kang 等人发表的干扰素刺激实验数据 ifnb：IFN-β 刺激组与未刺激对照组的 PBMC<a href="#fn12" class="footnote-ref" id="fnref12" role="doc-noteref"><sup>12</sup></a>。空间部分（9.6–9.7 节）用 10x 官方的 Visium 小鼠脑矢状切面数据。</p>
+<p>本章主线示例采用 10x 官方发布的 <strong>pbmc3k</strong> 数据集：一份人外周血单个核细胞（PBMC）的 Cell Ranger 输出矩阵，2,700 个细胞、32,738 个基因，体积只有几 MB，适合作为第一个跑通全流程的数据。学到多样本比较时（9.5 节），换用 Kang 等人发表的干扰素刺激实验数据 ifnb：IFN-β 刺激组与未刺激对照组的 PBMC<a href="#fn14" class="footnote-ref" id="fnref14" role="doc-noteref"><sup>14</sup></a>。空间部分（9.6–9.7 节）用 10x 官方的 Visium 小鼠脑矢状切面数据。</p>
 <div id="fig-06-rna-seq-009" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-06-rna-seq-009-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
@@ -1093,13 +1095,13 @@ window.Quarto = {
 </section>
 <section id="topic-09-doublets" class="level3">
 <h3 class="anchored" data-anchor-id="topic-09-doublets">双细胞：来源、比例与检测</h3>
-<p>双细胞（doublet）指两个细胞被包进了同一个反应空间，最终共享一个 barcode，在矩阵里表现为一个”表达量约两倍、基因种类异常多、同时表达两套细胞类型 marker”的假细胞。上一节已经提到，双细胞率大约随上样量线性上升：回收 1,000 个细胞时约 1%，回收 9,000 个时已接近 9%<a href="#fn13" class="footnote-ref" id="fnref13" role="doc-noteref"><sup>13</sup></a>。通量越高，双细胞越不可忽视。</p>
-<p>双细胞有两类检测思路。其一是<strong>人工排查</strong>：看 <code>nFeature_RNA</code>/<code>nCount_RNA</code> 分布的高端尾巴，看是否出现”又像 T 细胞又像 B 细胞”这类不该共存的 marker 组合。其二是<strong>专门工具</strong>：Scrublet 与 DoubletFinder 的核心想法一致——随机把已测细胞两两模拟成”人工双细胞”，看真实细胞里谁的邻居大多落在人工双细胞上，这些细胞就有双细胞的嫌疑<a href="#fn14" class="footnote-ref" id="fnref14" role="doc-noteref"><sup>14</sup></a><a href="#fn15" class="footnote-ref" id="fnref15" role="doc-noteref"><sup>15</sup></a>。教学数据量小、上样低，本章流程省略这一步；正式项目里应在聚类前或聚类后跑一次双细胞检测，并把比例记录在报告里。</p>
+<p>双细胞（doublet）指两个细胞被包进了同一个反应空间，最终共享一个 barcode，在矩阵里表现为一个”表达量约两倍、基因种类异常多、同时表达两套细胞类型 marker”的假细胞。上一节已经提到，双细胞率大约随上样量线性上升：回收 1,000 个细胞时约 1%，回收 9,000 个时已接近 9%<a href="#fn15" class="footnote-ref" id="fnref15" role="doc-noteref"><sup>15</sup></a>。通量越高，双细胞越不可忽视。</p>
+<p>双细胞有两类检测思路。其一是<strong>人工排查</strong>：看 <code>nFeature_RNA</code>/<code>nCount_RNA</code> 分布的高端尾巴，看是否出现”又像 T 细胞又像 B 细胞”这类不该共存的 marker 组合。其二是<strong>专门工具</strong>：Scrublet 与 DoubletFinder 的核心想法一致——随机把已测细胞两两模拟成”人工双细胞”，看真实细胞里谁的邻居大多落在人工双细胞上，这些细胞就有双细胞的嫌疑<a href="#fn16" class="footnote-ref" id="fnref16" role="doc-noteref"><sup>16</sup></a><a href="#fn17" class="footnote-ref" id="fnref17" role="doc-noteref"><sup>17</sup></a>。教学数据量小、上样低，本章流程省略这一步；正式项目里应在聚类前或聚类后跑一次双细胞检测，并把比例记录在报告里。</p>
 </section>
 <section id="topic-09-ambient" class="level3">
 <h3 class="anchored" data-anchor-id="topic-09-ambient">背景 RNA 与基因过滤</h3>
 <p>即使液滴里没有细胞，也不是空的：组织解离时细胞破损释放的游离 RNA 会弥散在悬液里，被任何液滴随机捕获，称为<strong>环境 RNA</strong>（ambient RNA）或”汤”（soup）。它的后果是每个细胞都被低水平地”涂”上一层全样本常见的 RNA（常见于线粒体基因、核糖体蛋白基因、解离敏感的转录本），让不同的细胞看起来比实际更相似，甚至让 T 细胞”检出”少量单核细胞基因。</p>
-<p>专门的校正工具如 SoupX 和 CellBender 会估计”汤”的构成再从矩阵里扣除<a href="#fn16" class="footnote-ref" id="fnref16" role="doc-noteref"><sup>16</sup></a><a href="#fn17" class="footnote-ref" id="fnref17" role="doc-noteref"><sup>17</sup></a>。本章教学流程不做背景扣除，但你要知道这个现象存在：看到每个细胞都低表达某几个基因时，先怀疑背景 RNA，而不是急着解释为生物学意义。</p>
+<p>专门的校正工具如 SoupX 和 CellBender 会估计”汤”的构成再从矩阵里扣除<a href="#fn18" class="footnote-ref" id="fnref18" role="doc-noteref"><sup>18</sup></a><a href="#fn19" class="footnote-ref" id="fnref19" role="doc-noteref"><sup>19</sup></a>。本章教学流程不做背景扣除，但你要知道这个现象存在：看到每个细胞都低表达某几个基因时，先怀疑背景 RNA，而不是急着解释为生物学意义。</p>
 <p>基因水平的过滤（<code>min.cells</code>）在建立对象时已经完成。后续重点检查细胞水平的质量。</p>
 </section>
 </section>
@@ -1108,7 +1110,7 @@ window.Quarto = {
 <section id="topic-09-normalization" class="level3">
 <h3 class="anchored" data-anchor-id="topic-09-normalization">单细胞归一化：文库大小与测序深度</h3>
 <p>单细胞矩阵的每个细胞就是一个”文库”，而每个细胞的测序深度（UMI 总数）可能差好几倍——这份 PBMC 数据里 <code>nCount_RNA</code> 从 546 到 15,818 不等。直接比较原始计数，测得深的细胞什么基因都”高”。第 11 章讲过归一化的共同逻辑（CPM、size factor，见 <a href="../manuscript/11-statistics-and-learning.html#sec-11-05">第 11 章</a>），单细胞最常用的 <strong>logNormalize</strong> 是其中最简单的一种：把每个细胞的计数除以该细胞总数、乘以 10,000，再取对数——<span class="math inline">\(\log(x_i / n \times 10^4 + 1)\)</span>。乘 10,000 让数值落在便于查看的量级，<code>+1</code> 避免零取对数。</p>
-<p>SCTransform 是更现代的替代：它把基因的表达量对测序深度做正则化负二项回归，残差作为归一化值，能更充分地处理测序深度的影响，尤其适合深度差异大的数据<a href="#fn18" class="footnote-ref" id="fnref18" role="doc-noteref"><sup>18</sup></a>。对入门数据，两者的聚类结果差别不大；本章主线用 logNormalize，也可以将相应步骤换成 SCTransform。</p>
+<p>SCTransform 是更现代的替代：它把基因的表达量对测序深度做正则化负二项回归，残差作为归一化值，能更充分地处理测序深度的影响，尤其适合深度差异大的数据<a href="#fn20" class="footnote-ref" id="fnref20" role="doc-noteref"><sup>20</sup></a>。对入门数据，两者的聚类结果差别不大；本章主线用 logNormalize，也可以将相应步骤换成 SCTransform。</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4" data-book-role="code"><pre data-code-text="&quot;pbmc &lt;- NormalizeData(pbmc, normalization.method = \&quot;LogNormalize\&quot;, scale.factor = 1e4)&quot;" class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>pbmc <span class="ot">&lt;-</span> <span class="fu">NormalizeData</span>(pbmc, <span class="at">normalization.method =</span> <span class="st">"LogNormalize"</span>, <span class="at">scale.factor =</span> <span class="fl">1e4</span>)</span></code></pre></div><button title="复制到剪贴板" class="code-copy-button"><i class="bi"></i></button></div>
 </section>
 <section id="topic-09-hvg" class="level3">
@@ -1130,7 +1132,7 @@ window.Quarto = {
 </section>
 <section id="topic-09-clustering" class="level3">
 <h3 class="anchored" data-anchor-id="topic-09-clustering">图构建与聚类：kNN、Louvain/Leiden 与分辨率</h3>
-<p>聚类在主成分空间（而非二维 UMAP）里进行。Seurat 的做法分两步：先在 PC 空间为每个细胞找最近邻，构建<strong>kNN 图</strong>（细胞为节点、近邻关系为边）；再用图聚类算法（默认 Louvain，可选 Leiden<a href="#fn19" class="footnote-ref" id="fnref19" role="doc-noteref"><sup>19</sup></a>）把连接紧密的细胞群划分成簇。</p>
+<p>聚类在主成分空间（而非二维 UMAP）里进行。Seurat 的做法分两步：先在 PC 空间为每个细胞找最近邻，构建<strong>kNN 图</strong>（细胞为节点、近邻关系为边）；再用图聚类算法（默认 Louvain，可选 Leiden<a href="#fn21" class="footnote-ref" id="fnref21" role="doc-noteref"><sup>21</sup></a>）把连接紧密的细胞群划分成簇。</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb8" data-book-role="code"><pre data-code-text="&quot;pbmc &lt;- FindNeighbors(pbmc, dims = 1:10)\npbmc &lt;- FindClusters(pbmc, resolution = 0.5)&quot;" class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>pbmc <span class="ot">&lt;-</span> <span class="fu">FindNeighbors</span>(pbmc, <span class="at">dims =</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">10</span>)</span>
 <span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>pbmc <span class="ot">&lt;-</span> <span class="fu">FindClusters</span>(pbmc, <span class="at">resolution =</span> <span class="fl">0.5</span>)</span></code></pre></div><button title="复制到剪贴板" class="code-copy-button"><i class="bi"></i></button></div>
 <p><code>resolution</code>（分辨率）是聚类里最需要理解的参数：它决定算法偏向切出更多小簇还是更少大簇——分辨率调高，簇会分裂变多；调低，簇会合并变少。0.5 是这份 PBMC 数据的经典取值，得到 9 个簇：</p>
@@ -1280,7 +1282,7 @@ window.Quarto = {
 </section>
 <section id="topic-09-auto-annot" class="level3">
 <h3 class="anchored" data-anchor-id="topic-09-auto-annot">自动注释与参考映射</h3>
-<p>手工对照 marker 可行但费力，于是有了自动注释工具。<strong>SingleR</strong> 用纯化细胞类型的 bulk 转录组参考数据比对打分<a href="#fn20" class="footnote-ref" id="fnref20" role="doc-noteref"><sup>20</sup></a>；<strong>Azimuth</strong> 则把新数据映射到一个大型人工注释的单细胞参考集（如骨髓、PBMC 参考图谱），直接返回每个细胞的注释与置信度<a href="#fn21" class="footnote-ref" id="fnref21" role="doc-noteref"><sup>21</sup></a>。这类工具大幅降低了注释门槛，也带来了新的依赖：结果的质量取决于参考集是否包含相应细胞类型，以及它们与待分析细胞有多相似。</p>
+<p>手工对照 marker 可行但费力，于是有了自动注释工具。<strong>SingleR</strong> 用纯化细胞类型的 bulk 转录组参考数据比对打分<a href="#fn22" class="footnote-ref" id="fnref22" role="doc-noteref"><sup>22</sup></a>；<strong>Azimuth</strong> 则把新数据映射到一个大型人工注释的单细胞参考集（如骨髓、PBMC 参考图谱），直接返回每个细胞的注释与置信度<a href="#fn23" class="footnote-ref" id="fnref23" role="doc-noteref"><sup>23</sup></a>。这类工具大幅降低了注释门槛，也带来了新的依赖：结果的质量取决于参考集是否包含相应细胞类型，以及它们与待分析细胞有多相似。</p>
 </section>
 <section id="topic-09-annot-evidence" class="level3">
 <h3 class="anchored" data-anchor-id="topic-09-annot-evidence">注释的证据核查</h3>
@@ -1311,7 +1313,7 @@ window.Quarto = {
 <section id="topic-09-batch" class="level3">
 <h3 class="anchored" data-anchor-id="topic-09-batch">批次效应：来源与识别</h3>
 <p>真实项目很少只测一个样本。多个样本一起分析时，首先要分辨差异的来源：<strong>生物学差异</strong>（不同供体、不同处理）与<strong>技术批次</strong>（不同实验日、不同建库批次、不同平台）都会让细胞分开，在 UMAP 图上看起来一样是”两团”。分辨的办法是<strong>按样本、按批次元数据给 UMAP 着色</strong>再检查：如果细胞首先按供体/实验日分开、同类型细胞没有混在一起，批次效应占主导；如果同类型细胞聚集、各样本的细胞在同一簇内都有分布，说明结构由生物学主导。</p>
-<p>本节示例换用 ifnb 数据集：IFN-β 刺激（STIM）与未刺激（CTRL）两组 PBMC，共 13,999 个细胞<a href="#fn22" class="footnote-ref" id="fnref22" role="doc-noteref"><sup>22</sup></a>。先把两组当作两个数据层各自处理，再看未整合的 UMAP：</p>
+<p>本节示例换用 ifnb 数据集：IFN-β 刺激（STIM）与未刺激（CTRL）两组 PBMC，共 13,999 个细胞<a href="#fn24" class="footnote-ref" id="fnref24" role="doc-noteref"><sup>24</sup></a>。先把两组当作两个数据层各自处理，再看未整合的 UMAP：</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb13" data-book-role="code"><pre data-code-text="&quot;ifnb[[\&quot;RNA\&quot;]] &lt;- split(ifnb[[\&quot;RNA\&quot;]], f = ifnb$stim)\nifnb &lt;- NormalizeData(ifnb)\nifnb &lt;- FindVariableFeatures(ifnb, nfeatures = 2000)\nifnb &lt;- ScaleData(ifnb)\nifnb &lt;- RunPCA(ifnb)\nifnb &lt;- RunUMAP(ifnb, dims = 1:30, reduction = \&quot;pca\&quot;,\n                reduction.name = \&quot;umap.unintegrated\&quot;)\nDimPlot(ifnb, reduction = \&quot;umap.unintegrated\&quot;, group.by = \&quot;stim\&quot;)&quot;" class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>ifnb[[<span class="st">"RNA"</span>]] <span class="ot">&lt;-</span> <span class="fu">split</span>(ifnb[[<span class="st">"RNA"</span>]], <span class="at">f =</span> ifnb<span class="sc">$</span>stim)</span>
 <span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>ifnb <span class="ot">&lt;-</span> <span class="fu">NormalizeData</span>(ifnb)</span>
 <span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>ifnb <span class="ot">&lt;-</span> <span class="fu">FindVariableFeatures</span>(ifnb, <span class="at">nfeatures =</span> <span class="dv">2000</span>)</span>
@@ -1335,7 +1337,7 @@ window.Quarto = {
 </section>
 <section id="topic-09-integration" class="level3">
 <h3 class="anchored" data-anchor-id="topic-09-integration">数据整合：anchors 与 Harmony</h3>
-<p>确有批次需要去除时，常用两类整合方法。Seurat 的 <strong>anchors</strong>（锚点）策略在不同数据集间寻找相互”配对”的细胞作为锚，据此对齐数据结构<a href="#fn23" class="footnote-ref" id="fnref23" role="doc-noteref"><sup>23</sup></a>；<strong>Harmony</strong> 在 PCA 空间里迭代地把指定分组的分布拉近，速度快、对大数据友好<a href="#fn24" class="footnote-ref" id="fnref24" role="doc-noteref"><sup>24</sup></a>。Seurat v5 把两者统一进 <code>IntegrateLayers()</code> 接口：</p>
+<p>确有批次需要去除时，常用两类整合方法。Seurat 的 <strong>anchors</strong>（锚点）策略在不同数据集间寻找相互”配对”的细胞作为锚，据此对齐数据结构<a href="#fn25" class="footnote-ref" id="fnref25" role="doc-noteref"><sup>25</sup></a>；<strong>Harmony</strong> 在 PCA 空间里迭代地把指定分组的分布拉近，速度快、对大数据友好<a href="#fn26" class="footnote-ref" id="fnref26" role="doc-noteref"><sup>26</sup></a>。Seurat v5 把两者统一进 <code>IntegrateLayers()</code> 接口：</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb14" data-book-role="code"><pre data-code-text="&quot;ifnb &lt;- IntegrateLayers(ifnb, method = \&quot;HarmonyIntegration\&quot;,\n                        orig.reduction = \&quot;pca\&quot;, new.reduction = \&quot;harmony\&quot;)\nifnb &lt;- FindNeighbors(ifnb, reduction = \&quot;harmony\&quot;, dims = 1:30)\nifnb &lt;- FindClusters(ifnb, resolution = 0.6)\nifnb &lt;- RunUMAP(ifnb, reduction = \&quot;harmony\&quot;, dims = 1:30,\n                reduction.name = \&quot;umap.harmony\&quot;)&quot;" class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>ifnb <span class="ot">&lt;-</span> <span class="fu">IntegrateLayers</span>(ifnb, <span class="at">method =</span> <span class="st">"HarmonyIntegration"</span>,</span>
 <span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>                        <span class="at">orig.reduction =</span> <span class="st">"pca"</span>, <span class="at">new.reduction =</span> <span class="st">"harmony"</span>)</span>
 <span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>ifnb <span class="ot">&lt;-</span> <span class="fu">FindNeighbors</span>(ifnb, <span class="at">reduction =</span> <span class="st">"harmony"</span>, <span class="at">dims =</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">30</span>)</span>
@@ -1359,7 +1361,7 @@ window.Quarto = {
 </section>
 <section id="topic-09-pseudobulk" class="level3">
 <h3 class="anchored" data-anchor-id="topic-09-pseudobulk">伪批量差异分析：回到样本层面</h3>
-<p>“IFN 刺激改变了哪些基因的表达？”这个问题不能直接用 <code>FindAllMarkers</code> 回答。逐细胞的检验把每个细胞当独立样本，但同一供体的成千上万个细胞共享供体背景——它们不是独立的，逐细胞 p 值会严重虚高，这就是<strong>伪重复</strong>问题。正确做法是<strong>伪批量</strong>（pseudobulk）：按”样本×细胞类型”把计数加和，合成一个 bulk 级样本，再用第 5 章的 DESeq2/edgeR 检验；比较方法学的研究也确认了伪批量在多数场景下更稳健<a href="#fn25" class="footnote-ref" id="fnref25" role="doc-noteref"><sup>25</sup></a>。</p>
+<p>“IFN 刺激改变了哪些基因的表达？”这个问题不能直接用 <code>FindAllMarkers</code> 回答。逐细胞的检验把每个细胞当独立样本，但同一供体的成千上万个细胞共享供体背景——它们不是独立的，逐细胞 p 值会严重虚高，这就是<strong>伪重复</strong>问题。正确做法是<strong>伪批量</strong>（pseudobulk）：按”样本×细胞类型”把计数加和，合成一个 bulk 级样本，再用第 5 章的 DESeq2/edgeR 检验；比较方法学的研究也确认了伪批量在多数场景下更稳健<a href="#fn27" class="footnote-ref" id="fnref27" role="doc-noteref"><sup>27</sup></a>。</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb15" data-book-role="code"><pre data-code-text="&quot;# 按 样本(此处为伪重复)×细胞类型 聚合计数（示意：ifnb 对象未保留供体编号，\n# 实际分析应使用真实的供体/样本身份）\ncounts &lt;- GetAssayData(ifnb, assay = \&quot;RNA\&quot;, layer = \&quot;counts\&quot;)\ngrp &lt;- paste(rep_id, ifnb$seurat_annotations, sep = \&quot;|\&quot;)  # rep_id 为重复编号\npb_counts &lt;- counts %*% sparse.model.matrix(~ 0 + factor(grp))\n\n# 取 CD14 单核细胞，回到 DESeq2\ndds &lt;- DESeqDataSetFromMatrix(countData = pb_counts[, cd14_cols],\n                              colData = cd14_meta, design = ~ stim)\ndds &lt;- DESeq(dds)&quot;" class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 按 样本(此处为伪重复)×细胞类型 聚合计数（示意：ifnb 对象未保留供体编号，</span></span>
 <span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a><span class="co"># 实际分析应使用真实的供体/样本身份）</span></span>
 <span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>counts <span class="ot">&lt;-</span> <span class="fu">GetAssayData</span>(ifnb, <span class="at">assay =</span> <span class="st">"RNA"</span>, <span class="at">layer =</span> <span class="st">"counts"</span>)</span>
@@ -1403,7 +1405,7 @@ window.Quarto = {
 <h3 class="anchored" data-anchor-id="src-0050-RNA-seq-91">空间转录组解决什么问题</h3>
 <p><span id="src-0050-RNA-seq-81"></span></p>
 <p>普通的 RNA 测序——包括单细胞 RNA 测序——都无法提供组织内部不同位置的转录组信息：单细胞在解离时丢掉了位置，bulk 连细胞差异一起平均掉了。空间转录组测序在获取基因表达信息的同时保留空间位置：把冰冻切片贴在带位置条形码的捕获芯片上，透化让每个位置的 RNA 释放并被<strong>该位置特有的 barcode</strong> 捕获，测序后即可还原”哪一段序列来自组织的哪个坐标”。</p>
-<p>空间转录组不是单细胞转录组的升级，两者是互补关系：主流空间平台的捕获点（spot）里通常是多个细胞，分辨率低于单细胞，但保留了组织学语境；单细胞分辨率高，但丢了位置。把两类数据放在一起用，正是 9.8 节的主题。这一技术路线的原始文献发表于 2016 年，随后被 10x Genomics 商品化为 Visium 平台<a href="#fn26" class="footnote-ref" id="fnref26" role="doc-noteref"><sup>26</sup></a>。至于 RNA 建库的链特异性问题（read 来自正链还是负链基因），与空间无关，已在<a href="../manuscript/05-rna-seq.html#topic-05-stranded-lib">第 5 章</a>讲过，本章不再重复。<span id="src-0050-RNA-seq-95"></span></p>
+<p>空间转录组不是单细胞转录组的升级，两者是互补关系：主流空间平台的捕获点（spot）里通常是多个细胞，分辨率低于单细胞，但保留了组织学语境；单细胞分辨率高，但丢了位置。把两类数据放在一起用，正是 9.8 节的主题。这一技术路线的原始文献发表于 2016 年，随后被 10x Genomics 商品化为 Visium 平台<a href="#fn28" class="footnote-ref" id="fnref28" role="doc-noteref"><sup>28</sup></a>。至于 RNA 建库的链特异性问题（read 来自正链还是负链基因），与空间无关，已在<a href="../manuscript/05-rna-seq.html#topic-05-stranded-lib">第 5 章</a>讲过，本章不再重复。<span id="src-0050-RNA-seq-95"></span></p>
 </section>
 <section id="topic-09-spatial-tech" class="level3">
 <h3 class="anchored" data-anchor-id="topic-09-spatial-tech">技术全景：捕获型、原位杂交型与高分辨率平台</h3>
@@ -1458,7 +1460,7 @@ window.Quarto = {
 </div>
 </figure>
 </div>
-<p><a href="#tbl-09-spatial-tech" class="quarto-xref">表&nbsp;<span>9.2</span></a> 的三行代表三种取舍：<strong>全转录组与分辨率不可兼得</strong>——Visium 测所有基因但每点多细胞；MERFISH/Xenium 定位到单分子却只能测预先选好的几百到几千个基因<a href="#fn27" class="footnote-ref" id="fnref27" role="doc-noteref"><sup>27</sup></a>；Visium HD 把捕获网格推到 2 µm，又带来数据量与统计单位（bin 怎么合并）的新问题<a href="#fn28" class="footnote-ref" id="fnref28" role="doc-noteref"><sup>28</sup></a>。选型时先回答：关心的是”哪些基因在哪里”（全转录组优先），还是”已知分子定位到亚细胞”（靶向高分辨优先）。</p>
+<p><a href="#tbl-09-spatial-tech" class="quarto-xref">表&nbsp;<span>9.2</span></a> 的三行代表三种取舍：<strong>全转录组与分辨率不可兼得</strong>——Visium 测所有基因但每点多细胞；MERFISH/Xenium 定位到单分子却只能测预先选好的几百到几千个基因<a href="#fn29" class="footnote-ref" id="fnref29" role="doc-noteref"><sup>29</sup></a>；Visium HD 把捕获网格推到 2 µm，又带来数据量与统计单位（bin 怎么合并）的新问题<a href="#fn30" class="footnote-ref" id="fnref30" role="doc-noteref"><sup>30</sup></a>。选型时先回答：关心的是”哪些基因在哪里”（全转录组优先），还是”已知分子定位到亚细胞”（靶向高分辨优先）。</p>
 </section>
 <section id="topic-09-visium-data" class="level3">
 <h3 class="anchored" data-anchor-id="topic-09-visium-data">Visium 数据结构与 Space Ranger 质控</h3>
@@ -1499,7 +1501,7 @@ nFeature_Spatial 中位数 4,772（范围 28–9,476）</code></pre>
 </section>
 <section id="topic-09-spatial-limits" class="level3">
 <h3 class="anchored" data-anchor-id="topic-09-spatial-limits">分辨率限制与结论边界</h3>
-<p>解释 Visium 结果时，时刻记得 <a href="#tbl-09-spatial-tech" class="quarto-xref">表&nbsp;<span>9.2</span></a> 的第一行：<strong>每个 spot 覆盖约 1–10 个细胞</strong>（不同组织密度下浮动）。因此”某 spot 高表达 T 细胞 marker”并不意味着那里全是 T 细胞——可能是 T 细胞富集，也可能是大量 T 细胞混在别的细胞中间。把 spot 表达还原成细胞类型构成的工作叫<strong>去卷积</strong>，RCTD 与 cell2location 是常用工具：它们用一份单细胞参考数据估计每个 spot 里各类型细胞的占比<a href="#fn29" class="footnote-ref" id="fnref29" role="doc-noteref"><sup>29</sup></a><a href="#fn30" class="footnote-ref" id="fnref30" role="doc-noteref"><sup>30</sup></a>。去卷积输出是模型估计而不是测量，不同参考、不同工具给出的比例可能明显不同——把”估计的构成”写成”实测的构成”，就越过了数据能支持的结论。</p>
+<p>解释 Visium 结果时，时刻记得 <a href="#tbl-09-spatial-tech" class="quarto-xref">表&nbsp;<span>9.2</span></a> 的第一行：<strong>每个 spot 覆盖约 1–10 个细胞</strong>（不同组织密度下浮动）。因此”某 spot 高表达 T 细胞 marker”并不意味着那里全是 T 细胞——可能是 T 细胞富集，也可能是大量 T 细胞混在别的细胞中间。把 spot 表达还原成细胞类型构成的工作叫<strong>去卷积</strong>，RCTD 与 cell2location 是常用工具：它们用一份单细胞参考数据估计每个 spot 里各类型细胞的占比<a href="#fn31" class="footnote-ref" id="fnref31" role="doc-noteref"><sup>31</sup></a><a href="#fn32" class="footnote-ref" id="fnref32" role="doc-noteref"><sup>32</sup></a>。去卷积输出是模型估计而不是测量，不同参考、不同工具给出的比例可能明显不同——把”估计的构成”写成”实测的构成”，就越过了数据能支持的结论。</p>
 <div class="book-warning callout callout-style-default callout-warning callout-titled" title="注意｜空间相邻不等于相互作用">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -1628,7 +1630,7 @@ nFeature_Spatial 中位数 4,772（范围 28–9,476）</code></pre>
 </div>
 <div id="callout-8" class="callout-8-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
-<p>聚类把细胞看成互不相关的类群，但发育、分化、刺激响应中的细胞常处于<strong>连续的状态过渡</strong>里。轨迹推断（trajectory inference / pseudotime）把细胞按转录状态的相似性排成一条”拟时间”轴，推断哪些细胞更早、哪些更晚、基因沿轨迹如何开关——Monocle 是这一路线的代表工具<a href="#fn31" class="footnote-ref" id="fnref31" role="doc-noteref"><sup>31</sup></a>。它适合回答”分化从哪来、到哪去”；常见误用是把拟时间方向当成因果证明（算法并不知道真实的先后），以及给本无连续结构的数据强行排轨。需要时，先看状态是否连续（UMAP 上是否成连续流形），再选择相应的轨迹推断方法。</p>
+<p>聚类把细胞看成互不相关的类群，但发育、分化、刺激响应中的细胞常处于<strong>连续的状态过渡</strong>里。轨迹推断（trajectory inference / pseudotime）把细胞按转录状态的相似性排成一条”拟时间”轴，推断哪些细胞更早、哪些更晚、基因沿轨迹如何开关——Monocle 是这一路线的代表工具<a href="#fn33" class="footnote-ref" id="fnref33" role="doc-noteref"><sup>33</sup></a>。它适合回答”分化从哪来、到哪去”；常见误用是把拟时间方向当成因果证明（算法并不知道真实的先后），以及给本无连续结构的数据强行排轨。需要时，先看状态是否连续（UMAP 上是否成连续流形），再选择相应的轨迹推断方法。</p>
 </div>
 </div>
 </div>
@@ -1647,35 +1649,37 @@ nFeature_Spatial 中位数 4,772（范围 28–9,476）</code></pre>
 <li id="fn6"><p>Macosko EZ, et al.&nbsp;Highly parallel genome-wide expression profiling of individual cells using nanoliter droplets (Drop-seq). Cell. 2015;161(5):1202–1214。原稿编号参考列表已佚失，本脚注按正文主张重新考证补全。<a href="#fnref6" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
 <li id="fn7"><p>Fan HC, Fu GK, Fodor SPA. Expression profiling: combinatorial labeling of single cells for gene expression cytometry (CytoSeq). Science. 2015;347(6222):1258367。<a href="#fnref7" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
 <li id="fn8"><p>Zheng GXY, et al.&nbsp;Massively parallel digital transcriptional profiling of single cells. Nat Commun. 2017;8:14049（10x Chromium 系统的验证论文，液滴过程、barcode/UMI 设计与双细胞率数据均出自本文）。<a href="#fnref8" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
-<li id="fn9"><p>Zheng GXY, et al.&nbsp;Massively parallel digital transcriptional profiling of single cells. Nat Commun. 2017;8:14049（10x Chromium 系统的验证论文，液滴过程、barcode/UMI 设计与双细胞率数据均出自本文）。<a href="#fnref9" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn9"><p><a href="https://cdn.10xgenomics.com/image/upload/v1660261285/support-documents/CG000204_ChromiumNextGEMSingleCell3_v3.1_Rev_D.pdf">10x Chromium Next GEM Single Cell 3′ v3.1，CG000204 Rev D，第 15–16 页</a>；<a href="https://www.bdbiosciences.com/content/dam/bdb/marketing-documents/BD-Rhapsody-Single-Cell-Capture-and-cDNA-Synthesis-User-Guide.pdf">BD Rhapsody Single Cell Capture and cDNA Synthesis User Guide，第 4–6 页</a>。图示对应这些基于 mRNA 捕获的流程，不概括各品牌所有试剂体系。<a href="#fnref9" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
 <li id="fn10"><p>Zheng GXY, et al.&nbsp;Massively parallel digital transcriptional profiling of single cells. Nat Commun. 2017;8:14049（10x Chromium 系统的验证论文，液滴过程、barcode/UMI 设计与双细胞率数据均出自本文）。<a href="#fnref10" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
-<li id="fn11"><p>Yuting Liu. Single Cell MultiOmics Data Analysis（bookdown 在线教程，<a href="https://bookdown.org/ytliu13207/SingleCellMultiOmicsDataAnalysis/" class="uri">https://bookdown.org/ytliu13207/SingleCellMultiOmicsDataAnalysis/</a>；配套脚本与数据见 GitHub 仓库 YutingPKU/SingleCell-Multiomics）。<a href="#fnref11" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
-<li id="fn12"><p>Kang HM, et al.&nbsp;Multiplexed droplet single-cell RNA-sequencing using natural genetic variation. Nat Biotechnol. 2018;36:89–94（ifnb 数据集出处；SeuratData 包 ifnb 为其整理版）。<a href="#fnref12" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
-<li id="fn13"><p>Zheng GXY, et al.&nbsp;Massively parallel digital transcriptional profiling of single cells. Nat Commun. 2017;8:14049（10x Chromium 系统的验证论文，液滴过程、barcode/UMI 设计与双细胞率数据均出自本文）。<a href="#fnref13" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
-<li id="fn14"><p>Wolock SL, Lopez R, Klein AM. Scrublet: computational identification of cell doublets in single-cell transcriptomic data. Cell Syst. 2019;8(4):281–291。<a href="#fnref14" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
-<li id="fn15"><p>McGinnis CS, Murrow LM, Gartner ZJ. DoubletFinder: doublet detection in single-cell RNA sequencing data using artificial nearest neighbors. Cell Syst. 2019;8(4):329–337。<a href="#fnref15" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
-<li id="fn16"><p>Young MD, Behjati S. SoupX removes ambient RNA contamination from droplet-based single cell RNA sequencing data. Genome Biol. 2019;20(1):251。<a href="#fnref16" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
-<li id="fn17"><p>Fleming SJ, et al.&nbsp;Unsupervised removal of systematic background noise from droplet-based single-cell experiments using CellBender. Nat Biotechnol. 2023;41:1330–1339。<a href="#fnref17" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
-<li id="fn18"><p>Hafemeister C, Satija R. Normalization and variance stabilization of single-cell RNA-seq data using regularized negative binomial regression. Genome Biol. 2019;20(1):296。<a href="#fnref18" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
-<li id="fn19"><p>Traag VA, Waltman L, van Eck NJ. From Louvain to Leiden: guaranteeing well-connected communities. Sci Rep.&nbsp;2019;9:5233。<a href="#fnref19" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
-<li id="fn20"><p>Aran D, et al.&nbsp;Reference-based analysis of lung single-cell sequencing reveals a transitional profibrotic macrophage. Nat Immunol. 2019;20(2):163–172（SingleR 方法论文）。<a href="#fnref20" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
-<li id="fn21"><p>Hao Y, et al.&nbsp;Integrated analysis of multimodal single-cell data. Cell. 2021;184(13):3573–3587（Seurat v4 与 Azimuth 参考映射）。<a href="#fnref21" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
-<li id="fn22"><p>Kang HM, et al.&nbsp;Multiplexed droplet single-cell RNA-sequencing using natural genetic variation. Nat Biotechnol. 2018;36:89–94（ifnb 数据集出处；SeuratData 包 ifnb 为其整理版）。<a href="#fnref22" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
-<li id="fn23"><p>Stuart T, et al.&nbsp;Comprehensive integration of single-cell data. Cell. 2019;177(7):1888–1902（Seurat anchors 整合策略）。<a href="#fnref23" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
-<li id="fn24"><p>Korsunsky I, et al.&nbsp;Fast, sensitive and accurate integration of single-cell data with Harmony. Nat Methods. 2019;16:1289–1296。<a href="#fnref24" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
-<li id="fn25"><p>Murphy AE, Skene NG. A balanced measure shows superior performance of pseudobulk methods in single-cell RNA-sequencing analysis. Nat Commun. 2022;13:7851；单细胞最佳实践综述另见 Luecken MD, Theis FJ. Mol Syst Biol. 2019;15(6):e8746 与 Heumos L, et al.&nbsp;Nat Rev Genet. 2023。<a href="#fnref25" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
-<li id="fn26"><p>Ståhl PL, et al.&nbsp;Visualization and analysis of gene expression in tissue sections by spatial transcriptomics. Science. 2016;353(6294):78–82。<a href="#fnref26" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
-<li id="fn27"><p>Chen KH, Boettiger AN, Moffitt JR, et al.&nbsp;Spatially resolved, highly multiplexed RNA profiling in single cells (MERFISH). Science. 2015;348(6233):aaa6090。<a href="#fnref27" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
-<li id="fn28"><p>规格引自 10x Genomics 官方资料：Visium HD 性能技术说明（CG000686）及 Visium 试剂盒用户指南；2026 年 10 月核对。<a href="#fnref28" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
-<li id="fn29"><p>Cable DM, et al.&nbsp;Robust decomposition of cell type mixtures in spatial transcriptomics data (RCTD). Nat Biotechnol. 2022;40:317–327。<a href="#fnref29" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
-<li id="fn30"><p>Kleshchevnikov V, et al.&nbsp;Cell2location maps fine-grained cell types in spatial transcriptomics. Nat Biotechnol. 2022;40:661–671。<a href="#fnref30" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
-<li id="fn31"><p>Trapnell C, et al.&nbsp;The dynamics and regulators of cell fate decisions are revealed by pseudotemporal progression of transcriptomes (Monocle). Nat Biotechnol. 2014;32(4):381–386。<a href="#fnref31" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn11"><p><a href="https://cdn.10xgenomics.com/image/upload/v1660261285/support-documents/CG000204_ChromiumNextGEMSingleCell3_v3.1_Rev_D.pdf">10x Chromium Next GEM Single Cell 3′ v3.1，CG000204 Rev D，第 15–16 页</a>；<a href="https://www.bdbiosciences.com/content/dam/bdb/marketing-documents/BD-Rhapsody-Single-Cell-Capture-and-cDNA-Synthesis-User-Guide.pdf">BD Rhapsody Single Cell Capture and cDNA Synthesis User Guide，第 4–6 页</a>。图示对应这些基于 mRNA 捕获的流程，不概括各品牌所有试剂体系。<a href="#fnref11" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn12"><p>Zheng GXY, et al.&nbsp;Massively parallel digital transcriptional profiling of single cells. Nat Commun. 2017;8:14049（10x Chromium 系统的验证论文，液滴过程、barcode/UMI 设计与双细胞率数据均出自本文）。<a href="#fnref12" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn13"><p>Yuting Liu. Single Cell MultiOmics Data Analysis（bookdown 在线教程，<a href="https://bookdown.org/ytliu13207/SingleCellMultiOmicsDataAnalysis/" class="uri">https://bookdown.org/ytliu13207/SingleCellMultiOmicsDataAnalysis/</a>；配套脚本与数据见 GitHub 仓库 YutingPKU/SingleCell-Multiomics）。<a href="#fnref13" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn14"><p>Kang HM, et al.&nbsp;Multiplexed droplet single-cell RNA-sequencing using natural genetic variation. Nat Biotechnol. 2018;36:89–94（ifnb 数据集出处；SeuratData 包 ifnb 为其整理版）。<a href="#fnref14" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn15"><p>Zheng GXY, et al.&nbsp;Massively parallel digital transcriptional profiling of single cells. Nat Commun. 2017;8:14049（10x Chromium 系统的验证论文，液滴过程、barcode/UMI 设计与双细胞率数据均出自本文）。<a href="#fnref15" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn16"><p>Wolock SL, Lopez R, Klein AM. Scrublet: computational identification of cell doublets in single-cell transcriptomic data. Cell Syst. 2019;8(4):281–291。<a href="#fnref16" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn17"><p>McGinnis CS, Murrow LM, Gartner ZJ. DoubletFinder: doublet detection in single-cell RNA sequencing data using artificial nearest neighbors. Cell Syst. 2019;8(4):329–337。<a href="#fnref17" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn18"><p>Young MD, Behjati S. SoupX removes ambient RNA contamination from droplet-based single cell RNA sequencing data. Genome Biol. 2019;20(1):251。<a href="#fnref18" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn19"><p>Fleming SJ, et al.&nbsp;Unsupervised removal of systematic background noise from droplet-based single-cell experiments using CellBender. Nat Biotechnol. 2023;41:1330–1339。<a href="#fnref19" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn20"><p>Hafemeister C, Satija R. Normalization and variance stabilization of single-cell RNA-seq data using regularized negative binomial regression. Genome Biol. 2019;20(1):296。<a href="#fnref20" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn21"><p>Traag VA, Waltman L, van Eck NJ. From Louvain to Leiden: guaranteeing well-connected communities. Sci Rep.&nbsp;2019;9:5233。<a href="#fnref21" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn22"><p>Aran D, et al.&nbsp;Reference-based analysis of lung single-cell sequencing reveals a transitional profibrotic macrophage. Nat Immunol. 2019;20(2):163–172（SingleR 方法论文）。<a href="#fnref22" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn23"><p>Hao Y, et al.&nbsp;Integrated analysis of multimodal single-cell data. Cell. 2021;184(13):3573–3587（Seurat v4 与 Azimuth 参考映射）。<a href="#fnref23" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn24"><p>Kang HM, et al.&nbsp;Multiplexed droplet single-cell RNA-sequencing using natural genetic variation. Nat Biotechnol. 2018;36:89–94（ifnb 数据集出处；SeuratData 包 ifnb 为其整理版）。<a href="#fnref24" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn25"><p>Stuart T, et al.&nbsp;Comprehensive integration of single-cell data. Cell. 2019;177(7):1888–1902（Seurat anchors 整合策略）。<a href="#fnref25" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn26"><p>Korsunsky I, et al.&nbsp;Fast, sensitive and accurate integration of single-cell data with Harmony. Nat Methods. 2019;16:1289–1296。<a href="#fnref26" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn27"><p>Murphy AE, Skene NG. A balanced measure shows superior performance of pseudobulk methods in single-cell RNA-sequencing analysis. Nat Commun. 2022;13:7851；单细胞最佳实践综述另见 Luecken MD, Theis FJ. Mol Syst Biol. 2019;15(6):e8746 与 Heumos L, et al.&nbsp;Nat Rev Genet. 2023。<a href="#fnref27" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn28"><p>Ståhl PL, et al.&nbsp;Visualization and analysis of gene expression in tissue sections by spatial transcriptomics. Science. 2016;353(6294):78–82。<a href="#fnref28" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn29"><p>Chen KH, Boettiger AN, Moffitt JR, et al.&nbsp;Spatially resolved, highly multiplexed RNA profiling in single cells (MERFISH). Science. 2015;348(6233):aaa6090。<a href="#fnref29" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn30"><p>规格引自 10x Genomics 官方资料：Visium HD 性能技术说明（CG000686）及 Visium 试剂盒用户指南；2026 年 10 月核对。<a href="#fnref30" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn31"><p>Cable DM, et al.&nbsp;Robust decomposition of cell type mixtures in spatial transcriptomics data (RCTD). Nat Biotechnol. 2022;40:317–327。<a href="#fnref31" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn32"><p>Kleshchevnikov V, et al.&nbsp;Cell2location maps fine-grained cell types in spatial transcriptomics. Nat Biotechnol. 2022;40:661–671。<a href="#fnref32" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn33"><p>Trapnell C, et al.&nbsp;The dynamics and regulators of cell fate decisions are revealed by pseudotemporal progression of transcriptomes (Monocle). Nat Biotechnol. 2014;32(4):381–386。<a href="#fnref33" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
 </ol>
 </section>
 
 </main> <!-- /main -->
 <div class="book-toolbar" role="navigation" aria-label="阅读工具">
-  <div class="book-brand"><span class="book-brand-name">AI时代生信入门</span><time class="book-last-modified" datetime="2026-10-12T14:30:32+08:00" title="最后修改时间（北京时间，UTC+08:00）">最后修改 2026-10-12 14:30</time></div>
+  <div class="book-brand"><span class="book-brand-name">AI时代生信入门</span><time class="book-last-modified" datetime="2026-10-12T15:17:48+08:00" title="最后修改时间（北京时间，UTC+08:00）">最后修改 2026-10-12 15:17</time></div>
   <button class="book-menu-button" type="button" aria-controls="quarto-sidebar" aria-expanded="false">目录</button>
   <button class="book-search-button" type="button">搜索</button>
 </div>
