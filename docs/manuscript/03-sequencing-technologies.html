@@ -921,7 +921,7 @@ window.Quarto = {
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
 <h1 class="title"><span id="sec-ch03" class="quarto-section-identifier"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">测序技术基础</span></span></h1>
-<p class="chapter-last-modified"><time datetime="2026-10-11T16:29:11+08:00" title="本章书稿最后修改时间（北京时间，UTC+08:00）">最后修改：2026-10-11 16:29（北京时间）</time></p>
+<p class="chapter-last-modified"><time datetime="2026-10-12T13:46:45+08:00" title="本章书稿最后修改时间（北京时间，UTC+08:00）">最后修改：2026-10-12 13:46（北京时间）</time></p>
 </div>
 
 
@@ -944,7 +944,7 @@ window.Quarto = {
 </section>
 <section id="sec-03-01" class="level2" data-number="3.1">
 <h2 data-number="3.1" class="anchored" data-anchor-id="sec-03-01"><span class="header-section-number">3.1</span> 不同测序实验究竟测到了什么</h2>
-<p>避免把不同实验的 reads 当作同一种生物学测量。</p>
+<p>不同实验产生的 reads，代表的生物学测量并不相同。</p>
 <p>拿到一份测序数据时，最先要回答的问题不是“用什么软件分析”，而是“这份样本里究竟测到了什么分子”。测序仪输出的 reads 形式上都一样——一串 A、T、C、G 和对应的质量值——但它们背后的生物学对象可以完全不同：有的测的是基因组 DNA，有的测的是逆转录后的 mRNA，有的测的是被蛋白质“拉下来”的 DNA 片段，还有的只测外显子区域。如果不清楚 reads 的来源，后面的每一步分析都可能答非所问。</p>
 <p>理解一份测序数据，可以从三个问题入手：<strong>样本是什么</strong>（组织、细胞还是单个细胞）；<strong>文库怎么建</strong>（片段如何打断、是否逆转录、是否富集特定区域）；<strong>测的是哪一段</strong>（基因组全序列、外显子、转录本还是结合位点片段）。下表列出本书后续章节会详细分析的常见实验类型。</p>
 <div id="tbl-03-experiment-types" class="quarto-float quarto-figure quarto-figure-center anchored">
@@ -1016,7 +1016,7 @@ window.Quarto = {
 </div>
 </figure>
 </div>
-<p>同一个样本用不同实验处理，得到的 reads 含义完全不同；反过来，不同的建库方案也会改变数据的偏向和噪声特性。本章接下来先介绍产生这些 reads 的测序技术本身，再讲文库构建、数据存储格式与质量评估，为后续各章的具体分析打下基础。</p>
+<p>同一个样本采用不同实验，得到的 reads 含义会完全不同；建库方案也会改变数据的偏向和噪声特性。接下来，我们先看这些 reads 是怎样测出来的，再介绍文库构建、数据存储格式与质量评估。</p>
 </section>
 <section id="sec-03-sequencing-generations" class="level2" data-number="3.2">
 <h2 data-number="3.2" class="anchored" data-anchor-id="sec-03-sequencing-generations"><span class="header-section-number">3.2</span> 从 Sanger 到高通量测序</h2>
@@ -1026,13 +1026,13 @@ window.Quarto = {
 <h3 class="anchored" data-anchor-id="question-01-80">Sanger 测序：双脱氧链终止法</h3>
 <p><span id="basic_knowledge"></span></p>
 <p>Sanger 法即双脱氧链终止法，是第一代测序技术的代表。它利用 DNA 复制原理，在反应中加入双脱氧核苷三磷酸（ddNTP）：ddNTP 缺少 3′ 羟基，一旦掺入延伸中的链，反应就无法继续，DNA 链便在对应位置终止。四种 ddNTP 分别反应（或以荧光标记区分）后，依据不同长度的终止片段判断每个位置的碱基类型。</p>
-<p>Sanger 测序的读长可达 500—1000 bp，单条序列的准确率很高，至今仍是验证少量序列的“金标准”。它通量低的核心原因是每条序列都需要独立的反应和电泳分离（早期为凝胶电泳，后来是毛细管电泳），一次运行的并行条数有限。实验室里常用它验证质粒、PCR 产物或克隆单条序列，但测一个人类基因组就需要天文数字的独立反应，成本无法承受。</p>
+<p>Sanger 测序的读长可达 500—1000 bp，单条序列的准确率很高，至今仍是验证少量序列的“金标准”。它的通量较低，因为每条序列都需要独立反应，再通过电泳分离（早期为凝胶电泳，后来是毛细管电泳），一次能并行处理的序列数量有限。实验室常用它验证质粒、PCR 产物或克隆单条序列；但若用它测一个人类基因组，就需要极其大量的独立反应，成本无法承受。</p>
 </section>
 <section id="src-0020-introduction-of-NGS-1" class="level3">
 <h3 class="anchored" data-anchor-id="src-0020-introduction-of-NGS-1">第二代测序的兴起</h3>
 <p><span id="question-01-83"></span></p>
 <p>第二代测序（Next Generation Sequencing，NGS）的核心突破不是把单条序列读得更准，而是<strong>并行化</strong>：把亿万条模板片段固定在芯片上同时测序，用“空间换通量”。发展过程中出现过几条技术路线：Roche 454 采用焦磷酸测序，Ion Torrent 用半导体芯片检测合成时释放的氢离子，而 Illumina（源于 Solexa 公司 2006 年发布的 Genome Analyzer）采用荧光可逆终止化学，凭借通量和成本的平衡最终占据主导。我们接触到的很多生物信息学技术，比如 RNA-seq、ChIP-seq、Hi-C 等，都建立在 NGS 之上。</p>
-<p>于是第二代测序呈现鲜明的特点：<strong>高通量、单碱基成本低，但读长短</strong>（通常 50—300 bp）。本章 3.3 节以 Illumina 为代表讲解原理，其他短读长平台思路相近。</p>
+<p>第二代测序的特点是<strong>高通量、单碱基成本低，但读长短</strong>（通常 50—300 bp）。本章 3.3 节以 Illumina 为例讲解原理，其他短读长平台的思路相近。</p>
 </section>
 <section id="question-01-133" class="level3">
 <h3 class="anchored" data-anchor-id="question-01-133">机型与通量：随时代变化</h3>
@@ -1177,7 +1177,7 @@ window.Quarto = {
 </figcaption>
 </figure>
 </div>
-<p>在整个 flowcell 上看，就是一个个彼此独立的 cluster；测序时每个 cluster 作为一个“单分子”参与信号读取，这就是二代测序并行化的物理基础。</p>
+<p>这样，整个 flowcell 上就形成了一个个彼此独立的 cluster。测序时，每个 cluster 作为一个“单分子”参与信号读取，二代测序便可以同时读取大量序列。</p>
 </section>
 <section id="src-0020-introduction-of-NGS-55" class="level3">
 <h3 class="anchored" data-anchor-id="src-0020-introduction-of-NGS-55">边合成边测序（SBS）</h3>
@@ -1197,7 +1197,7 @@ window.Quarto = {
 <p>测序时，聚合酶沿模板延伸引物，加入带有可逆终止基团的核苷酸，使一轮反应只延伸一个碱基。仪器根据荧光信号判断本轮加入的碱基，再解除终止并进入下一轮。不同代际平台的荧光编码和化学体系有所不同，不能都理解为四种碱基各自发出一种颜色。</p>
 </div>
 </div>
-<p>Illumina 边合成边测序（Sequencing by Synthesis，SBS）的化学核心是<strong>可逆终止子核苷酸</strong>：它在两个方面经过修饰——碱基通过可切除连接子带上荧光染料；脱氧核糖 3′ 羟基被叠氮甲基（–CH₂–N₃）封闭，保证每轮反应只能延伸一个碱基。下页的示意图给出直观印象，精确的化学结构见本节末的拓展阅读框。</p>
+<p>Illumina 边合成边测序（Sequencing by Synthesis，SBS）使用的关键分子是<strong>可逆终止子核苷酸</strong>。它有两处修饰：碱基通过可切除连接子带上荧光染料，脱氧核糖的 3′ 羟基被叠氮甲基（–CH₂–N₃）封闭，保证每轮反应只能延伸一个碱基。可以先看下面的示意图；精确的化学结构见本节末的拓展阅读框。</p>
 <div id="fig-03-sequencing-and-data-formats-006" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-03-sequencing-and-data-formats-006-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
@@ -1289,7 +1289,7 @@ window.Quarto = {
 </section>
 <section id="sec-03-03" class="level2" data-number="3.4">
 <h2 data-number="3.4" class="anchored" data-anchor-id="sec-03-03"><span class="header-section-number">3.4</span> MGI 测序技术</h2>
-<p>知道第二个主流短读长平台用什么策略解决同样的问题。</p>
+<p>MGI 是另一个主流短读长平台。我们来看它怎样生成信号并读取序列。</p>
 <section id="src-0020-introduction-of-NGS-84" class="level3">
 <h3 class="anchored" data-anchor-id="src-0020-introduction-of-NGS-84">华大智造测序仪</h3>
 <p>华大智造（MGI）的 DNBSEQ 技术同样实现大规模并行短读长测序，但簇生成和测序化学与 Illumina 不同。</p>
@@ -1310,7 +1310,7 @@ window.Quarto = {
 </section>
 <section id="sec-03-04" class="level2" data-number="3.5">
 <h2 data-number="3.5" class="anchored" data-anchor-id="sec-03-04"><span class="header-section-number">3.5</span> 长读长测序：PacBio 与 Nanopore</h2>
-<p>知道何时短读长不足，并正确理解长读长技术的输入输出。</p>
+<p>短读长有哪些不足，长读长技术又能提供什么数据？</p>
 <p>短读长 reads 难以跨越重复序列、结构变异和全长转录本，这时需要长读长技术。与短读长平台不同，长读长测序不依赖簇扩增，而是直接读取单个分子。</p>
 <section id="src-0020-introduction-of-NGS-78" class="level3">
 <h3 class="anchored" data-anchor-id="src-0020-introduction-of-NGS-78">PacBio：SMRT 测序与 HiFi 读长</h3>
@@ -1344,7 +1344,7 @@ window.Quarto = {
 </section>
 <section id="src-0050-RNA-seq-85" class="level3">
 <h3 class="anchored" data-anchor-id="src-0050-RNA-seq-85">长读长 RNA 测序</h3>
-<p>常规短读长 RNA-seq 通常先把 RNA 逆转录成 cDNA，再进行文库构建（流程详见第 5 章）。长读长技术可以减少把一个转录本拆成许多短片段后再推断结构的困难，因此特别适合理解转录本异构体。</p>
+<p>常规短读长 RNA-seq 通常先把 RNA 逆转录成 cDNA，再构建文库（流程详见第 5 章）。一个转录本被拆成许多短片段后，需要根据这些片段推断原有结构。长读长技术可以减少这方面的困难，因此特别适合用来理解转录本异构体。</p>
 <div class="book-core callout callout-style-default callout-note callout-titled" title="核心知识｜长读长与直接 RNA 测序">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -1381,7 +1381,7 @@ window.Quarto = {
 <p>短读长测序每次只能读取有限长度，因此需要先把待测核酸制成适合平台的文库。下面以片段化的 DNA 文库为例：先把较长的 DNA 打断，再通过片段筛选控制长度分布。本书以 300—500 bp 的插入片段举例；实际范围应按建库方案、读长和研究目的确定。</p>
 </div>
 </div>
-<p>打断以后的片段末端往往不平整，先用酶补平，得到平末端；再在 3′ 端用酶加上一个特异的碱基 A。此后利用 A 与未端 T 的互补配对，把 adapter 连接到片段两端。</p>
+<p>打断后的片段末端往往不平整，需要先用酶补平，再在 3′ 端用酶加上一个特异的碱基 A。此后利用 A 与末端 T 的互补配对，把 adapter 连接到片段两端。</p>
 <div id="fig-03-sequencing-and-data-formats-003" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-03-sequencing-and-data-formats-003-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
@@ -1400,7 +1400,7 @@ window.Quarto = {
 <p>adapter 中文常译为适配器或接头，是建库时连接到片段两端的人工序列。它不只是“一段引物”，而是一组功能元件的组合：与 flowcell 表面寡核苷酸互补配对的序列（P5/P7）、桥式 PCR 所需的引物结合位点、测序引物结合位点，以及样本标签（index）位点。</p>
 <p>一个典型的双端索引文库结构是：</p>
 <pre data-code-text="&quot;P5 — adapter1（含 i5 index 位点）— fragment — adapter2（含 i7 index 位点）— P7&quot;" class="text" data-book-role="data" data-code-title="双端索引文库结构"><code>P5 — adapter1（含 i5 index 位点）— fragment — adapter2（含 i7 index 位点）— P7</code></pre>
-<p>测序时加入的引物结合的是 adapter 中专门的测序引物结合位点；index 序列由独立的 index read 单独读取，并不出现在 R1/R2 的 reads 里。adapter 与 primer 的区别由此清晰：adapter 是连接在分子上的固定序列，primer 是反应时外加的寡核苷酸，二者靠互补配对起作用。</p>
+<p>测序时加入的引物与 adapter 中专门的测序引物结合位点配对；index 序列由独立的 index read 单独读取，并不出现在 R1/R2 的 reads 里。这里要分清 adapter 与 primer：adapter 是连接在分子上的固定序列，primer 是反应时外加的寡核苷酸，二者靠互补配对起作用。</p>
 </section>
 <section id="question-01-115" class="level3">
 <h3 class="anchored" data-anchor-id="question-01-115">index 与多样本混合上机</h3>
@@ -2209,14 +2209,14 @@ CCCACAGACTCAGAGAGAACCCACCATGGTGCTGTCTCCTGACGACAAGACCAACGTCAAGGCCGCCTGGGGTAAGGTCG
 </section>
 <section id="question-01-66" class="level3">
 <h3 class="anchored" data-anchor-id="question-01-66">FASTA 与 FASTQ 的适用场景</h3>
-<p>只关心序列本身时用 FASTA：参考基因组、转录本序列、蛋白质序列都以此发布。需要同时保留每个碱基的测序质量时用 FASTQ：测序仪下机数据、交给比对和质控软件的原始数据都是 FASTQ。一句话概括：FASTA 描述“序列是什么”，FASTQ 额外记录“每个碱基测得多准”。</p>
+<p>只关心序列本身时用 FASTA，参考基因组、转录本序列和蛋白质序列都以此发布。需要同时保留每个碱基的测序质量时用 FASTQ，测序仪下机数据、交给比对和质控软件的原始数据都是 FASTQ。因此，FASTA 描述“序列是什么”，FASTQ 还记录“每个碱基测得多准”。</p>
 </section>
 </section>
 <section id="sec-03-07" class="level2" data-number="3.8">
 <h2 data-number="3.8" class="anchored" data-anchor-id="sec-03-07"><span class="header-section-number">3.8</span> 质量评估：FastQC 与 MultiQC</h2>
 <p><span id="src-0030-QC-of-FASTQ-7"></span></p>
 <p><span id="ngs_qc"></span></p>
-<p>依据实验背景解释质控图，而非只看红绿灯。</p>
+<p>解读质控图时，需要结合实验背景，不能只看报告中的红绿灯。</p>
 <section id="src-0050-RNA-seq-128" class="level3">
 <h3 class="anchored" data-anchor-id="src-0050-RNA-seq-128">质量控制包括什么</h3>
 <p><span id="src-0030-QC-of-FASTQ-9"></span></p>
@@ -2303,7 +2303,7 @@ CCCACAGACTCAGAGAGAACCCACCATGGTGCTGTCTCCTGACGACAAGACCAACGTCAAGGCCGCCTGGGGTAAGGTCG
 </figure>
 </div>
 <p><span id="question-06-35"></span></p>
-<p>双端数据要把 R1 与 R2 分开看。下面的两张图来自同一次测序（ <a href="#fig-a-questions-06-10-001" class="quarto-xref">图&nbsp;<span>3.18</span></a> 与 <a href="#fig-a-questions-06-10-002" class="quarto-xref">图&nbsp;<span>3.19</span></a> ）：reads2 的质量均匀性明显差于 reads1。原因在本章 3.3 已经埋下伏笔——reads2 的测序是在 reads1 的 150bp 完成后，先重新合成互补链、再进行荧光测序；此时合成酶活性经过长时间反应已经下降，部分链加不上碱基，cluster 内的同步性变差，主要表现为 phasing 错误累积，箱体整体下移、离群点增多。</p>
+<p>双端数据要把 R1 与 R2 分开看。下面两张图来自同一次测序（ <a href="#fig-a-questions-06-10-001" class="quarto-xref">图&nbsp;<span>3.18</span></a> 与 <a href="#fig-a-questions-06-10-002" class="quarto-xref">图&nbsp;<span>3.19</span></a> ），reads2 的质量均匀性明显差于 reads1。结合本章 3.3 节的原理来看：reads1 的 150bp 测序完成后，要先重新合成互补链，再对 reads2 进行荧光测序。此时合成酶经过长时间反应，活性已经下降，部分链加不上碱基，cluster 内的同步性变差，主要表现为 phasing 错误累积、箱体整体下移、离群点增多。</p>
 <div id="fig-a-questions-06-10-001" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-a-questions-06-10-001-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
@@ -2411,7 +2411,7 @@ CCCACAGACTCAGAGAGAACCCACCATGGTGCTGTCTCCTGACGACAAGACCAACGTCAAGGCCGCCTGGGGTAAGGTCG
 </section>
 <section id="topic-03-sequence-length-distribution" class="level4">
 <h4 class="anchored" data-anchor-id="topic-03-sequence-length-distribution">序列长度分布（Sequence Length Distribution）</h4>
-<p>横轴是序列长度，纵轴是相应长度 reads 的数量（ <a href="#fig-a-questions-06-10-009" class="quarto-xref">图&nbsp;<span>3.25</span></a> ）。刚下机的 Illumina 数据所有 reads 长度一致（如双端 150bp），因为测序循环数固定，图中应是一个尖峰。经过 cutadapt 等去除接头后，reads 长度就会变得参差——不同 insert 是否被测穿、被切掉多长并不相同。看到“长度不齐”不要惊讶，那通常是处理后的正常形态。</p>
+<p>横轴是序列长度，纵轴是相应长度 reads 的数量（ <a href="#fig-a-questions-06-10-009" class="quarto-xref">图&nbsp;<span>3.25</span></a> ）。刚下机的 Illumina 数据所有 reads 长度一致（如双端 150bp），因为测序循环数固定，图中应是一个尖峰。经过 cutadapt 等工具去除接头后，reads 的长度就会有所不同：有些 insert 被测穿，有些没有，被切掉的长度也不相同。因此，处理后的数据出现长短不一的 reads，通常是正常现象。</p>
 <div id="fig-a-questions-06-10-009" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-a-questions-06-10-009-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
@@ -2544,12 +2544,12 @@ Bottom adapter
 <h3 class="anchored" data-anchor-id="src-0030-QC-of-FASTQ-15">MultiQC：多样本汇总</h3>
 <p>实际项目往往一次产出几十上百个样本，逐个打开 FastQC 网页不现实。<a href="https://multiqc.info/">MultiQC</a> 会扫描指定目录下 FastQC、cutadapt、比对软件等工具的输出，把所有样本的关键指标汇总成可排序的报告表和总览图，例如各样本的数据量、质量趋势、接头比例、mapping rate。常用命令：</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb6" data-book-role="code"><pre data-code-text="&quot;multiqc fastqc_result/ -o multiqc_report&quot;" class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="ex">multiqc</span> fastqc_result/ <span class="at">-o</span> multiqc_report</span></code></pre></div><button title="复制到剪贴板" class="code-copy-button"><i class="bi"></i></button></div>
-<p>看报告时优先扫全局异常的样本，再回到单样本 FastQC 细看原因；两种报告配合使用，是项目质控的常规做法。</p>
+<p>看报告时，先找出整体比较中异常的样本，再打开相应的 FastQC 报告细看原因。实际项目中，通常将这两种报告配合使用。</p>
 </section>
 </section>
 <section id="sec-03-08" class="level2" data-number="3.9">
 <h2 data-number="3.9" class="anchored" data-anchor-id="sec-03-08"><span class="header-section-number">3.9</span> 数据清理：去接头与低质量序列</h2>
-<p>理解何时修剪、如何保持配对关系以及如何验证处理效果。</p>
+<p>清理数据时，要确定哪些序列需要修剪，保持双端 reads 的配对关系，并检查处理效果。</p>
 <section id="src-0050-RNA-seq-204" class="level3">
 <h3 class="anchored" data-anchor-id="src-0050-RNA-seq-204">为什么要清理以及常用工具</h3>
 <p><span id="src-0030-QC-of-FASTQ-17"></span></p>
@@ -2566,7 +2566,7 @@ Bottom adapter
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>Fastx-toolkit 与 NGSQC 是早期常用工具，已长期停止维护，本书保留其用于理解处理思路和练习。如今的同类操作更常用 Cutadapt、fastp、Trimmomatic（仍在维护）以及 seqtk、seqkit 等。</p>
+<p>Fastx-toolkit 与 NGSQC 是早期常用工具，已长期停止维护。本书保留它们的示例，用于理解处理思路和练习。如今的同类操作更常用 Cutadapt、fastp、Trimmomatic（仍在维护）以及 seqtk、seqkit 等。</p>
 </div>
 </div>
 </section>
@@ -2583,7 +2583,7 @@ Bottom adapter
 <p>测序中常见 read 的 3′ 端质量较差（例如逐碱基质量图中 3′ 端箱体逐渐下移）。<code>-q</code> 参数可以在去接头的同时切掉低质量末端，例如：</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb8" data-book-role="code"><pre data-code-text="&quot;cutadapt -q 10 -o output.fastq input.fastq&quot;" class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="ex">cutadapt</span> <span class="at">-q</span> 10 <span class="at">-o</span> output.fastq input.fastq</span></code></pre></div><button title="复制到剪贴板" class="code-copy-button"><i class="bi"></i></button></div>
 <p><code>-q</code> 后的数字是质量阈值，低于该值的碱基将被切除；若文件采用 Phred64 编码，需加 <code>--quality-base=64</code>。</p>
-<p>cutadapt 不是“遇到第一个低质量碱基就停”，而是允许好碱基夹杂在坏区域中，找整体最优的切点。以一条 13bp、阈值 10 的 read 为例：</p>
+<p>cutadapt 会考虑整个低质量区域，允许其中夹杂质量较好的碱基，再寻找整体最优的切点，并非遇到第一个低质量碱基就停止。以一条 13bp、阈值 10 的 read 为例：</p>
 <pre data-code-text="&quot; A   T   G   C   C   G   T   A   C   C   G   G   T\n42  42  41  41  40  26  27   8   7  11   4   2   3&quot;" class="text" data-book-role="data" data-code-title="算例｜序列与质量值（逐列对齐）"><code> A   T   G   C   C   G   T   A   C   C   G   G   T
 42  42  41  41  40  26  27   8   7  11   4   2   3</code></pre>
 <p>第一步，每个质量值减去阈值：</p>
@@ -2604,7 +2604,7 @@ Bottom adapter
 <h4 class="anchored" data-anchor-id="topic-03-seqkit-stats-convert">统计与格式转换</h4>
 <p>最常用的是文件级统计，汇总每个文件的 reads 数、长度、GC 含量和 Q20/Q30 比例，是检查数据概况最快的方式之一：</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb13" data-book-role="code"><pre data-code-text="&quot;seqkit stats -a *.fastq.gz&quot;" class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="ex">seqkit</span> stats <span class="at">-a</span> <span class="pp">*</span>.fastq.gz</span></code></pre></div><button title="复制到剪贴板" class="code-copy-button"><i class="bi"></i></button></div>
-<p>想快速看一眼文件内容，用 <code>head</code> 取前几条（相当于 Linux 的 <code>head</code>，但按“条”而不是按“行”计数）：</p>
+<p>想先看看文件内容，可以用 <code>head</code> 取前几条记录。它类似 Linux 的 <code>head</code>，但按序列“条数”而不是文本“行数”计数：</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb14" data-book-role="code"><pre data-code-text="&quot;seqkit head -n 4 sample_R1.fastq.gz&quot;" class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="ex">seqkit</span> head <span class="at">-n</span> 4 sample_R1.fastq.gz</span></code></pre></div><button title="复制到剪贴板" class="code-copy-button"><i class="bi"></i></button></div>
 <p><code>fx2tab</code> 把序列文件转成制表符分隔的表格，<code>-l</code> 加序列长度、<code>-g</code> 加 GC 含量，便于用 <code>sort</code>、<code>awk</code> 等文本工具继续处理；<code>tab2fx</code> 做反向转换：</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb15" data-book-role="code"><pre data-code-text="&quot;seqkit fx2tab -n -l -g genome.fa | head -5&quot;" class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="ex">seqkit</span> fx2tab <span class="at">-n</span> <span class="at">-l</span> <span class="at">-g</span> genome.fa <span class="kw">|</span> <span class="fu">head</span> <span class="at">-5</span></span></code></pre></div><button title="复制到剪贴板" class="code-copy-button"><i class="bi"></i></button></div>
@@ -2636,7 +2636,7 @@ Bottom adapter
 </section>
 <section id="topic-03-seqkit-chrm-example" class="level4">
 <h4 class="anchored" data-anchor-id="topic-03-seqkit-chrm-example">综合示例：从参考基因组到 chrM 的 GC 含量</h4>
-<p>把前面的命令串起来，就能一行解决 3.8 节练习里“计算一条染色体 GC 含量”的任务——<code>grep</code> 提取 chrM，<code>fx2tab</code> 直接给出它的长度与 GC 含量：</p>
+<p>把前面的命令接起来，就可以完成 3.8 节练习里“计算一条染色体 GC 含量”的任务：先用 <code>grep</code> 提取 chrM，再用 <code>fx2tab</code> 输出它的长度与 GC 含量。</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb21" data-book-role="code"><pre data-code-text="&quot;seqkit grep -n -p chrM genome.fa | seqkit fx2tab -n -l -g&quot;" class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="ex">seqkit</span> grep <span class="at">-n</span> <span class="at">-p</span> chrM genome.fa <span class="kw">|</span> <span class="ex">seqkit</span> fx2tab <span class="at">-n</span> <span class="at">-l</span> <span class="at">-g</span></span></code></pre></div><button title="复制到剪贴板" class="code-copy-button"><i class="bi"></i></button></div>
 <p>同类工具还有更早的 seqtk（<code>seqtk sample</code>、<code>seqtk trimfq</code> 等）。选择原则是一样的：先明确要做什么，再选工具，用 <code>--help</code> 确认参数含义。</p>
 </section>
@@ -2695,7 +2695,7 @@ Bottom adapter
 
 </main> <!-- /main -->
 <div class="book-toolbar" role="navigation" aria-label="阅读工具">
-  <div class="book-brand"><span class="book-brand-name">AI时代生信入门</span><time class="book-last-modified" datetime="2026-10-11T17:31:04+08:00" title="最后修改时间（北京时间，UTC+08:00）">最后修改 2026-10-11 17:31</time></div>
+  <div class="book-brand"><span class="book-brand-name">AI时代生信入门</span><time class="book-last-modified" datetime="2026-10-12T13:46:45+08:00" title="最后修改时间（北京时间，UTC+08:00）">最后修改 2026-10-12 13:46</time></div>
   <button class="book-menu-button" type="button" aria-controls="quarto-sidebar" aria-expanded="false">目录</button>
   <button class="book-search-button" type="button">搜索</button>
 </div>

@@ -921,7 +921,7 @@ window.Quarto = {
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
 <h1 class="title"><span id="sec-ch05" class="quarto-section-identifier"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">RNA-seq：从表达定量到差异表达</span></span></h1>
-<p class="chapter-last-modified"><time datetime="2026-10-11T17:31:04+08:00" title="本章书稿最后修改时间（北京时间，UTC+08:00）">最后修改：2026-10-11 17:31（北京时间）</time></p>
+<p class="chapter-last-modified"><time datetime="2026-10-12T13:46:45+08:00" title="本章书稿最后修改时间（北京时间，UTC+08:00）">最后修改：2026-10-12 13:46（北京时间）</time></p>
 </div>
 
 
@@ -944,11 +944,11 @@ window.Quarto = {
 </section>
 <section id="sec-05-01" class="level2" data-number="5.1">
 <h2 data-number="5.1" class="anchored" data-anchor-id="sec-05-01"><span class="header-section-number">5.1</span> 转录组的研究问题、分析对象与建库策略</h2>
-<p>明确样本中的RNA如何进入文库，以及最终要估计什么。</p>
+<p>分析转录组数据前，先弄清样本中的 RNA 怎样进入文库，以及我们要估计的是哪一类 RNA 的表达量。</p>
 <section id="src-0050-RNA-seq-1" class="level3">
 <h3 class="anchored" data-anchor-id="src-0050-RNA-seq-1">转录组与 RNA 的种类</h3>
 <p><span id="src-0050-RNA-seq-5"></span> <span id="RNA_Seq"></span></p>
-<p>RNA测序（RNA sequencing，RNA-Seq）是一种非常成熟的研究转录组学的技术，是目前使用最广泛的高通量测序技术之一。一个细胞所蕴含的全部遗传物质（DNA）即基因组，根据中心法则<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a>，遗传信息由DNA通过转录作用流向RNA，这些RNA的总和被称为转录组 （transcriptome），研究转录组的方式方法及相关技术即转录组学（transcriptomics）。通过转录组测序可以解决多种生物学问题，例如寻找实验组和对照组的差异表达基因、目标研究对象在不同发育或者生物学过程中的基因表达时序性变化等。 RNA可以分为能够编码蛋白基因的信使RNA（mRNA）<a href="#fn2" class="footnote-ref" id="fnref2" role="doc-noteref"><sup>2</sup></a>和非蛋白编码RNA （non-coding RNA, ncRNA），例如人类基因组，含有约20000个蛋白编码基因和7000个非蛋白编码RNA基因。随着研究的深入，生命科学研究者对RNA的认识逐渐全面，陆续发现了生物体中多种类型的非编码RNA，有持家非编码RNA（house-keeping non-coding RNA）：在翻译过程中起转运作用的tRNA<a href="#fn3" class="footnote-ref" id="fnref3" role="doc-noteref"><sup>3</sup></a>、核糖体的组成成分rRNA<a href="#fn4" class="footnote-ref" id="fnref4" role="doc-noteref"><sup>4</sup></a> 、参与mRNA剪接的snRNA（small nuclear RNA）<a href="#fn5" class="footnote-ref" id="fnref5" role="doc-noteref"><sup>5</sup></a>等；还有能够起到调控作用的非编码RNA：长非编码RNA（long non-coding RNA, lncRNA）、miRNA（microRNA）<a href="#fn6" class="footnote-ref" id="fnref6" role="doc-noteref"><sup>6</sup></a>、小干扰RNA（small interfering RNA, siRNA）和环状RNA（circRNA）等。RNA 家族的种类与分工见 <a href="#fig-05-rna-classes" class="quarto-xref">图&nbsp;<span>5.1</span></a> ：编码蛋白的 mRNA 之外，其余都是非编码 RNA，各自在中心法则的不同环节工作。</p>
+<p>RNA 测序（RNA sequencing，RNA-Seq）是研究转录组的成熟技术，也是使用最广泛的高通量测序技术之一。一个细胞中的全部遗传物质（DNA）称为基因组。根据中心法则<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a>，遗传信息由 DNA 经转录流向 RNA，这些 RNA 的总和称为转录组（transcriptome），研究转录组的方法及相关技术则称为转录组学（transcriptomics）。转录组测序可以用来寻找实验组与对照组之间的差异表达基因，也可以研究基因表达在发育或其他生物学过程中的时序变化。 RNA可以分为能够编码蛋白基因的信使RNA（mRNA）<a href="#fn2" class="footnote-ref" id="fnref2" role="doc-noteref"><sup>2</sup></a>和非蛋白编码RNA （non-coding RNA, ncRNA），例如人类基因组，含有约20000个蛋白编码基因和7000个非蛋白编码RNA基因。随着研究的深入，生命科学研究者对RNA的认识逐渐全面，陆续发现了生物体中多种类型的非编码RNA，有持家非编码RNA（house-keeping non-coding RNA）：在翻译过程中起转运作用的tRNA<a href="#fn3" class="footnote-ref" id="fnref3" role="doc-noteref"><sup>3</sup></a>、核糖体的组成成分rRNA<a href="#fn4" class="footnote-ref" id="fnref4" role="doc-noteref"><sup>4</sup></a> 、参与mRNA剪接的snRNA（small nuclear RNA）<a href="#fn5" class="footnote-ref" id="fnref5" role="doc-noteref"><sup>5</sup></a>等；还有能够起到调控作用的非编码RNA：长非编码RNA（long non-coding RNA, lncRNA）、miRNA（microRNA）<a href="#fn6" class="footnote-ref" id="fnref6" role="doc-noteref"><sup>6</sup></a>、小干扰RNA（small interfering RNA, siRNA）和环状RNA（circRNA）等。RNA 家族的种类与分工见 <a href="#fig-05-rna-classes" class="quarto-xref">图&nbsp;<span>5.1</span></a> ：编码蛋白的 mRNA 之外，其余都是非编码 RNA，各自在中心法则的不同环节工作。</p>
 <div id="fig-05-rna-classes" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-05-rna-classes-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
@@ -986,7 +986,7 @@ window.Quarto = {
 </section>
 <section id="topic-05-lib-strategies" class="level3">
 <h3 class="anchored" data-anchor-id="topic-05-lib-strategies">mRNA 与全转录组建库</h3>
-<p>研究人员通常会对mRNA和一些调控非编码RNA感兴趣，针对不同类型的RNA，采取的测序手段也不同，主要表现为样本建库策略的不同。测序仪通常只能对DNA序列进行测序，测序之前对样品里的目标待测 RNA 进行处理的过程称为“文库的制备”，简称建库（<a href="#fig-06-rna-seq-001" class="quarto-xref">图&nbsp;<span>5.3</span></a> ）。</p>
+<p>研究人员通常关注 mRNA 和一些具有调控作用的非编码 RNA。针对不同类型的 RNA，测序方法也有区别，主要体现在建库策略上。测序仪通常只能读取 DNA，因此测序前需要处理样品中的目标 RNA，这个过程称为“文库的制备”，简称建库（<a href="#fig-06-rna-seq-001" class="quarto-xref">图&nbsp;<span>5.3</span></a> ）。</p>
 <div id="fig-06-rna-seq-001" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-06-rna-seq-001-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
@@ -997,7 +997,7 @@ window.Quarto = {
 </figcaption>
 </figure>
 </div>
-<p>用富集polyA方式可以获得mRNA的表达信息、也可以获得部分lncRNA（含有polyA 的lncRNA）的表达信息；通过去rRNA方式建库可以检测到mRNA、全部lncRNA、circRNA的表达信息；去线性建库则是专门为了检测circRNA的表达；短片端建库能够获得以miRNA为主的小RNA表达信息。本节先讲最常用的两种——富集 poly(A) 与去 rRNA（<a href="#fig-05-lib-compare" class="quarto-xref">图&nbsp;<span>5.4</span></a>），小 RNA 与环状 RNA 文库放在下一小节。</p>
+<p>富集 polyA 可以获得 mRNA 和部分 lncRNA（含有 polyA 的 lncRNA）的表达信息；去 rRNA 建库可以检测 mRNA、全部 lncRNA 和 circRNA；去线性 RNA 建库专门用于检测 circRNA；短片段建库则主要获得 miRNA 等小 RNA 的表达信息。本节先介绍最常用的富集 poly(A) 与去 rRNA 两种方式（<a href="#fig-05-lib-compare" class="quarto-xref">图&nbsp;<span>5.4</span></a>），小 RNA 和环状 RNA 文库放在下一小节。</p>
 <section id="src-0050-RNA-seq-15" class="level4">
 <h4 class="anchored" data-anchor-id="src-0050-RNA-seq-15">富集 poly(A) 的 mRNA 测序</h4>
 <p>研究蛋白编码基因表达应采用富集poly-A的方式进行建库测序（<a href="#fig-06-rna-seq-001" class="quarto-xref">图&nbsp;<span>5.3</span></a> ）。利用多数真核 mRNA 具有 poly(A) 尾的特性，对样本中含有poly-A的RNA进行富集。需要注意的是，部分lncRNA也含有poly-A结构，所以采取这一方式建库也可以检测到这部分lncRNA的表达。mRNA测序一般采取双端测序，测序读长150bp，数据量约 6 G clean bases。</p>
@@ -1020,9 +1020,9 @@ window.Quarto = {
 <li>以及位于两个编码基因之间非编码区的基因间区长非编码RNA（intergenic lncRNA, lincRNA）。</li>
 </ol>
 <p>lncRNA 发挥多种调控功能，扮演信号分子、诱导因子、引导分子、支架分子等多种角色<a href="#fn10" class="footnote-ref" id="fnref10" role="doc-noteref"><sup>10</sup></a>。</p>
-<p>对lncRNA 进行测序需要采用去rRNA的方法建库，以最大限度地保留lncRNA（<a href="#fig-06-rna-seq-001" class="quarto-xref">图&nbsp;<span>5.3</span></a> ）。与此同时，mRNA、snoRNA、snRNA、tRNA 和 circRNA 的表达信息也能在去 rRNA 文库中获得。与富集polyA方法不同的是，建库的第一步是去除样本中的rRNA，接下的步骤则与富集polyA方式建库差不多。lncRNA测序一般采取双端测序，测序读长150bp，数据量约 10–12 G clean bases。</p>
+<p>为了尽可能保留 lncRNA，lncRNA 测序需要采用去 rRNA 的建库方法（<a href="#fig-06-rna-seq-001" class="quarto-xref">图&nbsp;<span>5.3</span></a> ）。这类文库也能提供 mRNA、snoRNA、snRNA、tRNA 和 circRNA 的表达信息。建库时先去除样本中的 rRNA，后续步骤与富集 polyA 的方式大致相同。lncRNA 测序一般采用双端测序，读长 150bp，数据量约 10–12 G clean bases。</p>
 <p>去 rRNA 不依赖 poly(A) 尾，而是用探针杂交或核酸酶特异性地把占总 RNA 80%–90% 的 rRNA 移除，保留其余全部 RNA，因此信息面比富集 poly(A) 宽得多，也能用在部分降解的样本上。代价是去除效率因试剂盒与样本质量而异：数据里常有 5%–20% 的 read 仍来自残留 rRNA，分析前值得用 FastQC 或比对统计评估一下这部分占比。</p>
-<p>两种策略的选择可以一句话概括：研究蛋白编码基因、样本质量好，用富集 poly(A)；要覆盖非编码 RNA、circRNA 或样本有降解，用去 rRNA。</p>
+<p>研究蛋白编码基因且样本质量较好时，可以选择富集 poly(A)；需要覆盖非编码 RNA、circRNA，或样本已经降解时，可以选择去 rRNA。</p>
 <div id="fig-05-lib-compare" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-05-lib-compare-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
@@ -1037,7 +1037,7 @@ window.Quarto = {
 </section>
 <section id="topic-05-other-rna-lib" class="level3">
 <h3 class="anchored" data-anchor-id="topic-05-other-rna-lib">其他 RNA 文库</h3>
-<p>除两类主力策略外，针对特定 RNA 类型的文库用得较少但不可替代：小 RNA 文库捕获短片段，环状 RNA 文库通过去掉线性 RNA 富集环状分子。</p>
+<p>针对特定 RNA 类型，还需要其他建库策略。它们使用较少，但有不可替代的用途：小 RNA 文库捕获短片段，环状 RNA 文库通过去除线性 RNA 来富集环状分子。</p>
 <section id="src-0050-RNA-seq-39" class="level4">
 <h4 class="anchored" data-anchor-id="src-0050-RNA-seq-39">小 RNA 测序</h4>
 <div class="book-core callout callout-style-default callout-note callout-titled" title="核心知识｜microRNA 与小 RNA 测序">
@@ -1050,7 +1050,7 @@ window.Quarto = {
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>microRNA 广泛存在于动植物中，是一类长度为22nt左右的小非编码RNA，通过抑制蛋白质翻译或者降解mRNA，在多种生物学过程中发挥调控作用。对microRNA测序需要做小RNA测序（small RNA-seq ），建库过程中需要回收小片段，这是与mRNA建库的主要不同之处。miRNA的功能涉及多种生物学过程，有潜力成为许多疾病包括癌症的标志物。建库起始样本可以用总RNA，也可以用分离纯化得到的small RNA。</p>
+<p>microRNA 广泛存在于动植物中，是一类长度约为 22nt 的小非编码 RNA，通过抑制蛋白质翻译或降解 mRNA 参与多种生物学过程，也有潜力成为癌症等疾病的标志物。测量 microRNA 需要做小 RNA 测序（small RNA-seq），建库时回收小片段，这是它与 mRNA 建库的主要区别。起始样本可以用总 RNA，也可以用分离纯化后的 small RNA。</p>
 </div>
 </div>
 <p>1.基于small RNA本身对结构特征在3‘端和5’端连上接头序列，多数small RNA具有天然的磷酸化5‘端，且3‘端具有羟基基团，便于核酸序列的连接； 2.然后进行少量逆转录PCR扩增； 3.通过PAGE胶对特定大小的small RNA片段进行纯化，小RNA片段较短20～30nt，加上接头序列后长度在150bp左右； 4.对文库的片段大小、纯度和浓度进行质检。 5. 将得到的文库扩增后上机测序，测序读长50bp，数据量约 10–20 M reads。</p>
@@ -1158,7 +1158,7 @@ window.Quarto = {
 </section>
 <section id="sec-05-02" class="level2" data-number="5.2">
 <h2 data-number="5.2" class="anchored" data-anchor-id="sec-05-02"><span class="header-section-number">5.2</span> 本章示例数据下载与说明</h2>
-<p>让后续各步骤对应同一批样本和同一个研究问题。</p>
+<p>后续步骤将使用同一批样本，围绕同一个研究问题展开。</p>
 <section id="topic-05-sample-design" class="level3">
 <h3 class="anchored" data-anchor-id="topic-05-sample-design">研究问题与样本设计</h3>
 <p><span id="src-0050-RNA-seq-392"></span> 在转录组研究工作中，至少设置两组样本——对照组和实验组；每组最好设置 3 个及以上生物学重复，以降低样品特异性带来的误差。</p>
@@ -1220,7 +1220,7 @@ window.Quarto = {
 </div>
 </figure>
 </div>
-<p>这套数据是链特异性 mRNA 文库——5.1 节的建库策略、5.4 节 htseq-count 的 <code>-s</code> 参数都会用到这个事实。后续命令中的 <code>test_R1/test_R2</code> 文件名即对应这套数据经质控过滤后的双端 FASTQ。</p>
+<p>这套数据来自链特异性 mRNA 文库，后续选择分析参数时要记住这一点，尤其是 5.4 节 htseq-count 的 <code>-s</code> 参数；相关建库原理见 5.1 节。命令中的 <code>test_R1/test_R2</code> 对应这套数据经质控过滤后的双端 FASTQ 文件。</p>
 </section>
 <section id="src-0050-RNA-seq-396" class="level3">
 <h3 class="anchored" data-anchor-id="src-0050-RNA-seq-396">从 GEO 与 SRA 下载数据</h3>
@@ -1339,13 +1339,13 @@ window.Quarto = {
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>比对索引的 FASTA、定量的 GTF 必须来自同一来源、同一版本的基因组装配（例如都基于 hg38 的 RefSeq，或都基于 GENCODE v44）。混用的典型后果：坐标对不上、大量 read 落入 no_feature、基因名对不回计数表。RefSeq 与 Ensembl 的 ID 体系互不相认，中途换注释等于推倒重来。</p>
+<p>比对索引的 FASTA 与定量所用的 GTF 必须来自同一来源、同一版本的基因组装配，例如都基于 hg38 的 RefSeq，或都基于 GENCODE v44。混用时可能出现坐标不一致、大量 read 落入 no_feature、计数表中的编号无法对应基因名等问题。RefSeq 与 Ensembl 的 ID 体系不同，中途更换注释需要重新分析。</p>
 </div>
 </div>
 </section>
 <section id="src-0050-RNA-seq-101" class="level3">
 <h3 class="anchored" data-anchor-id="src-0050-RNA-seq-101">本章分析路线与工具地图</h3>
-<p>有参转录组分析一般包括：测序数据的质量控制、构建参考基因组索引、将read比对到参考基因组、拼接新的转录本（可选）、基因表达的定量、差异表达基因的分析，以及对目标基因群进行注释和富集分析（<a href="#fig-06-rna-seq-003" class="quarto-xref">图&nbsp;<span>5.6</span></a> ）。</p>
+<p>有参考基因组的转录组分析一般包括测序数据质控、构建参考基因组索引、将 reads 比对到参考基因组、拼接新转录本（可选）、表达定量、差异表达分析，以及目标基因集的注释与富集分析（<a href="#fig-06-rna-seq-003" class="quarto-xref">图&nbsp;<span>5.6</span></a> ）。</p>
 <div id="fig-06-rna-seq-003" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-06-rna-seq-003-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
@@ -1432,9 +1432,9 @@ window.Quarto = {
 <h3 class="anchored" data-anchor-id="src-0050-RNA-seq-423">原始数据质控与过滤</h3>
 <p>从GEO数据库下载的数据文件格式为SRA，需要使用官方提供的 SRA Toolkit 进行转换，将 SRA 文件转换为 FASTQ 格式，安装说明见 <a href="https://github.com/ncbi/sra-tools/wiki/02.-Installing-SRA-Toolkit">sra-tools 官方文档</a>（2026 年 10 月核对）。</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2" data-book-role="code"><pre data-code-text="&quot;fastq-dump SRR1573494.sra&quot;" class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="ex">fastq-dump</span> SRR1573494.sra</span></code></pre></div><button title="复制到剪贴板" class="code-copy-button"><i class="bi"></i></button></div>
-<p>使用FastQC做质量控制：</p>
+<p>用 FastQC 评估数据质量：</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3" data-book-role="code"><pre data-code-text="&quot;fastqc SRR1573494.fq&quot;" class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="ex">fastqc</span> SRR1573494.fq</span></code></pre></div><button title="复制到剪贴板" class="code-copy-button"><i class="bi"></i></button></div>
-<p>使用cutadapt去除接头序列，过滤数据质量：</p>
+<p>用 cutadapt 去除接头并过滤低质量数据：</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4" data-book-role="code"><pre data-code-text="&quot;cutadapt -j 6 --times 1 -e 0.1 -O 3 --quality-cutoff 25 -m 55 \\\n-a AGATCGGAAGAGCACACGTCTGAACTCCAGTCAC \\\n-A AGATCGGAAGAGCGTCGTGTAGGGAAAGAGTGTAGATCTCGGTGGTCGCCGTATCATT \\\n-o fix.fastq/test_R1_cutadapt.temp.fq.gz \\\n-p fix.fastq/test_R2_cutadapt.temp.fq.gz \\\n raw.fastq/test_R1.fq.gz \\\n raw.fastq/test_R2.fq.gz &gt; fix.fastq/test_cutadapt.temp.log 2&gt;&amp;1 &amp;&quot;" class="sourceCode numberSource bash numberLines code-with-copy"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1"></a><span class="ex">cutadapt</span> <span class="at">-j</span> 6 <span class="at">--times</span> 1 <span class="at">-e</span> 0.1 <span class="at">-O</span> 3 <span class="at">--quality-cutoff</span> 25 <span class="at">-m</span> 55 <span class="dt">\</span></span>
 <span id="cb4-2"><a href="#cb4-2"></a>-a AGATCGGAAGAGCACACGTCTGAACTCCAGTCAC <span class="dt">\</span></span>
 <span id="cb4-3"><a href="#cb4-3"></a>-A AGATCGGAAGAGCGTCGTGTAGGGAAAGAGTGTAGATCTCGGTGGTCGCCGTATCATT <span class="dt">\</span></span>
@@ -1446,8 +1446,8 @@ window.Quarto = {
 </section>
 <section id="topic-05-rna-vs-dna-align" class="level3">
 <h3 class="anchored" data-anchor-id="topic-05-rna-vs-dna-align">为什么 RNA 比对与 DNA 不同</h3>
-<p><span id="question-21-285"></span> <span id="question-21-292"></span> <span id="src-0050-RNA-seq-247"></span> 测序得到的短 reads 需要比对回参考基因组，确定每条 read 的来源位置，这个过程叫做序列比对（reads mapping）。把数量庞大的 reads（上亿对）回溯到一条长度以 Gbp 计的参考基因组上，需要较高的计算成本和巧妙的比对策略。这与在进化分析等工作中提到的双序列比对 （pairwise alignment）和多序列比对（multiple sequences alignment）不同，alignment的比对通量较低，更多的强调两条序列或者少数几条序列之间的比对。RNA 比对策略主要有两大类：exon-first（先把能连续比对的 read 比上，再拆开剩余 read 跨剪接位点重比）与 seed-extend（把 read 切成种子段伸展），前者的局限会在下面的练习中看到。它们依赖的索引算法（BWT 与后缀树）已在<a href="../manuscript/04-sequence-alignment.html#sec-04-04">第 4 章</a>介绍，不再展开。 一般来说，DNA的mapping比较容易，因为DNA在基因上是连续的，直接回贴到基因组就可以找到相应的定位。就比如我们常用的Whole Genome Sequence（WGS）即全基因组测序；或者是我们所说的ChIP-Seq即染色体免疫共沉淀测序都是直接对DNA进行建库测序，其测序结果都是FASTQ文件，直接用 Bowtie 2、BWA 比对到基因组就可以得到标准的 SAM 文件。</p>
-<p>但是RNA就不一样了，真核生物的RNA需要经过复杂的加工过程。在细胞中RNA层面的调控至少可以分成2个大的阶段co-transcription（转录的同时） 和 post-transcription（转录以后）其中的调控机制也有很多。</p>
+<p><span id="question-21-285"></span> <span id="question-21-292"></span> <span id="src-0050-RNA-seq-247"></span> 测序得到的短 reads 需要比对回参考基因组，确定每条 read 的来源位置，这个过程叫做序列比对（reads mapping）。把数量庞大的 reads（上亿对）回溯到一条长度以 Gbp 计的参考基因组上，需要较高的计算成本和巧妙的比对策略。这与在进化分析等工作中提到的双序列比对 （pairwise alignment）和多序列比对（multiple sequences alignment）不同，alignment的比对通量较低，更多的强调两条序列或者少数几条序列之间的比对。RNA 比对策略主要有两大类：exon-first（先把能连续比对的 read 比上，再拆开剩余 read 跨剪接位点重比）与 seed-extend（把 read 切成种子段伸展），前者的局限会在下面的练习中看到。它们依赖的索引算法（BWT 与后缀树）已在<a href="../manuscript/04-sequence-alignment.html#sec-04-04">第 4 章</a>介绍，不再展开。 一般来说，DNA mapping 较容易，因为 DNA 序列在基因组上连续，直接回贴就可以找到相应位置。例如 Whole Genome Sequence（WGS，全基因组测序）和 ChIP-Seq（染色体免疫共沉淀测序）都直接对 DNA 建库测序，得到的 FASTQ 文件用 Bowtie 2、BWA 比对到基因组后，就可以生成标准的 SAM 文件。</p>
+<p>RNA 的情况不同。真核生物的 RNA 需要经过复杂加工，其调控至少可以分为 2 个阶段：co-transcription（转录的同时）和 post-transcription（转录以后），每个阶段又涉及多种机制。</p>
 <p>对我们mapping影响最大的因素是：真核生物转录出来的初步的mRNA都是带有intron（内含子）的，随后都需要在co-transcription（转录的同时） 或post-transcription（转录以后）阶段通过：1. alternative splicing（可变剪切）剪切掉intron；2.polyA尾巴； 3.加5’的帽子结构。这3个步骤，将不成熟的mRNA变为最终成熟的mRNA再转运出核，行使功能。</p>
 <div id="fig-a-questions-21-25-006" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
@@ -1620,7 +1620,7 @@ window.Quarto = {
 </section>
 <section id="src-0050-RNA-seq-518" class="level3">
 <h3 class="anchored" data-anchor-id="src-0050-RNA-seq-518">比对实操与结果检查</h3>
-<p>概念已经清楚，以下命令以本章示例项目的文件命名为主线；个别例子来自工具官方教程数据（如 chrX 测试集），会明确标注。</p>
+<p>下面用本章示例项目的文件演示比对操作。少数例子使用工具官方教程中的数据，如 chrX 测试集，会在相应位置说明。</p>
 <section id="src-0050-RNA-seq-538" class="level4">
 <h4 class="anchored" data-anchor-id="src-0050-RNA-seq-538">用 HISAT2 比对</h4>
 <p>用 <code>hisat2</code> 比对到参考基因组（第一条使用普通索引，第二条使用上一步构建的 SNP 索引 <code>ref_hg38.fa.snp_gtf</code>）：</p>
@@ -1680,7 +1680,7 @@ window.Quarto = {
 </section>
 <section id="src-0050-RNA-seq-574" class="level4">
 <h4 class="anchored" data-anchor-id="src-0050-RNA-seq-574">用 STAR 比对</h4>
-<p>也使用STAR比对到参考基因组：</p>
+<p>也可以用 STAR 比对到参考基因组：</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb10" data-book-role="code"><pre data-code-text="&quot;STAR \\\n--genomeDir /home/menghaowei/ngs_course/reference/STAR_index \\\n--runThreadN 6 \\\n--readFilesIn ./fix.fastq/test_R1_cutadapt.fq.gz ./fix.fastq/test_R2_cutadapt.fq.gz \\\n--readFilesCommand zcat \\\n--outFileNamePrefix ./bam/test_STAR \\\n--outSAMtype BAM Unsorted \\\n--outSAMstrandField intronMotif \\\n--outSAMattributes All \\\n--outFilterIntronMotifs RemoveNoncanonical &gt; ./bam/test_STAR.log 2&gt;&amp;1 &amp; &quot;" class="sourceCode numberSource bash numberLines code-with-copy"><code class="sourceCode bash"><span id="cb10-1"><a href="#cb10-1"></a><span class="ex">STAR</span> <span class="dt">\</span></span>
 <span id="cb10-2"><a href="#cb10-2"></a>--genomeDir /home/menghaowei/ngs_course/reference/STAR_index <span class="dt">\</span></span>
 <span id="cb10-3"><a href="#cb10-3"></a>--runThreadN 6 <span class="dt">\</span></span>
@@ -1709,7 +1709,7 @@ window.Quarto = {
 </section>
 <section id="sec-05-04" class="level2" data-number="5.4">
 <h2 data-number="5.4" class="anchored" data-anchor-id="sec-05-04"><span class="header-section-number">5.4</span> 从比对到转录本定量</h2>
-<p>理解计数由哪些归属规则产生。</p>
+<p>表达计数取决于 reads 的归属规则。下面先看一条 read 怎样计入某个基因。</p>
 <section id="src-0050-RNA-seq-349" class="level3">
 <h3 class="anchored" data-anchor-id="src-0050-RNA-seq-349">计数归属：从比对到计数矩阵</h3>
 <p>常用的表达定量软件有 HTSeq（htseq-count）、featureCounts 与 Cufflinks 套件中的 Cuffquant/Cuffnorm。定量得到的 count 数据用于接下来的样本间差异表达分析。</p>
@@ -1797,7 +1797,7 @@ window.Quarto = {
 </section>
 <section id="src-0050-RNA-seq-710" class="level4">
 <h4 class="anchored" data-anchor-id="src-0050-RNA-seq-710">用 featureCounts 计数</h4>
-<p>使用featureCount对基因表达进行定量：</p>
+<p>用 featureCounts 对基因表达进行定量：</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb15" data-book-role="code"><pre data-code-text="&quot;featureCounts -t exon -g gene_id \\\n-Q 10 --primary -s 0 -p -T 1 \\\n-a ./reference/gtf/hg38_refseq_from_ucsc.rm_XM_XR.fix_name.gtf \\\n-o ./count_result/test_count.featureCounts \\\n./bam/test_hisat2.sort.bam \\\n./bam/test_hisat2.sort.2.bam &gt; ./count_result/test_count.featureCounts.log  2&gt;&amp;1 &amp; &quot;" class="sourceCode numberSource bash numberLines code-with-copy"><code class="sourceCode bash"><span id="cb15-1"><a href="#cb15-1"></a><span class="ex">featureCounts</span> <span class="at">-t</span> exon <span class="at">-g</span> gene_id <span class="dt">\</span></span>
 <span id="cb15-2"><a href="#cb15-2"></a>-Q 10 <span class="at">--primary</span> <span class="at">-s</span> 0 <span class="at">-p</span> <span class="at">-T</span> 1 <span class="dt">\</span></span>
 <span id="cb15-3"><a href="#cb15-3"></a>-a ./reference/gtf/hg38_refseq_from_ucsc.rm_XM_XR.fix_name.gtf <span class="dt">\</span></span>
@@ -1822,7 +1822,7 @@ window.Quarto = {
 </section>
 <section id="src-0050-RNA-seq-286" class="level3">
 <h3 class="anchored" data-anchor-id="src-0050-RNA-seq-286">转录本水平的定量：StringTie、RSEM 与 Cufflinks</h3>
-<p><span id="src-0050-RNA-seq-625"></span> 组装转录本是一个可选项，如果想挖掘测序数据中的新转录本，则需要做这一步分析。拼接软件根据参考基因组将测序处理得到的高质量测序片段比对到该参考基因组上，然后对比对上的片段进行转录本组装。Cufflinks、StringTie和Scripture都是常用的转录本组装软件。</p>
+<p><span id="src-0050-RNA-seq-625"></span> 如果要从测序数据中寻找新转录本，就需要进行转录本组装；否则这一步是可选的。先将处理后的高质量测序片段比对到参考基因组，再根据比对结果组装转录本。常用软件有 Cufflinks、StringTie 和 Scripture。</p>
 <div class="book-core callout callout-style-default callout-note callout-titled" title="核心知识｜一个基因可以产生多个转录本">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -1863,7 +1863,7 @@ window.Quarto = {
 <span id="cb19-5"><a href="#cb19-5"></a><span class="ex">rsem-calculate-expression</span> <span class="at">--paired-end</span> <span class="at">-p</span> 8 <span class="at">--aligner</span> STAR <span class="dt">\</span></span>
 <span id="cb19-6"><a href="#cb19-6"></a>  fix.fastq/test_R1_cutadapt.fq.gz fix.fastq/test_R2_cutadapt.fq.gz <span class="dt">\</span></span>
 <span id="cb19-7"><a href="#cb19-7"></a>  rsem_ref/hg38 count_result/test</span></code></pre></div><button title="复制到剪贴板" class="code-copy-button"><i class="bi"></i></button></div>
-<p>结果文件 <code>test.isoforms.results</code> 逐转录本给出 length、expected_count、TPM 与 FPKM；<code>test.genes.results</code> 是基因水平汇总。与 StringTie 的分工：StringTie 长于组装发现新转录本，RSEM 长于在已知注释集上做严谨的丰度估计——它不发现新转录本，只把 read 分摊到给定集合。转录本水平的差异表达（5.5 节）正是拿 RSEM 的 isoform 计数往下走。</p>
+<p><code>test.isoforms.results</code> 按转录本列出 length、expected_count、TPM 和 FPKM，<code>test.genes.results</code> 则汇总基因水平的结果。StringTie 擅长组装和发现新转录本，RSEM 则在给定注释集上估计丰度：它不发现新转录本，而是将 read 分摊给已有转录本。转录本水平的差异表达分析（5.5 节）会继续使用 RSEM 的 isoform 计数。</p>
 </section>
 <section id="src-0050-RNA-seq-627" class="level4">
 <h4 class="anchored" data-anchor-id="src-0050-RNA-seq-627">Cufflinks 套件</h4>
@@ -1878,7 +1878,7 @@ window.Quarto = {
 <span id="cb21-6"><a href="#cb21-6" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb21-7"><a href="#cb21-7" aria-hidden="true" tabindex="-1"></a><span class="ex">cuffcompare</span> <span class="at">-r</span> Homo_sapiens.GRCh38.85.gtf <span class="at">-i</span> 1.txt <span class="at">-o</span> cuffcmp01</span></code></pre></div><button title="复制到剪贴板" class="code-copy-button"><i class="bi"></i></button></div>
 <p>Cufflinks 的输入必须是排序后的 BAM/SAM；对剪接比对结果还要求记录带有 <code>XS</code> 标签（链方向）。用 HISAT2 比对非链特异性 RNA-seq 数据时，须加 <code>--dta-cufflinks</code> 参数，让跨内含子的比对带上 <code>XS</code> 标签，否则 cufflinks 无法正确处理。</p>
-<p>cufflinks的输出结果有genes.fpkm_tracking, isoforms.fpkm_tracking, transcripts.gtf。前两个时表达量FPKM结果文件，第三个是GTF文件，用于描述基因在染色体上的结构信息：序列名、来源、特征、起始坐标、终止坐标、得分、正负链、读码框、属性。不包含起始密码子和终止密码子，因此GTF不是标准的</p>
+<p>cufflinks 输出 genes.fpkm_tracking、isoforms.fpkm_tracking 和 transcripts.gtf。前两个是 FPKM 表达量文件，第三个是 GTF 文件，记录基因在染色体上的结构信息，包括序列名、来源、特征、起始坐标、终止坐标、得分、正负链、读码框和属性。由于不含起始密码子和终止密码子信息，这份 GTF 并非标准的基因注释。</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb22" data-book-role="code"><pre data-code-text="&quot;cufflinks -p 4 -b genome.fasta -u -o sample1 -L sample1 tophat.bam&quot;" class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="ex">cufflinks</span> <span class="at">-p</span> 4 <span class="at">-b</span> genome.fasta <span class="at">-u</span> <span class="at">-o</span> sample1 <span class="at">-L</span> sample1 tophat.bam</span></code></pre></div><button title="复制到剪贴板" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="book-table-scroll" role="region" aria-label="表格，可横向滚动" tabindex="0"><table class="caption-top table"><colgroup><col style="width:22%;min-width:110px"><col style="width:78%"></colgroup>
 <colgroup>
@@ -1988,14 +1988,14 @@ window.Quarto = {
 <section id="src-0050-RNA-seq-304" class="level3">
 <h3 class="anchored" data-anchor-id="src-0050-RNA-seq-304">表达值的标准化：从 count 到可比的量</h3>
 <p><span id="src-0050-RNA-seq-300"></span> 为统计检验和可视化选择正确的数据表示。 通过前面的序列比对分析，获得了能够map到各个基因的reads数，也就是原始的count数。但原始的count数并不能完全表征基因的表达情况，因为不同基因的长度不同，不同批次数据的测序量也不同，所以需要校正测序深度和基因长度的影响，即对表达量做标准化定量<a href="#fn24" class="footnote-ref" id="fnref24" role="doc-noteref"><sup>24</sup></a>。 例如，同一个样本中基因 A 和基因 B 的 count 都是 1000，而两者长度分别为 100 bp 和 200 bp，不能认为它们的表达水平一样；再比如，基因 A 在样本 1、2 中的 count 分别为 1000 和 2000，也不能断定它在样本 2 中表达翻倍——两次测序的总量并不一致；由于基因本身长度的不同、不同样本测序量的差异，不能使用原始的count数来表征基因的表达水平。</p>
-<p>基因的表达进行标准化定量包括多种方式，包括：</p>
+<p>常见的表达量标准化方式包括：</p>
 <ol type="1">
 <li><strong>RPKM</strong>（Reads Per Kilobase per Million mapped reads）<a href="#fn25" class="footnote-ref" id="fnref25" role="doc-noteref"><sup>25</sup></a>、<strong>FPKM</strong>（Fragments Per Kilobase per Million mapped reads）；</li>
 <li>TPM（Transcripts Per Million）</li>
 <li>RPM(Reads per million mapped reads)</li>
 <li>CPM（counts per million mapped reads）等。</li>
 </ol>
-<p>各自的适用范围和优缺点不同，了解各自的原理才能在分析过程中选择最适合的定量方式:</p>
+<p>这些指标的原理和适用范围不同，需要按分析用途选择：</p>
 <p><span id="eq-rpm-cpm-definition" class="book-equation"><span class="equation-scroll" tabindex="0" role="region" aria-label="公式 5.1"><span class="math display">\[
 \mathrm{RPM}\ \text{or}\ \mathrm{CPM}=\frac{\text{Number of reads mapped to gene}\times10^6}{\text{Total number of mapped reads}}
 \]</span></span><a class="equation-label" href="#eq-rpm-cpm-definition" aria-label="公式（5.1）">(5.1)</a></span></p>
@@ -2041,14 +2041,14 @@ window.Quarto = {
 \mathrm{TPM}_i=10^6\frac{C_i/L_i}{\sum_j C_j/L_j}
 \]</span></span><a class="equation-label" href="#eq-06-rna-seq-002" aria-label="公式（5.5）">(5.5)</a></span></p>
 <p>RNA-seq 的定量有时也会失败。例如，部分跨样本归一化方法依赖表达变化的总体分布，不能把下面两条当作所有 RNA-seq 方法都必须满足的统一前提： 1. 绝大多数的gene不发生表达量的变化； 2. 特别高表达的gene不发生表达量的变化。</p>
-<p>而且，如果仔细思考，你会发现普通的RNA-Seq定量计算采取的方式是样本内相对定量，定量值取决于基因本身的表达量和样本的表达总量的比值。当这些假设不成立时，TPM 带来的偏倚可能比 FPKM/RPKM 更大。从这个角度看，不存在绝对好或绝对坏的标准化方法，不能想当然地认为 TPM 一定优于 FPKM。</p>
+<p>普通 RNA-Seq 定量采用样本内相对定量，数值取决于基因表达量与样本表达总量的比值。当上述假设不成立时，TPM 带来的偏倚可能比 FPKM/RPKM 更大。因此，标准化方法需要结合数据条件选择，不能认为 TPM 一定优于 FPKM。</p>
 <p>当上述假设不成立时，需要借助外部参照做绝对定量。最常见的做法是在建库时加入已知摩尔数的内参序列（如 ERCC spike-in），事后根据内参的实测计数反推每个样本的绝对摩尔数。</p>
 <p>另一种策略是利用管家基因：它们在多数组织与条件下稳定表达，可以像 spike-in 一样拟合标准曲线来校正数据，再进行差异分析。</p>
-<p>无论加入 spike-in 还是使用管家基因，都可能引入新的变异（variation），在解读绝对定量结果时同样要有清醒认识。</p>
+<p>加入 spike-in 或使用管家基因都可能引入新的变异（variation），解读绝对定量结果时也需要考虑这一影响。</p>
 </section>
 <section id="topic-05-quant-choice" class="level3">
 <h3 class="anchored" data-anchor-id="topic-05-quant-choice">该用哪种定量值</h3>
-<p>面对不同用途，按 <a href="#tbl-05-quant-choice" class="quarto-xref">表&nbsp;<span>5.5</span></a> 选择合适的定量值，不要用一种数值包打天下。</p>
+<p>不同用途需要不同的定量值，可以参照 <a href="#tbl-05-quant-choice" class="quarto-xref">表&nbsp;<span>5.5</span></a> 选择。</p>
 <div id="tbl-05-quant-choice" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-tbl figure">
 <figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-05-quant-choice-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
@@ -2130,7 +2130,7 @@ window.Quarto = {
 </section>
 <section id="src-0050-RNA-seq-793" class="level3">
 <h3 class="anchored" data-anchor-id="src-0050-RNA-seq-793">用 DESeq2 做差异分析</h3>
-<p>用 R 语言 DESeq2 包进行差异分析（先一步到位，再逐步拆解同样的计算）：</p>
+<p>下面用 R 语言的 DESeq2 包做差异分析，先给出完整流程，再逐步解释其中的计算：</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb27" data-book-role="code"><pre data-code-text="&quot;library(DESeq2)\n# count table \n\ncount_df &lt;- read.table(file = \&quot;./03.code_and_data/out_table/293T-RNASeq-Ctrl_vs_KD.STAR.hg38.featureCounts.FixColName.tsv\&quot;,header = T,sep = \&quot;\\t\&quot;)\n# filter \n\ncolnames(count_df)\ncount_df.filter &lt;- count_df[rowSums(count_df) &gt; 20 &amp; apply(count_df,1,function(x){ all(x &gt; 0) }),]\n# condition table\n\nsample_df &lt;- data.frame(\n  condition = c(rep(\&quot;ctrl\&quot;,2), rep(\&quot;KD\&quot;,2)),\n  cell_line = \&quot;293T\&quot;\n)\nrownames(sample_df) &lt;- colnames(count_df.filter)\ndeseq2.obj &lt;- DESeqDataSetFromMatrix(countData = count_df.filter, colData = sample_df, design = ~condition)\n# --------------------------------------------------------&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;\n# directly get test result \n# --------------------------------------------------------&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;\n\ndeseq2.obj &lt;- DESeqDataSetFromMatrix(countData = count_df.filter, colData = sample_df, design = ~condition)\ndeseq2.obj\n# test \n\ndeseq2.obj &lt;- DESeq(deseq2.obj)\n# get result\n\ndeseq2.obj.res &lt;- results(deseq2.obj)\ndeseq2.obj.res.df &lt;- as.data.frame(deseq2.obj.res)\n# --------------------------------------------------------&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;\n# step by step get test result \n# --------------------------------------------------------&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;\n\ndeseq2.obj &lt;- DESeqDataSetFromMatrix(countData = count_df, colData = sample_df, design = ~condition)\ndeseq2.obj\n# normalization \n\ndeseq2.obj &lt;- estimateSizeFactors(deseq2.obj)\nsizeFactors(deseq2.obj)\n# dispersion\n\ndeseq2.obj &lt;- estimateDispersions(deseq2.obj)\ndispersions(deseq2.obj)\n# plot dispersion\n\nplotDispEsts(deseq2.obj, ymin = 1e-4)\n# test \n\ndeseq2.obj &lt;- nbinomWaldTest(deseq2.obj)\ndeseq2.obj.res &lt;- results(deseq2.obj)&quot;" class="sourceCode numberSource r numberLines code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1"></a><span class="fu">library</span>(DESeq2)</span>
 <span id="cb27-2"><a href="#cb27-2"></a><span class="co"># count table </span></span>
 <span id="cb27-3"><a href="#cb27-3"></a></span>
@@ -2184,7 +2184,7 @@ window.Quarto = {
 </section>
 <section id="src-0050-RNA-seq-840" class="level3">
 <h3 class="anchored" data-anchor-id="src-0050-RNA-seq-840">用 edgeR 做差异分析</h3>
-<p>使用R语言edgeR包进行差异分析：</p>
+<p>用 R 语言的 edgeR 包做差异分析：</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb28" data-book-role="code"><pre data-code-text="&quot;library(edgeR)\n\n# --------------------------------------------------------&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;\n# make obj \n# --------------------------------------------------------&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;\n# count table \n\ncount_df &lt;- read.table(file = \&quot;./03.code_and_data/out_table/293T-RNASeq-Ctrl_vs_KD.STAR.hg38.featureCounts.FixColName.tsv\&quot;,header = T,sep = \&quot;\\t\&quot;)\n\n# filter \n\ncolnames(count_df)\ncount_df.filter &lt;- count_df[rowSums(count_df) &gt; 20 &amp; apply(count_df,1,function(x){ all(x &gt; 0) }),]\n\n# condition table\n\ngroup_info = c(rep(\&quot;ctrl\&quot;,2), rep(\&quot;KD\&quot;,2))\n\ndge.list.obj &lt;- DGEList(counts = count_df.filter, group = group_info)\ndge.list.obj\n\n# --------------------------------------------------------&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;\n# Normalization\n# --------------------------------------------------------&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;\n# Normalization method: \&quot;TMM\&quot;,\&quot;TMMwsp\&quot;,\&quot;RLE\&quot;,\&quot;upperquartile\&quot;,\&quot;none\&quot;\n\ndge.list.obj &lt;- calcNormFactors(dge.list.obj,method = \&quot;TMM\&quot;)\ndge.list.obj$samples\n\ndge.list.obj &lt;- calcNormFactors(dge.list.obj,method = \&quot;TMMwsp\&quot;)\ndge.list.obj$samples\n\ndge.list.obj &lt;- calcNormFactors(dge.list.obj,method = \&quot;upperquartile\&quot;)\ndge.list.obj$samples\n\ndge.list.obj &lt;- calcNormFactors(dge.list.obj,method = \&quot;RLE\&quot;) # DESeq2, cuffdiff\ndge.list.obj$samples\n\ndge.list.obj &lt;- calcNormFactors(dge.list.obj,method = \&quot;none\&quot;)\ndge.list.obj$samples\n\n# raw data plot MDS\n\nplotMDS(dge.list.obj)\n\n# --------------------------------------------------------&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;\n# make design matrix\n# --------------------------------------------------------&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;\n\ndesign.mat &lt;- model.matrix(~group_info)\n\n# --------------------------------------------------------&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;\n# estimate dispersion\n# --------------------------------------------------------&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;\n\ndge.list.obj &lt;- estimateDisp(dge.list.obj,design.mat)\ndge.list.obj$common.dispersion\ndge.list.obj$tagwise.dispersion\n\n# 1st common dispersion\n\ndge.list.obj &lt;- estimateCommonDisp(dge.list.obj)\n\n# 2nd tagwise dispersion\n\ndge.list.obj &lt;- estimateTagwiseDisp(dge.list.obj)\n\n# plot dispersion\n\nplotBCV(dge.list.obj, cex = 0.8)\n\n# plot var and mean\n\nplotMeanVar(dge.list.obj, show.raw=TRUE, show.tagwise=TRUE, show.binned=TRUE)\n\n# --------------------------------------------------------&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;\n# test with exact test（适用于单因素两组比较）\n# --------------------------------------------------------&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;\n\ndge.list.res &lt;- exactTest(dge.list.obj)\nDEGs.res &lt;- as.data.frame(topTags(dge.list.res,n=nrow(count_df.filter),sort.by = \&quot;logFC\&quot;))\n\n# MA plot\n\nselect.sign.gene = decideTestsDGE(dge.list.res, p.value = 0.001) \nselect.sign.gene_id = rownames(dge.list.res)[as.logical(select.sign.gene)]\nplotSmear(dge.list.res, de.tags = select.sign.gene_id, cex = 0.5,ylim=c(-4,4)) \nabline(h = c(-2, 2), col = \&quot;blue\&quot;)\n\n# --------------------------------------------------------&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;\n# test with likelihood ratio test\n# --------------------------------------------------------&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;\n\nfit &lt;- glmFit(dge.list.obj, design.mat)\nlrt &lt;- glmLRT(fit, coef=2)\nDEGs.res.lrt &lt;- as.data.frame(topTags(lrt,n=nrow(count_df.filter),sort.by = \&quot;logFC\&quot;))&quot;" class="sourceCode numberSource r numberLines code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1"></a><span class="fu">library</span>(edgeR)</span>
 <span id="cb28-2"><a href="#cb28-2"></a></span>
 <span id="cb28-3"><a href="#cb28-3"></a><span class="co"># --------------------------------------------------------&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;</span></span>
@@ -2378,7 +2378,7 @@ window.Quarto = {
 </div>
 </figure>
 </div>
-<p>常用阈值是 padj &lt; 0.05 且 |log2FoldChange| &gt; 1（两倍变化），再按 baseMean 过滤低表达基因。下面三个陷阱占了初学者错误的大多数。</p>
+<p>常用阈值是 padj &lt; 0.05 且 |log2FoldChange| &gt; 1（两倍变化），再按 baseMean 过滤低表达基因。解读结果时，尤其要注意下面三个常见问题。</p>
 <div class="book-warning callout callout-style-default callout-warning callout-titled" title="注意｜比较方向取决于因子顺序">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -2389,7 +2389,7 @@ window.Quarto = {
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>R 的因子按字母顺序排级别：<code>condition = c("ctrl","KD")</code> 中 ctrl 是参考水平，log2FoldChange 的正数表示 KD 组升高。想让“敲降相对对照”就先 <code>sample_df$condition &lt;- relevel(sample_df$condition, ref = "ctrl")</code>。火山图正负方向的解释务必先确认这一点，否则上调控错成下调。</p>
+<p>R 的因子按字母顺序排列水平：<code>condition = c("ctrl","KD")</code> 中 ctrl 是参考水平，log2FoldChange 为正表示 KD 组升高。若要比较“敲降相对对照”的变化，先运行 <code>sample_df$condition &lt;- relevel(sample_df$condition, ref = "ctrl")</code>。解释火山图的正负方向前，务必确认参考水平，避免把上调误读成下调。</p>
 </div>
 </div>
 <div class="book-warning callout callout-style-default callout-warning callout-titled" title="注意｜样本表与计数矩阵列错配">
@@ -2402,7 +2402,7 @@ window.Quarto = {
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p><code>DESeqDataSetFromMatrix</code> 要求 colData 的行名与 count 矩阵的列名一致且同序。手工整理表格时最常见的错误是列顺序对调了两个样本——代码不报错，模型却把两个组各污染了一个样本，差异基因大幅缩水。构建对象后打印 <code>colnames(deseq2.obj)</code> 与分组表逐一对一遍，再用上一小节的 PCA 复核。</p>
+<p><code>DESeqDataSetFromMatrix</code> 要求 colData 的行名与 count 矩阵的列名一致，且顺序相同。手工整理表格时，容易把两个样本的列顺序对调；代码可能不报错，模型却将两个样本分到了错误的组，导致差异基因大幅减少。构建对象后，打印 <code>colnames(deseq2.obj)</code>，与分组表逐一核对，再用上一小节的 PCA 复核。</p>
 </div>
 </div>
 <div class="book-example callout callout-style-default callout-tip callout-titled" title="示例与练习｜读一行 DESeq2 结果表">
@@ -2437,14 +2437,14 @@ window.Quarto = {
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>在上一步的RNA-seq分析中获得了差异表达基因。要了解差异表达基因的功能，一般会对基因进行GO和KEGG pathway注释。很多情况下，研究者希望得到的信息是一群基因主要集中在了那些功能上，则需要对基因集进行GO和KEGG pathway的富集注释。例如在胁迫或药物处理引起大量基因表达变化时，KEGG pathway 富集分析可以提示哪些通路发生了成规模的表达变化。基因注释与富集分析是两回事：注释回答“单个基因有哪些功能、参与哪些通路”，富集分析回答“某个基因集是否在特定通路或注释条目中过度出现”。气泡图是富集结果最常用的展示方式，见本章后面的结果图小节。</p>
+<p>上一步已经得到了差异表达基因。要了解这些基因各自的功能，可以做 GO 和 KEGG pathway 注释；要判断它们是否集中在某些功能上，则需要做富集分析。例如，胁迫或药物处理引起大量基因表达变化时，KEGG pathway 富集分析可以提示哪些通路发生了成规模的表达变化。两者回答的问题不同：注释说明“单个基因有哪些功能、参与哪些通路”，富集分析判断“某个基因集是否在特定通路或注释条目中过度出现”。富集结果常用气泡图展示，见后面的结果图小节。</p>
 </div>
 </div>
 <p>R 语言 clusterProfiler 包与 DAVID、Metascape 等在线工具都常用于注释与富集分析。clusterProfiler 由南方医科大学余光创团队开发，多年持续更新，是国内使用最广的富集分析工具之一。</p>
 </section>
 <section id="topic-05-clusterprofiler" class="level3">
 <h3 class="anchored" data-anchor-id="topic-05-clusterprofiler">clusterProfiler 实操：GO 与 KEGG</h3>
-<p>任何差异分析工具得到的基因列表都可以作为 <code>clusterProfiler</code> 的输入。上一节 DESeq2 的结果取显著基因只要三行：</p>
+<p>任何差异分析工具得到的基因列表都可以作为 <code>clusterProfiler</code> 的输入。下面从上一节 DESeq2 的结果中提取显著基因：</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb31" data-book-role="code"><pre data-code-text="&quot;res &lt;- as.data.frame(results(deseq2.obj))\nde_genes &lt;- rownames(res)[res$padj &lt; 0.05 &amp; abs(res$log2FoldChange) &gt; 1]\nde_genes &lt;- na.omit(de_genes)&quot;" class="sourceCode numberSource r numberLines code-with-copy"><code class="sourceCode r"><span id="cb31-1"><a href="#cb31-1"></a>res <span class="ot">&lt;-</span> <span class="fu">as.data.frame</span>(<span class="fu">results</span>(deseq2.obj))</span>
 <span id="cb31-2"><a href="#cb31-2"></a>de_genes <span class="ot">&lt;-</span> <span class="fu">rownames</span>(res)[res<span class="sc">$</span>padj <span class="sc">&lt;</span> <span class="fl">0.05</span> <span class="sc">&amp;</span> <span class="fu">abs</span>(res<span class="sc">$</span>log2FoldChange) <span class="sc">&gt;</span> <span class="dv">1</span>]</span>
 <span id="cb31-3"><a href="#cb31-3"></a>de_genes <span class="ot">&lt;-</span> <span class="fu">na.omit</span>(de_genes)</span></code></pre></div><button title="复制到剪贴板" class="code-copy-button"><i class="bi"></i></button></div>
@@ -2557,7 +2557,7 @@ window.Quarto = {
 </section>
 <section id="src-0050-RNA-seq-930" class="level3">
 <h3 class="anchored" data-anchor-id="src-0050-RNA-seq-930">常用结果图：火山图、聚类热图与气泡图</h3>
-<p>聚类采用两种思路，寻找最近的样本进行聚集，即聚类法 agglomerative；剥离出最远的样本的方法，即分割法divisive。</p>
+<p>聚类有两种思路：凝聚法（agglomerative）逐步合并最近的样本，分割法（divisive）则逐步分离最远的样本。</p>
 <section id="src-0050-RNA-seq-932" class="level4">
 <h4 class="anchored" data-anchor-id="src-0050-RNA-seq-932">火山图</h4>
 <p>火山图横轴是 log2 倍数变化、纵轴是 -log10(p)，每个点是一个基因（<a href="#fig-05-volcano-demo" class="quarto-xref">图&nbsp;<span>5.9</span></a>）。</p>
@@ -2614,7 +2614,7 @@ window.Quarto = {
 </section>
 <section id="src-0050-RNA-seq-979" class="level4">
 <h4 class="anchored" data-anchor-id="src-0050-RNA-seq-979">聚类热图</h4>
-<p>聚类热图把显著基因按行标准化后着色（红＝高、白＝中、蓝＝低），样本列经层次聚类排布——健康的重复会并排出现（<a href="#fig-05-heatmap-demo" class="quarto-xref">图&nbsp;<span>5.10</span></a>）。</p>
+<p>聚类热图把显著基因按行标准化后着色（红＝高、白＝中、蓝＝低），样本列按层次聚类的结果排列，质量良好的重复样本会相邻出现（<a href="#fig-05-heatmap-demo" class="quarto-xref">图&nbsp;<span>5.10</span></a>）。</p>
 <div id="fig-05-heatmap-demo" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-05-heatmap-demo-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
@@ -2673,7 +2673,7 @@ hsa-miR-6090    5.80658 4.459086667
 </section>
 <section id="sec-05-08" class="level2" data-number="5.7">
 <h2 data-number="5.7" class="anchored" data-anchor-id="sec-05-08"><span class="header-section-number">5.7</span> 其它 RNA 测序的分析</h2>
-<p>把前文的 bulk RNA-seq 分析思路扩展到其他 RNA 类型。 <span id="src-0050-RNA-seq-1122"></span> 其他RNA测序的数据分析与普通RNA测序数据分析类似，例如质量检测、序列比对、表达定量和差异表达分析是所有RNA测序都需要做的分析。不同的地方在于鉴定是否属于这一类RNA的手段、定量的方法和一些下游分析，例如miRNA需要分析其靶基因，circRNA需要分析能够与之互作的miRNA。此外，单细胞RNA-seq的分析自基因表达矩阵后，与RNA-seq的分析会有较大的差异，一般会侧重于细胞的分群、分类、演化等分析。</p>
+<p>把前文的 bulk RNA-seq 分析思路扩展到其他 RNA 类型。 <span id="src-0050-RNA-seq-1122"></span> 其他 RNA 测序同样需要质量检查、序列比对、表达定量和差异表达分析，与普通 RNA 测序的区别主要在于 RNA 类型的鉴定、定量方法及部分下游分析。例如，miRNA 需要分析靶基因，circRNA 需要分析与之互作的 miRNA。单细胞 RNA-seq 则从基因表达矩阵开始，与常规 RNA-seq 有较大区别，通常侧重细胞分群、分类和演化等分析。</p>
 <section id="src-0050-RNA-seq-1126" class="level3">
 <h3 class="anchored" data-anchor-id="src-0050-RNA-seq-1126">lncRNA 测序分析</h3>
 <p>去 rRNA 与富集 poly(A) 两种文库都能检测到 lncRNA：前者数据全面，后者只能获得含 poly(A) 尾的类 mRNA 型 lncRNA。</p>
@@ -2688,8 +2688,8 @@ hsa-miR-6090    5.80658 4.459086667
 </figcaption>
 </figure>
 </div>
-<p>而新lncRNA的预测分析则需要预测转录本的编码潜能和序列同源性等指标，主要包括： 1. 在拼接好的转录本中提取长度大于200nt的转录本； 2. 与其他非编码RNA数据库比对去除其他非编码RNA； 3. 与已知蛋白质序列比对去除与之高度相似的转录本； 4. 利用lncRNA鉴定软件评估潜在lncRNA转录本的编码能力，常用预测软件有PhyloCSF、CNCI、CPC、COME、PLEK、lncRNA-MFDl等； 5. 获取可能的新lncRNA转录本。</p>
-<p>lncRNA数据分析中，表达定量和差异表达分析和mRNA的分析方法是类似的，但功能注释方法不同。包括直接注释和通过靶标基因注释两种方式：</p>
+<p>预测新的 lncRNA，需要评估转录本的编码潜能和序列同源性等指标，主要步骤包括： 1. 在拼接好的转录本中提取长度大于200nt的转录本； 2. 与其他非编码RNA数据库比对去除其他非编码RNA； 3. 与已知蛋白质序列比对去除与之高度相似的转录本； 4. 利用lncRNA鉴定软件评估潜在lncRNA转录本的编码能力，常用预测软件有PhyloCSF、CNCI、CPC、COME、PLEK、lncRNA-MFDl等； 5. 获取可能的新lncRNA转录本。</p>
+<p>lncRNA 的表达定量和差异表达分析与 mRNA 类似，但功能注释不同，主要有直接注释和通过靶标基因注释两种方式：</p>
 <ol type="1">
 <li>直接注释可以基于一些收录lncRNA功能信息的数据库进行注释分析，例如<a href="http://www.cuilab.cn/lncrnadisease">LncRNADisease</a> 收录人类疾病相关 lncRNA；NONCODE 也提供 lncRNA 注释信息（2026 年 10 月核对）；</li>
 <li>lncRNA 多通过调控蛋白编码基因发挥作用：cis 调控指影响基因组上相邻位置的基因；trans 作用指远离转录位点、通过碱基互补等方式作用于其他分子，可借助位置特征与序列互补性预测。</li>
@@ -2772,7 +2772,7 @@ hsa-miR-6090    5.80658 4.459086667
 <li>miRNA 是内源竞争 RNA 争夺的目标。除 mRNA 与 circRNA 外，具有类 mRNA 结构的 lncRNA 也能通过 3′ 非翻译区与 miRNA 结合，作用方式类似 miRNA 与 mRNA。miRcode 曾提供全转录组水平的 lncRNA miRNA 结合位点预测，其网站现已下线，可经原始论文检索数据。</li>
 <li>lncRNA 与基因之间还存在 cis 调控与 trans 作用等关系；circRNA 除结合 miRNA 外，与宿主基因的表达也存在关联——它的序列本就来自宿主基因的外显子。</li>
 </ol>
-<p>可见，生物体内的 RNA 之间有着千丝万缕的联系：有时竞争，有时协同。</p>
+<p>这些例子说明，RNA 分子之间既有竞争，也有协同关系。</p>
 
 
 </section>
@@ -2817,7 +2817,7 @@ hsa-miR-6090    5.80658 4.459086667
 
 </main> <!-- /main -->
 <div class="book-toolbar" role="navigation" aria-label="阅读工具">
-  <div class="book-brand"><span class="book-brand-name">AI时代生信入门</span><time class="book-last-modified" datetime="2026-10-11T17:31:04+08:00" title="最后修改时间（北京时间，UTC+08:00）">最后修改 2026-10-11 17:31</time></div>
+  <div class="book-brand"><span class="book-brand-name">AI时代生信入门</span><time class="book-last-modified" datetime="2026-10-12T13:46:45+08:00" title="最后修改时间（北京时间，UTC+08:00）">最后修改 2026-10-12 13:46</time></div>
   <button class="book-menu-button" type="button" aria-controls="quarto-sidebar" aria-expanded="false">目录</button>
   <button class="book-search-button" type="button">搜索</button>
 </div>

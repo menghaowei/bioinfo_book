@@ -921,7 +921,7 @@ window.Quarto = {
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
 <h1 class="title"><span id="sec-ch06" class="quarto-section-identifier"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">ChIP-seq与ATAC-seq：从富集信号到差异分析</span></span></h1>
-<p class="chapter-last-modified"><time datetime="2026-10-11T13:16:30+08:00" title="本章书稿最后修改时间（北京时间，UTC+08:00）">最后修改：2026-10-11 13:16（北京时间）</time></p>
+<p class="chapter-last-modified"><time datetime="2026-10-12T13:46:45+08:00" title="本章书稿最后修改时间（北京时间，UTC+08:00）">最后修改：2026-10-12 13:46（北京时间）</time></p>
 </div>
 
 
@@ -945,7 +945,7 @@ window.Quarto = {
 <section id="sec-06-01" class="level2" data-number="6.1">
 <h2 data-number="6.1" class="anchored" data-anchor-id="sec-06-01"><span class="header-section-number">6.1</span> 蛋白结合、组蛋白修饰与染色质可及性</h2>
 <p><span id="src-0060-ChIP-seq-20"></span><span id="ChIP_seq"></span></p>
-<p>转录调控研究常问三类问题：某个转录因子结合在基因组哪些位置？某种组蛋白修饰标记了哪些区域？哪些区域的染色质是开放的、可供调控蛋白接触的？ChIP-seq 回答前两类问题，ATAC-seq 回答第三类。三者测量的对象不同、对照的设计不同、信号形态也不同，但分析流程高度相似——都要经历质量控制、比对、寻找富集区域、跨样本比较这条主线。本章先分别认识这三类信号，再沿两条真实的分析案例把流程走通。</p>
+<p>转录调控研究常问三类问题：某个转录因子结合在基因组哪些位置？某种组蛋白修饰标记了哪些区域？哪些区域的染色质是开放的、可供调控蛋白接触的？ChIP-seq 回答前两类问题，ATAC-seq 回答第三类。三者测量的对象不同、对照的设计不同、信号形态也不同，但分析流程高度相似——都需要质量控制、比对、寻找富集区域和跨样本比较。本章先介绍三类信号，再用两个真实案例说明完整流程。</p>
 <section id="topic-06-chip-principle" class="level3">
 <h3 class="anchored" data-anchor-id="topic-06-chip-principle">ChIP-seq：用抗体富集蛋白结合的 DNA</h3>
 <p><span id="src-0060-ChIP-seq-22"></span></p>
@@ -959,7 +959,7 @@ window.Quarto = {
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p><strong>ChIP-seq</strong>（chromatin immunoprecipitation followed by high-throughput sequencing，染色质免疫共沉淀高通量测序）把免疫沉淀实验与二代测序结合：用针对目标蛋白的抗体，从打断的染色质中”拉出”与该蛋白结合的 DNA 片段，再对这些片段测序。于是测序 reads 在基因组上的分布，就反映了目标蛋白的结合位置——转录因子结合在哪里、组蛋白修饰富集在哪些区域。它是研究转录调控机制的核心工具。</p>
+<p><strong>ChIP-seq</strong>（chromatin immunoprecipitation followed by high-throughput sequencing，染色质免疫共沉淀高通量测序）把免疫沉淀实验与二代测序结合：用针对目标蛋白的抗体，从打断的染色质中”拉出”与该蛋白结合的 DNA 片段，再对这些片段测序。于是测序 reads 在基因组上的分布，就反映了目标蛋白的结合位置——转录因子结合在哪里、组蛋白修饰富集在哪些区域。我们可以据此研究转录调控机制。</p>
 </div>
 </div>
 <p><span id="src-0060-ChIP-seq-26"></span></p>
@@ -980,7 +980,7 @@ window.Quarto = {
 </figcaption>
 </figure>
 </div>
-<p><a href="#fig-07-chip-seq-and-atac-seq-001" class="quarto-xref">图&nbsp;<span>6.1</span></a> 概括了从样本到测序数据的路径（图源：Park PJ. <em>Nature Reviews Genetics</em> 10:669–680（2009）<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a>）。图中没有画出、但对分析同样关键的是<strong>对照</strong>：没有对照的”富集”无从谈起，这是下一节的主题。</p>
+<p><a href="#fig-07-chip-seq-and-atac-seq-001" class="quarto-xref">图&nbsp;<span>6.1</span></a> 概括了从样本到测序数据的路径（图源：Park PJ. <em>Nature Reviews Genetics</em> 10:669–680（2009）<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a>）。图中没有画出<strong>对照</strong>，但判断信号是否富集，同样需要对照提供的背景信息，下一节会具体介绍。</p>
 </section>
 <section id="topic-06-cut-run-tag" class="level3">
 <h3 class="anchored" data-anchor-id="topic-06-cut-run-tag">CUT&amp;RUN 与 CUT&amp;Tag：不需要交联的替代方案</h3>
@@ -1114,7 +1114,7 @@ window.Quarto = {
 </ul>
 <p>这两种对照得到的 DNA 量少、复杂度低，并不能真实反映背景分布，一般不推荐作为主对照。研究组蛋白修饰时，识别 H3 或 H4 的<strong>泛抗体</strong>是另一种常用对照——它在捕获修饰的同时也捕获了核小体的整体分布。</p>
 <p><span id="src-0060-ChIP-seq-58"></span></p>
-<p>为什么背景这么重要？因为多条偏差来源都会让某些区域”看起来富集”：</p>
+<p>为什么背景这么重要？因为多种偏差都会让某些区域”看起来富集”：</p>
 <ol type="1">
 <li><strong>打断不均</strong>：致密的异染色质比开放的常染色质更难打断，即使 input 样本中其覆盖也偏低；</li>
 <li><strong>GC 与 PCR 偏好</strong>：GC 含量高的片段扩增效率不同，背景分布与基因组 GC 含量相关，哺乳动物常染色质区的 CpG 岛尤其明显；</li>
@@ -1131,7 +1131,7 @@ window.Quarto = {
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>input 对照能扣除打断、GC、建库带来的系统性偏差，但它<strong>不能</strong>创造信噪比——抗体不好，ChIP 信号本身就弱，任何对照都救不回来。同样，input 也不能修正拷贝数变化的全部影响。判断一个 ChIP-seq 数据是否可信，要从对照、抗体、重复三个维度一起看。</p>
+<p>input 对照能扣除打断、GC、建库带来的系统性偏差，但它<strong>不能</strong>弥补抗体质量差造成的信号不足。同样，input 也不能修正拷贝数变化的全部影响。判断一个 ChIP-seq 数据是否可信，需要同时检查对照、抗体和生物学重复。</p>
 </div>
 </div>
 </section>
@@ -1150,7 +1150,7 @@ window.Quarto = {
 </section>
 <section id="topic-06-nrf1-case" class="level3">
 <h3 class="anchored" data-anchor-id="topic-06-nrf1-case">主案例：NRF1 与 DNA 甲基化的竞争</h3>
-<p>本章第一条例线来自一个具体的生物学问题：<strong>DNA 甲基化是否阻挡转录因子的结合？</strong> 如果某些转录因子不能结合甲基化的 DNA，那么在去除甲基化的细胞里，它们应该出现新的结合位点。NRF1 就是这样的因子<a href="#fn7" class="footnote-ref" id="fnref7" role="doc-noteref"><sup>7</sup></a>。</p>
+<p>第一个案例要回答的是：<strong>DNA 甲基化是否阻挡转录因子的结合？</strong> 如果某些转录因子不能结合甲基化的 DNA，那么在去除甲基化的细胞里，它们应该出现新的结合位点。NRF1 就是这样的因子<a href="#fn7" class="footnote-ref" id="fnref7" role="doc-noteref"><sup>7</sup></a>。</p>
 <p>实验设计：野生型小鼠胚胎干细胞（WT）与 DNA 甲基转移酶三敲除细胞系（Dnmt1/3a/3b triple knockout，TKO）中，分别做 NRF1 的 ChIP-seq（各两个生物学重复）、组蛋白修饰 H3K27ac 的 ChIP-seq（各两个重复），并各配一个 input。论文还配套了 DNase-seq（开放的染色质区域）与 RNA-seq——多组数据互相印证正是这类研究的常见做法。</p>
 <p><span id="src-0060-ChIP-seq-229"></span></p>
 <p>这 10 个样本的原始数据公开在 GEO（系列号 <strong>GSE67867</strong>）与 ENA（项目 <strong>PRJNA281090</strong>）：</p>
@@ -1239,7 +1239,7 @@ window.Quarto = {
 </section>
 <section id="topic-06-download" class="level3">
 <h3 class="anchored" data-anchor-id="topic-06-download">下载原始数据</h3>
-<p>第 5 章已经介绍过从 GEO/SRA 获取数据的基本流程（GSE/GSM/SRR 的层级关系、SRA Toolkit 的用法，见 <a href="../manuscript/05-rna-seq.html#sec-05-02">5.2 节</a>）。这里补充一个对批量下载很好用的在线工具，以及一个重要的校验习惯。</p>
+<p>第 5 章已经介绍过从 GEO/SRA 获取数据的基本流程（GSE/GSM/SRR 的层级关系、SRA Toolkit 的用法，见 <a href="../manuscript/05-rna-seq.html#sec-05-02">5.2 节</a>）。这里介绍一个批量下载工具，并说明怎样检查文件是否完整。</p>
 <p><strong>SRA Explorer</strong>（<a href="https://sra-explorer.info/">sra-explorer.info</a>）可以把一个 GSE/SRP 号展开成所有样本的下载清单，并为每种下载方式生成现成的链接或命令。注意：网站首页搜索框里预置的示例编号（GSE30567、PRJEB8073 等）只是演示用的<strong>别人的数据</strong>，检索自己的数据请输入本章的 GSE67867。</p>
 <p>把 GSE67867 输入搜索并勾选本章 10 个 SRR 样本后，网站可以生成多种输出：</p>
 <ul>
@@ -1300,7 +1300,7 @@ window.Quarto = {
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4" data-book-role="code"><pre data-code-text="&quot;# 示例：核对 SRR2500883（期望值来自 ENA run 页面）\nmd5sum SRR2500883.fastq.gz   # macOS 为 md5 -q\ngzip -t SRR2500883.fastq.gz &amp;&amp; echo OK&quot;" class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 示例：核对 SRR2500883（期望值来自 ENA run 页面）</span></span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="fu">md5sum</span> SRR2500883.fastq.gz   <span class="co"># macOS 为 md5 -q</span></span>
 <span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="fu">gzip</span> <span class="at">-t</span> SRR2500883.fastq.gz <span class="kw">&amp;&amp;</span> <span class="bu">echo</span> OK</span></code></pre></div><button title="复制到剪贴板" class="code-copy-button"><i class="bi"></i></button></div>
-<p>大小正确不等于内容正确；校验和通过才算拿到数据。</p>
+<p>因此，文件大小一致后，还需要核对校验和，确认下载内容完整。</p>
 </div>
 </div>
 </section>
@@ -1310,7 +1310,7 @@ window.Quarto = {
 <section id="topic-06-overview" class="level3">
 <h3 class="anchored" data-anchor-id="topic-06-overview">分析流程总览</h3>
 <p><span id="src-0060-ChIP-seq-82"></span></p>
-<p>ChIP-seq 的计算分析可以概括成下面的流程（图见下）：</p>
+<p>ChIP-seq 的计算分析包括以下步骤：</p>
 <ol type="1">
 <li><strong>原始数据质控</strong>：检查测序质量、接头污染、GC 分布（见 <a href="../manuscript/03-sequencing-technologies.html#sec-03-07">3.7 节</a>）；</li>
 <li><strong>修剪与过滤</strong>：去接头、去低质量碱基（见 <a href="../manuscript/03-sequencing-technologies.html#sec-03-08">3.8 节</a>）；</li>
@@ -1432,7 +1432,7 @@ SRR2500885: 1,000,000 -&gt; 965,541 reads（保留 96.6%），q30 比率 0.981</
 <section id="topic-06-align" class="level3">
 <h3 class="anchored" data-anchor-id="topic-06-align">比对与比对结果检查</h3>
 <p><span id="src-0060-ChIP-seq-404"></span><span id="src-0060-ChIP-seq-409"></span><span id="src-0060-ChIP-seq-417"></span><span id="src-0060-ChIP-seq-423"></span></p>
-<p>比对的算法原理（种子扩展、BWT/FM 索引）与工具选择已在 <a href="../manuscript/04-sequence-alignment.html#sec-04-04">第 4 章</a>展开。ChIP-seq 的 reads 来自随机打断的基因组 DNA，用 Bowtie 2 或 BWA 这类短序列比对工具即可；这里只讲本章链条里需要的几个决定。</p>
+<p>比对的算法原理（种子扩展、BWT/FM 索引）与工具选择已在 <a href="../manuscript/04-sequence-alignment.html#sec-04-04">第 4 章</a>展开。ChIP-seq 的 reads 来自随机打断的基因组 DNA，用 Bowtie 2 或 BWA 这类短序列比对工具即可；下面说明本章分析中需要确定的参考版本、过滤阈值和比对模式。</p>
 <p><strong>参考基因组</strong>：用与研究匹配的版本。本章案例是小鼠数据，用 UCSC 的 mm10（<a href="../manuscript/04-sequence-alignment.html#sec-04-02">4.2 节</a>讨论过参考基因组的来源与版本问题）：</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb9" data-book-role="code"><pre data-code-text="&quot;# 下载 mm10 基因组（约 900 MB）\nwget -c https://hgdownload.soe.ucsc.edu/goldenPath/mm10/bigZips/mm10.fa.gz\ngunzip mm10.fa.gz\n# 建索引（28 核约 25 分钟；索引文件以指定前缀命名）\nbowtie2-build --threads 24 mm10.fa mm10&quot;" class="sourceCode numberSource bash numberLines code-with-copy"><code class="sourceCode bash"><span id="cb9-1"><a href="#cb9-1"></a><span class="co"># 下载 mm10 基因组（约 900 MB）</span></span>
 <span id="cb9-2"><a href="#cb9-2"></a><span class="fu">wget</span> <span class="at">-c</span> https://hgdownload.soe.ucsc.edu/goldenPath/mm10/bigZips/mm10.fa.gz</span>
@@ -1452,7 +1452,7 @@ SRR2500885: 1,000,000 -&gt; 965,541 reads（保留 96.6%），q30 比率 0.981</
 </figcaption>
 </figure>
 </div>
-<p>如 <a href="#fig-07-chip-seq-and-atac-seq-012" class="quarto-xref">图&nbsp;<span>6.9</span></a> 所示，同一条 read 在两种模式下有不同的结局：end-to-end 要求整条 read 参与比对、错配只计罚不剪除；local 允许把两端低质量部分 soft-clip 掉、只保留高分的中段（概念见 <a href="http://bowtie-bio.sourceforge.net/bowtie2/manual.shtml">Bowtie 2 手册</a>，图为参照该概念自绘）。对随机打断、质量不错的 ChIP-seq 数据，<strong>默认的 end-to-end 即可</strong>；local 更适合 reads 质量差或预期存在融合/重排的场景。</p>
+<p>如 <a href="#fig-07-chip-seq-and-atac-seq-012" class="quarto-xref">图&nbsp;<span>6.9</span></a> 所示，同一条 read 在两种模式下会得到不同的比对结果：end-to-end 要求整条 read 参与比对、错配只计罚不剪除；local 允许把两端低质量部分 soft-clip 掉、只保留高分的中段（概念见 <a href="http://bowtie-bio.sourceforge.net/bowtie2/manual.shtml">Bowtie 2 手册</a>，图为参照该概念自绘）。对随机打断、质量不错的 ChIP-seq 数据，<strong>默认的 end-to-end 即可</strong>；local 更适合 reads 质量差或预期存在融合/重排的场景。</p>
 <p><span id="src-0060-ChIP-seq-456"></span></p>
 <p>比对加过滤一条命令完成（单端数据）：</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb10" data-book-role="code"><pre data-code-text="&quot;#!/usr/bin/env bash\nfor r in SRR2500883 SRR2500884 SRR2500885\ndo\n  bowtie2 -x mm10 -p 12 -U clean_data/${r}.clean.fastq.gz 2&gt; ${r}.bt2.log \\\n    | samtools view -h -@ 6 -bS -q 30 \\\n    | samtools sort -@ 6 -o align/${r}.q30.bam\n  samtools index align/${r}.q30.bam\n  samtools flagstat align/${r}.q30.bam &gt; align/${r}.flagstat.txt\ndone&quot;" class="sourceCode numberSource bash numberLines code-with-copy"><code class="sourceCode bash"><span id="cb10-1"><a href="#cb10-1"></a><span class="co">#!/usr/bin/env bash</span></span>
@@ -1546,12 +1546,12 @@ SRR2500885 (input):          98.69% overall alignment rate</code></pre>
 </div>
 </div>
 <p><span id="src-0060-ChIP-seq-683"></span><span id="src-0060-ChIP-seq-687"></span><span id="src-0060-ChIP-seq-690"></span><span id="src-0060-ChIP-seq-693"></span></p>
-<p>具体拆开是四步：</p>
+<p>具体分为四步：</p>
 <ol type="1">
 <li><strong>富集计算</strong>：窗口大小通常取估计片段长度的两倍；ChIP 与 input 的 reads 数各自按文库总量归一化后比较。</li>
 <li><strong>显著性</strong>：用泊松或负二项分布把观测 reads 数与背景模型的期望比较，得到 p 值。模型不必复杂——简单模型在这类数据上的表现并不差。</li>
 <li><strong>多重检验校正</strong>：基因组上检验了数万个窗口，总有一些 p 值”碰巧”很小；用 FDR（q 值）控制假发现。有 input 时还可以交换 ChIP 与 input”反向找峰”来估计经验 FDR。</li>
-<li><strong>阈值选择</strong>：p/q 值阈值决定喊多少峰。宽松的阈值多喊（利于 6.6 节的重复检验），严格的阈值少而准（利于最终报告）。重要的是：<strong>阈值选择本身就是分析决定，报告结果时应同时说明所用阈值</strong>；单纯比较两个不同阈值下的峰数量没有意义。</li>
+<li><strong>阈值选择</strong>：p/q 值阈值影响检出的峰数量。宽松阈值检出的峰较多（利于 6.6 节的重复检验），严格的阈值少而准（利于最终报告）。<strong>阈值选择会影响分析结果，报告时应说明所用阈值</strong>；单纯比较两个不同阈值下的峰数量没有意义。</li>
 </ol>
 </section>
 <section id="topic-06-macs3" class="level3">
@@ -1605,20 +1605,20 @@ NRF1_WT2: 15,306 个峰（q&lt;0.05）</code></pre>
 <section id="topic-06-peak-qc" class="level3">
 <h3 class="anchored" data-anchor-id="topic-06-peak-qc">峰的过滤与质量评估</h3>
 <p><span id="src-0060-ChIP-seq-697"></span><span id="src-0060-ChIP-seq-705"></span><span id="src-0060-ChIP-seq-713"></span><span id="src-0060-ChIP-seq-727"></span></p>
-<p>拿到峰之后、下结论之前，还有两类清理与检查。</p>
-<p><strong>黑名单区域</strong>：ENCODE 敟计了各物种中在任何 ChIP-seq 数据（包括 input）里都异常高信号的区域——多在着丝粒、端粒附近的人工富集区——并发布为 blacklist 文件<a href="https://github.com/ENCODE-DCC/kundaje-lab-blacklists">注：下载地址</a>。落在黑名单里的峰应直接剔除，线粒体染色体（chrM）上的峰同理：</p>
+<p>得到峰列表后，还要进行以下清理与质量检查。</p>
+<p><strong>黑名单区域</strong>：ENCODE 统计了各物种中在任何 ChIP-seq 数据（包括 input）里都异常高信号的区域——多在着丝粒、端粒附近的人工富集区——并发布为 blacklist 文件<a href="https://github.com/ENCODE-DCC/kundaje-lab-blacklists">注：下载地址</a>。落在黑名单里的峰应直接剔除，线粒体染色体（chrM）上的峰同理：</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb16" data-book-role="code"><pre data-code-text="&quot;# 下载 mm10 黑名单后\nbedtools intersect -v -a peaks/NRF1_WT1_peaks.narrowPeak \\\n  -b mm10.blacklist.bed &gt; peaks/NRF1_WT1.clean.narrowPeak\n# 去掉 chrM（黑名单通常已含，双保险）\ngrep -v \&quot;^chrM\&quot; peaks/NRF1_WT1.clean.narrowPeak &gt; peaks/NRF1_WT1.final.narrowPeak&quot;" class="sourceCode numberSource bash numberLines code-with-copy"><code class="sourceCode bash"><span id="cb16-1"><a href="#cb16-1"></a><span class="co"># 下载 mm10 黑名单后</span></span>
 <span id="cb16-2"><a href="#cb16-2"></a><span class="ex">bedtools</span> intersect <span class="at">-v</span> <span class="at">-a</span> peaks/NRF1_WT1_peaks.narrowPeak <span class="dt">\</span></span>
 <span id="cb16-3"><a href="#cb16-3"></a>  <span class="at">-b</span> mm10.blacklist.bed <span class="op">&gt;</span> peaks/NRF1_WT1.clean.narrowPeak</span>
 <span id="cb16-4"><a href="#cb16-4"></a><span class="co"># 去掉 chrM（黑名单通常已含，双保险）</span></span>
 <span id="cb16-5"><a href="#cb16-5"></a><span class="fu">grep</span> <span class="at">-v</span> <span class="st">"^chrM"</span> peaks/NRF1_WT1.clean.narrowPeak <span class="op">&gt;</span> peaks/NRF1_WT1.final.narrowPeak</span></code></pre></div><button title="复制到剪贴板" class="code-copy-button"><i class="bi"></i></button></div>
 <p><strong>饱和度检查</strong>：把 reads 逐步下采样、分别找峰，画出”reads 数—峰数”曲线。曲线进入平台期说明深度足够再挖峰；仍在增长则说明还有峰没被发现。本书案例在 2000 万 reads 处已接近饱和（原教程结果）。</p>
-<p><strong>浅数据的教训</strong>：本书对小子集（100 万 reads）试跑宽松阈值（<code>-p 1e-2</code>）时，MACS 喊出了 30 多万个”峰”——reads 太少、背景太薄时，大量随机波动都能”显著”。这直接说明：<strong>找峰结果的质量受深度约束，重复检验（IDR）和饱和度分析比单看峰数量更可靠</strong>。</p>
+<p><strong>浅数据的教训</strong>：本书对小子集（100 万 reads）试跑宽松阈值（<code>-p 1e-2</code>）时，MACS 检出了 30 多万个”峰”——reads 太少、背景太薄时，大量随机波动都能”显著”。这直接说明：<strong>找峰结果的质量受深度约束，重复检验（IDR）和饱和度分析比单看峰数量更可靠</strong>。</p>
 </section>
 </section>
 <section id="sec-06-05" class="level2" data-number="6.5">
 <h2 data-number="6.5" class="anchored" data-anchor-id="sec-06-05"><span class="header-section-number">6.5</span> ATAC-seq 专属处理与质控</h2>
-<p>前四节的框架对 ATAC-seq 同样适用，但有几个环节<strong>不能照搬</strong> ChIP-seq 的做法。本节讲清楚差异，并完成第二条案例线。</p>
+<p>前四节的框架对 ATAC-seq 同样适用，但有几个环节<strong>不能照搬</strong> ChIP-seq 的做法。下面通过第二个案例说明这些差别。</p>
 <section id="topic-06-atac-diff" class="level3">
 <h3 class="anchored" data-anchor-id="topic-06-atac-diff">与 ChIP-seq 流程的同与不同</h3>
 <div id="tbl-06-atac-vs-chip" class="quarto-float quarto-figure quarto-figure-center anchored">
@@ -1684,7 +1684,7 @@ NRF1_WT2: 15,306 个峰（q&lt;0.05）</code></pre>
 </section>
 <section id="topic-06-atac-data" class="level3">
 <h3 class="anchored" data-anchor-id="topic-06-atac-data">示例数据：Irf8 敲除小鼠的造血干细胞</h3>
-<p>第二条案例线来自另一个转录因子故事：<strong>Irf8 编码的转录因子对造血干细胞（LT-HSC）的染色质可及性有什么影响？</strong> 数据为 Irf8 野生型（+/+）与敲除（−/−）小鼠 LT-HSC 的 ATAC-seq，各两个生物学重复，双端测序<a href="#fn10" class="footnote-ref" id="fnref10" role="doc-noteref"><sup>10</sup></a>：</p>
+<p>第二个案例研究另一个转录因子：<strong>Irf8 编码的转录因子对造血干细胞（LT-HSC）的染色质可及性有什么影响？</strong> 数据为 Irf8 野生型（+/+）与敲除（−/−）小鼠 LT-HSC 的 ATAC-seq，各两个生物学重复，双端测序<a href="#fn10" class="footnote-ref" id="fnref10" role="doc-noteref"><sup>10</sup></a>：</p>
 <div id="tbl-06-atac-samples" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-tbl figure">
 <figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-06-atac-samples-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
@@ -1780,7 +1780,7 @@ SRR5852297 (KO rep2): 91.93% overall alignment rate</code></pre>
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>SRR5852296 只有 46% 的比对率，其余三个样本都在 92% 以上。面对这样的异常，先检查：参考基因组是否选对（是小鼠没错）；接头是否残留（fastp 报告正常）；reads 里是否有大量低复杂度或污染序列（FastQC 的过表达序列、序列_duplication 模块）。这个样本最终以”质量存疑、保留但单独标注”的方式进入后续分析——<strong>异常样本不是悄悄删掉，而是显式记录并让下游统计自己反映它的代价</strong>（6.7 节会看到后果）。</p>
+<p>SRR5852296 只有 46% 的比对率，其余三个样本都在 92% 以上。面对这样的异常，先检查：参考基因组是否选对（是小鼠没错）；接头是否残留（fastp 报告正常）；reads 里是否有大量低复杂度或污染序列（FastQC 的过表达序列、序列_duplication 模块）。这个样本最终以”质量存疑、保留但单独标注”的方式进入后续分析——<strong>异常样本不是悄悄删掉，而是显式记录并检查它对下游统计结果的影响</strong>（6.7 节会看到后果）。</p>
 </div>
 </div>
 </section>
@@ -1795,7 +1795,7 @@ SRR5852297 (KO rep2): 91.93% overall alignment rate</code></pre>
 </section>
 <section id="topic-06-frag-dist" class="level3">
 <h3 class="anchored" data-anchor-id="topic-06-frag-dist">片段大小分布：核小体信号</h3>
-<p>ATAC-seq 的插入片段长度分布本身就是实验质量的”心电图”。本书实测（SRR5852294，去重后）的分布特征：在约 100 bp 以下有一个显著的<strong>无核小体区（NFR）</strong>峰，约 200 bp 处有<strong>单核小体</strong>峰，再往上以约 200 bp 为周期出现多核小体峰，强度递减。这种周期性锯齿说明 Tn5 确实在核小体之间的开放区域切割——<strong>没有 NFR 峰、没有周期性，文库很可能失败了</strong>。</p>
+<p>ATAC-seq 的插入片段长度分布可以帮助判断实验质量。本书实测（SRR5852294，去重后）的分布特征：在约 100 bp 以下有一个显著的<strong>无核小体区（NFR）</strong>峰，约 200 bp 处有<strong>单核小体</strong>峰，再往上以约 200 bp 为周期出现多核小体峰，强度递减。这种周期性锯齿说明 Tn5 确实在核小体之间的开放区域切割——<strong>没有 NFR 峰、没有周期性，文库很可能失败了</strong>。</p>
 <p>片段长度分布的标准形态见 <a href="#fig-06-fragment-dist" class="quarto-xref">图&nbsp;<span>6.11</span></a> （Buenrostro 等 2013 原文数据，图 a 为片段长度直方图，图 b、c 为 TSS 附近的聚合信号与 V-plot）：</p>
 <div id="fig-06-fragment-dist" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
@@ -1885,7 +1885,7 @@ SRR5852297: TSS 富集度 3.5, FRiP 32.6%, 高质量常染色体比对 15,182,56
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>这套数据集的 TSS 富集度只有 3.0–3.5，远低于 ENCODE 的”理想”线。这是<strong>真实情况</strong>而非操作失误：2017 年的 LT-HSC 原代细胞数据，加上 TSS 注释文件的选择都会影响绝对值。正确的反应是：（1）确认不是命名不匹配或流程错误；（2）横向比较同一研究内的样本（本组内四个样本一致地低，说明是数据集特性）；（3）在报告里如实写出并说明口径。质控指标是判断的工具，不是自动判死刑的开关。</p>
+<p>这套数据集的 TSS 富集度只有 3.0–3.5，远低于 ENCODE 的”理想”线。这是<strong>真实情况</strong>而非操作失误：2017 年的 LT-HSC 原代细胞数据，加上 TSS 注释文件的选择都会影响绝对值。正确的反应是：（1）确认不是命名不匹配或流程错误；（2）横向比较同一研究内的样本（本组内四个样本一致地低，说明是数据集特性）；（3）在报告里如实写出并说明口径。需要结合这些检查解读质控指标，再判断数据是否可用。</p>
 </div>
 </div>
 <p>找峰环节与 ChIP-seq 相同，只是没有 <code>-c</code> 对照，且对双端数据推荐直接用真实片段：</p>
@@ -1897,7 +1897,7 @@ SRR5852297: TSS 富集度 3.5, FRiP 32.6%, 高质量常染色体比对 15,182,56
 <section id="sec-06-06" class="level2" data-number="6.6">
 <h2 data-number="6.6" class="anchored" data-anchor-id="sec-06-06"><span class="header-section-number">6.6</span> 重复一致性与统一 peak 集合</h2>
 <p><span id="src-0060-ChIP-seq-732"></span></p>
-<p>两条案例线到这里各有一批峰。把它们用于比较之前，必须回答两个问题：重复之间一致吗？跨样本比较的”统计单位”是什么？</p>
+<p>两个案例现在都得到了各自的峰列表。把它们用于比较之前，必须回答两个问题：重复之间一致吗？跨样本比较的”统计单位”是什么？</p>
 <section id="topic-06-venn-trap" class="level3">
 <h3 class="anchored" data-anchor-id="topic-06-venn-trap">为什么峰的交集会骗人</h3>
 <p><span id="src-0060-ChIP-seq-736"></span></p>
@@ -1944,12 +1944,12 @@ SRR5852297: TSS 富集度 3.5, FRiP 32.6%, 高质量常染色体比对 15,182,56
 <span id="cb26-10"><a href="#cb26-10"></a>  <span class="at">--plot</span> <span class="at">--log-output-file</span> peaks/idr.log</span>
 <span id="cb26-11"><a href="#cb26-11"></a><span class="co"># 保留 IDR&lt;=0.05（对应 score&gt;=532）</span></span>
 <span id="cb26-12"><a href="#cb26-12"></a><span class="fu">awk</span> <span class="st">'$5&gt;=532'</span> peaks/idr_WT12.narrowPeak <span class="op">&gt;</span> peaks/NRF1_WT_idr.narrowPeak</span></code></pre></div><button title="复制到剪贴板" class="code-copy-button"><i class="bi"></i></button></div>
-<p>本书实际运行（WT 侧全量数据）：宽松阈值下两个重复各得 20,156 与 30,032 个峰；IDR 输出 15,818 个配对峰，其中 <strong>8,156 个</strong>通过 IDR≤0.05。对比 6.4 节单样本严格阈值的 10,027/15,306：<strong>跨重复的可重复峰（8,156）比任何一个单重复的严格峰都少</strong>——这正是”可信度要用重复购买”的直观体现。</p>
+<p>本书实际运行（WT 侧全量数据）：宽松阈值下两个重复各得 20,156 与 30,032 个峰；IDR 输出 15,818 个配对峰，其中 <strong>8,156 个</strong>通过 IDR≤0.05。对比 6.4 节单样本严格阈值的 10,027/15,306：<strong>跨重复的可重复峰（8,156）比任何一个单重复的严格峰都少</strong>——可见，单个样本中显著的峰，还需要接受重复一致性检验。</p>
 </section>
 <section id="topic-06-consensus-counts" class="level3">
 <h3 class="anchored" data-anchor-id="topic-06-consensus-counts">统一峰集合与 reads 计数</h3>
 <p><span id="src-0060-ChIP-seq-765"></span><span id="src-0060-ChIP-seq-780"></span></p>
-<p>跨样本比较需要一个<strong>统一的区域集合</strong>作为统计单位：把所有样本的峰合并、去重叠，得到统一峰集合（consensus set），再对每个样本数出落入每个区域的 reads。这一步把”各有各的峰列表”转换成”同一个人为定义的行 × 每个样本一列的计数矩阵”——第 5 章差异表达分析的输入正是同一种结构（见 <a href="../manuscript/05-rna-seq.html#sec-05-06">5.5 节</a>），6.7 节的差异分析因此可以直接复用那套方法。</p>
+<p>跨样本比较需要一个<strong>统一的区域集合</strong>作为统计单位：把所有样本的峰合并、去重叠，得到统一峰集合（consensus set），再对每个样本数出落入每个区域的 reads。这一步把”各有各的峰列表”转换成”各样本共用一组区域作为行、每个样本占一列的计数矩阵”——第 5 章差异表达分析的输入正是同一种结构（见 <a href="../manuscript/05-rna-seq.html#sec-05-06">5.5 节</a>），6.7 节的差异分析因此可以直接复用那套方法。</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb27" data-book-role="code"><pre data-code-text="&quot;# 合并两个重复的峰区间，得到统一峰集合\ncat peaks/NRF1_WT1_peaks.narrowPeak peaks/NRF1_WT2_peaks.narrowPeak \\\n  | awk &#x27;BEGIN{OFS=\&quot;\\t\&quot;}{print $1,$2,$3}&#x27; | sort -k1,1 -k2,2n \\\n  | bedtools merge -i - &gt; peaks/union_peaks.bed\nwc -l peaks/union_peaks.bed\n# 每个样本数出落在各区域的 reads\nbedtools intersect -a peaks/union_peaks.bed -b align/SRR2500883.q30.bam -c \\\n  &gt; counts_WT1.txt&quot;" class="sourceCode numberSource bash numberLines code-with-copy"><code class="sourceCode bash"><span id="cb27-1"><a href="#cb27-1"></a><span class="co"># 合并两个重复的峰区间，得到统一峰集合</span></span>
 <span id="cb27-2"><a href="#cb27-2"></a><span class="fu">cat</span> peaks/NRF1_WT1_peaks.narrowPeak peaks/NRF1_WT2_peaks.narrowPeak <span class="dt">\</span></span>
 <span id="cb27-3"><a href="#cb27-3"></a>  <span class="kw">|</span> <span class="fu">awk</span> <span class="st">'BEGIN{OFS="\t"}{print $1,$2,$3}'</span> <span class="kw">|</span> <span class="fu">sort</span> <span class="at">-k1,1</span> <span class="at">-k2,2n</span> <span class="dt">\</span></span>
@@ -2025,7 +2025,7 @@ KO_rep2,KO,2,SRR5852297.final.bam,peaks/ATAC_SRR5852297_peaks.narrowPeak,narrow<
 <section id="sec-06-08" class="level2" data-number="6.8">
 <h2 data-number="6.8" class="anchored" data-anchor-id="sec-06-08"><span class="header-section-number">6.8</span> 注释、motif、可视化与解释边界</h2>
 <p><span id="src-0060-ChIP-seq-820"></span></p>
-<p>最后一组问题：峰在基因组的什么位置、可能属于哪些基因、序列里有什么信息、和其他数据有什么关系。</p>
+<p>有了峰列表，还需要看峰位于基因组何处、可能对应哪些基因、序列中有什么信息，以及它们与其他数据的关系。</p>
 <section id="topic-06-annotation" class="level3">
 <h3 class="anchored" data-anchor-id="topic-06-annotation">峰落在基因组的哪里：注释与 TSS 距离</h3>
 <p><span id="src-0060-ChIP-seq-823"></span><span id="src-0060-ChIP-seq-839"></span></p>
@@ -2039,19 +2039,19 @@ KO_rep2,KO,2,SRR5852297.final.bam,peaks/ATAC_SRR5852297_peaks.narrowPeak,narrow<
 <p>本书实际运行（10,027 个 NRF1 WT1 峰）输出的前几行：</p>
 <pre data-code-text="&quot;peak_9901  chrX  74270571  74270900  ...  promoter-TSS (NM_052835)  -81   Rpl10\npeak_8230  chr7  60004978  60005327  ...  promoter-TSS (NM_013670)   47   Snrpn&quot;" class="text" data-book-role="output"><code>peak_9901  chrX  74270571  74270900  ...  promoter-TSS (NM_052835)  -81   Rpl10
 peak_8230  chr7  60004978  60005327  ...  promoter-TSS (NM_013670)   47   Snrpn</code></pre>
-<p><strong>到最近 TSS 的距离分布</strong>是更少依赖注释层级的一张图：把每个峰到最近转录起始位点的距离画成直方图。转录因子常见双峰分布——一簇贴着启动子（近端），一簇散布在远处（远端增强子）。只统计距离本身，不预设”峰属于哪个基因”，信息更中立。</p>
+<p><strong>到最近 TSS 的距离分布</strong>是更少依赖注释层级的一张图：把每个峰到最近转录起始位点的距离画成直方图。转录因子常见双峰分布——一簇贴着启动子（近端），一簇散布在远处（远端增强子）。只统计距离本身，不预设”峰属于哪个基因”，可以减少基因归属选择对结果解读的影响。</p>
 </section>
 <section id="topic-06-target-genes" class="level3">
 <h3 class="anchored" data-anchor-id="topic-06-target-genes">峰与靶基因：便利与陷阱</h3>
 <p><span id="src-0060-ChIP-seq-844"></span><span id="src-0060-ChIP-seq-848"></span></p>
 <p>“峰 → 靶基因”的分配是最容易被过度解释的一步。最简单的做法是把峰分给最近的 TSS，但小鼠中存在距启动子 1 Mb 以外的增强子（原教程引述的例子）；启动子近端的峰也未必调控最近的那个基因。 Capture Hi-C 等三维基因组技术能提供更可靠的峰-基因对应，但数据与算力成本都高。</p>
-<p>实用约定：把分析分成近端（如 TSS±2 kb）与远端两组分别做；远端峰的”靶基因”只作为线索而不是结论。GO 富集等下游分析对靶基因误配很敏感，把假基因名放进富集分析会得到”看起来显著、实际是噪声”的功能注释。</p>
+<p>实用约定：把分析分成近端（如 TSS±2 kb）与远端两组分别做；远端峰的”靶基因”只作为线索而不是结论。GO 富集等下游分析对靶基因误配很敏感，把错误分配的基因名放进富集分析会得到”看起来显著、实际是噪声”的功能注释。</p>
 </section>
 <section id="topic-06-enrichment" class="level3">
 <h3 class="anchored" data-anchor-id="topic-06-enrichment">功能富集：GO、KEGG 与背景集</h3>
 <p><span id="src-0060-ChIP-seq-851"></span><span id="src-0060-ChIP-seq-858"></span></p>
 <p>拿到候选基因列表后做 GO/KEGG 富集的通用方法在第 5 章（<a href="../manuscript/05-rna-seq.html#sec-05-07">5.6 节</a>）已经讲过（clusterProfiler 等），这里只强调峰数据特有的一个决定：<strong>背景集</strong>。检验”靶基因是否富集在某功能”时，分母用什么基因？用全基因组所有基因，还是用所有表达基因、或所有有峰的基因？背景选宽了富集被稀释，选窄了容易”人人显著”。峰数据的合理背景常取”同样有峰检测能力的基因集”（例如同一细胞类型中所有开放区域的基因）。</p>
-<p>结果报告的纪律与第 5 章一致：按 p 值而非变化倍数排序、给出完整富集表、避免挑选性展示”最好看”的条目。</p>
+<p>报告结果时的要求与第 5 章一致：按 p 值而非变化倍数排序、给出完整富集表、避免挑选性展示”最好看”的条目。</p>
 </section>
 <section id="topic-06-motif" class="level3">
 <h3 class="anchored" data-anchor-id="topic-06-motif">Motif 分析：从头发现与已知扫描</h3>
@@ -2068,10 +2068,10 @@ peak_8230  chr7  60004978  60005327  ...  promoter-TSS (NM_013670)   47   Snrpn<
 <span id="cb32-3"><a href="#cb32-3"></a>  <span class="op">&gt;</span> peaks/idr_peaks.bed</span>
 <span id="cb32-4"><a href="#cb32-4"></a><span class="ex">findMotifsGenome.pl</span> peaks/idr_peaks.bed mm10 peaks/homer_motif_out <span class="dt">\</span></span>
 <span id="cb32-5"><a href="#cb32-5"></a>  <span class="at">-size</span> 200 <span class="at">-mask</span></span></code></pre></div><button title="复制到剪贴板" class="code-copy-button"><i class="bi"></i></button></div>
-<p>本书实际运行的结果极具说服力——已知 motif 富集第一名就是 <strong>NRF1 自身</strong>：</p>
+<p>本书实际运行中，已知 motif 富集第一名就是 <strong>NRF1 自身</strong>：</p>
 <pre data-code-text="&quot;NRF1(NRF)/MCF7-NRF1-ChIP-Seq(Homer)  一致序列 CTGCGCATGCGC\np=1e-2738；7,661 条目标序列中 3,147 条（41%）含该 motif&quot;" class="text" data-book-role="output"><code>NRF1(NRF)/MCF7-NRF1-ChIP-Seq(Homer)  一致序列 CTGCGCATGCGC
 p=1e-2738；7,661 条目标序列中 3,147 条（41%）含该 motif</code></pre>
-<p>从免疫沉淀、找峰、IDR 到 motif，整条链独立地指向同一个蛋白——这是 ChIP-seq 分析链最漂亮的自我验证。TF 的 ChIP-seq 峰中含目标 motif 的比例通常在 60–80%（原教程对本数据用不同方法统计为 64% 与 73%）；不含 motif 的峰可能来自间接互作、交叉交联伪影或同源二聚体的协作结合，这正是”峰 ≠ 直接结合位点”的边界。</p>
+<p>从免疫沉淀、找峰、IDR 到 motif，各环节的结果都指向同一个蛋白，可以相互印证。TF 的 ChIP-seq 峰中含目标 motif 的比例通常在 60–80%（原教程对本数据用不同方法统计为 64% 与 73%）；不含 motif 的峰可能来自间接互作、交叉交联伪影或同源二聚体的协作结合，这正是”峰 ≠ 直接结合位点”的边界。</p>
 <div class="book-extension callout callout-style-default callout-note callout-titled" title="拓展阅读｜motif 之外的序列分析">
 <div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-13-contents" aria-controls="callout-13" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
@@ -2101,12 +2101,12 @@ p=1e-2738；7,661 条目标序列中 3,147 条（41%）含该 motif</code></pre>
 <span id="cb34-7"><a href="#cb34-7"></a><span class="co"># 3. 热图与平均谱</span></span>
 <span id="cb34-8"><a href="#cb34-8"></a><span class="ex">plotHeatmap</span> <span class="at">-m</span> matrix.gz <span class="at">-out</span> heatmap.png <span class="at">--dpi</span> 200</span>
 <span id="cb34-9"><a href="#cb34-9"></a><span class="ex">plotProfile</span> <span class="at">-m</span> matrix.gz <span class="at">-out</span> profile.png <span class="at">--dpi</span> 200</span></code></pre></div><button title="复制到剪贴板" class="code-copy-button"><i class="bi"></i></button></div>
-<p>热图的行按信号排序、颜色编码 reads 密度，一眼看出几千个峰上的信号集中程度与样本间模式。两个解读陷阱：色阶是非线性时会放大弱差异；行不排序时低信号行会”藏”在高信号行之间。对比多个样本时保持同一色尺。</p>
+<p>热图的行按信号排序、颜色编码 reads 密度，可以比较几千个峰上的信号集中程度与样本间模式。两个解读陷阱：色阶是非线性时会放大弱差异；行不排序时低信号行会”藏”在高信号行之间。对比多个样本时保持同一色尺。</p>
 </section>
 <section id="topic-06-integration" class="level3">
 <h3 class="anchored" data-anchor-id="topic-06-integration">与其他数据联合分析</h3>
 <p><span id="src-0060-ChIP-seq-886"></span><span id="src-0060-ChIP-seq-890"></span><span id="src-0060-ChIP-seq-901"></span><span id="src-0060-ChIP-seq-906"></span></p>
-<p>区域信号数据天然适合互相叠加：ChIP 峰 × 表达数据（第 5 章的 RNA-seq：结合变化是否伴随表达变化）、峰 × 可及性（NRF1 案例中的 DNase-seq/本章的 ATAC-seq）、峰 × DNA 甲基化（WGBS——本章 NRF1 案例同一批细胞的甲基化数据分析见<a href="../manuscript/08-base-imbalanced-sequencing.html#sec-08-03">第 8 章</a>）、峰 × 三维结构（Hi-C 环）。操作上都是同一模式：用 bedtools 把峰与另一数据的区间或信号对齐，再比较条件间的变化方向（delta-delta 散点图）。</p>
+<p>区域信号数据可以结合起来分析：ChIP 峰 × 表达数据（第 5 章的 RNA-seq：结合变化是否伴随表达变化）、峰 × 可及性（NRF1 案例中的 DNase-seq/本章的 ATAC-seq）、峰 × DNA 甲基化（WGBS——本章 NRF1 案例同一批细胞的甲基化数据分析见<a href="../manuscript/08-base-imbalanced-sequencing.html#sec-08-03">第 8 章</a>）、峰 × 三维结构（Hi-C 环）。操作上都是同一模式：用 bedtools 把峰与另一数据的区间或信号对齐，再比较条件间的变化方向（delta-delta 散点图）。</p>
 <div class="book-warning callout callout-style-default callout-warning callout-titled" title="注意｜联合分析前先统一处理链">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -2120,7 +2120,7 @@ p=1e-2738；7,661 条目标序列中 3,147 条（41%）含该 motif</code></pre>
 <p>比较任何两组区域数据前，确认它们经过<strong>可比的预处理</strong>：同样的参考基因组版本、相近的 reads 长度、一致的唯一比对标准、一致的找峰阈值。用不同流程处理的数据做”对比”，差异里混进了流程差异。</p>
 </div>
 </div>
-<p>至此两条案例线走完全程。回头看本章开头的三个问题：富集永远相对背景而言（input 对照、Tn5 偏好校正）；每一步处理都在控制特定偏差（打断、GC、PCR、比对、拷贝数）；结论的边界由设计与数据决定——8,156 个可重复峰与一个 0 差异的诚实结果，都是这套框架能给出的正当答案。</p>
+<p>两个案例完成后，再看开头的三个问题：富集永远相对背景而言（input 对照、Tn5 偏好校正）；每一步处理都在控制特定偏差（打断、GC、PCR、比对、拷贝数）；结论的边界由设计与数据决定——8,156 个可重复峰与 0 个差异峰，都是按当前数据和检验条件得到的结果，应当如实报告。</p>
 
 
 </section>
@@ -2146,7 +2146,7 @@ p=1e-2738；7,661 条目标序列中 3,147 条（41%）含该 motif</code></pre>
 
 </main> <!-- /main -->
 <div class="book-toolbar" role="navigation" aria-label="阅读工具">
-  <div class="book-brand"><span class="book-brand-name">AI时代生信入门</span><time class="book-last-modified" datetime="2026-10-11T17:31:04+08:00" title="最后修改时间（北京时间，UTC+08:00）">最后修改 2026-10-11 17:31</time></div>
+  <div class="book-brand"><span class="book-brand-name">AI时代生信入门</span><time class="book-last-modified" datetime="2026-10-12T13:46:45+08:00" title="最后修改时间（北京时间，UTC+08:00）">最后修改 2026-10-12 13:46</time></div>
   <button class="book-menu-button" type="button" aria-controls="quarto-sidebar" aria-expanded="false">目录</button>
   <button class="book-search-button" type="button">搜索</button>
 </div>

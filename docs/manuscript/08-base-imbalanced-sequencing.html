@@ -921,7 +921,7 @@ window.Quarto = {
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
 <h1 class="title"><span id="sec-ch08" class="quarto-section-identifier"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">碱基不平衡测序数据的分析</span></span></h1>
-<p class="chapter-last-modified"><time datetime="2026-10-11T17:31:04+08:00" title="本章书稿最后修改时间（北京时间，UTC+08:00）">最后修改：2026-10-11 17:31（北京时间）</time></p>
+<p class="chapter-last-modified"><time datetime="2026-10-12T13:46:45+08:00" title="本章书稿最后修改时间（北京时间，UTC+08:00）">最后修改：2026-10-12 13:46（北京时间）</time></p>
 </div>
 
 
@@ -947,9 +947,9 @@ window.Quarto = {
 <p>认识 5mC 这类修饰的生物学含义，再决定用什么技术去测它。</p>
 <section id="sec-08-01-cytosine-family" class="level3">
 <h3 class="anchored" data-anchor-id="sec-08-01-cytosine-family">从 5mC 到 5caC：胞嘧啶修饰家族与动态循环</h3>
-<p>第 6 章分析 NRF1 与 DNA 甲基化的竞争时我们曾提到：Dnmt 三敲（TKO）细胞失去甲基化后，NRF1 多结合了数千个位点。当时我们把”甲基化”当成一个开关来用；现在把它拆开看——它在化学上究竟是什么。</p>
-<p>在哺乳动物基因组里，DNA 甲基化几乎都发生在胞嘧啶上：DNA 聚合酶接入的是普通胞嘧啶 C，而<strong>DNA 甲基转移酶（DNMT）</strong>可以在复制完成后把一个甲基共价连接到胞嘧啶碱基环的第 5 位碳原子上，生成 <strong>5-甲基胞嘧啶（5-methylcytosine，5mC）</strong>。这个反应主要发生在 CpG 二核苷酸（C 后面紧跟 G 的位点）上。人体细胞基因组中约 70%–80% 的 CpG 位点是甲基化的，5mC 约占全部碱基的 1%<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a>。两类甲基转移酶分工明确：<strong>DNMT3A/3B 负责从头甲基化</strong>（de novo），在发育和干细胞中建立新的甲基化模式；<strong>DNMT1 负责维持甲基化</strong>（maintenance），在复制叉上识别半甲基化的 CpG、把亲本链的甲基化状态复制到新合成链上<a href="#fn2" class="footnote-ref" id="fnref2" role="doc-noteref"><sup>2</sup></a>。TKO 细胞敲除的正是 Dnmt3a/3b 加上维持酶 Dnmt1，三把刷子一起下掉，甲基化就维持不住了。</p>
-<p>甲基化一旦写上，如何去掉？这一问题的答案在 2009 年之后被彻底改写。<strong>TET 蛋白</strong>（TET1/2/3）是一类依赖铁离子和 α-酮戊二酸的加双氧酶，能把 5mC 依次氧化为 <strong>5-羟甲基胞嘧啶（5hmC）</strong>、<strong>5-甲酰胞嘧啶（5fC）</strong>和 <strong>5-羧基胞嘧啶（5caC）</strong><a href="#fn3" class="footnote-ref" id="fnref3" role="doc-noteref"><sup>3</sup></a><a href="#fn4" class="footnote-ref" id="fnref4" role="doc-noteref"><sup>4</sup></a>；其中 5fC 和 5caC 可以被 DNA 糖苷酶 TDG 切除，启动碱基切除修复，把这位点换回未修饰的 C——这就是<strong>主动去甲基化</strong>通路<a href="#fn5" class="footnote-ref" id="fnref5" role="doc-noteref"><sup>5</sup></a>。除了这条主动通路，复制时不加甲基、让甲基化在细胞分裂中被逐步稀释的<strong>被动去甲基化</strong>同样普遍。<a href="#fig-08-dna-modification-cycle" class="quarto-xref">图&nbsp;<span>8.1</span></a> 概括了这个写入—氧化—切除的完整循环。</p>
+<p>第 6 章分析 NRF1 与 DNA 甲基化的竞争时我们曾提到：Dnmt 三敲（TKO）细胞失去甲基化后，NRF1 多结合了数千个位点。当时关注的是甲基化有无与结合变化的关系；现在先看甲基化在化学上究竟是什么。</p>
+<p>在哺乳动物基因组里，DNA 甲基化几乎都发生在胞嘧啶上：DNA 聚合酶接入的是普通胞嘧啶 C，而<strong>DNA 甲基转移酶（DNMT）</strong>可以在复制完成后把一个甲基共价连接到胞嘧啶碱基环的第 5 位碳原子上，生成 <strong>5-甲基胞嘧啶（5-methylcytosine，5mC）</strong>。这个反应主要发生在 CpG 二核苷酸（C 后面紧跟 G 的位点）上。人体细胞基因组中约 70%–80% 的 CpG 位点是甲基化的，5mC 约占全部碱基的 1%<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a>。两类甲基转移酶分工明确：<strong>DNMT3A/3B 负责从头甲基化</strong>（de novo），在发育和干细胞中建立新的甲基化模式；<strong>DNMT1 负责维持甲基化</strong>（maintenance），在复制叉上识别半甲基化的 CpG、把亲本链的甲基化状态复制到新合成链上<a href="#fn2" class="footnote-ref" id="fnref2" role="doc-noteref"><sup>2</sup></a>。TKO 细胞敲除的正是 Dnmt3a/3b 加上维持酶 Dnmt1，这三种酶同时缺失，甲基化就无法维持。</p>
+<p>甲基化一旦写上，如何去掉？2009 年之后的研究逐步揭示了这一过程。<strong>TET 蛋白</strong>（TET1/2/3）是一类依赖铁离子和 α-酮戊二酸的加双氧酶，能把 5mC 依次氧化为 <strong>5-羟甲基胞嘧啶（5hmC）</strong>、<strong>5-甲酰胞嘧啶（5fC）</strong>和 <strong>5-羧基胞嘧啶（5caC）</strong><a href="#fn3" class="footnote-ref" id="fnref3" role="doc-noteref"><sup>3</sup></a><a href="#fn4" class="footnote-ref" id="fnref4" role="doc-noteref"><sup>4</sup></a>；其中 5fC 和 5caC 可以被 DNA 糖苷酶 TDG 切除，启动碱基切除修复，把这位点换回未修饰的 C——这就是<strong>主动去甲基化</strong>通路<a href="#fn5" class="footnote-ref" id="fnref5" role="doc-noteref"><sup>5</sup></a>。除了这条主动通路，复制时不加甲基、让甲基化在细胞分裂中被逐步稀释的<strong>被动去甲基化</strong>同样普遍。<a href="#fig-08-dna-modification-cycle" class="quarto-xref">图&nbsp;<span>8.1</span></a> 概括了这个写入—氧化—切除的完整循环。</p>
 <div id="fig-08-dna-modification-cycle" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-08-dna-modification-cycle-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
@@ -960,11 +960,11 @@ window.Quarto = {
 </figcaption>
 </figure>
 </div>
-<p>把这个家族放在一起看，有一个直接的分析学后果：<strong>“甲基化”不是一个化学状态，而是一族状态</strong>。5hmC 在胚胎干细胞和神经元中相当丰富，并且有自己的功能；一个实验测到的”C 修饰信号”究竟只算 5mC，还是把 5hmC 也混在其中，取决于所用技术能不能把它们分开——这决定了 8.1.3 里各技术的取舍。</p>
+<p>把这个家族放在一起看，分析时需要注意一个区别：<strong>“甲基化”不是一个化学状态，而是一族状态</strong>。5hmC 在胚胎干细胞和神经元中相当丰富，并且有自己的功能；一个实验测到的”C 修饰信号”究竟只算 5mC，还是把 5hmC 也混在其中，取决于所用技术能不能把它们分开——这决定了 8.1.3 里各技术的取舍。</p>
 </section>
 <section id="sec-08-01-functions" class="level3">
 <h3 class="anchored" data-anchor-id="sec-08-01-functions">5mC 的生物学功能：沉默、发育与疾病</h3>
-<p>甲基化在基因组里做什么？最经典的关联是<strong>启动子 CpG 岛的高甲基化与基因沉默</strong>。CpG 岛（CpG island，CGI）是 CpG 密度高于基因组平均的短区域，约 60%–70% 的人类基因启动子带有 CpG 岛；管家基因的启动子 CpG 岛在正常细胞中通常保持未甲基化，而肿瘤抑制基因启动子 CpG 岛的异常高甲基化与转录失活高度认同<a href="#fn6" class="footnote-ref" id="fnref6" role="doc-noteref"><sup>6</sup></a>。注意这里的因果方向：甲基化与沉默”认同”，未必每次都是甲基化导致沉默——沉默的染色质有时反而招来甲基化。这一点在 8.6.2 讨论证据分层时还会回来。</p>
+<p>甲基化在基因组里做什么？最经典的关联是<strong>启动子 CpG 岛的高甲基化与基因沉默</strong>。CpG 岛（CpG island，CGI）是 CpG 密度高于基因组平均的短区域，约 60%–70% 的人类基因启动子带有 CpG 岛；管家基因的启动子 CpG 岛在正常细胞中通常保持未甲基化，而肿瘤抑制基因启动子 CpG 岛的异常高甲基化与转录失活高度相关<a href="#fn6" class="footnote-ref" id="fnref6" role="doc-noteref"><sup>6</sup></a>。注意这里的因果方向：甲基化与沉默”认同”，未必每次都是甲基化导致沉默——沉默的染色质有时反而招来甲基化。这一点在 8.6.2 讨论证据分层时还会回来。</p>
 <p>第二类证据来自<strong>发育</strong>。哺乳动物一生中有两波全基因组的去甲基化—再甲基化浪潮：受精后，父本基因组的 5mC 被 TET3 快速氧化、连同母本基因组一起大幅去甲基化，在早期胚胎中重建；原始生殖细胞（PGC）发育过程中也经历一轮大范围擦除，随后在配子和着床后重新建立甲基化图谱<a href="#fn7" class="footnote-ref" id="fnref7" role="doc-noteref"><sup>7</sup></a><a href="#fn8" class="footnote-ref" id="fnref8" role="doc-noteref"><sup>8</sup></a><a href="#fn9" class="footnote-ref" id="fnref9" role="doc-noteref"><sup>9</sup></a>。<a href="#fig-08-dev-methylation-waves" class="quarto-xref">图&nbsp;<span>8.2</span></a> 把这两波动态画成一条贯穿生命周期的曲线。发育重编程的存在说明甲基化组是<strong>可以整体重置的</strong>，也解释了为什么不同组织、不同发育阶段的甲基化图谱差异巨大——比较任何两组甲基化数据，先确认细胞类型是否可比。</p>
 <div id="fig-08-dev-methylation-waves" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
@@ -976,7 +976,7 @@ window.Quarto = {
 </figcaption>
 </figure>
 </div>
-<p>第三类是<strong>疾病与转化应用</strong>。癌细胞呈现”全局低甲基化 + 局部 CpG 岛高甲基化”的双重异常图谱（<a href="#fig-08-cancer-methylation" class="quarto-xref">图&nbsp;<span>8.3</span></a>）：前者伴随基因组不稳定，后者沉默肿瘤抑制基因。更重要的是，甲基化模式在癌变早期就出现、而且稳定存在于循环游离 DNA（cfDNA）中，使它成为<strong>早期诊断标志物</strong>的候选。沿这条路：SEPT9 血浆甲基化检测在前瞻性研究中对结直肠癌的敏感性为 48.2%、特异度 91.5%<a href="#fn10" class="footnote-ref" id="fnref10" role="doc-noteref"><sup>10</sup></a>，2016 年成为首个获 FDA 批准的基于血液的结直肠癌筛查检测；随后的 cfMeDIP-seq 把多种癌型的 cfDNA 甲基化图谱用于肿瘤检测<a href="#fn11" class="footnote-ref" id="fnref11" role="doc-noteref"><sup>11</sup></a>；更大规模的靶向亚硫酸氢盐测序在验证集中做到 99.3% 的特异度和约 67% 的敏感度（12 种癌型 I–III 期）<a href="#fn12" class="footnote-ref" id="fnref12" role="doc-noteref"><sup>12</sup></a>。</p>
+<p>第三类是<strong>疾病与转化应用</strong>。癌细胞呈现”全局低甲基化 + 局部 CpG 岛高甲基化”的双重异常图谱（<a href="#fig-08-cancer-methylation" class="quarto-xref">图&nbsp;<span>8.3</span></a>）：前者伴随基因组不稳定，后者沉默肿瘤抑制基因。此外，甲基化模式在癌变早期就出现、而且稳定存在于循环游离 DNA（cfDNA）中，使它成为<strong>早期诊断标志物</strong>的候选。例如，SEPT9 血浆甲基化检测在前瞻性研究中对结直肠癌的敏感性为 48.2%、特异度 91.5%<a href="#fn10" class="footnote-ref" id="fnref10" role="doc-noteref"><sup>10</sup></a>，2016 年成为首个获 FDA 批准的基于血液的结直肠癌筛查检测；随后的 cfMeDIP-seq 把多种癌型的 cfDNA 甲基化图谱用于肿瘤检测<a href="#fn11" class="footnote-ref" id="fnref11" role="doc-noteref"><sup>11</sup></a>；更大规模的靶向亚硫酸氢盐测序在验证集中做到 99.3% 的特异度和约 67% 的敏感度（12 种癌型 I–III 期）<a href="#fn12" class="footnote-ref" id="fnref12" role="doc-noteref"><sup>12</sup></a>。</p>
 <div id="fig-08-cancer-methylation" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-08-cancer-methylation-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
@@ -1003,7 +1003,7 @@ window.Quarto = {
 </section>
 <section id="sec-08-01-technologies" class="level3">
 <h3 class="anchored" data-anchor-id="sec-08-01-technologies">测 5mC 的技术路线与 BS-seq 的地位</h3>
-<p>明确了要测什么，下一个问题是拿什么测。让 5mC 在测序数据里”现形”的关键技术出现于 1992 年：<strong>亚硫酸氢盐（bisulfite）处理</strong>。单链 DNA 经亚硫酸氢盐处理后，未甲基化的胞嘧啶 C 被化学脱氨变成 U（PCR 扩增后读作 T），而 5mC 由于甲基的保护几乎不发生反应、仍然读作 C<a href="#fn13" class="footnote-ref" id="fnref13" role="doc-noteref"><sup>13</sup></a>。于是测序 reads 里的 C/T 比例直接编码了每个位点的甲基化状态——原文标题称之为”阳性显示 5mC”。以这一化学反应为基石的测序统称 <strong>BS-seq</strong>（bisulfite sequencing），全基因组版本就是 <strong>WGBS</strong>。</p>
+<p>明确了要测什么，下一个问题是拿什么测。让 5mC 在测序数据里”现形”的关键技术出现于 1992 年：<strong>亚硫酸氢盐（bisulfite）处理</strong>。单链 DNA 经亚硫酸氢盐处理后，未甲基化的胞嘧啶 C 被化学脱氨变成 U（PCR 扩增后读作 T），而 5mC 由于甲基的保护几乎不发生反应、仍然读作 C<a href="#fn13" class="footnote-ref" id="fnref13" role="doc-noteref"><sup>13</sup></a>。于是测序 reads 里的 C/T 比例直接编码了每个位点的甲基化状态——原文标题称之为”阳性显示 5mC”。基于这一化学反应的测序统称 <strong>BS-seq</strong>（bisulfite sequencing），全基因组版本就是 <strong>WGBS</strong>。</p>
 <p><a href="#tbl-08-dna-methylation-methods" class="quarto-xref">表&nbsp;<span>8.1</span></a> 把测 5mC 家族的主要技术放在一起比较。</p>
 <div id="tbl-08-dna-methylation-methods" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-tbl figure">
@@ -1062,7 +1062,7 @@ window.Quarto = {
 </div>
 </figure>
 </div>
-<p>注意表里反复出现的一行小字：<strong>WGBS/EM-seq/RRBS 分不开 5mC 与 5hmC</strong>——亚硫酸盐化学对两者都不脱氨，它们的信号都读作”甲基化样的 C”。只有在 5hmC 极少的组织里，“BS-seq 信号 ≈ 5mC”这个近似才安全；胚胎干细胞、神经元这类 5hmC 丰富的样本，要回答”究竟哪种修饰”必须配合 oxBS 或 TAB-seq。这正是”技术必须匹配生物学问题”的一个具体例子。</p>
+<p>注意表里反复出现的一行小字：<strong>WGBS/EM-seq/RRBS 分不开 5mC 与 5hmC</strong>——亚硫酸盐化学对两者都不脱氨，它们的信号都读作”甲基化样的 C”。只有在 5hmC 极少的组织里，“BS-seq 信号 ≈ 5mC”这个近似才安全；胚胎干细胞、神经元这类 5hmC 丰富的样本，要回答”究竟哪种修饰”必须配合 oxBS 或 TAB-seq。选择技术时，需要先确定是否必须区分这两种修饰。</p>
 <div class="book-core callout callout-style-default callout-note callout-titled" title="核心知识｜碱基不平衡">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -1073,7 +1073,7 @@ window.Quarto = {
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>亚硫酸盐转化把基因组中绝大多数未甲基化的 C 变成了 U（读作 T）。这意味着 BS-seq 的 reads 与参考基因组之间存在<strong>系统性的 C→T 错配</strong>，reads 的四碱基组成严重偏离参考基因组——A、T 占比升高，C 大量消失。我们把这个现象称为<strong>碱基不平衡</strong>。它不是噪声，而是携带甲基化信息的信号本体；但它同时让第 3 章的常规质控经验和第 4 章的比对假设双双失效——常规比对器假设错配是随机罕见的，而这里几乎每条 read 都带着成串”假错配”。本章 DNA 线（8.2–8.3）和 RNA 线（8.5）的分析工具，都是围绕”如何把系统性错配变成可定量信号”重建的。</p>
+<p>亚硫酸盐转化把基因组中绝大多数未甲基化的 C 变成了 U（读作 T）。这意味着 BS-seq 的 reads 与参考基因组之间存在<strong>系统性的 C→T 错配</strong>，reads 的四碱基组成严重偏离参考基因组——A、T 占比升高，C 大量消失。我们把这个现象称为<strong>碱基不平衡</strong>。这种变化携带着甲基化信息，不能当作普通噪声处理；但它同时让第 3 章的常规质控经验和第 4 章的比对假设不再适用——常规比对器假设错配是随机罕见的，而这里几乎每条 read 都带着成串”假错配”。本章 DNA 线（8.2–8.3）和 RNA 线（8.5）的分析工具，都是围绕”如何把系统性错配变成可定量信号”重建的。</p>
 </div>
 </div>
 <div class="book-extension callout callout-style-default callout-note callout-titled" title="拓展阅读｜亚硫酸盐反应的三步化学">
@@ -1096,7 +1096,7 @@ window.Quarto = {
 </section>
 <section id="sec-08-02" class="level2" data-number="8.2">
 <h2 data-number="8.2" class="anchored" data-anchor-id="sec-08-02"><span class="header-section-number">8.2</span> BS-seq 的数据分析</h2>
-<p>与第 5、7 章相同的节奏：明确数据 → 质控 → 比对 → 前处理 → 到位计数，只是每一步都要重新考虑”化学转化改变了什么”。</p>
+<p>分析顺序与第 5、7 章相同：明确数据 → 质控 → 比对 → 前处理 → 逐位点计数，只是每一步都要重新考虑”化学转化改变了什么”。</p>
 <section id="sec-08-02-example-data" class="level3">
 <h3 class="anchored" data-anchor-id="sec-08-02-example-data">示例数据与路线总览</h3>
 <p>DNA 线的示例数据是 8.1 提到的 Dnmt 三敲（TKO）系列小鼠胚胎干细胞 WGBS，来自 GEO 数据集 <strong>GSE67867</strong>（Domcke 等，2015）<a href="#fn18" class="footnote-ref" id="fnref18" role="doc-noteref"><sup>18</sup></a>——正是第 6 章 NRF1 竞争实验所用的同一批细胞系。三个样本覆盖了”几乎无甲基化 → 低甲基化 → 高甲基化”的完整谱系（<a href="#tbl-08-wgbs-samples" class="quarto-xref">表&nbsp;<span>8.2</span></a>）：</p>
@@ -1185,8 +1185,8 @@ window.Quarto = {
 </section>
 <section id="sec-08-02-why-not-bwa" class="level3">
 <h3 class="anchored" data-anchor-id="sec-08-02-why-not-bwa">为什么不能直接用 BWA</h3>
-<p>带着 <a href="#fig-08-bisulfite-conversion-principle" class="quarto-xref">图&nbsp;<span>8.5</span></a> 下半部分的错配去看第 4 章的比对假设：BWA 这类比对器为随机罕见错配设计打分——一条 100 bp 的 read 上散布三五个错配可以容忍，但一条几乎每个 CpG 都错配、C 位点成串变 T 的 read，会被判为”不可能来自参考基因组”。结果不是报错，而是更危险的静默失败：reads 被丢弃、或者勉强贴到错误位置，比对率大跌、甲基化估计系统性偏移。</p>
-<p><a href="#fig-08-three-letter-alignment" class="quarto-xref">图&nbsp;<span>8.6</span></a> 展示了一个最小的示例：reads <code>TTTAGTT</code> 对参考 <code>CTCAGTC</code> 有三处成串错配；把两边同时做 C→T 转换后，reads 与”转化参考”完美匹配。<strong>错配没有消失，而是被搬进了”双方都知道转化发生”的世界</strong>。</p>
+<p>带着 <a href="#fig-08-bisulfite-conversion-principle" class="quarto-xref">图&nbsp;<span>8.5</span></a> 下半部分的错配去看第 4 章的比对假设：BWA 这类比对器为随机罕见错配设计打分——一条 100 bp 的 read 上散布三五个错配可以容忍，但一条几乎每个 CpG 都错配、C 位点成串变 T 的 read，会被判为”不可能来自参考基因组”。程序可能不报错，却给出错误结果：reads 被丢弃、或者勉强贴到错误位置，比对率大跌、甲基化估计系统性偏移。</p>
+<p><a href="#fig-08-three-letter-alignment" class="quarto-xref">图&nbsp;<span>8.6</span></a> 展示了一个最小的示例：reads <code>TTTAGTT</code> 对参考 <code>CTCAGTC</code> 有三处成串错配；把两边同时做 C→T 转换后，reads 与”转化参考”完美匹配。<strong>原来的错配仍有甲基化信息；比对时对两边作相同转换，使它们能够对齐</strong>。</p>
 <div id="fig-08-three-letter-alignment" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-08-three-letter-alignment-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
@@ -1197,19 +1197,19 @@ window.Quarto = {
 </figcaption>
 </figure>
 </div>
-<p>解决思路因此有两族：</p>
+<p>解决方法主要分为两类：</p>
 <ul>
 <li><strong>双参考三字母比对</strong>：预先把参考基因组转换成两套”三字母基因组”（C→T 一套、G→A 一套，A/T/G 只剩三个字母），reads 也按方向转换后用 bowtie2 比对，比对结果映射回原坐标。Bismark 是这一族的代表，也是本章主线。</li>
 <li><strong>WIL/通配符比对</strong>：把参考基因组里的 C 换成通配符 Y（既能匹配 C 也能匹配 T），reads 原样比对。BWA-meth（<code>bwa-meth</code>）是这一族的代表，直接复用 BWA 索引语义，速度常占优。</li>
 </ul>
-<p>两条路线殊途同归：<strong>先在比对层面”原谅”转化错配，再在甲基化提取层面精确清点每个 C 位点读到了 C 还是 T</strong>。选哪个主要看实验室习惯与下游工具链；本章用 Bismark。</p>
+<p>两种方法的共同思路是：<strong>先在比对层面”原谅”转化错配，再在甲基化提取层面精确清点每个 C 位点读到了 C 还是 T</strong>。选哪个主要看实验室习惯与下游工具链；本章用 Bismark。</p>
 </section>
 <section id="sec-08-02-bismark" class="level3">
 <h3 class="anchored" data-anchor-id="sec-08-02-bismark">比对：Bismark 的运行与输出</h3>
 <p>第一步是建立亚硫酸盐参考索引——把 mm10 分别转换成 C→T 与 G→A 两套基因组并各建一个 bowtie2 索引（本机 8 线程约 20 分钟、约 9 GB 磁盘）：</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2" data-book-role="code"><pre data-code-text="&quot;# bismark_genome 会生成 Bisulfite_Genome/CT_conversion 与 GA_conversion 两个索引\nbismark_genome_preparation --bowtie2 --parallel 8 bismark_genome&quot;" class="sourceCode numberSource bash numberLines code-with-copy"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1"></a><span class="co"># bismark_genome 会生成 Bisulfite_Genome/CT_conversion 与 GA_conversion 两个索引</span></span>
 <span id="cb2-2"><a href="#cb2-2"></a><span class="ex">bismark_genome_preparation</span> <span class="at">--bowtie2</span> <span class="at">--parallel</span> 8 bismark_genome</span></code></pre></div><button title="复制到剪贴板" class="code-copy-button"><i class="bi"></i></button></div>
-<p>比对本体：</p>
+<p>建立索引后进行比对：</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3" data-book-role="code"><pre data-code-text="&quot;bismark --genome bismark_genome \\\n  -1 trimmed/SRR2500904_to2i_1_val_1.fq.gz \\\n  -2 trimmed/SRR2500904_to2i_2_val_2.fq.gz \\\n  --parallel 8 -o bismark_out/&quot;" class="sourceCode numberSource bash numberLines code-with-copy"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1"></a><span class="ex">bismark</span> <span class="at">--genome</span> bismark_genome <span class="dt">\</span></span>
 <span id="cb3-2"><a href="#cb3-2"></a>  <span class="at">-1</span> trimmed/SRR2500904_to2i_1_val_1.fq.gz <span class="dt">\</span></span>
 <span id="cb3-3"><a href="#cb3-3"></a>  <span class="at">-2</span> trimmed/SRR2500904_to2i_2_val_2.fq.gz <span class="dt">\</span></span>
@@ -1221,8 +1221,8 @@ Number of paired-end alignments with a unique best hit:  1193383
 Mapping efficiency:                                 60.2%
 Sequence pairs with no alignments under any condition:   646541
 Sequence pairs did not map uniquely:                 142032</code></pre>
-<p><strong>60.2% 的比对率在 WGBS 里是正常偏低的成绩</strong>。第 7 章 WGS 动辄 99% 的映射率在这里不可能出现，原因有三层：转化大幅降低序列复杂度，可区分的序列变少了；方向性文库只允许 reads 以两种方向组合比对，其余组合天然丢弃；转化不完全或质量差的 reads 带着与两套转化参考都合不上的错配。经验范围是<strong>方向性 WGBS 的唯一比对率落在 50%–75% 之间</strong>；低于 50% 时先怀疑转化或文库问题，而不是急着换参数。</p>
-<p>BAM 里每条比对多了三个 Bismark 专属标签，后面提取甲基化全靠它们：</p>
+<p><strong>60.2% 的比对率处于 WGBS 的正常范围内，但偏低</strong>。第 7 章 WGS 动辄 99% 的映射率在这里不可能出现，原因有三层：转化大幅降低序列复杂度，可区分的序列变少了；方向性文库只允许 reads 以两种方向组合比对，其余组合天然丢弃；转化不完全或质量差的 reads 带着与两套转化参考都合不上的错配。经验范围是<strong>方向性 WGBS 的唯一比对率落在 50%–75% 之间</strong>；低于 50% 时先怀疑转化或文库问题，而不是急着换参数。</p>
+<p>BAM 里每条比对多了三个 Bismark 专属标签，后续提取甲基化信息时会用到它们：</p>
 <div class="book-table-scroll" role="region" aria-label="表格，可横向滚动" tabindex="0"><table class="caption-top table">
 <colgroup>
 <col style="width: 50%">
@@ -1292,7 +1292,7 @@ C methylated in CHH context:     5.2%</code></pre>
 </figure>
 </div>
 <p>本数据曲线整体平坦（CpG 稳定在 25%–30%，CHH 稳定在 5%–6%），说明没有需要修剪的末端偏差；R2 前两位的体外改写已在命令中排除。如果曲线末端翘起或塌陷，就用 <code>--ignore</code> / <code>--ignore_3prime</code> 把失真区段剪掉再重新提取——与第 3 章”先看质控图再决定修剪策略”是同一个习惯。</p>
-<p>meth_extract/ 目录下的输出各司其职，后续章节都会用到：</p>
+<p>meth_extract/ 目录下的输出用途不同，后续分析都会用到：</p>
 <div class="book-table-scroll" role="region" aria-label="表格，可横向滚动" tabindex="0"><table class="caption-top table">
 <colgroup>
 <col style="width: 33%">
@@ -1339,7 +1339,7 @@ C methylated in CHH context:     5.2%</code></pre>
 </tr>
 </tbody>
 </table></div>
-<p>到这里，DNA 线的”到 bismark 为止”就完成了：FASTQ 进、逐位点计数表出。8.3 从这张表出发做定量与差异。</p>
+<p>至此，Bismark 已将 FASTQ 转为逐位点计数表。8.3 节将使用这张表进行定量与差异分析。</p>
 </section>
 </section>
 <section id="sec-08-03" class="level2" data-number="8.3">
@@ -1398,7 +1398,7 @@ C methylated in CHH context:     5.2%</code></pre>
 </div>
 </figure>
 </div>
-<p>三个数字连成一个完整的生物学故事（<a href="#fig-08-global-methylation" class="quarto-xref">图&nbsp;<span>8.9</span></a> 左）：血清培养的胚胎干细胞保持高甲基化；换成 2i 培养基后整体去甲基化（约 68% → 25%，对应 8.1.2 说的发育重编程在体外的重演）；把三个 DNMT 全部敲掉，甲基化几乎归零。右边逐位点的对比图更直观：约 1200 万个两样本共有 CpG 里，大量位点从血清中的高比例塌到 2i 中的低比例——<strong>全基因组尺度的去甲基化</strong>，而不是少数位点的事件。</p>
+<p>三个数值反映了不同条件下的甲基化状态（<a href="#fig-08-global-methylation" class="quarto-xref">图&nbsp;<span>8.9</span></a> 左）：血清培养的胚胎干细胞保持高甲基化；换成 2i 培养基后整体去甲基化（约 68% → 25%，对应 8.1.2 说的发育重编程在体外的重演）；把三个 DNMT 全部敲掉，甲基化几乎归零。右边逐位点的对比图更直观：约 1200 万个两样本共有 CpG 里，大量位点从血清中的高比例降到 2i 中的低比例——<strong>全基因组尺度的去甲基化</strong>，而不是少数位点的事件。</p>
 <div id="fig-08-global-methylation" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-08-global-methylation-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
@@ -1427,15 +1427,15 @@ C methylated in CHH context:     5.2%</code></pre>
 <section id="sec-08-03-dml-dmr" class="level3">
 <h3 class="anchored" data-anchor-id="sec-08-03-dml-dmr">差异的统计单位：从 DML 到 DMR</h3>
 <p>两组样本间”这个位点甲基化变了吗”的检验，直觉模型仍然是 8.5.4 用过的两比例比较（比较两组各自的 <a href="#eq-08-methy-ratio" class="quarto-xref">公式&nbsp;<span>8.1</span></a>）——但甲基化数据有两个特殊之处，直接套 Fisher 检验会出问题：</p>
-<p>第一，<strong>过度离散（overdispersion）</strong>。reads 不是独立的伯努利试验：同一个分子克隆的 reads 相关、细胞的甲基化状态本身有异质性。实测方差常大于二项分布的预期，裸检验的 p 值会过分乐观。</p>
-<p>第二，<strong>单位选择</strong>。单个 CpG 的覆盖通常只有几到几十条，单点位置信区间宽；但相邻 CpG 的甲基化高度相关——差异往往以区域为单位出现（启动子、CpG 岛）。把相邻位点的证据聚合起来，既提高统计功效，也更贴近”差异发生在调控区域”的生物学问法。</p>
+<p>第一，<strong>过度离散（overdispersion）</strong>。reads 不是独立的伯努利试验：同一个分子克隆的 reads 相关、细胞的甲基化状态本身有异质性。实测方差常大于二项分布的预期，直接按二项模型检验，p 值会偏小。</p>
+<p>第二，<strong>单位选择</strong>。单个 CpG 的覆盖通常只有几到几十条，单个位点的置信区间较宽；但相邻 CpG 的甲基化高度相关——差异往往以区域为单位出现（启动子、CpG 岛）。把相邻位点的证据聚合起来，既提高统计功效，也更贴近”差异发生在调控区域”的生物学问法。</p>
 <p>由此形成两级统计单位：</p>
 <ul>
 <li><strong>DML（differentially methylated locus，差异甲基化位点）</strong>：逐位点检验，模型用 β-二项分布吸收过度离散（DSS 的做法），并可用平滑借用相邻位点信息；</li>
 <li><strong>DMR（differentially methylated region，差异甲基化区域）</strong>：把显著且方向一致的相邻 DML 连成区域（参数如最少 CpG 数、最小长度、合并距离），报出”哪一段、差多少、朝哪个方向”。</li>
 </ul>
-<p>判断”差异”时还要同时看<strong>幅度</strong>：统计显著但差 2% 的位点，在 68% 对 25% 的全局背景下几乎肯定不是故事的主角。DSS 的 <code>callDML</code>/<code>callDMR</code> 都接受一个 <span class="math inline">\(\delta\)</span> 参数（如 0.1 表示至少差 10 个百分点）——把”统计上检出”与”幅度上重要”分开声明，是差异分析报告的基本素养。</p>
-<p>一个如实的提醒：本数据每个条件只有<strong>一个</strong> WGBS 样本，DSS 在无重复时依靠经验先验估计离散度，检验的置信度打了折扣；正式研究需要生物学重复。我们把它当作”流程与解读”的教学案例，而不是这项具体数据的最终结论。</p>
+<p>判断”差异”时还要同时看<strong>幅度</strong>：统计显著但差 2% 的位点，在 68% 对 25% 的全局背景下几乎肯定不是主要变化。DSS 的 <code>callDML</code>/<code>callDMR</code> 都接受一个 <span class="math inline">\(\delta\)</span> 参数（如 0.1 表示至少差 10 个百分点）——把”统计上检出”与”幅度上重要”分开声明，是报告差异分析时需要说明的区别。</p>
+<p>需要注意，本数据每个条件只有<strong>一个</strong> WGBS 样本，DSS 在无重复时依靠经验先验估计离散度，检验的可信程度受到限制；正式研究需要生物学重复。我们把它当作”流程与解读”的教学案例，而不是这项具体数据的最终结论。</p>
 </section>
 <section id="sec-08-03-dss" class="level3">
 <h3 class="anchored" data-anchor-id="sec-08-03-dss">DSS 实战：to2i 对 toSerum 的差异甲基化</h3>
@@ -1456,13 +1456,13 @@ C methylated in CHH context:     5.2%</code></pre>
 <span id="cb9-14"><a href="#cb9-14"></a>dmls <span class="ot">&lt;-</span> <span class="fu">callDML</span>(dml, <span class="at">delta =</span> <span class="fl">0.1</span>, <span class="at">p.threshold =</span> <span class="fl">1e-5</span>)   <span class="co"># DML</span></span>
 <span id="cb9-15"><a href="#cb9-15"></a>dmrs <span class="ot">&lt;-</span> <span class="fu">callDMR</span>(dml, <span class="at">delta =</span> <span class="fl">0.1</span>, <span class="at">p.threshold =</span> <span class="fl">1e-5</span>,</span>
 <span id="cb9-16"><a href="#cb9-16"></a>                <span class="at">minCG =</span> <span class="dv">5</span>, <span class="at">minlen =</span> <span class="dv">50</span>, <span class="at">dis.merge =</span> <span class="dv">500</span>) <span class="co"># DMR</span></span></code></pre></div><button title="复制到剪贴板" class="code-copy-button"><i class="bi"></i></button></div>
-<p>12,386,781 个共有 CpG 进入检验，结果的第一眼感受是”多到反常”：</p>
+<p>12,386,781 个共有 CpG 进入检验，检出的差异数量很多：</p>
 <pre data-code-text="&quot;DML (|diff|&gt;0.1, p&lt;1e-5):  6121903\nDMR:                       376237\nDMR direction:  toSerum &gt; to2i:  376231    to2i &gt; toSerum:  6&quot;" class="text" data-book-role="output"><code>DML (|diff|&gt;0.1, p&lt;1e-5):  6121903
 DMR:                       376237
 DMR direction:  toSerum &gt; to2i:  376231    to2i &gt; toSerum:  6</code></pre>
-<p>约一半的 CpG 是 DML、37 万多个 DMR——这组数字放在”少数调控元件发生 focal 变化”的常规预期下是灾难，放在本数据的故事里却恰恰正确：<strong>2i 诱导的是全基因组尺度的去甲基化</strong>（8.3.2 的 68% → 25%），差异不是零星位点，而是大片区域的整体塌陷。方向的不对称是更硬的证据：376,231 个 DMR 朝”血清高于 2i”的方向，只有 6 个反向——写入酶撤走、培养条件切换只会单向地擦除甲基化，反向的 6 个更接近检验噪声。</p>
-<p>这个例子因此提供了一个重要的判断力训练：<strong>DMR 数量本身没有固定好坏，必须放回生物学语境</strong>。局灶性变化的研究（比如某个转录因子敲除后数百个 DMR）里，37 万个 DMR 意味着流程或分组出了问题；全基因组重编程的研究里，它就是预期结果。区分两者的依据不是统计阈值，而是 8.3.2 那张全局画像。</p>
-<p><a href="#fig-08-dmr-example" class="quarto-xref">图&nbsp;<span>8.10</span></a> 放大一个具体的 DMR：chr14 上约 260 bp 的区域，8 个 CpG 在血清样本中平滑比例稳定在 96%–97%，2i 样本中塌到 5%–7%，差约 91 个百分点。逐位点看，两条曲线的形状高度平行——区域级的”整体下移”，正是区域聚合统计想要捕捉的形态。</p>
+<p>约一半的 CpG 是 DML、37 万多个 DMR——如果预期只有少数调控元件发生 focal 变化，这样的数量就明显异常；但本数据的背景是：<strong>2i 诱导的是全基因组尺度的去甲基化</strong>（8.3.2 的 68% → 25%），差异不是零星位点，而是大片区域的甲基化比例整体下降。差异方向的不对称也支持这一判断：376,231 个 DMR 朝”血清高于 2i”的方向，只有 6 个反向——写入酶撤走、培养条件切换只会单向地擦除甲基化，反向的 6 个更接近检验噪声。</p>
+<p>这个例子提醒我们，<strong>DMR 数量本身没有固定好坏，必须放回生物学语境</strong>。局灶性变化的研究（比如某个转录因子敲除后数百个 DMR）里，37 万个 DMR 意味着流程或分组出了问题；全基因组重编程的研究里，它就是预期结果。区分两者的依据不是统计阈值，而是 8.3.2 那张全局画像。</p>
+<p><a href="#fig-08-dmr-example" class="quarto-xref">图&nbsp;<span>8.10</span></a> 放大一个具体的 DMR：chr14 上约 260 bp 的区域，8 个 CpG 在血清样本中平滑比例稳定在 96%–97%，2i 样本中降到 5%–7%，差约 91 个百分点。逐位点看，两条曲线的形状高度平行——区域级的”整体下移”，正是区域聚合统计想要捕捉的形态。</p>
 <div id="fig-08-dmr-example" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-08-dmr-example-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
@@ -1481,7 +1481,7 @@ DMR direction:  toSerum &gt; to2i:  376231    to2i &gt; toSerum:  6</code></pre>
 <p>从 DNA 转到 RNA：修饰的种类更多，定量更难，直到最近几年才有了单碱基的答案。</p>
 <section id="sec-08-04-modification-landscape" class="level3">
 <h3 class="anchored" data-anchor-id="sec-08-04-modification-landscape">mRNA 上的修饰版图：m6A、m1A、m6Am 与 m5C</h3>
-<p>DNA 甲基化讲了整整三节，转到 RNA 时先泼一盆冷水：<strong>mRNA 上的修饰研究比 DNA 更”年轻”，也更容易被技术假象误导</strong>。认识它们要从化学结构开始——修饰之间的差别往往就是碱基环上的一两个甲基，但位置不同，化学后果完全不同。<a href="#fig-08-rna-modification-landscape" class="quarto-xref">图&nbsp;<span>8.11</span></a> 沿一条 mRNA 摆放了主要修饰的结构式，请对照它逐个认识。</p>
+<p>转向 RNA 修饰时，需要先注意：<strong>mRNA 上的修饰研究比 DNA 更”年轻”，也更容易被技术假象误导</strong>。认识它们要从化学结构开始——修饰之间的差别往往就是碱基环上的一两个甲基，但位置不同，化学后果完全不同。<a href="#fig-08-rna-modification-landscape" class="quarto-xref">图&nbsp;<span>8.11</span></a> 沿一条 mRNA 摆放了主要修饰的结构式，请对照它逐个认识。</p>
 <div id="fig-08-rna-modification-landscape" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-08-rna-modification-landscape-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
@@ -1496,7 +1496,7 @@ DMR direction:  toSerum &gt; to2i:  376231    to2i &gt; toSerum:  6</code></pre>
 <li><strong>m6A（N6-甲基腺嘌呤）</strong>：结构上看，腺嘌呤环<strong>外侧</strong> 6 位氨基上的一个氢被甲基取代（N6 位）。这个位置不参与 Watson–Crick 配对——所以 m6A 不破坏 A:U 配对，却改变了碱基的氢键供体格局，让 YTH 结构域这类”读取器”能够专门识别它。m6A 是 mRNA 上最丰富的内部修饰，约占全部腺苷的 0.2%–0.6%<a href="#fn19" class="footnote-ref" id="fnref19" role="doc-noteref"><sup>19</sup></a>，几乎只出现在 DRACH 基序（D=A/G/U，R=A/G，H=A/C/U）中，沿转录本富集在终止密码子附近和 3′ 非翻译区<a href="#fn20" class="footnote-ref" id="fnref20" role="doc-noteref"><sup>20</sup></a><a href="#fn21" class="footnote-ref" id="fnref21" role="doc-noteref"><sup>21</sup></a>。它是本章 RNA 线的主角。</li>
 <li><strong>m6Am</strong>：结构上是”双重修饰”——帽子后<strong>第一个转录核苷酸</strong>的腺嘌呤既有 N6 甲基（与 m6A 同位），核糖 2′-O 又有一个甲基（2′-O-甲基化，即 Nm）。它由写入酶 <strong>PCIF1</strong>（又称 CAPAM）催化<a href="#fn22" class="footnote-ref" id="fnref22" role="doc-noteref"><sup>22</sup></a><a href="#fn23" class="footnote-ref" id="fnref23" role="doc-noteref"><sup>23</sup></a>。离转录起始只有一两个核苷酸，与内部 m6A 的调控语境完全不同；定量研究显示它的修饰比例（化学计量）通常远高于内部 m6A——这一点在 8.5 讨论”修饰比例”时是一个重要对照。它也是 FTO 底物偏好争议的主角（8.4.2）。</li>
 <li><strong>m1A（N1-甲基腺嘌呤）</strong>：甲基加在腺嘌呤环<strong>内侧</strong>的 N1 位——这个位置恰好参与 Watson–Crick 配对，所以 m1A 会干扰配对、拖慢翻译和逆转录。这一化学性质直接关联它的检测争议：mRNA 上是否存在丰富、动态的 m1A 曾引起很大争论——2016 年有研究宣称 5′UTR 区域存在大量动态 m1A，随后的单碱基图谱显示胞质 mRNA 中 m1A 稀少、主要见于线粒体 mRNA<a href="#fn24" class="footnote-ref" id="fnref24" role="doc-noteref"><sup>24</sup></a>，而 5′UTR 的”m1A 信号”大部分被证明是<strong>抗体交叉反应造成的假象</strong><a href="#fn25" class="footnote-ref" id="fnref25" role="doc-noteref"><sup>25</sup></a>。</li>
-<li><strong>m5C（5-甲基胞嘧啶）</strong>：结构与 DNA 的 5mC 完全同款——胞嘧啶环 5 位碳上的甲基。这决定了它的检测方式：RNA 的 m5C 恰好可以用与 DNA 完全相同的亚硫酸盐化学来测，是”碱基不平衡”思想最早的 RNA 应用。它在 mRNA 上含量很低，在 tRNA 中则非常丰富<a href="#fn26" class="footnote-ref" id="fnref26" role="doc-noteref"><sup>26</sup></a>。</li>
+<li><strong>m5C（5-甲基胞嘧啶）</strong>：结构与 DNA 的 5mC 相同——胞嘧啶环 5 位碳上的甲基。这决定了它的检测方式：RNA 的 m5C 恰好可以用与 DNA 完全相同的亚硫酸盐化学来测，是”碱基不平衡”思想最早的 RNA 应用。它在 mRNA 上含量很低，在 tRNA 中则非常丰富<a href="#fn26" class="footnote-ref" id="fnref26" role="doc-noteref"><sup>26</sup></a>。</li>
 </ul>
 <div class="book-warning callout callout-style-default callout-warning callout-titled" title="注意｜抗体是把双刃剑">
 <div class="callout-header d-flex align-content-center">
@@ -1508,14 +1508,14 @@ DMR direction:  toSerum &gt; to2i:  376231    to2i &gt; toSerum:  6</code></pre>
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>m1A 的这段公案值得每个初学者记住：<strong>抗体免疫沉淀类方法给出的是”富集信号”，不是化学鉴定</strong>。抗体可能在结构相似的修饰之间交叉反应，甚至与非特异 RNA 结合；把 IP 富集峰直接解读为某种修饰的存在，在多个修饰领域都出过事故。用无抗体的化学转化法（如 GLORI）或用合成 RNA 对照做系统性校准，是避免这类错误的两条路<a href="#fn27" class="footnote-ref" id="fnref27" role="doc-noteref"><sup>27</sup></a>。</p>
+<p>m1A 的争议提示我们：<strong>抗体免疫沉淀类方法给出的是”富集信号”，不是化学鉴定</strong>。抗体可能在结构相似的修饰之间交叉反应，甚至与非特异 RNA 结合；把 IP 富集峰直接解读为某种修饰的存在，在多个修饰领域都曾导致错误判断。用无抗体的化学转化法（如 GLORI）或用合成 RNA 对照做系统性校准，是避免这类错误的两条路<a href="#fn27" class="footnote-ref" id="fnref27" role="doc-noteref"><sup>27</sup></a>。</p>
 </div>
 </div>
 </section>
 <section id="sec-08-04-m6a-biology" class="level3">
 <h3 class="anchored" data-anchor-id="sec-08-04-m6a-biology">m6A：含量最丰富、研究最热的修饰</h3>
-<p>m6A 的故事有一个罕见的历史弧线。它 1974 年就在 mRNA 中被发现<a href="#fn28" class="footnote-ref" id="fnref28" role="doc-noteref"><sup>28</sup></a>，此后沉寂了近四十年——已知存在、不知意义，因为没有人知道这个修饰能不能被动态调控。转折点来自华人科学家何川实验室：2010 年他提出”RNA 表观遗传学”（RNA epigenetics）的概念框架<a href="#fn29" class="footnote-ref" id="fnref29" role="doc-noteref"><sup>29</sup></a>；2011 年，贾桂鑫等发现肥胖风险蛋白 <strong>FTO 对 RNA 中的 m6A 具有去甲基化活性</strong><a href="#fn30" class="footnote-ref" id="fnref30" role="doc-noteref"><sup>30</sup></a>——甲基化可以被”擦除”，说明它是一个可逆的、有调控潜力的标记，而不只是化学惰性的装饰。这篇文章成为引爆整个表观转录组学领域的开创性工作。（科学的后续比开创时刻更曲折：后来研究发现 FTO 对帽子区的 m6Am 活性其实更高<a href="#fn31" class="footnote-ref" id="fnref31" role="doc-noteref"><sup>31</sup></a>，但它确立的”RNA 甲基化可逆”的概念已经成为领域基石。）2012 年，两个团队独立绘制了首张转录组范围的 m6A 图谱：Dominissini 等与 Meyer 等分别以抗体免疫沉淀加测序（m6A-seq / MeRIP-seq）发现 m6A 富集于数千个转录本的终止密码子附近与 3′UTR<a href="#fn32" class="footnote-ref" id="fnref32" role="doc-noteref"><sup>32</sup></a><a href="#fn33" class="footnote-ref" id="fnref33" role="doc-noteref"><sup>33</sup></a>。</p>
-<p>此后 m6A 的分子机器迅速清晰起来，习惯上用三个角色概括：</p>
+<p>m6A 在 1974 年就已从 mRNA 中被发现<a href="#fn28" class="footnote-ref" id="fnref28" role="doc-noteref"><sup>28</sup></a>，此后沉寂了近四十年——已知存在、不知意义，因为没有人知道这个修饰能不能被动态调控。转折点来自华人科学家何川实验室：2010 年他提出”RNA 表观遗传学”（RNA epigenetics）的概念框架<a href="#fn29" class="footnote-ref" id="fnref29" role="doc-noteref"><sup>29</sup></a>；2011 年，贾桂鑫等发现肥胖风险蛋白 <strong>FTO 对 RNA 中的 m6A 具有去甲基化活性</strong><a href="#fn30" class="footnote-ref" id="fnref30" role="doc-noteref"><sup>30</sup></a>——甲基化可以被”擦除”，说明它是一个可逆的、有调控潜力的标记，而不只是化学惰性的装饰。这项开创性工作推动了表观转录组学的发展。（后续研究又补充了这一认识：后来研究发现 FTO 对帽子区的 m6Am 活性其实更高<a href="#fn31" class="footnote-ref" id="fnref31" role="doc-noteref"><sup>31</sup></a>，但它确立的”RNA 甲基化可逆”的概念已经成为领域基石。）2012 年，两个团队独立绘制了首张转录组范围的 m6A 图谱：Dominissini 等与 Meyer 等分别以抗体免疫沉淀加测序（m6A-seq / MeRIP-seq）发现 m6A 富集于数千个转录本的终止密码子附近与 3′UTR<a href="#fn32" class="footnote-ref" id="fnref32" role="doc-noteref"><sup>32</sup></a><a href="#fn33" class="footnote-ref" id="fnref33" role="doc-noteref"><sup>33</sup></a>。</p>
+<p>此后，参与 m6A 调控的分子机制逐渐明确，习惯上用三个角色概括：</p>
 <ul>
 <li><strong>写入器（writer）</strong>：METTL3–METTL14–WTAP 等组成的甲基转移酶复合体，伴随转录在核内给 DRACH 基序加甲基；<strong>只有 METTL3 具有催化活性</strong>，METTL14 起结构支撑与底物识别作用<a href="#fn34" class="footnote-ref" id="fnref34" role="doc-noteref"><sup>34</sup></a>。</li>
 <li><strong>擦除器（eraser）</strong>：FTO 和 ALKBH5 两个去甲基化酶（上文提到的 FTO 即其一）。</li>
@@ -1603,7 +1603,7 @@ DMR direction:  toSerum &gt; to2i:  376231    to2i &gt; toSerum:  6</code></pre>
 </div>
 </figure>
 </div>
-<p>富集法只回答”哪里有”，回答不了”有多少”——IP 富集倍数取决于抗体亲和力、片段长度和表达量，换算不出修饰比例。真正做到<strong>单碱基分辨 + 绝对定量</strong>的是北大伊成器、王晶团队合作发展的 <strong>GLORI</strong>（GlyoxaL and nitrIte-mediated deamination）<a href="#fn43" class="footnote-ref" id="fnref43" role="doc-noteref"><sup>43</sup></a>，它的化学原理（<a href="#fig-08-glori-chemistry" class="quarto-xref">图&nbsp;<span>8.12</span></a>）读到这里应该会让你觉得眼熟：</p>
+<p>富集法只回答”哪里有”，回答不了”有多少”——IP 富集倍数取决于抗体亲和力、片段长度和表达量，换算不出修饰比例。真正做到<strong>单碱基分辨 + 绝对定量</strong>的是北大伊成器、王晶团队合作发展的 <strong>GLORI</strong>（GlyoxaL and nitrIte-mediated deamination）<a href="#fn43" class="footnote-ref" id="fnref43" role="doc-noteref"><sup>43</sup></a>，它的化学原理（<a href="#fig-08-glori-chemistry" class="quarto-xref">图&nbsp;<span>8.12</span></a>）与前文介绍的转化思路相近：</p>
 <ul>
 <li><strong>乙二醛（glyoxal）</strong>先与 m6A（以及鸟嘌呤 G）形成稳定的环状加合物，<strong>保护</strong>它们不被后续反应破坏；</li>
 <li><strong>亚硝酸盐</strong>在酸性条件下把所有<strong>未修饰的 A 脱氨</strong>为次黄嘌呤 I——PCR 和测序时读作 <strong>G</strong>；</li>
@@ -1624,7 +1624,7 @@ DMR direction:  toSerum &gt; to2i:  376231    to2i &gt; toSerum:  6</code></pre>
 </section>
 <section id="sec-08-05" class="level2" data-number="8.5">
 <h2 data-number="8.5" class="anchored" data-anchor-id="sec-08-05"><span class="header-section-number">8.5</span> GLORI 数据分析</h2>
-<p>把 8.2 的思路在 RNA 上重演一遍：先看数据长什么样，再走质控、定量、差异与解读。</p>
+<p>沿用 8.2 节的分析思路，先了解 RNA 数据的特点，再进行质控、定量、差异分析和结果解读。</p>
 <section id="sec-08-05-example-data" class="level3">
 <h3 class="anchored" data-anchor-id="sec-08-05-example-data">示例数据与整体路线</h3>
 <p>RNA 线的示例数据来自 GLORI 原论文（Liu 等，2023）随文发布的 GEO 数据集 <strong>GSE210563</strong><a href="#fn45" class="footnote-ref" id="fnref45" role="doc-noteref"><sup>45</sup></a>。论文在多个细胞系与处理条件下做了 GLORI 文库；本章选取其中一组设计完整的敲低实验：HeLa 细胞中用 siRNA 敲低写入酶 <strong>METTL3</strong>，与转对照 siRNA 的对照相比，各两个生物学重复（<a href="#tbl-08-glori-samples" class="quarto-xref">表&nbsp;<span>8.5</span></a>）。</p>
@@ -1667,7 +1667,7 @@ DMR direction:  toSerum &gt; to2i:  376231    to2i &gt; toSerum:  6</code></pre>
 </div>
 </figure>
 </div>
-<p>这组数据与第 5 章构成呼应：第 5 章在 HEK293T 中分析了 METTL3 敲低的<strong>表达层</strong>（RNA-seq 的 counts 与差异表达），本章在 HeLa 的 GLORI 数据中读<strong>同方向干预的修饰层</strong>——写入酶减少后，哪些位点的 m6A 比例塌了下去。注意口径：两层观测来自不同细胞系的两项研究，是同一生物学问题的平行印证，不是同批样本的两端；即便如此，两层合起来仍比任何单层更接近完整的”干预—分子后果”故事。</p>
+<p>这组数据与第 5 章构成呼应：第 5 章在 HEK293T 中分析了 METTL3 敲低的<strong>表达层</strong>（RNA-seq 的 counts 与差异表达），本章在 HeLa 的 GLORI 数据中读<strong>同方向干预的修饰层</strong>——写入酶减少后，哪些位点的 m6A 比例下降了。注意口径：两层观测来自不同细胞系的两项研究，是同一生物学问题的平行印证，不是同批样本的两端；结合两层结果，可以更完整地观察干预后的分子变化。</p>
 <p>分析路线与 8.2 的 BS-seq 链一一对应（<a href="#fig-08-glori-pipeline" class="quarto-xref">图&nbsp;<span>8.13</span></a>）：</p>
 <ul>
 <li><strong>原始数据质控</strong>：FastQC 看碱基组成——GLORI 文库的 reads 中 A 应当大规模消失（8.5.2）；</li>
@@ -1686,7 +1686,7 @@ DMR direction:  toSerum &gt; to2i:  376231    to2i &gt; toSerum:  6</code></pre>
 </figcaption>
 </figure>
 </div>
-<p>一个如实的说明：本章从论文提供的<strong>位点级处理表</strong>（GEO 随文补充文件，每个样本约 6.2–6.5 万个检出位点）开始做定量与差异分析，这一步是实测运行；从 FASTQ 到位点表的 GLORI-tools 完整流程（STAR 比对、去重、位点统计与过滤）本章按官方文档介绍其步骤与关键参数（文档级演示），没有逐条运行——它需要人类基因组的 STAR 索引与较长机时，而其每一步的输出正是我们手上这张表。对任何公共数据，先看作者提供了哪一级的处理结果、从哪一级接手分析，都是第一个要回答的问题。</p>
+<p>这里先说明实际分析范围：本章从论文提供的<strong>位点级处理表</strong>（GEO 随文补充文件，每个样本约 6.2–6.5 万个检出位点）开始做定量与差异分析，这一步是实测运行；从 FASTQ 到位点表的 GLORI-tools 完整流程（STAR 比对、去重、位点统计与过滤）本章按官方文档介绍其步骤与关键参数（文档级演示），没有逐条运行——它需要人类基因组的 STAR 索引与较长机时，而其每一步的输出正是我们手上这张表。对任何公共数据，先看作者提供了哪一级的处理结果、从哪一级接手分析，都是第一个要回答的问题。</p>
 </section>
 <section id="sec-08-05-qc" class="level3">
 <h3 class="anchored" data-anchor-id="sec-08-05-qc">文库质控：A 的坍缩与转化率</h3>
@@ -1703,7 +1703,7 @@ DMR direction:  toSerum &gt; to2i:  376231    to2i &gt; toSerum:  6</code></pre>
 </div>
 <ul>
 <li><strong>第 1–9 位</strong>：A 占 33%–58%，四碱基大致正常——这是逆转录引物序列，体外合成的普通 DNA，<strong>不经过脱氨反应</strong>；</li>
-<li><strong>第 15–35 位（插入序列）</strong>：A 断崖式跌到 <strong>0.6%–1.1%</strong>，G 升到 43%–46%——这正是化学转化的直接证据：未修饰的 A 被脱氨成了 I，测序读作 G；残留下来的那一点 A，就是未转化完全的部分加上真正的 m6A；</li>
+<li><strong>第 15–35 位（插入序列）</strong>：A 降到 <strong>0.6%–1.1%</strong>，G 升到 43%–46%——这正是化学转化的直接证据：未修饰的 A 被脱氨成了 I，测序读作 G；残留下来的那一点 A，就是未转化完全的部分加上真正的 m6A；</li>
 <li><strong>第 41 位之后</strong>：A 比例逐渐回升到 25% 左右——reads 读穿插入序列、进入了 3′ 接头，接头同样是未脱氨的合成序列。</li>
 </ul>
 <p>对照组的常识来自第 3 章：普通 RNA-seq 文库中 A 约占 25%–28%，四种碱基大致平稳。两相对照，“A 的坍缩”就是 GLORI 版的转化质控：插入序列中 A 越少，转化越彻底。论文用不经化学处理的 GLORI⁻ 对照文库做了同样的统计，估计未修饰 A 的脱氨效率约 <strong>98%</strong>，并由此给出修饰比例的检出下限——每 100 条覆盖里，约 1–2 条会”假装”携带 m6A。这与 BS-seq 里转化率质控的逻辑完全一致（8.2.6 的噪声地板、8.3.2 的空白对照），只是从 C→T 换成了 A→G。</p>
@@ -1723,7 +1723,7 @@ DMR direction:  toSerum &gt; to2i:  376231    to2i &gt; toSerum:  6</code></pre>
 </section>
 <section id="sec-08-05-pipeline" class="level3">
 <h3 class="anchored" data-anchor-id="sec-08-05-pipeline">从 reads 到位点修饰比例：流程与输出</h3>
-<p>GLORI-tools（官方 Python3 流程，GitHub 上开源）把 8.5.1 的中间步骤串成一条链：接头与质量修剪 → <strong>STAR</strong> 比对到参考基因组（剪接感知，需 ≥2.7.5c 版本；这里测的是 mRNA，跨越外显子边界的 reads 必须被剪接比对接住，与第 5 章相同）→ 按坐标排序与去重 → 对每个 A 位点统计 reads 中的 A 与 G → 一系列过滤与检验。其中两道过滤值得单独理解：</p>
+<p>GLORI-tools（官方 Python3 流程，GitHub 上开源）把 8.5.1 的中间步骤串成一条链：接头与质量修剪 → <strong>STAR</strong> 比对到参考基因组（剪接感知，需 ≥2.7.5c 版本；这里测的是 mRNA，跨越外显子边界的 reads 必须通过剪接感知比对来处理，与第 5 章相同）→ 按坐标排序与去重 → 对每个 A 位点统计 reads 中的 A 与 G → 一系列过滤与检验。其中两道过滤值得单独理解：</p>
 <ul>
 <li><strong>覆盖深度过滤</strong>：修饰比例是 A/(A+G) 的比值，覆盖太低的位点比值方差极大；</li>
 <li><strong>SNP 位点排除</strong>：基因组上本来就该是 G 的位点（A/G 杂合 SNP 中来自 G 等位基因的 reads）会与”脱氨成 G”产生完全相同的数据形态——单靠一个样本无法区分，必须借助 dbSNP 等已知变异数据库把这类位点剔除（<a href="#fig-08-snp-confounding" class="quarto-xref">图&nbsp;<span>8.15</span></a>）。这不是 GLORI 特有的麻烦：BS-seq 同样要面对 C/T SNP 与甲基化信号的混淆，思路一致——<strong>用独立来源的变异信息给化学信号划界</strong>。</li>
@@ -1786,7 +1786,7 @@ DMR direction:  toSerum &gt; to2i:  376231    to2i &gt; toSerum:  6</code></pre>
 </div>
 </figure>
 </div>
-<p>注意 <code>Ratio</code> 一列的口径：它是”检出位点表”内部的修饰比例，表里的位点已经通过了一轮质控与检验，并不是全转录本所有 A 位点的随机样本。下一小节的一切解读，都要带着这个口径。</p>
+<p>注意 <code>Ratio</code> 一列的口径：它是”检出位点表”内部的修饰比例，表里的位点已经通过了一轮质控与检验，并不是全转录本所有 A 位点的随机样本。下一小节的结论也只适用于这一检出位点集合。</p>
 </section>
 <section id="sec-08-05-quantify" class="level3">
 <h3 class="anchored" data-anchor-id="sec-08-05-quantify">位点定量与敲低效应：真实数据分析</h3>
@@ -1831,12 +1831,12 @@ DMR direction:  toSerum &gt; to2i:  376231    to2i &gt; toSerum:  6</code></pre>
 </figcaption>
 </figure>
 </div>
-<p>结果一目了然（<a href="#fig-08-glori-scatter" class="quarto-xref">图&nbsp;<span>8.16</span></a> 右）：</p>
+<p>结果如下（<a href="#fig-08-glori-scatter" class="quarto-xref">图&nbsp;<span>8.16</span></a> 右）：</p>
 <ul>
 <li><strong>4,449 个位点</strong>在敲低后修饰比例显著下降（FDR &lt; 0.05 且降为对照的一半以下），而显著上升的只有 <strong>16 个</strong>——接近检验噪声的背景水平。写入酶被拿掉，修饰几乎只朝一个方向变化，这本身就是”信号真实”的旁证；</li>
 <li>检出位点的修饰比例中位数从对照的 <strong>0.57</strong> 降到 <strong>0.37</strong>。注意口径：这是”检出位点集合”内部的中位数（表内位点已通过质控，天然偏高）；换算到全转录本所有腺苷，m6A 的平均丰度量级仍是 8.4 说过的 0.2%–0.6%。</li>
 </ul>
-<p>看一个具体的位点：<strong>KCTD5 基因 chr16:2,708,329（正链）</strong>。对照两个重复中，139 条与 122 条覆盖里分别有 62.6% 与 59.8% 读作 A；敲低两个重复中，422 条与 390 条覆盖里只剩 14.0% 与 13.1%。合并后修饰比例从 <strong>0.61 降到 0.14</strong>（Fisher 检验 FDR ≈ 5×10⁻⁴⁷）。四个样本、近千条独立 reads、方向一致的坍缩——这就是”METTL3 依赖的 m6A 位点”在数据里的样子。</p>
+<p>看一个具体的位点：<strong>KCTD5 基因 chr16:2,708,329（正链）</strong>。对照两个重复中，139 条与 122 条覆盖里分别有 62.6% 与 59.8% 读作 A；敲低两个重复中，422 条与 390 条覆盖里只剩 14.0% 与 13.1%。合并后修饰比例从 <strong>0.61 降到 0.14</strong>（Fisher 检验 FDR ≈ 5×10⁻⁴⁷）。四个样本中近千条独立 reads 显示修饰比例一致下降，为这个位点的 m6A 依赖 METTL3 提供了支持。</p>
 <pre data-code-text="&quot;gene        位点              nc1    nc2    si31    si32    fdr\nKCTD5  chr16:2708329 (+)   0.626  0.598   0.140   0.131   5e-47\nMNT    chr17:2386699 (−)   0.591  0.682   0.127   0.119   3e-09&quot;" class="text" data-book-role="output"><code>gene        位点              nc1    nc2    si31    si32    fdr
 KCTD5  chr16:2708329 (+)   0.626  0.598   0.140   0.131   5e-47
 MNT    chr17:2386699 (−)   0.591  0.682   0.127   0.119   3e-09</code></pre>
@@ -1850,14 +1850,14 @@ MNT    chr17:2386699 (−)   0.591  0.682   0.127   0.119   3e-09</code></pre>
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>METTL3 敲低后修饰比例塌掉的位点，其宿主基因的表达未必变化——修饰的有无与 mRNA 的多少是两个层面。把第 5 章的表达差异表与本节的修饰差异表放在同一个基因上对齐（例如按基因取修饰变化最大的位点，再看该基因的 log2FC），才是”修饰变化是否伴随表达后果”的正确问法；即便两者都显著，要建立因果还需要时序或干预实验。8.6 会把这类跨层整合整理成清单。</p>
+<p>METTL3 敲低后修饰比例下降的位点，其宿主基因的表达未必变化——修饰的有无与 mRNA 的多少是两个层面。把第 5 章的表达差异表与本节的修饰差异表放在同一个基因上对齐（例如按基因取修饰变化最大的位点，再看该基因的 log2FC），才是”修饰变化是否伴随表达后果”的正确问法；即便两者都显著，要建立因果还需要时序或干预实验。8.6 会把这类跨层整合整理成清单。</p>
 </div>
 </div>
 </section>
 </section>
 <section id="sec-08-06" class="level2" data-number="8.6">
 <h2 data-number="8.6" class="anchored" data-anchor-id="sec-08-06"><span class="header-section-number">8.6</span> IGV 复核、修饰整合与完整交付</h2>
-<p>两条线各自走完之后，把镜头拉远：复核结果、跨层整合、整理交付。</p>
+<p>完成 DNA 与 RNA 的分析后，还需要复核结果、整合不同层面的证据，并整理交付材料。</p>
 <section id="sec-08-06-igv" class="level3">
 <h3 class="anchored" data-anchor-id="sec-08-06-igv">用眼睛复核：IGV 里的甲基化数据</h3>
 <p>第 4 章学过的 IGV 直接支持甲基化数据。<code>bismark.cov</code> 文件从 File → Load 加载（IGV 会把它识别为甲基化轨迹），或者加载 <code>bedGraph</code>；基因组坐标要选对参考版本——8.2 的链用 mm10，8.3 的官方表用 mm9，两套坐标不能混看。加载后在感兴趣的区域（例如一个 DMR、一个基因的启动子）逐个检查：</p>
@@ -1880,21 +1880,21 @@ MNT    chr17:2386699 (−)   0.591  0.682   0.127   0.119   3e-09</code></pre>
 </section>
 <section id="sec-08-06-integration" class="level3">
 <h3 class="anchored" data-anchor-id="sec-08-06-integration">跨层整合：修饰、表达与功能证据</h3>
-<p>本章两条线各自都停在”修饰比例变了”。要让结论立起来，需要跨层对齐：</p>
+<p>本章两条线各自都停在”修饰比例变了”。要进一步解释这些变化，需要结合其他层面的数据：</p>
 <ul>
-<li><strong>RNA 线（m6A）</strong>：把 8.5 的位点表按基因聚合（例如每个基因取修饰变化最大的位点），与第 5 章 METTL3 敲低的差异表达表按基因连接。修饰塌陷的位点其宿主基因表达是否变化、朝哪个方向变化——两张表放在一切才算完整故事（8.5.4 的注意框展开操作）。注意连接的口径：修饰是位点级、表达是基因级，聚合方式本身就是一个要报告的分析决定。</li>
+<li><strong>RNA 线（m6A）</strong>：把 8.5 的位点表按基因聚合（例如每个基因取修饰变化最大的位点），与第 5 章 METTL3 敲低的差异表达表按基因连接。修饰比例下降的位点其宿主基因表达是否变化、朝哪个方向变化——需要把两张表放在一起比较（8.5.4 的注意框展开操作）。注意连接的口径：修饰是位点级、表达是基因级，聚合方式本身就是一个要报告的分析决定。</li>
 <li><strong>DNA 线（5mC）</strong>：回到第 6 章的 NRF1 竞争实验——同一批细胞（GSE67867）。本章看到 TKO 细胞 CpG 甲基化掉到约 3%，第 6 章看到 TKO 细胞里 NRF1 多结合了数千个甲基化受限位点。两个观测拼起来：“甲基化消失 → 基序可及 → 转录因子结合增加”，跨章的证据链比任何单章都更接近因果。要再往下走一步（结合增加是否改变表达、改变哪些基因的表达），就需要把 DMR、DNase 峰与表达表三方对齐——每增加一层，口径与假名单就多一份，这正是整合分析的价值与风险所在。</li>
-<li><strong>证据分层</strong>：修饰比例变化（化学计量证据）→ 结合/染色质变化（分子证据）→ 表达与表型变化（功能证据）。三层都齐，“修饰调控了功能”的说法才有底气；只有第一层时，结论应当停在”存在可检测的修饰变化”。</li>
+<li><strong>证据分层</strong>：修饰比例变化（化学计量证据）→ 结合/染色质变化（分子证据）→ 表达与表型变化（功能证据）。三层都齐，“修饰调控了功能”的解释才有相应证据支持；只有第一层时，结论应当停在”存在可检测的修饰变化”。</li>
 </ul>
 </section>
 <section id="sec-08-06-deliverables" class="level3">
 <h3 class="anchored" data-anchor-id="sec-08-06-deliverables">完整交付：把判断过程写成文字</h3>
-<p>一份完整的碱基不平衡数据分析交付，核心不是附件齐全，而是把每一层判断<strong>写成别人能复核的文字</strong>。</p>
+<p>一份完整的碱基不平衡数据分析交付，除了备齐文件，还应把每一层判断<strong>写成别人能复核的文字</strong>。</p>
 <p>交付的第一个层面是数据与参考的来历。参考基因组的版本与坐标系统要明确记录，并确认所有文件一致——本章就在同一路数据里同时存在 mm9 处理表与 mm10 比对结果，两套口径并行而不混用，靠的就是显式记录（8.3.2）。文库类型（方向性或非方向性）与相应的比对参数要落在方法里，因为它决定了哪些比对组合被允许。转化率质控必须随结果给出：lambda 外参的转化率，或非 CpG 语境的残余率，或像本章用 TKO 空白对照估出的上界——没有这一项，所有低比例读数都无法解读。位点过滤的标准同样要写进方法：最低覆盖取多少、SNP 排除用了哪个数据库的哪个版本。</p>
-<p>第二个层面是过程与结果同交。比对率、去重率和 M-bias 检查不能只留在日志里，要作为结果的一部分随交付给出——它们是”数据可信”的证据，而不是过程废料。统计口径要写清到可以被复现：检验模型、多重校正方法、差异阈值 δ 的取值与理由。生物学重复的情况要如实说明——本章的 WGBS 每组只有 1 个样本、GLORI 每组 2 个重复，得出的都是演示性结论，正式研究需按设计补足重复；这类限制写出来是加分项，藏起来才是隐患。结果表本身应包含坐标、覆盖、比例与置信度信息，让他人在不重跑流程的情况下独立复核关键位点。</p>
+<p>第二个层面是过程与结果同交。比对率、去重率和 M-bias 检查不能只留在日志里，要作为结果的一部分随交付给出——它们为判断数据是否可信提供依据。统计口径要写清到可以被复现：检验模型、多重校正方法、差异阈值 δ 的取值与理由。生物学重复的情况要如实说明——本章的 WGBS 每组只有 1 个样本、GLORI 每组 2 个重复，得出的都是演示性结论，正式研究需按设计补足重复；读者需要知道这些限制，才能判断结论的适用范围。结果表本身应包含坐标、覆盖、比例与置信度信息，让他人在不重跑流程的情况下独立复核关键位点。</p>
 <p>第三个层面是解读边界。报告要区分”检出的位点集合”与”全基因组口径”的统计差异（8.5.4 的中位数陷阱就是一例）；每个结论要落到基因组位置上说话——启动子、基因体、重复序列的甲基化含义并不相同（8.1.2）；修饰变化与功能结论之间的证据层级更要交代清楚（上一小节的三层证据）。</p>
-<p>最后值得记住本章特有的一组高频事故，它们在真实项目里反复出现。最直接的是流程性错误：用 bwa mem 这类普通比对器直接处理 BS-seq，比对率崩塌或甲基化系统性偏移；用 picard 而非 <code>deduplicate_bismark</code> 去重，方向性文库的重复判定出错；M-bias 没看就提取，末端失真混进位点比例。更隐蔽的是口径性错误：把 mm9 的表与 mm10 的注释混用，注释悄无声息地全部错位；把 CHH/CHG 的”甲基化率”当生物学信号解读，而它主要是转化率的镜子。最隐蔽的是解释性错误：DMR 只报数量、不报方向与位置分布，回答不了”发生在哪里、意味着什么”；把 5hmC 丰富的样本的 BS-seq 信号直接说成 5mC，混淆了 8.1.3 讲过的修饰家族。</p>
-<p>带着这些回到你自己的项目：技术选型（测什么、怎么测）、数据处理（每一步前提是否满足）、统计口径（比较什么、以什么为单位）、证据边界（结论能推多远）——这四层判断力，就是本章希望你在两条线、两种修饰、两套工具链的平行展开中练成的东西。</p>
+<p>最后再检查几类在实际项目中常见的错误。最直接的是流程性错误：用 bwa mem 这类普通比对器直接处理 BS-seq，比对率崩塌或甲基化系统性偏移；用 picard 而非 <code>deduplicate_bismark</code> 去重，方向性文库的重复判定出错；M-bias 没看就提取，末端失真混进位点比例。更隐蔽的是口径性错误：把 mm9 的表与 mm10 的注释混用，注释悄无声息地全部错位；把 CHH/CHG 的”甲基化率”当生物学信号解读，而它主要是转化率的镜子。最隐蔽的是解释性错误：DMR 只报数量、不报方向与位置分布，回答不了”发生在哪里、意味着什么”；把 5hmC 丰富的样本的 BS-seq 信号直接说成 5mC，混淆了 8.1.3 讲过的修饰家族。</p>
+<p>分析自己的项目时，也可以依次检查技术选型、数据处理、统计口径和证据边界：测的是什么，每一步的前提是否满足，比较以什么为单位，最后的结论能支持到什么程度。</p>
 
 
 </section>
@@ -1952,7 +1952,7 @@ MNT    chr17:2386699 (−)   0.591  0.682   0.127   0.119   3e-09</code></pre>
 
 </main> <!-- /main -->
 <div class="book-toolbar" role="navigation" aria-label="阅读工具">
-  <div class="book-brand"><span class="book-brand-name">AI时代生信入门</span><time class="book-last-modified" datetime="2026-10-11T17:31:04+08:00" title="最后修改时间（北京时间，UTC+08:00）">最后修改 2026-10-11 17:31</time></div>
+  <div class="book-brand"><span class="book-brand-name">AI时代生信入门</span><time class="book-last-modified" datetime="2026-10-12T13:46:45+08:00" title="最后修改时间（北京时间，UTC+08:00）">最后修改 2026-10-12 13:46</time></div>
   <button class="book-menu-button" type="button" aria-controls="quarto-sidebar" aria-expanded="false">目录</button>
   <button class="book-search-button" type="button">搜索</button>
 </div>

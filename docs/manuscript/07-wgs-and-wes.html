@@ -921,7 +921,7 @@ window.Quarto = {
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
 <h1 class="title"><span id="sec-ch07" class="quarto-section-identifier"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">WGS与WES：从测序数据到可信的小变异</span></span></h1>
-<p class="chapter-last-modified"><time datetime="2026-10-11T10:09:07+08:00" title="本章书稿最后修改时间（北京时间，UTC+08:00）">最后修改：2026-10-11 10:09（北京时间）</time></p>
+<p class="chapter-last-modified"><time datetime="2026-10-12T13:46:45+08:00" title="本章书稿最后修改时间（北京时间，UTC+08:00）">最后修改：2026-10-12 13:46（北京时间）</time></p>
 </div>
 
 
@@ -948,7 +948,7 @@ window.Quarto = {
 <p><span id="src-0070-WGS-1"></span> <span id="src-0070-WGS-3"></span> <span id="whole_genome_sequencing"></span></p>
 <section id="sec-07-01-variant-types" class="level3">
 <h3 class="anchored" data-anchor-id="sec-07-01-variant-types">变异类型与本章范围</h3>
-<p>开始分析之前，先要把”检测变异”这句话拆开：检测哪些变异、用来回答什么问题。不同类型的变异在数据中的形态差别很大，检测它们所需的证据和流程也不同。</p>
+<p>开始分析之前，先确定要检测哪些变异，以及用结果回答什么问题。不同类型的变异在数据中的形态差别很大，检测它们所需的证据和流程也不同。</p>
 <p>按变异涉及的范围，常见的分类从小到大有：</p>
 <ul>
 <li><strong>单核苷酸变异（SNV）</strong>：基因组某个位置上单个碱基与其他个体或参考基因组不同。当它在群体中达到一定频率时也称为 SNP（single nucleotide polymorphism）。SNV 是最容易检测的一类：一个位置、两种或多种碱基状态，比对结果直接可见。</li>
@@ -1014,7 +1014,7 @@ window.Quarto = {
 </figcaption>
 </figure>
 </div>
-<p>在 WGS 与 WES 之外还有第三种常见选择：<strong>靶向 panel 测序（targeted panel sequencing）</strong>，只捕获数十到数百个特定基因或已知致病位点，深度可达数百至上千倍，适合定向检测已知变异、临床快速筛查等场景。它覆盖最窄、成本最低；WES 覆盖较宽、能发现新变异；WGS 覆盖最全。三者构成覆盖范围与成本的连续谱，没有绝对的优劣。</p>
+<p>在 WGS 与 WES 之外还有第三种常见选择：<strong>靶向 panel 测序（targeted panel sequencing）</strong>，只捕获数十到数百个特定基因或已知致病位点，深度可达数百至上千倍，适合定向检测已知变异、临床快速筛查等场景。它覆盖最窄、成本最低；WES 覆盖较宽、能发现新变异；WGS 覆盖最全。选择时需要同时考虑覆盖范围和成本，不能脱离任务比较优劣。</p>
 </section>
 <section id="sec-07-01-applications" class="level3">
 <h3 class="anchored" data-anchor-id="sec-07-01-applications">应用场景与检测边界</h3>
@@ -1031,7 +1031,7 @@ window.Quarto = {
 </section>
 <section id="sec-07-02" class="level2" data-number="7.2">
 <h2 data-number="7.2" class="anchored" data-anchor-id="sec-07-02"><span class="header-section-number">7.2</span> 示例数据、参考资源与覆盖设计</h2>
-<p>准备一套能支撑目标检测的匹配输入。</p>
+<p>确定检测目标后，还需要配齐示例数据、参考基因组和变异资源。</p>
 <section id="sec-07-02-example-data" class="level3">
 <h3 class="anchored" data-anchor-id="sec-07-02-example-data">本章示例数据</h3>
 <p>本章实战使用公共数据集中的一份人类 WES 数据：<strong>SRR8381428</strong>，来自 ENA/SRA 公共项目 PRJNA511646。它是国际标准参考样本 <strong>NA12878</strong>（CEPH/Utah 家系女性个体，HapMap 与 GIAB 项目的核心样本）的全外显子组测序：</p>
@@ -1091,7 +1091,7 @@ window.Quarto = {
 <span id="cb1-8"><a href="#cb1-8"></a><span class="ex">bwa</span> index GRCh38.fa</span>
 <span id="cb1-9"><a href="#cb1-9"></a><span class="ex">samtools</span> faidx GRCh38.fa</span>
 <span id="cb1-10"><a href="#cb1-10"></a><span class="ex">gatk</span> CreateSequenceDictionary <span class="at">-R</span> GRCh38.fa <span class="at">-O</span> GRCh38.dict</span></code></pre></div><button title="复制到剪贴板" class="code-copy-button"><i class="bi"></i></button></div>
-<p><code>bwa index</code> 供比对使用（第 4 章讲过 FM 索引的原理）；<code>.fai</code> 让工具能按名字和区间快速取序列；<code>.dict</code> 是 GATK 要求的序列字典。三者必须与参考版本一致——用一套版本的索引配另一版本的字典，是最常见的”看起来都对了但结果全错”的来源之一。</p>
+<p><code>bwa index</code> 供比对使用（第 4 章讲过 FM 索引的原理）；<code>.fai</code> 让工具能按名字和区间快速取序列；<code>.dict</code> 是 GATK 要求的序列字典。三者必须与参考版本一致——索引与字典版本混用，是造成结果错误的常见原因之一。</p>
 <p><strong>已知变异位点（known-sites）。</strong> BQSR 和候选过滤都需要”哪些位点在人群中已知存在变异”的清单，用来把真变异与测序错误区分开（原理见 7.3.2）。GATK 官方推荐的一组资源整合自 dbSNP、Mills indel、1000 Genomes 等人群项目；本章从 Ensembl 的 variation 数据库获取，它按染色体提供 dbSNP 整合的 VCF 及索引：</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2" data-book-role="code"><pre data-code-text="&quot;# 已知变异资源：Ensembl 按染色体提供的 VCF（dbSNP 整合，release-116）\nwget -c -P ref/known/ https://ftp.ensembl.org/pub/release-116/variation/vcf/homo_sapiens/homo_sapiens-chr21.vcf.gz\nwget -c -P ref/known/ https://ftp.ensembl.org/pub/release-116/variation/vcf/homo_sapiens/homo_sapiens-chr21.vcf.gz.csi\n\n# GATK 需要 .tbi 索引（Ensembl 提供的是 .csi），一条命令补上：\ngatk IndexFeatureFile -I ref/known/homo_sapiens-chr21.vcf.gz&quot;" class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 已知变异资源：Ensembl 按染色体提供的 VCF（dbSNP 整合，release-116）</span></span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="fu">wget</span> <span class="at">-c</span> <span class="at">-P</span> ref/known/ https://ftp.ensembl.org/pub/release-116/variation/vcf/homo_sapiens/homo_sapiens-chr21.vcf.gz</span>
@@ -1117,7 +1117,7 @@ window.Quarto = {
 <section id="sec-07-02-coverage-bias" class="level3">
 <h3 class="anchored" data-anchor-id="sec-07-02-coverage-bias">覆盖度、测序深度与捕获偏差</h3>
 <p><span id="src-0070-WGS-679"></span></p>
-<p>第 4 章已经定义了测序深度（depth，每个位置被 reads 覆盖的次数）与覆盖度（coverage，被测到的区域比例）。WES 的特殊之处在于：深度不仅要整体够，还要<strong>在捕获区域内部足够均匀</strong>，因为判断每个外显子里有没有变异，依赖的是那个区域自己的深度。</p>
+<p>第 4 章已经定义了测序深度（depth，每个位置被 reads 覆盖的次数）与覆盖度（coverage，被测到的区域比例）。WES 的特殊之处在于：除了整体深度足够，还要<strong>在捕获区域内部足够均匀</strong>，因为判断每个外显子里有没有变异，依赖的是那个区域自己的深度。</p>
 <p>WES 样本在上机前要经过<strong>捕获（capture）</strong>和<strong>PCR 扩增</strong>两个步骤，不同区域的效率差别会直接转化为深度的不均匀：</p>
 <ul>
 <li>GC 含量高的区域在捕获、扩增和测序中都受影响<a href="#fn7" class="footnote-ref" id="fnref7" role="doc-noteref"><sup>7</sup></a>；</li>
@@ -1153,7 +1153,7 @@ window.Quarto = {
 <p>理解哪些处理改善调用依据及其适用条件。</p>
 <section id="sec-07-03-preprocessing-overview" class="level3">
 <h3 class="anchored" data-anchor-id="sec-07-03-preprocessing-overview">从 FASTQ 到分析就绪的 BAM</h3>
-<p>变异检测的输入不是 FASTQ，而是一个经过整理的 BAM。从下机数据到”分析就绪”，中间每一步都在为 caller 整理证据：</p>
+<p>本章变异检测步骤使用经过整理的 BAM 作为输入。从下机 FASTQ 到可以用于分析的 BAM，需要完成以下处理：</p>
 <div id="fig-07-preprocessing-overview" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-07-preprocessing-overview-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
@@ -1164,7 +1164,7 @@ window.Quarto = {
 </figcaption>
 </figure>
 </div>
-<p><a href="#fig-07-preprocessing-overview" class="quarto-xref">图&nbsp;<span>7.5</span></a> 概括了这条链。对照第 4 章你会发现，算法与工具都见过，本章要回答的是新问题：<strong>这些步骤为什么是变异检测的必要条件，而不是可选的整理</strong>。</p>
+<p><a href="#fig-07-preprocessing-overview" class="quarto-xref">图&nbsp;<span>7.5</span></a> 概括了处理流程，其中的算法与工具在第 4 章已经介绍过。这里进一步讨论：<strong>这些步骤为什么是变异检测的必要条件，而不是可选的整理</strong>。</p>
 <ul>
 <li><strong>原始质控与过滤</strong>（第 3 章的 FastQC/cutadapt 或 fastp）：去除接头和低质量碱基。低质量碱基携带失真的质量值，会干扰后面每一步的统计判断。</li>
 <li><strong>比对</strong>（<code>bwa mem</code>）：DNA 比对没有剪接位点问题，用第 4 章讲过的 BWT/FM 索引短读长比对器即可——RNA-seq 之所以需要 HISAT2/STAR 这类剪接感知比对器，是因为 reads 会横跨外显子连接。<code>@RG</code> 读组信息在这一步写入：后面 BQSR 按读组统计误差，缺了它 BQSR 无法工作。</li>
@@ -1172,13 +1172,13 @@ window.Quarto = {
 <li><strong>标记重复（MarkDuplicates）</strong>：PCR 或测序过程中，同一 DNA 片段产生的多条 reads 不是独立证据。第 4 章讲过重复的识别方法（位置与方向相同）；对变异检测而言，不去重的后果是具体的：一个片段被扩增三次、恰好带一个测序错误，caller 会看到”三条一致支持错误碱基”的假证据，等位基因比例被扭曲。标记（而非删除）重复保留了信息，让后续统计把这类 reads 排除在外。</li>
 <li><strong>碱基质量校正（BQSR）</strong>：下一小节专门讨论。</li>
 </ul>
-<p>“分析就绪”没有单一判据，常见的检查包括：比对率、重复率、深度分布（平均深度、目标区域达到 20× 的比例）、<code>@RG</code> 完整性。这些指标异常时先解决数据问题，再进入变异检测——<strong>在坏数据上跑出的变异列表，错误没有简单的下游办法弥补</strong>。</p>
+<p>“分析就绪”没有单一判据，常见的检查包括：比对率、重复率、深度分布（平均深度、目标区域达到 20× 的比例）、<code>@RG</code> 完整性。这些指标异常时先解决数据问题，再进入变异检测——<strong>数据质量问题造成的错误，不能靠简单的下游处理弥补</strong>。</p>
 </section>
 <section id="sec-07-03-bqsr" class="level3">
 <h3 class="anchored" data-anchor-id="sec-07-03-bqsr">碱基质量校正 BQSR</h3>
 <p><span id="src-0070-WGS-287"></span> <span id="src-0070-WGS-289"></span></p>
 <p><strong>为什么需要校正。</strong> Phred 碱基质量值由测序仪的 base-calling 算法给出。这套算法对研究者是黑盒：它给出的质量评估带有一定程度的系统性偏差（非随机误差），实际测序质量可能被低估或高估。质量值是变异检测公式中错误率的直接输入（7.4 会看到 <span class="math inline">\(\epsilon\)</span> 如何进入似然计算），系统性的偏差会原样传递到变异的置信度上。</p>
-<p>举一个形象化的例子：对于某一次测序（一个 run），如果无论何时测到 <code>AA</code> 这样的子序列时，紧随其后的那个碱基的测序错误率总比其实际错误率高出约 1%，那么就可以把这类碱基找出来，把它们的报告错误率整体下调来校正。</p>
+<p>例如，某次测序（一个 run）中，每当测到 <code>AA</code> 这样的子序列时，紧随其后的那个碱基的测序错误率总比其实际错误率高出约 1%，就可以找出这类碱基，把它们的报告错误率整体下调来校正。</p>
 <p><strong>BQSR 的思路。</strong> BQSR（Base Quality Score Recalibration）用回归的框架重新校准质量值：把”测序仪声称的质量”与”实际观察到的错误率”对齐。它的前提假设是：影响质量评估的因素可以列举为几类<strong>协变量（covariate）</strong>——读组（read group）来源、碱基在 read 中所处的 cycle、该碱基上游若干碱基的序列背景（默认取上游 6 个碱基）、以及原始报告质量值本身。协变量组合相同的碱基归入同一组（bin），同一 bin 内的碱基被认为具有相同的真实错误率。</p>
 <p>那”实际观察到的错误率”从哪里来？BQSR 把比对结果与已知变异位点对照：<strong>先剔除 known-sites 清单上的人群变异位点</strong>，剩下的位置上，read 与参考基因组的每个 mismatch 都被假定为测序错误而非真实变异。于是每个 bin 的经验错误率可以直接数出来：</p>
 <p><span id="eq-08-wgs-and-wes-002" class="book-equation"><span class="equation-scroll" tabindex="0" role="region" aria-label="公式 7.1"><span class="math display">\[
@@ -1199,7 +1199,7 @@ X_i=(RG_i,\ Cyc_i,\ Context_i,\ Q_i) \quad \to \quad y_i
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>BQSR 只校正质量值而不改变碱基组成。对一个质量值偏低的碱基，我们只能说”它被解析成当前碱基的可靠性存疑”，但无法说明它更可能是什么碱基，所以干脆不改碱基本身。另注意”mismatch 即错误”这一假设依赖 known-sites 的质量：已知位点清单覆盖不足时（如研究物种缺乏人群变异资源），真实变异会被误当成错误，校正反而引入偏差。</p>
+<p>BQSR 只校正质量值而不改变碱基组成。对一个质量值偏低的碱基，我们只能说”它被解析成当前碱基的可靠性存疑”，但无法说明它更可能是什么碱基，因此不修改碱基本身。还要注意”mismatch 即错误”这一假设依赖 known-sites 的质量：已知位点清单覆盖不足时（如研究物种缺乏人群变异资源），真实变异会被误当成错误，校正反而引入偏差。</p>
 </div>
 </div>
 <p><strong>操作。</strong> 在示例数据与 Ensembl 资源上的两步命令（沿用 7.2.2 准备的文件；完整脚本见 7.5.1）：</p>
@@ -1217,7 +1217,7 @@ X_i=(RG_i,\ Cyc_i,\ Context_i,\ Q_i) \quad \to \quad y_i
 <span id="cb3-12"><a href="#cb3-12"></a>  <span class="at">--bqsr-recal-file</span> BAM/NA12878.subset.recal.table <span class="dt">\</span></span>
 <span id="cb3-13"><a href="#cb3-13"></a>  <span class="at">-O</span> BAM/NA12878.subset.sorted.markdup.recal.bam</span></code></pre></div><button title="复制到剪贴板" class="code-copy-button"><i class="bi"></i></button></div>
 <p><span id="src-0070-WGS-337"></span></p>
-<p><strong>什么时候不做 BQSR。</strong> 校正模型需要足够的数据支撑。单样本 WES 的数据量通常够用；但样本极小、数据量过低，或 known-sites 资源与研究物种、群体不匹配时，BQSR 的估计不可靠，宁可不校正并如实记录。GATK 的最佳实践对 WGS 大样本推荐 BQSR；对高质量的 PCR-free 数据，BQSR 带来的改变会小很多。判断标准回到本章主线：<strong>校正的输入证据是否充分，而不是”流程里有没有这一步”</strong>。</p>
+<p><strong>什么时候不做 BQSR。</strong> 校正模型需要足够的数据支撑。单样本 WES 的数据量通常够用；但样本极小、数据量过低，或 known-sites 资源与研究物种、群体不匹配时，BQSR 的估计不可靠，宁可不校正并如实记录。GATK 的最佳实践对 WGS 大样本推荐 BQSR；对高质量的 PCR-free 数据，BQSR 带来的改变会小很多。决定是否校正时，先检查<strong>校正的输入证据是否充分，而不是”流程里有没有这一步”</strong>。</p>
 </section>
 </section>
 <section id="sec-07-04" class="level2" data-number="7.4">
@@ -1318,7 +1318,7 @@ P(S|G_i)=\prod_i P(S_i | G_i)
 <p><span id="eq-08-wgs-and-wes-006" class="book-equation"><span class="equation-scroll" tabindex="0" role="region" aria-label="公式 7.6"><span class="math display">\[
 P(S_i \mid g) = \left[\frac{g}{2}(1-\epsilon_i) + \frac{2-g}{2}\epsilon_i\right]^{I_i} \cdot \left[\frac{2-g}{2}(1-\epsilon_i) + \frac{g}{2}\epsilon_i\right]^{1-I_i}
 \]</span></span><a class="equation-label" href="#eq-08-wgs-and-wes-006" aria-label="公式（7.6）">(7.6)</a></span></p>
-<p>这个式子拆开看并不难。方括号里每一项都是两种情形的全概率：read 随机来自父方或母方的染色体各占 <span class="math inline">\(\frac{1}{2}\)</span>，因此观察到与参考一致的碱基的概率是 <span class="math inline">\(\frac{g}{2}(1-\epsilon_i) + \frac{2-g}{2}\epsilon_i\)</span>——基因型以 <span class="math inline">\(g/2\)</span> 的概率提供参考等位基因（读对的概率 <span class="math inline">\(1-\epsilon_i\)</span>），以 <span class="math inline">\((2-g)/2\)</span> 的概率提供非参考等位基因（被读成参考的概率 <span class="math inline">\(\epsilon_i\)</span>）。三种基因型分别代入：</p>
+<p>我们把这个式子分开来看。方括号里每一项都是两种情形的全概率：read 随机来自父方或母方的染色体各占 <span class="math inline">\(\frac{1}{2}\)</span>，因此观察到与参考一致的碱基的概率是 <span class="math inline">\(\frac{g}{2}(1-\epsilon_i) + \frac{2-g}{2}\epsilon_i\)</span>——基因型以 <span class="math inline">\(g/2\)</span> 的概率提供参考等位基因（读对的概率 <span class="math inline">\(1-\epsilon_i\)</span>），以 <span class="math inline">\((2-g)/2\)</span> 的概率提供非参考等位基因（被读成参考的概率 <span class="math inline">\(\epsilon_i\)</span>）。三种基因型分别代入：</p>
 <p><span id="eq-08-wgs-and-wes-007" class="book-equation"><span class="equation-scroll" tabindex="0" role="region" aria-label="公式 7.7"><span class="math display">\[
 \left\{
   \begin{array}{ll}
@@ -1369,7 +1369,7 @@ L(g) = P(d \mid g)
 </section>
 <section id="sec-07-04-haplotypecaller" class="level3">
 <h3 class="anchored" data-anchor-id="sec-07-04-haplotypecaller">HaplotypeCaller 的局部单倍型重组装</h3>
-<p>上节把”一个位点”的推断讲清楚了，但真实的 caller 并不是逐位点独立调用的。GATK 的 HaplotypeCaller 是目前胚系 SNV/indel 检测最常用的算法之一，理解了它，基本就理解了现代变异检测的原理——它的核心思想是：<strong>先把候选区域的所有证据放在一起重组装，再逐位点判断基因型</strong>。</p>
+<p>上一节介绍了单个位点的推断，实际的 caller 并非逐位点独立调用。GATK 的 HaplotypeCaller 是目前胚系 SNV/indel 检测最常用的算法之一，它的主要思路是：<strong>先把候选区域的所有证据放在一起重组装，再逐位点判断基因型</strong>。</p>
 <div class="book-core callout callout-style-default callout-note callout-titled" title="核心知识｜HaplotypeCaller 与联合分型">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -1395,7 +1395,7 @@ L(g) = P(d \mid g)
 </figure>
 </div>
 <p><strong>1. 确定候选变异区域（ActiveRegion）。</strong> 通过 reads 在参考基因组上的比对情况，筛出潜在变异区域。这一步只划定范围，不做判断。</p>
-<p><strong>2. 对候选区域进行局部重组装，确定单倍型。</strong> 对每个 ActiveRegion，利用<strong>比对到该区域上的所有 reads</strong> 构建一个类似于 de Bruijn 图的组装图，对区域做局部重新组装，枚举该区域中可能的单倍型序列；再用 Smith-Waterman 算法（第 4 章讲过的局部比对）把每条单倍型与参考重新比对，重新检出潜在变异位点。相比”直接看比对结果”，重组装能纠正比对阶段留下的偏移——对 indel 尤其有利：一条跨越 indel 的 read 在逐碱基比对中位置可能整体错位，重组装后它与哪条单倍型更匹配就一目了然。</p>
+<p><strong>2. 对候选区域进行局部重组装，确定单倍型。</strong> 对每个 ActiveRegion，利用<strong>比对到该区域上的所有 reads</strong> 构建一个类似于 de Bruijn 图的组装图，对区域做局部重新组装，枚举该区域中可能的单倍型序列；再用 Smith-Waterman 算法（第 4 章讲过的局部比对）把每条单倍型与参考重新比对，重新检出潜在变异位点。相比”直接看比对结果”，重组装能纠正比对阶段留下的偏移——对 indel 尤其有利：一条跨越 indel 的 read 在逐碱基比对中位置可能整体错位，重组装后可以比较它与各条单倍型的匹配程度。</p>
 <p><strong>3. 计算各单倍型的似然值。</strong> 对每个 ActiveRegion，用 PairHMM 算法把区域内每条 read 与每条候选单倍型两两比对，得到 read–单倍型似然矩阵 <span class="math inline">\((a_{ij})\)</span>，其中 <span class="math inline">\(a_{ij} = P(r_i \mid H_j)\)</span>：</p>
 <p><span id="eq-08-wgs-and-wes-012" class="book-equation"><span class="equation-scroll" tabindex="0" role="region" aria-label="公式 7.12"><span class="math display">\[
 \begin{array}{l|c|c|c|c}
@@ -1460,7 +1460,7 @@ P(D_j \mid G)=\frac{P(D_j \mid H_1)}{2} + \frac{P(D_j \mid H_2)}{2}
 <p><span id="eq-08-wgs-and-wes-018" class="book-equation"><span class="equation-scroll" tabindex="0" role="region" aria-label="公式 7.18"><span class="math display">\[
 P(D \mid G)=\prod_j \left( \frac{P(D_j \mid H_1)}{2} + \frac{P(D_j \mid H_2)}{2}\right)
 \]</span></span><a class="equation-label" href="#eq-08-wgs-and-wes-018" aria-label="公式（7.18）">(7.18)</a></span></p>
-<p>到这里，整条推理链闭合了：reads 对单倍型的似然（PairHMM）→ read 对基因型的似然（两条同源染色体各半）→ 基因型的后验（贝叶斯）。VCF 里每条记录的基因型与置信度，就是这条链的输出。</p>
+<p>把上述计算接起来，就是：reads 对单倍型的似然（PairHMM）→ read 对基因型的似然（两条同源染色体各半）→ 基因型的后验（贝叶斯）。VCF 里每条记录的基因型与置信度，就是这条链的输出。</p>
 <p>最后说明”二等位”假设与多单倍型的关系。后面的分析中对每个变异位点只考虑二等位形式——若一个区域在群体中存在 <span class="math inline">\(n\)</span> 个变异位点，在只考虑二等位的前提下，该区域理论上共有 <span class="math inline">\(2^n\)</span> 种单倍型，但具体到要判断的某个位点，我们只区分参考与非参考两种状态。这是简化，也是主流工具的默认工作方式；更复杂的情形（多等位基因、复合杂合）需要额外的分析步骤。</p>
 </section>
 </section>
@@ -1470,7 +1470,7 @@ P(D \mid G)=\prod_j \left( \frac{P(D_j \mid H_1)}{2} + \frac{P(D_j \mid H_2)}{2}
 <p><span id="src-0070-WGS-701"></span></p>
 <section id="sec-07-05-wes-pipeline" class="level3">
 <h3 class="anchored" data-anchor-id="sec-07-05-wes-pipeline">全外显子组分析实战：从质控到注释</h3>
-<p>现在把 7.2–7.4 的准备串成一条完整的分析链。整体思路：下机序列经质控、比对到参考基因组、前处理得到”分析就绪”的 BAM，HaplotypeCaller 从中检出候选变异并给出基因型与置信度，存入 VCF；最后用 ANNOVAR 结合人群与功能数据库注释变异，得到可以开始生物学解读的结果。</p>
+<p>下面将 7.2–7.4 的内容用于完整分析：下机序列经质控、比对到参考基因组、前处理得到”分析就绪”的 BAM，HaplotypeCaller 从中检出候选变异并给出基因型与置信度，存入 VCF；最后用 ANNOVAR 结合人群与功能数据库注释变异，得到可以开始生物学解读的结果。</p>
 <p>本章示例所用软件（安装方式见第 2、3 章）：<code>fastp</code>、<code>FastQC</code>、<code>MultiQC</code>、<code>bwa</code>、<code>samtools</code>、GATK 4（本文示例为 4.6.2.0）与 ANNOVAR。注意 GATK 4.6 需要 Java 17 运行时：用 conda/micromamba 安装后，如果 <code>gatk</code> 报 <code>UnsupportedClassVersionError</code>，说明它找到的是系统里更旧的 Java，需要安装 openjdk 17 并通过 <code>JAVA_HOME</code> 指给 GATK。质控工具用 fastp（第 5、6 章同款）；如果你熟悉 Trimmomatic，本章流程同样适用，只需把过滤参数对应替换，其余步骤不变。</p>
 <p><strong>第一步：原始数据质控。</strong> 先对原始 FASTQ 跑 FastQC/MultiQC 了解数据状态，再过滤：</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5" data-book-role="code"><pre data-code-text="&quot;sample=NA12878\ndata=data/\nmkdir -p fastqc fastp BAM VCF\n\n# 原始数据整体质量（第 3 章已讲如何读报告）\nfastqc -o fastqc/ ${data}${sample}_1.fastq.gz ${data}${sample}_2.fastq.gz\nmultiqc fastqc/ -o fastqc/\n\n# 过滤：自动检测双端接头， sliding window 修剪低质量末端\nfastp \\\n  -i ${data}${sample}_1.fastq.gz -I ${data}${sample}_2.fastq.gz \\\n  -o ${data}${sample}_1.clean.fq.gz -O ${data}${sample}_2.clean.fq.gz \\\n  --detect_adapter_for_pe --cut_front --cut_tail --cut_mean_quality 20 \\\n  -h fastp/${sample}.html -j fastp/${sample}.json&quot;" class="sourceCode numberSource bash numberLines code-with-copy"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1"></a><span class="va">sample</span><span class="op">=</span>NA12878</span>
@@ -1487,7 +1487,7 @@ P(D \mid G)=\prod_j \left( \frac{P(D_j \mid H_1)}{2} + \frac{P(D_j \mid H_2)}{2}
 <span id="cb5-12"><a href="#cb5-12"></a>  <span class="at">-o</span> <span class="va">${data}${sample}</span>_1.clean.fq.gz <span class="at">-O</span> <span class="va">${data}${sample}</span>_2.clean.fq.gz <span class="dt">\</span></span>
 <span id="cb5-13"><a href="#cb5-13"></a>  <span class="at">--detect_adapter_for_pe</span> <span class="at">--cut_front</span> <span class="at">--cut_tail</span> <span class="at">--cut_mean_quality</span> 20 <span class="dt">\</span></span>
 <span id="cb5-14"><a href="#cb5-14"></a>  <span class="at">-h</span> fastp/<span class="va">${sample}</span>.html <span class="at">-j</span> fastp/<span class="va">${sample}</span>.json</span></code></pre></div><button title="复制到剪贴板" class="code-copy-button"><i class="bi"></i></button></div>
-<p>过滤后查看 fastp 报告中的保留率与 Q30 比例：保留率过低说明原始数据质量差，需要先回到数据本身找原因，而不是继续硬跑。本章教学子集上的实际结果：</p>
+<p>过滤后查看 fastp 报告中的保留率与 Q30 比例：保留率过低说明原始数据质量差，需要先回到数据本身找原因，再决定是否继续分析。本章教学子集上的实际结果：</p>
 <pre data-code-text="&quot;fastp: reads 2000000 -&gt; 1999982 (100.0%), q30rate 0.9609 -&gt; 0.9628&quot;" class="text" data-book-role="output"><code>fastp: reads 2000000 -&gt; 1999982 (100.0%), q30rate 0.9609 -&gt; 0.9628</code></pre>
 <p>200 万条 reads 过滤后保留 99.99%、Q30 比例 96.3%，说明这份子集的原始质量很好。</p>
 <p><strong>第二步：比对与排序。</strong> 比对时通过 <code>-R</code> 写入读组信息——<code>SM</code> 必须是真实样本名，<code>ID</code> 在同一样本内唯一，<code>LB</code> 标记文库名，<code>PL</code> 标记平台。这些字段不是注释：BQSR 按读组分别建模，<code>SM</code> 写错会直接影响后续统计：</p>
@@ -1511,7 +1511,7 @@ P(D \mid G)=\prod_j \left( \frac{P(D_j \mid H_1)}{2} + \frac{P(D_j \mid H_2)}{2}
 <span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">-O</span> BAM/<span class="va">${sample}</span>.sorted.markdup.bam <span class="dt">\</span></span>
 <span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">-M</span> BAM/<span class="va">${sample}</span>.markdup_metrics.txt <span class="dt">\</span></span>
 <span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">--CREATE_INDEX</span> true</span></code></pre></div><button title="复制到剪贴板" class="code-copy-button"><i class="bi"></i></button></div>
-<p><code>markdup_metrics.txt</code> 中的重复率是 7.2.3 那组捕获指标之一：WES 高深度文库重复率偏高常见，但异常升高要怀疑 PCR 过度扩增或起始量不足。本章子集实测重复率 5.36%（53,294/993,663 读对），文库复杂度估计约 893 万——对 WES 文库属于正常偏好。</p>
+<p><code>markdup_metrics.txt</code> 中的重复率是 7.2.3 那组捕获指标之一：WES 高深度文库重复率偏高常见，但异常升高要怀疑 PCR 过度扩增或起始量不足。本章子集实测重复率 5.36%（53,294/993,663 读对），文库复杂度估计约 893 万——对 WES 文库来说，质量正常且较好。</p>
 <pre data-code-text="&quot;NA12878_lib1  READ_PAIRS_EXAMINED=993663  READ_PAIR_DUPLICATES=53294\n              PERCENT_DUPLICATION=0.053637  ESTIMATED_LIBRARY_SIZE=8929119&quot;" class="text" data-book-role="output"><code>NA12878_lib1  READ_PAIRS_EXAMINED=993663  READ_PAIR_DUPLICATES=53294
               PERCENT_DUPLICATION=0.053637  ESTIMATED_LIBRARY_SIZE=8929119</code></pre>
 <p><strong>第四步：BQSR。</strong> 按 7.3.2 的两步执行，输入 <code>BAM/${sample}.sorted.markdup.bam</code> 与 7.2.2 的 known-sites，输出 <code>${sample}.sorted.markdup.recal.bam</code>。</p>
@@ -1520,7 +1520,7 @@ P(D \mid G)=\prod_j \left( \frac{P(D_j \mid H_1)}{2} + \frac{P(D_j \mid H_2)}{2}
 <span id="cb11-2"><a href="#cb11-2"></a>  <span class="at">-R</span> ref/GRCh38.fa <span class="dt">\</span></span>
 <span id="cb11-3"><a href="#cb11-3"></a>  <span class="at">-I</span> BAM/<span class="va">${sample}</span>.sorted.markdup.recal.bam <span class="dt">\</span></span>
 <span id="cb11-4"><a href="#cb11-4"></a>  <span class="at">-O</span> VCF/<span class="va">${sample}</span>.raw.vcf.gz</span></code></pre></div><button title="复制到剪贴板" class="code-copy-button"><i class="bi"></i></button></div>
-<p>这一步输出的 VCF 还没有经过过滤，是”候选 + 置信度”的原始集合；如何读、如何过滤，是 7.6 的主题。</p>
+<p>这一步输出的 VCF 还没有经过过滤，是”候选 + 置信度”的原始集合；7.6 节将介绍怎样读取和过滤这些记录。</p>
 <p><strong>第六步：变异注释（ANNOVAR）。</strong> ANNOVAR 是一款广泛使用的注释工具，学术用途免费，需在官网注册获取下载链接；解压后先为 hg38 下载数据库：</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb12" data-book-role="code"><pre data-code-text="&quot;# 注册下载并解压后，进入 annovar/ 目录；为 hg38 下载数据库（体积较大，按需选择协议）\nannotate_variation.pl -buildver hg38 -downdb refGene humandb/\nannotate_variation.pl -buildver hg38 -downdb avsnp151 humandb/\nannotate_variation.pl -buildver hg38 -downdb gnomad_exome humandb/&quot;" class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 注册下载并解压后，进入 annovar/ 目录；为 hg38 下载数据库（体积较大，按需选择协议）</span></span>
 <span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a><span class="ex">annotate_variation.pl</span> <span class="at">-buildver</span> hg38 <span class="at">-downdb</span> refGene humandb/</span>
@@ -1537,7 +1537,7 @@ P(D \mid G)=\prod_j \left( \frac{P(D_j \mid H_1)}{2} + \frac{P(D_j \mid H_2)}{2}
 </section>
 <section id="sec-07-05-gvcf-jointgenotyping" class="level3">
 <h3 class="anchored" data-anchor-id="sec-07-05-gvcf-jointgenotyping">gVCF 与联合分型</h3>
-<p>上面的流程是<strong>单样本</strong>调用。当研究包含多个样本（家系、群体），逐样本独立调用再合并 VCF 是错误做法：每个样本独立判断”这个位点有没有变异”，低深度位点上单样本证据不足，样本间的信息无法互相支持。GATK 的答案是 <strong>gVCF + 联合分型</strong>：</p>
+<p>上面的流程是<strong>单样本</strong>调用。当研究包含多个样本（家系、群体），逐样本独立调用再合并 VCF 是错误做法：每个样本独立判断”这个位点有没有变异”，低深度位点上单样本证据不足，样本间的信息无法互相支持。GATK 采用的方式是 <strong>gVCF + 联合分型</strong>：</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb14" data-book-role="code"><pre data-code-text="&quot;# 1. 每个样本运行 HaplotypeCaller 时加 -ERC GVCF：输出不但记录检出变异的位点，\n#    也记录未检出变异位点的置信区间与深度证据\ngatk HaplotypeCaller -ERC GVCF \\\n  -R ref/GRCh38.fa \\\n  -I BAM/sampleA.sorted.markdup.recal.bam \\\n  -O VCF/sampleA.g.vcf.gz\n\n# 2. 把多个样本的 gVCF 导入 GenomicsDB 数据库（示例为两个样本、限定 21 号染色体）\ngatk GenomicsDBImport \\\n  --genomicsdb-workspace-path VCF/cohort_db \\\n  -L 21 \\\n  -V VCF/sampleA.g.vcf.gz -V VCF/sampleB.g.vcf.gz\n\n# 3. 对数据库做联合分型，输出整个队列的 VCF\ngatk GenotypeGVCFs \\\n  -R ref/GRCh38.fa \\\n  -V gendb://VCF/cohort_db \\\n  -O VCF/cohort.joint.vcf.gz&quot;" class="sourceCode numberSource bash numberLines code-with-copy"><code class="sourceCode bash"><span id="cb14-1"><a href="#cb14-1"></a><span class="co"># 1. 每个样本运行 HaplotypeCaller 时加 -ERC GVCF：输出不但记录检出变异的位点，</span></span>
 <span id="cb14-2"><a href="#cb14-2"></a><span class="co">#    也记录未检出变异位点的置信区间与深度证据</span></span>
 <span id="cb14-3"><a href="#cb14-3"></a><span class="ex">gatk</span> HaplotypeCaller <span class="at">-ERC</span> GVCF <span class="dt">\</span></span>
@@ -1755,17 +1755,17 @@ chr21   9068512  .   C   T   214.64 PASS   DP=13;QD=16.51;SOR=1.609 GT:AD:DP:GQ:
     10 HighSOR         # SOR &gt; 3.0：链偏置
 # 合计 643 条原始记录，23 条被标记（同一条可命中多个过滤器则显示首个）</code></pre>
 <p>阈值表是起点不是标准答案——它们来自 GATK 对大量数据的经验总结，你的数据分布不同时（如 FFPE 样本、超深度 panel），应先看统计量分布再定阈值，并把最终采用的阈值记录进交付文档（7.8.3）。</p>
-<p><strong>VQSR（Variant Quality Score Recalibration）</strong>：用大量变异的统计量训练机器学习模型，给每条记录打分再分级。它需要成千上万的变异做训练数据，因此只适合大样本 WGS；单样本 WES 的变异数量不够训练，这就是为什么本章实战用硬过滤。两条路线的判断标准仍是同一句话：<strong>模型需要的输入证据是否充分</strong>。</p>
+<p><strong>VQSR（Variant Quality Score Recalibration）</strong>：用大量变异的统计量训练机器学习模型，给每条记录打分再分级。它需要成千上万的变异做训练数据，因此只适合大样本 WGS；单样本 WES 的变异数量不够训练，这就是为什么本章实战用硬过滤。选择这两种方法时，都要看<strong>模型需要的输入证据是否充分</strong>。</p>
 </section>
 <section id="sec-07-06-quality-metrics" class="level3">
 <h3 class="anchored" data-anchor-id="sec-07-06-quality-metrics">质量评估</h3>
-<p>过滤前后各有多少变异、被什么过滤器拦下，是必须对账的数字：</p>
+<p>需要记录过滤前后的变异数量，以及各过滤器标记了多少条记录：</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb18" data-book-role="code"><pre data-code-text="&quot;# 各过滤器拦下的记录数\nbcftools query -f &#x27;%FILTER\\n&#x27; VCF/${sample}.filtered.vcf.gz | sort | uniq -c\n\n# 只保留通过过滤的记录\nbcftools view -f PASS VCF/${sample}.filtered.vcf.gz -Oz -o VCF/${sample}.pass.vcf.gz&quot;" class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 各过滤器拦下的记录数</span></span>
 <span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a><span class="ex">bcftools</span> query <span class="at">-f</span> <span class="st">'%FILTER\n'</span> VCF/<span class="va">${sample}</span>.filtered.vcf.gz <span class="kw">|</span> <span class="fu">sort</span> <span class="kw">|</span> <span class="fu">uniq</span> <span class="at">-c</span></span>
 <span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a><span class="co"># 只保留通过过滤的记录</span></span>
 <span id="cb18-5"><a href="#cb18-5" aria-hidden="true" tabindex="-1"></a><span class="ex">bcftools</span> view <span class="at">-f</span> PASS VCF/<span class="va">${sample}</span>.filtered.vcf.gz <span class="at">-Oz</span> <span class="at">-o</span> VCF/<span class="va">${sample}</span>.pass.vcf.gz</span></code></pre></div><button title="复制到剪贴板" class="code-copy-button"><i class="bi"></i></button></div>
-<p>除了流水账，还有一组<strong>全局指标</strong>可以从整体上检查结果是否”像真的”：</p>
+<p>除记录数量外，还可以用一组<strong>全局指标</strong>检查结果是否符合预期：</p>
 <ul>
 <li><strong>Ti/Tv 比</strong>：转换（transition，嘌呤↔︎嘌呤或嘧啶↔︎嘧啶）与颠换（transversion）的数量比。真胚系变异因突变机制的生化偏好，全基因组约 2.0–2.1、外显子约 3.0–3.3；假变异（错误）没有这种偏好，混入越多 Ti/Tv 越低。<strong>它检查的是整体，不指向任何具体位点。</strong></li>
 <li><strong>het/hom 比</strong>：杂合与纯合比例。远离群体预期提示污染、性别弄错或过滤过度。</li>
@@ -1778,7 +1778,7 @@ chr21   9068512  .   C   T   214.64 PASS   DP=13;QD=16.51;SOR=1.609 GT:AD:DP:GQ:
 SN    0  number of records:  620
 SN    0  number of SNPs:      570</code></pre>
 <p>Ti/Tv = 2.63 落在合理区间（外显子胚系约 3.0 上下的口径、小子集区域性波动较大）；要强调的是这个数字来自<strong>教学子集的 chr21 区间</strong>，只能说明”结果量级正常”，不能外推为全基因组的检测质量。</p>
-<p>指标异常时的处理顺序：先检查数据与流程（比对率、重复率、BQSR 是否正常），再看过滤阈值是否合理，最后才考虑生物学解释。把”结果指标异常”直接归结为”样本特殊”，是最常见也最危险的跳步。</p>
+<p>指标异常时的处理顺序：先检查数据与流程（比对率、重复率、BQSR 是否正常），再看过滤阈值是否合理，最后才考虑生物学解释。在排查数据和流程之前，不宜直接用样本的特殊性解释异常。</p>
 </section>
 </section>
 <section id="sec-07-07" class="level2" data-number="7.7">
@@ -1793,7 +1793,7 @@ SN    0  number of SNPs:      570</code></pre>
 <section id="sec-07-07-databases" class="level3">
 <h3 class="anchored" data-anchor-id="sec-07-07-databases">临床与疾病数据库</h3>
 <p><span id="src-0070-WGS-804"></span></p>
-<p>注释之后，把变异放到已有知识里查证。四个常用数据库各司其职：</p>
+<p>得到注释后，还需要查询已有证据。下面四个常用数据库提供的信息各有侧重：</p>
 <p><strong>OMIM</strong>（Online Mendelian Inheritance in Man，https://omim.org/ ）是人类孟德尔遗传的综合数据库，系统整理基因—表型关系，条目由专业团队持续维护，是查询”这个基因与哪些遗传病有关”的首选。基因页面给出功能概述、表型关联、相关文献与外部数据库入口。</p>
 <p><strong>ClinVar</strong>（https://www.ncbi.nlm.nih.gov/clinvar/ ）是 NCBI 维护的变异—临床意义数据库：研究机构提交变异的解释，连同支持证据汇总公开。每条记录的<strong>复审状态（review status）用 0–4 星共五个等级</strong>表达证据强度：0 星（未提供断言标准）、1 星（单一提交者提供标准）、2 星（多个提交者结论一致）、3 星（专家小组复审）、4 星（专业执业指南复审）。同样标注”致病”的记录，1 星与 4 星的证据分量完全不同——查库时先看星级的含义，再采信结论。</p>
 <p><strong>COSMIC</strong>（Catalogue Of Somatic Mutations In Cancer，https://cancer.sanger.ac.uk/cosmic ）主要记录癌症相关的<strong>体细胞</strong>突变。它对基因的收录分两个层级：Tier 1 有明确的癌症相关活动记录与突变证据，Tier 2 在癌症样本中大量检出但与癌症的因果意义尚未明确。本章处理的是胚系变异，COSMIC 的用途是交叉参考：一个胚系检出的基因若同时是 COSMIC 癌基因，其体细胞突变谱可以为功能解读提供线索。数据库持续更新（2026-10 核查时最新版本为 v104），引用具体数字时应以官网当前发布为准。</p>
@@ -1808,7 +1808,7 @@ SN    0  number of SNPs:      570</code></pre>
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>把”一个变异”变成”一个临床结论”，中间隔着几层强度不同的证据，不能跨层直通：</p>
+<p>从检出变异到作出临床结论，需要逐层检查强度不同的证据：</p>
 <ol type="1">
 <li><strong>检测结果</strong>：caller 说这个位点基因型可信（QUAL/GQ/AD 支持）——这是本章前半的产出；</li>
 <li><strong>功能注释</strong>：变异改变了编码序列的哪部分（注释工具给出）——只是”可能影响功能”的分类；</li>
@@ -1833,7 +1833,7 @@ SN    0  number of SNPs:      570</code></pre>
 <section id="sec-07-07-use-cases" class="level3">
 <h3 class="anchored" data-anchor-id="sec-07-07-use-cases">数据库使用案例</h3>
 <p><span id="src-0070-WGS-816"></span> <span id="topic-07-774"></span> <span id="topic-07-783"></span></p>
-<p>用两个从本章示例数据出发的例子演示查证动作。</p>
+<p>下面结合本章示例数据，用两个例子说明怎样查证。</p>
 <p><strong>按结果找基因：从 VCF 注释到 OMIM。</strong> 假设从注释结果中挑出一个值得追的变异：4 号染色体第 81046034 位 C→T，GT=1/1，注释为 <code>Func.refGene=exonic; Gene.refGene=BMP3; ExonicFunc.refGene=nonsynonymous_SNV</code>——BMP3 基因编码区的一个纯合错义变异。下一步到 OMIM 检索 <code>BMP3</code>：基因页给出已知功能、相关表型与文献；如果该基因有明确的孟德尔表型且与你的样本表型相符，再回到变异本身查 ClinVar 的收录与星级、gnomAD 的人群频率（纯合罕见 + 表型相符 + 功能已知，才构成较强的候选）。OMIM 界面左侧还链接外部数据库，可继续查蛋白质、动物模型与细胞通路信息。</p>
 <p><strong>按基因找变异：从 COSMIC 到 VCF。</strong> 反过来，研究癌症相关基因时，先从 COSMIC 的 Cancer Gene Census（CGC，https://cancer.sanger.ac.uk/census ）拿癌症基因目录，再在自己的 VCF 里检索这些基因：</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb21" data-book-role="code"><pre data-code-text="&quot;# 在注释结果中查找 MSH6 基因的记录（第 1 列不是注释头的行）\ngrep -v \&quot;^#\&quot; VCF/NA12878.annovar.hg38_multianno.txt | grep \&quot;MSH6\&quot;&quot;" class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 在注释结果中查找 MSH6 基因的记录（第 1 列不是注释头的行）</span></span>
@@ -1885,7 +1885,7 @@ SN    0  number of SNPs:      570</code></pre>
 <section id="sec-07-07-pathways-validation" class="level3">
 <h3 class="anchored" data-anchor-id="sec-07-07-pathways-validation">通路分析与公共数据验证</h3>
 <p><span id="src-0070-WGS-840"></span> <span id="src-0070-WGS-850"></span></p>
-<p>拿到一组候选基因后，还有两类常见后续，这里作为方向概览，不展开操作：</p>
+<p>拿到一组候选基因后，还可以做以下两类分析，这里只介绍思路：</p>
 <p><strong>通路与功能富集。</strong> 第 5 章用 clusterProfiler 做过 GO/KEGG 富集分析，同样的方法适用于变异候选基因列表。KEGG PATHWAY（https://www.genome.jp/kegg/pathway.html ）把基因按代谢与信号通路组织，六大类（细胞过程、环境信息处理、遗传信息处理、人类疾病、新陈代谢、生物体系统）逐级细分；Metascape（https://metascape.org/ ）则一站整合 GO、KEGG、蛋白互作等多类资源，适合对基因列表做快速注释与富集，每月更新其整合的数据库。</p>
 <div id="fig-08-wgs-and-wes-012" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
@@ -1925,7 +1925,7 @@ SN    0  number of SNPs:      570</code></pre>
 <p>评估分析流程的准确性并报告其检测边界。</p>
 <section id="sec-07-08-igv-review" class="level3">
 <h3 class="anchored" data-anchor-id="sec-07-08-igv-review">用 IGV 复核候选变异</h3>
-<p>第 4 章已经装好 IGV、载入过 BAM。变异分析的复核动作是：同时载入参考基因组、BAM（<code>.recal.bam</code> 及其索引）与 VCF，跳到候选变异位置，亲眼看证据。重点看什么：</p>
+<p>第 4 章已经装好 IGV、载入过 BAM。变异分析的复核动作是：同时载入参考基因组、BAM（<code>.recal.bam</code> 及其索引）与 VCF，跳到候选变异位置，查看支持该变异的 reads，重点检查以下内容：</p>
 <div id="fig-07-igv-review" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-07-igv-review-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
@@ -1943,21 +1943,21 @@ SN    0  number of SNPs:      570</code></pre>
 <li><strong>read 位置</strong>：变异是否集中在 read 末端（ReadPosRankSum 在防的问题）；</li>
 <li><strong>周边环境</strong>：是否落在重复区域、假基因附近，或 SNP 密集得异常的区域。</li>
 </ul>
-<p><a href="#fig-07-igv-review" class="quarto-xref">图&nbsp;<span>7.17</span></a> 是本章示例数据中一个候选杂合变异（chr21:9068512 C&gt;T，即 7.6.1 的那条记录）的复核视图，按实测 BAM 的 27 条 reads 绘制。养成”下结论前看一眼”的习惯，比任何自动化过滤器都更能建立对结果的判断力——过滤器的阈值是别人的经验，IGV 里的证据是你自己的。</p>
+<p><a href="#fig-07-igv-review" class="quarto-xref">图&nbsp;<span>7.17</span></a> 是本章示例数据中一个候选杂合变异（chr21:9068512 C&gt;T，即 7.6.1 的那条记录）的复核视图，按实测 BAM 的 27 条 reads 绘制。下结论前，除了查看自动过滤的结果，也要在 IGV 中核对具体位点的支持证据。</p>
 </section>
 <section id="sec-07-08-benchmarking" class="level3">
 <h3 class="anchored" data-anchor-id="sec-07-08-benchmarking">基准评价</h3>
-<p>单个样本分析的质量可以逐位点复核，流程整体的可信度需要<strong>基准（benchmark）</strong>：用一份”答案已知”的数据跑你的流程，看能对多少。GIAB（Genome in a Bottle，NIST 主导）为 NA12878 等样本发布了高置信度真值集——由多种平台、多个中心的数据交叉验证得到的高置信变异集合。本章示例数据正是 NA12878，这使得流程评价可以直接落地：</p>
+<p>单个样本分析的质量可以逐位点复核，流程整体的可信度需要<strong>基准（benchmark）</strong>：用一份”答案已知”的数据跑你的流程，检查检测结果与已知答案的一致程度。GIAB（Genome in a Bottle，NIST 主导）为 NA12878 等样本发布了高置信度真值集——由多种平台、多个中心的数据交叉验证得到的高置信变异集合。本章示例数据正是 NA12878，因此可以用对应真值集评价流程：</p>
 <ul>
 <li>把你的 PASS 变异集与 GIAB 高置信集比较，得到<strong>灵敏度</strong>（真值里你检出了多少）与<strong>精确度</strong>（你检出的里多少在真值中）；</li>
 <li>常用工具如 <code>hap.py</code>/<code>vcfeval</code> 处理区间与表示差异，避免把”同一变异不同写法”误判为错误；</li>
 <li>高置信集只覆盖其定义的<strong>高置信区域</strong>；比较结果只代表”在这类区域上的表现”，外推到全基因组要谨慎。</li>
 </ul>
-<p>没有真值集的物种或样本，就用 7.6.3 的全局指标（Ti/Tv、het/hom、过滤比例）做自检——证据弱一档，但总比只看”跑完没报错”强。</p>
+<p>没有真值集的物种或样本，就用 7.6.3 的全局指标（Ti/Tv、het/hom、过滤比例）做自检——这类证据弱于真值集比较，但能发现仅看运行是否报错时遗漏的问题。</p>
 </section>
 <section id="sec-07-08-deliverables" class="level3">
 <h3 class="anchored" data-anchor-id="sec-07-08-deliverables">完整交付与报告</h3>
-<p>分析的终点不是 VCF 文件，而是一份<strong>可追溯</strong>的结果说明。一个胚系小变异分析的完整交付应包括：</p>
+<p>完成分析时，除了 VCF 文件，还应提供<strong>可追溯</strong>的结果说明。一个胚系小变异分析的完整交付应包括：</p>
 <ul>
 <li><strong>数据来源</strong>：样本编号、测序数据 accession（如 SRR8381428）、参考基因组与注释版本、known-sites 资源版本；</li>
 <li><strong>软件与参数</strong>：每个工具的名称、版本、关键参数（过滤阈值尤其要写明依据）；</li>
@@ -1965,7 +1965,7 @@ SN    0  number of SNPs:      570</code></pre>
 <li><strong>结果与边界</strong>：最终变异列表及其注释、检索过的数据库与版本、未覆盖区域或深度不足区域的说明、结论适用的范围（哪些变异类型、哪些区域、什么置信水平）；</li>
 <li><strong>复核证据</strong>：关键变异的 IGV 截图或等价的记录。</li>
 </ul>
-<p>这份清单也是与 AI 协作的核对表：让 AI 复核你的分析或给出方案时，要求它先复述这些要素——数据从哪来、用什么版本、检查过什么指标、结论边界在哪。答不上来的环节，就是需要你自己回到数据去验证的环节。至此，从”一叠 FASTQ”到”能对结论负责的小变异分析”，本章走完了全链；判断力不在于记住每个命令，而在于每个环节都能回答”为什么这样做、怎么检查、还能相信到什么程度”。</p>
+<p>这份清单也是与 AI 协作的核对表：让 AI 复核你的分析或给出方案时，要求它先复述这些要素——数据从哪来、用什么版本、检查过什么指标、结论边界在哪。答不上来的环节，就是需要你自己回到数据去验证的环节。复核每一步时，都应能说明处理理由、检查方法，以及结果可以支持到什么程度。</p>
 
 
 </section>
@@ -1988,7 +1988,7 @@ SN    0  number of SNPs:      570</code></pre>
 
 </main> <!-- /main -->
 <div class="book-toolbar" role="navigation" aria-label="阅读工具">
-  <div class="book-brand"><span class="book-brand-name">AI时代生信入门</span><time class="book-last-modified" datetime="2026-10-11T17:31:04+08:00" title="最后修改时间（北京时间，UTC+08:00）">最后修改 2026-10-11 17:31</time></div>
+  <div class="book-brand"><span class="book-brand-name">AI时代生信入门</span><time class="book-last-modified" datetime="2026-10-12T13:46:45+08:00" title="最后修改时间（北京时间，UTC+08:00）">最后修改 2026-10-12 13:46</time></div>
   <button class="book-menu-button" type="button" aria-controls="quarto-sidebar" aria-expanded="false">目录</button>
   <button class="book-search-button" type="button">搜索</button>
 </div>

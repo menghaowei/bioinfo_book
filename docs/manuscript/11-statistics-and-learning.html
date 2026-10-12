@@ -921,7 +921,7 @@ window.Quarto = {
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
 <h1 class="title"><span id="sec-ch11" class="quarto-section-identifier"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">统计相关知识学习路线及实践</span></span></h1>
-<p class="chapter-last-modified"><time datetime="2026-10-11T12:08:31+08:00" title="本章书稿最后修改时间（北京时间，UTC+08:00）">最后修改：2026-10-11 12:08（北京时间）</time></p>
+<p class="chapter-last-modified"><time datetime="2026-10-12T13:46:45+08:00" title="本章书稿最后修改时间（北京时间，UTC+08:00）">最后修改：2026-10-12 13:46（北京时间）</time></p>
 </div>
 
 
@@ -948,11 +948,11 @@ window.Quarto = {
 <section id="src-0080-statistics-1" class="level3">
 <h3 class="anchored" data-anchor-id="src-0080-statistics-1">已经遇到过的统计问题</h3>
 <p>如果你按顺序读到了这里，其实已经用过不少统计方法，只是当时我们把重点放在操作上。<a href="../manuscript/03-sequencing-technologies.html#src-0050-RNA-seq-132">第 3 章</a>的 Phred 质量分数把“碱基判错概率”换算成一个数，这是概率论；<a href="../manuscript/05-rna-seq.html#src-0050-RNA-seq-793">第 5 章</a>的 DESeq2 结果表里，<code>log2FoldChange</code> 是效应量、<code>padj</code> 是多重检验校正后的 p 值；差异分析前的 <a href="../manuscript/05-rna-seq.html#topic-05-sample-qc">PCA 图</a>和样本相关性热图，是本章要讲的降维与相关；<a href="../manuscript/09-single-cell-and-spatial-omics.html#sec-09-03">第 9 章</a>的单细胞流程里，归一化、高变基因、聚类、UMAP 每一步都对应一种统计方法。</p>
-<p>换句话说：统计不是生信之外的一门课，而是前面每一步“为什么这样做”的答案。本章把这些散落的方法收拢成一条线。</p>
+<p>前面分析步骤中的许多选择，都需要统计知识来解释。本章将这些方法联系起来，说明它们各自解决什么问题。</p>
 </section>
 <section id="topic-11-map" class="level3">
 <h3 class="anchored" data-anchor-id="topic-11-map">概率论、数理统计与机器学习各管什么</h3>
-<p>生信里的统计问题可以按“你想回答什么”分成几类，每类背后是一块数学基础：</p>
+<p>生信里的统计问题可以按“你想回答什么”分成几类，每类都需要相应的数学基础：</p>
 <ul>
 <li><strong>这批数据长什么样？</strong>——描述统计：均值、方差、分位数、可视化。这是入门必备，也是所有分析的起点。</li>
 <li><strong>数据是怎么产生的？</strong>——概率论与概率分布：测序读段落到基因上是随机事件，计数因此服从特定分布。分布是“数据的模型”。</li>
@@ -982,7 +982,7 @@ window.Quarto = {
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>数学教材从公理体系讲起，适合系统学习，但和生信分析的用法是两个方向。本书建议的顺序是：<strong>带着数据学</strong>——每个概念都对应一种你已经见过的分析。学不动的时候回到数据本身问“这个数是怎么算出来的”，比硬啃教材更有效。需要系统补课时，参考本章末尾的<a href="#topic-11-resources">进阶资源</a>。</p>
+<p>数学教材从公理体系讲起，适合系统学习，但和生信分析的用法是两个方向。本书建议的顺序是：<strong>带着数据学</strong>——每个概念都对应一种你已经见过的分析。遇到难以理解的概念时，可以回到数据，先问“这个数是怎么算出来的”。需要系统补课时，参考本章末尾的<a href="#topic-11-resources">进阶资源</a>。</p>
 </div>
 </div>
 </section>
@@ -994,7 +994,7 @@ window.Quarto = {
 <li><strong>能做判断</strong>（本章 11.7—11.9 + 反复实践）：能给真实数据选对方法，看出参数和图形背后的问题，识别越界的结论。</li>
 <li><strong>按需深入</strong>：做一个具体项目卡住时再深入。例如做差异分析被批次效应困住，就去学线性模型的对比与混合模型；做分类预测，就去学交叉验证与过拟合。</li>
 </ol>
-<p>资源上，两本免费在线书值得放在手边：OpenIntro Statistics（<a href="https://www.openintro.org/book/os/">openintro.org/book/os</a>）覆盖概率论与假设检验的基础；Holmes 与 Huber 的《Modern Statistics for Modern Biology》（<a href="https://web.stanford.edu/class/bios221/book/">web.stanford.edu/class/bios221/book</a>）全程用 R 和真实生物数据，是本书之外最好的下一站。想系统学机器学习时，再读《An Introduction to Statistical Learning》（原书官网可免费获取）。</p>
+<p>资源上，两本免费在线书值得放在手边：OpenIntro Statistics（<a href="https://www.openintro.org/book/os/">openintro.org/book/os</a>）覆盖概率论与假设检验的基础；Holmes 与 Huber 的《Modern Statistics for Modern Biology》（<a href="https://web.stanford.edu/class/bios221/book/">web.stanford.edu/class/bios221/book</a>）全程用 R 和真实生物数据，适合在本书之后继续学习。想系统学机器学习时，再读《An Introduction to Statistical Learning》（原书官网可免费获取）。</p>
 </section>
 </section>
 <section id="sec-11-02" class="level2" data-number="11.2">
@@ -1020,7 +1020,7 @@ window.Quarto = {
 </section>
 <section id="topic-11-sd-se-ci" class="level3">
 <h3 class="anchored" data-anchor-id="topic-11-sd-se-ci">变异与不确定是两回事</h3>
-<p>下一步是初学者最容易混淆的一对概念。<strong>标准差（SD）描述样本之间的变异</strong>；<strong>标准误（SE）描述“估计出的均值”这个数本身的不确定性</strong>：</p>
+<p>接下来区分两个容易混淆的概念。<strong>标准差（SD）描述样本之间的变异</strong>；<strong>标准误（SE）描述“估计出的均值”这个数本身的不确定性</strong>：</p>
 <p><span id="eq-se-def" class="book-equation"><span class="equation-scroll" tabindex="0" role="region" aria-label="公式 11.1"><span class="math display">\[
 SE = \frac{SD}{\sqrt{n}}
 \]</span></span><a class="equation-label" href="#eq-se-def" aria-label="公式（11.1）">(11.1)</a></span></p>
@@ -1054,7 +1054,7 @@ SE = \frac{SD}{\sqrt{n}}
 <h2 data-number="11.3" class="anchored" data-anchor-id="sec-11-03"><span class="header-section-number">11.3</span> 概率分布与计数数据</h2>
 <section id="topic-11-count-dist" class="level3">
 <h3 class="anchored" data-anchor-id="topic-11-count-dist">从二项、泊松到负二项</h3>
-<p>描述统计刻画“观察到什么”，概率分布回答“这些数是怎么产生的”。RNA-seq 计数的产生机制可以这样想：测序得到的每个读段落到基因组上哪个基因，是一次随机试验。对一个基因来说，每个读段要么落到它身上（概率很小，记为 p），要么不落（概率 1−p）——大量读段独立重复，落到该基因的读段数服从<strong>二项分布</strong>。当读段总数巨大而 p 极小时，二项分布近似为<strong>泊松分布</strong>，它的特点是均值等于方差。</p>
+<p>描述统计刻画“观察到什么”，概率分布回答“这些数是怎么产生的”。RNA-seq 计数的产生机制可以这样想：测序得到的每个读段落到基因组上哪个基因，是一次随机试验。对一个基因来说，每个读段要么落到该基因上（概率很小，记为 p），要么不落（概率 1−p）——大量读段独立重复，落到该基因的读段数服从<strong>二项分布</strong>。当读段总数巨大而 p 极小时，二项分布近似为<strong>泊松分布</strong>，它的特点是均值等于方差。</p>
 <p>问题出在真实数据比这个模型“散”。泊松假设每个样本的期望计数完全一致，但生物学重复之间的文库组成本身在变（上节已经看到三倍的样本差异）。于是计数的方差系统性大于均值，这叫<strong>过度离散</strong>。描述它的模型是<strong>负二项分布</strong>：在泊松的基础上，让期望本身再随机波动一层。</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4" data-book-role="code"><pre data-code-text="&quot;set.seed(20261011)\npois &lt;- rpois(4000, lambda = 20)            # 泊松：均值 = 方差 = 20\nnb   &lt;- rnbinom(4000, mu = 20, size = 8)    # 负二项：均值 20，方差 20 + 20²/8 = 70\nc(mean = mean(pois), var = var(pois))       # 20.06  20.20\nc(mean = mean(nb),   var = var(nb))         # 20.09  72.49&quot;" class="sourceCode numberSource r numberLines code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1"></a><span class="fu">set.seed</span>(<span class="dv">20261011</span>)</span>
 <span id="cb4-2"><a href="#cb4-2"></a>pois <span class="ot">&lt;-</span> <span class="fu">rpois</span>(<span class="dv">4000</span>, <span class="at">lambda =</span> <span class="dv">20</span>)            <span class="co"># 泊松：均值 = 方差 = 20</span></span>
@@ -1076,15 +1076,15 @@ SE = \frac{SD}{\sqrt{n}}
 <section id="topic-11-normal-t" class="level3">
 <h3 class="anchored" data-anchor-id="topic-11-normal-t">正态分布、t 分布与对数变换</h3>
 <p>连续型数据常用<strong>正态分布</strong>描述。表达量取对数后近似正态，这是 heatmap、PCA、t 检验能用在表达数据上的前提。<strong>t 分布</strong>和正态几乎一样，只是尾巴更厚——样本量小的时候，估计出的方差本身不可靠，t 分布用厚尾巴补偿这种不确定性。上节置信区间用 <code>qt(0.975, n-1)</code> 而不是 1.96，就是这个原因；n 越大，t 分布越接近正态。</p>
-<p>到这里的判断标准很简单：<strong>计数看泊松/负二项，对数表达量看正态/t；分组比较前先确认自己面对的是哪一种数据</strong>。</p>
+<p>选择模型时，先区分数据类型：<strong>计数看泊松/负二项，对数表达量看正态/t；分组比较前先确认自己面对的是哪一种数据</strong>。</p>
 </section>
 </section>
 <section id="sec-11-04" class="level2" data-number="11.4">
 <h2 data-number="11.4" class="anchored" data-anchor-id="sec-11-04"><span class="header-section-number">11.4</span> 效应量、假设检验与多重比较</h2>
 <section id="src-0080-statistics-3" class="level3">
 <h3 class="anchored" data-anchor-id="src-0080-statistics-3">t 检验：两组数据的比较</h3>
-<p>t 检验回答的问题是：两组数据的差异，相对于组内波动而言大不大？统计量 t 就是这两者的比：差异越大、组内越齐、样本越多，t 越大。</p>
-<p>继续用 <code>ALB</code>：肝 10 个样本、胰腺 10 个样本（同一 GTEx 子集）。直觉上白蛋白由肝细胞分泌，两组应该差很多——检验来量化这个直觉：</p>
+<p>t 检验回答的问题是：两组数据的差异，相对于组内波动而言大不大？统计量 t 就是这两者的比：差异越大、组内波动越小、样本越多，t 越大。</p>
+<p>继续用 <code>ALB</code>：肝 10 个样本、胰腺 10 个样本（同一 GTEx 子集）。直觉上白蛋白由肝细胞分泌，两组应该差很多——下面用检验量化这个差异：</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5" data-book-role="code"><pre data-code-text="&quot;alb_pancreas &lt;- c(7.819, 9.376, 8.608, 8.223, 8.041,\n                  8.751, 8.655, 8.503, 7.373, 8.707)   # log2(TPM+1)\nt.test(alb, alb_pancreas)&quot;" class="sourceCode numberSource r numberLines code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1"></a>alb_pancreas <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="fl">7.819</span>, <span class="fl">9.376</span>, <span class="fl">8.608</span>, <span class="fl">8.223</span>, <span class="fl">8.041</span>,</span>
 <span id="cb5-2"><a href="#cb5-2"></a>                  <span class="fl">8.751</span>, <span class="fl">8.655</span>, <span class="fl">8.503</span>, <span class="fl">7.373</span>, <span class="fl">8.707</span>)   <span class="co"># log2(TPM+1)</span></span>
 <span id="cb5-3"><a href="#cb5-3"></a><span class="fu">t.test</span>(alb, alb_pancreas)</span></code></pre></div><button title="复制到剪贴板" class="code-copy-button"><i class="bi"></i></button></div>
@@ -1154,7 +1154,7 @@ mean of x mean of y
 </section>
 <section id="topic-11-normalization-methods" class="level3">
 <h3 class="anchored" data-anchor-id="topic-11-normalization-methods">CPM、TPM 与 size factor</h3>
-<p>常用归一化量各自处理了不同的因素。用一张 3 基因 × 2 样本的迷你计数表算一遍：</p>
+<p>常用归一化量各自处理了不同的因素。用一张 3 基因 × 2 样本的小计数表算一遍：</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb9" data-book-role="code"><pre data-code-text="&quot;counts &lt;- matrix(c(2200,  800, 150,     # 样本 1：基因 A/B/C\n                   9800, 4200, 300),    # 样本 2\n                 nrow = 3, byrow = FALSE,\n                 dimnames = list(c(\&quot;geneA\&quot;, \&quot;geneB\&quot;, \&quot;geneC\&quot;),\n                                 c(\&quot;sample1\&quot;, \&quot;sample2\&quot;)))\nkb &lt;- c(1.2, 15.8, 3.4)                       # 三个基因的长度（kb）\n\n# CPM：只除以文库大小，消除测序深度差异\ncpm &lt;- sweep(counts, 2, colSums(counts), \&quot;/\&quot;) * 1e6\nround(cpm)\n#        sample1 sample2\n# geneA   335878   73394\n# geneB    22901  899083\n# geneC   641221   27523\n\n# TPM：先按基因长度折算（RPK），再在每个样本内归一到百万\nrpk &lt;- counts / kb\ntpm &lt;- sweep(rpk, 2, colSums(rpk), \&quot;/\&quot;) * 1e6\nround(tpm)\n#        sample1 sample2\n# geneA   595601  484794\n# geneB     3084  451042\n# geneC   401314   64164&quot;" class="sourceCode numberSource r numberLines code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1"></a>counts <span class="ot">&lt;-</span> <span class="fu">matrix</span>(<span class="fu">c</span>(<span class="dv">2200</span>,  <span class="dv">800</span>, <span class="dv">150</span>,     <span class="co"># 样本 1：基因 A/B/C</span></span>
 <span id="cb9-2"><a href="#cb9-2"></a>                   <span class="dv">9800</span>, <span class="dv">4200</span>, <span class="dv">300</span>),    <span class="co"># 样本 2</span></span>
 <span id="cb9-3"><a href="#cb9-3"></a>                 <span class="at">nrow =</span> <span class="dv">3</span>, <span class="at">byrow =</span> <span class="cn">FALSE</span>,</span>
@@ -1178,7 +1178,7 @@ mean of x mean of y
 <span id="cb9-21"><a href="#cb9-21"></a><span class="co"># geneA   595601  484794</span></span>
 <span id="cb9-22"><a href="#cb9-22"></a><span class="co"># geneB     3084  451042</span></span>
 <span id="cb9-23"><a href="#cb9-23"></a><span class="co"># geneC   401314   64164</span></span></code></pre></div><button title="复制到剪贴板" class="code-copy-button"><i class="bi"></i></button></div>
-<p>对比 <code>geneC</code> 的两行：CPM 里它在样本 1 高、样本 2 低；TPM 里结论相反——因为长基因 <code>geneB</code> 在样本 2 占了测序深度的大头，把它折算掉之后其余基因的相对比例全变了。<strong>每种归一化都在改变“比较的尺度”</strong>：</p>
+<p>对比 <code>geneC</code> 的两行：CPM 里它在样本 1 高、样本 2 低；TPM 里结论相反——因为长基因 <code>geneB</code> 在样本 2 占用了较多测序读段，把它折算掉之后其余基因的相对比例全变了。<strong>每种归一化都在改变“比较的尺度”</strong>：</p>
 <ul>
 <li><strong>CPM</strong>：只管测序深度，用于计数型分析（如 5.4 节的计数矩阵）。</li>
 <li><strong>TPM</strong>：同时管深度与基因长度，样本内总和恒为一百万，适合“一个基因在组织间谁高谁低”的展示与排序。</li>
@@ -1195,7 +1195,7 @@ mean of x mean of y
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>归一化只能消除技术因素，不能修复设计问题。样本制备批次和处理分组建在一起时（批次即分组），任何归一化都无法把两者分开——这要靠实验设计和 <a href="#sec-11-06">11.6</a> 的设计公式。另外，“大多数基因不差异”是 size factor 和许多方法的前提；全局 shift（如整体转录量变化）会让这类假设失真。</p>
+<p>归一化只能消除技术因素，不能修复设计问题。样本制备批次和处理分组混在一起时（批次即分组），任何归一化都无法把两者分开——这要靠实验设计和 <a href="#sec-11-06">11.6</a> 的设计公式。另外，“大多数基因不差异”是 size factor 和许多方法的前提；全局 shift（如整体转录量变化）会让这类假设失真。</p>
 </div>
 </div>
 </section>
@@ -1216,10 +1216,10 @@ mean of x mean of y
 </section>
 <section id="topic-11-design" class="level3">
 <h3 class="anchored" data-anchor-id="topic-11-design">设计公式与比较方向</h3>
-<p>设计公式的力量在于加项。<code>~ batch + condition</code> 表示“先扣掉批次的影响，再估计处理效应”——DESeq2 的 <code>design = ~condition</code>（<a href="../manuscript/05-rna-seq.html#src-0050-RNA-seq-793">第 5 章</a>）正是这里最简的情形；若当时还有批次注释，就该写成 <code>~ batch + condition</code>。两个实用要点：</p>
+<p>设计公式可以加入多个因素。<code>~ batch + condition</code> 表示“先扣掉批次的影响，再估计处理效应”——DESeq2 的 <code>design = ~condition</code>（<a href="../manuscript/05-rna-seq.html#src-0050-RNA-seq-793">第 5 章</a>）正是这里最简的情形；若当时还有批次注释，就该写成 <code>~ batch + condition</code>。两个实用要点：</p>
 <ul>
 <li><strong>对照水平决定符号</strong>。R 按因子水平的字母序选第一个水平当截距：Liver 在前，所以系数是“胰腺减肝”。要反过来，用 <code>factor(tissue, levels = c(“Pancreas”, “Liver”))</code> 或 <code>relevel()</code>。<a href="../manuscript/05-rna-seq.html#topic-05-sample-design">第 5 章</a>特意提醒“注意分组方向”，因为 log2FC 的正负号完全由它决定——表格里上调下调写反，多半是这一步错了。</li>
-<li><strong>比较方向与检验方向</strong>。contrast 是“谁减谁”的问题，不是“谁比谁高”的问题：写清楚方向，讨论“上调/下调”时才不会张冠李戴。</li>
+<li><strong>比较方向与检验方向</strong>。contrast 是“谁减谁”的问题，不是“谁比谁高”的问题：写清楚方向，讨论“上调/下调”时才能正确对应比较的两组。</li>
 </ul>
 <div id="fig-11-design-matrix" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
@@ -1234,7 +1234,7 @@ mean of x mean of y
 </section>
 <section id="topic-11-glm" class="level3">
 <h3 class="anchored" data-anchor-id="topic-11-glm">从线性模型到 DESeq2 的真实模型</h3>
-<p>普通线性模型假设方差恒定、响应连续，不符合计数的特性（<a href="#sec-11-03">11.3</a>）。<strong>广义线性模型（GLM）</strong>把两边都换掉：响应服从负二项分布（刻画过度离散），均值的对数是各因素的线性组合（log 链接，保证预测值为正）。于是 <a href="../manuscript/05-rna-seq.html#src-0050-RNA-seq-793">第 5 章</a> 的 DESeq2 流程可以完整地翻译成统计语言：</p>
+<p>普通线性模型假设方差恒定、响应连续，不符合计数的特性（<a href="#sec-11-03">11.3</a>）。<strong>广义线性模型（GLM）</strong>调整了响应分布与均值的表达方式：响应服从负二项分布（刻画过度离散），均值的对数是各因素的线性组合（log 链接，保证预测值为正）。于是 <a href="../manuscript/05-rna-seq.html#src-0050-RNA-seq-793">第 5 章</a> 的 DESeq2 流程可以完整地翻译成统计语言：</p>
 <ul>
 <li><code>estimateSizeFactors()</code> → <a href="#sec-11-05">11.5</a> 的 size factor 归一化；</li>
 <li><code>~ condition</code> 设计 → 本节的设计公式；</li>
@@ -1242,7 +1242,7 @@ mean of x mean of y
 <li>Wald 检验 → <a href="#sec-11-04">11.4</a> 的假设检验；</li>
 <li><code>padj</code> → BH 校正。</li>
 </ul>
-<p>到这里，第 5 章“先跑通再拆解”的每一步都有了对应物。<strong>方法链是一整条线，不是一串孤立按钮</strong>——这是本章学习路线想留给你的核心图景。</p>
+<p>这样，第 5 章的各个操作就与相应的统计方法对应起来了。<strong>归一化、模型拟合、检验和校正彼此相连</strong>，需要结合起来理解。</p>
 </section>
 </section>
 <section id="sec-11-07" class="level2" data-number="11.7">
@@ -1259,8 +1259,8 @@ mean of x mean of y
 </section>
 <section id="src-0080-statistics-7" class="level3">
 <h3 class="anchored" data-anchor-id="src-0080-statistics-7">主成分分析：线性降维</h3>
-<p>几千个基因维度里看不出样本结构，PCA 把数据投影到几个“最能保留差异”的方向上。原理一句话：<strong>在样本 × 基因矩阵上找一组互相垂直的新坐标轴（主成分），第一轴让投影后的方差最大，第二轴在与第一轴垂直的方向上继续取方差最大</strong>。数学上这是对中心化数据的协方差矩阵做特征分解，主成分方向是特征向量、方差解释比例是特征值占比——推导不超出生信需要，熟悉矩阵运算的同学可以在<a href="#topic-11-resources">进阶资源</a>里找到完整版。</p>
-<p><a href="#fig-11-pca-principle" class="quarto-xref">图&nbsp;<span>11.5</span></a> 用两个基因的简化情形展示“投影”在做什么。真实分析里：输入是行=样本、列=基因（通常已 log 变换、常取高变基因）的矩阵，输出是每个样本的前几个主成分得分。<strong>载荷（loading）</strong>告诉你每个主成分由哪些基因构成，是 PCA 可解释性的来源；<strong>碎石图</strong>（各主成分的方差解释比例）告诉你前几个成分保住了多少信息——前几名加起来不高，说明数据结构复杂，二维图只是其中一个切面。第 5 章的 <code>plotPCA()</code> 和 11.8 节的 GTEx 实战都是这套流程。</p>
+<p>几千个基因维度里看不出样本结构，PCA 把数据投影到几个“最能保留差异”的方向上。其核心原理是：<strong>在样本 × 基因矩阵上找一组互相垂直的新坐标轴（主成分），第一轴让投影后的方差最大，第二轴在与第一轴垂直的方向上继续取方差最大</strong>。数学上这是对中心化数据的协方差矩阵做特征分解，主成分方向是特征向量、方差解释比例是特征值占比——这里先介绍分析所需的原理，熟悉矩阵运算的同学可以在<a href="#topic-11-resources">进阶资源</a>里找到完整版。</p>
+<p><a href="#fig-11-pca-principle" class="quarto-xref">图&nbsp;<span>11.5</span></a> 用两个基因的简化情形展示“投影”在做什么。真实分析里：输入是行=样本、列=基因（通常已 log 变换、常取高变基因）的矩阵，输出是每个样本的前几个主成分得分。<strong>载荷（loading）</strong>告诉你每个主成分由哪些基因构成，是 PCA 可解释性的来源；<strong>碎石图</strong>（各主成分的方差解释比例）告诉你前几个成分保留了多少信息——前几名加起来不高，说明数据结构复杂，二维图只是其中一个切面。第 5 章的 <code>plotPCA()</code> 和 11.8 节的 GTEx 实战都是这套流程。</p>
 <p><span id="src-0080-statistics-9"></span></p>
 <p><strong>主坐标分析（PCoA）</strong>是 PCA 的推广：不要求原始坐标，只要有样本间的距离矩阵就能做（PCA 只用欧氏距离）。扩增子分析常用 Bray–Curtis 距离加 PCoA，单细胞用其他距离的场合同理——先定义距离，再找最能代表距离结构的低维坐标。</p>
 <div id="fig-11-pca-principle" class="quarto-float quarto-figure quarto-figure-center anchored">
@@ -1307,7 +1307,7 @@ D_{KL}(P \| Q) = \sum_{i=1}^{n} p(x_i) \log \frac{p(x_i)}{q(x_i)}
 <section id="src-0080-statistics-71" class="level4">
 <h4 class="anchored" data-anchor-id="src-0080-statistics-71">从 SNE 到 t-SNE</h4>
 <p><span id="src-0080-statistics-90"></span></p>
-<p>SNE（t-SNE 的前身）的思路三步。第一步，把高维距离变成概率：样本 <span class="math inline">\(j\)</span> 离 <span class="math inline">\(i\)</span> 越近，条件概率 <span class="math inline">\(p_{j|i}\)</span> 越大，</p>
+<p>SNE（t-SNE 的前身）分为三步。第一步，把高维距离变成概率：样本 <span class="math inline">\(j\)</span> 离 <span class="math inline">\(i\)</span> 越近，条件概率 <span class="math inline">\(p_{j|i}\)</span> 越大，</p>
 <p><span id="eq-conditional-p" class="book-equation"><span class="equation-scroll" tabindex="0" role="region" aria-label="公式 11.4"><span class="math display">\[
 p_{j|i} = \frac{\exp\left(-\|x_i - x_j\|^2 / 2\sigma_i^2\right)}{\sum_{k \neq i} \exp\left(-\|x_i - x_k\|^2 / 2\sigma_i^2\right)}
 \]</span></span><a class="equation-label" href="#eq-conditional-p" aria-label="公式（11.4）">(11.4)</a></span></p>
@@ -1351,7 +1351,7 @@ q_{ij} = \frac{\left(1 + \|y_i - y_j\|^2\right)^{-1}}{\sum_{k \neq l} \left(1 + 
 <p><span id="src-0080-statistics-210"></span></p>
 <p><strong>UMAP</strong>（Uniform Manifold Approximation and Projection）思路不同：先用 <strong>kNN 图</strong>把每个点连向最近的 k 个邻居（这个 k 就是参数 <code>n_neighbors</code>），把边转成模糊的“连接强度”，再在低维上直接优化这张图的布局。与 t-SNE 相比，UMAP 通常更快、对全局结构保留更好（簇间相对位置多少有些参考价值），已成为单细胞分析的默认可视化；但它同样<strong>不保证低维距离可当真实距离用</strong>，同样对参数和随机性敏感。</p>
 <p>两个关键参数（<a href="https://umap-learn.readthedocs.io/en/latest/parameters.html">官方文档</a>）：<code>n_neighbors</code>（默认 15）控制“看多远”——小值只顾紧邻的局部结构，大值纳入更多全局信息；<code>min_dist</code>（默认 0.1）控制低维图上点能挤到多近——小值成团紧密，大值摊得松散。<a href="#sec-11-08">11.8</a> 会实测两者的影响。</p>
-<p><strong>t-SNE 与 UMAP 的共同警告</strong>（也是读图纪律）：图上两簇的距离、簇的大小、甚至簇的个数都可能随参数和种子改变<a href="#fn2" class="footnote-ref" id="fnref2" role="doc-noteref"><sup>2</sup></a>。它们是<strong>探索与展示</strong>工具：用来发现结构、生成假设，再把结论交回差异分析或聚类去检验。</p>
+<p><strong>t-SNE 与 UMAP 的共同警告</strong>（也是读图时的注意事项）：图上两簇的距离、簇的大小、甚至簇的个数都可能随参数和种子改变<a href="#fn2" class="footnote-ref" id="fnref2" role="doc-noteref"><sup>2</sup></a>。它们是<strong>探索与展示</strong>工具：用来发现结构、生成假设，再把结论交回差异分析或聚类去检验。</p>
 </section>
 </section>
 </section>
@@ -1359,7 +1359,7 @@ q_{ij} = \frac{\left(1 + \|y_i - y_j\|^2\right)^{-1}}{\sum_{k \neq l} \left(1 + 
 <h2 data-number="11.8" class="anchored" data-anchor-id="sec-11-08"><span class="header-section-number">11.8</span> GTEx 实战：用多组织真实数据比较降维方法</h2>
 <section id="src-0080-statistics-225" class="level3">
 <h3 class="anchored" data-anchor-id="src-0080-statistics-225">GTEx：公共的人体组织表达库</h3>
-<p>原理讲完，现在下载真实数据来检验。<strong>GTEx</strong>（Genotype-Tissue Expression）项目收集了数百名捐赠者全身数十种组织的 RNA-seq 数据，是“组织特异性表达”最重要的公共资源之一；v8 版本覆盖 838 名捐赠者、17,382 个样本<a href="#fn3" class="footnote-ref" id="fnref3" role="doc-noteref"><sup>3</sup></a>。组织之间的表达差异远大于个体差异，正是演示降维的理想数据：如果方法可靠，样本应当按组织而不是按捐赠者聚在一起。</p>
+<p>下面下载真实数据，观察这些方法的实际表现。<strong>GTEx</strong>（Genotype-Tissue Expression）项目收集了数百名捐赠者全身数十种组织的 RNA-seq 数据，是“组织特异性表达”最重要的公共资源之一；v8 版本覆盖 838 名捐赠者、17,382 个样本<a href="#fn3" class="footnote-ref" id="fnref3" role="doc-noteref"><sup>3</sup></a>。组织之间的表达差异远大于个体差异，正是演示降维的理想数据：如果方法可靠，样本应当按组织而不是按捐赠者聚在一起。</p>
 <p>基因 TPM 矩阵（约 1.6 GB）和样本注释表是开放数据，可直接下载（2026 年 10 月核实的官方直链）：</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb11" data-book-role="code"><pre data-code-text="&quot;# 全样本基因 TPM 矩阵：56,200 基因 × 17,382 样本（约 1.6 GB）\ncurl -O https://storage.googleapis.com/adult-gtex/bulk-gex/v8/rna-seq/GTEx_Analysis_2017-06-05_v8_RNASeQCv1.1.9_gene_tpm.gct.gz\n# 样本属性注释表：样本 ID → 组织类型（SMTS）等（约 11 MB）\ncurl -O https://storage.googleapis.com/adult-gtex/annotations/v8/metadata-files/GTEx_Analysis_v8_Annotations_SampleAttributesDS.txt&quot;" class="sourceCode numberSource bash numberLines code-with-copy"><code class="sourceCode bash"><span id="cb11-1"><a href="#cb11-1"></a><span class="co"># 全样本基因 TPM 矩阵：56,200 基因 × 17,382 样本（约 1.6 GB）</span></span>
 <span id="cb11-2"><a href="#cb11-2"></a><span class="ex">curl</span> <span class="at">-O</span> https://storage.googleapis.com/adult-gtex/bulk-gex/v8/rna-seq/GTEx_Analysis_2017-06-05_v8_RNASeQCv1.1.9_gene_tpm.gct.gz</span>
@@ -1424,7 +1424,7 @@ q_{ij} = \frac{\left(1 + \|y_i - y_j\|^2\right)^{-1}}{\sum_{k \neq l} \left(1 + 
 <span id="cb15-3"><a href="#cb15-3"></a>tsne <span class="ot">&lt;-</span> <span class="fu">Rtsne</span>(x, <span class="at">dims =</span> <span class="dv">2</span>, <span class="at">perplexity =</span> <span class="dv">30</span>,</span>
 <span id="cb15-4"><a href="#cb15-4"></a>              <span class="at">pca =</span> <span class="cn">TRUE</span>, <span class="at">check_duplicates =</span> <span class="cn">FALSE</span>)</span>
 <span id="cb15-5"><a href="#cb15-5"></a><span class="fu">plot</span>(tsne<span class="sc">$</span>Y, <span class="at">col =</span> <span class="fu">factor</span>(samples<span class="sc">$</span>SMTS))</span></code></pre></div><button title="复制到剪贴板" class="code-copy-button"><i class="bi"></i></button></div>
-<p><a href="#fig-11-gtex-tsne-perp" class="quarto-xref">图&nbsp;<span>11.10</span></a> 把困惑度设为 5、15、30 各跑一遍：5 时图碎成小团（每个点只认 5 个邻居，局部噪声被放大），30 时组织块更连贯。注意 Rtsne 要求困惑度小于 (n−1)/3——100 个样本的演示里 30 已接近上限，这也是“困惑度上限随样本量增长”的直观体现。<a href="#fig-11-gtex-tsne-seed" class="quarto-xref">图&nbsp;<span>11.11</span></a> 则固定困惑度换两个随机种子：组织成员基本稳定，但簇的形状和相对位置明显变化——<strong>t-SNE 图的簇间距离与簇大小不能解读</strong>，此言不虚。</p>
+<p><a href="#fig-11-gtex-tsne-perp" class="quarto-xref">图&nbsp;<span>11.10</span></a> 把困惑度设为 5、15、30 各跑一遍：5 时图碎成小团（每个点只认 5 个邻居，局部噪声被放大），30 时组织块更连贯。注意 Rtsne 要求困惑度小于 (n−1)/3——100 个样本的演示里 30 已接近上限，这也是“困惑度上限随样本量增长”的直观体现。<a href="#fig-11-gtex-tsne-seed" class="quarto-xref">图&nbsp;<span>11.11</span></a> 则固定困惑度换两个随机种子：组织成员基本稳定，但簇的形状和相对位置明显变化——<strong>t-SNE 图的簇间距离与簇大小不能解读</strong>。</p>
 <div id="fig-11-gtex-tsne-perp" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-11-gtex-tsne-perp-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
@@ -1529,12 +1529,12 @@ q_{ij} = \frac{\left(1 + \|y_i - y_j\|^2\right)^{-1}}{\sum_{k \neq l} \left(1 + 
 <h2 data-number="11.9" class="anchored" data-anchor-id="sec-11-09"><span class="header-section-number">11.9</span> 稳健解释、可视化与常见统计误区</h2>
 <section id="topic-11-pitfalls" class="level3">
 <h3 class="anchored" data-anchor-id="topic-11-pitfalls">常见统计误区清单</h3>
-<p>把本章各节的警告集中成一张自查清单，读论文和查自己的结果时都用得上：</p>
+<p>读论文或检查自己的结果时，可以对照以下常见问题：</p>
 <ul>
 <li><strong>p 值误读</strong>：把 p 当差异概率、把 0.06 当“无差异”、忽视样本量对 p 的影响（<a href="#sec-11-04">11.4</a>）。</li>
 <li><strong>忘记多重检验</strong>：两万次检验挑最小的 p 值报告，不经 BH 校正（<a href="#topic-11-fdr">11.4</a>）。</li>
 <li><strong>效应量与显著性不分</strong>：padj 极小但 log2FC 不到 0.1 的“差异基因”，生物学意义要另说（<a href="#topic-11-effect-size">11.4</a>）。</li>
-<li><strong>归一化当万能</strong>：批次与分组混在一起时，任何归一化都救不回来（<a href="#sec-11-05">11.5</a>）。</li>
+<li><strong>归一化当万能</strong>：批次与分组混在一起时，任何归一化都无法区分两者的影响（<a href="#sec-11-05">11.5</a>）。</li>
 <li><strong>比较方向不明</strong>：对照水平没写清，上调下调全反（<a href="#topic-11-design">11.6</a>）。</li>
 <li><strong>降维图当证据</strong>：把 t-SNE/UMAP 上的距离、簇大小、簇个数当结论用（<a href="#topic-11-umap">11.7</a>、<a href="#sec-11-08">11.8</a>）。</li>
 <li><strong>相关当因果</strong>：两个基因表达高度相关，可能只是共同响应于第三个因素；<a href="../manuscript/09-single-cell-and-spatial-omics.html#sec-09-04">第 9 章</a>的“细胞类型要先聚类后用标记基因确认”是同样的谨慎。</li>
@@ -1543,8 +1543,8 @@ q_{ij} = \frac{\left(1 + \|y_i - y_j\|^2\right)^{-1}}{\sum_{k \neq l} \left(1 + 
 </section>
 <section id="topic-11-reporting" class="level3">
 <h3 class="anchored" data-anchor-id="topic-11-reporting">让结论站得住：报告与核查</h3>
-<p>结果能不能站得住，取决于报告里有没有这些信息：数据来源与版本（如 GTEx v8 及下载日期）、预处理与参数（高变基因数、困惑度、n_neighbors）、随机种子、软件与包版本（本章数值来自 R 4.4.1，Rtsne 0.17、uwot 0.2.4）。这些不是形式主义——换一个参数就变样的结论，读者有权利知道。</p>
-<p>让 AI 参与分析时同样如此。AI 给出的统计方案要按本章的问题清单核对：数据是什么类型、用什么分布建模、怎么归一化、比较方向是什么、多重检验校正了吗、参数和种子记下来了吗。这些判断力正是 <a href="../manuscript/12-ai-learning-and-practice.html#sec-12-02">第 12 章</a>“向 AI 描述任务并核查信息”要在全流程上展开的内容——统计的判断力加上 AI 的效率，才是这本书希望你带走的东西。</p>
+<p>为了让他人复核结果，报告中需要说明以下信息：数据来源与版本（如 GTEx v8 及下载日期）、预处理与参数（高变基因数、困惑度、n_neighbors）、随机种子、软件与包版本（本章数值来自 R 4.4.1，Rtsne 0.17、uwot 0.2.4）。参数选择可能改变结果，读者需要知道具体设置，才能判断结论是否稳健。</p>
+<p>让 AI 参与分析时同样如此。AI 给出的统计方案要按本章的问题清单核对：数据是什么类型、用什么分布建模、怎么归一化、比较方向是什么、多重检验校正了吗、参数和种子记下来了吗。这些检查也是 <a href="../manuscript/12-ai-learning-and-practice.html#sec-12-02">第 12 章</a>“向 AI 描述任务并核查信息”一节将继续讨论的内容。</p>
 
 
 </section>
@@ -1560,7 +1560,7 @@ q_{ij} = \frac{\left(1 + \|y_i - y_j\|^2\right)^{-1}}{\sum_{k \neq l} \left(1 + 
 
 </main> <!-- /main -->
 <div class="book-toolbar" role="navigation" aria-label="阅读工具">
-  <div class="book-brand"><span class="book-brand-name">AI时代生信入门</span><time class="book-last-modified" datetime="2026-10-11T17:31:04+08:00" title="最后修改时间（北京时间，UTC+08:00）">最后修改 2026-10-11 17:31</time></div>
+  <div class="book-brand"><span class="book-brand-name">AI时代生信入门</span><time class="book-last-modified" datetime="2026-10-12T13:46:45+08:00" title="最后修改时间（北京时间，UTC+08:00）">最后修改 2026-10-12 13:46</time></div>
   <button class="book-menu-button" type="button" aria-controls="quarto-sidebar" aria-expanded="false">目录</button>
   <button class="book-search-button" type="button">搜索</button>
 </div>
