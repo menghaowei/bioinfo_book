@@ -1,86 +1,104 @@
-<svg xmlns='http://www.w3.org/2000/svg' width='920' height='392' viewBox='0 0 920 392' role='img' aria-labelledby='t d'>
-<title id='t'>barcode、UMI 与计数矩阵的对应关系</title>
-<desc id='d'>三条 read 带相同细胞 barcode AACGTACGTA；前两条 UMI 相同（TTAGGC），是同一 mRNA 分子的 PCR 重复，按 UMI 去重只计 1 个分子并归属 Gene1；第三条 UMI 不同（CCGATA），是另一个分子，归属 Gene2。右侧计数矩阵高亮列即该细胞，数字为 UMI 分子数。示意，未按实际长度绘制。</desc>
-<rect x='60' y='100' width='142' height='30' rx='3' fill='#e8f4f1' stroke='#186254' stroke-width='1.2'/>
-<rect x='202' y='100' width='90' height='30' rx='3' fill='#fdf3e3' stroke='#b45309' stroke-width='1.2'/>
-<rect x='292' y='100' width='116' height='30' rx='3' fill='none' stroke='#9ca3af' stroke-width='1.2'/>
-<text x='66' y='120' font-family="ui-monospace, 'SFMono-Regular', Menlo, Consolas, 'Liberation Mono', monospace" font-size='13' fill='#333333' font-weight='normal' text-anchor='start'>AACGTACGTA</text>
-<text x='208' y='120' font-family="ui-monospace, 'SFMono-Regular', Menlo, Consolas, 'Liberation Mono', monospace" font-size='13' fill='#333333' font-weight='normal' text-anchor='start'>TTAGGC</text>
-<text x='298' y='120' font-family="ui-monospace, 'SFMono-Regular', Menlo, Consolas, 'Liberation Mono', monospace" font-size='13' fill='#6b7280' font-weight='normal' text-anchor='start'>cDNA…</text>
-<rect x='60' y='156' width='142' height='30' rx='3' fill='#e8f4f1' stroke='#186254' stroke-width='1.2'/>
-<rect x='202' y='156' width='90' height='30' rx='3' fill='#fdf3e3' stroke='#b45309' stroke-width='1.2'/>
-<rect x='292' y='156' width='116' height='30' rx='3' fill='none' stroke='#9ca3af' stroke-width='1.2'/>
-<text x='66' y='176' font-family="ui-monospace, 'SFMono-Regular', Menlo, Consolas, 'Liberation Mono', monospace" font-size='13' fill='#333333' font-weight='normal' text-anchor='start'>AACGTACGTA</text>
-<text x='208' y='176' font-family="ui-monospace, 'SFMono-Regular', Menlo, Consolas, 'Liberation Mono', monospace" font-size='13' fill='#333333' font-weight='normal' text-anchor='start'>TTAGGC</text>
-<text x='298' y='176' font-family="ui-monospace, 'SFMono-Regular', Menlo, Consolas, 'Liberation Mono', monospace" font-size='13' fill='#6b7280' font-weight='normal' text-anchor='start'>cDNA…</text>
-<rect x='60' y='212' width='142' height='30' rx='3' fill='#e8f4f1' stroke='#186254' stroke-width='1.2'/>
-<rect x='202' y='212' width='90' height='30' rx='3' fill='#e8eefb' stroke='#b45309' stroke-width='1.2'/>
-<rect x='292' y='212' width='116' height='30' rx='3' fill='none' stroke='#9ca3af' stroke-width='1.2'/>
-<text x='66' y='232' font-family="ui-monospace, 'SFMono-Regular', Menlo, Consolas, 'Liberation Mono', monospace" font-size='13' fill='#333333' font-weight='normal' text-anchor='start'>AACGTACGTA</text>
-<text x='208' y='232' font-family="ui-monospace, 'SFMono-Regular', Menlo, Consolas, 'Liberation Mono', monospace" font-size='13' fill='#333333' font-weight='normal' text-anchor='start'>CCGATA</text>
-<text x='298' y='232' font-family="ui-monospace, 'SFMono-Regular', Menlo, Consolas, 'Liberation Mono', monospace" font-size='13' fill='#6b7280' font-weight='normal' text-anchor='start'>cDNA…</text>
-<text x='131.0' y='76' font-family="'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size='11' fill='#6b7280' font-weight='normal' text-anchor='middle'>细胞 barcode</text>
-<line x1='131.0' y1='82' x2='131.0' y2='94' stroke='#9ca3af' stroke-width='1'/>
-<text x='247.0' y='76' font-family="'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size='11' fill='#6b7280' font-weight='normal' text-anchor='middle'>UMI</text>
-<line x1='247.0' y1='82' x2='247.0' y2='94' stroke='#9ca3af' stroke-width='1'/>
-<text x='350' y='76' font-family="'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size='11' fill='#6b7280' font-weight='normal' text-anchor='middle'>cDNA</text>
-<line x1='350' y1='82' x2='350' y2='94' stroke='#9ca3af' stroke-width='1'/>
-<text x='131.0' y='58' font-family="'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size='10' fill='#186254' font-weight='normal' text-anchor='middle'>归细胞</text>
-<text x='247.0' y='58' font-family="'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size='10' fill='#b45309' font-weight='normal' text-anchor='middle'>归分子</text>
-<text x='350' y='58' font-family="'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size='10' fill='#6b7280' font-weight='normal' text-anchor='middle'>比对定基因</text>
-<text x='420' y='120' font-family="ui-monospace, 'SFMono-Regular', Menlo, Consolas, 'Liberation Mono', monospace" font-size='13' fill='#333333' font-weight='normal' text-anchor='start'>Gene1</text>
-<text x='420' y='176' font-family="ui-monospace, 'SFMono-Regular', Menlo, Consolas, 'Liberation Mono', monospace" font-size='13' fill='#333333' font-weight='normal' text-anchor='start'>Gene1</text>
-<text x='420' y='232' font-family="ui-monospace, 'SFMono-Regular', Menlo, Consolas, 'Liberation Mono', monospace" font-size='13' fill='#333333' font-weight='normal' text-anchor='start'>Gene2</text>
-<rect x='46' y='88' width='376' height='110' rx='3' fill='none' stroke='#b45309' stroke-width='1.2' stroke-dasharray='5,4'/>
-<text x='46' y='214' font-family="'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size='11' fill='#b45309' font-weight='normal' text-anchor='start'>└ barcode 与 UMI 都相同</text>
-<rect x='480' y='140' width='132' height='26' rx='4' fill='#fdf3e3' stroke='#b45309' stroke-width='1.2'/>
-<text x='546.0' y='157' font-family="'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size='12' fill='#333333' font-weight='normal' text-anchor='middle'>去重后 1 个分子</text>
-<rect x='480' y='252' width='132' height='26' rx='4' fill='#e8eefb' stroke='#2563eb' stroke-width='1.2'/>
-<text x='546.0' y='269' font-family="'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size='12' fill='#333333' font-weight='normal' text-anchor='middle'>另 1 个分子</text>
-<line x1='436' y1='143' x2='480' y2='153' stroke='#186254' stroke-width='1.6'/>
-<line x1='480.0' y1='153.0' x2='472.0' y2='148.8' stroke='#186254' stroke-width='1.6'/>
-<line x1='480.0' y1='153.0' x2='471.8' y2='156.7' stroke='#186254' stroke-width='1.6'/>
-<line x1='230' y1='242' x2='230' y2='265' stroke='#186254' stroke-width='1.6'/>
-<line x1='230' y1='265' x2='480' y2='265' stroke='#186254' stroke-width='1.6'/>
-<text x='735' y='116' font-family="'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size='15' fill='#186254' font-weight='bold' text-anchor='middle'>细胞×基因计数矩阵（数字 = UMI 分子数）</text>
-<text x='664.0' y='145' font-family="ui-monospace, 'SFMono-Regular', Menlo, Consolas, 'Liberation Mono', monospace" font-size='10' fill='#6b7280' font-weight='normal' text-anchor='middle'>…</text>
-<rect x='683' y='130' width='108' height='22' rx='3' fill='#e8f4f1' stroke='#186254' stroke-width='1.2'/>
-<text x='737.0' y='145' font-family="ui-monospace, 'SFMono-Regular', Menlo, Consolas, 'Liberation Mono', monospace" font-size='10' fill='#333333' font-weight='normal' text-anchor='middle'>AACGTACGTA</text>
-<text x='810.0' y='145' font-family="ui-monospace, 'SFMono-Regular', Menlo, Consolas, 'Liberation Mono', monospace" font-size='10' fill='#6b7280' font-weight='normal' text-anchor='middle'>…</text>
-<text x='636' y='178' font-family="ui-monospace, 'SFMono-Regular', Menlo, Consolas, 'Liberation Mono', monospace" font-size='12' fill='#333333' font-weight='normal' text-anchor='end'>Gene1</text>
-<rect x='647' y='158' width='34' height='30' rx='3' fill='none' stroke='#9ca3af' stroke-width='1.2' stroke-dasharray='3,3'/>
-<text x='664.0' y='179' font-family="ui-monospace, 'SFMono-Regular', Menlo, Consolas, 'Liberation Mono', monospace" font-size='12' fill='#9ca3af' font-weight='normal' text-anchor='middle'>·</text>
-<rect x='683' y='158' width='108' height='30' rx='3' fill='#e8f4f1' stroke='#186254' stroke-width='1.2'/>
-<text x='737.0' y='179' font-family="ui-monospace, 'SFMono-Regular', Menlo, Consolas, 'Liberation Mono', monospace" font-size='14' fill='#b45309' font-weight='bold' text-anchor='middle'>1</text>
-<rect x='793' y='158' width='34' height='30' rx='3' fill='none' stroke='#9ca3af' stroke-width='1.2' stroke-dasharray='3,3'/>
-<text x='810.0' y='179' font-family="ui-monospace, 'SFMono-Regular', Menlo, Consolas, 'Liberation Mono', monospace" font-size='12' fill='#9ca3af' font-weight='normal' text-anchor='middle'>·</text>
-<text x='636' y='212' font-family="ui-monospace, 'SFMono-Regular', Menlo, Consolas, 'Liberation Mono', monospace" font-size='12' fill='#333333' font-weight='normal' text-anchor='end'>Gene2</text>
-<rect x='647' y='192' width='34' height='30' rx='3' fill='none' stroke='#9ca3af' stroke-width='1.2' stroke-dasharray='3,3'/>
-<text x='664.0' y='213' font-family="ui-monospace, 'SFMono-Regular', Menlo, Consolas, 'Liberation Mono', monospace" font-size='12' fill='#9ca3af' font-weight='normal' text-anchor='middle'>·</text>
-<rect x='683' y='192' width='108' height='30' rx='3' fill='#e8f4f1' stroke='#186254' stroke-width='1.2'/>
-<text x='737.0' y='213' font-family="ui-monospace, 'SFMono-Regular', Menlo, Consolas, 'Liberation Mono', monospace" font-size='14' fill='#2563eb' font-weight='bold' text-anchor='middle'>1</text>
-<rect x='793' y='192' width='34' height='30' rx='3' fill='none' stroke='#9ca3af' stroke-width='1.2' stroke-dasharray='3,3'/>
-<text x='810.0' y='213' font-family="ui-monospace, 'SFMono-Regular', Menlo, Consolas, 'Liberation Mono', monospace" font-size='12' fill='#9ca3af' font-weight='normal' text-anchor='middle'>·</text>
-<text x='636' y='246' font-family="ui-monospace, 'SFMono-Regular', Menlo, Consolas, 'Liberation Mono', monospace" font-size='12' fill='#333333' font-weight='normal' text-anchor='end'>Gene3</text>
-<rect x='647' y='226' width='34' height='30' rx='3' fill='none' stroke='#9ca3af' stroke-width='1.2' stroke-dasharray='3,3'/>
-<text x='664.0' y='247' font-family="ui-monospace, 'SFMono-Regular', Menlo, Consolas, 'Liberation Mono', monospace" font-size='12' fill='#9ca3af' font-weight='normal' text-anchor='middle'>·</text>
-<rect x='683' y='226' width='108' height='30' rx='3' fill='#e8f4f1' stroke='#186254' stroke-width='1.2'/>
-<text x='737.0' y='247' font-family="ui-monospace, 'SFMono-Regular', Menlo, Consolas, 'Liberation Mono', monospace" font-size='14' fill='#6b7280' font-weight='bold' text-anchor='middle'>0</text>
-<rect x='793' y='226' width='34' height='30' rx='3' fill='none' stroke='#9ca3af' stroke-width='1.2' stroke-dasharray='3,3'/>
-<text x='810.0' y='247' font-family="ui-monospace, 'SFMono-Regular', Menlo, Consolas, 'Liberation Mono', monospace" font-size='12' fill='#9ca3af' font-weight='normal' text-anchor='middle'>·</text>
-<text x='636' y='280' font-family="ui-monospace, 'SFMono-Regular', Menlo, Consolas, 'Liberation Mono', monospace" font-size='12' fill='#333333' font-weight='normal' text-anchor='end'>…</text>
-<rect x='647' y='260' width='34' height='30' rx='3' fill='none' stroke='#9ca3af' stroke-width='1.2' stroke-dasharray='3,3'/>
-<text x='664.0' y='281' font-family="ui-monospace, 'SFMono-Regular', Menlo, Consolas, 'Liberation Mono', monospace" font-size='12' fill='#9ca3af' font-weight='normal' text-anchor='middle'>·</text>
-<rect x='683' y='260' width='108' height='30' rx='3' fill='#e8f4f1' stroke='#186254' stroke-width='1.2'/>
-<text x='737.0' y='281' font-family="ui-monospace, 'SFMono-Regular', Menlo, Consolas, 'Liberation Mono', monospace" font-size='14' fill='#6b7280' font-weight='bold' text-anchor='middle'>0</text>
-<rect x='793' y='260' width='34' height='30' rx='3' fill='none' stroke='#9ca3af' stroke-width='1.2' stroke-dasharray='3,3'/>
-<text x='810.0' y='281' font-family="ui-monospace, 'SFMono-Regular', Menlo, Consolas, 'Liberation Mono', monospace" font-size='12' fill='#9ca3af' font-weight='normal' text-anchor='middle'>·</text>
-<line x1='612' y1='153' x2='690' y2='172' stroke='#186254' stroke-width='1.6'/>
-<line x1='690.0' y1='172.0' x2='682.0' y2='167.8' stroke='#186254' stroke-width='1.6'/>
-<line x1='690.0' y1='172.0' x2='681.8' y2='175.6' stroke='#186254' stroke-width='1.6'/>
-<line x1='612' y1='265' x2='690' y2='208' stroke='#186254' stroke-width='1.6'/>
-<line x1='690.0' y1='208.0' x2='681.4' y2='205.2' stroke='#186254' stroke-width='1.6'/>
-<line x1='690.0' y1='208.0' x2='682.5' y2='213.0' stroke='#186254' stroke-width='1.6'/>
-<text x='60' y='336' font-family="'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size='12' fill='#333333' font-weight='normal' text-anchor='start'>前两条 read 是同一个分子的 PCR 重复：按 UMI 去重，只给 Gene1 记 1（琥珀）；第三条 UMI 不同，给 Gene2 记 1（蓝色）。</text>
-<text x='60' y='360' font-family="'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size='12' fill='#6b7280' font-weight='normal' text-anchor='start'>矩阵里一个数字的含义：这个细胞里，这个基因被捕获并计数到几个 UMI 分子（去重后）。</text>
+<svg xmlns='http://www.w3.org/2000/svg' width='800' height='1060' viewBox='0 0 800 1060' role='img' aria-labelledby='t d'>
+<title id='t'>barcode、UMI 与基因×细胞计数矩阵</title>
+<desc id='d'>两个细胞捕获的 RNA 获得细胞 barcode 和 UMI。展开细胞 A 的 Gene A：五条配对测序记录中 ATGC 出现三次、GCTA 出现两次，同细胞同基因按校正后的 UMI 合并为两个分子。矩阵行是 Gene A、Gene B，列是细胞 A、B，数值为 2、1 和 1、0。序列缩短，数量为示意。</desc>
+<text x='28' y='35' font-family="'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size='23' fill='#186254' font-weight='bold' text-anchor='start'>① 捕获 RNA，加入细胞 barcode 和 UMI</text>
+<path d="M 113 158 C 118 97, 166 93, 217 103 C 298 88, 307 143, 294 184 C 277 230, 173 223, 129 197 Z" fill="#e8f4f1" stroke="#186254" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round"/>
+<ellipse cx="153" cy="160" rx="22" ry="26" fill="#ffffff" stroke="#186254" stroke-width="1.5"/>
+<path d="M 191 129 q 6 -9 12 0 t 12 0 t 12 0 t 12 0" fill="none" stroke="#186254" stroke-width="2.7" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M 191 158 q 6 -9 12 0 t 12 0 t 12 0 t 12 0" fill="none" stroke="#186254" stroke-width="2.7" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M 191 187 q 6 -9 12 0 t 12 0 t 12 0 t 12 0" fill="none" stroke="#2563eb" stroke-width="2.7" stroke-linecap="round" stroke-linejoin="round"/>
+<text x='206' y='76' font-family="'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size='23' fill='#186254' font-weight='bold' text-anchor='middle'>细胞 A</text>
+<path d="M 503 158 C 508 97, 556 93, 607 103 C 688 88, 697 143, 684 184 C 667 230, 563 223, 519 197 Z" fill="#e8f4f1" stroke="#186254" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round"/>
+<ellipse cx="543" cy="160" rx="22" ry="26" fill="#ffffff" stroke="#186254" stroke-width="1.5"/>
+<path d="M 581 129 q 6 -9 12 0 t 12 0 t 12 0 t 12 0" fill="none" stroke="#186254" stroke-width="2.7" stroke-linecap="round" stroke-linejoin="round"/>
+<text x='596' y='76' font-family="'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size='23' fill='#186254' font-weight='bold' text-anchor='middle'>细胞 B</text>
+<text x='206' y='239' font-family="ui-monospace, 'SFMono-Regular', Menlo, Consolas, 'Liberation Mono', monospace" font-size='18' fill='#186254' font-weight='normal' text-anchor='middle'>barcode：AACGTA</text>
+<text x='596' y='239' font-family="ui-monospace, 'SFMono-Regular', Menlo, Consolas, 'Liberation Mono', monospace" font-size='18' fill='#186254' font-weight='normal' text-anchor='middle'>barcode：TTGCAC</text>
+<text x='206' y='270' font-family="'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size='17' fill='#333333' font-weight='normal' text-anchor='middle'>Gene A：2 个　Gene B：1 个</text>
+<text x='596' y='270' font-family="'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size='17' fill='#333333' font-weight='normal' text-anchor='middle'>Gene A：1 个　Gene B：0 个</text>
+<text x='400' y='300' font-family="'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size='16' fill='#6b7280' font-weight='normal' text-anchor='middle'>只画本例捕获到的 RNA；不同基因以颜色和名称区分。</text>
+<line x1='28' y1='319' x2='772' y2='319' stroke='#a7c9c0' stroke-width='1'/>
+<text x='28' y='354' font-family="'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size='23' fill='#186254' font-weight='bold' text-anchor='start'>② 展开细胞 A 的 Gene A：扩增产生多条测序记录</text>
+<text x='111' y='388' font-family="'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size='17' fill='#186254' font-weight='bold' text-anchor='middle'>R1：细胞 barcode</text>
+<text x='294' y='388' font-family="'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size='17' fill='#b45309' font-weight='bold' text-anchor='middle'>R1：UMI</text>
+<text x='465' y='388' font-family="'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size='17' fill='#186254' font-weight='bold' text-anchor='middle'>R2：cDNA 比对结果</text>
+<text x='681' y='388' font-family="'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size='17' fill='#186254' font-weight='bold' text-anchor='middle'>合并 PCR 重复</text>
+<rect x='31' y='405' width='159' height='32' rx='4' fill='#e8f4f1' stroke='#186254' stroke-width='1.2'/>
+<rect x='227' y='405' width='130' height='32' rx='4' fill='#fdf3e3' stroke='#b45309' stroke-width='1.2'/>
+<rect x='395' y='405' width='142' height='32' rx='4' fill='#f4f6f5' stroke='#9ca3af' stroke-width='1.2'/>
+<text x='110' y='428' font-family="ui-monospace, 'SFMono-Regular', Menlo, Consolas, 'Liberation Mono', monospace" font-size='20' fill='#186254' font-weight='normal' text-anchor='middle'>AACGTA</text>
+<text x='292' y='428' font-family="ui-monospace, 'SFMono-Regular', Menlo, Consolas, 'Liberation Mono', monospace" font-size='20' fill='#b45309' font-weight='normal' text-anchor='middle'>ATGC</text>
+<text x='466' y='428' font-family="ui-monospace, 'SFMono-Regular', Menlo, Consolas, 'Liberation Mono', monospace" font-size='20' fill='#186254' font-weight='normal' text-anchor='middle'>Gene A</text>
+<line x1='190' y1='421' x2='227' y2='421' stroke='#9ca3af' stroke-width='1.2' stroke-dasharray='3,4'/>
+<line x1='357' y1='421' x2='395' y2='421' stroke='#9ca3af' stroke-width='1.2' stroke-dasharray='3,4'/>
+<rect x='31' y='449' width='159' height='32' rx='4' fill='#e8f4f1' stroke='#186254' stroke-width='1.2'/>
+<rect x='227' y='449' width='130' height='32' rx='4' fill='#fdf3e3' stroke='#b45309' stroke-width='1.2'/>
+<rect x='395' y='449' width='142' height='32' rx='4' fill='#f4f6f5' stroke='#9ca3af' stroke-width='1.2'/>
+<text x='110' y='472' font-family="ui-monospace, 'SFMono-Regular', Menlo, Consolas, 'Liberation Mono', monospace" font-size='20' fill='#186254' font-weight='normal' text-anchor='middle'>AACGTA</text>
+<text x='292' y='472' font-family="ui-monospace, 'SFMono-Regular', Menlo, Consolas, 'Liberation Mono', monospace" font-size='20' fill='#b45309' font-weight='normal' text-anchor='middle'>ATGC</text>
+<text x='466' y='472' font-family="ui-monospace, 'SFMono-Regular', Menlo, Consolas, 'Liberation Mono', monospace" font-size='20' fill='#186254' font-weight='normal' text-anchor='middle'>Gene A</text>
+<line x1='190' y1='465' x2='227' y2='465' stroke='#9ca3af' stroke-width='1.2' stroke-dasharray='3,4'/>
+<line x1='357' y1='465' x2='395' y2='465' stroke='#9ca3af' stroke-width='1.2' stroke-dasharray='3,4'/>
+<rect x='31' y='493' width='159' height='32' rx='4' fill='#e8f4f1' stroke='#186254' stroke-width='1.2'/>
+<rect x='227' y='493' width='130' height='32' rx='4' fill='#fdf3e3' stroke='#b45309' stroke-width='1.2'/>
+<rect x='395' y='493' width='142' height='32' rx='4' fill='#f4f6f5' stroke='#9ca3af' stroke-width='1.2'/>
+<text x='110' y='516' font-family="ui-monospace, 'SFMono-Regular', Menlo, Consolas, 'Liberation Mono', monospace" font-size='20' fill='#186254' font-weight='normal' text-anchor='middle'>AACGTA</text>
+<text x='292' y='516' font-family="ui-monospace, 'SFMono-Regular', Menlo, Consolas, 'Liberation Mono', monospace" font-size='20' fill='#b45309' font-weight='normal' text-anchor='middle'>ATGC</text>
+<text x='466' y='516' font-family="ui-monospace, 'SFMono-Regular', Menlo, Consolas, 'Liberation Mono', monospace" font-size='20' fill='#186254' font-weight='normal' text-anchor='middle'>Gene A</text>
+<line x1='190' y1='509' x2='227' y2='509' stroke='#9ca3af' stroke-width='1.2' stroke-dasharray='3,4'/>
+<line x1='357' y1='509' x2='395' y2='509' stroke='#9ca3af' stroke-width='1.2' stroke-dasharray='3,4'/>
+<rect x='31' y='537' width='159' height='32' rx='4' fill='#e8f4f1' stroke='#186254' stroke-width='1.2'/>
+<rect x='227' y='537' width='130' height='32' rx='4' fill='#fdf3e3' stroke='#b45309' stroke-width='1.2'/>
+<rect x='395' y='537' width='142' height='32' rx='4' fill='#f4f6f5' stroke='#9ca3af' stroke-width='1.2'/>
+<text x='110' y='560' font-family="ui-monospace, 'SFMono-Regular', Menlo, Consolas, 'Liberation Mono', monospace" font-size='20' fill='#186254' font-weight='normal' text-anchor='middle'>AACGTA</text>
+<text x='292' y='560' font-family="ui-monospace, 'SFMono-Regular', Menlo, Consolas, 'Liberation Mono', monospace" font-size='20' fill='#b45309' font-weight='normal' text-anchor='middle'>GCTA</text>
+<text x='466' y='560' font-family="ui-monospace, 'SFMono-Regular', Menlo, Consolas, 'Liberation Mono', monospace" font-size='20' fill='#186254' font-weight='normal' text-anchor='middle'>Gene A</text>
+<line x1='190' y1='553' x2='227' y2='553' stroke='#9ca3af' stroke-width='1.2' stroke-dasharray='3,4'/>
+<line x1='357' y1='553' x2='395' y2='553' stroke='#9ca3af' stroke-width='1.2' stroke-dasharray='3,4'/>
+<rect x='31' y='581' width='159' height='32' rx='4' fill='#e8f4f1' stroke='#186254' stroke-width='1.2'/>
+<rect x='227' y='581' width='130' height='32' rx='4' fill='#fdf3e3' stroke='#b45309' stroke-width='1.2'/>
+<rect x='395' y='581' width='142' height='32' rx='4' fill='#f4f6f5' stroke='#9ca3af' stroke-width='1.2'/>
+<text x='110' y='604' font-family="ui-monospace, 'SFMono-Regular', Menlo, Consolas, 'Liberation Mono', monospace" font-size='20' fill='#186254' font-weight='normal' text-anchor='middle'>AACGTA</text>
+<text x='292' y='604' font-family="ui-monospace, 'SFMono-Regular', Menlo, Consolas, 'Liberation Mono', monospace" font-size='20' fill='#b45309' font-weight='normal' text-anchor='middle'>GCTA</text>
+<text x='466' y='604' font-family="ui-monospace, 'SFMono-Regular', Menlo, Consolas, 'Liberation Mono', monospace" font-size='20' fill='#186254' font-weight='normal' text-anchor='middle'>Gene A</text>
+<line x1='190' y1='597' x2='227' y2='597' stroke='#9ca3af' stroke-width='1.2' stroke-dasharray='3,4'/>
+<line x1='357' y1='597' x2='395' y2='597' stroke='#9ca3af' stroke-width='1.2' stroke-dasharray='3,4'/>
+<path d="M 552 408 H 564 V 522 H 552" fill="none" stroke="#b45309" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+<line x1='570' y1='465' x2='620' y2='465' stroke='#186254' stroke-width='1.6'/>
+<line x1='620.0' y1='465.0' x2='611.9' y2='461.1' stroke='#186254' stroke-width='1.6'/>
+<line x1='620.0' y1='465.0' x2='611.9' y2='468.9' stroke='#186254' stroke-width='1.6'/>
+<path d="M 640 455 q 6 -9 12 0 t 12 0 t 12 0 t 12 0" fill="none" stroke="#186254" stroke-width="2.7" stroke-linecap="round" stroke-linejoin="round"/>
+<text x='666' y='483' font-family="ui-monospace, 'SFMono-Regular', Menlo, Consolas, 'Liberation Mono', monospace" font-size='18' fill='#b45309' font-weight='normal' text-anchor='middle'>ATGC</text>
+<text x='733' y='463' font-family="'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size='19' fill='#186254' font-weight='bold' text-anchor='middle'>1 个</text>
+<text x='666' y='507' font-family="'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size='15' fill='#6b7280' font-weight='normal' text-anchor='middle'>3 条记录</text>
+<path d="M 552 540 H 564 V 610 H 552" fill="none" stroke="#b45309" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+<line x1='570' y1='575' x2='620' y2='575' stroke='#186254' stroke-width='1.6'/>
+<line x1='620.0' y1='575.0' x2='611.9' y2='571.1' stroke='#186254' stroke-width='1.6'/>
+<line x1='620.0' y1='575.0' x2='611.9' y2='578.9' stroke='#186254' stroke-width='1.6'/>
+<path d="M 640 565 q 6 -9 12 0 t 12 0 t 12 0 t 12 0" fill="none" stroke="#186254" stroke-width="2.7" stroke-linecap="round" stroke-linejoin="round"/>
+<text x='666' y='593' font-family="ui-monospace, 'SFMono-Regular', Menlo, Consolas, 'Liberation Mono', monospace" font-size='18' fill='#b45309' font-weight='normal' text-anchor='middle'>GCTA</text>
+<text x='733' y='573' font-family="'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size='19' fill='#186254' font-weight='bold' text-anchor='middle'>1 个</text>
+<text x='666' y='617' font-family="'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size='15' fill='#6b7280' font-weight='normal' text-anchor='middle'>2 条记录</text>
+<text x='400' y='657' font-family="'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size='23' fill='#186254' font-weight='bold' text-anchor='middle'>5 条记录 → 2 个不同 UMI → 计 2 个分子</text>
+<text x='400' y='688' font-family="'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size='18' fill='#333333' font-weight='normal' text-anchor='middle'>去重范围：同一细胞、同一基因；使用校正后的 UMI。</text>
+<line x1='400' y1='706' x2='400' y2='736' stroke='#186254' stroke-width='2'/>
+<line x1='400.0' y1='736.0' x2='403.9' y2='727.9' stroke='#186254' stroke-width='2'/>
+<line x1='400.0' y1='736.0' x2='396.1' y2='727.9' stroke='#186254' stroke-width='2'/>
+<text x='28' y='772' font-family="'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size='23' fill='#186254' font-weight='bold' text-anchor='start'>③ 填入基因×细胞计数矩阵</text>
+<text x='243' y='815' font-family="'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size='17' fill='#6b7280' font-weight='normal' text-anchor='end'>行：基因</text>
+<text x='378' y='812' font-family="'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size='20' fill='#186254' font-weight='bold' text-anchor='middle'>细胞 A</text>
+<text x='560' y='812' font-family="'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size='20' fill='#186254' font-weight='bold' text-anchor='middle'>细胞 B</text>
+<text x='696' y='815' font-family="'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size='17' fill='#6b7280' font-weight='normal' text-anchor='middle'>列：细胞</text>
+<text x='246' y='872' font-family="'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size='20' fill='#186254' font-weight='bold' text-anchor='end'>Gene A</text>
+<rect x='289' y='837' width='177' height='53' rx='4' fill='#fdf3e3' stroke='#b45309' stroke-width='2'/>
+<text x='377.5' y='873' font-family="'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size='28' fill='#b45309' font-weight='bold' text-anchor='middle'>2</text>
+<rect x='471' y='837' width='177' height='53' rx='4' fill='#e8f4f1' stroke='#186254' stroke-width='1.1'/>
+<text x='559.5' y='873' font-family="'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size='28' fill='#186254' font-weight='bold' text-anchor='middle'>1</text>
+<text x='246' y='931' font-family="'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size='20' fill='#2563eb' font-weight='bold' text-anchor='end'>Gene B</text>
+<rect x='289' y='896' width='177' height='53' rx='4' fill='#e8f4f1' stroke='#186254' stroke-width='1.1'/>
+<text x='377.5' y='932' font-family="'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size='28' fill='#186254' font-weight='bold' text-anchor='middle'>1</text>
+<rect x='471' y='896' width='177' height='53' rx='4' fill='#e8f4f1' stroke='#186254' stroke-width='1.1'/>
+<text x='559.5' y='932' font-family="'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size='28' fill='#186254' font-weight='bold' text-anchor='middle'>0</text>
+<text x='400' y='993' font-family="'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size='18' fill='#333333' font-weight='normal' text-anchor='middle'>每个数字＝该细胞中、该基因被捕获并计数的 UMI 分子数</text>
+<text x='400' y='1028' font-family="'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size='16' fill='#6b7280' font-weight='normal' text-anchor='middle'>0 表示本次未检出；序列长度和分子数量均为教学示意。</text>
 </svg>
