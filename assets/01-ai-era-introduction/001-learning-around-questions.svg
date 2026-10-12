@@ -1,0 +1,37 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="640" height="804" viewBox="0 0 640 804" role="img" aria-labelledby="title description">
+<title id="title">围绕问题组织学习</title><desc id="description">明确问题、查找相关知识、尝试实践、检查结果。AI 在各环节协助解释、实现和整理，发现知识缺口后再回查相关知识。箭头表示学习步骤和回查，不表示自动得到可靠结论。</desc>
+<defs><marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path d="M0 1 L9 5 L0 9" fill="none" stroke="#186254" stroke-width="1.6"/></marker>
+<marker id="return" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto"><path d="M0 1 L9 5 L0 9" fill="none" stroke="#b45309" stroke-width="1.6"/></marker></defs>
+<rect width="640" height="804" fill="#fcfcf9"/>
+<g stroke-linecap="round" stroke-linejoin="round">
+<rect x="64" y="24" width="548" height="144" rx="14" fill="#e8f4f1" stroke="none" stroke-width="2"/>
+<circle cx="94" cy="59" r="18" fill="#186254" stroke="none" stroke-width="2"/>
+<text x="94" y="68" font-family="'PingFang SC','Hiragino Sans GB','Microsoft YaHei','Noto Sans CJK SC',sans-serif" font-size="25" fill="white" font-weight="600" text-anchor="middle">1</text>
+<text x="126" y="68" font-family="'PingFang SC','Hiragino Sans GB','Microsoft YaHei','Noto Sans CJK SC',sans-serif" font-size="27" fill="#186254" font-weight="600" text-anchor="start">明确要回答的问题</text>
+<text x="88" y="108" font-family="'PingFang SC','Hiragino Sans GB','Microsoft YaHei','Noto Sans CJK SC',sans-serif" font-size="24" fill="#333333" font-weight="400" text-anchor="start">样本是什么？希望比较什么？</text>
+<text x="88" y="144" font-family="'PingFang SC','Hiragino Sans GB','Microsoft YaHei','Noto Sans CJK SC',sans-serif" font-size="23" fill="#186254" font-weight="400" text-anchor="start">AI 协助：梳理问题和背景</text>
+<path d="M336 175 L336 193" fill="none" stroke="#186254" stroke-width="2.5" marker-end="url(#arrow)"/>
+<rect x="64" y="204" width="548" height="144" rx="14" fill="#e8f4f1" stroke="none" stroke-width="2"/>
+<circle cx="94" cy="239" r="18" fill="#186254" stroke="none" stroke-width="2"/>
+<text x="94" y="248" font-family="'PingFang SC','Hiragino Sans GB','Microsoft YaHei','Noto Sans CJK SC',sans-serif" font-size="25" fill="white" font-weight="600" text-anchor="middle">2</text>
+<text x="126" y="248" font-family="'PingFang SC','Hiragino Sans GB','Microsoft YaHei','Noto Sans CJK SC',sans-serif" font-size="27" fill="#186254" font-weight="600" text-anchor="start">找到需要的知识</text>
+<text x="88" y="288" font-family="'PingFang SC','Hiragino Sans GB','Microsoft YaHei','Noto Sans CJK SC',sans-serif" font-size="24" fill="#333333" font-weight="400" text-anchor="start">生物学 · 实验设计 · 统计 · 编程</text>
+<text x="88" y="324" font-family="'PingFang SC','Hiragino Sans GB','Microsoft YaHei','Noto Sans CJK SC',sans-serif" font-size="23" fill="#186254" font-weight="400" text-anchor="start">AI 协助：解释概念，整理线索</text>
+<path d="M336 355 L336 373" fill="none" stroke="#186254" stroke-width="2.5" marker-end="url(#arrow)"/>
+<rect x="64" y="384" width="548" height="144" rx="14" fill="#e8f4f1" stroke="none" stroke-width="2"/>
+<circle cx="94" cy="419" r="18" fill="#186254" stroke="none" stroke-width="2"/>
+<text x="94" y="428" font-family="'PingFang SC','Hiragino Sans GB','Microsoft YaHei','Noto Sans CJK SC',sans-serif" font-size="25" fill="white" font-weight="600" text-anchor="middle">3</text>
+<text x="126" y="428" font-family="'PingFang SC','Hiragino Sans GB','Microsoft YaHei','Noto Sans CJK SC',sans-serif" font-size="27" fill="#186254" font-weight="600" text-anchor="start">把知识用到当前任务中</text>
+<text x="88" y="468" font-family="'PingFang SC','Hiragino Sans GB','Microsoft YaHei','Noto Sans CJK SC',sans-serif" font-size="24" fill="#333333" font-weight="400" text-anchor="start">用小数据尝试，观察输入与输出</text>
+<text x="88" y="504" font-family="'PingFang SC','Hiragino Sans GB','Microsoft YaHei','Noto Sans CJK SC',sans-serif" font-size="23" fill="#186254" font-weight="400" text-anchor="start">AI 协助：实现步骤，排查报错</text>
+<path d="M336 535 L336 553" fill="none" stroke="#186254" stroke-width="2.5" marker-end="url(#arrow)"/>
+<rect x="64" y="564" width="548" height="144" rx="14" fill="#e8f4f1" stroke="none" stroke-width="2"/>
+<circle cx="94" cy="599" r="18" fill="#186254" stroke="none" stroke-width="2"/>
+<text x="94" y="608" font-family="'PingFang SC','Hiragino Sans GB','Microsoft YaHei','Noto Sans CJK SC',sans-serif" font-size="25" fill="white" font-weight="600" text-anchor="middle">4</text>
+<text x="126" y="608" font-family="'PingFang SC','Hiragino Sans GB','Microsoft YaHei','Noto Sans CJK SC',sans-serif" font-size="27" fill="#186254" font-weight="600" text-anchor="start">检查结果，回看依据</text>
+<text x="88" y="648" font-family="'PingFang SC','Hiragino Sans GB','Microsoft YaHei','Noto Sans CJK SC',sans-serif" font-size="24" fill="#333333" font-weight="400" text-anchor="start">结果能回答最初的问题吗？</text>
+<text x="88" y="684" font-family="'PingFang SC','Hiragino Sans GB','Microsoft YaHei','Noto Sans CJK SC',sans-serif" font-size="23" fill="#186254" font-weight="400" text-anchor="start">AI 协助整理；结合原始材料核对</text>
+<path d="M64 636 H30 V276 H55" fill="none" stroke="#b45309" stroke-width="2.5" marker-end="url(#return)" stroke-dasharray="7 7"/>
+<path d="M102 753 L148 753" fill="none" stroke="#b45309" stroke-width="2.5" marker-end="url(#return)" stroke-dasharray="7 7"/>
+<text x="168" y="762" font-family="'PingFang SC','Hiragino Sans GB','Microsoft YaHei','Noto Sans CJK SC',sans-serif" font-size="24" fill="#b45309" font-weight="400" text-anchor="start">发现缺口，再回到相关知识中查找</text>
+</g></svg>

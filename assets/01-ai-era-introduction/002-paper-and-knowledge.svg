@@ -1,0 +1,106 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="640" height="1184" viewBox="0 0 640 1184" role="img" aria-labelledby="title description">
+<title id="title">一篇论文联系起多种能力</title><desc id="description">用文献、实验样本、电脑、图像、论文与审稿六个场景表示研究工作；各环节对应不同知识。虚线表示根据问题回到实验或分析，研究通常需要多人协作。</desc>
+<defs><marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path d="M0 1 L9 5 L0 9" fill="none" stroke="#186254" stroke-width="1.6"/></marker>
+<marker id="return" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto"><path d="M0 1 L9 5 L0 9" fill="none" stroke="#b45309" stroke-width="1.6"/></marker></defs>
+<rect width="640" height="1184" fill="#fcfcf9"/>
+<g stroke-linecap="round" stroke-linejoin="round">
+<rect x="25" y="18" width="555" height="153" rx="14" fill="white" stroke="#d4e3dc" stroke-width="2"/>
+<rect x="53" y="44" width="90" height="102" rx="6" fill="white" stroke="#186254" stroke-width="2"/>
+<rect x="67" y="36" width="90" height="102" rx="6" fill="#fcfcf9" stroke="#186254" stroke-width="2"/>
+<path d="M79 56 L136 56" fill="none" stroke="#9ca3af" stroke-width="2"/>
+<path d="M79 70 L143 70" fill="none" stroke="#9ca3af" stroke-width="2"/>
+<path d="M79 102 L121 102" fill="none" stroke="#9ca3af" stroke-width="2"/>
+<path d="M79 116 L139 116" fill="none" stroke="#9ca3af" stroke-width="2"/>
+<circle cx="152" cy="83" r="28" fill="#fdf3e3" stroke="#b45309" stroke-width="2"/>
+<text x="152" y="94" font-family="'PingFang SC','Hiragino Sans GB','Microsoft YaHei','Noto Sans CJK SC',sans-serif" font-size="34" fill="#b45309" font-weight="600" text-anchor="middle">?</text>
+<text x="215" y="56" font-family="'PingFang SC','Hiragino Sans GB','Microsoft YaHei','Noto Sans CJK SC',sans-serif" font-size="26" fill="#186254" font-weight="600" text-anchor="start">文献与研究问题</text>
+<rect x="205" y="72" width="358" height="41" rx="7" fill="#e8f4f1" stroke="none" stroke-width="2"/>
+<text x="218" y="100" font-family="'PingFang SC','Hiragino Sans GB','Microsoft YaHei','Noto Sans CJK SC',sans-serif" font-size="24" fill="#333333" font-weight="400" text-anchor="start">领域背景 · 证据与疑问</text>
+<text x="215" y="148" font-family="'PingFang SC','Hiragino Sans GB','Microsoft YaHei','Noto Sans CJK SC',sans-serif" font-size="23" fill="#6b7280" font-weight="400" text-anchor="start">从已有研究中确定问题</text>
+<path d="M110 177 L110 188" fill="none" stroke="#186254" stroke-width="2.5" marker-end="url(#arrow)"/>
+<rect x="25" y="195" width="555" height="153" rx="14" fill="white" stroke="#d4e3dc" stroke-width="2"/>
+<rect x="59" y="229" width="24" height="80" rx="11" fill="white" stroke="#186254" stroke-width="2"/>
+<rect x="63" y="267" width="16" height="38" rx="7" fill="#e8f4f1" stroke="none" stroke-width="2"/>
+<path d="M57 230 L85 230" fill="none" stroke="#186254" stroke-width="4"/>
+<rect x="98" y="229" width="24" height="80" rx="11" fill="white" stroke="#186254" stroke-width="2"/>
+<rect x="102" y="267" width="16" height="38" rx="7" fill="#e8f4f1" stroke="none" stroke-width="2"/>
+<path d="M96 230 L124 230" fill="none" stroke="#186254" stroke-width="4"/>
+<rect x="137" y="229" width="24" height="80" rx="11" fill="white" stroke="#186254" stroke-width="2"/>
+<rect x="141" y="267" width="16" height="38" rx="7" fill="#e8f4f1" stroke="none" stroke-width="2"/>
+<path d="M135 230 L163 230" fill="none" stroke="#186254" stroke-width="4"/>
+<path d="M50 288 H177 V321 H50 Z" fill="none" stroke="#186254" stroke-width="2.5"/>
+<path d="M56 330 L173 330" fill="none" stroke="#186254" stroke-width="2.5"/>
+<text x="215" y="233" font-family="'PingFang SC','Hiragino Sans GB','Microsoft YaHei','Noto Sans CJK SC',sans-serif" font-size="26" fill="#186254" font-weight="600" text-anchor="start">设计并完成实验</text>
+<rect x="205" y="249" width="358" height="41" rx="7" fill="#e8f4f1" stroke="none" stroke-width="2"/>
+<text x="218" y="277" font-family="'PingFang SC','Hiragino Sans GB','Microsoft YaHei','Noto Sans CJK SC',sans-serif" font-size="24" fill="#333333" font-weight="400" text-anchor="start">测量方法 · 对照 · 重复</text>
+<text x="215" y="325" font-family="'PingFang SC','Hiragino Sans GB','Microsoft YaHei','Noto Sans CJK SC',sans-serif" font-size="23" fill="#6b7280" font-weight="400" text-anchor="start">保留样本信息与实验记录</text>
+<path d="M110 354 L110 365" fill="none" stroke="#186254" stroke-width="2.5" marker-end="url(#arrow)"/>
+<rect x="25" y="372" width="555" height="153" rx="14" fill="white" stroke="#d4e3dc" stroke-width="2"/>
+<rect x="49" y="399" width="126" height="83" rx="7" fill="white" stroke="#186254" stroke-width="2"/>
+<path d="M40 493 H184 L171 504 H53 Z" fill="#e8f4f1" stroke="#186254" stroke-width="2.5"/>
+<path d="M71 427 l-10 10 10 10 M89 425 l-9 24 M100 427 l10 10 -10 10" fill="none" stroke="#186254" stroke-width="2.5"/>
+<rect x="126" y="416" width="34" height="45" rx="0" fill="#e8f4f1" stroke="#186254" stroke-width="1.5"/>
+<path d="M126 431 L160 431" fill="none" stroke="#186254" stroke-width="1.3"/>
+<path d="M126 446 L160 446" fill="none" stroke="#186254" stroke-width="1.3"/>
+<path d="M143 416 L143 461" fill="none" stroke="#186254" stroke-width="1.3"/>
+<text x="215" y="410" font-family="'PingFang SC','Hiragino Sans GB','Microsoft YaHei','Noto Sans CJK SC',sans-serif" font-size="26" fill="#186254" font-weight="600" text-anchor="start">数据整理、编程与分析</text>
+<rect x="205" y="426" width="358" height="41" rx="7" fill="#e8f4f1" stroke="none" stroke-width="2"/>
+<text x="218" y="454" font-family="'PingFang SC','Hiragino Sans GB','Microsoft YaHei','Noto Sans CJK SC',sans-serif" font-size="24" fill="#333333" font-weight="400" text-anchor="start">文件管理 · 编程 · 统计</text>
+<text x="215" y="502" font-family="'PingFang SC','Hiragino Sans GB','Microsoft YaHei','Noto Sans CJK SC',sans-serif" font-size="23" fill="#6b7280" font-weight="400" text-anchor="start">核对输入、方法与结果</text>
+<path d="M110 531 L110 542" fill="none" stroke="#186254" stroke-width="2.5" marker-end="url(#arrow)"/>
+<rect x="25" y="549" width="555" height="153" rx="14" fill="white" stroke="#d4e3dc" stroke-width="2"/>
+<rect x="47" y="575" width="88" height="88" rx="5" fill="white" stroke="#186254" stroke-width="2"/>
+<path d="M63 590 V646 H122" fill="none" stroke="#186254" stroke-width="2"/>
+<circle cx="75" cy="622" r="3.5" fill="#186254" stroke="none" stroke-width="2"/>
+<circle cx="85" cy="609" r="3.5" fill="#186254" stroke="none" stroke-width="2"/>
+<circle cx="100" cy="618" r="3.5" fill="#186254" stroke="none" stroke-width="2"/>
+<circle cx="114" cy="599" r="3.5" fill="#186254" stroke="none" stroke-width="2"/>
+<rect x="108" y="615" width="77" height="63" rx="5" fill="#e8f4f1" stroke="#186254" stroke-width="2"/>
+<circle cx="128" cy="634" r="8" fill="white" stroke="#186254" stroke-width="1.5"/>
+<circle cx="129" cy="634" r="2.5" fill="#186254" stroke="none" stroke-width="2"/>
+<circle cx="161" cy="642" r="8" fill="white" stroke="#186254" stroke-width="1.5"/>
+<circle cx="162" cy="642" r="2.5" fill="#186254" stroke="none" stroke-width="2"/>
+<circle cx="141" cy="659" r="8" fill="white" stroke="#186254" stroke-width="1.5"/>
+<circle cx="142" cy="659" r="2.5" fill="#186254" stroke="none" stroke-width="2"/>
+<path d="M159 669 L176 669" fill="none" stroke="#186254" stroke-width="3"/>
+<text x="215" y="587" font-family="'PingFang SC','Hiragino Sans GB','Microsoft YaHei','Noto Sans CJK SC',sans-serif" font-size="26" fill="#186254" font-weight="600" text-anchor="start">绘图与实验图片整理</text>
+<rect x="205" y="603" width="358" height="41" rx="7" fill="#e8f4f1" stroke="none" stroke-width="2"/>
+<text x="218" y="631" font-family="'PingFang SC','Hiragino Sans GB','Microsoft YaHei','Noto Sans CJK SC',sans-serif" font-size="24" fill="#333333" font-weight="400" text-anchor="start">图形表达 · 图像信息</text>
+<text x="215" y="679" font-family="'PingFang SC','Hiragino Sans GB','Microsoft YaHei','Noto Sans CJK SC',sans-serif" font-size="23" fill="#6b7280" font-weight="400" text-anchor="start">让图忠实表达数据</text>
+<path d="M110 708 L110 719" fill="none" stroke="#186254" stroke-width="2.5" marker-end="url(#arrow)"/>
+<rect x="25" y="726" width="555" height="153" rx="14" fill="white" stroke="#d4e3dc" stroke-width="2"/>
+<rect x="65" y="744" width="98" height="118" rx="5" fill="white" stroke="#186254" stroke-width="2"/>
+<path d="M81 762 L145 762" fill="none" stroke="#186254" stroke-width="4"/>
+<path d="M81 777 L108 777" fill="none" stroke="#9ca3af" stroke-width="2"/>
+<path d="M81 788 L108 788" fill="none" stroke="#9ca3af" stroke-width="2"/>
+<path d="M81 799 L108 799" fill="none" stroke="#9ca3af" stroke-width="2"/>
+<path d="M119 777 L146 777" fill="none" stroke="#9ca3af" stroke-width="2"/>
+<path d="M119 788 L146 788" fill="none" stroke="#9ca3af" stroke-width="2"/>
+<path d="M119 799 L146 799" fill="none" stroke="#9ca3af" stroke-width="2"/>
+<rect x="80" y="814" width="29" height="30" rx="2" fill="#e8f4f1" stroke="#186254" stroke-width="1.5"/>
+<rect x="118" y="814" width="29" height="30" rx="2" fill="#e8f4f1" stroke="#186254" stroke-width="1.5"/>
+<text x="215" y="764" font-family="'PingFang SC','Hiragino Sans GB','Microsoft YaHei','Noto Sans CJK SC',sans-serif" font-size="26" fill="#186254" font-weight="600" text-anchor="start">写作、排版与润色</text>
+<rect x="205" y="780" width="358" height="41" rx="7" fill="#e8f4f1" stroke="none" stroke-width="2"/>
+<text x="218" y="808" font-family="'PingFang SC','Hiragino Sans GB','Microsoft YaHei','Noto Sans CJK SC',sans-serif" font-size="24" fill="#333333" font-weight="400" text-anchor="start">论述逻辑 · 准确表达</text>
+<text x="215" y="856" font-family="'PingFang SC','Hiragino Sans GB','Microsoft YaHei','Noto Sans CJK SC',sans-serif" font-size="23" fill="#6b7280" font-weight="400" text-anchor="start">对应正文、图表和证据</text>
+<path d="M110 885 L110 896" fill="none" stroke="#186254" stroke-width="2.5" marker-end="url(#arrow)"/>
+<rect x="25" y="903" width="555" height="153" rx="14" fill="white" stroke="#d4e3dc" stroke-width="2"/>
+<rect x="55" y="924" width="90" height="109" rx="5" fill="white" stroke="#186254" stroke-width="2"/>
+<path d="M71 945 L127 945" fill="none" stroke="#9ca3af" stroke-width="2"/>
+<path d="M71 964 L127 964" fill="none" stroke="#9ca3af" stroke-width="2"/>
+<path d="M71 983 L127 983" fill="none" stroke="#9ca3af" stroke-width="2"/>
+<path d="M71 1003 L127 1003" fill="none" stroke="#9ca3af" stroke-width="2"/>
+<rect x="114" y="947" width="67" height="52" rx="9" fill="#fdf3e3" stroke="#b45309" stroke-width="2"/>
+<path d="M130 999 L122 1012 L150 999" fill="none" stroke="#b45309" stroke-width="2.5"/>
+<path d="M129 963 L167 963" fill="none" stroke="#b45309" stroke-width="2"/>
+<path d="M129 977 L157 977" fill="none" stroke="#b45309" stroke-width="2"/>
+<text x="215" y="941" font-family="'PingFang SC','Hiragino Sans GB','Microsoft YaHei','Noto Sans CJK SC',sans-serif" font-size="26" fill="#186254" font-weight="600" text-anchor="start">投稿、审稿与修改</text>
+<rect x="205" y="957" width="358" height="41" rx="7" fill="#e8f4f1" stroke="none" stroke-width="2"/>
+<text x="218" y="985" font-family="'PingFang SC','Hiragino Sans GB','Microsoft YaHei','Noto Sans CJK SC',sans-serif" font-size="24" fill="#333333" font-weight="400" text-anchor="start">回应问题 · 补充证据</text>
+<text x="215" y="1033" font-family="'PingFang SC','Hiragino Sans GB','Microsoft YaHei','Noto Sans CJK SC',sans-serif" font-size="23" fill="#6b7280" font-weight="400" text-anchor="start">必要时补实验或重新分析</text>
+<path d="M580 979 H612 V270 H588" fill="none" stroke="#b45309" stroke-width="2.5" marker-end="url(#return)" stroke-dasharray="7 7"/>
+<path d="M612 447 H588" fill="none" stroke="#b45309" stroke-width="2.5" marker-end="url(#return)" stroke-dasharray="7 7"/>
+<path d="M45 1110 L91 1110" fill="none" stroke="#b45309" stroke-width="2.5" marker-end="url(#return)" stroke-dasharray="7 7"/>
+<text x="110" y="1119" font-family="'PingFang SC','Hiragino Sans GB','Microsoft YaHei','Noto Sans CJK SC',sans-serif" font-size="24" fill="#b45309" font-weight="400" text-anchor="start">根据问题回查，补实验或重新分析</text>
+<text x="320" y="1164" font-family="'PingFang SC','Hiragino Sans GB','Microsoft YaHei','Noto Sans CJK SC',sans-serif" font-size="24" fill="#186254" font-weight="400" text-anchor="middle">这些工作通常由不同的人协作完成</text>
+</g></svg>

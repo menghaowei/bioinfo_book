@@ -210,7 +210,10 @@
       "topic-01-server",
       "topic-01-programming",
       "topic-01-biology-statistics",
-      "topic-01-paper-reproduction"
+      "topic-01-paper-reproduction",
+      "fig-01-learning-cycle",
+      "fig-01-paper-knowledge",
+      "fig-01-framework-transfer"
     ],
     "manuscript/03-sequencing-technologies.md": [
       "src-0020-introduction-of-NGS-1",
