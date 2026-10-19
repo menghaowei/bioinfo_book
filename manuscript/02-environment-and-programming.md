@@ -23,7 +23,7 @@
 
 ![本地电脑与远端服务器的分工与连接](../assets/02-computing-and-programming/svg/local-remote-platform.svg){#fig-02-local-remote-platform}
 
-现在，AI 已经可以帮我们读代码、写脚本和排查错误。选择本地电脑时，我建议把 AI agent 的兼容性和使用体验放在第一位，再看连接服务器和日常办公是否方便。按本书的安排，我们在本地使用 AI agent，把重计算交给 Linux 服务器。如果你准备买电脑或换电脑，我优先推荐搭载 Apple Silicon 的 Mac：它有 Unix 命令行环境和较完整的桌面软件生态，也能原生运行下文介绍的 AI agent 桌面应用。手头的电脑如果已经能完成这些工作，就继续用。本章先配置本地环境，再学习连接服务器和基本操作。
+现在，AI 已经可以帮我们读代码、写脚本和排查错误。选择本地电脑时，我建议把 AI agent 的兼容性和使用体验放在第一位，再看连接服务器和日常办公是否方便。按本书的安排，我们在本地使用 AI agent，把重计算交给 Linux 服务器。[**如果你准备买电脑或换电脑，我优先推荐搭载 Apple Silicon 的 Mac**]{.underline}：它有 Unix 命令行环境和较完整的桌面软件生态，也能原生运行下文介绍的 AI agent 桌面应用。手头的电脑如果已经能完成这些工作，就继续用。本章先配置本地环境，再学习连接服务器和基本操作。
 
 ### Windows、Linux和macOS的选择 {#src-0090-build-up-bioinfo-platform-3}
 
