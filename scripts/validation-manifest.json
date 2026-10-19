@@ -641,7 +641,8 @@
       "topic-02-python-containers",
       "topic-02-python-flow",
       "topic-02-python-functions",
-      "topic-02-python-files"
+      "topic-02-python-files",
+      "fig-02-local-remote-platform"
     ],
     "manuscript/08-base-imbalanced-sequencing.md": [
       "sec-ch08",

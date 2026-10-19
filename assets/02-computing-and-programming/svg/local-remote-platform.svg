@@ -1,0 +1,58 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="640" height="610" viewBox="0 0 640 610" role="img" aria-labelledby="title description">
+<title id="title">本地电脑与远端服务器的分工与连接</title>
+<desc id="description">本地电脑按需选择 Windows、macOS 或 Linux，用来编辑代码、绘图和使用 AI agent。通过终端或 VS Code Remote-SSH，以 SSH 连接通常运行 Linux 的远端服务器：命令从本地发往远端，输出从远端返回本地；比对、定量等重计算在服务器执行。两端的系统不必相同。</desc>
+<defs><marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M1 1 L9 5 L1 9" fill="none" stroke="#186254" stroke-width="1.6"/></marker></defs>
+<rect width="640" height="610" fill="#fcfcf9"/>
+<g stroke-linecap="round" stroke-linejoin="round">
+<text x="140" y="49" text-anchor="middle" font-family="'PingFang SC','Hiragino Sans GB','Microsoft YaHei','Noto Sans CJK SC',sans-serif" font-size="29" font-weight="600" fill="#186254">本地电脑</text>
+<text x="500" y="49" text-anchor="middle" font-family="'PingFang SC','Hiragino Sans GB','Microsoft YaHei','Noto Sans CJK SC',sans-serif" font-size="29" font-weight="600" fill="#186254">远端服务器</text>
+<text x="140" y="93" text-anchor="middle" font-family="'PingFang SC','Hiragino Sans GB','Microsoft YaHei','Noto Sans CJK SC',sans-serif" font-size="24" font-weight="400" fill="#333333">按需选择系统</text>
+<text x="140" y="131" text-anchor="middle" font-family="'PingFang SC','Hiragino Sans GB','Microsoft YaHei','Noto Sans CJK SC',sans-serif" font-size="24" font-weight="400" fill="#333333">Windows / macOS</text>
+<text x="140" y="164" text-anchor="middle" font-family="'PingFang SC','Hiragino Sans GB','Microsoft YaHei','Noto Sans CJK SC',sans-serif" font-size="24" font-weight="400" fill="#333333">或 Linux</text>
+<text x="500" y="93" text-anchor="middle" font-family="'PingFang SC','Hiragino Sans GB','Microsoft YaHei','Noto Sans CJK SC',sans-serif" font-size="24" font-weight="400" fill="#333333">通常运行</text>
+<text x="500" y="145" text-anchor="middle" font-family="'PingFang SC','Hiragino Sans GB','Microsoft YaHei','Noto Sans CJK SC',sans-serif" font-size="36" font-weight="600" fill="#186254">Linux</text>
+<rect x="44" y="210" width="192" height="122" rx="9" fill="white" stroke="#186254" stroke-width="2.5"/>
+<rect x="55" y="221" width="170" height="96" rx="3" fill="#e8f4f1" stroke="none" stroke-width="2.5"/>
+<path d="M70 239 l13 11 -13 11 M92 265 h20" fill="none" stroke="#186254" stroke-width="3"/>
+<path d="M146 240 V298 H207" fill="none" stroke="#186254" stroke-width="2"/>
+<path d="M156 281 l14 -12 13 7 14 -24" fill="none" stroke="#186254" stroke-width="3"/>
+<path d="M44 332 L25 350 Q24 356 34 356 H246 Q256 356 255 350 L236 332 Z" fill="#e8f4f1" stroke="#186254" stroke-width="2.5"/>
+<path d="M119 340 H161" fill="none" stroke="#9ca3af" stroke-width="3"/>
+<rect x="439" y="190" width="122" height="166" rx="10" fill="white" stroke="#186254" stroke-width="2.5"/>
+<rect x="450" y="204" width="100" height="34" rx="5" fill="#e8f4f1" stroke="#186254" stroke-width="1.7"/>
+<circle cx="465" cy="221" r="4" fill="#186254"/>
+<path d="M491 214 v14" fill="none" stroke="#9ca3af" stroke-width="1.7"/>
+<path d="M501 214 v14" fill="none" stroke="#9ca3af" stroke-width="1.7"/>
+<path d="M511 214 v14" fill="none" stroke="#9ca3af" stroke-width="1.7"/>
+<path d="M521 214 v14" fill="none" stroke="#9ca3af" stroke-width="1.7"/>
+<path d="M531 214 v14" fill="none" stroke="#9ca3af" stroke-width="1.7"/>
+<rect x="450" y="250" width="100" height="34" rx="5" fill="#e8f4f1" stroke="#186254" stroke-width="1.7"/>
+<circle cx="465" cy="267" r="4" fill="#186254"/>
+<path d="M491 260 v14" fill="none" stroke="#9ca3af" stroke-width="1.7"/>
+<path d="M501 260 v14" fill="none" stroke="#9ca3af" stroke-width="1.7"/>
+<path d="M511 260 v14" fill="none" stroke="#9ca3af" stroke-width="1.7"/>
+<path d="M521 260 v14" fill="none" stroke="#9ca3af" stroke-width="1.7"/>
+<path d="M531 260 v14" fill="none" stroke="#9ca3af" stroke-width="1.7"/>
+<rect x="450" y="296" width="100" height="34" rx="5" fill="#e8f4f1" stroke="#186254" stroke-width="1.7"/>
+<circle cx="465" cy="313" r="4" fill="#186254"/>
+<path d="M491 306 v14" fill="none" stroke="#9ca3af" stroke-width="1.7"/>
+<path d="M501 306 v14" fill="none" stroke="#9ca3af" stroke-width="1.7"/>
+<path d="M511 306 v14" fill="none" stroke="#9ca3af" stroke-width="1.7"/>
+<path d="M521 306 v14" fill="none" stroke="#9ca3af" stroke-width="1.7"/>
+<path d="M531 306 v14" fill="none" stroke="#9ca3af" stroke-width="1.7"/>
+<path d="M451 356 v9 M549 356 v9" fill="none" stroke="#186254" stroke-width="4"/>
+<text x="320" y="225" text-anchor="middle" font-family="'PingFang SC','Hiragino Sans GB','Microsoft YaHei','Noto Sans CJK SC',sans-serif" font-size="23" font-weight="400" fill="#333333">发送命令</text>
+<path d="M269 241 H371" fill="none" stroke="#186254" stroke-width="2.5" marker-end="url(#arrow)"/>
+<text x="320" y="283" text-anchor="middle" font-family="'PingFang SC','Hiragino Sans GB','Microsoft YaHei','Noto Sans CJK SC',sans-serif" font-size="27" font-weight="600" fill="#186254">SSH</text>
+<path d="M371 304 H269" fill="none" stroke="#186254" stroke-width="2.5" marker-end="url(#arrow)"/>
+<text x="320" y="339" text-anchor="middle" font-family="'PingFang SC','Hiragino Sans GB','Microsoft YaHei','Noto Sans CJK SC',sans-serif" font-size="23" font-weight="400" fill="#333333">返回输出</text>
+<text x="140" y="389" text-anchor="middle" font-family="'PingFang SC','Hiragino Sans GB','Microsoft YaHei','Noto Sans CJK SC',sans-serif" font-size="23" font-weight="400" fill="#333333">终端或 VS Code</text>
+<text x="140" y="421" text-anchor="middle" font-family="'PingFang SC','Hiragino Sans GB','Microsoft YaHei','Noto Sans CJK SC',sans-serif" font-size="23" font-weight="400" fill="#6b7280">Remote-SSH</text>
+<rect x="16" y="452" width="248" height="138" rx="12" fill="#e8f4f1" stroke="none" stroke-width="2.5"/>
+<rect x="376" y="452" width="248" height="138" rx="12" fill="#e8f4f1" stroke="none" stroke-width="2.5"/>
+<text x="140" y="488" text-anchor="middle" font-family="'PingFang SC','Hiragino Sans GB','Microsoft YaHei','Noto Sans CJK SC',sans-serif" font-size="24" font-weight="400" fill="#333333">编辑代码</text>
+<text x="140" y="527" text-anchor="middle" font-family="'PingFang SC','Hiragino Sans GB','Microsoft YaHei','Noto Sans CJK SC',sans-serif" font-size="24" font-weight="400" fill="#333333">绘图</text>
+<text x="140" y="566" text-anchor="middle" font-family="'PingFang SC','Hiragino Sans GB','Microsoft YaHei','Noto Sans CJK SC',sans-serif" font-size="24" font-weight="400" fill="#333333">使用 AI agent</text>
+<text x="500" y="507" text-anchor="middle" font-family="'PingFang SC','Hiragino Sans GB','Microsoft YaHei','Noto Sans CJK SC',sans-serif" font-size="24" font-weight="400" fill="#333333">比对、定量</text>
+<text x="500" y="546" text-anchor="middle" font-family="'PingFang SC','Hiragino Sans GB','Microsoft YaHei','Noto Sans CJK SC',sans-serif" font-size="24" font-weight="400" fill="#333333">等重计算</text>
+</g></svg>
