@@ -19,7 +19,7 @@
 
 生物信息学的分析平台由本地电脑和远端服务器两部分组成。本地电脑主要用来编辑代码、用 R 等工具绘图，以及运行 Claude Code、Codex、ZCode 这类 AI coding agent 辅助编程；比对、定量这些消耗算力的计算，几乎都在远端服务器上完成。本地电脑是否好用，主要取决于这些日常工作能否顺畅完成。
 
-在 AI 已经参与读代码、写脚本和排查错误的今天，我建议把 AI agent 的兼容性和使用体验放在选择本地电脑的第一位，再考虑与服务器衔接是否方便、日常办公是否顺手。按本书“本地使用 AI agent，重计算交给 Linux 服务器”的工作方式，如果准备购置或更换电脑，我优先推荐搭载 Apple Silicon 的 Mac。它兼有 Unix 命令行环境和较完整的桌面软件生态，也能原生运行下文介绍的 AI agent 桌面应用。这是针对本书学习和工作方式的选机建议；已有的电脑能完成这些任务，就可以继续使用。本章先把本地工作台配好，再学习连接服务器和基本操作。
+现在，AI 已经可以帮我们读代码、写脚本和排查错误。选择本地电脑时，我建议把 AI agent 的兼容性和使用体验放在第一位，再看连接服务器和日常办公是否方便。按本书的安排，我们在本地使用 AI agent，把重计算交给 Linux 服务器。如果你准备买电脑或换电脑，我优先推荐搭载 Apple Silicon 的 Mac：它有 Unix 命令行环境和较完整的桌面软件生态，也能原生运行下文介绍的 AI agent 桌面应用。手头的电脑如果已经能完成这些工作，就继续用。本章先配置本地环境，再学习连接服务器和基本操作。
 
 ### Windows、Linux和macOS的选择 {#src-0090-build-up-bioinfo-platform-3}
 
@@ -37,11 +37,11 @@ Windows 生态最普及，但与 Linux 服务器差异较大：大多数开源�
 
 macOS 基于 Unix，自带终端和一批常用命令行工具，与 Linux 服务器的操作习惯接近；同时保留了完整的图形界面生态，作为本地主机可以兼顾开发与日常使用。选购时还要分清 Intel Mac 和 Apple Silicon Mac：苹果从 2020 年开始推出搭载自研芯片的 Mac，Apple Silicon 使用 arm64 架构，与 Intel Mac 及许多服务器使用的 x86_64 架构不同。[^ch02-apple-silicon]
 
-截至 2026 年 10 月，Codex 的桌面功能已整合进 ChatGPT 桌面应用，其 macOS 版本面向 Apple Silicon；DeepSeek Harness 的 macOS 桌面版也要求 Apple 芯片。这两个桌面入口目前都没有提供 Intel Mac 版本，是我推荐换机时选择 Apple Silicon 的具体理由。[^ch02-agent-desktop] 这里说的是桌面应用：Codex CLI 仍提供 Intel Mac 的程序包，Windows 和 Linux 也各有可用的 AI agent 入口。因此，判断兼容性时要落实到自己准备使用的版本。[^ch02-agent-cli]
+截至 2026 年 10 月，Codex 的桌面功能已整合进 ChatGPT 桌面应用，其 macOS 版本面向 Apple Silicon；DeepSeek Harness 的 macOS 桌面版也要求 Apple 芯片。这两个桌面应用目前都没有提供 Intel Mac 版本，也是我推荐换机时选择 Apple Silicon 的理由。[^ch02-agent-desktop] 但桌面应用和命令行版本的支持范围要分别看：Codex CLI 仍提供 Intel Mac 的程序包，Windows 和 Linux 上也有可用的 AI agent。选工具时，要查清自己准备使用的版本是否支持相应的系统和芯片。[^ch02-agent-cli]
 
 那么，只提供 Intel 版本的旧软件，在 Apple Silicon Mac 上还能不能用？先看它是不是为 macOS 编译的程序。Apple 提供的 Rosetta 兼容层可以把许多 Intel Mac 程序转译后运行，首次使用时可能需要按提示安装。Python 3.6 就是一个例子：常用的 Anaconda 和 conda-forge 频道没有提供它的 macOS arm64 预编译包，但保留了 Intel Mac 使用的 `osx-64` 包。在支持 Rosetta 的系统上，可以在创建 Conda 环境的命令前加上 `CONDA_SUBDIR=osx-64`，让 Conda 选择 Intel 版本的软件包，再由 Rosetta 负责运行。这里的环境变量只改变下载哪一种包，并不承担转译工作；具体命令见后文的[Python 3.6 兼容环境示例](#example-02-apple-silicon-py36)。[^ch02-py36-packages]
 
-10x Genomics 的 Ranger 系列则需要另作判断。Cell Ranger、Space Ranger 和 Cell Ranger ARC 目前官方支持的是采用 Intel/AMD 处理器的 Linux 环境，并要求 AVX 等指令集。它们既有操作系统要求，也有处理器要求，不能像普通 Intel Mac 软件那样直接交给 macOS 的 Rosetta 运行。对本书读者，合适的做法是用 Mac 编写和检查脚本，再连接符合软件要求的 Linux 服务器执行分析。[^ch02-ranger] 也不要把原因简单记成“Apple 芯片不支持 AVX，所以完全不能运行”：目前 Apple 的文档已列出 Rosetta 对 AVX 和 AVX2 的支持，但这不等于 Ranger 已获得 macOS 或 Apple Silicon 的官方支持。[^ch02-rosetta-instructions]
+10x Genomics 的 Ranger 系列中，Cell Ranger、Space Ranger 和 Cell Ranger ARC 目前官方支持的都是采用 Intel/AMD 处理器的 Linux 环境，并要求 AVX 等指令集。这些软件不能像普通 Intel Mac 软件那样直接交给 macOS 的 Rosetta 运行。我们可以在 Mac 上编写和检查脚本，再连接符合软件要求的 Linux 服务器执行分析。[^ch02-ranger] 这里要注意，“Apple 芯片不支持 AVX，所以完全不能运行”并不是准确的解释：目前 Apple 的文档已列出 Rosetta 对 AVX 和 AVX2 的支持，但这不等于 Ranger 已获得 macOS 或 Apple Silicon 的官方支持。[^ch02-rosetta-instructions]
 
 
 ### 在 Windows 下使用 Linux 命令行 {#src-0090-build-up-bioinfo-platform-147}
@@ -572,7 +572,9 @@ conda create -p /home/test_conda python=3.12
 
 ::: {#example-02-apple-silicon-py36 .callout-tip .book-example title="示例与练习｜在 Apple Silicon Mac 上创建 Python 3.6 兼容环境"}
 
-[前面介绍 macOS 兼容性时](#topic-02-platform-macos)，我们提到旧版 Python 可以借助 Rosetta 运行。下面的命令在本地 Apple Silicon Mac 的终端中执行，前提是已经安装 Conda，且系统仍支持通用的 Rosetta 转译。按 Apple 当前公布的安排，这一支持覆盖 macOS 27 及以前的版本；从 macOS 28 开始，Rosetta 将仅保留给部分旧游戏，不能把本例当作今后所有 macOS 版本都适用的办法。若尚未安装 Rosetta，可运行 `softwareupdate --install-rosetta`，按屏幕提示完成安装。[^ch02-rosetta-lifecycle]
+[前面介绍 macOS 兼容性时](#topic-02-platform-macos)，我们提到旧版 Python 可以借助 Rosetta 运行。下面在本地 Apple Silicon Mac 的终端里操作。开始前，先确认已经安装 Conda，系统也仍支持通用的 Rosetta 转译。
+
+按 Apple 当前公布的安排，macOS 27 及以前的版本支持通用的 Rosetta 转译；从 macOS 28 开始，Rosetta 将只保留给部分旧游戏。因此，本例不能直接用于今后所有 macOS 版本。还没有安装 Rosetta 的话，可以运行 `softwareupdate --install-rosetta`，按提示完成安装。[^ch02-rosetta-lifecycle]
 
 Python 3.6 已于 2021 年结束支持，这个环境用于复现依赖旧版本的项目，新项目仍应选用受支持的 Python 版本。[^ch02-python-eol] 下面以 conda-forge 提供的 Python 3.6.15 为例：
 
@@ -587,7 +589,7 @@ conda deactivate
 
 第一条命令中的 `CONDA_SUBDIR=osx-64` 只对这次创建操作生效，让 Conda 选择 Intel Mac 软件包；`--override-channels -c conda-forge` 指定本例使用的频道。进入环境后，`conda config --env --set subdir osx-64` 将这一选择保存到当前环境，避免以后装包时混入 arm64 包，也不会改变其他环境的设置。不要把 `CONDA_SUBDIR=osx-64` 写成终端启动时的全局设置，否则新环境也可能一直下载 Intel 包。[^ch02-conda-platform]
 
-检查命令预期输出 `x86_64`，表示当前 Python 进程使用的是 Intel 架构的程序，并不表示 Mac 的芯片变成了 Intel。最后一行退出该环境；下次需要时，用 `conda activate legacy-py36` 再进入即可。
+运行检查命令后，预期会看到 `x86_64`，说明当前运行的是 Intel 架构的 Python。这里查看的是程序的架构，Mac 本身仍使用 Apple Silicon。最后一行退出这个环境；下次要用时，再运行 `conda activate legacy-py36`。
 
 :::
 
