@@ -917,7 +917,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
 <h1 class="title"><span id="sec-ch02" class="quarto-section-identifier"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">分析环境的搭建与必要的编程技术</span></span></h1>
-<p class="chapter-last-modified"><time datetime="2026-10-12T14:30:32+08:00" title="本章书稿最后修改时间（北京时间，UTC+08:00）">最后修改：2026-10-12 14:30（北京时间）</time></p>
+<p class="chapter-last-modified"><time datetime="2026-10-19T15:00:49+08:00" title="本章书稿最后修改时间（北京时间，UTC+08:00）">最后修改：2026-10-19 15:00（北京时间）</time></p>
 </div>
 
 
@@ -944,11 +944,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="src-0090-build-up-bioinfo-platform-1" class="level3">
 <h3 class="anchored" data-anchor-id="src-0090-build-up-bioinfo-platform-1">生物信息学平台的构建</h3>
 <p><span id="build_up_platform"></span></p>
-<p>生物信息学的分析平台由本地电脑和远端服务器两部分组成。本地电脑主要用来编辑代码、用 R 等工具绘图，以及运行 Claude Code、Codex、ZCode 这类 AI coding agent 辅助编程；比对、定量这些消耗算力的计算，几乎都在远端服务器上完成。因此，配置本地环境时，顺手比追求性能更重要：选一个自己习惯的操作系统，把写代码、连接服务器和运行 AI agent 所需的环境配好。本章就从这张工作台开始，先配置本地系统，再学习连接服务器和基本操作。</p>
+<p>生物信息学的分析平台由本地电脑和远端服务器两部分组成。本地电脑主要用来编辑代码、用 R 等工具绘图，以及运行 Claude Code、Codex、ZCode 这类 AI coding agent 辅助编程；比对、定量这些消耗算力的计算，几乎都在远端服务器上完成。本地电脑是否好用，主要取决于这些日常工作能否顺畅完成。</p>
+<p>在 AI 已经参与读代码、写脚本和排查错误的今天，我建议把 AI agent 的兼容性和使用体验放在选择本地电脑的第一位，再考虑与服务器衔接是否方便、日常办公是否顺手。按本书“本地使用 AI agent，重计算交给 Linux 服务器”的工作方式，如果准备购置或更换电脑，我优先推荐搭载 Apple Silicon 的 Mac。它兼有 Unix 命令行环境和较完整的桌面软件生态，也能原生运行下文介绍的 AI agent 桌面应用。这是针对本书学习和工作方式的选机建议；已有的电脑能完成这些任务，就可以继续使用。本章先把本地工作台配好，再学习连接服务器和基本操作。</p>
 </section>
 <section id="src-0090-build-up-bioinfo-platform-3" class="level3">
 <h3 class="anchored" data-anchor-id="src-0090-build-up-bioinfo-platform-3">Windows、Linux和macOS的选择</h3>
-<p>选择本地主机系统时，评判标准与挑选服务器不同。本地不承担重计算，我们主要考虑开发是否方便、与服务器环境有多接近，以及自己用得是否习惯。</p>
+<p>选择本地主机系统时，先确认自己准备使用的 AI agent 支持哪些系统和芯片，再看开发、连接服务器与日常办公是否方便。同一个工具的桌面应用、命令行版本和网页版，支持范围可能不同，不能只看产品名称就判断兼容性。</p>
 <section id="topic-02-platform-windows" class="level4">
 <h4 class="anchored" data-anchor-id="topic-02-platform-windows">Windows</h4>
 <p>Windows 生态最普及，但与 Linux 服务器差异较大：大多数开源生信软件只提供 Linux 版本的二进制包或源代码，在 Windows 上直接编译安装历来困难。WSL 的出现改变了这一点——在 Windows 上可以获得十分接近 Linux 命令行的操作和兼容性体验（见下一节）。对已经在使用 Windows 的读者，没有必要为了生信专门更换电脑，配置好 WSL 即可。</p>
@@ -959,7 +960,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 <section id="topic-02-platform-macos" class="level4">
 <h4 class="anchored" data-anchor-id="topic-02-platform-macos">macOS</h4>
-<p>macOS 基于 Unix，自带终端和一批常用命令行工具，与 Linux 服务器天然接近，编译安装开源软件通常也顺利；同时保留了完整的图形界面生态，作为本地主机兼顾开发与日常使用。需要注意的是，苹果芯片（Apple Silicon）的 CPU 架构与多数服务器（x86_64）不同，个别只提供 x86 版本的软件需要通过系统自带的兼容层运行。</p>
+<p>macOS 基于 Unix，自带终端和一批常用命令行工具，与 Linux 服务器的操作习惯接近；同时保留了完整的图形界面生态，作为本地主机可以兼顾开发与日常使用。选购时还要分清 Intel Mac 和 Apple Silicon Mac：苹果从 2020 年开始推出搭载自研芯片的 Mac，Apple Silicon 使用 arm64 架构，与 Intel Mac 及许多服务器使用的 x86_64 架构不同。<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a></p>
+<p>截至 2026 年 10 月，Codex 的桌面功能已整合进 ChatGPT 桌面应用，其 macOS 版本面向 Apple Silicon；DeepSeek Harness 的 macOS 桌面版也要求 Apple 芯片。这两个桌面入口目前都没有提供 Intel Mac 版本，是我推荐换机时选择 Apple Silicon 的具体理由。<a href="#fn2" class="footnote-ref" id="fnref2" role="doc-noteref"><sup>2</sup></a> 这里说的是桌面应用：Codex CLI 仍提供 Intel Mac 的程序包，Windows 和 Linux 也各有可用的 AI agent 入口。因此，判断兼容性时要落实到自己准备使用的版本。<a href="#fn3" class="footnote-ref" id="fnref3" role="doc-noteref"><sup>3</sup></a></p>
+<p>那么，只提供 Intel 版本的旧软件，在 Apple Silicon Mac 上还能不能用？先看它是不是为 macOS 编译的程序。Apple 提供的 Rosetta 兼容层可以把许多 Intel Mac 程序转译后运行，首次使用时可能需要按提示安装。Python 3.6 就是一个例子：常用的 Anaconda 和 conda-forge 频道没有提供它的 macOS arm64 预编译包，但保留了 Intel Mac 使用的 <code>osx-64</code> 包。在支持 Rosetta 的系统上，可以在创建 Conda 环境的命令前加上 <code>CONDA_SUBDIR=osx-64</code>，让 Conda 选择 Intel 版本的软件包，再由 Rosetta 负责运行。这里的环境变量只改变下载哪一种包，并不承担转译工作；具体命令见后文的<a href="#example-02-apple-silicon-py36">Python 3.6 兼容环境示例</a>。<a href="#fn4" class="footnote-ref" id="fnref4" role="doc-noteref"><sup>4</sup></a></p>
+<p>10x Genomics 的 Ranger 系列则需要另作判断。Cell Ranger、Space Ranger 和 Cell Ranger ARC 目前官方支持的是采用 Intel/AMD 处理器的 Linux 环境，并要求 AVX 等指令集。它们既有操作系统要求，也有处理器要求，不能像普通 Intel Mac 软件那样直接交给 macOS 的 Rosetta 运行。对本书读者，合适的做法是用 Mac 编写和检查脚本，再连接符合软件要求的 Linux 服务器执行分析。<a href="#fn5" class="footnote-ref" id="fnref5" role="doc-noteref"><sup>5</sup></a> 也不要把原因简单记成“Apple 芯片不支持 AVX，所以完全不能运行”：目前 Apple 的文档已列出 Rosetta 对 AVX 和 AVX2 的支持，但这不等于 Ranger 已获得 macOS 或 Apple Silicon 的官方支持。<a href="#fn6" class="footnote-ref" id="fnref6" role="doc-noteref"><sup>6</sup></a></p>
 </section>
 </section>
 <section id="src-0090-build-up-bioinfo-platform-147" class="level3">
@@ -1657,23 +1661,45 @@ Host compute
 <p>按名称创建环境时，相关文件会放在 Anaconda 的安装目录下。如果希望放到其他位置，可以用 <code>-p</code> 指定 conda 环境的路径。下面把环境放在 <code>/home/test_conda</code>，并指定 Python 版本为 3.12：</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb26" data-book-role="code"><pre data-code-text="&quot;conda create -p /home/test_conda python=3.12&quot;" class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="ex">conda</span> create <span class="at">-p</span> /home/test_conda python=3.12</span></code></pre></div><button title="复制到剪贴板" class="code-copy-button"><i class="bi"></i></button></div>
 <p>环境建好后用 <code>conda activate py3</code> 进入——装包、跑程序都在这个环境里进行；<code>conda deactivate</code> 退出，<code>conda env list</code> 随时查看已建了哪些环境。进入环境后，提示符前会多出 <code>(py3)</code>，看到它就知道自己身在哪个环境。</p>
+<div id="example-02-apple-silicon-py36" class="book-example callout callout-style-default callout-tip callout-titled" title="示例与练习｜在 Apple Silicon Mac 上创建 Python 3.6 兼容环境">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">提示</span>示例与练习｜在 Apple Silicon Mac 上创建 Python 3.6 兼容环境
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p><a href="#topic-02-platform-macos">前面介绍 macOS 兼容性时</a>，我们提到旧版 Python 可以借助 Rosetta 运行。下面的命令在本地 Apple Silicon Mac 的终端中执行，前提是已经安装 Conda，且系统仍支持通用的 Rosetta 转译。按 Apple 当前公布的安排，这一支持覆盖 macOS 27 及以前的版本；从 macOS 28 开始，Rosetta 将仅保留给部分旧游戏，不能把本例当作今后所有 macOS 版本都适用的办法。若尚未安装 Rosetta，可运行 <code>softwareupdate --install-rosetta</code>，按屏幕提示完成安装。<a href="#fn7" class="footnote-ref" id="fnref7" role="doc-noteref"><sup>7</sup></a></p>
+<p>Python 3.6 已于 2021 年结束支持，这个环境用于复现依赖旧版本的项目，新项目仍应选用受支持的 Python 版本。<a href="#fn8" class="footnote-ref" id="fnref8" role="doc-noteref"><sup>8</sup></a> 下面以 conda-forge 提供的 Python 3.6.15 为例：</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb27" data-book-role="code"><pre data-code-text="&quot;CONDA_SUBDIR=osx-64 conda create -n legacy-py36 \\\n  --override-channels -c conda-forge python=3.6.15\nconda activate legacy-py36\nconda config --env --set subdir osx-64\npython -c \&quot;import platform; print(platform.machine())\&quot;\nconda deactivate&quot;" class="sourceCode numberSource bash numberLines code-with-copy"><code class="sourceCode bash"><span id="cb27-1"><a href="#cb27-1"></a><span class="va">CONDA_SUBDIR</span><span class="op">=</span>osx-64 <span class="ex">conda</span> create <span class="at">-n</span> legacy-py36 <span class="dt">\</span></span>
+<span id="cb27-2"><a href="#cb27-2"></a>  <span class="at">--override-channels</span> <span class="at">-c</span> conda-forge python=3.6.15</span>
+<span id="cb27-3"><a href="#cb27-3"></a><span class="ex">conda</span> activate legacy-py36</span>
+<span id="cb27-4"><a href="#cb27-4"></a><span class="ex">conda</span> config <span class="at">--env</span> <span class="at">--set</span> subdir osx-64</span>
+<span id="cb27-5"><a href="#cb27-5"></a><span class="ex">python</span> <span class="at">-c</span> <span class="st">"import platform; print(platform.machine())"</span></span>
+<span id="cb27-6"><a href="#cb27-6"></a><span class="ex">conda</span> deactivate</span></code></pre></div><button title="复制到剪贴板" class="code-copy-button"><i class="bi"></i></button></div>
+<p>第一条命令中的 <code>CONDA_SUBDIR=osx-64</code> 只对这次创建操作生效，让 Conda 选择 Intel Mac 软件包；<code>--override-channels -c conda-forge</code> 指定本例使用的频道。进入环境后，<code>conda config --env --set subdir osx-64</code> 将这一选择保存到当前环境，避免以后装包时混入 arm64 包，也不会改变其他环境的设置。不要把 <code>CONDA_SUBDIR=osx-64</code> 写成终端启动时的全局设置，否则新环境也可能一直下载 Intel 包。<a href="#fn9" class="footnote-ref" id="fnref9" role="doc-noteref"><sup>9</sup></a></p>
+<p>检查命令预期输出 <code>x86_64</code>，表示当前 Python 进程使用的是 Intel 架构的程序，并不表示 Mac 的芯片变成了 Intel。最后一行退出该环境；下次需要时，用 <code>conda activate legacy-py36</code> 再进入即可。</p>
+</div>
+</div>
 </section>
 <section id="topic-02-345" class="level4">
 <h4 class="anchored" data-anchor-id="topic-02-345">删除环境</h4>
 <p>删除环境时，同样可以通过参数指定环境名称或路径。</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb27" data-book-role="code"><pre data-code-text="&quot;conda remove -n py3 --all\nconda remove -p /home/test_conda --all&quot;" class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="ex">conda</span> remove <span class="at">-n</span> py3 <span class="at">--all</span></span>
-<span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a><span class="ex">conda</span> remove <span class="at">-p</span> /home/test_conda <span class="at">--all</span></span></code></pre></div><button title="复制到剪贴板" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb28" data-book-role="code"><pre data-code-text="&quot;conda remove -n py3 --all\nconda remove -p /home/test_conda --all&quot;" class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="ex">conda</span> remove <span class="at">-n</span> py3 <span class="at">--all</span></span>
+<span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a><span class="ex">conda</span> remove <span class="at">-p</span> /home/test_conda <span class="at">--all</span></span></code></pre></div><button title="复制到剪贴板" class="code-copy-button"><i class="bi"></i></button></div>
 </section>
 </section>
 <section id="src-0090-build-up-bioinfo-platform-264" class="level3">
 <h3 class="anchored" data-anchor-id="src-0090-build-up-bioinfo-platform-264">Micromamba</h3>
 <p>早期 conda 最大的痛点是经典求解器计算依赖和扫描各个源的速度都较慢，已安装的包较多时安装过程会明显变慢。Micromamba 用 C++ 重写了这一过程，再加上多线程并行，速度提升了一个数量级；conda 官方从 23.10 版起也把同源的 libmamba 作为默认求解器，所以现在直接使用 <code>conda</code> 通常已经够快。</p>
 <p>Micromamba 的独特之处在于它是单个静态可执行文件：不依赖 Python、不依赖 conda，也不需要管理员权限。在服务器上没有装 Anaconda、或者没有 root 权限时，它是搭生信环境最省事的入口；容器和集群环境中也大量使用它。官方安装脚本一条命令即可完成（macOS 也可以 <code>brew install micromamba</code>）：</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb28" data-book-role="code"><pre data-code-text="&quot;\&quot;${SHELL}\&quot; &lt;(curl -L micro.mamba.pm)&quot;" class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="st">"</span><span class="va">${SHELL}</span><span class="st">"</span> <span class="op">&lt;(</span><span class="ex">curl</span> <span class="at">-L</span> micro.mamba.pm<span class="op">)</span></span></code></pre></div><button title="复制到剪贴板" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb29" data-book-role="code"><pre data-code-text="&quot;\&quot;${SHELL}\&quot; &lt;(curl -L micro.mamba.pm)&quot;" class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="st">"</span><span class="va">${SHELL}</span><span class="st">"</span> <span class="op">&lt;(</span><span class="ex">curl</span> <span class="at">-L</span> micro.mamba.pm<span class="op">)</span></span></code></pre></div><button title="复制到剪贴板" class="code-copy-button"><i class="bi"></i></button></div>
 <p>脚本会把可执行文件安装到 <code>~/.local/bin</code>（确认它在 <code>PATH</code> 中即可），并自动配置好 shell 集成；重新打开终端就能使用 <code>micromamba</code> 命令，环境默认存放在 <code>~/micromamba</code>。也可以从项目的 <a href="https://github.com/mamba-org/micromamba-releases">releases 页面</a>直接下载单文件。</p>
 <p>它的用法与 <code>conda</code> 几乎一致，把命令名换掉即可；软件源同样读取 <code>~/.condarc</code>，上一节的镜像配置直接生效。例如创建一个装有 fastqc 和 seqkit 的环境并进入：</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb29" data-book-role="code"><pre data-code-text="&quot;micromamba create -n bio -c conda-forge -c bioconda fastqc seqkit\nmicromamba activate bio&quot;" class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="ex">micromamba</span> create <span class="at">-n</span> bio <span class="at">-c</span> conda-forge <span class="at">-c</span> bioconda fastqc seqkit</span>
-<span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a><span class="ex">micromamba</span> activate bio</span></code></pre></div><button title="复制到剪贴板" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb30" data-book-role="code"><pre data-code-text="&quot;micromamba create -n bio -c conda-forge -c bioconda fastqc seqkit\nmicromamba activate bio&quot;" class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a><span class="ex">micromamba</span> create <span class="at">-n</span> bio <span class="at">-c</span> conda-forge <span class="at">-c</span> bioconda fastqc seqkit</span>
+<span id="cb30-2"><a href="#cb30-2" aria-hidden="true" tabindex="-1"></a><span class="ex">micromamba</span> activate bio</span></code></pre></div><button title="复制到剪贴板" class="code-copy-button"><i class="bi"></i></button></div>
 <p>项目开源在 <a href="https://github.com/mamba-org/mamba">GitHub</a>，完整文档见 <a href="https://mamba.readthedocs.io/">mamba.readthedocs.io</a>。</p>
 </section>
 </section>
@@ -1781,57 +1807,57 @@ Host compute
 <section id="topic-02-python-vars" class="level4">
 <h4 class="anchored" data-anchor-id="topic-02-python-vars">变量与数据类型</h4>
 <p>Python 里用 = 给变量赋值，常见类型有整数、浮点数、字符串和布尔值：</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb31" data-book-role="code"><pre data-code-text="&quot;n_samples = 6                # 整数\ndepth = 32.5                 # 浮点数\nsample_name = \&quot;SRR1234567\&quot;   # 字符串\nis_paired_end = True         # 布尔值&quot;" class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a>n_samples <span class="op">=</span> <span class="dv">6</span>                <span class="co"># 整数</span></span>
-<span id="cb31-2"><a href="#cb31-2" aria-hidden="true" tabindex="-1"></a>depth <span class="op">=</span> <span class="fl">32.5</span>                 <span class="co"># 浮点数</span></span>
-<span id="cb31-3"><a href="#cb31-3" aria-hidden="true" tabindex="-1"></a>sample_name <span class="op">=</span> <span class="st">"SRR1234567"</span>   <span class="co"># 字符串</span></span>
-<span id="cb31-4"><a href="#cb31-4" aria-hidden="true" tabindex="-1"></a>is_paired_end <span class="op">=</span> <span class="va">True</span>         <span class="co"># 布尔值</span></span></code></pre></div><button title="复制到剪贴板" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb32" data-book-role="code"><pre data-code-text="&quot;n_samples = 6                # 整数\ndepth = 32.5                 # 浮点数\nsample_name = \&quot;SRR1234567\&quot;   # 字符串\nis_paired_end = True         # 布尔值&quot;" class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a>n_samples <span class="op">=</span> <span class="dv">6</span>                <span class="co"># 整数</span></span>
+<span id="cb32-2"><a href="#cb32-2" aria-hidden="true" tabindex="-1"></a>depth <span class="op">=</span> <span class="fl">32.5</span>                 <span class="co"># 浮点数</span></span>
+<span id="cb32-3"><a href="#cb32-3" aria-hidden="true" tabindex="-1"></a>sample_name <span class="op">=</span> <span class="st">"SRR1234567"</span>   <span class="co"># 字符串</span></span>
+<span id="cb32-4"><a href="#cb32-4" aria-hidden="true" tabindex="-1"></a>is_paired_end <span class="op">=</span> <span class="va">True</span>         <span class="co"># 布尔值</span></span></code></pre></div><button title="复制到剪贴板" class="code-copy-button"><i class="bi"></i></button></div>
 <p>字符串用单引号或双引号都行。拼接字符串最方便的是 f-string：在引号前加 <code>f</code>，变量放进花括号：</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb32" data-book-role="code"><pre data-code-text="&quot;report = f\&quot;样本 {sample_name} 共 {n_samples} 个，测序深度 {depth}X\&quot;\nprint(report)&quot;" class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a>report <span class="op">=</span> <span class="ss">f"样本 </span><span class="sc">{</span>sample_name<span class="sc">}</span><span class="ss"> 共 </span><span class="sc">{</span>n_samples<span class="sc">}</span><span class="ss"> 个，测序深度 </span><span class="sc">{</span>depth<span class="sc">}</span><span class="ss">X"</span></span>
-<span id="cb32-2"><a href="#cb32-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(report)</span></code></pre></div><button title="复制到剪贴板" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb33" data-book-role="code"><pre data-code-text="&quot;report = f\&quot;样本 {sample_name} 共 {n_samples} 个，测序深度 {depth}X\&quot;\nprint(report)&quot;" class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a>report <span class="op">=</span> <span class="ss">f"样本 </span><span class="sc">{</span>sample_name<span class="sc">}</span><span class="ss"> 共 </span><span class="sc">{</span>n_samples<span class="sc">}</span><span class="ss"> 个，测序深度 </span><span class="sc">{</span>depth<span class="sc">}</span><span class="ss">X"</span></span>
+<span id="cb33-2"><a href="#cb33-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(report)</span></code></pre></div><button title="复制到剪贴板" class="code-copy-button"><i class="bi"></i></button></div>
 <p>处理文件名时常用的字符串方法：<code>sample_name.split("_")</code> 按下划线切成列表，<code>".".join(parts)</code> 用点连回字符串，<code>sample_name.replace("R1", "R2")</code> 替换子串，<code>sample_name.startswith("SRR")</code> 判断前缀。</p>
 </section>
 <section id="topic-02-python-containers" class="level4">
 <h4 class="anchored" data-anchor-id="topic-02-python-containers">列表与字典</h4>
 <p>列表（list）按顺序存一组值，用方括号，元素从 0 开始编号：</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb33" data-book-role="code"><pre data-code-text="&quot;samples = [\&quot;S1\&quot;, \&quot;S2\&quot;, \&quot;S3\&quot;]\nsamples.append(\&quot;S4\&quot;)     # 末尾追加\nprint(samples[0])        # 第 1 个元素：S1\nprint(samples[-1])       # 最后 1 个元素：S4\nprint(len(samples))      # 元素个数：4&quot;" class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a>samples <span class="op">=</span> [<span class="st">"S1"</span>, <span class="st">"S2"</span>, <span class="st">"S3"</span>]</span>
-<span id="cb33-2"><a href="#cb33-2" aria-hidden="true" tabindex="-1"></a>samples.append(<span class="st">"S4"</span>)     <span class="co"># 末尾追加</span></span>
-<span id="cb33-3"><a href="#cb33-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(samples[<span class="dv">0</span>])        <span class="co"># 第 1 个元素：S1</span></span>
-<span id="cb33-4"><a href="#cb33-4" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(samples[<span class="op">-</span><span class="dv">1</span>])       <span class="co"># 最后 1 个元素：S4</span></span>
-<span id="cb33-5"><a href="#cb33-5" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="bu">len</span>(samples))      <span class="co"># 元素个数：4</span></span></code></pre></div><button title="复制到剪贴板" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb34" data-book-role="code"><pre data-code-text="&quot;samples = [\&quot;S1\&quot;, \&quot;S2\&quot;, \&quot;S3\&quot;]\nsamples.append(\&quot;S4\&quot;)     # 末尾追加\nprint(samples[0])        # 第 1 个元素：S1\nprint(samples[-1])       # 最后 1 个元素：S4\nprint(len(samples))      # 元素个数：4&quot;" class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a>samples <span class="op">=</span> [<span class="st">"S1"</span>, <span class="st">"S2"</span>, <span class="st">"S3"</span>]</span>
+<span id="cb34-2"><a href="#cb34-2" aria-hidden="true" tabindex="-1"></a>samples.append(<span class="st">"S4"</span>)     <span class="co"># 末尾追加</span></span>
+<span id="cb34-3"><a href="#cb34-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(samples[<span class="dv">0</span>])        <span class="co"># 第 1 个元素：S1</span></span>
+<span id="cb34-4"><a href="#cb34-4" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(samples[<span class="op">-</span><span class="dv">1</span>])       <span class="co"># 最后 1 个元素：S4</span></span>
+<span id="cb34-5"><a href="#cb34-5" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="bu">len</span>(samples))      <span class="co"># 元素个数：4</span></span></code></pre></div><button title="复制到剪贴板" class="code-copy-button"><i class="bi"></i></button></div>
 <p>字典（dict）存“键→值”的对应关系，用花括号，生信配置里到处都是它：</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb34" data-book-role="code"><pre data-code-text="&quot;groups = {\&quot;S1\&quot;: \&quot;control\&quot;, \&quot;S2\&quot;: \&quot;treatment\&quot;, \&quot;S3\&quot;: \&quot;control\&quot;}\nprint(groups[\&quot;S2\&quot;])          # treatment\ngroups[\&quot;S4\&quot;] = \&quot;treatment\&quot;   # 新增一项&quot;" class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a>groups <span class="op">=</span> {<span class="st">"S1"</span>: <span class="st">"control"</span>, <span class="st">"S2"</span>: <span class="st">"treatment"</span>, <span class="st">"S3"</span>: <span class="st">"control"</span>}</span>
-<span id="cb34-2"><a href="#cb34-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(groups[<span class="st">"S2"</span>])          <span class="co"># treatment</span></span>
-<span id="cb34-3"><a href="#cb34-3" aria-hidden="true" tabindex="-1"></a>groups[<span class="st">"S4"</span>] <span class="op">=</span> <span class="st">"treatment"</span>   <span class="co"># 新增一项</span></span></code></pre></div><button title="复制到剪贴板" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb35" data-book-role="code"><pre data-code-text="&quot;groups = {\&quot;S1\&quot;: \&quot;control\&quot;, \&quot;S2\&quot;: \&quot;treatment\&quot;, \&quot;S3\&quot;: \&quot;control\&quot;}\nprint(groups[\&quot;S2\&quot;])          # treatment\ngroups[\&quot;S4\&quot;] = \&quot;treatment\&quot;   # 新增一项&quot;" class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a>groups <span class="op">=</span> {<span class="st">"S1"</span>: <span class="st">"control"</span>, <span class="st">"S2"</span>: <span class="st">"treatment"</span>, <span class="st">"S3"</span>: <span class="st">"control"</span>}</span>
+<span id="cb35-2"><a href="#cb35-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(groups[<span class="st">"S2"</span>])          <span class="co"># treatment</span></span>
+<span id="cb35-3"><a href="#cb35-3" aria-hidden="true" tabindex="-1"></a>groups[<span class="st">"S4"</span>] <span class="op">=</span> <span class="st">"treatment"</span>   <span class="co"># 新增一项</span></span></code></pre></div><button title="复制到剪贴板" class="code-copy-button"><i class="bi"></i></button></div>
 </section>
 <section id="topic-02-python-flow" class="level4">
 <h4 class="anchored" data-anchor-id="topic-02-python-flow">循环与分支</h4>
 <p><code>for</code> 遍历列表或字典，<code>if</code> 按条件分支。注意 Python 靠缩进表示代码块，冒号后换行缩进四个空格：</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb35" data-book-role="code"><pre data-code-text="&quot;for sample in samples:\n    if groups[sample] == \&quot;treatment\&quot;:\n        print(f\&quot;{sample} 是处理组\&quot;)\n    else:\n        print(f\&quot;{sample} 是对照组\&quot;)&quot;" class="sourceCode numberSource python numberLines code-with-copy"><code class="sourceCode python"><span id="cb35-1"><a href="#cb35-1"></a><span class="cf">for</span> sample <span class="kw">in</span> samples:</span>
-<span id="cb35-2"><a href="#cb35-2"></a>    <span class="cf">if</span> groups[sample] <span class="op">==</span> <span class="st">"treatment"</span>:</span>
-<span id="cb35-3"><a href="#cb35-3"></a>        <span class="bu">print</span>(<span class="ss">f"</span><span class="sc">{</span>sample<span class="sc">}</span><span class="ss"> 是处理组"</span>)</span>
-<span id="cb35-4"><a href="#cb35-4"></a>    <span class="cf">else</span>:</span>
-<span id="cb35-5"><a href="#cb35-5"></a>        <span class="bu">print</span>(<span class="ss">f"</span><span class="sc">{</span>sample<span class="sc">}</span><span class="ss"> 是对照组"</span>)</span></code></pre></div><button title="复制到剪贴板" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb36" data-book-role="code"><pre data-code-text="&quot;for sample in samples:\n    if groups[sample] == \&quot;treatment\&quot;:\n        print(f\&quot;{sample} 是处理组\&quot;)\n    else:\n        print(f\&quot;{sample} 是对照组\&quot;)&quot;" class="sourceCode numberSource python numberLines code-with-copy"><code class="sourceCode python"><span id="cb36-1"><a href="#cb36-1"></a><span class="cf">for</span> sample <span class="kw">in</span> samples:</span>
+<span id="cb36-2"><a href="#cb36-2"></a>    <span class="cf">if</span> groups[sample] <span class="op">==</span> <span class="st">"treatment"</span>:</span>
+<span id="cb36-3"><a href="#cb36-3"></a>        <span class="bu">print</span>(<span class="ss">f"</span><span class="sc">{</span>sample<span class="sc">}</span><span class="ss"> 是处理组"</span>)</span>
+<span id="cb36-4"><a href="#cb36-4"></a>    <span class="cf">else</span>:</span>
+<span id="cb36-5"><a href="#cb36-5"></a>        <span class="bu">print</span>(<span class="ss">f"</span><span class="sc">{</span>sample<span class="sc">}</span><span class="ss"> 是对照组"</span>)</span></code></pre></div><button title="复制到剪贴板" class="code-copy-button"><i class="bi"></i></button></div>
 <p>配合 <code>range</code> 可以批量生成数字：<code>for i in range(1, 9)</code> 会依次取 1 到 8。</p>
 </section>
 <section id="topic-02-python-functions" class="level4">
 <h4 class="anchored" data-anchor-id="topic-02-python-functions">函数</h4>
 <p>函数把一段逻辑打包复用，<code>def</code> 定义，<code>return</code> 返回结果：</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb36" data-book-role="code"><pre data-code-text="&quot;def get_sample_id(filename):\n    \&quot;\&quot;\&quot;从文件名提取样本 ID，如 S1_L001_R1_001.fastq.gz → S1\&quot;\&quot;\&quot;\n    sample_id = filename.split(\&quot;_\&quot;)[0]\n    return sample_id\n\nprint(get_sample_id(\&quot;S1_L001_R1_001.fastq.gz\&quot;))&quot;" class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> get_sample_id(filename):</span>
-<span id="cb36-2"><a href="#cb36-2" aria-hidden="true" tabindex="-1"></a>    <span class="co">"""从文件名提取样本 ID，如 S1_L001_R1_001.fastq.gz → S1"""</span></span>
-<span id="cb36-3"><a href="#cb36-3" aria-hidden="true" tabindex="-1"></a>    sample_id <span class="op">=</span> filename.split(<span class="st">"_"</span>)[<span class="dv">0</span>]</span>
-<span id="cb36-4"><a href="#cb36-4" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> sample_id</span>
-<span id="cb36-5"><a href="#cb36-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb36-6"><a href="#cb36-6" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(get_sample_id(<span class="st">"S1_L001_R1_001.fastq.gz"</span>))</span></code></pre></div><button title="复制到剪贴板" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb37" data-book-role="code"><pre data-code-text="&quot;def get_sample_id(filename):\n    \&quot;\&quot;\&quot;从文件名提取样本 ID，如 S1_L001_R1_001.fastq.gz → S1\&quot;\&quot;\&quot;\n    sample_id = filename.split(\&quot;_\&quot;)[0]\n    return sample_id\n\nprint(get_sample_id(\&quot;S1_L001_R1_001.fastq.gz\&quot;))&quot;" class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> get_sample_id(filename):</span>
+<span id="cb37-2"><a href="#cb37-2" aria-hidden="true" tabindex="-1"></a>    <span class="co">"""从文件名提取样本 ID，如 S1_L001_R1_001.fastq.gz → S1"""</span></span>
+<span id="cb37-3"><a href="#cb37-3" aria-hidden="true" tabindex="-1"></a>    sample_id <span class="op">=</span> filename.split(<span class="st">"_"</span>)[<span class="dv">0</span>]</span>
+<span id="cb37-4"><a href="#cb37-4" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> sample_id</span>
+<span id="cb37-5"><a href="#cb37-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb37-6"><a href="#cb37-6" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(get_sample_id(<span class="st">"S1_L001_R1_001.fastq.gz"</span>))</span></code></pre></div><button title="复制到剪贴板" class="code-copy-button"><i class="bi"></i></button></div>
 <p>函数名后的三引号字符串是文档说明，写清输入和输出，别人和 AI agent 都能读懂。这与前面 Shell 脚本一节的思路一致：虽然语言不同，我们都要把处理过程写下来，让它可以复用，也可以检查。</p>
 </section>
 <section id="topic-02-python-files" class="level4">
 <h4 class="anchored" data-anchor-id="topic-02-python-files">文件读写与模块</h4>
 <p>读文件用 <code>with open</code>，它保证文件用完自动关闭：</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb37" data-book-role="code"><pre data-code-text="&quot;with open(\&quot;samples.tsv\&quot;) as f:\n    header = f.readline().strip()\n    for line in f:\n        fields = line.strip().split(\&quot;\\t\&quot;)\n        print(fields[0], fields[1])&quot;" class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a><span class="cf">with</span> <span class="bu">open</span>(<span class="st">"samples.tsv"</span>) <span class="im">as</span> f:</span>
-<span id="cb37-2"><a href="#cb37-2" aria-hidden="true" tabindex="-1"></a>    header <span class="op">=</span> f.readline().strip()</span>
-<span id="cb37-3"><a href="#cb37-3" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> line <span class="kw">in</span> f:</span>
-<span id="cb37-4"><a href="#cb37-4" aria-hidden="true" tabindex="-1"></a>        fields <span class="op">=</span> line.strip().split(<span class="st">"</span><span class="ch">\t</span><span class="st">"</span>)</span>
-<span id="cb37-5"><a href="#cb37-5" aria-hidden="true" tabindex="-1"></a>        <span class="bu">print</span>(fields[<span class="dv">0</span>], fields[<span class="dv">1</span>])</span></code></pre></div><button title="复制到剪贴板" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb38" data-book-role="code"><pre data-code-text="&quot;with open(\&quot;samples.tsv\&quot;) as f:\n    header = f.readline().strip()\n    for line in f:\n        fields = line.strip().split(\&quot;\\t\&quot;)\n        print(fields[0], fields[1])&quot;" class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a><span class="cf">with</span> <span class="bu">open</span>(<span class="st">"samples.tsv"</span>) <span class="im">as</span> f:</span>
+<span id="cb38-2"><a href="#cb38-2" aria-hidden="true" tabindex="-1"></a>    header <span class="op">=</span> f.readline().strip()</span>
+<span id="cb38-3"><a href="#cb38-3" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> line <span class="kw">in</span> f:</span>
+<span id="cb38-4"><a href="#cb38-4" aria-hidden="true" tabindex="-1"></a>        fields <span class="op">=</span> line.strip().split(<span class="st">"</span><span class="ch">\t</span><span class="st">"</span>)</span>
+<span id="cb38-5"><a href="#cb38-5" aria-hidden="true" tabindex="-1"></a>        <span class="bu">print</span>(fields[<span class="dv">0</span>], fields[<span class="dv">1</span>])</span></code></pre></div><button title="复制到剪贴板" class="code-copy-button"><i class="bi"></i></button></div>
 <p>这段代码逐行读取文件，用 <code>strip()</code> 去掉行尾换行符，再用 <code>split("\t")</code> 按制表符切列。这是处理表格文件时常用的基本步骤。写入文件时，需要加上模式参数：<code>with open("out.txt", "w") as f: f.write("...")</code>。</p>
 <p>Python 的许多功能由模块提供，用 import 导入后即可使用。例如，<code>os.path</code> 处理路径，<code>csv</code> 读写表格，<code>subprocess</code> 在脚本里调用外部命令，后续章节会陆续用到它们。</p>
 <p>这一节不要求学完 Python 的全部内容，先练习读懂脚本：看到一段代码，能说出每个变量是什么、循环在遍历什么、结果写到哪里。暂时写不出来的部分，可以先照着例子运行，也可以请 AI agent 逐行解释，但每一行的含义仍要自己弄明白。</p>
@@ -1843,9 +1869,9 @@ Host compute
 <section id="src-0090-build-up-bioinfo-platform-274" class="level4">
 <h4 class="anchored" data-anchor-id="src-0090-build-up-bioinfo-platform-274">安装JupyterLab</h4>
 <p>PyPI 和 Anaconda 都收录了 JupyterLab，安装很方便。这里仍建议使用前面介绍的独立包管理器 micromamba：</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb38" data-book-role="code"><pre data-code-text="&quot;pip install jupyterlab # pypi安装\nconda install jupyterlab # anaconda安装\nmicromamba install jupyterlab # micromamba安装&quot;" class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a><span class="ex">pip</span> install jupyterlab <span class="co"># pypi安装</span></span>
-<span id="cb38-2"><a href="#cb38-2" aria-hidden="true" tabindex="-1"></a><span class="ex">conda</span> install jupyterlab <span class="co"># anaconda安装</span></span>
-<span id="cb38-3"><a href="#cb38-3" aria-hidden="true" tabindex="-1"></a><span class="ex">micromamba</span> install jupyterlab <span class="co"># micromamba安装</span></span></code></pre></div><button title="复制到剪贴板" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb39" data-book-role="code"><pre data-code-text="&quot;pip install jupyterlab # pypi安装\nconda install jupyterlab # anaconda安装\nmicromamba install jupyterlab # micromamba安装&quot;" class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a><span class="ex">pip</span> install jupyterlab <span class="co"># pypi安装</span></span>
+<span id="cb39-2"><a href="#cb39-2" aria-hidden="true" tabindex="-1"></a><span class="ex">conda</span> install jupyterlab <span class="co"># anaconda安装</span></span>
+<span id="cb39-3"><a href="#cb39-3" aria-hidden="true" tabindex="-1"></a><span class="ex">micromamba</span> install jupyterlab <span class="co"># micromamba安装</span></span></code></pre></div><button title="复制到剪贴板" class="code-copy-button"><i class="bi"></i></button></div>
 </section>
 <section id="src-0090-build-up-bioinfo-platform-284" class="level4">
 <h4 class="anchored" data-anchor-id="src-0090-build-up-bioinfo-platform-284">内核安装</h4>
@@ -1855,7 +1881,7 @@ Host compute
 <h4 class="anchored" data-anchor-id="src-0090-build-up-bioinfo-platform-288">本地和远程使用</h4>
 <p>在本地启动 JupyterLab，先打开终端，切换到准备进行分析的目录。Windows 用户可以选择 PowerShell，或通过 Windows Terminal 打开其他终端。Jupyter 只能读取启动目录及其子目录下的文件，因此要先选好目录，再运行 <code>jupyter lab</code>。默认浏览器会自动启动，打开 JupyterLab 页面。</p>
 <p>远程使用服务器上的 JupyterLab，需要多做一步端口映射。在本地终端用 <code>ssh</code> 把服务器上 JupyterLab 监听的端口映射到本地计算机。执行下面的命令会登录远程服务器，再运行 <code>jupyter lab</code> 启动服务器上的 JupyterLab。随后在本地浏览器访问 <code>127.0.0.1:1234</code>，就能连接服务器的 8888 端口。命令中的 username 是服务器用户名，serverip 是服务器 IP 地址；1234 是希望使用的本地端口，8888 是远程服务器的端口。</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb39" data-book-role="code"><pre data-code-text="&quot;ssh username@serverip -L 127.0.0.1:1234:127.0.0.1:8888&quot;" class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ssh</span> username@serverip <span class="at">-L</span> 127.0.0.1:1234:127.0.0.1:8888</span></code></pre></div><button title="复制到剪贴板" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb40" data-book-role="code"><pre data-code-text="&quot;ssh username@serverip -L 127.0.0.1:1234:127.0.0.1:8888&quot;" class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb40-1"><a href="#cb40-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ssh</span> username@serverip <span class="at">-L</span> 127.0.0.1:1234:127.0.0.1:8888</span></code></pre></div><button title="复制到剪贴板" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="book-warning callout callout-style-default callout-warning callout-titled" title="注意｜以实际启动端口为准">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -1875,20 +1901,20 @@ Host compute
 <h3 class="anchored" data-anchor-id="topic-02-structured-config">结构化配置：YAML 与 JSON</h3>
 <p>配置文件是分析流程的常见输入：样本表、软件参数、工作流规则经常以 YAML 或 JSON 等结构化格式描述。读懂它们，是修改他人流程、编写 Snakemake 规则的基础。</p>
 <p>YAML 用“缩进 + 冒号”表达结构，可读性最好，是 Snakemake 等各类流程配置文件的主流格式。一个生信项目常见的 <code>samples.yaml</code> 长这样：</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb40" data-book-role="data" data-code-title="samples.yaml"><pre data-code-text="&quot;project: rnaseq_demo\ngenome: hg38\nthreads: 8\nsamples:\n  S1:\n    condition: control\n    fastq: data/S1.fastq.gz\n  S2:\n    condition: treatment\n    fastq: data/S2.fastq.gz&quot;" class="sourceCode yaml code-with-copy"><code class="sourceCode yaml"><span id="cb40-1"><a href="#cb40-1" aria-hidden="true" tabindex="-1"></a><span class="fu">project</span><span class="kw">:</span><span class="at"> rnaseq_demo</span></span>
-<span id="cb40-2"><a href="#cb40-2" aria-hidden="true" tabindex="-1"></a><span class="fu">genome</span><span class="kw">:</span><span class="at"> hg38</span></span>
-<span id="cb40-3"><a href="#cb40-3" aria-hidden="true" tabindex="-1"></a><span class="fu">threads</span><span class="kw">:</span><span class="at"> </span><span class="dv">8</span></span>
-<span id="cb40-4"><a href="#cb40-4" aria-hidden="true" tabindex="-1"></a><span class="fu">samples</span><span class="kw">:</span></span>
-<span id="cb40-5"><a href="#cb40-5" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">S1</span><span class="kw">:</span></span>
-<span id="cb40-6"><a href="#cb40-6" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">condition</span><span class="kw">:</span><span class="at"> control</span></span>
-<span id="cb40-7"><a href="#cb40-7" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">fastq</span><span class="kw">:</span><span class="at"> data/S1.fastq.gz</span></span>
-<span id="cb40-8"><a href="#cb40-8" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">S2</span><span class="kw">:</span></span>
-<span id="cb40-9"><a href="#cb40-9" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">condition</span><span class="kw">:</span><span class="at"> treatment</span></span>
-<span id="cb40-10"><a href="#cb40-10" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">fastq</span><span class="kw">:</span><span class="at"> data/S2.fastq.gz</span></span></code></pre></div><button title="复制到剪贴板" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb41" data-book-role="data" data-code-title="samples.yaml"><pre data-code-text="&quot;project: rnaseq_demo\ngenome: hg38\nthreads: 8\nsamples:\n  S1:\n    condition: control\n    fastq: data/S1.fastq.gz\n  S2:\n    condition: treatment\n    fastq: data/S2.fastq.gz&quot;" class="sourceCode yaml code-with-copy"><code class="sourceCode yaml"><span id="cb41-1"><a href="#cb41-1" aria-hidden="true" tabindex="-1"></a><span class="fu">project</span><span class="kw">:</span><span class="at"> rnaseq_demo</span></span>
+<span id="cb41-2"><a href="#cb41-2" aria-hidden="true" tabindex="-1"></a><span class="fu">genome</span><span class="kw">:</span><span class="at"> hg38</span></span>
+<span id="cb41-3"><a href="#cb41-3" aria-hidden="true" tabindex="-1"></a><span class="fu">threads</span><span class="kw">:</span><span class="at"> </span><span class="dv">8</span></span>
+<span id="cb41-4"><a href="#cb41-4" aria-hidden="true" tabindex="-1"></a><span class="fu">samples</span><span class="kw">:</span></span>
+<span id="cb41-5"><a href="#cb41-5" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">S1</span><span class="kw">:</span></span>
+<span id="cb41-6"><a href="#cb41-6" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">condition</span><span class="kw">:</span><span class="at"> control</span></span>
+<span id="cb41-7"><a href="#cb41-7" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">fastq</span><span class="kw">:</span><span class="at"> data/S1.fastq.gz</span></span>
+<span id="cb41-8"><a href="#cb41-8" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">S2</span><span class="kw">:</span></span>
+<span id="cb41-9"><a href="#cb41-9" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">condition</span><span class="kw">:</span><span class="at"> treatment</span></span>
+<span id="cb41-10"><a href="#cb41-10" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">fastq</span><span class="kw">:</span><span class="at"> data/S2.fastq.gz</span></span></code></pre></div><button title="复制到剪贴板" class="code-copy-button"><i class="bi"></i></button></div>
 <p>顶层的 <code>project</code>、<code>genome</code>、<code>threads</code> 是键值对；<code>samples</code> 下面缩进一层，是嵌套的字典，每个样本又是一层。列表用短横线表示：</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb41" data-book-role="data" data-code-title="对比组合"><pre data-code-text="&quot;comparisons:\n  - treatment_vs_control\n  - knockout_vs_wt&quot;" class="sourceCode yaml code-with-copy"><code class="sourceCode yaml"><span id="cb41-1"><a href="#cb41-1" aria-hidden="true" tabindex="-1"></a><span class="fu">comparisons</span><span class="kw">:</span></span>
-<span id="cb41-2"><a href="#cb41-2" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="kw">-</span><span class="at"> treatment_vs_control</span></span>
-<span id="cb41-3"><a href="#cb41-3" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="kw">-</span><span class="at"> knockout_vs_wt</span></span></code></pre></div><button title="复制到剪贴板" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb42" data-book-role="data" data-code-title="对比组合"><pre data-code-text="&quot;comparisons:\n  - treatment_vs_control\n  - knockout_vs_wt&quot;" class="sourceCode yaml code-with-copy"><code class="sourceCode yaml"><span id="cb42-1"><a href="#cb42-1" aria-hidden="true" tabindex="-1"></a><span class="fu">comparisons</span><span class="kw">:</span></span>
+<span id="cb42-2"><a href="#cb42-2" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="kw">-</span><span class="at"> treatment_vs_control</span></span>
+<span id="cb42-3"><a href="#cb42-3" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="kw">-</span><span class="at"> knockout_vs_wt</span></span></code></pre></div><button title="复制到剪贴板" class="code-copy-button"><i class="bi"></i></button></div>
 <p>YAML 的规则极少：冒号后要有一个空格；层级关系完全靠缩进表达，同层元素必须对齐；字符串一般不需要引号。</p>
 <div class="book-warning callout callout-style-default callout-warning callout-titled" title="注意｜缩进用空格，不要用 Tab">
 <div class="callout-header d-flex align-content-center">
@@ -1904,16 +1930,16 @@ Host compute
 </div>
 </div>
 <p>JSON 可以表达同样的结构：花括号表示对象，方括号表示数组，键要加双引号，元素之间用逗号分隔。把上面两份 YAML 合成一份 JSON，写法如下：</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb42" data-book-role="data" data-code-title="config.json"><pre data-code-text="&quot;{\n  \&quot;project\&quot;: \&quot;rnaseq_demo\&quot;,\n  \&quot;genome\&quot;: \&quot;hg38\&quot;,\n  \&quot;threads\&quot;: 8,\n  \&quot;samples\&quot;: {\n    \&quot;S1\&quot;: {\&quot;condition\&quot;: \&quot;control\&quot;, \&quot;fastq\&quot;: \&quot;data/S1.fastq.gz\&quot;},\n    \&quot;S2\&quot;: {\&quot;condition\&quot;: \&quot;treatment\&quot;, \&quot;fastq\&quot;: \&quot;data/S2.fastq.gz\&quot;}\n  },\n  \&quot;comparisons\&quot;: [\&quot;treatment_vs_control\&quot;, \&quot;knockout_vs_wt\&quot;]\n}&quot;" class="sourceCode json code-with-copy"><code class="sourceCode json"><span id="cb42-1"><a href="#cb42-1" aria-hidden="true" tabindex="-1"></a><span class="fu">{</span></span>
-<span id="cb42-2"><a href="#cb42-2" aria-hidden="true" tabindex="-1"></a>  <span class="dt">"project"</span><span class="fu">:</span> <span class="st">"rnaseq_demo"</span><span class="fu">,</span></span>
-<span id="cb42-3"><a href="#cb42-3" aria-hidden="true" tabindex="-1"></a>  <span class="dt">"genome"</span><span class="fu">:</span> <span class="st">"hg38"</span><span class="fu">,</span></span>
-<span id="cb42-4"><a href="#cb42-4" aria-hidden="true" tabindex="-1"></a>  <span class="dt">"threads"</span><span class="fu">:</span> <span class="dv">8</span><span class="fu">,</span></span>
-<span id="cb42-5"><a href="#cb42-5" aria-hidden="true" tabindex="-1"></a>  <span class="dt">"samples"</span><span class="fu">:</span> <span class="fu">{</span></span>
-<span id="cb42-6"><a href="#cb42-6" aria-hidden="true" tabindex="-1"></a>    <span class="dt">"S1"</span><span class="fu">:</span> <span class="fu">{</span><span class="dt">"condition"</span><span class="fu">:</span> <span class="st">"control"</span><span class="fu">,</span> <span class="dt">"fastq"</span><span class="fu">:</span> <span class="st">"data/S1.fastq.gz"</span><span class="fu">},</span></span>
-<span id="cb42-7"><a href="#cb42-7" aria-hidden="true" tabindex="-1"></a>    <span class="dt">"S2"</span><span class="fu">:</span> <span class="fu">{</span><span class="dt">"condition"</span><span class="fu">:</span> <span class="st">"treatment"</span><span class="fu">,</span> <span class="dt">"fastq"</span><span class="fu">:</span> <span class="st">"data/S2.fastq.gz"</span><span class="fu">}</span></span>
-<span id="cb42-8"><a href="#cb42-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">},</span></span>
-<span id="cb42-9"><a href="#cb42-9" aria-hidden="true" tabindex="-1"></a>  <span class="dt">"comparisons"</span><span class="fu">:</span> <span class="ot">[</span><span class="st">"treatment_vs_control"</span><span class="ot">,</span> <span class="st">"knockout_vs_wt"</span><span class="ot">]</span></span>
-<span id="cb42-10"><a href="#cb42-10" aria-hidden="true" tabindex="-1"></a><span class="fu">}</span></span></code></pre></div><button title="复制到剪贴板" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb43" data-book-role="data" data-code-title="config.json"><pre data-code-text="&quot;{\n  \&quot;project\&quot;: \&quot;rnaseq_demo\&quot;,\n  \&quot;genome\&quot;: \&quot;hg38\&quot;,\n  \&quot;threads\&quot;: 8,\n  \&quot;samples\&quot;: {\n    \&quot;S1\&quot;: {\&quot;condition\&quot;: \&quot;control\&quot;, \&quot;fastq\&quot;: \&quot;data/S1.fastq.gz\&quot;},\n    \&quot;S2\&quot;: {\&quot;condition\&quot;: \&quot;treatment\&quot;, \&quot;fastq\&quot;: \&quot;data/S2.fastq.gz\&quot;}\n  },\n  \&quot;comparisons\&quot;: [\&quot;treatment_vs_control\&quot;, \&quot;knockout_vs_wt\&quot;]\n}&quot;" class="sourceCode json code-with-copy"><code class="sourceCode json"><span id="cb43-1"><a href="#cb43-1" aria-hidden="true" tabindex="-1"></a><span class="fu">{</span></span>
+<span id="cb43-2"><a href="#cb43-2" aria-hidden="true" tabindex="-1"></a>  <span class="dt">"project"</span><span class="fu">:</span> <span class="st">"rnaseq_demo"</span><span class="fu">,</span></span>
+<span id="cb43-3"><a href="#cb43-3" aria-hidden="true" tabindex="-1"></a>  <span class="dt">"genome"</span><span class="fu">:</span> <span class="st">"hg38"</span><span class="fu">,</span></span>
+<span id="cb43-4"><a href="#cb43-4" aria-hidden="true" tabindex="-1"></a>  <span class="dt">"threads"</span><span class="fu">:</span> <span class="dv">8</span><span class="fu">,</span></span>
+<span id="cb43-5"><a href="#cb43-5" aria-hidden="true" tabindex="-1"></a>  <span class="dt">"samples"</span><span class="fu">:</span> <span class="fu">{</span></span>
+<span id="cb43-6"><a href="#cb43-6" aria-hidden="true" tabindex="-1"></a>    <span class="dt">"S1"</span><span class="fu">:</span> <span class="fu">{</span><span class="dt">"condition"</span><span class="fu">:</span> <span class="st">"control"</span><span class="fu">,</span> <span class="dt">"fastq"</span><span class="fu">:</span> <span class="st">"data/S1.fastq.gz"</span><span class="fu">},</span></span>
+<span id="cb43-7"><a href="#cb43-7" aria-hidden="true" tabindex="-1"></a>    <span class="dt">"S2"</span><span class="fu">:</span> <span class="fu">{</span><span class="dt">"condition"</span><span class="fu">:</span> <span class="st">"treatment"</span><span class="fu">,</span> <span class="dt">"fastq"</span><span class="fu">:</span> <span class="st">"data/S2.fastq.gz"</span><span class="fu">}</span></span>
+<span id="cb43-8"><a href="#cb43-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">},</span></span>
+<span id="cb43-9"><a href="#cb43-9" aria-hidden="true" tabindex="-1"></a>  <span class="dt">"comparisons"</span><span class="fu">:</span> <span class="ot">[</span><span class="st">"treatment_vs_control"</span><span class="ot">,</span> <span class="st">"knockout_vs_wt"</span><span class="ot">]</span></span>
+<span id="cb43-10"><a href="#cb43-10" aria-hidden="true" tabindex="-1"></a><span class="fu">}</span></span></code></pre></div><button title="复制到剪贴板" class="code-copy-button"><i class="bi"></i></button></div>
 <p>JSON 没有 YAML 好读，但它是程序间交换数据的标准格式，网页、API 和各类软件的结果文件大量使用。生信实践中两者各就其位：人手写、人手改的配置用 YAML，程序输出和互相传递用 JSON。</p>
 <p>读取这些文件也有现成工具。在 Python 中用 <code>import json</code> 与 <code>import yaml</code> 导入相应模块（后者随 Anaconda 提供），再用 <code>json.load(open("config.json"))</code> 就能把文件读成字典，随后按上一节介绍的方法取值。配置文件把参数值单独放出来，修改这些值时就不必改代码。</p>
 </section>
@@ -1949,22 +1975,22 @@ Host compute
 <h3 class="anchored" data-anchor-id="topic-02-claude-code">Claude Code</h3>
 <p>Claude Code 是 Anthropic 推出的命令行 AI agent，能在终端里读写代码、执行命令、跨文件完成多步修改，是生信分析中最常被提到的 coding agent 之一。</p>
 <p>安装需要 Node.js 18 及以上版本（可用 <code>conda install -c conda-forge nodejs</code> 安装，或从官网下载），然后一条命令完成安装：</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb43" data-book-role="code"><pre data-code-text="&quot;npm install -g @anthropic-ai/claude-code&quot;" class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb43-1"><a href="#cb43-1" aria-hidden="true" tabindex="-1"></a><span class="ex">npm</span> install <span class="at">-g</span> @anthropic-ai/claude-code</span></code></pre></div><button title="复制到剪贴板" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb44" data-book-role="code"><pre data-code-text="&quot;npm install -g @anthropic-ai/claude-code&quot;" class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb44-1"><a href="#cb44-1" aria-hidden="true" tabindex="-1"></a><span class="ex">npm</span> install <span class="at">-g</span> @anthropic-ai/claude-code</span></code></pre></div><button title="复制到剪贴板" class="code-copy-button"><i class="bi"></i></button></div>
 <p>进入项目目录，输入 <code>claude</code> 即启动，首次按提示登录 Anthropic 账号（Claude Pro/Max 订阅即可使用）。</p>
 <p>国内读者也可以用 GLM Coding Plan 驱动 Claude Code：订阅后在智谱开放平台获取 API key，编辑（没有则新建）<code>~/.claude/settings.json</code>，写入：</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb44" data-book-role="data" data-code-title="~/.claude/settings.json"><pre data-code-text="&quot;{\n  \&quot;env\&quot;: {\n    \&quot;ANTHROPIC_AUTH_TOKEN\&quot;: \&quot;你的智谱 API Key\&quot;,\n    \&quot;ANTHROPIC_BASE_URL\&quot;: \&quot;https://open.bigmodel.cn/api/anthropic\&quot;\n  }\n}&quot;" class="sourceCode json code-with-copy"><code class="sourceCode json"><span id="cb44-1"><a href="#cb44-1" aria-hidden="true" tabindex="-1"></a><span class="fu">{</span></span>
-<span id="cb44-2"><a href="#cb44-2" aria-hidden="true" tabindex="-1"></a>  <span class="dt">"env"</span><span class="fu">:</span> <span class="fu">{</span></span>
-<span id="cb44-3"><a href="#cb44-3" aria-hidden="true" tabindex="-1"></a>    <span class="dt">"ANTHROPIC_AUTH_TOKEN"</span><span class="fu">:</span> <span class="st">"你的智谱 API Key"</span><span class="fu">,</span></span>
-<span id="cb44-4"><a href="#cb44-4" aria-hidden="true" tabindex="-1"></a>    <span class="dt">"ANTHROPIC_BASE_URL"</span><span class="fu">:</span> <span class="st">"https://open.bigmodel.cn/api/anthropic"</span></span>
-<span id="cb44-5"><a href="#cb44-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">}</span></span>
-<span id="cb44-6"><a href="#cb44-6" aria-hidden="true" tabindex="-1"></a><span class="fu">}</span></span></code></pre></div><button title="复制到剪贴板" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb45" data-book-role="data" data-code-title="~/.claude/settings.json"><pre data-code-text="&quot;{\n  \&quot;env\&quot;: {\n    \&quot;ANTHROPIC_AUTH_TOKEN\&quot;: \&quot;你的智谱 API Key\&quot;,\n    \&quot;ANTHROPIC_BASE_URL\&quot;: \&quot;https://open.bigmodel.cn/api/anthropic\&quot;\n  }\n}&quot;" class="sourceCode json code-with-copy"><code class="sourceCode json"><span id="cb45-1"><a href="#cb45-1" aria-hidden="true" tabindex="-1"></a><span class="fu">{</span></span>
+<span id="cb45-2"><a href="#cb45-2" aria-hidden="true" tabindex="-1"></a>  <span class="dt">"env"</span><span class="fu">:</span> <span class="fu">{</span></span>
+<span id="cb45-3"><a href="#cb45-3" aria-hidden="true" tabindex="-1"></a>    <span class="dt">"ANTHROPIC_AUTH_TOKEN"</span><span class="fu">:</span> <span class="st">"你的智谱 API Key"</span><span class="fu">,</span></span>
+<span id="cb45-4"><a href="#cb45-4" aria-hidden="true" tabindex="-1"></a>    <span class="dt">"ANTHROPIC_BASE_URL"</span><span class="fu">:</span> <span class="st">"https://open.bigmodel.cn/api/anthropic"</span></span>
+<span id="cb45-5"><a href="#cb45-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">}</span></span>
+<span id="cb45-6"><a href="#cb45-6" aria-hidden="true" tabindex="-1"></a><span class="fu">}</span></span></code></pre></div><button title="复制到剪贴板" class="code-copy-button"><i class="bi"></i></button></div>
 <p>保存后重新启动 <code>claude</code>，请求即走 GLM 通道。具体步骤以智谱官方文档为准：<a href="https://docs.bigmodel.cn/cn/guide/develop/claude">在 Claude Code 中使用 GLM Coding Plan</a>。</p>
 </section>
 <section id="topic-02-codex" class="level3">
 <h3 class="anchored" data-anchor-id="topic-02-codex">Codex</h3>
 <p>Codex CLI 是 OpenAI 的开源命令行 AI agent，定位与 Claude Code 相同。安装方式二选一：</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb45" data-book-role="code"><pre data-code-text="&quot;npm install -g @openai/codex\nbrew install codex&quot;" class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb45-1"><a href="#cb45-1" aria-hidden="true" tabindex="-1"></a><span class="ex">npm</span> install <span class="at">-g</span> @openai/codex</span>
-<span id="cb45-2"><a href="#cb45-2" aria-hidden="true" tabindex="-1"></a><span class="ex">brew</span> install codex</span></code></pre></div><button title="复制到剪贴板" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb46" data-book-role="code"><pre data-code-text="&quot;npm install -g @openai/codex\nbrew install codex&quot;" class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb46-1"><a href="#cb46-1" aria-hidden="true" tabindex="-1"></a><span class="ex">npm</span> install <span class="at">-g</span> @openai/codex</span>
+<span id="cb46-2"><a href="#cb46-2" aria-hidden="true" tabindex="-1"></a><span class="ex">brew</span> install codex</span></code></pre></div><button title="复制到剪贴板" class="code-copy-button"><i class="bi"></i></button></div>
 <p>Codex 在 Git 仓库内工作效果最好：它能读提交历史、理解项目结构，修改前后还可以用 <code>git diff</code> 对照。因此，建议在项目目录里先执行 <code>git init</code>，再启动 <code>codex</code>。首次启动时，按提示登录 ChatGPT 账号（Plus/Pro 订阅），或配置 OpenAI API key。</p>
 </section>
 <section id="topic-02-zcode" class="level3">
@@ -1990,17 +2016,17 @@ Host compute
 ├── samples.tsv       # 样本表：项目的事实清单
 └── README.md         # 项目说明</code></pre>
 <p>一条命令建好骨架：</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb47" data-book-role="code"><pre data-code-text="&quot;mkdir -p rnaseq_project/{data/{raw,clean},scripts,results/{tables,figures}}&quot;" class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb47-1"><a href="#cb47-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mkdir</span> <span class="at">-p</span> rnaseq_project/<span class="dt">{data/{raw</span><span class="op">,</span><span class="dt">clean}</span><span class="op">,</span><span class="dt">scripts</span><span class="op">,</span><span class="dt">results/{tables</span><span class="op">,</span><span class="dt">figures}}</span></span></code></pre></div><button title="复制到剪贴板" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb48" data-book-role="code"><pre data-code-text="&quot;mkdir -p rnaseq_project/{data/{raw,clean},scripts,results/{tables,figures}}&quot;" class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb48-1"><a href="#cb48-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mkdir</span> <span class="at">-p</span> rnaseq_project/<span class="dt">{data/{raw</span><span class="op">,</span><span class="dt">clean}</span><span class="op">,</span><span class="dt">scripts</span><span class="op">,</span><span class="dt">results/{tables</span><span class="op">,</span><span class="dt">figures}}</span></span></code></pre></div><button title="复制到剪贴板" class="code-copy-button"><i class="bi"></i></button></div>
 <p>目录建好后，原始数据放进 <code>raw/</code> 就不再修改，后续处理都生成新文件，写入下游目录，出错时才能回到起点。样本表 <code>samples.tsv</code> 一行一个样本，记录样本名、分组和文件路径；脚本从表中读取信息，不把样本名写死在代码里，这样增加样本时只需改表。<code>README.md</code> 哪怕只写三行，也要交代项目做什么、数据从哪来、按什么顺序运行。数据、脚本、结果分开存放，就容易看清哪些文件可以重新生成：<code>results</code> 中的结果都能由 <code>scripts</code> 和 <code>data</code> 再生，丢失后也可以重新得到。</p>
 </section>
 <section id="topic-02-git" class="level3">
 <h3 class="anchored" data-anchor-id="topic-02-git">版本管理与 Git</h3>
 <p>AI agent 会大量修改你的代码，改坏了怎么办？这就需要版本管理。Git 记录每次提交的完整快照，随时可以对照、回退，配合远程仓库还能异地备份。用 AI 修改代码时，<code>git diff</code> 能把每次改动展示出来，供你审查。因此，学会使用 AI agent 之后，还要学会用版本管理检查它的工作。</p>
 <p>最小工作流只需四条命令：</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb48" data-book-role="code"><pre data-code-text="&quot;git init\ngit add scripts/ samples.tsv\ngit commit -m \&quot;添加样本表与质控脚本\&quot;\ngit log --oneline&quot;" class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb48-1"><a href="#cb48-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> init</span>
-<span id="cb48-2"><a href="#cb48-2" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> add scripts/ samples.tsv</span>
-<span id="cb48-3"><a href="#cb48-3" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> commit <span class="at">-m</span> <span class="st">"添加样本表与质控脚本"</span></span>
-<span id="cb48-4"><a href="#cb48-4" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> log <span class="at">--oneline</span></span></code></pre></div><button title="复制到剪贴板" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb49" data-book-role="code"><pre data-code-text="&quot;git init\ngit add scripts/ samples.tsv\ngit commit -m \&quot;添加样本表与质控脚本\&quot;\ngit log --oneline&quot;" class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb49-1"><a href="#cb49-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> init</span>
+<span id="cb49-2"><a href="#cb49-2" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> add scripts/ samples.tsv</span>
+<span id="cb49-3"><a href="#cb49-3" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> commit <span class="at">-m</span> <span class="st">"添加样本表与质控脚本"</span></span>
+<span id="cb49-4"><a href="#cb49-4" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> log <span class="at">--oneline</span></span></code></pre></div><button title="复制到剪贴板" class="code-copy-button"><i class="bi"></i></button></div>
 <p>这四条命令依次完成：在项目目录初始化仓库，把文件纳入跟踪，提交一版快照并附说明，再查看提交历史。日常使用时，围绕 <code>add</code>、<code>commit</code>、<code>diff</code> 操作，改一批就提交一次。commit message 要写给未来的自己、协作者和 AI 看；只写“update”“fix”，并不能交代这次具体改了什么。</p>
 <p>生信仓库必须配一个 <code>.gitignore</code>，把大文件和生成物挡在仓库外：</p>
 <pre data-code-text="&quot;data/\nresults/\n*.fastq.gz\n*.bam&quot;" class="text" data-book-role="data" data-code-title=".gitignore"><code>data/
@@ -2033,10 +2059,24 @@ results/
 
 </section>
 </section>
+<section id="footnotes" class="footnotes footnotes-end-of-document" role="doc-endnotes">
+<hr>
+<ol>
+<li id="fn1"><p>Apple 于 2020 年 11 月发布首批 M1 Mac，见 <a href="https://www.apple.com/newsroom/2020/11/introducing-the-next-generation-of-mac/">Introducing the next generation of Mac</a>。年份不能直接代替芯片型号：选机或下载软件时仍应查看具体架构。<a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn2"><p>支持范围核对于 2026 年 10 月 19 日。见 <a href="https://learn.chatgpt.com/docs/app">ChatGPT 桌面应用下载</a>、<a href="https://learn.chatgpt.com/docs/changelog">官方更新记录</a>中 2026 年 7 月 9 日 Codex 整合说明，以及 <a href="https://www.deepseek.com/download/">DeepSeek Harness 下载页</a>。后者列出的 macOS 条件为 Apple 芯片、macOS 13 或更高版本。<a href="#fnref2" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn3"><p><a href="https://github.com/openai/codex#installing-and-running-codex-cli">Codex CLI 官方仓库</a>分别列出 Apple Silicon 和 Intel Mac 的二进制包。其他平台入口可参阅 <a href="https://learn.chatgpt.com/docs/windows/windows-app">ChatGPT Windows 应用</a>和 <a href="https://learn.chatgpt.com/docs/linux/linux-app">Linux 应用预览版</a>；DeepSeek Harness 下载页也提供 Windows 版本。桌面应用与 CLI 的系统要求应分别核对。<a href="#fnref3" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn4"><p>核对于 2026 年 10 月 19 日：<a href="https://api.anaconda.org/package/anaconda/python">Anaconda 的 Python 包记录</a>和 <a href="https://api.anaconda.org/package/conda-forge/python">conda-forge 的 Python 包记录</a>中，Python 3.6 系列的 macOS 包均为 <code>osx-64</code>，未列出 <code>osx-arm64</code>。这不意味着 Python 3.6 在所有操作系统上都只有 x86_64 版本，也不涉及自行编译的可能性。<a href="#fnref4" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn5"><p>核对于 2026 年 10 月 19 日，见 <a href="https://www.10xgenomics.com/support/software/cell-ranger/downloads/cr-system-requirements">Cell Ranger 系统要求</a>、<a href="https://www.10xgenomics.com/support/software/space-ranger/downloads/space-ranger-system-requirements">Space Ranger 系统要求</a>、<a href="https://www.10xgenomics.com/support/software/cell-ranger-arc/downloads/system-requirements">Cell Ranger ARC 系统要求</a>。CPU 指令集、内存和 Linux 发行版要求应以实际使用的软件版本为准。<a href="#fnref5" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn6"><p>Apple 的 <a href="https://developer.apple.com/documentation/apple-silicon/about-the-rosetta-translation-environment">Rosetta 转译环境文档</a>目前列出对 AVX、AVX2 的支持，AVX512 不在支持范围内。在 Linux 虚拟机内转译 Intel 程序另有机制，见 <a href="https://developer.apple.com/documentation/virtualization/running-intel-binaries-in-linux-vms">Running Intel binaries in Linux VMs</a>；这不能代替具体软件的兼容性验证或官方支持声明。<a href="#fnref6" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn7"><p>见 Apple 于 2026 年 9 月更新的 <a href="https://support.apple.com/en-us/102527">Using Intel-based apps on a Mac with Apple silicon</a>，包含安装方法与 macOS 27/28 的支持边界。本文核对日期为 2026 年 10 月 19 日。<a href="#fnref7" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn8"><p>Python 官方 <a href="https://www.python.org/downloads/release/python-3615/">Python 3.6.15 发布说明</a>指出，Python 3.6 于 2021 年 12 月 23 日结束支持。<a href="#fnref8" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn9"><p>命令依据 conda-forge 的 <a href="https://conda-forge.org/docs/user/tipsandtricks/#installing-apple-intel-packages-on-apple-silicon">Installing Apple Intel packages on Apple Silicon</a>。新版 Conda 也支持在创建时使用 <code>--platform osx-64</code> 并保存目标平台，见 <a href="https://docs.conda.io/projects/conda/en/stable/user-guide/tasks/manage-environments.html#specifying-a-different-target-platform-for-an-environment">Specifying a different target platform for an environment</a>。<a href="#fnref9" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+</ol>
+</section>
 
 </main> <!-- /main -->
 <div class="book-toolbar" role="navigation" aria-label="阅读工具">
-  <div class="book-brand"><span class="book-brand-name">AI时代生信入门</span><time class="book-last-modified" datetime="2026-10-12T16:41:23+08:00" title="最后修改时间（北京时间，UTC+08:00）">最后修改 2026-10-12 16:41</time></div>
+  <div class="book-brand"><span class="book-brand-name">AI时代生信入门</span><time class="book-last-modified" datetime="2026-10-19T15:00:49+08:00" title="最后修改时间（北京时间，UTC+08:00）">最后修改 2026-10-19 15:00</time></div>
   <button class="book-menu-button" type="button" aria-controls="quarto-sidebar" aria-expanded="false">目录</button>
   <button class="book-search-button" type="button">搜索</button>
 </div>
